@@ -200,10 +200,10 @@ class TestComparisons:
 
 
 class TestNamesAndReferences:
-    def test_names_keep_their_original_spelling(self) -> None:
+    def test_several_names_must_all_match_and_keep_their_spelling(self) -> None:
+        # One keyword, not two: separate keywords would be alternatives and widen the search.
         assert filters("Recruiting CAR-T trials for Non-Hodgkin Lymphoma")["keywords"] == [
-            "CAR-T",
-            "Non-Hodgkin Lymphoma",
+            "CAR-T Non-Hodgkin Lymphoma"
         ]
 
     def test_disease_words_stay_part_of_the_name(self) -> None:

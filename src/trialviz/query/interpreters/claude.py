@@ -206,7 +206,9 @@ Filters
 - Values inside one slot are alternatives; separate slots must all hold.
 - Only include names the question actually mentions. Use keywords for a name whose type \
 you cannot tell, and for any other term the matching trials should mention, such as \
-"vaccine" or "pediatric". Keywords match text anywhere in a trial record.
+"vaccine" or "pediatric". Keywords match text anywhere in a trial record. Separate \
+keywords are alternatives, so terms that must all appear go in one keyword, separated by \
+spaces ("pediatric vaccine").
 - Years bound the trial start date and are inclusive. "since 2015" means from 2015; \
 "after 2015" means from 2016; "before 2020" means to 2019; "in 2020" means from 2020 to \
 2020; "the last N years" means the N calendar years ending with the current year.

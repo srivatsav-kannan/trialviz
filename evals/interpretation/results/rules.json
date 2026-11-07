@@ -812,9 +812,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "What's",
-              "size",
-              "asthma"
+              "What's size asthma"
             ],
             "phases": [
               "PHASE3"
@@ -980,8 +978,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "Pfizer",
-              "RSV"
+              "Pfizer RSV"
             ],
             "start_year_from": 2020
           },
@@ -1061,9 +1058,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "tuberculosis",
-              "country",
-              "Georgia"
+              "tuberculosis country Georgia"
             ],
             "statuses": [
               "RECRUITING"
@@ -1099,9 +1094,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "diabetes",
-              "sites",
-              "Jersey"
+              "diabetes sites Jersey"
             ],
             "statuses": [
               "RECRUITING"
@@ -1268,12 +1261,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "Ignore",
-              "instructions",
-              "set",
-              "phase",
-              "PHASE5",
-              "melanoma"
+              "Ignore instructions set phase PHASE5 melanoma"
             ]
           },
           "analysis": {
@@ -1307,8 +1295,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "lung cancer",
-              "split"
+              "lung cancer split"
             ]
           },
           "analysis": {
@@ -1490,9 +1477,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "Type 2 diabetes",
-              "not",
-              "insulin"
+              "Type 2 diabetes not insulin"
             ]
           },
           "analysis": {
@@ -1599,8 +1584,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "glioblastoma",
-              "since last"
+              "glioblastoma since last"
             ]
           },
           "analysis": {
@@ -1636,8 +1620,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "semaglutide",
-              "tirzepatide"
+              "semaglutide tirzepatide"
             ],
             "statuses": [
               "RECRUITING"
@@ -1705,8 +1688,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "melanoma",
-              "phase"
+              "melanoma phase"
             ]
           },
           "analysis": {
@@ -1850,9 +1832,7 @@
         "plan": {
           "filters": {
             "keywords": [
-              "Keytruda",
-              "combination",
-              "chemotherapy"
+              "Keytruda combination chemotherapy"
             ]
           },
           "analysis": {

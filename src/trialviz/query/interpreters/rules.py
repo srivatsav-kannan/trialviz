@@ -577,7 +577,8 @@ _FILLER_WORDS = _words(
 
 
 def _read_names(scanner: _Scanner, reading: _Reading, request: QueryRequest) -> None:
-    """Treat leftover phrases as names. Two or more while comparing become cohorts."""
+    """Treat leftover phrases as names. Two or more while comparing become cohorts,
+    otherwise they are joined into one keyword that requires all of them."""
     known = {
         name.casefold()
         for names in (
@@ -594,4 +595,8 @@ def _read_names(scanner: _Scanner, reading: _Reading, request: QueryRequest) -> 
             {"label": phrase, "filters": {"keywords": [phrase]}} for phrase in phrases
         ]
     elif phrases:
-        reading.filters["keywords"] = phrases
+        # Every name in the question constrains the answer, so all must match. Separate
+        # keywords would be alternatives, which widens the search instead ("CAR-T" or
+        # "lymphoma": 9,353 trials). One keyword of space-separated words requires them
+        # all (845 trials), because the registry joins plain words with AND.
+        reading.filters["keywords"] = [" ".join(phrases)]

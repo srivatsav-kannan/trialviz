@@ -349,6 +349,9 @@
         "status": "resolved",
         "plan": {
           "filters": {
+            "keywords": [
+              "combination"
+            ],
             "intervention_types": [
               "DRUG"
             ]
@@ -369,15 +372,11 @@
           "analysis.kind": "inferred",
           "analysis.node_types": "inferred",
           "filters.intervention_types": "inferred",
+          "filters.keywords": "inferred",
           "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default"
         },
-        "notes": [
-          {
-            "code": "constraint_not_applied",
-            "message": "The question asks for \"combination studies (multiple drugs in one trial)\", which no filter here can express, so the results are not limited by it."
-          }
-        ],
+        "notes": [],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -430,7 +429,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "ambiguous_reference",
-        "message": "The question refers to \"this drug\" but never names it, and no caller field supplies a drug. Please specify which drug.",
+        "message": "The question refers to \"this drug\" but never names it, and no drug was supplied in the caller's fields.",
         "missing": [],
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -525,6 +524,7 @@
             "kind": "count"
           },
           "presentation": {
+            "chart_type": "stat",
             "citations_per_datum": 3
           }
         },
@@ -532,6 +532,7 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.start_year_to": "user",
+          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default"
         },
         "notes": [
@@ -777,7 +778,7 @@
         "plan": {
           "filters": {
             "conditions": [
-              "oncology"
+              "cancer"
             ],
             "statuses": [
               "COMPLETED"
@@ -905,6 +906,7 @@
             "group_by": "lead_sponsor"
           },
           "presentation": {
+            "sort": "value_desc",
             "top_n": 10,
             "citations_per_datum": 3
           }
@@ -914,6 +916,7 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred",
           "presentation.top_n": "inferred"
         },
         "notes": [],
@@ -985,6 +988,7 @@
             "kind": "count"
           },
           "presentation": {
+            "chart_type": "stat",
             "citations_per_datum": 3
           }
         },
@@ -993,6 +997,7 @@
           "filters.conditions": "inferred",
           "filters.sponsors": "inferred",
           "filters.start_year_from": "inferred",
+          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default"
         },
         "notes": [],
@@ -1011,7 +1016,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "out_of_scope",
-        "message": "Ranking statins by how much they lower cholesterol is an efficacy comparison, and registry records can't answer that. I can show how many trials study each statin for high cholesterol.",
+        "message": "Registry records cannot rank statins by how much they lower cholesterol; that is an efficacy comparison. I can show how many trials study each statin for high cholesterol instead.",
         "missing": [],
         "notes": [
           {
@@ -1125,7 +1130,7 @@
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"sites located in New Jersey (state-level location; approximated by keyword)\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"sites located in New Jersey (state-level location)\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1289,7 +1294,7 @@
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"requested phase PHASE5 does not exist\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"requested phase PHASE5 is not a valid phase\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1516,7 +1521,7 @@
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"excluding trials involving insulin\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"not involving insulin\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1942,14 +1947,12 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
           }
         },
         "provenance": {
           "analysis.kind": "inferred",
           "filters.interventions": "inferred",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default"
         },
         "notes": [
