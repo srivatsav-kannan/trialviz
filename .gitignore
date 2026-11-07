@@ -1,0 +1,11 @@
+.env
+.private/
+.venv/
+__pycache__/
+*.pyc
+var/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+.DS_Store
