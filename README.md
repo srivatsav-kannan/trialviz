@@ -80,6 +80,7 @@ The full field reference, with validation rules and examples, is in [docs/api.md
 - **A hard spend cap.** Each Claude call reserves its worst-case cost before it is made and refuses if that could cross the cap. Spending is persisted, so the cap holds across restarts.
 - **Deterministic retrieval.** The plan maps to API parameters by a fixed table, and how many requests it becomes follows fixed rules: one query per comparison cohort, a count first, only the records and fields the analysis reads, and a reproducible capped subset for very large result sets. See [docs/retrieval.md](docs/retrieval.md).
 - **Drugs and conditions must be named, not just mentioned.** The registry's default search also matches description text, and recording real queries showed one in ten "Keytruda" trials only listed pembrolizumab as a permitted option. Names must now appear in the fields that name a trial's interventions or conditions, with synonyms still expanded. Precision went from about 90 to 99 percent or more, at a cost of 3 to 15 percent of matches.
+- **Mentions are reported, never silently counted or lost.** Trials that mention a drug or condition only in descriptions are fetched by a second query that splits the default search exactly. By default they are reported but not counted, because telling "patients will receive pembrolizumab" from "agents include pembrolizumab" takes judgment the pipeline should not guess at. `retrieval.name_matching: mentioned` counts them, still labeled.
 - **Names cannot inject query syntax.** The registry executes syntax found inside search terms, so names from people or the model are reduced to plain lowercase words before use. A live test proves an injected `AREA[Phase]PHASE3` is searched as words, not run as a filter.
 - **A cache that cannot go stale.** Registry responses are cached under a key that includes the registry's data version, so a cached answer always matches the current data.
 
@@ -92,7 +93,7 @@ TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-record against Claude and 
 uv run python -m evals.interpretation.run --interpreter claude
 ```
 
-The suite is small on purpose: 18 tests, most of them whole workflows. Each workflow runs a real question through the pipeline, replayed from recordings of the real Claude and registry traffic, and checks that every record that comes back actually satisfies the question (the drug named, dates in range, the right status and country). Four guard tests cover what workflows cannot reach, and two live tests confirm the registry's search behavior still holds. Sixteen deliberate bugs, introduced one at a time, were all caught. Details in [docs/testing.md](docs/testing.md).
+The suite is small on purpose: 20 tests, most of them whole workflows. Each workflow runs a real question through the pipeline, replayed from recordings of the real Claude and registry traffic, and checks that every record that comes back actually satisfies the question (the drug named, dates in range, the right status and country). Four guard tests cover what workflows cannot reach, and two live tests confirm the registry's search behavior still holds. Twenty deliberate bugs, introduced one at a time, were all caught. Details in [docs/testing.md](docs/testing.md).
 
 Current interpretation results (49 questions, scored on the final resolved plan):
 

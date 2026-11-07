@@ -17,11 +17,13 @@ The assertions are about the answer, not the code. Every record that comes back 
 
 | Workflow | What would have to go wrong for it to fail |
 | --- | --- |
-| The assignment example | "This drug" becomes a second search, a stray filter creeps in, the capped subset is not the latest trials, or the drug search returns trials that do not test the drug |
+| The assignment example | "This drug" becomes a second search, a stray filter creeps in, the capped subset is not the latest trials, the drug search returns trials that do not test the drug, or mention-only trials overlap named ones, name the drug after all, or cannot be cited from the fetched text |
+| Counting mentions | Counted mentions are double counted, break the exact total, or exceed the cohort's record cap |
 | Keytruda vs Opdivo since 2018 | The year is applied per cohort instead of shared, or a cohort's records do not involve its drug |
 | A field contradicting the question | The question's phase reaches the registry instead of the caller's, or a count downloads more than it cites |
 | Countries with the most recruiting melanoma trials | Non-recruiting or non-melanoma trials come back, or records lack the site countries the breakdown needs |
 | A small network question | A complete fetch misses or repeats a trial, or the fields a network needs are not requested |
+| Enrollment against duration | Non-completed or off-topic trials come back, or records lack the enrollment and dates a scatter plot needs |
 | Hostile caller text | Injected syntax or a stray quote reaches the registry, or the cleaned query stops finding trials |
 | Claude down | The rule-based fallback does not carry the question through, or two names widen the search instead of narrowing it |
 
@@ -46,7 +48,7 @@ Four tests guard failures the workflows cannot reach:
 
 ## Live (`tests/live/`, `--run-live`)
 
-Two tests confirm today's registry still has the search behavior the translator relies on: synonyms expand inside the naming fields, alternatives widen and cohort layers narrow, every filter type is accepted together, and names cannot inject query syntax. Recordings cannot prove that, because they only show what the registry returned once.
+Three tests confirm today's registry still has the search behavior the translator relies on: synonyms expand inside the naming fields, alternatives widen and cohort layers narrow, named trials plus mentions add up exactly to the default search, every filter type is accepted together, and names cannot inject query syntax. Recordings cannot prove that, because they only show what the registry returned once.
 
 ## Evaluation (`evals/interpretation/`)
 
@@ -54,7 +56,7 @@ How well each interpreter reads 49 hard questions, scored through the full resol
 
 ## Is the suite sharp?
 
-Sixteen deliberate bugs were introduced one at a time, across the resolver, the translator, the client, the retriever, the rule-based interpreter, the spend cap and the vocabulary. The suite caught all sixteen. The first run caught fifteen. The miss was a spend-cap test that checked a fresh ledger instead of the one in use, so a ledger that never released reservations passed. That test was fixed.
+Twenty deliberate bugs were introduced one at a time, across the resolver, the translator, the mention tier, the client, the retriever, the rule-based interpreter, the spend cap and the vocabulary. The suite caught all twenty. In the first round of sixteen, it caught fifteen. The miss was a spend-cap test that checked a fresh ledger instead of the one in use, so a ledger that never released reservations passed. That test was fixed.
 
 ## What testing found
 

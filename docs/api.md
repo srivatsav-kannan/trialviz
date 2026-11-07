@@ -14,6 +14,7 @@ Reads a question and returns the resolved plan, or what is needed to resolve it.
 | `filters` | object | no | Which trials. See [Filters](#filters). |
 | `analysis` | object | no | What to compute. See [Analysis](#analysis). |
 | `presentation` | object | no | Display preferences. See [Presentation](#presentation). |
+| `retrieval` | object | no | `{"name_matching": "named" or "mentioned"}`. See [Retrieval](#retrieval). |
 | `inference` | `"auto"` or `"off"` | no | `off` skips reading the question. Default `auto`. |
 | `drug_name`, `condition`, `trial_phase`, `sponsor`, `country` | string | no | Shorthands for `filters.interventions`, `conditions`, `phases`, `sponsors`, `countries` |
 | `start_year`, `end_year` | integer | no | Shorthands for `filters.start_year_from` and `filters.start_year_to`. `end_year` bounds the start date. It is not an end date. |
@@ -68,6 +69,14 @@ Checks applied to any subset: `group_by` and `series_by` must differ, `x` and `y
 | `top_n` | integer | 1 to 100 |
 | `citations_per_datum` | integer | 0 to 25, default 3 |
 
+### Retrieval
+
+| Field | Type | Notes |
+| --- | --- | --- |
+| `name_matching` | string | `named` (default): a drug or condition must be listed among a trial's interventions or conditions for the trial to count. `mentioned`: trials that mention it only in descriptions count too. Mention-only trials are retrieved and reported either way. |
+
+Like every other slot, it can be set by the caller, inferred from the question ("trials that mention Keytruda anywhere"), or defaulted, and its source is reported in `provenance`.
+
 ## Response
 
 Status 200 with one of two shapes, discriminated by `status`.
@@ -80,7 +89,8 @@ Status 200 with one of two shapes, discriminated by `status`.
   "plan": {
     "filters": { "interventions": ["Pembrolizumab"], "phases": ["PHASE3"], "...": null },
     "analysis": { "kind": "time_series", "time_field": "start_date", "granularity": "year", "series_by": null },
-    "presentation": { "chart_type": null, "sort": null, "top_n": null, "citations_per_datum": 3 }
+    "presentation": { "chart_type": null, "sort": null, "top_n": null, "citations_per_datum": 3 },
+    "retrieval": { "name_matching": "named" }
   },
   "provenance": {
     "analysis.granularity": "default",
@@ -88,7 +98,8 @@ Status 200 with one of two shapes, discriminated by `status`.
     "analysis.time_field": "default",
     "filters.interventions": "user",
     "filters.phases": "user",
-    "presentation.citations_per_datum": "default"
+    "presentation.citations_per_datum": "default",
+    "retrieval.name_matching": "default"
   },
   "notes": [],
   "interpreter": "rules"
