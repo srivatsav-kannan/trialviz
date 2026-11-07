@@ -20,3 +20,15 @@ class Settings(BaseSettings):
     interpreter_max_tokens: int = Field(8000, ge=1000, le=32000)
     llm_spend_cap_usd: float = Field(20.0, ge=0)
     llm_ledger_path: Path = Path("var/llm_spend.json")
+
+    ctgov_api_root: str = "https://clinicaltrials.gov/api/v2"
+    ctgov_requests_per_minute: float = Field(
+        50.0, gt=0, description="Request spacing. The API throttles bursts of about ten."
+    )
+    ctgov_timeout_seconds: float = Field(30.0, gt=0)
+    ctgov_cache_dir: Path | None = Field(
+        Path("var/cache/ctgov"), description="Response cache. Set empty to disable."
+    )
+    retrieval_max_records: int = Field(
+        10_000, ge=1, description="Most records fetched per cohort before truncating."
+    )
