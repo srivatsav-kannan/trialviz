@@ -1,0 +1,181 @@
+{
+ "claude": [
+  {
+   "question": "Today's date: 2026-11-07\n\nCaller's fields:\n{\n  \"filters\": {\n    \"phases\": [\n      \"PHASE2\"\n    ]\n  }\n}\n\n<question>\nHow many phase 3 trials of semaglutide are recruiting?\n</question>",
+   "stop_reason": "end_turn",
+   "text": "{\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"semaglutide\"]},{\"slot\":\"filters.phases\",\"values\":[\"PHASE3\"]},{\"slot\":\"filters.statuses\",\"values\":[\"RECRUITING\"]},{\"slot\":\"analysis.kind\",\"values\":[\"count\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
+   "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 3495,
+    "input_tokens": 90,
+    "output_tokens": 124
+   }
+  }
+ ],
+ "fingerprint": "f8a0e7d38229c2db",
+ "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&pageSize=3&query.intr=%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvmt3vYalD6SuP08FCfCFfbT9NdM1yI",
+   "studies": [
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "semaglutide"
+        },
+        {
+         "term": "Saline Solution"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Semaglutide"
+        },
+        {
+         "name": "Placebo",
+         "otherNames": [
+          "0.9% normal saline"
+         ]
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Lean Mass Changes With Semaglutide in Adults With Type 1 Diabetes and Overweight/Obesity.",
+       "nctId": "NCT07891156"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "semaglutide"
+        },
+        {
+         "term": "Levonorgestrel"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Wegovy",
+         "otherNames": [
+          "Semaglutide"
+         ]
+        },
+        {
+         "name": "Mirena",
+         "otherNames": [
+          "Progestin-releasing intra-uterine device (pIUD)"
+         ]
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Weight-loss Drug for Fertility-Sparing Treatment of Atypical Hyperplasia and Low-grade Cancer of the Endometrium",
+       "nctId": "NCT06073184"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Interleukin-2"
+        },
+        {
+         "term": "aldesleukin"
+        },
+        {
+         "term": "semaglutide"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "IL-2 (Aldesleukin)"
+        },
+        {
+         "name": "Semaglutide Plus IL-2"
+        },
+        {
+         "name": "Placebo"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Interleukine-2 (IL-2) Plus Semaglutide in Alzheimer's Disease",
+       "nctId": "NCT07651319"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-01"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 32
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrbPSn3_g",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07415954"
+      }
+     }
+    }
+   ],
+   "totalCount": 32
+  },
+  "/api/v2/version?": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-11-06T10:00:05"
+  }
+ }
+}

@@ -1,0 +1,1931 @@
+{
+ "claude": [],
+ "fingerprint": "f8a0e7d38229c2db",
+ "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&pageSize=100&query.term=%28car-t+non-hodgkin+lymphoma%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvWl2_wdnj6SuP08FCfCFPfU89pI3Q",
+   "studies": [
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of Early Second Infusion of Axi-cel Based on ctDNA for R/R Large B - Cell Lymphoma",
+       "nctId": "NCT06902012"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2027-02"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Lymphodepletion With Low Dose Total Body Irradiation Before Standard of Care Tisagenlecleucel for the Treatment of Relapsed and Recurrent Large B-cell Lymphoma",
+       "nctId": "NCT07676877"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-12-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Natalizumab for the Prevention of ICANS in Patients With Recurrent or Refractory Diffuse Large B-Cell Lymphoma or Mantle Cell Lymphoma Receiving CAR T-Cell Therapy",
+       "nctId": "NCT07892027"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Low-Dose TBI Plus CAR T-Cell Therapy for Relapsed/Refractory DLBCL and Multiple Myeloma",
+       "nctId": "NCT07725406"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of ALA-101 in Patients With CD19 Positive Non-Hodgkin Lymphoma and Leukemia.",
+       "nctId": "NCT07518329"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-19"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "BEX101 in B-cell Non-Hodgkin's Lymphoma",
+       "nctId": "NCT07882641"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-15"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Intrathecal Cytarabine and Hydrocortisone for the Early Treatment of ICANS in Patients Undergoing CAR T Therapy for Non Hodgkin Lymphoma",
+       "nctId": "NCT07763210"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-25"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Bendamustine Versus Fludarabine/Cyclophosphamide for Lymphodepletion in Chimeric Antigen Receptor T-cell Immunotherapy (CAR-T): a Randomized Trial.",
+       "nctId": "NCT07593482"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-24"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "GLORY: Glofit-GemOx With Liso-Cel For Lymphoma",
+       "nctId": "NCT07711483"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-15"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Single-arm Study of IgPro20 in Adults With Secondary Immune Deficiencies Due to Hematologic Malignancies Treated With B-cell Targeting Chimeric Antigen Receptor T-cell and T-cell Redirecting Therapies",
+       "nctId": "NCT07648264"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-15"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Bispecific Antibody-Based Holding/Bridging Therapy Before CAR-T in Aggressive B-Cell Lymphomas",
+       "nctId": "NCT07883135"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1/2 Study of UB-VV400 With Rapamycin in Relapsed/Refractory B-cell Malignancies",
+       "nctId": "NCT07735533"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase Ib/II Exploratory Clinical Trial of Memory-Enhanced 7×19-THEMIS CAR-T Cell Therapy for Relapsed/Refractory Large B-Cell Lymphoma",
+       "nctId": "NCT07788118"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pomalidomide After CAR T-cell Therapy for the Treatment of Relapsed or Refractory CD19+ B-cell Leukemia or Lymphoma",
+       "nctId": "NCT07532525"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-26"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Glofitamab as a Bridge to and/or Consolidation Post Autologous Stem Cell Transplant in Patients With Relapsed B Cell Lymphomas",
+       "nctId": "NCT07387848"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-24"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Sonrotoclax Plus Zanubrutinib in Patients With Relapsed/Refractory Mantle Cell Lymphoma Planned for Standard of Care CAR-T Cell Therapy",
+       "nctId": "NCT07341191"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-24"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CD45BE-HSPC + CART-45 Cells",
+       "nctId": "NCT07451054"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-05"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "GN001 for Relapsed or Refractory B-Cell Non-Hodgkin Lymphoma and B-Cell Acute Lymphoblastic Leukemia",
+       "nctId": "NCT07910708"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-04"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Nemtabrutinib With CAR T Therapy in Relapsed/Refractory Mantle Cell Lymphoma",
+       "nctId": "NCT07673367"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-31"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of KSVCBD Injection in B-cell Non-Hodgkin's Lymphoma Expressing CD19 and/or BCMA",
+       "nctId": "NCT07620314"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-16"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Testing the Anti-cancer Drug, Glofitamab, in Patients With Mantle Cell Lymphoma (A Type of Blood Cancer) Whose Disease Returned After CAR-T Cell Therapy",
+       "nctId": "NCT07003295"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-08"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study With Glofitamab in Patients With MCL and Inadequate Response or Relapse Following CAR T-cell Therapy",
+       "nctId": "NCT07453095"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-05"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "In Vivo CD19/CD20 CAR T-Cell Therapy for Relapsed/Refractory B-Cell Lymphoma",
+       "nctId": "NCT07775508"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Radiation, Oral Vancomycin, and CAR-T for B-Cell Lymphomas",
+       "nctId": "NCT07478848"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-29"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "huCART19-IL18-eDHFR Cells in Relapsed/Refractory Follicular Lymphoma",
+       "nctId": "NCT07343934"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-18"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Dual-Targeted Umbilical Cord Blood CAR-T Cells Against CD19 and CD22 for the Treatment of Relapsed or Refractory Acute B-Cell Lymphoblastic Leukemia",
+       "nctId": "NCT07838714"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-13"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Novel Unedited Allo Cell Therapy For High Risk T-Cell Malignancies Using CD7-Specific Car T Cells",
+       "nctId": "NCT07220993"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-12"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "GB5005 CART-cell Injection in the Treatment of Patients With CD19-positive RR B-NHL",
+       "nctId": "NCT06875063"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-30"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study Exploring the Safety, Efficacy and Metabolic Kinetics of CT1182 Injection in Patients With Relapsed / Refractory Non Hodgkin Lymphoma",
+       "nctId": "NCT07548697"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-30"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Cognitive Training Intervention for Improving Cognitive and Neurological Outcomes in Patients Undergoing Treatment for Relapsed or Refractory Multiple Myeloma or B-cell Non-Hodgkin Lymphoma",
+       "nctId": "NCT07609030"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-28"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Study of Voice as a Way to Monitor for Side Effects in People Receiving CAR T-Cell Therapy",
+       "nctId": "NCT07249528"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-17"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Exploratory Study of Umbilical Cord Blood-Derived CAR-NK Cell Therapy Targeting TRBC1/2 for Relapsed/Refractory T-Cell Lymphoma",
+       "nctId": "NCT07164560"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety, Tolerability, and Pharmacokinetics of Donor-derived CD19 CAR Therapy Bridged Allo-HSCT and Sequential Donor-derived CD22 CAR Therapy for r/r B-ALL: a Clinical Trial",
+       "nctId": "NCT06326008"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-15"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "NT-I7 (Efineptakin Alfa), a Long-acting Human IL-7, Post-Axicabtagene Ciloleucel or Post-Lisocabtagene Maraleucel in Subjects With Relapsed/Refractory Large B-cell Lymphoma",
+       "nctId": "NCT07052305"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-12"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Adaptive Dual-Target CAR-T Cells for Relapsed or Refractory Hematologic Malignancies",
+       "nctId": "NCT07523555"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-02"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Antigen Targeted T Cell Therapy for Relapsed/Refractory B Cell Lymphomas",
+       "nctId": "NCT07319676"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-02"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "PIC1 Injection Therapy for Relapsed/Refractory B-NHL",
+       "nctId": "NCT07456371"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Study of SYNCAR-100 in the Treatment of Relapsed/Refractory Acute B-Lymphoblastic Leukemia",
+       "nctId": "NCT07429461"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-28"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1 Study of JV-394 Autologous Anti-CD94 CAR T for r/r CD94+ T/NK Cell Neoplasms",
+       "nctId": "NCT07382817"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-18"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Fecal Microbiome Transplant to Remodel Intestinal Microbiota for Patients With Relapsed or Refractory Lymphoma With Exposure to High-Risk Antibiotics Who Are Receiving Chimeric Antigen Receptor T Cells",
+       "nctId": "NCT07042438"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-11"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Biomarker-Guided Allogeneic Single-Target or Dual-Target CAR-NK Cell Therapy for Advanced Solid Tumors",
+       "nctId": "NCT07410494"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Study of Oncolytic Vaccinia VIrus Delivering Targeted CD19 in Vivo CAR-T/M Therapy for Refractory/Relapsed B-cell Lymphoma",
+       "nctId": "NCT07398963"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Investigate Ronde-cel Versus Investigator's Choice CD19 CAR T-Cell Therapy",
+       "nctId": "NCT07188558"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-12"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of Allo-QuadCAR01-T, an Allogeneic CAR-T Targeting CD19/CD20, in Patients With Relapsed or Refractory B-Cell Malignancies",
+       "nctId": "NCT07284433"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-06"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy Study of Anti-PD1 Armored CD19 CAR-T Cells in Adult Subjects With Relapsed or Refractory Diffuse Large B-cell Lymphoma",
+       "nctId": "NCT07368270"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Targeted CD22/CD19 CAR-T Therapy for Consolidation in Standard-Risk B-ALL",
+       "nctId": "NCT07575919"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy Study of BAFF-R CAR-T Cells in Adult Subjects With CD19-Negative Relapsed or Refractory B-Cell Lymphoma",
+       "nctId": "NCT07369492"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Trial of CMD63 Chimeric Antigen Receptor T-cell (CAR T-cell) in Children With Acute Lymphoblastic Leukemia (ALL)",
+       "nctId": "NCT07078929"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Exploratory Study of CD22/CD19 Dual-Target CAR-T Cell Therapy as Consolidation Treatment After First Remission in High-Risk B-Cell Acute Lymphoblastic Leukemia",
+       "nctId": "NCT07575971"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase I/IIa, Open-label, Single-center, Dose-escalation and Dose-expansion Study to Evaluate the Safety, Tolerability, and Preliminary Efficacy of IMV101 as a Single Agent in Subjects With Relapsed/Refractory B-cell Non-Hodgkin Lymphoma",
+       "nctId": "NCT07376642"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-29"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Exploratory Study on mRNA Therapeutic Drug Targeting CD19 for the Treatment of Hematologic Malignancies",
+       "nctId": "NCT07349849"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-20"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Obinutuzumab, Zanubrutinib, and Lenalidomide in First-line Treatment of Mantle Cell Lymphoma",
+       "nctId": "NCT07261163"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-20"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of GI001 in Relapsed or Refractory B-Cell Non-Hodgkin Lymphoma and B-Cell Acute Lymphoblastic Leukemia",
+       "nctId": "NCT07862010"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-11-28"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Anbalcabtagene Autoleucel in Relapsed/Refractory CNS Lymphoma",
+       "nctId": "NCT07062627"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-11-12"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Combining Loncastuximab Tesirine and Epcoritamab in Relapsed/Refractory Diffuse Large B-cell Lymphoma (DLBCL)",
+       "nctId": "NCT07197307"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-10-31"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Hyperfractionated Dual Equivalent Fractionated Radiation Therapy",
+       "nctId": "NCT06898905"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-10-30"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Constitutive IL7R (C7R) Modified Banked Allogeneic CD30.CAR EBVSTS for CD30-Positive Lymphomas",
+       "nctId": "NCT06176690"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-10-27"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "CAR T-cell Long-Term Follow-Up, Quality of Life and Adverse Reactions",
+       "nctId": "NCT07048535"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-10-24"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Fludarabine Dosing in Children and Young Adults With B-cell Acute Lymphoblastic Leukemia",
+       "nctId": "NCT07223021"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-10-20"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Study of LV009 Injection for the Treatment of Relapsed/Refractory CD19-Positive Hematologic and Lymphoid Malignancies",
+       "nctId": "NCT07312630"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-09-25"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Relmacabtagene Autoleucel Combined With Sintilimab for Relapsed/Refractory B-cell Lymphoma",
+       "nctId": "NCT07077512"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-09-15"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "NexCAR19 (Talikabtagene Autoleucel) in Relapsed/Refractory B-Cell Malignancies (NexCAR19)",
+       "nctId": "NCT07502118"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-09-11"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "An Open-label, Single-arm Clinical Study to Evaluate the Safety and Preliminary Efficacy of OriV508 Injection in Treating Relapsed/Refractory Hematological Malignancies",
+       "nctId": "NCT07101705"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-09-08"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CD30 CAR-T in the Treatment of CD30 Positive Relapsed/Refractory Lymphoma",
+       "nctId": "NCT06850285"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-09-05"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Odronextamab for Relapsed and Refractory Large B-cell Lymphomas Before CAR-T",
+       "nctId": "NCT06784726"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-09-04"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study for Subjects With Relapsed/Refractory Non- Hodgkin Lymphoma",
+       "nctId": "NCT05618925"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-08-22"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Odronextamab for the Treatment of Relapsed and Refractory Diffuse Large B-cell Lymphoma Before and After Chimeric Antigen Receptor T-cell Therapy",
+       "nctId": "NCT06854159"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-08-07"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Targeting CD19/CD20 Dual-targeted Cell in Patients With Relapsed/Refractory B-cell Non-Hodgkin Lymphoma",
+       "nctId": "NCT07093411"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-08-05"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy Study of Zamtocabtagene Autoleucel (MB-CART2019.1) in Pediatric Patients With R/R B-Cell Neoplasms",
+       "nctId": "NCT06508931"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-08-04"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Novel Allogenic CD19-targeting CAR-γδT Cell Therapy (QH103E) in r/r NHL",
+       "nctId": "NCT06838832"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-07-27"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Multicenter Observational Study to Understand the Clinical Characteristics, Treatment Patterns and Access to Novel Therapies of Patients With Diffuse Large B-Cell Lymphoma in the MEA Region",
+       "nctId": "NCT07065344"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-07-23"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study Exploring CT1190B in the Treatment of Patients With Relapsed/Refractory B-cell Non-Hodgkin Lymphoma ( CT1190B-CG11001 )",
+       "nctId": "NCT07053670"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-07-09"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "In VIVO CAR-T Therapy for Relapsed/Refractory Hematological Malignancies",
+       "nctId": "NCT07239323"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-07-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of Universal CD19-targeting CAR-γδT Cells in Refractory Autoimmune Diseases",
+       "nctId": "NCT06828042"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-07-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CD180 CART for Relapsed or Refractory CD180 Positive Hematologic Malignancies",
+       "nctId": "NCT07106749"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-28"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "BCOR and ZC3H12 Genes Knock-out CD19-targeting CAR-T Cell Therapy in r/r B Cell Lymphoma",
+       "nctId": "NCT07009002"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-20"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Intracranial Genetically Modified Immune Cells (TGFβR2KO/IL13Rα2 CAR T-Cells) for the Treatment of Recurrent or Progressive Glioblastoma or Grade 3 or 4 IDH-Mutant Astrocytoma",
+       "nctId": "NCT06815029"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-17"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate the Safety and Clinical Activity of GF- CART01 (CD20/19 CAR T Cell) in Subjects With Relapsed or Refractory B-Cell Hematological Malignancies",
+       "nctId": "NCT06703892"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-09"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Testing the Addition of the Anti-cancer Drug Venetoclax and/or the Anti-cancer Immunotherapy Blinatumomab to the Usual Chemotherapy Treatment for Infants With Newly Diagnosed KMT2A-rearranged or KMT2A-non-rearranged Leukemia",
+       "nctId": "NCT06317662"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-05"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CD5 CAR T-Cell Therapy for r/r T-cell Lymphomas",
+       "nctId": "NCT07022964"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "JY231(JY231) Injection for the Treatment of Relapsed/Refractory B Cell Lymphoma/ Leukemia",
+       "nctId": "NCT06940960"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-05-30"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Enhancing CAR-T Cell Therapy Efficacy in B-cell Lymphoma Via Chidamide and PD-1 Inhibitor Combination.",
+       "nctId": "NCT07489989"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-05-15"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study of Allogeneic CD19/BCMA CAR-T Cells for the Treatment of R/R B-cell Malignant Tumors",
+       "nctId": "NCT06976437"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-05-06"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Anti-CD7 CAR-T Cells in Relapsed/Refractory T-Cell Acute Lymphoblastic Leukemia or Lymphoma",
+       "nctId": "NCT06934382"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-29"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CD19-CD22-Bispecific Chimeric Antigen Receptor (CAR) T Cell Therapy for Pediatric Patients With Acute Lymphoblastic Leukemia",
+       "nctId": "NCT06777979"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-28"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "IOMAB-CAR-T Followed by CAR-T Cell Therapy in R/R DLBCL",
+       "nctId": "NCT06768905"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-25"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Efficacy and Safety Evaluation of U01(ssCART-19) in B-Cell Lymphoma",
+       "nctId": "NCT06987916"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-22"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Intravenous Autologous CD19 CAR-T Cells for R/ R MM, B-ALL, and B-Cell Lymphoma",
+       "nctId": "NCT06961669"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-16"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Golcadomide and Rituximab as Bridging Therapy for Relapsed or Refractory Aggressive B-cell Non-Hodgkin Lymphoma Before CAR T-cell Therapy",
+       "nctId": "NCT06834373"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-02"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Hypofractionation Radiotherapy in Combination With Glofitamab in Relapsed/Refractory Diffuse B-cell Lymphoma With Baseline High Tumor Burden",
+       "nctId": "NCT06867536"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CD7 CAR T-Cell Therapy for r/r T-cell Lymphomas",
+       "nctId": "NCT06925464"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Full-course Immunotherapy Combined With Chemotherapy in Newly Diagnosed B-cell Acute Lymphoblastic Leukemia",
+       "nctId": "NCT07564453"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-01"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Evaluating the Safety and Efficacy of DuoCAR20.19.22-D95 in Adult Patients With Relapsed or Refractory B-cell Malignancies",
+       "nctId": "NCT06879340"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-31"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Study of C402-CD19-CAR Treatment in Subjects With Relapsed or Refractory B-cell Lymphoma",
+       "nctId": "NCT06830031"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-25"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Universal CAR-T Cell Therapy for NHL",
+       "nctId": "NCT07248163"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-11"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study Evaluating the Safety and Efficacy of GT719 Universal Cell Injection in Adult Participants With Relapsed/Refractory CD19-positive B-cell Malignant Hematological Tumors",
+       "nctId": "NCT07131254"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-10"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1 Study of UB-VV111 With and Without Rapamycin in Relapsed/Refractory CD19+ B-cell Malignancies",
+       "nctId": "NCT06528301"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-10"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Vaccine Responses in Patient With Multiple Myeloma and Non-Hodgkin Lymphoma After CAR-T Treatment",
+       "nctId": "NCT06784167"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-10"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1 to Investigate the Safety, Tolerability, and Efficacy of GCC2005 in Patients With R/R NK and T-cell Malignancies",
+       "nctId": "NCT06699771"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-07"
+       }
+      }
+     }
+    },
+    {
+     "protocolSection": {
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "JY231(JY231) Injection for the Treatment of Relapsed/Refractory B Cell Lymphoma/ Leukemia",
+       "nctId": "NCT06890065"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-01"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 245
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrYPOm2vg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06458439"
+      }
+     }
+    }
+   ],
+   "totalCount": 245
+  },
+  "/api/v2/version?": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-11-06T10:00:05"
+  }
+ }
+}

@@ -1,0 +1,62 @@
+{
+ "claude": [],
+ "fingerprint": "f8a0e7d38229c2db",
+ "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CLocationCountry&filter.advanced=%28AREA%5BLocationCountry%5D%28%22C%C3%B4te+d%E2%80%99Ivoire%22%29%29&pageSize=100&query.term=%28malaria+vaccine%29": {
+   "studies": [
+    {
+     "protocolSection": {
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Burkina Faso"
+        },
+        {
+         "country": "Côte d’Ivoire"
+        },
+        {
+         "country": "Nigeria"
+        },
+        {
+         "country": "Uganda"
+        },
+        {
+         "country": "Uganda"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "An Observational Study to Assess Effectiveness and Safety of The R21/Matrix-M Malaria Vaccine",
+       "nctId": "NCT07009847"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-16"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BLocationCountry%5D%28%22C%C3%B4te+d%E2%80%99Ivoire%22%29%29&pageSize=1&query.term=%28malaria+vaccine%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZfGh2fUbkA",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07009847"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
+  "/api/v2/version?": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-11-06T10:00:05"
+  }
+ }
+}

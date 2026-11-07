@@ -33,16 +33,25 @@ def sanitize_term(text: str) -> str:
     return _WHITESPACE.sub(" ", without_syntax).strip().lower()
 
 
-def any_of_terms(terms: Iterable[str]) -> str | None:
+def any_of_terms(terms: Iterable[str], areas: Iterable[str] = ()) -> str | None:
     """Alternatives for a `query.*` parameter: `(breast cancer) OR (lung cancer)`.
 
+    With `areas`, each term must appear in one of those fields, which the registry still
+    expands with synonyms: `(AREA[Condition](melanoma) OR AREA[ConditionMeshTerm](melanoma))`.
     Terms that sanitize to nothing are dropped. Returns None if none are left, so the
     caller can omit the parameter rather than send an empty search.
     """
     cleaned = list(dict.fromkeys(term for term in map(sanitize_term, terms) if term))
     if not cleaned:
         return None
-    return " OR ".join(f"({term})" for term in cleaned)
+    fields = list(areas)
+
+    def one(term: str) -> str:
+        if not fields:
+            return f"({term})"
+        return "(" + " OR ".join(f"AREA[{area}]({term})" for area in fields) + ")"
+
+    return " OR ".join(one(term) for term in cleaned)
 
 
 def area_any_of(area: str, values: Iterable[str], *, quoted: bool = False) -> str:

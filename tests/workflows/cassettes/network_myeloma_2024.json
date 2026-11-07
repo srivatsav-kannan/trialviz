@@ -1,0 +1,7672 @@
+{
+ "claude": [
+  {
+   "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nShow a network of sponsors and drugs for multiple myeloma trials that started in 2024\n</question>",
+   "stop_reason": "end_turn",
+   "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"multiple myeloma\"]},{\"slot\":\"filters.start_year_from\",\"values\":[\"2024\"]},{\"slot\":\"filters.start_year_to\",\"values\":[\"2024\"]},{\"slot\":\"analysis.kind\",\"values\":[\"network\"]},{\"slot\":\"analysis.node_types\",\"values\":[\"lead_sponsor\",\"intervention\"]},{\"slot\":\"presentation.chart_type\",\"values\":[\"network_graph\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
+   "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 3495,
+    "input_tokens": 66,
+    "output_tokens": 180
+   }
+  }
+ ],
+ "fingerprint": "f8a0e7d38229c2db",
+ "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionType%2CInterventionMeshTerm%2CArmGroupLabel%2CArmGroupInterventionName&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=100&query.cond=%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvCs2_0YnD6SuP08FCfCF_XR_9FI1yI",
+   "studies": [
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: anti-BCMA/FcRL5 CAR T"
+         ],
+         "label": "anti BCMA/FcRL5 CAR-T"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "anti-BCMA/FcRL5 CAR T",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "multiple myeloma",
+        "BCMA",
+        "FcRL5"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of Anti-BCMA/FcRL5 CAR-T Cell Therapy in Treating Relapsed and Refractory Multiple Myeloma (R/R MM)",
+       "nctId": "NCT06759181"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Xuzhou Medical University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: CM336"
+         ],
+         "label": "CM-336( BCMA/CD3 bispecific antibody)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CM336",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "High Risk Smoldering Multiple Myeloma"
+       ],
+       "keywords": [
+        "high risk smoldering multiple myeloma",
+        "BCMA/CD3 BiTE",
+        "CM-336"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "BCMA/CD3 BsAb in the Treatment of High-risk Smoldering Multiple Myeloma",
+       "nctId": "NCT06745687"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Institute of Hematology & Blood Diseases Hospital, China"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Genetic: CARTemis-1"
+         ],
+         "label": "CARTemis-1"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CARTemis-1",
+         "type": "GENETIC"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Allogeneic Stem Cell Transplantation"
+       ],
+       "keywords": [
+        "Chimeric antigen receptor-T cell therapy",
+        "B-Cell Maturation Antigen"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Trial of an Investigational Drug After Rejecting the Relapse of an Allogeneic Transplant",
+       "nctId": "NCT05982275"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Fundación Pública Andaluza para la gestión de la Investigación en Sevilla"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: CBG002 CAR-T Cell Suspension"
+         ],
+         "label": "CBG002 CAR-T Cell Suspension"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CBG002 CAR-T Cell Suspension",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase I Clinical Study of CBG002 CAR-T Cell in Treatment of Relapsed/refractory Multiple Myeloma",
+       "nctId": "NCT06705725"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Carbiogene Therapeutics Co. Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Monoclonal Gammopathy of Undetermined Significance"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "label": "Monoclonal gammopathy patients"
+        },
+        {
+         "label": "Non-monoclonal gammopathy patients"
+        },
+        {
+         "label": "Healthy control group"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Monoclonal Gammopathy of Undetermined Significance (MGUS)",
+        "Intestinal Flora",
+        "Multiple Myeloma",
+        "M-Protein"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Characteristics and Clinical Significance of Gut Microbiota in Patients With Monoclonal Gammopathy",
+       "nctId": "NCT06690593"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Zhujiang Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: BCD-248"
+         ],
+         "label": "BCD-248"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "BCD-248",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "An Open-Label Clinical Study of the Efficacy and Safety of BCD-248 in Patients With Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT06668792"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Biocad"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Pomalidomide-containing regimens"
+         ],
+         "label": "Pomalidomide-containing regimens"
+        },
+        {
+         "interventionNames": [
+          "Drug: Non-pomalidomide-containing regimens"
+         ],
+         "label": "Non-pomalidomide-containing regimens"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Pomalidomide-containing regimens",
+         "type": "DRUG"
+        },
+        {
+         "name": "Non-pomalidomide-containing regimens",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "Relapsed/Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Real-World Clinical Outcomes in Relapsed/Refractory Multiple Myeloma Treated With Pomalidomide Regimens",
+       "nctId": "NCT07689006"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Bristol-Myers Squibb"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-12-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Elrantamab",
+          "Device: clonoSEQ"
+         ],
+         "label": "Elranatamab"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Elrantamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "clonoSEQ",
+         "type": "DEVICE"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Maintenance",
+        "Stem cell transplant",
+        "Immunotherapy"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Measurable Residual Disease-Guided Post-Transplant Elranatamab Maintenance",
+       "nctId": "NCT06483100"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Washington University School of Medicine"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: JNJ-87562761"
+         ],
+         "label": "JNJ-87562761"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "JNJ-87562761",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed or Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of JNJ-87562761 in Participants With Relapsed or Refractory Multiple Myeloma",
+       "nctId": "NCT06604715"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Janssen Research & Development, LLC"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Biopsy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: Vevoctadekin",
+          "Procedure: Bone Marrow Aspiration",
+          "Procedure: Bone Marrow Biopsy",
+          "Other: Medical Chart Review",
+          "Drug: Teclistamab",
+          "Procedure: Biospecimen Collection"
+         ],
+         "label": "Treatment (ST-067, teclistamab)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Vevoctadekin",
+         "type": "BIOLOGICAL"
+        },
+        {
+         "name": "Bone Marrow Aspiration",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Biopsy",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Medical Chart Review",
+         "type": "OTHER"
+        },
+        {
+         "name": "Teclistamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Biospecimen Collection",
+         "type": "PROCEDURE"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Recurrent Multiple Myeloma",
+        "Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "ST-067 and Teclistamab for the Treatment of Relapsed or Refractory Multiple Myeloma",
+       "nctId": "NCT06588660"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University of Washington"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2024-12-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Elranatamab"
+         ],
+         "label": "Elranatamab"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Elranatamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "Elranatamab"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Elranatamab in Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT06711705"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University of California, San Diego"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "belantamab mafodotin"
+        },
+        {
+         "term": "Lenalidomide"
+        },
+        {
+         "term": "Dexamethasone"
+        },
+        {
+         "term": "daratumumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Belantamab mafodotin",
+          "Drug: Lenalidomide",
+          "Drug: Dexamethasone"
+         ],
+         "label": "Arm A: Belantamab Mafodotin + Lenalidomide + Dexamethasone"
+        },
+        {
+         "interventionNames": [
+          "Drug: Lenalidomide",
+          "Drug: Dexamethasone",
+          "Drug: Daratumumab"
+         ],
+         "label": "Arm B: Daratumumab + Lenalidomide + Dexamethasone"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Belantamab mafodotin",
+         "type": "DRUG"
+        },
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        },
+        {
+         "name": "Daratumumab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Newly Diagnosed Multiple Myeloma"
+       ],
+       "keywords": [
+        "Multiple myeloma",
+        "Belantamab mafodotin",
+        "Lenalidomide",
+        "Dexamethasone",
+        "Daratumumab",
+        "Transplant-ineligible",
+        "DREAMM-10"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Belantamab Mafodotin Administered in Combination With Lenalidomide and Dexamethasone (BRd) Versus Daratumumab, Lenalidomide, and Dexamethasone (DRd) in Participants With Newly Diagnosed Multiple Myeloma (NDMM) Who Are Ineligible for Autologous Stem Cell Transplantation (TI-NDMM)",
+       "nctId": "NCT06679101"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "GlaxoSmithKline"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: No Intervention (subjects were previously treated with Equecabtagene Autoleucel Injection) )"
+         ],
+         "label": "All patients received Equecabtagene Autoleucel Injection"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "No Intervention (subjects were previously treated with Equecabtagene Autoleucel Injection) )",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Long term follow up;",
+        "Eque-cel"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Long-term Follow-up Registry Study of Equecabtagene Autoleucel Injection",
+       "nctId": "NCT07028970"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Nanjing IASO Biotechnology Co., Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Recurrence"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Dexamethasone"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Dexamethasone"
+         ],
+         "label": "Dexamethasone-free"
+        },
+        {
+         "label": "Dexamethasone"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Relapse Multiple Myeloma"
+       ],
+       "keywords": [
+        "Multiple myeloma",
+        "Relapse",
+        "Dexamethasone",
+        "Isatuximab",
+        "Pomalidomide",
+        "Carfilzomib"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study Comparing Therapy for Advanced Relapsed/Refractory Multiple Myeloma With and Without Dexamethasone",
+       "nctId": "NCT06561854"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Assistance Publique - Hôpitaux de Paris"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: CD19/CD20/BCMA CAR-T"
+         ],
+         "label": "CD19/CD20/BCMA CAR-T cells therapy"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CD19/CD20/BCMA CAR-T",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed",
+        "Refractory",
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "relapsed/refractory multiple myeloma",
+        "CAR-T",
+        "CD19",
+        "CD22",
+        "BCMA"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Dose Escalating Study of CD19/CD22/BCMA CAR-T Therapy in Relapsed/ Refractory Multiple Myeloma",
+       "nctId": "NCT06732232"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Shanghai Cell Therapy Group Co.,Ltd"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "iberdomide"
+        },
+        {
+         "term": "Bortezomib"
+        },
+        {
+         "term": "Dexamethasone"
+        },
+        {
+         "term": "Calcium Dobesilate"
+        },
+        {
+         "term": "isatuximab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Iberdomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Bortezomib",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        },
+        {
+         "name": "Isatuximab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of Iberdomide, Bortezomib, Dexamethasone With Isatuximab Added on Demand for ND-NTE MM Patients",
+       "nctId": "NCT05272826"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Canadian Myeloma Research Group"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Leukemia, Plasma Cell"
+        },
+        {
+         "term": "Recurrence"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: CAR-T cells Infusion"
+         ],
+         "label": "CAR-T cells Infusion"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CAR-T cells Infusion",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma",
+        "Relapsed/Refractory Plasma Cell Leukemia"
+       ],
+       "keywords": [
+        "Relapsed/Refractory Multiple Myeloma",
+        "Relapsed or Refractory Plasma Cell Leukemia",
+        "CAR-T"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "a Study of CT0596 in Relapsed/Refractory Multiple Myeloma and Relapsed/Refractory Plasma Cell Leukemia",
+       "nctId": "NCT06718270"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Shanghai Changzheng Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: REGN7945+Linvoseltamab"
+         ],
+         "label": "REGN7945+Linvoseltamab"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab",
+          "Drug: REGN7945+Linvoseltamab"
+         ],
+         "label": "Linvoseltamab"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Linvoseltamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "REGN7945+Linvoseltamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma"
+       ],
+       "keywords": [
+        "R/RMM"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Assess the Safety and Anti-Tumor Activity of REGN7945 in Combination With Linvoseltamab in Adult Participants With Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT06669247"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Regeneron Pharmaceuticals"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Specimen Handling"
+        },
+        {
+         "term": "Biopsy"
+        },
+        {
+         "term": "iberdomide"
+        },
+        {
+         "term": "Magnetic Resonance Spectroscopy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Procedure: Biospecimen Collection",
+          "Procedure: Bone Marrow Aspiration",
+          "Procedure: Bone Marrow Biopsy",
+          "Procedure: Computed Tomography",
+          "Drug: Iberdomide",
+          "Procedure: Magnetic Resonance Imaging",
+          "Procedure: Positron Emission Tomography",
+          "Drug: Teclistamab"
+         ],
+         "label": "Treatment (iberdomide, teclistamab)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Biospecimen Collection",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Aspiration",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Biopsy",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Computed Tomography",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Iberdomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Magnetic Resonance Imaging",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Positron Emission Tomography",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Teclistamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Recurrent Multiple Myeloma",
+        "Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Testing Teclistamab (TECVAYLI) in Combination With Iberdomide for Relapsed or Refractory Multiple Myeloma",
+       "nctId": "NCT06465316"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "NIH",
+        "name": "National Cancer Institute (NCI)"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Renal Insufficiency"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Cyclophosphamide"
+        },
+        {
+         "term": "Whole-Body Irradiation"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Cyclophosphamide",
+          "Drug: Ciltacabtagene Autoleucel",
+          "Radiation: Total body irradiation"
+         ],
+         "label": "Cyclophosphamide + Cilta-Cel + TBI"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Cyclophosphamide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Ciltacabtagene Autoleucel",
+         "type": "DRUG"
+        },
+        {
+         "name": "Total body irradiation",
+         "type": "RADIATION"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Chimeric antigen receptor T cells",
+        "Radiation",
+        "Immunotherapy",
+        "Renal failure"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Lymphodepleting Total Body Irradiation (TBI) Plus Cyclophosphamide Prior to Ciltacabtagene Autoleucel (Carvykti; Cilta-cel) for Multiple Myeloma (MM) Patients With Impaired Renal Function",
+       "nctId": "NCT06623630"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Washington University School of Medicine"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Smoldering Multiple Myeloma"
+        },
+        {
+         "term": "Immunoglobulin Light-chain Amyloidosis"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "daratumumab"
+        },
+        {
+         "term": "pomalidomide"
+        },
+        {
+         "term": "Lenalidomide"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: JNJ-79635322",
+          "Drug: Daratumumab"
+         ],
+         "label": "Treatment Regimen A and C: JNJ-79635322+Daratumumab"
+        },
+        {
+         "interventionNames": [
+          "Drug: JNJ-79635322",
+          "Drug: Pomalidomide"
+         ],
+         "label": "Treatment Regimen B: JNJ-79635322+Pomalidomide"
+        },
+        {
+         "interventionNames": [
+          "Drug: JNJ-79635322",
+          "Drug: Daratumumab",
+          "Drug: Lenalidomide"
+         ],
+         "label": "Treatment Regimen D and E: JNJ-79635322 + Daratumumab + Lenalidomide Combination"
+        },
+        {
+         "interventionNames": [
+          "Drug: JNJ-79635322",
+          "Drug: Daratumumab"
+         ],
+         "label": "Treatment Regimen F: JNJ-79635322 + Daratumumab"
+        },
+        {
+         "interventionNames": [
+          "Drug: JNJ-79635322",
+          "Drug: Daratumumab"
+         ],
+         "label": "Treatment Regimen G: JNJ-79635322 + Daratumumab"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "JNJ-79635322",
+         "type": "DRUG"
+        },
+        {
+         "name": "Daratumumab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Pomalidomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Smoldering Multiple Myeloma",
+        "Immunoglobulin Light-chain Amyloidosis"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of JNJ-79635322 in Combination With Daratumumab With or Without Lenalidomide for Multiple Myeloma, Newly Diagnosed AL Amyloidosis, and High-risk Smoldering Multiple Myeloma or JNJ-79635322 in Combination With Pomalidomide for Multiple Myeloma",
+       "nctId": "NCT06768489"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Janssen Research & Development, LLC"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Liver Neoplasms"
+        },
+        {
+         "term": "Urogenital Neoplasms"
+        },
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Leukemia"
+        },
+        {
+         "term": "Leukemia, Lymphoid"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Lymphoma, Non-Hodgkin"
+        },
+        {
+         "term": "Hodgkin Disease"
+        },
+        {
+         "term": "Brain Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Mycosis Fungoides"
+        },
+        {
+         "term": "Kidney Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Riluzole"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Riluzole"
+         ],
+         "label": "Riluzole"
+        },
+        {
+         "interventionNames": [
+          "Drug: Placebo"
+         ],
+         "label": "Placebo"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Riluzole",
+         "type": "DRUG"
+        },
+        {
+         "name": "Placebo",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Breast Cancer",
+        "Sarcoma",
+        "Gastric Cancer",
+        "Lung Cancer",
+        "Head and Neck Cancer",
+        "Colorectal Cancer",
+        "Ovarian Cancer",
+        "Liver Cancer",
+        "Genitourinary Cancer",
+        "Gynecologic Cancer",
+        "Urinary Bladder Cancer",
+        "Leukemia",
+        "Lymphoid Leukemia",
+        "Myeloma Multiple",
+        "Prostate Cancer",
+        "Pancreas Cancer",
+        "Non-hodgkin Lymphoma",
+        "Hodgkin Lymphoma",
+        "Brain Cancer",
+        "Melanoma",
+        "Mycosis Fungoides",
+        "Kidney Cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Repurposing Riluzole for Cancer-Related Cognitive Impairment: A Pilot Trial",
+       "nctId": "NCT06580002"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University of California, Irvine"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma, Neoplasms"
+       ],
+       "keywords": [
+        "Hyperdiploidy"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "5p15/ 9q22/ 15q22 Hyperdiploidy and Their Significance in Multiple Myeloma Patients",
+       "nctId": "NCT06667583"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Assiut University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2024-12-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Vitamin D Deficiency"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lenalidomide"
+        },
+        {
+         "term": "Cholecalciferol"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Lenalidomide",
+          "Drug: Maintenance Vitamin D"
+         ],
+         "label": "Maintenance Vitamin D"
+        },
+        {
+         "interventionNames": [
+          "Drug: Lenalidomide",
+          "Drug: No maintenance Vitamin D"
+         ],
+         "label": "No Maintenance Vitamin D"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Maintenance Vitamin D",
+         "type": "DRUG"
+        },
+        {
+         "name": "No maintenance Vitamin D",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Myeloma, Multiple",
+        "Vitamin D",
+        "Vitamins",
+        "Lenalidomide",
+        "Revlimid",
+        "Cholecalciferol",
+        "Transplantation, Autologous",
+        "Vitamin D Deficiency"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "VitD3 Supplementation in Patients With Multiple Myeloma",
+       "nctId": "NCT05846880"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Amany Keruakous, MD, MS."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Neoplasm, Residual"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "daratumumab"
+        },
+        {
+         "term": "Lenalidomide"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Lenalidomide"
+         ],
+         "label": "Lenalidomide"
+        },
+        {
+         "interventionNames": [
+          "Drug: Daratumumab",
+          "Drug: Lenalidomide"
+         ],
+         "label": "Daratumumab and Lenalidomide"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Daratumumab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "R2-ISS stage",
+        "Minimal Residual Disease",
+        "Lenalidomide",
+        "Daratumumab"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Risk Stratification and MRD-driven Maintenance for MM After ASCT",
+       "nctId": "NCT06697483"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Peking University People's Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Hematologic Diseases"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Teclistamab"
+         ],
+         "label": "Relapsed or refractory multiple myeloma patients"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Teclistamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Hematologic Diseases"
+       ],
+       "keywords": [
+        "Teclistamab",
+        "Tecvayli",
+        "Hematology",
+        "Efficacy",
+        "Safety",
+        "Talquetamab",
+        "Talvey"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Study on the Clinical Efficacy of Teclistamab and Talquetamab",
+       "nctId": "NCT06477783"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Universitaire Ziekenhuizen KU Leuven"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: TQB2029 injection"
+         ],
+         "label": "TQB2029 injection"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "TQB2029 injection",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study of TQB2029 for Injection in Subjects With Multiple Myeloma",
+       "nctId": "NCT06700395"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Chia Tai Tianqing Pharmaceutical Group Nanjing Shunxin Pharmaceutical Co., Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Dexamethasone"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Elranatamab",
+          "Drug: Mezigdomide",
+          "Drug: Dexamethasone"
+         ],
+         "label": "Treatment arm"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Elranatamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Mezigdomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed Refractory Multiple Myeloma (RRMM)"
+       ],
+       "keywords": [
+        "R/R MM",
+        "Elranatamab",
+        "Mezigdomide"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Mezigdomide and Elranatamab for Relapsed and/or Refractory Multiple Myeloma",
+       "nctId": "NCT06645678"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "YOUNGIL KOH"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melphalan"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Bortezomib-bendamustine-melphalan"
+         ],
+         "label": "Bortezomib-bendamustine-melphalan"
+        },
+        {
+         "label": "high-dose melphalan"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Bortezomib-bendamustine-melphalan",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Myeloma Multiple"
+       ],
+       "keywords": [
+        "Autologous hematopoietic stem cell transplantation",
+        "Melphalan",
+        "Bendamustine",
+        "Bortezomib"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Bortezomib-bendamustine-melphalan vs Melphalan for Multiple Myeloma",
+       "nctId": "NCT06245629"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Uppsala University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lymphoma"
+        },
+        {
+         "term": "Leukemia"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Venous Thromboembolism"
+        },
+        {
+         "term": "Pulmonary Embolism"
+        },
+        {
+         "term": "Hematologic Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "apixaban"
+        },
+        {
+         "term": "Rivaroxaban"
+        },
+        {
+         "term": "Heparin, Low-Molecular-Weight"
+        },
+        {
+         "term": "enoxaparin sodium"
+        },
+        {
+         "term": "Enoxaparin"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Apixaban"
+         ],
+         "label": "APIXABAN (reduced dose)"
+        },
+        {
+         "interventionNames": [
+          "Drug: Rivaroxaban"
+         ],
+         "label": "RIVAROXABAN (reduced dose)"
+        },
+        {
+         "interventionNames": [
+          "Drug: low molecular weight heparin (enoxaparin sodium)"
+         ],
+         "label": "Low-Molecular-Weight Heparin (LMWH)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Apixaban",
+         "type": "DRUG"
+        },
+        {
+         "name": "Rivaroxaban",
+         "type": "DRUG"
+        },
+        {
+         "name": "low molecular weight heparin (enoxaparin sodium)",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Lymphoma",
+        "Leukemia",
+        "Multiple Myeloma (MM), Lymphoma, Large B-Cell, Diffuse (DLBCL), Lymphoma",
+        "Venous Thromboembolic Disease",
+        "VTE (Venous Thromboembolism)",
+        "PE - Pulmonary Embolism",
+        "Hematologic Malignacies"
+       ],
+       "keywords": [
+        "Apixaban",
+        "Rivaroxaban",
+        "Low-Molecular-Weight Heparin",
+        "Venous Thromboembolism",
+        "Cancer-Associated Thrombosis",
+        "Hematologic Malignancies",
+        "Direct Oral Anticoagulants"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Reduced-Dose Apixaban and Rivaroxaban Versus Low-Molecular-Weight Heparin in Patients With Hematologic Malignancies",
+       "nctId": "NCT07270263"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Medical University of Gdansk"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-22"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lymphoproliferative Disorders"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Specimen Handling"
+        },
+        {
+         "term": "Chromatin Immunoprecipitation Sequencing"
+        },
+        {
+         "term": "Follow-Up Studies"
+        },
+        {
+         "term": "Genetic Counseling"
+        },
+        {
+         "term": "Genetic Testing"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Procedure: Biospecimen Collection",
+          "Procedure: Bone Marrow Aspiration",
+          "Other: Electronic Health Record Review",
+          "Procedure: Follow-Up",
+          "Other: Genetic Counseling",
+          "Other: Genetic Testing"
+         ],
+         "label": "Supportive care (bone marrow aspiration, CFU)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Biospecimen Collection",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Aspiration",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Electronic Health Record Review",
+         "type": "OTHER"
+        },
+        {
+         "name": "Follow-Up",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Genetic Counseling",
+         "type": "OTHER"
+        },
+        {
+         "name": "Genetic Testing",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Lymphoproliferative Disorder",
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Understanding the Mechanisms of Clonal and Non-clonal Cytopenia Following CAR-T Therapy for Multiple Myeloma or CD19+ Lymphoproliferative Disorder (LPD)",
+       "nctId": "NCT06630104"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Mayo Clinic"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-22"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "tocilizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Teclistamab"
+         ],
+         "label": "Cohort 1"
+        },
+        {
+         "interventionNames": [
+          "Drug: Teclistamab",
+          "Drug: Tocilizumab"
+         ],
+         "label": "Cohort 2"
+        },
+        {
+         "interventionNames": [
+          "Drug: Teclistamab",
+          "Drug: Tocilizumab"
+         ],
+         "label": "Cohort 3"
+        },
+        {
+         "label": "Caregiver Cohort"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Teclistamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Tocilizumab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Relapsed Cancer",
+        "Refractory Cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE4"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Plan Development for Giving Teclistamab in the Outpatient Setting",
+       "nctId": "NCT06251076"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University Health Network, Toronto"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: ESO-T01 Injection"
+         ],
+         "label": "ESO-T01 Injection"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "ESO-T01 Injection",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "BCMA",
+        "multiple myeloma",
+        "CAR-T",
+        "In Vivo"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study to Evaluate the Safety and Efficacy of ESO-T01 in Treating Relapsed/Refractory Multiple Myeloma.",
+       "nctId": "NCT06691685"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Union Hospital, Tongji Medical College, Huazhong University of Science and Technology"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "SUSPENDED",
+       "startDateStruct": {
+        "date": "2024-11-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Precursor Cell Lymphoblastic Leukemia-Lymphoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "fludarabine"
+        },
+        {
+         "term": "Cyclophosphamide"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Fludarabine",
+          "Drug: Cyclophosphamide"
+         ],
+         "label": "Moderate Renal Dysfunction"
+        },
+        {
+         "interventionNames": [
+          "Drug: Fludarabine",
+          "Drug: Cyclophosphamide"
+         ],
+         "label": "Severe Renal Dysfunction"
+        },
+        {
+         "interventionNames": [
+          "Drug: Fludarabine",
+          "Drug: Cyclophosphamide"
+         ],
+         "label": "Dialysis Participants"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Fludarabine",
+         "type": "DRUG"
+        },
+        {
+         "name": "Cyclophosphamide",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Non-hodgkin Lymphoma,B Cell",
+        "Multiple Myeloma",
+        "Acute Lymphoblastic Leukemia, Adult"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CAR T-cell Therapy in Patients With Renal Dysfunction",
+       "nctId": "NCT05909059"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Northside Hospital, Inc."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Teclistamab Monotherapy"
+         ],
+         "label": "Sub-protocol A"
+        },
+        {
+         "interventionNames": [
+          "Drug: Teclistamab"
+         ],
+         "label": "Sub-Protocol B"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Teclistamab Monotherapy",
+         "type": "DRUG"
+        },
+        {
+         "name": "Teclistamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapse Multiple Myeloma",
+        "Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "MMRC Horizon One: RRMM (MMRC-099)",
+       "nctId": "NCT06171685"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "NETWORK",
+        "name": "Multiple Myeloma Research Consortium"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lymphoma"
+        },
+        {
+         "term": "Leukemia, Myeloid, Acute"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: CAR-T Cells infusion（CAR2219,CAR2019, CAR19 etc）"
+         ],
+         "label": "CAR-T treatment group"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CAR-T Cells infusion（CAR2219,CAR2019, CAR19 etc）",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Lymphoma, B-cell, Aggressive Non-Hodgkin (B-NHL)",
+        "AML (Acute Myelogenous Leukemia)",
+        "Myeloma Multiple",
+        "B-ALL",
+        "T-ALL/Lymphoma",
+        "T-lymphocyte Lymphoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Application of CAR-T Cell Therapy in Relapsed and Refractory Malignant Hematologic Tumors",
+       "nctId": "NCT06911710"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Tianjin Medical University General Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Hematologic Neoplasms"
+        },
+        {
+         "term": "Precursor Cell Lymphoblastic Leukemia-Lymphoma"
+        },
+        {
+         "term": "Lymphoma, B-Cell"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Cardiomyopathies"
+        },
+        {
+         "term": "Cardiotoxicity"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "label": "Cardio CAR-T"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Car T- Cell",
+        "Hematologic Malignancy",
+        "Acute Lymphoblastic Leukemia",
+        "Lymphoma, B-Cell",
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "CAR-T cells",
+        "Hematological malignancies",
+        "Cardiomyopathy",
+        "Cardiotoxicity",
+        "Pharmacovigilance"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Early Assessment of Cardiac Function After Treatment With CAR-T Cells",
+       "nctId": "NCT06350994"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Assistance Publique - Hôpitaux de Paris"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-07"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "siltuximab"
+        },
+        {
+         "term": "Melphalan"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Siltuximab",
+          "Drug: Melphalan"
+         ],
+         "label": "Siltuximab plus population PK-dosed melphalan"
+        },
+        {
+         "interventionNames": [
+          "Drug: Melphalan"
+         ],
+         "label": "Standard BSA-dosed melphalan"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Siltuximab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Melphalan",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Melphalan",
+        "Interleukin-6 Blockade with Siltuximab",
+        "Autologous Stem Cell Transplantation"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Melphalan With or Without Siltuximab in People With Multiple Myeloma Having an Autologous Stem Cell Transplant",
+       "nctId": "NCT06679829"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Memorial Sloan Kettering Cancer Center"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Renal Insufficiency"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Bortezomib"
+        },
+        {
+         "term": "Cyclophosphamide"
+        },
+        {
+         "term": "Dexamethasone"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Combination Product: Daratumumab-hyaluronidase in Combination with Bortezomib, Cyclophosphamide, and Dexamethasone"
+         ],
+         "label": "Dara-CyBorD"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Daratumumab-hyaluronidase in Combination with Bortezomib, Cyclophosphamide, and Dexamethasone",
+         "type": "COMBINATION_PRODUCT"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Renal Failure"
+       ],
+       "keywords": [
+        "Daratumumab",
+        "Bortezomib",
+        "Cyclophosphamide",
+        "Dexamethasone"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pilot Study Dara-CyBorD in Newly Diagnosed Multiple Myeloma Patients With Renal Failure",
+       "nctId": "NCT06142396"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Augusta University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Carcinoma"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Neuroendocrine"
+        },
+        {
+         "term": "Small Cell Lung Carcinoma"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Thymoma"
+        },
+        {
+         "term": "Carcinoma, Ductal"
+        },
+        {
+         "term": "Lip Neoplasms"
+        },
+        {
+         "term": "Mouth Neoplasms"
+        },
+        {
+         "term": "Neoplasms, Unknown Primary"
+        },
+        {
+         "term": "Anus Neoplasms"
+        },
+        {
+         "term": "Laryngeal Neoplasms"
+        },
+        {
+         "term": "Penile Neoplasms"
+        },
+        {
+         "term": "Oropharyngeal Neoplasms"
+        },
+        {
+         "term": "Appendiceal Neoplasms"
+        },
+        {
+         "term": "Paranasal Sinus Neoplasms"
+        },
+        {
+         "term": "Vulvar Neoplasms"
+        },
+        {
+         "term": "Pleural Effusion, Malignant"
+        },
+        {
+         "term": "Mesothelioma"
+        },
+        {
+         "term": "Cholangiocarcinoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "label": "Carcinoma-Associated Malignant Fluid"
+        },
+        {
+         "label": "Carcinoma Solid Tissue Specimen"
+        },
+        {
+         "label": "Multiple Myeloma"
+        },
+        {
+         "label": "Acute myelogenous leukemia (AML)"
+        },
+        {
+         "label": "Triple Negative Breast Cancer (TNBC)"
+        },
+        {
+         "label": "Peripheral Blood Cell Immune Competency"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Stage III Breast Cancer",
+        "Stage IV Breast Cancer",
+        "Stage III Lung Cancer",
+        "Stage IV Lung Cancer",
+        "AML",
+        "Multiple Myeloma in Relapse",
+        "Carcinoma",
+        "Carcinoma, Pancreatic",
+        "Carcinoma of Lung",
+        "Carcinoma, Non-Small-Cell Lung",
+        "Carcinoma Breast",
+        "Carcinoma Prostate",
+        "Carcinoma, Hepatocellular",
+        "Carcinoma, Renal Cell",
+        "Carcinoma, Neuroendocrine",
+        "Carcinoma, Small Cell Lung",
+        "Carcinoma, Ovarian",
+        "Carcinoma Bladder",
+        "Carcinoma of Esophagus",
+        "Carcinoma Cervix",
+        "Carcinoma, Thymic",
+        "Carcinoma, Ductal",
+        "Carcinoma of the Head and Neck",
+        "Carcinoma of the Lip",
+        "Carcinoma of the Oral Cavity",
+        "Carcinoma of Unknown Primary",
+        "Carcinoma of the Skin",
+        "Carcinoma of the Anus",
+        "Carcinoma of the Larynx",
+        "Carcinoma of the Penis",
+        "Carcinoma of the Oropharynx",
+        "Carcinoma of the Appendix",
+        "Carcinoma of the Paranasal Sinus",
+        "Carcinoma of the Vulva",
+        "Malignant Pleural Effusion",
+        "Malignant Ascites",
+        "Mesothelioma",
+        "Cholangiocarcinoma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Defining the Clinical Potential of Mass Response As a Biomarker for Patient Tumor Sensitivity to Drugs",
+       "nctId": "NCT04985357"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Travera Inc"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2024-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms, Plasma Cell"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Recurrence"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "elotuzumab"
+        },
+        {
+         "term": "iberdomide"
+        },
+        {
+         "term": "Dexamethasone"
+        },
+        {
+         "term": "Calcium Dobesilate"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Elotuzumab",
+          "Drug: Iberdomide",
+          "Drug: Dexamethasone"
+         ],
+         "label": "Phase 1: Dose Escalation"
+        },
+        {
+         "interventionNames": [
+          "Drug: Elotuzumab",
+          "Drug: Iberdomide",
+          "Drug: Dexamethasone"
+         ],
+         "label": "Phase 1: Dose Expansion"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Elotuzumab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Iberdomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Myeloma",
+        "Multiple Myeloma",
+        "Refractory Multiple Myeloma"
+       ],
+       "keywords": [
+        "Myeloma",
+        "Multiple Myeloma",
+        "Refractory Multiple Myeloma",
+        "Relapsed Multiple Myeloma",
+        "Relapsed and Refractory Multiple Myeloma",
+        "MM"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "ELEVATE-MM: Elotuzumab, Iberdomide and Dexamethasone Post Idecabtagene Vicleucel in Relapsed and Refractory Multiple Myeloma",
+       "nctId": "NCT06518551"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Omar Nadeem, MD"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "4-fluorobenzoyl-TN-14003"
+        },
+        {
+         "term": "Granulocyte Colony-Stimulating Factor"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Motixafortide",
+          "Drug: G-CSF"
+         ],
+         "label": "Cohort 1: Standard dosing"
+        },
+        {
+         "interventionNames": [
+          "Drug: Motixafortide",
+          "Drug: G-CSF"
+         ],
+         "label": "Cohort 2: Early dosing"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Motixafortide",
+         "type": "DRUG"
+        },
+        {
+         "name": "G-CSF",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Hematopoietic stem cell mobilization",
+        "CXCR4 inhibition",
+        "Motixafortide",
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Pharmacodynamic Study of the Apheresis Product of Multiple Myeloma Patients Undergoing Quad-induction Followed by Motixafortide + G-CSF Mobilization",
+       "nctId": "NCT06547112"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Washington University School of Medicine"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-10-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: SAR446523"
+         ],
+         "label": "Part A (Dose escalation)"
+        },
+        {
+         "interventionNames": [
+          "Drug: SAR446523"
+         ],
+         "label": "Part B Dose-1 (Dose optimization)"
+        },
+        {
+         "interventionNames": [
+          "Drug: SAR446523"
+         ],
+         "label": "Part B Dose-2 (Dose optimization)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "SAR446523",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Plasma Cell Myeloma Refractory"
+       ],
+       "keywords": [
+        "anti-GPRC5D NK cell targeting therapy"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Investigate the Safety and Efficacy of SAR446523 Injected Subcutaneously in Adult Participants With Relapsed/Refractory Myeloma",
+       "nctId": "NCT06630806"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Sanofi"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma (MM)"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Machine Learning Approach to Connect Multiple Myeloma Complexity to Early Disease Recurrence",
+       "nctId": "NCT06767254"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "IRCCS Azienda Ospedaliero-Universitaria di Bologna"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Leukemia, Plasma Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: CAR-T（RD140 injection）"
+         ],
+         "label": "RD140 injection"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CAR-T（RD140 injection）",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma",
+        "Plasma Cell Leukemia"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "Plasma Cell Leukemia",
+        "RD140"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "An Exploratory Study of RD140 Injection in Patients With Relapsed/Refractory Multiple Myeloma or Plasma Cell Leukemia",
+       "nctId": "NCT06655519"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Peking University People's Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: OL-101 infusion"
+         ],
+         "label": "OL-101 infusion"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "OL-101 infusion",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "OL-101",
+        "Multiple myeloma",
+        "Phase 1",
+        "single arm"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of OL-101 Injection in Patients with Relapsed or Refractory Multiple Myeloma (RRMM)",
+       "nctId": "NCT06644118"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Zhejiang University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Neoplasms, Plasma Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: No intervention"
+         ],
+         "label": "Patients with multiple myeloma"
+        },
+        {
+         "interventionNames": [
+          "Other: No intervention"
+         ],
+         "label": "Caregivers of patients with myeloma"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "No intervention",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Caregiver Subjective Burden",
+        "Quality of Life (QOL)"
+       ],
+       "keywords": [
+        "quality of life",
+        "real-world",
+        "observational",
+        "myeloma",
+        "caregiver"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "The Burden of Multiple Myeloma on Patients and Caregivers Quality of Life: a Canadian Real-World Study",
+       "nctId": "NCT06610045"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "PeriPharm"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-10-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Specimen Handling"
+        },
+        {
+         "term": "Diet Therapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Procedure: Biospecimen Collection",
+          "Other: Dietary Intervention",
+          "Other: Medical Chart Review",
+          "Other: Questionnaire Administration"
+         ],
+         "label": "Supportive care (meal delivery service)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Biospecimen Collection",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Dietary Intervention",
+         "type": "OTHER"
+        },
+        {
+         "name": "Dietary Intervention",
+         "type": "OTHER"
+        },
+        {
+         "name": "Medical Chart Review",
+         "type": "OTHER"
+        },
+        {
+         "name": "Questionnaire Administration",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Plant-Based Whole-Foods Meal Delivery Service for Patients With Multiple Myeloma Undergoing Autologous Hematopoietic Cell Transplant",
+       "nctId": "NCT06559709"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Fred Hutchinson Cancer Center"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-10-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: ACT-001 CAR-NK cell"
+         ],
+         "label": "ACT-001 CAR-NK cell"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "ACT-001 CAR-NK cell",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Allogeneic Anti-BCMA/GPRC5D Bispecific CAR-NK Cells (ACT-001) in Patients With Relapsed or Refractorymultiple Myeloma",
+       "nctId": "NCT06594211"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "RenJi Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: allogeneic cord blood-derived, dual-targeting CD19/BCMA CAR-T cells"
+         ],
+         "label": "UCAR-T cells treatment"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "allogeneic cord blood-derived, dual-targeting CD19/BCMA CAR-T cells",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma(MM)"
+       ],
+       "keywords": [
+        "allogeneic CAR-T",
+        "umbilical cord blood-derived",
+        "relapsed/refractory multiple myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Allogeneic UCB-derived, Dual-targeting BCMA/CD19 CAR-T for Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT07139509"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER_GOV",
+        "name": "Xi'an No.3 Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "ON123300"
+        },
+        {
+         "term": "Dexamethasone"
+        },
+        {
+         "term": "Calcium Dobesilate"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: ON 123300",
+          "Drug: Dexamethasone"
+         ],
+         "label": "ON 123300 (NARAZACICLIB) + dexamethasone"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "ON 123300",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed and/or Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "ON 123300 (Narazaciclib) and Dexamethasone in Patients With Relapsed and/or Refractory Multiple Myeloma",
+       "nctId": "NCT06351644"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Adriana Rossi"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2024-10-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Zevorcabtagene Autoleucel",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Real-World Observational Study: Zevorcabtagene Autoleucel Injection in Patients with Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT06659770"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "CARsgen Therapeutics Co., Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: 225Ac-DOTATATE"
+         ],
+         "label": "225Ac-DOTATATE"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "225Ac-DOTATATE",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma, Refractory",
+        "Multiple Myeloma in Relapse",
+        "Multiple Myeloma Progression"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "Somatostatin receptor",
+        "Radionuclide therapy",
+        "Actinium-225",
+        "Targeted alpha therapy"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase I Study to Assess the Tolerability of 225Ac-DOTATATE in Patients With Refractory and Relapsing Multiple Myeloma Expressing Somatostatin Receptors",
+       "nctId": "NCT06411301"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Jules Bordet Institute"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2024-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: Quality of life questionnaires"
+         ],
+         "label": "LMWH"
+        },
+        {
+         "interventionNames": [
+          "Other: Quality of life questionnaires"
+         ],
+         "label": "Aspirin"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Quality of life questionnaires",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "thromboprophylaxis"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Bleeding in Multiple Myeloma",
+       "nctId": "NCT06482931"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University Medical Center Groningen"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Group 1: Dara-VRD followed by apheresis and cilta-cel infusion",
+          "Drug: Group 2: Apheresis followed by Dara-VRD and cilta-cel infusion"
+         ],
+         "label": "Dara_VRD plus cilta-cel"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Group 1: Dara-VRD followed by apheresis and cilta-cel infusion",
+         "type": "DRUG"
+        },
+        {
+         "name": "Group 2: Apheresis followed by Dara-VRD and cilta-cel infusion",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "High Risk Smoldering Multiple Myeloma"
+       ],
+       "keywords": [
+        "Smoldering Multiple Myoloma",
+        "CAR T-cells"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Ciltacabtagene Autoleucel in High-Risk Smoldering Multiple Myeloma",
+       "nctId": "NCT06574126"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "PETHEMA Foundation"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Leukemia"
+        },
+        {
+         "term": "Lymphoma"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: \"Return-to-work after cancer\" consultation"
+         ],
+         "label": "Experimental arm with \"return-to-work after cancer\" consultation"
+        },
+        {
+         "label": "Standard arm without with \"return-to-work after cancer\" consultation"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "\"Return-to-work after cancer\" consultation",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Leukemia",
+        "Lymphoma",
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "RAT-HEMATO : Return to Work After Malignant Hemopathy",
+       "nctId": "NCT06262789"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER_GOV",
+        "name": "University Hospital, Angers"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-27"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Recurrence"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: CAR-T treatment"
+         ],
+         "label": "CAR-T"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CAR-T treatment",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Relapsed/Refractory"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Chimeric Antigen Receptor Modified T Cells Targeting BCMA for the Treatment of Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT06581640"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "The First Affiliated Hospital of Xiamen University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Respiratory Syncytial Virus Infections"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Suspensions"
+        },
+        {
+         "term": "Injections"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: Arexvy powder and suspension for injection"
+         ],
+         "label": "Group 1-3 (2 times verum)"
+        },
+        {
+         "interventionNames": [
+          "Biological: Arexvy powder and suspension for injection"
+         ],
+         "label": "Group 4 (1 time verum, 1 time placebo, randomised)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Arexvy powder and suspension for injection",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "RSV Infection"
+       ],
+       "keywords": [
+        "RSV prophylaxis",
+        "RSV vaccine",
+        "RSV vaccination",
+        "RSV immunocompromised",
+        "RSV multiple myeloma",
+        "RSV lung cancer",
+        "RSV IBD"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "RSV Vaccination in Immunocompromised Patients.",
+       "nctId": "NCT06597916"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Medical University of Vienna"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Hematologic Neoplasms"
+        },
+        {
+         "term": "Leukemia, Myeloid, Acute"
+        },
+        {
+         "term": "Myelodysplastic Syndromes"
+        },
+        {
+         "term": "Precursor Cell Lymphoblastic Leukemia-Lymphoma"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Anemia, Aplastic"
+        },
+        {
+         "term": "Lymphoma"
+        },
+        {
+         "term": "Lymphoma, Non-Hodgkin"
+        },
+        {
+         "term": "Hodgkin Disease"
+        },
+        {
+         "term": "Leukemia, Myelogenous, Chronic, BCR-ABL Positive"
+        },
+        {
+         "term": "Primary Myelofibrosis"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "daratumumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Darzalex Faspro (Daratumumab and hyaluronidase-fihj)",
+          "Device: JH-DSA Semi-Quant Screen and Response Score"
+         ],
+         "label": "Daratumumab-SC followed by standard of care DSA desensitization and alloBMT"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Darzalex Faspro (Daratumumab and hyaluronidase-fihj)",
+         "type": "DRUG"
+        },
+        {
+         "name": "JH-DSA Semi-Quant Screen and Response Score",
+         "type": "DEVICE"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Hematologic Malignancy",
+        "Bone Marrow Transplant Rejection",
+        "Acute Myeloid Leukemia (AML)",
+        "Myelodysplastic Syndromes (MDS)",
+        "Acute Lymphoblastic Leukemia (ALL), Adult",
+        "Multiple Myeloma",
+        "Aplastic Anemia",
+        "Lymphoma",
+        "Non Hodgkin Lymphoma",
+        "Hodgkin Lymphoma",
+        "Chronic Myeloid Leukemia",
+        "Myelofibrosis"
+       ],
+       "keywords": [
+        "DSA",
+        "donor specific antibodies",
+        "desensitization",
+        "BMT",
+        "allogeneic stem cell transplant"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Darzalex Faspro (Daratumumab and Hyaluronidase-fihj) Before Standard Desensitization and Allogeneic Bone Marrow or Peripheral Blood Stem Cell Transplantation in Adult Patients at High-risk for Primary Graft Failure Secondary to Donor Specific Antibodies",
+       "nctId": "NCT06398457"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Sidney Kimmel Comprehensive Cancer Center at Johns Hopkins"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Nausea"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Olanzapine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Olanzapine"
+         ],
+         "label": "Olanzapine 2.5 mg"
+        },
+        {
+         "interventionNames": [
+          "Drug: Olanzapine"
+         ],
+         "label": "Olanzapine 5 mg"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Olanzapine",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Autologous Stem Cell Transplantation"
+       ],
+       "keywords": [
+        "CINV",
+        "Nausea",
+        "Olanzapine",
+        "Melphalan",
+        "autologous transplant"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Olanzapine 2.5 vs 5 mg in Quadruplet Nausea/Vomiting Prophylaxis Before High-Dose Melphalan",
+       "nctId": "NCT06588413"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Augusta University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "talquetamab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Cilta-cel",
+          "Drug: Talquetamab"
+         ],
+         "label": "Cohort 1:Cilta-cel + Talquetamab Consolidation Post Chimeric Antigen Receptor T cell (CAR-T) Therapy"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Cilta-cel",
+         "type": "DRUG"
+        },
+        {
+         "name": "Talquetamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Ciltacabtagene Autoleucel and Talquetamab for the Treatment of Participants With High-Risk Multiple Myeloma",
+       "nctId": "NCT06550895"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Janssen Research & Development, LLC"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Monoclonal Gammopathy of Undetermined Significance"
+        },
+        {
+         "term": "Smoldering Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Safety Run-In (Part 1)"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Expansion (Part 2) - Dose regimen 1"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Expansion (Part 2) - Dose regimen 2"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Expansion (Part 2) - Dose regimen 3"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Expansion (Part 2) - Dose regimen 4"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Linvoseltamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Monoclonal Gammopathy of Undetermined Significance (MGUS)",
+        "Smoldering Multiple Myeloma (SMM)"
+       ],
+       "keywords": [
+        "linvoseltamab",
+        "monoclonal immunoglobulin (M-protein)",
+        "cancer interception",
+        "immunotherapy",
+        "plasma cell disorders"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Proof-of-Concept Study to Learn Whether Linvoseltamab Can Eliminate Abnormal Plasma Cells That May Lead to Multiple Myeloma in Adult Patients With High-Risk Monoclonal Gammopathy of Undetermined Significance or Non-High-Risk Smoldering Multiple Myeloma",
+       "nctId": "NCT06140524"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Regeneron Pharmaceuticals"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "idecabtagene vicleucel"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Idecabtagene vicleucel"
+         ],
+         "label": "Participants receiving idecabtagene vicleucel"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Idecabtagene vicleucel",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate the Long-Term Safety of Idecabtagene Vicleucel Treatment in Adults With Newly Diagnosed Multiple Myeloma in Korea",
+       "nctId": "NCT06698887"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Bristol-Myers Squibb"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "carfilzomib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Carfilzomib"
+         ],
+         "label": "K-based therapy"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Carfilzomib",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Newly Diagnosed Multiple Myeloma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Conversion to Carfilzomib Therapy in Bortezomib Intolerant Newly Diagnosed Multiple Myeloma(NDMM) Patients",
+       "nctId": "NCT06682156"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "The First Affiliated Hospital of Soochow University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: BCMA-Targeted Chimeric Antigen Receptor Autologous T-cell"
+         ],
+         "label": "Treatment group CG-105-12"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "BCMA-Targeted Chimeric Antigen Receptor Autologous T-cell",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory",
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "multiple myeloma",
+        "relapsed/refractory",
+        "chimeric antigen receptor T Cell",
+        "BCMA"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate CG-105-12 in Patients With Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT06999031"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "The First Affiliated Hospital of Nanchang University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-05"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Gastrointestinal Neoplasms"
+        },
+        {
+         "term": "Neuroendocrine Tumors"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Referral and Consultation"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: Implementation of social determinants of health screening and referral"
+         ],
+         "label": "Screening Needs Assessment"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Implementation of social determinants of health screening and referral",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Cancer Survivors",
+        "Gastrointestinal Cancers",
+        "Neuroendocrine Tumors",
+        "Multiple Myeloma, Neoplasms"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Addressing Social Determinants of Health Among Metro Detroit Cancer Survivors",
+       "nctId": "NCT06908629"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Barbara Ann Karmanos Cancer Institute"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Recurrence"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: CLN-619"
+         ],
+         "label": "Part 1 Dose Escalation"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "CLN-619",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Relapsed and Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of CLN-619 (Anti-MICA/MICB Antibody) in Patients With Relapsed and Refractory Multiple Myeloma",
+       "nctId": "NCT06381141"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Cullinan Therapeutics Inc."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Dendritic Cell Sarcoma, Interdigitating"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "selinexor"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Selinexor",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Large-cell Lymphoma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Telehealth-based Symptom Management for Veterans Treated With Selinexor",
+       "nctId": "NCT06452446"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "FED",
+        "name": "Durham VA Medical Center"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Acute Kidney Injury"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "daratumumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Daratumumab"
+         ],
+         "label": "Patients with multiple myeloma"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Daratumumab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Acute Kidney Injury",
+        "Multiple Myeloma",
+        "Light Chain Nephropathy"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Biomarkers of AKI in Patients Receiving Daratumumab",
+       "nctId": "NCT06549634"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Brigham and Women's Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-09-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: QLS4131 Injection"
+         ],
+         "label": "QLS4131"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "QLS4131 Injection",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed or Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of QLS4131 in Patients With Recurrent or Refractory Multiple Myeloma",
+       "nctId": "NCT06500507"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Qilu Pharmaceutical Co., Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Specimen Handling"
+        },
+        {
+         "term": "Biopsy"
+        },
+        {
+         "term": "iberdomide"
+        },
+        {
+         "term": "Magnetic Resonance Spectroscopy"
+        },
+        {
+         "term": "Remote Patient Monitoring"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Procedure: Biospecimen Collection",
+          "Procedure: Bone Marrow Aspiration",
+          "Procedure: Bone Marrow Biopsy",
+          "Procedure: Computed Tomography",
+          "Procedure: Magnetic Resonance Imaging",
+          "Procedure: Patient Monitoring",
+          "Procedure: Positron Emission Tomography",
+          "Procedure: Skeletal Survey X-Ray"
+         ],
+         "label": "Group 1 (monitoring)"
+        },
+        {
+         "interventionNames": [
+          "Procedure: Biospecimen Collection",
+          "Procedure: Bone Marrow Aspiration",
+          "Procedure: Bone Marrow Biopsy",
+          "Procedure: Computed Tomography",
+          "Drug: Iberdomide",
+          "Procedure: Magnetic Resonance Imaging",
+          "Procedure: Positron Emission Tomography",
+          "Procedure: Skeletal Survey X-Ray"
+         ],
+         "label": "Group II (iberdomide)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Biospecimen Collection",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Aspiration",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Biopsy",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Computed Tomography",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Iberdomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Magnetic Resonance Imaging",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Patient Monitoring",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Positron Emission Tomography",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Skeletal Survey X-Ray",
+         "type": "PROCEDURE"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Iberdomide Versus Observation Off Therapy After Idecabtagene Vicleucel CAR-T for Multiple Myeloma",
+       "nctId": "NCT06179888"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "NIH",
+        "name": "National Cancer Institute (NCI)"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "SUSPENDED",
+       "startDateStruct": {
+        "date": "2024-08-27"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "talquetamab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Talquetamab"
+         ],
+         "label": "Cohort A: Talquetamab"
+        },
+        {
+         "interventionNames": [
+          "Drug: Talquetamab",
+          "Drug: Prophylaxis A"
+         ],
+         "label": "Cohort B: Prophylaxis A and Talquetamab"
+        },
+        {
+         "interventionNames": [
+          "Drug: Talquetamab",
+          "Drug: Prophylaxis B"
+         ],
+         "label": "Cohort C: Prophylaxis B and Talquetamab"
+        },
+        {
+         "interventionNames": [
+          "Drug: Talquetamab",
+          "Drug: Prophylaxis C"
+         ],
+         "label": "Cohort D: Prophylaxis C and Talquetamab"
+        },
+        {
+         "interventionNames": [
+          "Drug: Talquetamab",
+          "Drug: Prophylaxis D"
+         ],
+         "label": "Cohort E: Prophylaxis D and Talquetamab"
+        },
+        {
+         "interventionNames": [
+          "Drug: Ramantamig"
+         ],
+         "label": "Cohort F: Ramantamig"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Talquetamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Prophylaxis A",
+         "type": "DRUG"
+        },
+        {
+         "name": "Prophylaxis B",
+         "type": "DRUG"
+        },
+        {
+         "name": "Prophylaxis C",
+         "type": "DRUG"
+        },
+        {
+         "name": "Prophylaxis D",
+         "type": "DRUG"
+        },
+        {
+         "name": "Ramantamig",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate Preventive Treatments for GPRC5D-related Oral Events",
+       "nctId": "NCT06500884"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Janssen Research & Development, LLC"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Standard of Care"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Elranatamab"
+         ],
+         "label": "Elranatamab"
+        },
+        {
+         "interventionNames": [
+          "Drug: Standard of care"
+         ],
+         "label": "Standard of care"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Elranatamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Standard of care",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Study to Learn About the Effectiveness of the Medicine Called Elranatamab in People With Relapsed Refractory Multiple Myeloma as Compared With Standard of Care Therapies",
+       "nctId": "NCT06592222"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Pfizer"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-08-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: GR1803 injection"
+         ],
+         "label": "GR1803"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "GR1803 injection",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "GR1803 Injection in Patients With Relapsed/Refractory Multiple Myeloma",
+       "nctId": "NCT06566547"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Genrix (Shanghai) Biopharmaceutical Co., Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Cyclophosphamide"
+        },
+        {
+         "term": "fludarabine"
+        },
+        {
+         "term": "pomalidomide"
+        },
+        {
+         "term": "Bortezomib"
+        },
+        {
+         "term": "Dexamethasone"
+        },
+        {
+         "term": "daratumumab"
+        },
+        {
+         "term": "carfilzomib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Anitocabtagene Autoleucel",
+          "Drug: Cyclophosphamide",
+          "Drug: Fludarabine"
+         ],
+         "label": "Anitocabtagene Autoleucel"
+        },
+        {
+         "interventionNames": [
+          "Drug: Pomalidomide",
+          "Drug: Bortezomib",
+          "Drug: Dexamethasone",
+          "Drug: Daratumumab",
+          "Drug: Carfilzomib"
+         ],
+         "label": "Standard of Care Therapy (SOCT)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Anitocabtagene Autoleucel",
+         "type": "DRUG"
+        },
+        {
+         "name": "Cyclophosphamide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Fludarabine",
+         "type": "DRUG"
+        },
+        {
+         "name": "Pomalidomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Bortezomib",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        },
+        {
+         "name": "Daratumumab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Carfilzomib",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "CAR-T",
+        "ddBCMA",
+        "BCMA"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study Comparing Anitocabtagene Autoleucel to Standard of Care Therapy in Participants With Relapsed/ Refractory Multiple Myeloma",
+       "nctId": "NCT06413498"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Kite, A Gilead Company"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Dexamethasone"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: OPN-6602"
+         ],
+         "label": "Dose escalation monotherapy"
+        },
+        {
+         "interventionNames": [
+          "Drug: OPN-6602",
+          "Drug: Dexamethasone"
+         ],
+         "label": "Dose escalation in combo with dexamethasone"
+        },
+        {
+         "interventionNames": [
+          "Drug: OPN-6602"
+         ],
+         "label": "Dose expansion"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "OPN-6602",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed Multiple Myeloma",
+        "Refractory Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study to Assess Safety and Tolerability of OPN-6602 in Subjects With Relapsed and/or Refractory Multiple Myeloma",
+       "nctId": "NCT06433947"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Opna Bio LLC"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-22"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: WS-CART-CS1",
+          "Drug: Lymphodepleting chemotherapy"
+         ],
+         "label": "Part A Dose Escalation: WS-CART-CS1"
+        },
+        {
+         "interventionNames": [
+          "Biological: WS-CART-CS1",
+          "Drug: Lymphodepleting chemotherapy"
+         ],
+         "label": "Part B Dose Expansion: WS-CART-CS1"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "WS-CART-CS1",
+         "type": "BIOLOGICAL"
+        },
+        {
+         "name": "Lymphodepleting chemotherapy",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Chimeric Antigen Receptor",
+        "CS1"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of CS1 CAR-T (WS-CART-CS1) in Subjects With Multiple Myeloma",
+       "nctId": "NCT06185751"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Washington University School of Medicine"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-22"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: Linvoseltamab"
+         ],
+         "label": "Linvoseltamab Group"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Linvoseltamab",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "IMMUNOPLANT for Newly Diagnosed Multiple Myeloma",
+       "nctId": "NCT06376526"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Dickran Kazandjian, MD"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-21"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "talquetamab"
+        },
+        {
+         "term": "daratumumab"
+        },
+        {
+         "term": "Bortezomib"
+        },
+        {
+         "term": "Lenalidomide"
+        },
+        {
+         "term": "Dexamethasone"
+        },
+        {
+         "term": "Cyclophosphamide"
+        },
+        {
+         "term": "fludarabine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Cilta-cel",
+          "Drug: Talquetamab",
+          "Drug: Daratumumab",
+          "Drug: Bortezomib",
+          "Drug: Lenalidomide",
+          "Drug: Dexamethasone",
+          "Drug: Cyclophosphamide",
+          "Drug: Fludarabine"
+         ],
+         "label": "Cohort A: DVRd Induction + Tal-D Consolidation + Cilta-cel"
+        },
+        {
+         "interventionNames": [
+          "Drug: Cilta-cel",
+          "Drug: Talquetamab",
+          "Drug: Daratumumab",
+          "Drug: Teclistamab",
+          "Drug: Bortezomib",
+          "Drug: Lenalidomide",
+          "Drug: Dexamethasone",
+          "Drug: Cyclophosphamide",
+          "Drug: Fludarabine"
+         ],
+         "label": "Cohort B: DVRd Induction + Cilta-cel + Tal-D and Tec-D Consolidation"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Cilta-cel",
+         "type": "DRUG"
+        },
+        {
+         "name": "Talquetamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Daratumumab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Teclistamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Bortezomib",
+         "type": "DRUG"
+        },
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        },
+        {
+         "name": "Cyclophosphamide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Fludarabine",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Different Sequences of Cilta-cel, Talquetamab in Combination With Daratumumab and Teclistamab in Combination With Daratumumab Following Induction With Daratumumab, Bortezomib, Lenalidomide and Dexamethasone in Participants With Standard-risk Newly Diagnosed Multiple Myeloma",
+       "nctId": "NCT06577025"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Janssen Research & Development, LLC"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "belantamab mafodotin"
+        },
+        {
+         "term": "Lenalidomide"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: Belantamab Mafodotin",
+          "Drug: Lenalidomide"
+         ],
+         "label": "Treatment (belantamab mafodotin, lenalidomide)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Belantamab Mafodotin",
+         "type": "BIOLOGICAL"
+        },
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Plasma Cell Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Belantamab Mafodotin and Lenalidomide for the Treatment of Multiple Myeloma in Patients With Minimal Residual Disease Positive After Stem Cell Transplant",
+       "nctId": "NCT04876248"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Roswell Park Cancer Institute"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Phase 1: Cohort 1: Low Dose"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Phase 1: Cohort 2: High Dose"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Phase 2: Low Dose"
+        },
+        {
+         "interventionNames": [
+          "Drug: Linvoseltamab"
+         ],
+         "label": "Phase 2: High Dose"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Linvoseltamab",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Systemic Light Chain Amyloidosis"
+       ],
+       "keywords": [
+        "Amyloid light-chain (AL)",
+        "Multiple Myeloma (MM)",
+        "Pathogenic light chains"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Trial to Learn if Linvoseltamab is Safe and Works in Adults With Relapsed or Refractory Systemic Light Chain Amyloidosis (AL Amyloidosis)",
+       "nctId": "NCT06292780"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Regeneron Pharmaceuticals"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-07"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Injections"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: SHR-9539 for injection"
+         ],
+         "label": "SHR-9539 for injection"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "SHR-9539 for injection",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study of SHR-9539 in Patients With Multiple Myeloma",
+       "nctId": "NCT06484777"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Suzhou Suncadia Biopharmaceuticals Co., Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-07"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Motor Activity"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Standard of Care"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Behavioral: Standard Care"
+         ],
+         "label": "Standard Care"
+        },
+        {
+         "interventionNames": [
+          "Behavioral: Supported Exercise"
+         ],
+         "label": "Supported Exercise Group"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Supported Exercise",
+         "type": "BEHAVIORAL"
+        },
+        {
+         "name": "Standard Care",
+         "type": "BEHAVIORAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Exercise",
+        "Prehabilitation"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Prehab Prior to Stem Cell Transplantation in Multiple Myeloma",
+       "nctId": "NCT06280924"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University of Alberta"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "selinexor"
+        },
+        {
+         "term": "ruxolitinib"
+        },
+        {
+         "term": "Methylprednisolone"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Selinexor",
+          "Drug: Ruxolitinib",
+          "Drug: Methylprednisolone"
+         ],
+         "label": "Experimental: Selinexor/Ruxolitinib/Steroids"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Selinexor",
+         "type": "DRUG"
+        },
+        {
+         "name": "Ruxolitinib",
+         "type": "DRUG"
+        },
+        {
+         "name": "Methylprednisolone",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma in Relapse",
+        "Multiple Myeloma, Refractory"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "Multiple Myeloma, Refractory",
+        "Multiple Myeloma in Relapse"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Trial of Selinexor, Ruxolitinib and Methylprednisolone",
+       "nctId": "NCT06225310"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Oncotherapeutics"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Etoposide"
+        },
+        {
+         "term": "Cytarabine"
+        },
+        {
+         "term": "pegfilgrastim"
+        },
+        {
+         "term": "pegylated granulocyte colony-stimulating factor"
+        },
+        {
+         "term": "Cyclophosphamide"
+        },
+        {
+         "term": "Granulocyte Colony-Stimulating Factor"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Etoposide",
+          "Drug: Cytarabine",
+          "Drug: Pegfilgrastim",
+          "Drug: G-CSF"
+         ],
+         "label": "EAP regimen group"
+        },
+        {
+         "interventionNames": [
+          "Drug: Cyclophosphamide",
+          "Drug: G-CSF"
+         ],
+         "label": "CG regimen group"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Etoposide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Cytarabine",
+         "type": "DRUG"
+        },
+        {
+         "name": "Pegfilgrastim",
+         "type": "DRUG"
+        },
+        {
+         "name": "Cyclophosphamide",
+         "type": "DRUG"
+        },
+        {
+         "name": "G-CSF",
+         "type": "DRUG"
+        },
+        {
+         "name": "G-CSF",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Hematopoietic Stem Cell Mobilization"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "Etoposide",
+        "Cytarabine",
+        "PEG-rhG-CSF",
+        "Hematopoietic Stem Cell Mobilization"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Comparison Study of EAP and CG Regimens for Mobilizing Hematopoietic Stem Cells in Multiple Myeloma Patients",
+       "nctId": "NCT06520176"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER_GOV",
+        "name": "The Affiliated People's Hospital of Ningbo University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Leukemia, Lymphocytic, Chronic, B-Cell"
+        },
+        {
+         "term": "Hodgkin Disease"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Lymphoma, Non-Hodgkin"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Asian ginseng"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Dietary Supplement: American Ginseng",
+          "Other: Questionnaire Administration"
+         ],
+         "label": "Group I (Western ginseng)"
+        },
+        {
+         "interventionNames": [
+          "Drug: Placebo Administration",
+          "Other: Questionnaire Administration"
+         ],
+         "label": "Group II (placebo)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "American Ginseng",
+         "type": "DIETARY_SUPPLEMENT"
+        },
+        {
+         "name": "Placebo Administration",
+         "type": "DRUG"
+        },
+        {
+         "name": "Questionnaire Administration",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Malignant Solid Neoplasm",
+        "Chronic Lymphocytic Leukemia",
+        "Hematopoietic and Lymphatic System Neoplasm",
+        "Hodgkin Lymphoma",
+        "Multiple Myeloma",
+        "Non-Hodgkin Lymphoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Wisconsin Ginseng for Decreasing Cancer Related Fatigue",
+       "nctId": "NCT06395441"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Mayo Clinic"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed and Refractory Multiple Myeloma (RRMM)"
+       ],
+       "keywords": [
+        "RRMM"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Non Interventional Study to Investigate the Safety and Effectiveness in Patients With Relapsed and Refractory Multiple Myeloma Treated With Elranatamab Under the Actual Use.",
+       "nctId": "NCT06479954"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Pfizer"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: IBI3003"
+         ],
+         "label": "IBI3003"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "IBI3003",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of IBI3003 in Subjects With Relapsed or Refractory Multiple Myeloma",
+       "nctId": "NCT06083207"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "INDUSTRY",
+        "name": "Innovent Biologics (Suzhou) Co. Ltd."
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Tretinoin"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: All-Trans Retinoic Acid (ATRA) Dose 0",
+          "Drug: All-Trans Retinoic Acid (ATRA) Dose -1",
+          "Drug: All-Trans Retinoic Acid (ATRA) Dose 1"
+         ],
+         "label": "All-Trans Retinoic Acid (ATRA), Carfilzomib, and Dexamethasone"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "All-Trans Retinoic Acid (ATRA) Dose 0",
+         "type": "DRUG"
+        },
+        {
+         "name": "All-Trans Retinoic Acid (ATRA) Dose -1",
+         "type": "DRUG"
+        },
+        {
+         "name": "All-Trans Retinoic Acid (ATRA) Dose 1",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "ATRA and Carfilzomib in Plasma Cell Myeloma Patients",
+       "nctId": "NCT06536413"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "The Methodist Hospital Research Institute"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Specimen Handling"
+        },
+        {
+         "term": "Biopsy"
+        },
+        {
+         "term": "Bortezomib"
+        },
+        {
+         "term": "daratumumab"
+        },
+        {
+         "term": "Hyaluronoglucosaminidase"
+        },
+        {
+         "term": "Dexamethasone"
+        },
+        {
+         "term": "Calcium Dobesilate"
+        },
+        {
+         "term": "auricularum"
+        },
+        {
+         "term": "dexamethasone acetate"
+        },
+        {
+         "term": "dexamethasone 21-phosphate"
+        },
+        {
+         "term": "Lenalidomide"
+        },
+        {
+         "term": "Magnetic Resonance Spectroscopy"
+        },
+        {
+         "term": "selinexor"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Procedure: Biospecimen Collection",
+          "Procedure: Bone Marrow Aspiration",
+          "Procedure: Bone Marrow Biopsy",
+          "Drug: Bortezomib",
+          "Procedure: Computed Tomography",
+          "Drug: Daratumumab and Recombinant Human Hyaluronidase",
+          "Drug: Dexamethasone",
+          "Procedure: Magnetic Resonance Imaging",
+          "Procedure: Positron Emission Tomography",
+          "Drug: Selinexor"
+         ],
+         "label": "Arm I (Dara-SVD)"
+        },
+        {
+         "interventionNames": [
+          "Procedure: Biospecimen Collection",
+          "Procedure: Bone Marrow Aspiration",
+          "Procedure: Bone Marrow Biopsy",
+          "Drug: Bortezomib",
+          "Procedure: Computed Tomography",
+          "Drug: Daratumumab and Recombinant Human Hyaluronidase",
+          "Drug: Dexamethasone",
+          "Drug: Lenalidomide",
+          "Procedure: Magnetic Resonance Imaging",
+          "Procedure: Positron Emission Tomography"
+         ],
+         "label": "Arm II (Dara-RVD)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Biospecimen Collection",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Aspiration",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bone Marrow Biopsy",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Bortezomib",
+         "type": "DRUG"
+        },
+        {
+         "name": "Computed Tomography",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Daratumumab and Recombinant Human Hyaluronidase",
+         "type": "DRUG"
+        },
+        {
+         "name": "Dexamethasone",
+         "type": "DRUG"
+        },
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Magnetic Resonance Imaging",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Positron Emission Tomography",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Selinexor",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Comparing the Combination of Selinexor-Daratumumab-Velcade-Dexamethasone (Dara-SVD) With the Usual Treatment (Dara-RVD) for High-Risk Newly Diagnosed Multiple Myeloma",
+       "nctId": "NCT06169215"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "NIH",
+        "name": "National Cancer Institute (NCI)"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Lymphoma, B-Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: Early Palliative Care"
+         ],
+         "label": "Early Palliative Care"
+        },
+        {
+         "label": "Usual Care"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Early Palliative Care",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma in Relapse",
+        "Multiple Myeloma, Refractory",
+        "Multiple Myeloma Stage III",
+        "Multiple Myeloma Progression",
+        "Multiple Myeloma",
+        "B Cell Lymphoma",
+        "Lymphoma, B-Cell",
+        "Aggressive Lymphoma"
+       ],
+       "keywords": [
+        "early palliative care",
+        "multiple myeloma",
+        "quality of life",
+        "symptom management",
+        "aggressive lymphoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Early Palliative Care for Patients With Multiple Myeloma and Aggressive Lymphoma",
+       "nctId": "NCT06485076"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University Health Network, Toronto"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "label": "Participants with Multiple Myeloma"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Precision Medicine Study",
+       "nctId": "NCT06338150"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Icahn School of Medicine at Mount Sinai"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-07-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lenalidomide"
+        },
+        {
+         "term": "plerixafor"
+        },
+        {
+         "term": "Melphalan"
+        },
+        {
+         "term": "Busulfan"
+        },
+        {
+         "term": "Granulocyte Colony-Stimulating Factor"
+        },
+        {
+         "term": "Stem Cell Transplantation"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Elranatamab",
+          "Drug: Lenalidomide",
+          "Drug: Plerixafor",
+          "Drug: Melphalan",
+          "Drug: Busulfan",
+          "Drug: G-CSF",
+          "Procedure: Stem cell transplant"
+         ],
+         "label": "Elranatamab"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Elranatamab",
+         "type": "DRUG"
+        },
+        {
+         "name": "Lenalidomide",
+         "type": "DRUG"
+        },
+        {
+         "name": "Plerixafor",
+         "type": "DRUG"
+        },
+        {
+         "name": "Melphalan",
+         "type": "DRUG"
+        },
+        {
+         "name": "Busulfan",
+         "type": "DRUG"
+        },
+        {
+         "name": "G-CSF",
+         "type": "DRUG"
+        },
+        {
+         "name": "Stem cell transplant",
+         "type": "PROCEDURE"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma",
+        "Post-transplant MRD-guided Maintenance Therapy",
+        "Pre-transplant Purging"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pre-transplant Purging and Post-transplant MRD-guided Maintenance Therapy With Elranatamab in Patients With High-risk Multiple Myeloma",
+       "nctId": "NCT06207799"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "M.D. Anderson Cancer Center"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: Integrative medicine"
+         ],
+         "label": "Integrative medicine"
+        },
+        {
+         "label": "Control"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Integrative medicine",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ],
+       "keywords": [
+        "Multiple Myeloma",
+        "Integrative Medicine",
+        "Quality-of-life",
+        "Complementary medicine",
+        "Hematology",
+        "Acupuncture",
+        "Mind-body",
+        "Touch"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Integrative Therapies in Multiple Myeloma",
+       "nctId": "NCT06515249"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER_GOV",
+        "name": "Bnai Zion Medical Center"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Palliative Care"
+        },
+        {
+         "term": "Interviews as Topic"
+        },
+        {
+         "term": "Remote Patient Monitoring"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Behavioral: Supportive Care (home-based physical activity)",
+          "Other: Exercise Intervention",
+          "Other: telephone interview",
+          "Other: Remote Monitoring",
+          "Procedure: Patient Monitoring",
+          "Other: Questionnaire Administration",
+          "Other: Electronic Health Record Review"
+         ],
+         "label": "Supportive Care (home-based physical activity)"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Supportive Care (home-based physical activity)",
+         "type": "BEHAVIORAL"
+        },
+        {
+         "name": "Exercise Intervention",
+         "type": "OTHER"
+        },
+        {
+         "name": "telephone interview",
+         "type": "OTHER"
+        },
+        {
+         "name": "Remote Monitoring",
+         "type": "OTHER"
+        },
+        {
+         "name": "Patient Monitoring",
+         "type": "PROCEDURE"
+        },
+        {
+         "name": "Questionnaire Administration",
+         "type": "OTHER"
+        },
+        {
+         "name": "Electronic Health Record Review",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Remote Monitoring With Health-Coaching to Improve Quality of Life in Older Patients With Multiple Myeloma",
+       "nctId": "NCT06145581"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Mayo Clinic"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Other: dermo-cosmetic product"
+         ],
+         "label": "group preventive"
+        },
+        {
+         "interventionNames": [
+          "Other: dermo-cosmetic product"
+         ],
+         "label": "group curative"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "dermo-cosmetic product",
+         "type": "OTHER"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Myeloma Multiple"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Evaluation of a Range of Dermo-cosmetic Products to Treat Skin and Nail Toxicity Linked to Bispecific Anti-GPRC5D Bispecific Antibodies in Multiple Myeloma Patients\". Myeloma\". Descriptive Pilot Study",
+       "nctId": "NCT06418750"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Nantes University Hospital"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-07-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms, Plasma Cell"
+        },
+        {
+         "term": "Lymphoma"
+        },
+        {
+         "term": "Leukemia"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Abortion, Legal"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Drug: Tocilizumab before CAR-T cell infusion"
+         ],
+         "label": "Tocilizumab prophylactic"
+        },
+        {
+         "interventionNames": [
+          "Drug: Tocilizumab at emerging CRS"
+         ],
+         "label": "Tocilizumab on demand"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Tocilizumab before CAR-T cell infusion",
+         "type": "DRUG"
+        },
+        {
+         "name": "Tocilizumab at emerging CRS",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Myeloma",
+        "Lymphoma",
+        "Leukemia"
+       ],
+       "keywords": [
+        "Tocilizumab",
+        "Myeloma",
+        "Leukemia",
+        "Lymphoma",
+        "CRS",
+        "ICANS"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "PRONTO Trial (PRophylactic Versus ON-demand Use of TOcilizumab)",
+       "nctId": "NCT06430736"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Insel Gruppe AG, University Hospital Bern"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "interventionNames": [
+          "Biological: Anti-BCMA-GPRC5D CAR-T cells infusion"
+         ],
+         "label": "Anti-BCMA CAR-T"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "Anti-BCMA-GPRC5D CAR-T cells infusion",
+         "type": "BIOLOGICAL"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Relapsed/Refractory Multiple Myeloma"
+       ],
+       "keywords": [
+        "BCMA-GPRC5D CAR-T"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of Anti-BCMA-GPRC5D CAR-T Cells Therapy in the Treatment of r/r MM",
+       "nctId": "NCT06515262"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "920th Hospital of Joint Logistics Support Force of People's Liberation Army of China"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Drug Therapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Chemotherapy",
+         "type": "DRUG"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Clinical Outcomes and Prognostic Factors in Multiple Myeloma Patients",
+       "nctId": "NCT06457464"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "Assiut University"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2024-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Periodontitis"
+        },
+        {
+         "term": "Neoplasms, Plasma Cell"
+        },
+        {
+         "term": "Stomatitis"
+        },
+        {
+         "term": "Febrile Neutropenia"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lead"
+        },
+        {
+         "term": "Therapeutics"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "label": "Control Arm"
+        },
+        {
+         "interventionNames": [
+          "Procedure: PRIOR [Proactive Intensive Oral Review & Treatment]"
+         ],
+         "label": "Intervention Arm"
+        }
+       ],
+       "interventions": [
+        {
+         "name": "PRIOR [Proactive Intensive Oral Review & Treatment]",
+         "type": "PROCEDURE"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Oncology",
+        "Periodontitis",
+        "Myeloma",
+        "Oral Mucositis",
+        "Febrile Neutropenia"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "PROSpECT-PRIOR-2-CHEMO: PRIOR Dental Intervention Before Chemo to Reduce Chemotherapy Complications",
+       "nctId": "NCT06450821"
+      },
+      "sponsorCollaboratorsModule": {
+       "leadSponsor": {
+        "class": "OTHER",
+        "name": "University of Leeds"
+       }
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2024-07"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 186
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_Gj2_g",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07044427"
+      }
+     }
+    }
+   ],
+   "totalCount": 186
+  },
+  "/api/v2/version?": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-11-06T10:00:05"
+  }
+ }
+}

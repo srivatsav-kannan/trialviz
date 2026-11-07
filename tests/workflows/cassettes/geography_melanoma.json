@@ -1,0 +1,7798 @@
+{
+ "claude": [
+  {
+   "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nWhich countries have the most recruiting trials for melanoma?\n</question>",
+   "stop_reason": "end_turn",
+   "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"filters.statuses\",\"values\":[\"RECRUITING\"]},{\"slot\":\"analysis.kind\",\"values\":[\"distribution\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"country\"]},{\"slot\":\"presentation.sort\",\"values\":[\"value_desc\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
+   "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 3495,
+    "input_tokens": 56,
+    "output_tokens": 146
+   }
+  }
+ ],
+ "fingerprint": "f8a0e7d38229c2db",
+ "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLocationCountry&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&pageSize=100&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvem2f0clD6SuP08FCfCFPHT9tpL1SI",
+   "studies": [
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Clinical Stage 0 Cutaneous Melanoma AJCC v8",
+        "Clinical Stage I Cutaneous Melanoma AJCC v8",
+        "Clinical Stage II Cutaneous Melanoma AJCC v8",
+        "Cutaneous Melanocytic Neoplasm",
+        "Cutaneous Melanoma",
+        "Cutaneous Spitz Melanocytoma",
+        "Cutaneous Spitz Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study on How to Safely Guide Surgery for Melanoma and Similar Skin Tumors in Children Using Pathology and Genetic Information",
+       "nctId": "NCT07621614"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2027-05-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Melanoma",
+        "Melanoma Stage IV",
+        "Mucosal Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Canada"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clear Me: Interception Trial to Detect and Clear Molecular Residual Disease in Patients With High-risk Melanoma",
+       "nctId": "NCT06319196"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Unresectable Cutaneous Melanoma"
+       ],
+       "keywords": [
+        "anti-PD-1",
+        "immune checkpoint inhibitors (ICIs)",
+        "OPRM1-mu opioid receptor (MOR)"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Axelopran and Nivolumab in PD-1-Refractory Metastatic Melanoma",
+       "nctId": "NCT07631325"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Non-Small Cell Lung Cancer",
+        "Melanoma (Skin Cancer)"
+       ],
+       "keywords": [
+        "standard treatment with anti-PD-(L)1 monotherapy or combination therapy"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Predicting Response to Anti-PD-1/PD-L1 Immunotherapy by Plasma Extracellular Vesicle Analysis",
+       "nctId": "NCT07376512"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Liver Metastases"
+       ],
+       "keywords": [
+        "immunotherapy",
+        "Liver metastases",
+        "Anti-PD-1",
+        "Anti-LAG-3",
+        "Melphalan",
+        "Percutaneous Hepatic Perfusion Therapy",
+        "Liver directed therapy",
+        "Nivolumab",
+        "Relatlimab",
+        "Immune Checkpoint Inhibitors",
+        "Hepzato",
+        "Opdualag"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Hepzato Kit and Opdualag for Metastatic Melanoma and Liver Metastasis",
+       "nctId": "NCT07281924"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Unresectable Metastatic Melanoma"
+       ],
+       "keywords": [
+        "BRAF V600",
+        "Metastatic melanoma",
+        "Liquid biopsy",
+        "Circulating tumor DNA (ctDNA)",
+        "CRISPR/Cas12a"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Czechia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Detection of the BRAF V600E Mutation in Liquid Biopsy Using the CRISPR/Cas12a System",
+       "nctId": "NCT07870265"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Atherosclerosis"
+        },
+        {
+         "term": "Coronary Artery Disease"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "atherosclerosis",
+        "coronary artery disease",
+        "coronary atherosclerosis"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Aggressive Lipid Lowering Therapy in ICI-Treated Melanoma",
+       "nctId": "NCT07704918"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Immune-Related Adverse Events"
+       ],
+       "keywords": [
+        "Rituximab",
+        "Immunotherapy",
+        "Checkpoint inhibitors",
+        "Malignant melanoma",
+        "Immune-related adverse event"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Denmark"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Rituximab for Treatment of Checkpoint Inhibitor Induced Immune-related Adverse Events",
+       "nctId": "NCT07694414"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Hemangioma"
+        },
+        {
+         "term": "Nevus, Pigmented"
+        },
+        {
+         "term": "Nevus"
+        },
+        {
+         "term": "Keratosis, Seborrheic"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Malignant Melanoma of Skin",
+        "Other and Unspecified Malignant Neoplasm of Skin",
+        "Melanoma in Situ",
+        "Carcinoma in Situ of Skin",
+        "Hemangioma",
+        "Melanocytic Nevi",
+        "Other Benign Neoplasms of Skin",
+        "Neoplasm of Uncertain Behavior of Skin",
+        "Neoplasm of Uncertain Behavior, Unspecified",
+        "Neoplasm of Unspecified Behavior of Bone, Soft Tissue, and Skin",
+        "Nevus, Non-Neoplastic",
+        "Skin Changes Due to Chronic Exposure to Nonionizing Radiation",
+        "Other Specified Follicular Disorders",
+        "Other Melanin Hyperpigmentation",
+        "Seborrheic Keratosis",
+        "Congenital Non-Neoplastic Naevus"
+       ],
+       "keywords": [
+        "Malignant melanoma of skin",
+        "Other and unspecified malignant neoplasm of skin",
+        "Melanoma in situ",
+        "Carcinoma in situ of skin",
+        "Hemangioma",
+        "Melanocytic nevi",
+        "Other benign neoplasms of skin",
+        "Neoplasm of uncertain behavior of skin",
+        "Neoplasm of uncertain behavior, unspecified",
+        "Neoplasm of unspecified behavior of bone, soft tissue, and skin",
+        "Nevus, non-neoplastic",
+        "Skin changes due to chronic exposure to nonionizing radiation",
+        "Other specified follicular disorders",
+        "Other melanin hyperpigmentation",
+        "Seborrheic keratosis",
+        "Congenital non-neoplastic nevus",
+        "Memorial Sloan Kettering Cancer Center",
+        "26-209"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Using an Artificial Intelligence (AI) Tool for Melanoma Diagnosis",
+       "nctId": "NCT07890415"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma",
+        "Solid Tumors"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of BL-M08D in Patients With Locally Advanced or Metastatic Melanoma and Other Solid Tumors",
+       "nctId": "NCT07841925"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma",
+        "Advanced Melanoma"
+       ],
+       "keywords": [
+        "Advanced melanoma",
+        "chrono-immunotherapy",
+        "phase IV",
+        "Nivolumab",
+        "Ipilimumab",
+        "relatlimab",
+        "Pembrplizumab",
+        "Opdivo",
+        "Keytruda",
+        "Opdualag",
+        "Yervoy",
+        "immune checkpoint inhibitor"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "MELCHRONO: A Prospective Randomized Study Investigating Chrono-immunotherapy for Advanced Melanoma.",
+       "nctId": "NCT07574047"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "NSCLC (Non-small Cell Lung Cancer)"
+       ],
+       "keywords": [
+        "IIT BLT",
+        "Bright Light Therapy",
+        "Circadian",
+        "Circadian Rhythm"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Bright Light Therapy in Patients With Melanoma or Non-small Cell Lung Cancer (NSCLC) Who Are Receiving First-Line Immune Checkpoint Blockade",
+       "nctId": "NCT07661966"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin) Stage IV"
+       ],
+       "keywords": [
+        "Cryoablation",
+        "hepatic arterial infusion",
+        "iparomlimab and tuvonralimab",
+        "QL1706",
+        "dacarbazine",
+        "lenvatinib",
+        "liver metastasis",
+        "melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Cryoablation Combined With Hepatic Arterial Infusion of Iparomlimab and Tuvonralimab (QL1706), Intravenous Dacarbazine, and Oral Lenvatinib in Patients With Liver Metastases From Malignant Melanoma: a Single-arm, Phase II, Prospective Trial",
+       "nctId": "NCT07847359"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Dose Ranging, Toxicity Seeking, Phase 1 Trial of Oncolytic Adenoviral Therapy for Melanoma Intracranial and Extracranial Metastases",
+       "nctId": "NCT07444606"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Diabetes Mellitus, Insulin-Dependent, 12"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "Neoplasm",
+        "Programmed cell death-protein 1(PD-1)",
+        "Cytotoxic T-lymphocyte-associated protein 4 (CTLA-4)",
+        "Monoclonal antibody",
+        "Immunoglobulins"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Moldova"
+        },
+        {
+         "country": "Romania"
+        },
+        {
+         "country": "Romania"
+        },
+        {
+         "country": "Romania"
+        },
+        {
+         "country": "Serbia"
+        },
+        {
+         "country": "Serbia"
+        },
+        {
+         "country": "Serbia"
+        },
+        {
+         "country": "Serbia"
+        },
+        {
+         "country": "Serbia"
+        },
+        {
+         "country": "South Africa"
+        },
+        {
+         "country": "South Africa"
+        },
+        {
+         "country": "South Africa"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pharmacokinetics, Safety, and Immunogenicity Comparison of Bmab1700 and Opdivo® as Adjuvant Monotherapy in Participants With Melanoma",
+       "nctId": "NCT07476326"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)"
+       ],
+       "keywords": [
+        "Advanced Melanoma",
+        "ctDNA",
+        "treatment duration"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Pilot Study of ctDNA-Guided Immune Checkpoint Inhibitor Duration in Patients With Advanced Melanoma.",
+       "nctId": "NCT07830225"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Uveal Melanoma"
+       ],
+       "keywords": [
+        "Uveal Melanoma",
+        "plaque brachytherapy",
+        "enucleation",
+        "proton beam",
+        "Adjuvant",
+        "Darovasertib",
+        "IDE 196",
+        "Ocular Melanoma",
+        "Choroidal Melanoma",
+        "Ocular Oncology",
+        "Protein Kinase C",
+        "GNAQ",
+        "GNA11",
+        "Crizotinib"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Canada"
+        },
+        {
+         "country": "Canada"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of Adjuvant Darovasertib and Crizotinib in Participants With Primary Non-metastatic Uveal Melanoma",
+       "nctId": "NCT07804186"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Brain Metastases"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Bevacizumab and ICIs + hSRT in Symptomatic Melanoma Brain Metastases",
+       "nctId": "NCT06163820"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "Non Small Cell Lung Cancer",
+        "Solid Tumor in Advanced Stage"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Investigating the Combination of Bexmarilimab and Nivolumab in Solid Tumours, Melanoma and NSCLC",
+       "nctId": "NCT07718243"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Brain Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)"
+       ],
+       "keywords": [
+        "Stereotactic radiotherapy",
+        "Brain metastases"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "MELanoma Brain Metastasis Treated With CYberknife",
+       "nctId": "NCT07691255"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Adenocarcinoma of Lung"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Liver Neoplasms"
+        },
+        {
+         "term": "Intestinal Neoplasms"
+        },
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Kidney Neoplasms"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Head & Neck Cancer",
+        "Pancreas Carcinoma",
+        "Pancreas Cancer, Metastatic",
+        "Lung Adenocarcinoma",
+        "Lung Cancer (NSCLC)",
+        "Lung Cancer (Non-Small Cell)",
+        "Esophageal Cancer",
+        "Stomach (Gastric) Cancer",
+        "Liver Cancer",
+        "Intestinal Cancer",
+        "Bladder Cancer",
+        "Renal Cancer",
+        "Prostate Cancer",
+        "Melanoma (Skin Cancer)",
+        "Breast Cancer",
+        "Ovarian Cancer",
+        "Endometrial Cancer",
+        "Colorectal Cancer"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "SL-28 for Advanced Solid Tumours",
+       "nctId": "NCT07341737"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Cholangiocarcinoma"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "Hepatocellular Carcinoma",
+        "Lung Cancer",
+        "Breast Cancer",
+        "Pancreatic Cancer",
+        "Ovarian Cancer",
+        "Cholangiocarcinoma"
+       ],
+       "keywords": [
+        "Sortilin",
+        "68Ga-SorB",
+        "PET/CT",
+        "Molecular Imaging",
+        "Diagnostic Imaging",
+        "Positron Emission Tomography",
+        "Radiotracer",
+        "Oncology"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "68Ga-SorB PET/CT Imaging in Patients With Solid Tumors",
+       "nctId": "NCT07760012"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Ukraine"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pharmacokinetic Similarity Study to Compare AVT32-DRL_PB With Keytruda® in Participants With Fully Resected Melanoma",
+       "nctId": "NCT07475572"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "melanoma",
+        "chronoimmunotherapy",
+        "timing"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Netherlands"
+        },
+        {
+         "country": "Netherlands"
+        },
+        {
+         "country": "Netherlands"
+        },
+        {
+         "country": "Netherlands"
+        },
+        {
+         "country": "Netherlands"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Timing of Immunotherapy in Melanoma",
+       "nctId": "NCT07696715"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "Melanoma Stage Stage IIIB",
+        "Melanoma Stage M1",
+        "Melanoma Stage IV"
+       ],
+       "keywords": [
+        "Programmed cell death Protein 1 inhibitor",
+        "pembrolizume",
+        "ipilimumab"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "NeoAdjuvant, Spare-Adjuvant (NASA) in Stage IIIB-IV (M1a) Melanoma",
+       "nctId": "NCT07740941"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin) Stage IV",
+        "Melanoma (Skin Cancer)",
+        "Melanoma Metastatic",
+        "Melanoma Advanced",
+        "Melanoma"
+       ],
+       "keywords": [
+        "microbiota",
+        "gut microbiota",
+        "dietary fiber",
+        "life-style"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Netherlands"
+        },
+        {
+         "country": "Netherlands"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Dietary Fiber to Induce Gut Microbiota-mediated Response to Immunotherapy in Melanoma.",
+       "nctId": "NCT07686835"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Locally Advanced /Metastatic Solid Tumors",
+        "Locally Advanced / Metastatic Solid Tumors",
+        "Metastatic Solid Cancers",
+        "Non Small Cell Lung Cancer",
+        "Lung Cancer",
+        "Melanoma",
+        "Ovarian",
+        "NSCLC"
+       ],
+       "keywords": [
+        "PD-L1",
+        "VEGFR-2",
+        "First in Human",
+        "FIH"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "SI-B036-ST-101 in Advanced/Metastatic Solid Tumors",
+       "nctId": "NCT07857616"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Hereditary Sensory and Autonomic Neuropathies"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Merkel Cell"
+        },
+        {
+         "term": "Nasopharyngeal Carcinoma"
+        },
+        {
+         "term": "Small Cell Lung Carcinoma"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor"
+       ],
+       "keywords": [
+        "Advanced solid tumors",
+        "PROTAC",
+        "HPK1",
+        "MAP4K1",
+        "Immune checkpoint inhibitor",
+        "Non-small cell lung cancer (NSCLC)",
+        "Renal cell carcinoma (RCC)",
+        "Melanoma",
+        "Gastric cancer",
+        "Gastroesophageal cancer",
+        "Esophageal cancer",
+        "Head and Neck Squamous cell carcinoma (HSNCC)",
+        "Urothelial carcinoma (UC)",
+        "Colorectal Cancer (CRC)",
+        "Triple-negative breast cancer (TNBC)",
+        "Ovarian cancer",
+        "Cervical cancer",
+        "Merkel cell carcinoma",
+        "Skin squamous cell carcinoma (SCC)",
+        "Nasopharyngeal carcinoma",
+        "Small cell lung cancer (SCLC)",
+        "Hepatocellular carcinoma (HCC)"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate ARV-6723 Alone and With Pembrolizumab in Participants With Advanced Solid Tumors",
+       "nctId": "NCT07749586"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Fasting"
+        },
+        {
+         "term": "Intermittent Fasting"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)"
+       ],
+       "keywords": [
+        "fasting",
+        "diet",
+        "fiber",
+        "high-fiber",
+        "melanoma",
+        "STF",
+        "short-term fasting",
+        "microbiome",
+        "checkpoint-inhibitor",
+        "checkpoint-inhibition",
+        "immunotherapy"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Germany"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Study on High-fiber Diet and Short-term Fasting in Melanoma Under Immunotherapy With Checkpoint Inhibition",
+       "nctId": "NCT07680452"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Brain Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Solid Tumors"
+       ],
+       "keywords": [
+        "MTAP",
+        "CDKN2A",
+        "PRMT5",
+        "MountainTAP",
+        "Targeted therapy",
+        "Brain cancer",
+        "GBM",
+        "Melanoma",
+        "NSCLC",
+        "Lung cancer",
+        "Pancreatic cancer, Pancreatic Ductal Adenocarcinoma (PDAC)",
+        "Navlimetostat",
+        "Navli"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Canada"
+        },
+        {
+         "country": "Canada"
+        },
+        {
+         "country": "Canada"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Hong Kong"
+        },
+        {
+         "country": "Hong Kong"
+        },
+        {
+         "country": "Ireland"
+        },
+        {
+         "country": "Ireland"
+        },
+        {
+         "country": "Ireland"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Japan"
+        },
+        {
+         "country": "Norway"
+        },
+        {
+         "country": "Norway"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Navlimetostat (BMS-986504) Monotherapy and in Combination With Other Agents in Participants With Advanced and/or Metastatic Solid Tumors With Homozygous MTAP Deletion (MountainTAP-5)",
+       "nctId": "NCT07492680"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-27"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Gastrointestinal Neoplasms"
+        },
+        {
+         "term": "Taste Disorders"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Urogenital Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Multiple Myeloma (MM)",
+        "GI Cancer",
+        "Taste Disorder",
+        "Melanoma (Skin Cancer)",
+        "Urogenital Cancers"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Gustabor Phase 2 - Treating Taste Changes During Cancer Therapy: A Randomized Study Evaluating an AI- Based Nutrition Intervention",
+       "nctId": "NCT07649681"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Hepatocellular Carcinoma (HCC)",
+        "Metastatic Uveal Melanoma",
+        "Renal Cell Carcinoma (RCC)",
+        "Nonsmall Cell Lung Cancer",
+        "Colorectal Cancer (CRC)"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1 and 2 Study of VMD-102 in Hepatocellular Carcinoma and Other Solid Tumors",
+       "nctId": "NCT07636785"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Esophageal and/or Cardia Cancer",
+        "Melanoma",
+        "Urothelial Carcinoma (UC)"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of HLX18 vs. OPDIVO® in Multiple Resected Solid Tumors",
+       "nctId": "NCT07518043"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Basal Cell"
+        },
+        {
+         "term": "Skin Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Melanoma",
+        "Mucosal Melanoma",
+        "Cutaneous Squamous Cell Carcinoma (CSCC)",
+        "Merkel Cell Carcinoma of Skin",
+        "Basal Cell Carcinoma of Skin"
+       ],
+       "keywords": [
+        "TLR4 agonist",
+        "TLR7 agonist",
+        "TLR4/7 agonist",
+        "skin cancer",
+        "innate immunity",
+        "immunotherapy"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A First-in-Human Study to Evaluate the Safety, Pharmacokinetics and Pharmacodynamics of KUP-101A in Patients With Selected Advanced Solid Tumors",
+       "nctId": "NCT07600476"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Stage III"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Efficacy and Safety of PRTX007-003 Combined With Pembrolizumab in Resectable Stage III Melanoma",
+       "nctId": "NCT07565285"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor"
+       ],
+       "keywords": [
+        "Intravenous",
+        "Non Small Cell Lung Cancer",
+        "Melanoma",
+        "Advanced Solid Tumors",
+        "mRNA"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1/2 Study of Intravenous Injection of STX-003 in Advanced Solid Tumors as Monotherapy or in Combination With Pembrolizumab",
+       "nctId": "NCT07751042"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Uveal Melanoma"
+       ],
+       "keywords": [
+        "Immunotherapy",
+        "Neoadjuvant therapy",
+        "High-risk uveal melanoma",
+        "Nivolumab",
+        "Ipilimumab"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Denmark"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neoadjuvant Immunotherapy for Patients With High-risk Eye Melanoma",
+       "nctId": "NCT07501117"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Adult Patients With Stage IIB, IIC, and Stage III Melanoma Following Complete Resection (Adjuvant Settings)"
+       ],
+       "keywords": [
+        "Pembrolizumab",
+        "Melanoma",
+        "Biosimilar",
+        "Adjuvant Therapy"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Brazil"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pharmacokinetics, Safety, and Immunogenicity of Bmab1800 and Keytruda® as Adjuvant Monotherapy in Patients With Melanoma",
+       "nctId": "NCT07581509"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Melanoma (Skin Cancer)",
+        "Immunotherapy"
+       ],
+       "keywords": [
+        "quality of life",
+        "adverse events"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Investigating Real-Time Immunotherapy Symptoms Study",
+       "nctId": "NCT07280715"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Bronchogenic"
+        },
+        {
+         "term": "Mesothelioma, Malignant"
+        },
+        {
+         "term": "Leukemia, Lymphocytic, Chronic, B-Cell"
+        },
+        {
+         "term": "Lymphoma, Follicular"
+        },
+        {
+         "term": "Neoplasms, Plasma Cell"
+        },
+        {
+         "term": "Immunoglobulin Light-chain Amyloidosis"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Esophageal Squamous Cell Carcinoma"
+        },
+        {
+         "term": "Heart Neoplasms"
+        },
+        {
+         "term": "Cholangiocarcinoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Locally Advanced Cutaneous Squamous Cell Carcinoma of the Head and Neck",
+        "Melanoma Neoplasms",
+        "Small Cell Bronchial Carcinomas",
+        "Bronchial Carcinoma",
+        "Pleural Mesothelioma",
+        "Hodgkin&#39;s Lymphoma",
+        "Chronic Lymphocytic Leukemia",
+        "Follicular Lymphoma",
+        "Myeloma",
+        "AL Amyloidosis",
+        "Hepatocarcinoma",
+        "Colorectal Cancer",
+        "Esophageal Squamous Cell Carcinoma",
+        "Heart Cancer",
+        "Cholangiocarcinoma",
+        "Colorectal Adenocarcinoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "France"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Evaluation of Skin Tests in Biotherapy Allergies",
+       "nctId": "NCT06971848"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Basal Cell"
+        },
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Neoplasms, Basal Cell"
+        },
+        {
+         "term": "Carcinoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Basal Cell Carcinoma of Skin",
+        "Optical Coherence Tomography (OCT)",
+        "Neoplasms",
+        "Neoplasms, Basal Cell",
+        "Carcinoma, Basal Cell (BCC)",
+        "Real-world Study",
+        "Implementation"
+       ],
+       "keywords": [
+        "Line-Field Optical Coherence Tomography",
+        "Real-world evaluation",
+        "Non-melanoma skin cancer"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Netherlands"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Real-world Evaluation of the Implementation of LC-OCT in Daily Clinical Practice",
+       "nctId": "NCT07501780"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Development and Multi-Centre Validation of a Novel Non-Invasive Melanoma Molecular Diagnostic Test",
+       "nctId": "NCT07883954"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Squamous Cell"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Neoplasms, Solid Tumor",
+        "Breast Neoplasms, Triple-Negative",
+        "Squamous Cell Carcinoma of Skin",
+        "Melanoma",
+        "Head and Neck Neoplasms",
+        "Carcinoma, Squamous Cell",
+        "Carcinoma, Non-Small-Cell Lung"
+       ],
+       "keywords": [
+        "N17350",
+        "Intratumoral injection",
+        "Intralesional injection",
+        "Dose escalation",
+        "Dose finding",
+        "Dose expansion",
+        "Phase 1",
+        "Open-label",
+        "Safety",
+        "Tolerability",
+        "Biomarkers",
+        "Advanced solid tumors",
+        "Triple-negative breast cancer",
+        "Cutaneous squamous cell carcinoma",
+        "Melanoma",
+        "Head and neck squamous cell carcinoma",
+        "Non-small cell lung cancer",
+        "OP-NEU-101",
+        "Onchilles",
+        "Onchilles Pharma",
+        "ELANE",
+        "Phase 2",
+        "ELANE pathway",
+        "TNBC",
+        "cuSCC",
+        "HNSCC",
+        "SCCHN",
+        "metastatic",
+        "elastase",
+        "therapeutic elastase",
+        "neutrophil elastase",
+        "New cancer therapy"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Intratumoral N17350 in Advanced Solid Tumors",
+       "nctId": "NCT07339176"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Renal Cell Carcinoma",
+        "Advanced Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Sitagliptin With Pembro in RCC and Melanoma",
+       "nctId": "NCT07634380"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Adenocarcinoma"
+        },
+        {
+         "term": "Carcinoma, Basal Cell"
+        },
+        {
+         "term": "Carcinoma, Squamous Cell"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Carcinoma, Ductal"
+        },
+        {
+         "term": "Osteosarcoma"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Sarcoma, Ewing"
+        },
+        {
+         "term": "Rhabdomyosarcoma"
+        },
+        {
+         "term": "Leiomyosarcoma"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Neoplasms, Germ Cell and Embryonal"
+        },
+        {
+         "term": "Lymphoma"
+        },
+        {
+         "term": "Endocrine Gland Neoplasms"
+        },
+        {
+         "term": "Glioma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Adenocarcinoma",
+        "Basal Cell Carcinoma",
+        "Squamous Cell Carcinoma",
+        "Transitional Cell Carcinoma",
+        "Ductal Carcinoma",
+        "Osteosarcoma",
+        "Soft Tissue Sarcoma",
+        "Ewing Sarcoma",
+        "Rhabdomyosarcoma",
+        "Leiomyosarcoma",
+        "Melanoma",
+        "Germ Cell Tumor",
+        "Lymphoma",
+        "Endocrine Tumor",
+        "Glioma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Feasibility Study on the Effect of a Methionine-Reduced Diet on Serum Levels in Pts w/ Solid Tumors",
+       "nctId": "NCT07628634"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Au-TMP and Radiotherapy for Advanced Melanoma With Anti-PD-1 Therapy",
+       "nctId": "NCT07562841"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Lung Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Biliary Tract Carcinoma",
+        "Advanced Head and Neck Squamous Cell Carcinoma",
+        "Advanced Hepatocellular Carcinoma",
+        "Advanced Lung Non-Small Cell Carcinoma",
+        "Advanced Malignant Solid Neoplasm",
+        "Advanced Melanoma",
+        "Advanced Renal Cell Carcinoma",
+        "Metastatic Biliary Tract Carcinoma",
+        "Metastatic Head and Neck Squamous Cell Carcinoma",
+        "Metastatic Hepatocellular Carcinoma",
+        "Metastatic Lung Non-Small Cell Carcinoma",
+        "Metastatic Malignant Solid Neoplasm",
+        "Metastatic Melanoma",
+        "Metastatic Renal Cell Carcinoma",
+        "Recurrent Head and Neck Squamous Cell Carcinoma",
+        "Stage III Hepatocellular Carcinoma AJCC v8",
+        "Stage III Lung Cancer AJCC v8",
+        "Stage III Renal Cell Cancer AJCC v8",
+        "Stage IV Hepatocellular Carcinoma AJCC v8",
+        "Stage IV Lung Cancer AJCC v8",
+        "Stage IV Renal Cell Cancer AJCC v8"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE4"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Morning Versus Afternoon Administration of Immunotherapy for the Treatment of Advanced or Metastatic Solid Tumors, The Knight SHIFT Study",
+       "nctId": "NCT07405086"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Lung Cancer",
+        "Colorectal Cancer",
+        "Hematological Cancer",
+        "Malignant Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Social Prescriptions and Micro-Learning to Improve Care for Cancer Patients and Their Support Persons",
+       "nctId": "NCT07788729"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-21"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Comparing the Effectiveness of Less Invasive Procedures With the Current Standard of Care for the Treatment of Older Adults With Early-Stage Melanoma",
+       "nctId": "NCT07068074"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Advanced Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "ctDNA-guided Addition of Ipilimumab to Patients Receiving Nivolumab and Relatlimab",
+       "nctId": "NCT07504796"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Mucosal Melanoma",
+        "PD-L1 Positive"
+       ],
+       "keywords": [
+        "Adjuvant Treatment",
+        "PD-L1-Positive",
+        "Resectable Mucosal Melanoma",
+        "immunotherapy"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Sintilimab Combined With Chemotherapy for Adjuvant Treatment of Mucosal Melanoma After Surgery",
+       "nctId": "NCT07400302"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Lung Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Non-Small-Cell Lung",
+        "Esophageal Cancer",
+        "Cutaneous Melanoma"
+       ],
+       "keywords": [
+        "Lung cancer",
+        "Esophageal cancer",
+        "Melanoma",
+        "Antibody drug conjugate"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "Netherlands"
+        },
+        {
+         "country": "Puerto Rico"
+        },
+        {
+         "country": "Puerto Rico"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1 Study of PF-08046033 in Advanced Solid Tumors",
+       "nctId": "NCT07519655"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-08"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Refractory Melanoma"
+       ],
+       "keywords": [
+        "Dendritic Cell Vaccine",
+        "Immunotherapy",
+        "Tumor Vaccine"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "DOC1021 Dendritic Cell Immunotherapy for Refractory Melanoma",
+       "nctId": "NCT07288112"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Hematologic Neoplasms"
+        },
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Lymphoproliferative Disorders"
+        },
+        {
+         "term": "Neoplasms by Histologic Type"
+        },
+        {
+         "term": "Neoplasms by Site"
+        },
+        {
+         "term": "Gastrointestinal Neoplasms"
+        },
+        {
+         "term": "Histiocytosis, Langerhans-Cell"
+        },
+        {
+         "term": "Erdheim-Chester Disease"
+        },
+        {
+         "term": "Thyroid Cancer, Papillary"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Laryngeal Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Glioma"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Thyroid Carcinoma, Anaplastic"
+        },
+        {
+         "term": "Pancreatic Diseases"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Haematological Malignancy",
+        "Malignant Neoplasm",
+        "Lymphoproliferative Disorders",
+        "Neoplasms by Histologic Type",
+        "Neoplasms by Site",
+        "Gastrointestinal Cancer",
+        "Non-Melanoma Skin Cancer (NMSC)",
+        "Langerhans Cell Histiocytosis (LCH)",
+        "Cancer",
+        "Erdheim-Chester Disease",
+        "Thyroid Carcinoma, Papillary",
+        "Ovarian Neoplasms",
+        "Colorectal Neoplasms",
+        "Laryngeal Neoplasms",
+        "Carcinoma, Non-Small Cell-Lung",
+        "Glioma",
+        "Multiple Myeloma",
+        "Thyroid Carcinoma, Anaplastic",
+        "Solid Tumour",
+        "Pancreatic Diseases"
+       ],
+       "keywords": [
+        "Adult",
+        "Antineoplastic Agents",
+        "Cancer",
+        "Child",
+        "Dabrafenib",
+        "Malignancy",
+        "Malignant Neoplasms",
+        "Molecular Targeted Therapy",
+        "Mutation",
+        "Neoplasms by Histologic Site",
+        "Neoplasms by Site",
+        "Paediatric",
+        "Precision Medicine",
+        "Proto-Oncogene Proteins B-raf",
+        "Protein Kinase Inhibitors",
+        "Rare",
+        "Trametinib",
+        "Tumour-Agnostic",
+        "Young adult"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "DETERMINE Trial Treatment Arm 07: Dabrafenib in Combination With Trametinib in Adult, Paediatric and Teenage/Young Adult Patients With BRAF V600 Mutation-Positive Cancers.",
+       "nctId": "NCT07440290"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Metastatic",
+        "NRAS Mutation"
+       ],
+       "keywords": [
+        "Tunlametinib",
+        "Pucotenlimab",
+        "Hydroxychloroquine",
+        "NRAS mutation",
+        "melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Tunlametinib in Combination With Pucotenlimab and Hydroxychloroquine in NRAS Mutant Melanoma",
+       "nctId": "NCT07750067"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Glioblastoma"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Pancreatic Cancer",
+        "Breast Cancer",
+        "Lung Cancer",
+        "Sarcoma",
+        "Head and Neck Tumors",
+        "Glioblastoma",
+        "Colorectal Cancer",
+        "Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Sub-topic Four: Clinical Translation of Original Radioactive Drugs for Precision Diagnosis and Treatment of Gastrointestinal Tumors -Clinical Application Value of PET Imaging Targeting LRRC15 in Malignant Tumors",
+       "nctId": "NCT07552467"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Urogenital Neoplasms"
+        },
+        {
+         "term": "Gastrointestinal Neoplasms"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Neoplasms, Unknown Primary"
+        },
+        {
+         "term": "Neoplasm, Residual"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Breast Cancer",
+        "Lung Cancer",
+        "Melanoma",
+        "Gynecologic Cancer",
+        "Genitourinary Cancer",
+        "Pancreatobiliary Cancer",
+        "Gastrointestinal Cancer",
+        "Head and Neck Cancer",
+        "Rare Cancer",
+        "Unknown Primary Tumors"
+       ],
+       "keywords": [
+        "Minimal Residual Disease",
+        "Liquid Biopsy",
+        "Circulating Tumor DNA"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Canada"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Study of High-Precision Evaluation of Molecular ResiduaL Disease Through a PlatfOrm for Cancer TracKing and Interception (SHERLOCK)",
+       "nctId": "NCT07524114"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Triple Negative Breast Cancer Metastatic",
+        "Melanoma Metastatic",
+        "Colorectal Cancer Metastatic"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase II Clinical Study of Multimodal Ablation Combined With Systemic Drug Therapy for Advanced Solid Tumors.",
+       "nctId": "NCT06889610"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "HCC - Hepatocellular Carcinoma",
+        "CRC (Colorectal Cancer)",
+        "Gastric Carcinoma",
+        "Breast Cancer",
+        "Lung Cancer",
+        "Endometrial Cancer",
+        "Melanoma (Skin Cancer)",
+        "Pancreatic Cancer"
+       ],
+       "keywords": [
+        "cancer",
+        "IHC",
+        "ENPP1/cGAS (EG)",
+        "FAP",
+        "Vietnam",
+        "Tam Anh TP. Ho Chi Minh Hospital",
+        "Tam Anh General Hospital",
+        "observation",
+        "Immunohistochemical Study"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Vietnam"
+        },
+        {
+         "country": "Vietnam"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "ENPP1/cGAS (EG) and FAP Expression Profiles in Solid Tumors: An Immunohistochemical Study in a Vietnamese Cohort",
+       "nctId": "NCT07808164"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Testicular Neoplasms"
+        },
+        {
+         "term": "Colonic Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Thyroid Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Breast Cancer",
+        "Ovarian Cancer",
+        "Cervical Cancer",
+        "Testicular Cancer",
+        "Colon Rectal Cancer",
+        "Melanoma (Skin Cancer)",
+        "Endometrial Cancer",
+        "Sarcoma",
+        "Thyroid Cancer"
+       ],
+       "keywords": [
+        "Adolescent and Young Adult",
+        "Cancer Survivors",
+        "Patient Navigation",
+        "Adaptations",
+        "Implementation Science"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Navigation Intervention for Adolescent and Young Adult Cancer Survivors",
+       "nctId": "NCT07406087"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "IL-17 Blockade to Decrease irAEs (REPLAY)",
+       "nctId": "NCT07237594"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced NRAS-Mutant Melanoma",
+        "Advanced NRAS-Mutant Solid Tumors",
+        "NRAS Mutation",
+        "NRAS G12D",
+        "NRAS G13R",
+        "NRAS G13D",
+        "NRAS G12V",
+        "NRAS Q61R",
+        "NRAS Q61K",
+        "NRAS Q61L",
+        "NRAS Q61H",
+        "Advanced NRAS-mutant Colorectal Cancer"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A First-in-human Study of RLY-8161 in Advanced NRAS-Mutant Solid Tumors",
+       "nctId": "NCT07584226"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Small Cell Lung Carcinoma"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Small Cell Lung Cancer",
+        "Melanoma",
+        "Prostate Cancer",
+        "Other Advanced Solid Tumors"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of DXC014 in Patients With Advanced Solid Tumors.",
+       "nctId": "NCT07177937"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Uveal Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Unresectable Melanoma",
+        "Metastatic Cutaneous Melanoma",
+        "Metastatic Uveal Melanoma"
+       ],
+       "keywords": [
+        "CAR-NK",
+        "allogeneic NK cells",
+        "CSPG4",
+        "GD2",
+        "advanced melanoma",
+        "uveal melanoma",
+        "cell therapy",
+        "biomarker-guided",
+        "solid tumor"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Dual-Target CSPG4/GD2 CAR-NK Cells for Advanced Melanoma",
+       "nctId": "NCT07627698"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-03-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Excluding Uveal Melanoma)"
+       ],
+       "keywords": [
+        "Advanced Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "HS-IT101 Injection Versus Chemotherapy in the Treatment of Advanced Melanoma（FASTIL-Mela02）",
+       "nctId": "NCT07406724"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Solid Tumours",
+        "Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Netherlands"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of BI 3810944 in Patients With Advanced Cancer",
+       "nctId": "NCT07224425"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Clinical Stage 0 Cutaneous Melanoma AJCC v8",
+        "Clinical Stage I Cutaneous Melanoma AJCC v8",
+        "Clinical Stage II Cutaneous Melanoma AJCC v8",
+        "Clinical Stage III Cutaneous Melanoma AJCC v8",
+        "Cutaneous Dysplastic Nevus"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Sulforaphane for the Prevention of Melanoma in Patients With Multiple Atypical Nevi and a Prior History of Melanoma",
+       "nctId": "NCT07040280"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced or Metastatic Melanoma"
+       ],
+       "keywords": [
+        "NRAS-Mutant",
+        "Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        },
+        {
+         "country": "South Korea"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Belvarafenib in Combination With Cobimetinib in Patients With Locally Advanced or Metastatic NRAS-Mutant Melanoma",
+       "nctId": "NCT07449754"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Melanoma",
+        "Mucosal Melanoma"
+       ],
+       "keywords": [
+        "Neoadjuvant",
+        "Immunotherapy",
+        "Randomised trial",
+        "Low Responder"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neo IRENIE (NEOadjuvant Ipilimumab, RElatlimab, NIvolumab Evaluation)",
+       "nctId": "NCT06999980"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Clinical Stage II Cutaneous Merkel Cell Carcinoma AJCC v8",
+        "Clinical Stage III Cutaneous Merkel Cell Carcinoma AJCC v8",
+        "Clinical Stage IV Cutaneous Merkel Cell Carcinoma AJCC v8",
+        "Locally Advanced Basal Cell Carcinoma",
+        "Locally Advanced Malignant Skin Neoplasm",
+        "Locally Advanced Merkel Cell Carcinoma",
+        "Locally Advanced Mucosal Melanoma",
+        "Locally Advanced Squamous Cell Carcinoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Studying Off Label Insurance Coverage for Patients With Cutaneous Cancers a \"Filter\" Observational Study",
+       "nctId": "NCT07215988"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Uveal Melanoma, Metastatic"
+       ],
+       "keywords": [
+        "tebentafusp",
+        "Roginolisib"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Tebentafusp and Roginolisib in Uveal Melanoma to Prolong T-cell Homeostasis",
+       "nctId": "NCT07203391"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Skin Neoplasms"
+        },
+        {
+         "term": "Nevus"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Skin Cancer Prevention",
+        "Melanoma In Situ",
+        "Skin Lesions",
+        "Skin Cancer",
+        "Mole (Dermatology)"
+       ],
+       "keywords": [
+        "skin cancer",
+        "melanoma",
+        "telemedicine tool",
+        "skin tumors"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Czechia"
+        },
+        {
+         "country": "Czechia"
+        },
+        {
+         "country": "Czechia"
+        },
+        {
+         "country": "Czechia"
+        },
+        {
+         "country": "Czechia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Early Detection of Skin Tumors Using a Telemedicine Tool in Primary Care",
+       "nctId": "NCT07349940"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Glioblastoma"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Leukemia, Myeloid, Acute"
+        },
+        {
+         "term": "Lymphoma, Non-Hodgkin"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Lymphoma"
+        },
+        {
+         "term": "Liver Neoplasms"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Lymphoma, Follicular"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Breast Cancer",
+        "Non-Small Cell Lung Cancer (NSCLC)",
+        "Colorectal Cancer (Locally Advanced or Metastatic)",
+        "Prostate Cancer - Recurrent",
+        "Pancreatic Ductal Adenocarcinoma (PDAC)",
+        "Ovarian Cancer",
+        "Glioblastoma",
+        "Melanoma (Skin Cancer)",
+        "Acute Myeloid Leukemia (AML)",
+        "Non Hodgkin Lymphoma",
+        "Multiple Myeloma (MM), Lymphoma, Large B-Cell, Diffuse (DLBCL), Lymphoma",
+        "Liver Cancer"
+       ],
+       "keywords": [
+        "CAR-NK",
+        "Solid tumor",
+        "Dual-target CAR",
+        "ctDNA",
+        "CAR-T",
+        "Breast cancer",
+        "Non-small cell lung cancer (NSCLC)",
+        "Colorectal cancer (CRC)",
+        "Prostate cancer",
+        "Pancreatic ductal adenocarcinoma (PDAC)",
+        "Ovarian, fallopian tube, and primary peritoneal cancers",
+        "Glioblastoma and other high-grade gliomas",
+        "Melanoma",
+        "Acute myeloid leukemia (AML)",
+        "Non-Hodgkin lymphoma (NHL), especially DLBCL and follicular lymphoma",
+        "Multiple myeloma (especially relapsed/refractory)",
+        "Liver cancer (hepatocellular carcinoma, HCC)"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Biomarker-Guided Allogeneic Single-Target or Dual-Target CAR-NK Cell Therapy for Advanced Solid Tumors",
+       "nctId": "NCT07410494"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Leukemia"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Disease"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Kidney Neoplasms"
+        },
+        {
+         "term": "Liver Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Glioblastoma"
+        },
+        {
+         "term": "Carcinoma, Bronchogenic"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Sarcoma",
+        "Leukaemia",
+        "Breast Cancer (Locally Advanced or Metastatic)",
+        "Lung Cancer (Diagnosis)",
+        "Colorectal Cancer",
+        "Melanoma (Skin Cancer)",
+        "Bladder Cancer",
+        "Kidney Cancer",
+        "Pancreatic Cancer Metastatic",
+        "Liver Cancer (Primary and Metastatic)",
+        "Ovarian Cancer",
+        "Esophageal Cancer",
+        "Glioblastoma",
+        "Non-Melanoma Skin Cancer"
+       ],
+       "keywords": [
+        "Natural killer cells",
+        "NK cell therapy",
+        "Solid tumors",
+        "IL-15",
+        "Breast Cancer",
+        "Lung and Bronchus Cancer",
+        "Prostate Cancer",
+        "Colorectal (Colon and Rectal) Cancer",
+        "CAR-T",
+        "Non-Melanoma Skin Cancer",
+        "Melanoma",
+        "Bladder Cancer",
+        "Kidney (Renal Cell and Renal Pelvis) Cancer",
+        "Pancreatic Cancer",
+        "Stomach (Gastric) Cancer",
+        "Esophageal Cancer"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "EBNK-001 Allogeneic NK Cells With Low-Dose IL-15 ± Pembrolizumab in Advanced Solid Tumors",
+       "nctId": "NCT07410676"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Stage II Cutaneous Melanoma"
+       ],
+       "keywords": [
+        "melanoma",
+        "skin graft",
+        "perforator flap"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "France"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "COmparison of the Use of a PERforator Flap Versus Total Skin GRAft in the Management of Loss of Substance After Resection of Cutaneous Melanoma - Pilot Study",
+       "nctId": "NCT07354152"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Gastrointestinal Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Lung Cancer (NSCLC)",
+        "Cervical Squamous Cell Cancer",
+        "Melanoma (Skin Cancer)",
+        "Breast Cancer",
+        "Gastrointestinal Cancers"
+       ],
+       "keywords": [
+        "Radioactive medicine",
+        "De novo design"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Investigator-Initiated Trial (IIT) of PD-L1-Targeted Radionuclide Probes",
+       "nctId": "NCT07848243"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Advanced"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE4"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "RWS of Tunlametinib in NRAS-Mutant Advanced Melanoma",
+       "nctId": "NCT07445022"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Uveal Melanoma"
+       ],
+       "keywords": [
+        "Uveal Melanoma",
+        "Uveal Melanoma, Metastatic",
+        "Uveal Melanoma, Metastatic to liver"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Immune Response to Percutaneous Hepatic Perfusion With Melphalan for Ocular Melanoma Metastatic to the Liver",
+       "nctId": "NCT07364474"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-27"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Breast Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "HER2-low Hormone Receptor Positive Breast Cancer"
+       ],
+       "keywords": [
+        "breast cancer",
+        "melanoma",
+        "AMXT 1501",
+        "DFMO",
+        "polyamine inhibitor",
+        "advanced solid tumor",
+        "combination therapy",
+        "polyamine"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of AMXT 1501 and DFMO in Combination With Standard Therapies in Advanced Solid Tumors",
+       "nctId": "NCT07287917"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Uveal Melanoma"
+       ],
+       "keywords": [
+        "Uveal Melanoma",
+        "Plaque Brachytherapy",
+        "Enucleation",
+        "Neoadjuvant",
+        "Darovasertib",
+        "IDE 196",
+        "Ocular Melanoma",
+        "Choroidal Melanoma",
+        "Ophthalmology",
+        "Ocular Oncology",
+        "Melanoma",
+        "Protein Kinase C",
+        "GNAQ",
+        "GNA11"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Austria"
+        },
+        {
+         "country": "Austria"
+        },
+        {
+         "country": "Austria"
+        },
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Belgium"
+        },
+        {
+         "country": "Canada"
+        },
+        {
+         "country": "Canada"
+        },
+        {
+         "country": "Czechia"
+        },
+        {
+         "country": "Denmark"
+        },
+        {
+         "country": "Denmark"
+        },
+        {
+         "country": "Estonia"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Germany"
+        },
+        {
+         "country": "Greece"
+        },
+        {
+         "country": "Greece"
+        },
+        {
+         "country": "Greece"
+        },
+        {
+         "country": "Israel"
+        },
+        {
+         "country": "Israel"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Netherlands"
+        },
+        {
+         "country": "New Zealand"
+        },
+        {
+         "country": "Poland"
+        },
+        {
+         "country": "Poland"
+        },
+        {
+         "country": "Poland"
+        },
+        {
+         "country": "Slovakia"
+        },
+        {
+         "country": "Slovenia"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "Switzerland"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neoadjuvant Darovasertib in Primary Uveal Melanoma",
+       "nctId": "NCT07015190"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)"
+       ],
+       "keywords": [
+        "IMMUNOTHERAPY",
+        "PRIMARY CUTANOUS MELANOMA",
+        "NEOPRIME trial",
+        "NEOADJUVANT TREATMENT"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Sweden"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neoadjuvant Pembrolizumab in Patients With Stage IIb/c Melanoma",
+       "nctId": "NCT07349303"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Melanoma, Stage III",
+        "Mucosal Melanoma"
+       ],
+       "keywords": [
+        "Neo-adjuvant Immunotherapy",
+        "Localized Cancers",
+        "Intra-tumoral treatment",
+        "Melanoma",
+        "Immune-checkpoint blockade"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neo-adjuvant Immunotherapy in Patients With Localized Melanoma",
+       "nctId": "NCT07230613"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Solid Cancer",
+        "Non-Small Cell Lung Cancer",
+        "Melanoma"
+       ],
+       "keywords": [
+        "immune checkpoint inhibitor (ICI)"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Germany"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Urolithin A in Patients With Previously Untreated Solid Tumors Receiving Immune Checkpoint Inhibitors",
+       "nctId": "NCT07161310"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Uveal Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 2 Combination of Melphalan/HDS Via PHP + Tebentafusp in Treating Metastatic Uveal Melanoma",
+       "nctId": "NCT07276386"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced (Unresectable or Metastatic) Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Bosnia and Herzegovina"
+        },
+        {
+         "country": "Bosnia and Herzegovina"
+        },
+        {
+         "country": "Bosnia and Herzegovina"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Brazil"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Chile"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Georgia"
+        },
+        {
+         "country": "Greece"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Italy"
+        },
+        {
+         "country": "Peru"
+        },
+        {
+         "country": "Peru"
+        },
+        {
+         "country": "Peru"
+        },
+        {
+         "country": "Peru"
+        },
+        {
+         "country": "Peru"
+        },
+        {
+         "country": "Portugal"
+        },
+        {
+         "country": "Portugal"
+        },
+        {
+         "country": "Portugal"
+        },
+        {
+         "country": "Romania"
+        },
+        {
+         "country": "Slovakia"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Spain"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Turkey (Türkiye)"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        },
+        {
+         "country": "Ukraine"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study to Compare Pharmacokinetics, Efficacy, Safety, and Immunogenicity of MB11 Versus EU-/US-Opdivo® in Subjects With Previously Untreated Advanced [Unresectable or Metastatic] Melanoma",
+       "nctId": "NCT07221734"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Amyloidosis"
+        },
+        {
+         "term": "Carcinoma, Basal Cell"
+        },
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Fallopian Tube Neoplasms"
+        },
+        {
+         "term": "Glioblastoma"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Hodgkin Disease"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Lymphoma, Mantle-Cell"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Merkel Cell"
+        },
+        {
+         "term": "Multiple Myeloma"
+        },
+        {
+         "term": "Myelodysplastic Syndromes"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Squamous Cell"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Amyloidosis",
+        "Basal Cell Carcinoma",
+        "Biliary Tract Carcinoma",
+        "Bladder Carcinoma",
+        "Breast Carcinoma",
+        "Cervical Carcinoma",
+        "Colorectal Carcinoma",
+        "Endometrial Carcinoma",
+        "Fallopian Tube Carcinoma",
+        "Gastroesophageal Junction Carcinoma",
+        "Glioblastoma",
+        "Head and Neck Carcinoma",
+        "Hematopoietic and Lymphatic System Neoplasm",
+        "Hepatocellular Carcinoma",
+        "Hodgkin Lymphoma",
+        "Lung Carcinoma",
+        "Malignant Solid Neoplasm",
+        "Mantle Cell Lymphoma",
+        "Melanoma",
+        "Merkel Cell Carcinoma",
+        "Multiple Myeloma",
+        "Myelodysplastic Syndrome",
+        "Ovarian Carcinoma",
+        "Pancreatic Carcinoma",
+        "Primary Peritoneal Carcinoma",
+        "Prostate Carcinoma",
+        "Renal Cell Carcinoma",
+        "Squamous Cell Carcinoma",
+        "Urothelial Carcinoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Cancer Connected Access and Remote Expertise Beyond Walls Program to Provide In-Home Cancer Treatment and Improve Treatment Satisfaction in Cancer Patients Living in the Florida Panhandle and Surrounding Areas",
+       "nctId": "NCT07285044"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Breast Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin)",
+        "Non Small Cell Lung Cancer",
+        "Breast Cancer"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Australia"
+        },
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1/2 Clinical Trial to Assess the Safety, Tolerability, Pharmacokinetics and Preliminary Efficacy of HMBD-501 in Patients With HER3-Expressing Solid Tumors",
+       "nctId": "NCT06956690"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Unresectable Locally Advanced or Metastatic Melanoma",
+        "Unresectable Locally Advanced or Metastatic Urinary Tract Tumors"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase I/II Clinical Study of JMT108 Injection for the Treatment of Advanced Malignant Melanoma and Urinary Tract Tumors",
+       "nctId": "NCT07280832"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase II Trial of LM103 in Advanced Melanoma",
+       "nctId": "NCT07310784"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Low-Dose Liver Radiation (LD-LRT)",
+        "Non Small Cell Lung Cancer",
+        "Melanoma",
+        "Liver Metastases"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Promoting Immunotherapy Efficacy With Low-Dose Liver RT",
+       "nctId": "NCT07225036"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma",
+        "Metastatic Melanoma",
+        "Advanced Solid Tumor",
+        "Hepatocellular Carcinoma"
+       ],
+       "keywords": [
+        "Advanced solid tumors",
+        "Immunotherapy",
+        "Immuno-oncology",
+        "Oncolytic virus",
+        "Oncolytic immuno-gene therapy",
+        "Hepatocellular Carcinoma",
+        "Cutaneous Melanoma",
+        "Anti-PD1 failed",
+        "Non-melanoma Skin Cancer",
+        "Melanoma (skin)"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "Australia"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Study to Assess the Long-term Safety Outcomes in Patients Previously Treated With RP1, RP2, or RP3",
+       "nctId": "NCT06887348"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Studying Quality of Life Inclusive of Mental Health and Cognitive Behavioral Therapy for Cancer Distress for the Improvement of Quality of Life in Stage III-IV Melanoma Patients",
+       "nctId": "NCT07379138"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Feeding Behavior"
+        },
+        {
+         "term": "Food Preferences"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Hematologic Neoplasms"
+        },
+        {
+         "term": "Skin Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Malnutrition"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Food Deprivation",
+        "Food Habits",
+        "Food Selection",
+        "Colorectal Cancer",
+        "Prostate Cancer",
+        "Lung Cancer",
+        "Breast Cancer",
+        "Gynecologic Cancer",
+        "Hematologic Cancer",
+        "Skin Cancer",
+        "Melanoma",
+        "Nutrition Poor",
+        "Nutritional Deficiency"
+       ],
+       "keywords": [
+        "Food Insecurity",
+        "Cancer",
+        "Food Access",
+        "Community-Informed Research",
+        "Nutritional Needs",
+        "Mixed-Methods"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Florida ASCENT Study",
+       "nctId": "NCT07042243"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-05"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Uveal Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "Mucosal melanoma",
+        "Uveal melanoma",
+        "Cutaneous acral melanoma",
+        "Cutaneous non-acral melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Trial of CD40L-augmented TIL for Patients With Advanced Melanoma",
+       "nctId": "NCT06961357"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Ataxia Telangiectasia"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Solid Cancers",
+        "NSCLC (Advanced Non-small Cell Lung Cancer)",
+        "Gastric (Stomach) Cancer",
+        "Endometrial Cancer",
+        "Malignant Melanoma"
+       ],
+       "keywords": [
+        "Ataxia Telangiectasia and Rad3-related protein inhibitor",
+        "Advanced solid tumor"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        },
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "An Phase Ib/II Clinical Trial of TCC1727 Combination Therapy in Advanced Solid Tumors",
+       "nctId": "NCT07371663"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma of Skin"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Italy"
+        }
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Characteristics of Adult Patients With Melanoma Diagnosis <40 Years Age.",
+       "nctId": "NCT06994208"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Liver Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Cancer (Solid Tumors)"
+       ],
+       "keywords": [
+        "cancer",
+        "solid tumors",
+        "advanced malignant",
+        "colorectal cancer",
+        "hepatocellular cancer",
+        "gastric cancer",
+        "melanoma"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1 Study of JMT108 in Participants With Advanced Solid Tumors",
+       "nctId": "NCT07317505"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-12-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Hematologic Neoplasms"
+        },
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Lymphoproliferative Disorders"
+        },
+        {
+         "term": "Neoplasms by Histologic Type"
+        },
+        {
+         "term": "Neoplasms by Site"
+        },
+        {
+         "term": "Brain Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Glioma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Haematological Malignancy",
+        "Malignancy",
+        "Malignant Neoplasm",
+        "Lymphoproliferative Disorders",
+        "Neoplasms by Histologic Type",
+        "Neoplasms by Site",
+        "Cancer",
+        "Brain Neoplasms",
+        "Melanoma",
+        "Glioma",
+        "Solid Tumour"
+       ],
+       "keywords": [
+        "Adult",
+        "Antineoplastic Agents",
+        "Cancer",
+        "Child",
+        "Entrectinib",
+        "Malignancy",
+        "Malignant Neoplasms",
+        "Molecular Targeted Therapy",
+        "Mutation",
+        "Neoplasms by Histologic Site",
+        "Neoplasms by Site",
+        "Oncogene",
+        "Paediatric",
+        "Protein Kinase Inhibitors",
+        "Rare",
+        "ROS1 Protein, human",
+        "Tumour-agnostic",
+        "Young adult"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        },
+        {
+         "country": "United Kingdom"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "DETERMINE Trial Treatment Arm 03: Entrectinib in Adult, Paediatric and Teenage/Young Adult Patients With ROS1 Gene Fusion-Positive Cancers.",
+       "nctId": "NCT05770544"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-11-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Nodular Basal Cell Carcinoma of Skin"
+       ],
+       "keywords": [
+        "Photodynamic Therapy",
+        "Sonodynamic Therapy",
+        "Non-melanoma skin cancer"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Brazil"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Photodynamic Therapy Associated With Sonodynamic Therapy for the Treatment of Nodular Basal Cell Carcinoma",
+       "nctId": "NCT07381972"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-11-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Eye Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Uveal Melanoma",
+        "Uveal Melanoma, Metastatic",
+        "Uveal Melanoma, Recurrent",
+        "Eye Cancer, Intraocular Melanoma",
+        "Eye Cancer"
+       ],
+       "keywords": [
+        "Metastatic Uveal Melanoma",
+        "Uveal Melanoma",
+        "Eye Cancer",
+        "Intraocular Melanoma",
+        "Choroidal Melanoma",
+        "NBM-BMX",
+        "Histone Deacetylase Inhibitor (HDAC inhibitor)",
+        "Phase 1b/2 Study",
+        "Pharmacokinetics"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Evaluation of the Safety, Efficacy, and Pharmacokinetics of NBM-BMX in Patients With Metastatic Uveal Melanoma",
+       "nctId": "NCT07136181"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-11-20"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 471
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZfSh1fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02775461"
+      }
+     }
+    }
+   ],
+   "totalCount": 471
+  },
+  "/api/v2/version?": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-11-06T10:00:05"
+  }
+ }
+}

@@ -4,10 +4,18 @@ This is a pure function of the plan, so the same plan always yields byte-identic
 requests. Name filters use the API's search parameters, which match synonyms ("Keytruda"
 and "MK-3475" both find pembrolizumab trials). Controlled values use `filter.advanced`.
 
+Drug and condition names must appear in the fields that name a trial's interventions or
+conditions. The registry's default search also matches descriptions, so about one in ten
+"Keytruda" trials only lists pembrolizumab as one permitted option in an arm description,
+and a "melanoma" search matches a "non-melanoma" title. Restricting to the naming fields
+keeps synonym expansion, loses about 3 to 15 percent of matches, and raises precision from
+about 90 percent to 99 percent or more (measured against the live API). It also guarantees
+every included trial has a field that names the drug or condition, which citations need.
+
 | Plan filter          | API parameter                          |
 | -------------------- | -------------------------------------- |
-| conditions           | query.cond                             |
-| interventions        | query.intr                             |
+| conditions           | query.cond, in Condition, ConditionMeshTerm or Keyword   |
+| interventions        | query.intr, in InterventionName, OtherName or MeshTerm   |
 | sponsors             | query.lead (lead sponsor only)         |
 | keywords             | query.term                             |
 | phases               | filter.advanced AREA[Phase]            |
@@ -49,6 +57,13 @@ _NAME_PARAMETERS = {
     "keywords": "query.term",
 }
 
+_NAMING_FIELDS = {
+    "conditions": ("Condition", "ConditionMeshTerm", "Keyword"),
+    "interventions": ("InterventionName", "InterventionOtherName", "InterventionMeshTerm"),
+}
+"""Fields a drug or condition name must appear in. Sponsors are already field-specific
+(query.lead) and keywords are free text by definition."""
+
 _AREAS = {
     "phases": "Phase",
     "statuses": "OverallStatus",
@@ -87,7 +102,7 @@ def translate(*layers: Filters) -> RegistryQuery:
     for layer in layers:
         for field, parameter in _NAME_PARAMETERS.items():
             values = getattr(layer, field)
-            if values and (expression := any_of_terms(values)):
+            if values and (expression := any_of_terms(values, _NAMING_FIELDS.get(field, ()))):
                 names.setdefault(parameter, []).append(expression)
         for field, area in _AREAS.items():
             if values := getattr(layer, field):
@@ -154,6 +169,20 @@ MEASURE_FIELDS: dict[Measure, tuple[str, ...]] = {
     Measure.SITE_COUNT: ("LocationCountry",),
 }
 
+FILTER_EVIDENCE_FIELDS: dict[str, tuple[str, ...]] = {
+    "conditions": ("Condition", "ConditionMeshTerm", "Keyword"),
+    "interventions": ("InterventionName", "InterventionOtherName", "InterventionMeshTerm"),
+    "sponsors": ("LeadSponsorName",),
+    "sponsor_classes": ("LeadSponsorClass",),
+    "intervention_types": ("InterventionType",),
+    "study_types": ("StudyType",),
+    "countries": ("LocationCountry",),
+}
+"""Fields that show why a trial matched each filter, so an included trial carries its own
+evidence (its country list for a country filter, its drug names for a drug filter).
+Phases, statuses and start dates are base fields. Keywords match anywhere in a record, so
+no single field can show them."""
+
 TIME_FIELDS: dict[TimeField, tuple[str, ...]] = {
     TimeField.START_DATE: ("StartDate",),
     TimeField.COMPLETION_DATE: ("CompletionDate",),
@@ -161,11 +190,19 @@ TIME_FIELDS: dict[TimeField, tuple[str, ...]] = {
 
 
 def fields_for(plan: Plan) -> tuple[str, ...]:
-    """The record fields the plan's analysis needs, plus the base fields, deduplicated."""
+    """The base fields, the evidence for every active filter, and what the analysis reads."""
     analysis = plan.analysis
     dimensions: list[Dimension | None] = []
     measures: list[Measure] = []
-    extra: list[str] = []
+    layers = [plan.filters]
+    if isinstance(analysis, ComparisonSpec):
+        layers += [cohort.filters for cohort in analysis.cohorts]
+    extra = [
+        field
+        for layer in layers
+        for name in layer.set_fields()
+        for field in FILTER_EVIDENCE_FIELDS.get(name, ())
+    ]
     match analysis:
         case DistributionSpec():
             dimensions += [analysis.group_by, analysis.series_by]
