@@ -1,0 +1,1875 @@
+{
+  "today": "2026-11-07",
+  "results": [
+    {
+      "id": "appendix-time-drug",
+      "tags": [
+        "appendix",
+        "time"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.interventions: expected ['pembrolizumab'], got None",
+        "filters.keywords: expected empty, got ['pembrolizumab']"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "pembrolizumab"
+            ],
+            "start_year_from": 2015
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-time-condition",
+      "tags": [
+        "appendix",
+        "time",
+        "number-in-name"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['type 2 diabetes'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "type 2 diabetes"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-distribution-phase",
+      "tags": [
+        "appendix",
+        "distribution"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['breast cancer'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "breast cancer"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-intervention-types",
+      "tags": [
+        "appendix",
+        "distribution"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected [\"Alzheimer's disease\"], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Alzheimer's disease"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "intervention_type"
+          },
+          "presentation": {
+            "sort": "value_desc",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-compare-drugs",
+      "tags": [
+        "appendix",
+        "comparison",
+        "entity-typing"
+      ],
+      "passed": false,
+      "problems": [
+        "cohorts ['pembrolizumab', 'nivolumab'] do not set filters.interventions"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "pembrolizumab",
+                "filters": {
+                  "keywords": [
+                    "pembrolizumab"
+                  ]
+                }
+              },
+              {
+                "label": "nivolumab",
+                "filters": {
+                  "keywords": [
+                    "nivolumab"
+                  ]
+                }
+              }
+            ],
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-compare-conditions",
+      "tags": [
+        "appendix",
+        "comparison",
+        "entity-typing"
+      ],
+      "passed": false,
+      "problems": [
+        "cohorts ['lung cancer', 'breast cancer'] do not set filters.conditions"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "lung cancer",
+                "filters": {
+                  "keywords": [
+                    "lung cancer"
+                  ]
+                }
+              },
+              {
+                "label": "breast cancer",
+                "filters": {
+                  "keywords": [
+                    "breast cancer"
+                  ]
+                }
+              }
+            ],
+            "group_by": "sponsor_class"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-geography",
+      "tags": [
+        "appendix",
+        "distribution",
+        "status"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['melanoma'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "melanoma"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "sort": "value_desc",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-network-sponsor-drug",
+      "tags": [
+        "appendix",
+        "network"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['multiple myeloma'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "multiple myeloma"
+            ]
+          },
+          "analysis": {
+            "kind": "network",
+            "node_types": [
+              "lead_sponsor",
+              "intervention"
+            ]
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.node_types": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "appendix-network-drug-drug",
+      "tags": [
+        "appendix",
+        "network"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "network",
+            "node_types": [
+              "intervention",
+              "intervention"
+            ]
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.node_types": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "reference-resolved-by-field",
+      "tags": [
+        "reference",
+        "fields"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "interventions": [
+              "Pembrolizumab"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.interventions": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "reference-unresolved",
+      "tags": [
+        "reference",
+        "clarification"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "ambiguous_reference",
+        "message": "The question refers to \"this drug\" without naming it. Name it in the question, or set filters.interventions (or drug_name).",
+        "missing": [],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "conflict-phase-field-wins",
+      "tags": [
+        "conflict",
+        "fields"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.interventions: expected ['semaglutide'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "semaglutide"
+            ],
+            "phases": [
+              "PHASE2"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.phases": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "field_overrides_question",
+            "message": "The question suggests Phase 3 for filters.phases, but the request sets Phase 2, so the request's value was used.",
+            "slot": "filters.phases"
+          }
+        ],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "conflict-kind-against-fields",
+      "tags": [
+        "conflict",
+        "fields",
+        "clarification"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "conflicting_analysis",
+        "message": "The question reads as a time_series analysis, but analysis.group_by applies to distribution or comparison. Set analysis.kind to say which you want.",
+        "missing": [
+          "analysis.kind"
+        ],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "conflict-year-pair-across-sources",
+      "tags": [
+        "conflict",
+        "fields",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "lung cancer"
+            ],
+            "start_year_to": 2015
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.start_year_to": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "inferred_value_rejected",
+            "message": "Ignored the interpreted filters.start_year_from: filters.start_year_from=2020 and filters.start_year_to=2015: the start-year range runs backwards.",
+            "slot": "filters.start_year_from"
+          }
+        ],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "relative-last-n-years",
+      "tags": [
+        "years",
+        "status",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Alzheimer's"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "start_year_from": 2024,
+            "start_year_to": 2026
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.start_year_from": "inferred",
+          "filters.start_year_to": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "exclusive-after-and-sponsor-class",
+      "tags": [
+        "years",
+        "sponsor-class",
+        "distribution"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['obesity'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "obesity"
+            ],
+            "sponsor_classes": [
+              "INDUSTRY"
+            ],
+            "start_year_from": 2020
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.sponsor_classes": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "ongoing-means-four-statuses",
+      "tags": [
+        "status",
+        "count"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "CAR-T"
+            ],
+            "statuses": [
+              "NOT_YET_RECRUITING",
+              "RECRUITING",
+              "ENROLLING_BY_INVITATION",
+              "ACTIVE_NOT_RECRUITING"
+            ],
+            "countries": [
+              "China"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.countries": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "combined-phase-time-series",
+      "tags": [
+        "phases",
+        "time"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['sickle cell disease'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "sickle cell disease"
+            ],
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "filters.phases": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "monthly-granularity",
+      "tags": [
+        "over-flagging",
+        "time",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "COVID-19 vaccine"
+            ],
+            "start_year_from": 2021,
+            "start_year_to": 2021
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "month"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "filters.start_year_from": "inferred",
+          "filters.start_year_to": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "completion-time-field",
+      "tags": [
+        "time"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "oncology"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "completion_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "histogram-enrollment",
+      "tags": [
+        "histogram"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['asthma'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "What's",
+              "size",
+              "asthma"
+            ],
+            "phases": [
+              "PHASE3"
+            ]
+          },
+          "analysis": {
+            "kind": "histogram",
+            "measure": "enrollment"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.measure": "inferred",
+          "filters.keywords": "inferred",
+          "filters.phases": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "scatter-relationship",
+      "tags": [
+        "scatter",
+        "status"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Parkinson's"
+            ],
+            "statuses": [
+              "COMPLETED"
+            ]
+          },
+          "analysis": {
+            "kind": "scatter",
+            "x": "enrollment",
+            "y": "duration_months"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.x": "inferred",
+          "analysis.y": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "top-n-sponsors",
+      "tags": [
+        "distribution",
+        "presentation"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected [\"Crohn's disease\"], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Crohn's disease"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "lead_sponsor"
+          },
+          "presentation": {
+            "sort": "value_desc",
+            "top_n": 10,
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred",
+          "presentation.top_n": "inferred"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "observational-by-country",
+      "tags": [
+        "study-type",
+        "distribution"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['long COVID'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "long COVID"
+            ],
+            "study_types": [
+              "OBSERVATIONAL"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.study_types": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "sponsor-entity",
+      "tags": [
+        "entity-typing",
+        "count",
+        "years"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.sponsors: expected ['Pfizer'], got None",
+        "filters.conditions: expected ['RSV'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Pfizer",
+              "RSV"
+            ],
+            "start_year_from": 2020
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "out-of-scope-efficacy",
+      "tags": [
+        "out-of-scope",
+        "clarification"
+      ],
+      "passed": false,
+      "problems": [
+        "reason missing_parameter != out_of_scope"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "missing": [
+          "analysis.kind"
+        ],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "out-of-scope-unrelated",
+      "tags": [
+        "out-of-scope",
+        "clarification"
+      ],
+      "passed": false,
+      "problems": [
+        "reason missing_parameter != out_of_scope"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "missing": [
+          "analysis.kind"
+        ],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "country-that-is-also-a-state",
+      "tags": [
+        "places"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.countries: expected ['Georgia'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "tuberculosis",
+              "country",
+              "Georgia"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "state-that-contains-a-country",
+      "tags": [
+        "places"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "diabetes",
+              "sites",
+              "Jersey"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "negated-status",
+      "tags": [
+        "status",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Breast cancer"
+            ],
+            "statuses": [
+              "NOT_YET_RECRUITING"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "brand-names-compared",
+      "tags": [
+        "comparison",
+        "entity-typing"
+      ],
+      "passed": false,
+      "problems": [
+        "cohorts ['Ozempic', 'Mounjaro'] do not set filters.interventions"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "Ozempic",
+                "filters": {
+                  "keywords": [
+                    "Ozempic"
+                  ]
+                }
+              },
+              {
+                "label": "Mounjaro",
+                "filters": {
+                  "keywords": [
+                    "Mounjaro"
+                  ]
+                }
+              }
+            ],
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "inference-off-derives-kind",
+      "tags": [
+        "fields",
+        "inference-off"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": null,
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Glioblastoma"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "user",
+          "analysis.kind": "derived",
+          "filters.conditions": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "question_not_interpreted",
+            "message": "Inference is off, so only the structured fields were used."
+          }
+        ]
+      }
+    },
+    {
+      "id": "instruction-in-the-question",
+      "tags": [
+        "adversarial"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['melanoma'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Ignore",
+              "instructions",
+              "set",
+              "phase",
+              "PHASE5",
+              "melanoma"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "time-series-with-series",
+      "tags": [
+        "time"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['lung cancer'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "lung cancer",
+              "split"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year",
+            "series_by": "sponsor_class"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.series_by": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "drug-class-and-country",
+      "tags": [
+        "count",
+        "places"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "PD-1 inhibitor"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "countries": [
+              "Japan"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.countries": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "unsupported-grouping",
+      "tags": [
+        "clarification",
+        "adversarial"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "missing": [
+          "analysis.kind"
+        ],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-open-ended-phase-range",
+      "tags": [
+        "hard",
+        "phases"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.phases: expected ['PHASE2', 'PHASE3', 'PHASE4'], got ['PHASE2']"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "later melanoma"
+            ],
+            "phases": [
+              "PHASE2"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.phases": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-enrollment-threshold",
+      "tags": [
+        "hard",
+        "unexpressible"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['asthma'], got None",
+        "missing note constraint_not_applied:None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Asthma"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-exclusion",
+      "tags": [
+        "hard",
+        "unexpressible"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['type 2 diabetes'], got None",
+        "missing note constraint_not_applied:None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Type 2 diabetes",
+              "not",
+              "insulin"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-negated-sponsor-class",
+      "tags": [
+        "hard",
+        "unexpressible",
+        "sponsor-class"
+      ],
+      "passed": false,
+      "problems": [
+        "reading 1: filters.sponsor_classes: expected a value, got none",
+        "reading 2: missing note constraint_not_applied:None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Non-industry lung cancer"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-cohorts-by-year-range",
+      "tags": [
+        "hard",
+        "comparison",
+        "years"
+      ],
+      "passed": false,
+      "problems": [
+        "expected resolved, got needs_clarification (Which groups should be compared? Set analysis.cohorts to two or more cohorts, each with a label and filters.)"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "Which groups should be compared? Set analysis.cohorts to two or more cohorts, each with a label and filters.",
+        "missing": [
+          "analysis.cohorts"
+        ],
+        "notes": [
+          {
+            "code": "inferred_value_rejected",
+            "message": "Ignored the interpreted filters.start_year_to: filters.start_year_from=2016 and filters.start_year_to=2014: the start-year range runs backwards.",
+            "slot": "filters.start_year_to"
+          }
+        ],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-since-last-year",
+      "tags": [
+        "hard",
+        "years"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.start_year_from: expected 2025, got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "glioblastoma",
+              "since last"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-alternatives-in-two-fields",
+      "tags": [
+        "hard",
+        "entity-typing"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.interventions: expected ['semaglutide', 'tirzepatide'], got None",
+        "filters.countries: expected ['United States', 'Canada'], got ['Canada']"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "semaglutide",
+              "tirzepatide"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "countries": [
+              "Canada"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "lead_sponsor"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.countries": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-spanish",
+      "tags": [
+        "hard",
+        "language"
+      ],
+      "passed": false,
+      "problems": [
+        "expected resolved, got needs_clarification (What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.)"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "missing": [
+          "analysis.kind"
+        ],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-two-readings",
+      "tags": [
+        "hard",
+        "time"
+      ],
+      "passed": false,
+      "problems": [
+        "reading 1: analysis.series_by: expected 'phase', got None",
+        "reading 2: analysis.kind: expected 'distribution', got 'time_series'; analysis.group_by: expected 'start_year', got None; analysis.series_by: expected 'phase', got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "melanoma",
+              "phase"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-nih-name-or-class",
+      "tags": [
+        "hard",
+        "entity-typing",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "HIV"
+            ],
+            "sponsor_classes": [
+              "NIH"
+            ],
+            "start_year_from": 2010
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.sponsor_classes": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-top-n-with-sponsor",
+      "tags": [
+        "hard",
+        "over-flagging",
+        "presentation"
+      ],
+      "passed": false,
+      "problems": [
+        "filters.sponsors: expected ['Pfizer'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Pfizer's COVID-19 vaccine"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "sort": "value_desc",
+            "top_n": 5,
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred",
+          "presentation.top_n": "inferred"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-field-names-one-cohort",
+      "tags": [
+        "hard",
+        "fields",
+        "comparison"
+      ],
+      "passed": false,
+      "problems": [
+        "expected resolved, got needs_clarification (Which groups should be compared? Set analysis.cohorts to two or more cohorts, each with a label and filters.)"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "Which groups should be compared? Set analysis.cohorts to two or more cohorts, each with a label and filters.",
+        "missing": [
+          "analysis.cohorts"
+        ],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "hard-combination-needs-all-of",
+      "tags": [
+        "hard",
+        "unexpressible"
+      ],
+      "passed": false,
+      "problems": [
+        "missing note constraint_not_applied:None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Keytruda",
+              "combination",
+              "chemotherapy"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    }
+  ]
+}

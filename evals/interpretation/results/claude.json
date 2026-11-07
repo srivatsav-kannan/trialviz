@@ -1,0 +1,1965 @@
+{
+  "today": "2026-11-07",
+  "results": [
+    {
+      "id": "appendix-time-drug",
+      "tags": [
+        "appendix",
+        "time"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "interventions": [
+              "pembrolizumab"
+            ],
+            "start_year_from": 2015
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.interventions": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-time-condition",
+      "tags": [
+        "appendix",
+        "time",
+        "number-in-name"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "type 2 diabetes"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-distribution-phase",
+      "tags": [
+        "appendix",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "breast cancer"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-intervention-types",
+      "tags": [
+        "appendix",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Alzheimer's disease"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "intervention_type"
+          },
+          "presentation": {
+            "sort": "value_desc",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-compare-drugs",
+      "tags": [
+        "appendix",
+        "comparison",
+        "entity-typing"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "pembrolizumab",
+                "filters": {
+                  "interventions": [
+                    "pembrolizumab"
+                  ]
+                }
+              },
+              {
+                "label": "nivolumab",
+                "filters": {
+                  "interventions": [
+                    "nivolumab"
+                  ]
+                }
+              }
+            ],
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-compare-conditions",
+      "tags": [
+        "appendix",
+        "comparison",
+        "entity-typing"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "Lung cancer",
+                "filters": {
+                  "conditions": [
+                    "lung cancer"
+                  ]
+                }
+              },
+              {
+                "label": "Breast cancer",
+                "filters": {
+                  "conditions": [
+                    "breast cancer"
+                  ]
+                }
+              }
+            ],
+            "group_by": "sponsor_class"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-geography",
+      "tags": [
+        "appendix",
+        "distribution",
+        "status"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "melanoma"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "sort": "value_desc",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-network-sponsor-drug",
+      "tags": [
+        "appendix",
+        "network"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "multiple myeloma"
+            ],
+            "intervention_types": [
+              "DRUG"
+            ]
+          },
+          "analysis": {
+            "kind": "network",
+            "node_types": [
+              "lead_sponsor",
+              "intervention"
+            ]
+          },
+          "presentation": {
+            "chart_type": "network_graph",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.node_types": "inferred",
+          "filters.conditions": "inferred",
+          "filters.intervention_types": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "appendix-network-drug-drug",
+      "tags": [
+        "appendix",
+        "network"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "intervention_types": [
+              "DRUG"
+            ]
+          },
+          "analysis": {
+            "kind": "network",
+            "node_types": [
+              "intervention",
+              "intervention"
+            ]
+          },
+          "presentation": {
+            "chart_type": "network_graph",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.node_types": "inferred",
+          "filters.intervention_types": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"combination studies (multiple drugs in one trial)\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "reference-resolved-by-field",
+      "tags": [
+        "reference",
+        "fields"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "interventions": [
+              "Pembrolizumab"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.interventions": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "reference-unresolved",
+      "tags": [
+        "reference",
+        "clarification"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "ambiguous_reference",
+        "message": "The question refers to \"this drug\" but never names it, and no caller field supplies a drug. Please specify which drug.",
+        "missing": [],
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "conflict-phase-field-wins",
+      "tags": [
+        "conflict",
+        "fields"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "interventions": [
+              "semaglutide"
+            ],
+            "phases": [
+              "PHASE2"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "chart_type": "stat",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.interventions": "inferred",
+          "filters.phases": "user",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "field_overrides_question",
+            "message": "The question suggests Phase 3 for filters.phases, but the request sets Phase 2, so the request's value was used.",
+            "slot": "filters.phases"
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "conflict-kind-against-fields",
+      "tags": [
+        "conflict",
+        "fields",
+        "clarification"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "conflicting_analysis",
+        "message": "The question reads as a time_series analysis, but analysis.group_by applies to distribution or comparison. Set analysis.kind to say which you want.",
+        "missing": [
+          "analysis.kind"
+        ],
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "conflict-year-pair-across-sources",
+      "tags": [
+        "conflict",
+        "fields",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "lung cancer"
+            ],
+            "start_year_to": 2015
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.start_year_to": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "inferred_value_rejected",
+            "message": "Ignored the interpreted filters.start_year_from: filters.start_year_from=2020 and filters.start_year_to=2015: the start-year range runs backwards.",
+            "slot": "filters.start_year_from"
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "relative-last-n-years",
+      "tags": [
+        "years",
+        "status",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Alzheimer's disease"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "start_year_from": 2024,
+            "start_year_to": 2026
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.start_year_from": "inferred",
+          "filters.start_year_to": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "exclusive-after-and-sponsor-class",
+      "tags": [
+        "years",
+        "sponsor-class",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "obesity"
+            ],
+            "sponsor_classes": [
+              "INDUSTRY"
+            ],
+            "start_year_from": 2020
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.sponsor_classes": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "ongoing-means-four-statuses",
+      "tags": [
+        "status",
+        "count"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "CAR-T"
+            ],
+            "statuses": [
+              "NOT_YET_RECRUITING",
+              "RECRUITING",
+              "ENROLLING_BY_INVITATION",
+              "ACTIVE_NOT_RECRUITING"
+            ],
+            "countries": [
+              "China"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "chart_type": "stat",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.countries": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "combined-phase-time-series",
+      "tags": [
+        "phases",
+        "time"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "sickle cell disease"
+            ],
+            "phases": [
+              "PHASE1",
+              "PHASE2"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.conditions": "inferred",
+          "filters.phases": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "monthly-granularity",
+      "tags": [
+        "over-flagging",
+        "time",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "COVID-19"
+            ],
+            "keywords": [
+              "vaccine"
+            ],
+            "start_year_from": 2021,
+            "start_year_to": 2021
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "month"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.conditions": "inferred",
+          "filters.keywords": "inferred",
+          "filters.start_year_from": "inferred",
+          "filters.start_year_to": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "completion-time-field",
+      "tags": [
+        "time"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "oncology"
+            ],
+            "statuses": [
+              "COMPLETED"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "completion_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "histogram-enrollment",
+      "tags": [
+        "histogram"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "asthma"
+            ],
+            "phases": [
+              "PHASE3"
+            ]
+          },
+          "analysis": {
+            "kind": "histogram",
+            "measure": "enrollment"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.measure": "inferred",
+          "filters.conditions": "inferred",
+          "filters.phases": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "scatter-relationship",
+      "tags": [
+        "scatter",
+        "status"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Parkinson's disease"
+            ],
+            "statuses": [
+              "COMPLETED"
+            ]
+          },
+          "analysis": {
+            "kind": "scatter",
+            "x": "enrollment",
+            "y": "duration_months"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.x": "inferred",
+          "analysis.y": "inferred",
+          "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "top-n-sponsors",
+      "tags": [
+        "distribution",
+        "presentation"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Crohn's disease"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "lead_sponsor"
+          },
+          "presentation": {
+            "top_n": 10,
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.top_n": "inferred"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "observational-by-country",
+      "tags": [
+        "study-type",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "long COVID"
+            ],
+            "study_types": [
+              "OBSERVATIONAL"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.study_types": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "sponsor-entity",
+      "tags": [
+        "entity-typing",
+        "count",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "RSV"
+            ],
+            "sponsors": [
+              "Pfizer"
+            ],
+            "start_year_from": 2020
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.sponsors": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "out-of-scope-efficacy",
+      "tags": [
+        "out-of-scope",
+        "clarification"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "out_of_scope",
+        "message": "Ranking statins by how much they lower cholesterol is an efficacy comparison, and registry records can't answer that. I can show how many trials study each statin for high cholesterol.",
+        "missing": [],
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"which statin lowers cholesterol the most (efficacy ranking)\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "out-of-scope-unrelated",
+      "tags": [
+        "out-of-scope",
+        "clarification"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "out_of_scope",
+        "message": "Weather forecasts are unrelated to clinical trials and cannot be answered from ClinicalTrials.gov registry records.",
+        "missing": [],
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "country-that-is-also-a-state",
+      "tags": [
+        "places"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "tuberculosis"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "countries": [
+              "Georgia"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.countries": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "state-that-contains-a-country",
+      "tags": [
+        "places"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "diabetes"
+            ],
+            "keywords": [
+              "New Jersey"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "countries": [
+              "United States"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "chart_type": "stat",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.countries": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"sites located in New Jersey (state-level location; approximated by keyword)\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "negated-status",
+      "tags": [
+        "status",
+        "distribution"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "breast cancer"
+            ],
+            "statuses": [
+              "NOT_YET_RECRUITING"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "brand-names-compared",
+      "tags": [
+        "comparison",
+        "entity-typing"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "Ozempic",
+                "filters": {
+                  "interventions": [
+                    "Ozempic"
+                  ]
+                }
+              },
+              {
+                "label": "Mounjaro",
+                "filters": {
+                  "interventions": [
+                    "Mounjaro"
+                  ]
+                }
+              }
+            ],
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "inference-off-derives-kind",
+      "tags": [
+        "fields",
+        "inference-off"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": null,
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Glioblastoma"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "user",
+          "analysis.kind": "derived",
+          "filters.conditions": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "question_not_interpreted",
+            "message": "Inference is off, so only the structured fields were used."
+          }
+        ]
+      }
+    },
+    {
+      "id": "instruction-in-the-question",
+      "tags": [
+        "adversarial"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "melanoma"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"requested phase PHASE5 does not exist\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "time-series-with-series",
+      "tags": [
+        "time"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "lung cancer"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year",
+            "series_by": "sponsor_class"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.series_by": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "drug-class-and-country",
+      "tags": [
+        "count",
+        "places"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "PD-1 inhibitor"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "countries": [
+              "Japan"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.countries": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "unsupported-grouping",
+      "tags": [
+        "clarification",
+        "adversarial"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "What should the trials be grouped by? Set analysis.group_by, for example phase, status, sponsor_class, intervention or country.",
+        "missing": [
+          "analysis.group_by"
+        ],
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"grouped by principal investigator\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-open-ended-phase-range",
+      "tags": [
+        "hard",
+        "phases"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "melanoma"
+            ],
+            "phases": [
+              "PHASE2",
+              "PHASE3",
+              "PHASE4"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.phases": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-enrollment-threshold",
+      "tags": [
+        "hard",
+        "unexpressible"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Asthma"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"more than 500 participants\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-exclusion",
+      "tags": [
+        "hard",
+        "unexpressible"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "Type 2 diabetes"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"excluding trials involving insulin\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-negated-sponsor-class",
+      "tags": [
+        "hard",
+        "unexpressible",
+        "sponsor-class"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "lung cancer"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"non-industry sponsors (exclusion of INDUSTRY sponsor class)\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-cohorts-by-year-range",
+      "tags": [
+        "hard",
+        "comparison",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {},
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "Started before 2015",
+                "filters": {
+                  "start_year_to": 2014
+                }
+              },
+              {
+                "label": "Started after 2015",
+                "filters": {
+                  "start_year_from": 2016
+                }
+              }
+            ],
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-since-last-year",
+      "tags": [
+        "hard",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "glioblastoma"
+            ],
+            "start_year_from": 2025
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-alternatives-in-two-fields",
+      "tags": [
+        "hard",
+        "entity-typing"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "interventions": [
+              "semaglutide",
+              "tirzepatide"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ],
+            "countries": [
+              "United States",
+              "Canada"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "lead_sponsor"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.countries": "inferred",
+          "filters.interventions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-spanish",
+      "tags": [
+        "hard",
+        "language"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "breast cancer"
+            ],
+            "statuses": [
+              "RECRUITING"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-two-readings",
+      "tags": [
+        "hard",
+        "time"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "melanoma"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year",
+            "series_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.series_by": "inferred",
+          "analysis.time_field": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-nih-name-or-class",
+      "tags": [
+        "hard",
+        "entity-typing",
+        "years"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "HIV"
+            ],
+            "sponsor_classes": [
+              "NIH"
+            ],
+            "start_year_from": 2010
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "chart_type": "stat",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.sponsor_classes": "inferred",
+          "filters.start_year_from": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-top-n-with-sponsor",
+      "tags": [
+        "hard",
+        "over-flagging",
+        "presentation"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "COVID-19"
+            ],
+            "sponsors": [
+              "Pfizer"
+            ],
+            "keywords": [
+              "vaccine"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "country"
+          },
+          "presentation": {
+            "sort": "value_desc",
+            "top_n": 5,
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.keywords": "inferred",
+          "filters.sponsors": "inferred",
+          "presentation.citations_per_datum": "default",
+          "presentation.sort": "inferred",
+          "presentation.top_n": "inferred"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-field-names-one-cohort",
+      "tags": [
+        "hard",
+        "fields",
+        "comparison"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "interventions": [
+              "Keytruda"
+            ]
+          },
+          "analysis": {
+            "kind": "comparison",
+            "cohorts": [
+              {
+                "label": "Keytruda",
+                "filters": {
+                  "interventions": [
+                    "Keytruda"
+                  ]
+                }
+              },
+              {
+                "label": "Opdivo",
+                "filters": {
+                  "interventions": [
+                    "Opdivo"
+                  ]
+                }
+              }
+            ],
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.cohorts": "inferred",
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.interventions": "user",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "cohort_narrowed_by_shared_filter",
+            "message": "Cohort 'Keytruda' and the shared filters both set interventions. A trial must match both, so the cohort may be narrower than intended.",
+            "slot": "analysis.cohorts"
+          },
+          {
+            "code": "cohort_narrowed_by_shared_filter",
+            "message": "Cohort 'Opdivo' and the shared filters both set interventions. A trial must match both, so the cohort may be narrower than intended.",
+            "slot": "analysis.cohorts"
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "hard-combination-needs-all-of",
+      "tags": [
+        "hard",
+        "unexpressible"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "interventions": [
+              "Keytruda"
+            ]
+          },
+          "analysis": {
+            "kind": "count"
+          },
+          "presentation": {
+            "chart_type": "stat",
+            "citations_per_datum": 3
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.interventions": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default"
+        },
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"in combination with chemotherapy\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    }
+  ]
+}
