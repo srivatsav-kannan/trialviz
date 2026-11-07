@@ -1,58 +1,66 @@
 # Testing
 
-## Principles
-
-Tests exist to catch failures that could actually happen. Most cases here are adversarial: a caller with a typo, an interpreter that contradicts a field, invents a phase or proposes a range that runs backwards, a country name that is also a US state, a number inside a disease name that looks like a phase. Easy cases are kept few, so a passing suite means something.
-
-## Layers
-
-### 1. Section suites (`tests/<section>/`)
-
-Each stage is tested on its own. For the query stage (`tests/query/`):
-
-| File | What it pins down |
-| --- | --- |
-| `test_vocabulary.py` | Loose spellings parse to registry values. Ambiguous names ("Korea", "active") fail loudly instead of being guessed. Registry quirks such as a trailing space in a country name survive. |
-| `test_request.py` | The closed schema: unknown fields, empty lists, implausible years, parameters that do not fit their kind, degenerate comparisons. The assignment's example request works verbatim. |
-| `test_resolver.py` | The merge, driven by a scripted interpreter that is wrong in specific ways. Caller fields win, invalid guesses are dropped one by one, pair rules hold across sources, and kinds are derived only when the parameters single one out. |
-| `test_resolver_properties.py` | Six guarantees checked over 1,500 generated pairings of caller fields and proposals, drawn from pools that mix valid values, near misses and garbage. |
-| `test_rules_interpreter.py` | Phrasings that trap naive pattern matching: "after 2015" (exclusive), "type 2 diabetes" (not a phase), "not yet recruiting" (not also "recruiting"), "New Jersey" (not Jersey). |
-| `test_claude_interpreter.py` | The Claude wrapper with the API faked: the exact request sent, slot conversion, the spend cap, and every failure mode turning into a fallback. Drift guards keep the output schema in step with the request models. |
-| `test_budget.py` | The spend ledger under concurrency and across restarts. |
-
-For the retrieval stage (`tests/retrieval/`), a fake registry served through `httpx.MockTransport` pages like the real API and fails on command:
-
-| File | What it pins down |
-| --- | --- |
-| `test_translate.py` | The exact parameters each filter becomes, injection-proof names, cohort layering, determinism, and which fields each analysis requests. |
-| `test_client.py` | Paging that repeats the first page's query, retries with backoff for 429, 5xx and dropped connections, immediate failure on a 400, request spacing, and a cache that misses when the registry's data version changes. |
-| `test_retriever.py` | The fetch rules: one query per cohort with shared filters, counts fetching only what they cite, no fetch for zero matches, and a sorted, flagged subset above the cap. |
-
-`tests/api/` covers the HTTP contract: both outcome shapes and the single error envelope.
-
-### 2. Live tests (`tests/live/`, `--run-live`)
-
-A handful of real Claude calls for things only the model can do: typing brand names as interventions, resolving "this drug" from a field, recognizing an unanswerable question. They cost about three cents each and are skipped by default.
-
-The registry tests confirm the API reads the translator's parameters the way the translator assumes: synonyms expand, every filter type is accepted together, alternatives widen and cohort layers narrow, a full fetch returns every match exactly once, and injected syntax is searched as words. That last test found a real hole. The offline suite stripped brackets from names, but the registry still rejected a bare uppercase `AREA`. Names are now lowercased, which disarms every operator keyword.
-
-### 3. Evaluation (`evals/interpretation/`)
-
-The labeled-question eval measures how well each interpreter reads questions, through the full resolver. It is a measurement, not a pass/fail gate, because a language model is not deterministic. See its [README](../evals/interpretation/README.md).
-
-### 4. Workflow tests (planned)
-
-Once retrieval, aggregation and visualization exist, workflow tests will run complete requests through every stage against recorded ClinicalTrials.gov responses. They will check the end result, including that every citation points at a real value in a real record.
-
-## Checking the tests themselves
-
-A suite that cannot fail proves nothing. While building the resolver suite, three deliberate bugs were introduced one at a time: letting inferred values win the merge, skipping pair-rule enforcement, and keeping parameters that do not fit the analysis kind. Both the hand-written tests and the property test caught each one. The retrieval suite caught all five of its deliberate bugs: dropping the sort on a truncated fetch, dropping the shared filters from a cohort query, retrying a 400, leaving the data version out of the cache key, and skipping name sanitizing.
-
-## Running
+Few tests, each one a failure that could actually happen. Most are workflows: a real question through the whole pipeline, checked against what the answer should be. There are no tests that restate a constant or check that a parameter was set.
 
 ```bash
-uv run pytest                     # everything offline
-uv run pytest tests/query -q      # one section
-uv run pytest --run-live          # include real API calls
-uv run ruff check src tests && uv run mypy src
+uv run pytest                                    # offline, about 4 seconds
+uv run pytest --run-live                         # adds real registry requests
+TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-record against Claude and the registry
+uv run python -m evals.interpretation.run --interpreter claude
 ```
+
+## Workflows (`tests/workflows/`)
+
+Each question workflow is recorded once against the real services (Claude's reading of the question and the registry's responses) and replayed offline after that. The replay is strict. A request the pipeline makes that was never recorded fails the test by name, so any change to what is sent to the registry is caught. A cassette recorded under a different Claude prompt fails with a request to re-record, rather than passing on an answer the current prompt might not give.
+
+The assertions are about the answer, not the code. Every record that comes back must satisfy the plan: the drug named in an intervention field, the start date in range, the right status, phase and country. This tests the query translation against how the registry really behaves.
+
+| Workflow | What would have to go wrong for it to fail |
+| --- | --- |
+| The assignment example | "This drug" becomes a second search, a stray filter creeps in, the capped subset is not the latest trials, or the drug search returns trials that do not test the drug |
+| Keytruda vs Opdivo since 2018 | The year is applied per cohort instead of shared, or a cohort's records do not involve its drug |
+| A field contradicting the question | The question's phase reaches the registry instead of the caller's, or a count downloads more than it cites |
+| Countries with the most recruiting melanoma trials | Non-recruiting or non-melanoma trials come back, or records lack the site countries the breakdown needs |
+| A small network question | A complete fetch misses or repeats a trial, or the fields a network needs are not requested |
+| Hostile caller text | Injected syntax or a stray quote reaches the registry, or the cleaned query stops finding trials |
+| Claude down | The rule-based fallback does not carry the question through, or two names widen the search instead of narrowing it |
+
+The failure workflows replay the same recordings under bad conditions:
+
+| Workflow | Checks |
+| --- | --- |
+| Throttling and server errors mid-run | Retries leave the result identical to a clean run, with the expected backoff |
+| An outage | Exhausted retries raise an error and never return a partial answer |
+| The cache | A repeat run makes no registry requests, and a registry refresh invalidates every cached response |
+| A lying interpreter | Contradictions, invented values and inverted ranges change nothing in what is sent to the registry, and each is reported |
+| The spend cap reached | Questions still resolve through the fallback, Claude is never called, and nothing is charged |
+
+## Guards (`tests/`)
+
+Four tests guard failures the workflows cannot reach:
+
+- `test_resolver_properties.py`: six guarantees of the resolver (caller fields win, complete provenance, every contradiction reported, determinism and more) over 1,500 generated combinations of caller fields and interpreter proposals.
+- `test_input_hazards.py`: hostile requests through HTTP, each refused with a pointer to the exact problem, and the vocabulary traps where a plausible parse would query the wrong trials ("N/A" split like "1/2", "Korea", a trailing space the registry stores in a country name).
+- `test_spend_cap.py`: the cap under concurrent calls, and failed calls charged by whether they could have been billed.
+- `test_rules_eval_snapshot.py`: all 49 eval questions through the deterministic path (rule-based interpreter and resolver), failing if any outcome changes.
+
+## Live (`tests/live/`, `--run-live`)
+
+Two tests confirm today's registry still has the search behavior the translator relies on: synonyms expand inside the naming fields, alternatives widen and cohort layers narrow, every filter type is accepted together, and names cannot inject query syntax. Recordings cannot prove that, because they only show what the registry returned once.
+
+## Evaluation (`evals/interpretation/`)
+
+How well each interpreter reads 49 hard questions, scored through the full resolver. It is a measurement, not a gate, because a language model is not deterministic. See its [README](../evals/interpretation/README.md).
+
+## Is the suite sharp?
+
+Sixteen deliberate bugs were introduced one at a time, across the resolver, the translator, the client, the retriever, the rule-based interpreter, the spend cap and the vocabulary. The suite caught all sixteen. The first run caught fifteen. The miss was a spend-cap test that checked a fresh ledger instead of the one in use, so a ledger that never released reservations passed. That test was fixed.
+
+## What testing found
+
+The suite earns its keep by finding things:
+
+- Recording the workflows showed the registry's default drug search matches description text. One in ten "Keytruda" trials only listed pembrolizumab as one permitted option in an arm description. Drug and condition names now have to appear in the fields that name a trial's interventions or conditions (see [retrieval.md](retrieval.md)).
+- The live injection test showed that a bare uppercase `AREA` still broke a request after brackets were stripped. Names are now lowercased.
+- Real records mix "2026-12" and "2026-12-01" start dates, so dates are compared at month precision.
+- An earlier, larger suite caught "N/A" being split like "1/2" and cohorts that differed only by letter case.

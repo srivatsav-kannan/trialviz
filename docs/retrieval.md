@@ -8,8 +8,8 @@ Each plan filter maps to one API parameter by a fixed rule (`retrieval/translate
 
 | Plan filter | API parameter | Example |
 | --- | --- | --- |
-| `conditions` | `query.cond` | `(breast cancer) OR (lung cancer)` |
-| `interventions` | `query.intr` | `(keytruda)` |
+| `conditions` | `query.cond`, in the naming fields | `(AREA[Condition](melanoma) OR AREA[ConditionMeshTerm](melanoma) OR AREA[Keyword](melanoma))` |
+| `interventions` | `query.intr`, in the naming fields | `(AREA[InterventionName](keytruda) OR AREA[InterventionOtherName](keytruda) OR AREA[InterventionMeshTerm](keytruda))` |
 | `sponsors` | `query.lead` | `(pfizer)` |
 | `keywords` | `query.term` | `(car-t non-hodgkin lymphoma)` |
 | `phases` | `filter.advanced` | `AREA[Phase](PHASE2 OR PHASE3)` |
@@ -24,7 +24,17 @@ All `filter.advanced` clauses are parenthesized and joined with AND. Parameters 
 
 Each choice below was checked against the live API:
 
-- **Names use the search parameters**, because the registry expands synonyms there. "Keytruda", "MK-3475" and "pembrolizumab" all find the same 3,003 trials.
+- **Names use the search parameters**, because the registry expands synonyms there. "Keytruda", "MK-3475" and "pembrolizumab" all find the same trials.
+- **Drug and condition names must appear in the fields that name them.** The default search also matches descriptions. Recording real workflows showed one in ten "Keytruda" trials only listed pembrolizumab as one permitted option in an arm description, and a "melanoma" search matched a "Non-melanoma" title. Measured on the live API:
+
+  | Search | Matches | Records that name the term in a naming field |
+  | --- | --- | --- |
+  | "keytruda", default | 2,362 | 180 of 200 |
+  | "keytruda", naming fields | about 1,990 | 200 of 200 |
+  | "melanoma" (recruiting), default | 483 | 193 of 200 |
+  | "melanoma" (recruiting), naming fields | 471 | 199 of 200 |
+
+  Synonyms still expand inside the naming fields ("heart attack" finds myocardial infarction trials). The restriction also guarantees that every included trial has a field naming the drug or condition, which citations need. The cost is the trials that mention a drug only in descriptions, 3 to 15 percent of matches depending on the term.
 - **Sponsors use `query.lead`.** `query.spons` also matches collaborators (6,110 trials for Pfizer against 3,901 as lead sponsor), and the plan's `sponsors` filter means the lead sponsor.
 - **Countries are quoted and kept byte for byte**, including the curly apostrophe in "Côte d’Ivoire" and a trailing space the registry stores in one name.
 
@@ -44,7 +54,7 @@ Fixed rules, from the plan's shape and the result size (`retrieval/retriever.py`
 
 1. **One query per cohort.** A comparison runs one query per cohort, each requiring the shared filters and that cohort's own. Anything else runs one query.
 2. **Count first.** Each query starts with a count-only request (`pageSize=1`, `fields=NCTId`), which decides what to fetch.
-3. **Fetch only what the analysis reads.** A `count` needs records only to cite them, so it fetches `citations_per_datum` records. Other analyses fetch every match. Only the record fields the analysis uses are requested, which keeps a 10,000-trial fetch to a few megabytes.
+3. **Fetch only what the analysis reads.** A `count` needs records only to cite them, so it fetches `citations_per_datum` records. Other analyses fetch every match. Only the fields the analysis reads are requested, plus the fields that show why each record matched its filters (its countries for a country filter, its drug names for a drug filter). That keeps a 10,000-trial fetch to a few megabytes, and every included trial carries its own evidence.
 4. **Above the cap, a reproducible subset.** When more trials match than `RETRIEVAL_MAX_RECORDS` (default 10,000), the first 10,000 are fetched by most recent start date and the cohort is marked truncated, with the exact total kept. The API returns unsorted results by default, so without an explicit order a partial fetch would differ from run to run.
 
 For example, "compare phases for Keytruda vs Opdivo since 2018" became two cohorts of 2,362 and 1,486 trials, each fetched completely (about 12 seconds the first time). "How are breast cancer trials distributed across phases?" matched 16,998 trials, so 10,000 were fetched and the cohort was flagged as truncated.
