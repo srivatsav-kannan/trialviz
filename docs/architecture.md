@@ -4,7 +4,7 @@
 
 ```
 QueryRequest ──► Interpreter ──► Resolver ──► Plan ──► Retriever ──► Aggregator ──► Visualization
-                 (proposes)      (decides)             (next stage)
+                 (proposes)      (decides)             (fetches)      (next stage)
 ```
 
 Each stage hands the next a typed object, and each object is validated where it is created:
@@ -14,7 +14,8 @@ Each stage hands the next a typed object, and each object is validated where it 
 | Request boundary | JSON body | `QueryRequest` | Caller input, held to a closed schema. Invalid input is a 422. |
 | Interpreter | `QueryRequest` | `Interpretation` (a proposal) | Untrusted. Shaped like a partial plan, but never typed as one. |
 | Resolver | request + proposal | `ResolvedQuery` or `ClarificationNeeded` | Produces a complete `Plan` with provenance, or says what is missing. |
-| Retrieval, aggregation, visualization | `Plan` | visualization spec with citations | Deterministic code over registry data. |
+| Retriever | `Plan` | `Retrieval`: raw records per cohort, exact totals, request URLs | Deterministic. Fixed translation table and fetch rules. |
+| Aggregation, visualization | `Retrieval` | visualization spec with citations | Deterministic code over registry data. |
 
 ## Where the language model sits, and why only there
 
@@ -51,6 +52,11 @@ src/trialviz/
     resolution.py    resolver outputs: provenance, notes, clarifications
     resolver.py      the merge
     interpreters/    the protocol, the fallback chain, rules, Claude
+  retrieval/
+    essie.py         building query expressions, and making names safe to search
+    translate.py     plan filters to API parameters, and which fields to request
+    client.py        HTTP: paging, retries, rate limit, version-keyed cache
+    retriever.py     the fetch rules: cohorts, counts, record limits, truncation
   llm/budget.py      the spend ledger and price table
   settings.py        configuration
   api.py             HTTP
@@ -58,6 +64,6 @@ src/trialviz/
 
 ## Extending it
 
-- **A new filter**: add a field to `Filters`. Request validation, the plan, the resolver, and the Claude schema pick it up automatically. Add a line to `SLOT_GUIDE` in the Claude interpreter (a test fails until you do) and teach retrieval to apply it.
-- **A new grouping dimension**: add it to `Dimension` with its label and whether it is multi-valued. Every analysis that takes a dimension accepts it.
+- **A new filter**: add a field to `Filters`. Request validation, the plan, the resolver, and the Claude schema pick it up automatically. Add a line to `SLOT_GUIDE` in the Claude interpreter (a test fails until you do) and a mapping in `retrieval/translate.py`.
+- **A new grouping dimension**: add it to `Dimension` with its label and whether it is multi-valued, and list the record fields it reads in `DIMENSION_FIELDS`. Every analysis that takes a dimension accepts it.
 - **A new analysis kind**: add a spec class to `plan.py` and an entry in `ANALYSIS_SPECS`. Kind derivation, parameter checks and missing-parameter clarifications all read that table.

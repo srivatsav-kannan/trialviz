@@ -33,10 +33,11 @@ The history matters more than the final score:
 3. **13 harder cases: 49/49** on three consecutive runs.
 4. **A precision check: 47/49.** The model was now over-reporting, flagging "vaccine trials" as inexpressible when a keyword expresses it fine. Two cases were given `forbidden_notes`, and both failed. The cause was a contradiction in the prompt: it restricted keywords to names whose type was unclear, leaving topic words nowhere to go.
 5. **One prompt fix: 49/49** on each of the three runs since.
+6. **A finding from retrieval: 49/49.** Live registry queries showed that separate keywords widen a search ("CAR-T" or "lymphoma"), because values in one filter are alternatives. One prompt sentence now says terms that must all appear go in one keyword. The eval was re-run after the change to check for regressions.
 
 ## Caveats
 
 - The questions were written by the same author as the prompt, during the same session. That favors the prompt. A held-out set written by someone else would be a fairer test.
 - 49 questions cannot show a small error rate. A perfect score here is consistent with a few percent of real questions being misread.
 - Scoring is partial. A case passes if the slots it names are right, so an extra, unasked-for filter can go unnoticed unless a case forbids it.
-- The model is not deterministic. Three identical runs agreeing is evidence of stability on this set, not a guarantee.
+- The model is not deterministic. Repeated runs agreeing is evidence of stability on this set, not a guarantee.

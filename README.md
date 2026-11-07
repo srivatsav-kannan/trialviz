@@ -9,10 +9,10 @@ The service is being built stage by stage. This README describes only what runs 
 | Stage | State |
 | --- | --- |
 | Query understanding: request schema, interpretation, resolution into a plan | Done, tested, evaluated |
-| Retrieval from ClinicalTrials.gov | Next |
-| Aggregation, visualization specs, citations | Planned |
+| Retrieval from ClinicalTrials.gov | Done, tested against the live API |
+| Aggregation, visualization specs, citations | Next |
 
-Today the service turns a question into a validated **plan**: which trials to look at and what to compute. You can try that through `POST /v1/interpret`.
+Today the service turns a question into a validated **plan** (which trials to look at and what to compute), and it can fetch the records that plan needs from the registry. You can try the first part through `POST /v1/interpret`. The full question-to-chart endpoint arrives with the aggregation stage.
 
 ## Quick start
 
@@ -40,7 +40,8 @@ question + structured fields
   → interpret   a model (or rules) proposes plan slots, as an untrusted proposal
   → resolve     validate every value, caller's fields win, fill defaults, record provenance
   → plan        a complete, typed description of what to compute
-  → (next)      retrieve, aggregate, build the visualization spec with citations
+  → retrieve    translate the plan into registry queries and fetch the records, by fixed rules
+  → (next)      aggregate, build the visualization spec with citations
 ```
 
 The language model never produces a number. Its only job is to translate the question into a small, closed set of plan slots. Everything after that is deterministic code, so every value in a chart comes from the registry and can be cited. More in [docs/architecture.md](docs/architecture.md).
@@ -77,12 +78,15 @@ The full field reference, with validation rules and examples, is in [docs/api.md
 - **A typed plan per analysis kind.** The resolved analysis is one of seven concrete shapes (count, distribution, time series, comparison, histogram, scatter, network), each with exactly its own parameters. A single table defines which parameters belong to which kind, and validation, resolution and the model's output schema all read it.
 - **Values in the registry's own vocabulary.** Phases, statuses, sponsor classes and the 226 country names are the exact strings ClinicalTrials.gov stores, verified against its field statistics endpoint. Loose spellings ("Phase III", "USA", "Türkiye") are parsed into them. Ambiguous ones ("Korea", "active") are refused rather than guessed.
 - **A hard spend cap.** Each Claude call reserves its worst-case cost before it is made and refuses if that could cross the cap. Spending is persisted, so the cap holds across restarts.
+- **Deterministic retrieval.** The plan maps to API parameters by a fixed table, and how many requests it becomes follows fixed rules: one query per comparison cohort, a count first, only the records and fields the analysis reads, and a reproducible capped subset for very large result sets. See [docs/retrieval.md](docs/retrieval.md).
+- **Names cannot inject query syntax.** The registry executes syntax found inside search terms, so names from people or the model are reduced to plain lowercase words before use. A live test proves an injected `AREA[Phase]PHASE3` is searched as words, not run as a filter.
+- **A cache that cannot go stale.** Registry responses are cached under a key that includes the registry's data version, so a cached answer always matches the current data.
 
 ## Testing
 
 ```bash
 uv run pytest                 # offline suite, about 4 seconds
-uv run pytest --run-live      # adds a few real Claude calls (about $0.03 each)
+uv run pytest --run-live      # adds real Claude calls (about $0.03 each) and registry requests
 uv run python -m evals.interpretation.run --interpreter rules
 uv run python -m evals.interpretation.run --interpreter claude
 ```
@@ -93,7 +97,7 @@ Current interpretation results (49 questions, scored on the final resolved plan)
 
 | Interpreter | Score |
 | --- | --- |
-| Claude (`claude-opus-5-5`, low effort) | 49/49 on each of the last three runs |
+| Claude (`claude-opus-5-5`, low effort) | 49/49 on each of the last four runs |
 | Rule-based | 16/49 |
 
 The rule-based interpreter fails mostly on purpose: it cannot tell a drug from a disease, so it files every name it finds as a free-text keyword instead of guessing. Read the Claude score with the caveats in [evals/interpretation/README.md](evals/interpretation/README.md), chief among them that the questions and the prompt share an author.
@@ -110,10 +114,15 @@ Settings are read from the environment or `.env`:
 | `INTERPRETER_MAX_TOKENS` | `8000` | Output ceiling per call, which also bounds the cost reservation |
 | `LLM_SPEND_CAP_USD` | `20` | Hard cap on total Claude spending |
 | `LLM_LEDGER_PATH` | `var/llm_spend.json` | Where spending is recorded |
+| `CTGOV_REQUESTS_PER_MINUTE` | `50` | Spacing between registry requests |
+| `CTGOV_CACHE_DIR` | `var/cache/ctgov` | Registry response cache. Set empty to disable. |
+| `RETRIEVAL_MAX_RECORDS` | `10000` | Most records fetched per cohort before truncating |
+| `CTGOV_TIMEOUT_SECONDS` | `30` | Per-request timeout |
 
 ## Limitations
 
 - Year filters bound the trial **start** date only. A question about trials completed in a given year gets a completion-date time series, but its year bounds still apply to start dates.
 - Values inside one filter are alternatives (any of). "Keytruda in combination with chemotherapy" cannot be expressed as one filter, so it is reported back as a constraint that was not applied.
-- Drug and condition names are passed on as written. Matching them against the registry (synonyms, brand and generic names) happens at retrieval, which is the next stage.
+- Drug and condition names are matched by the registry's own search, which handles synonyms and brand names. A misspelled name simply matches fewer trials. There is no spelling correction.
+- When more than 10,000 trials match, records are fetched for a reproducible 10,000-trial subset. The exact total is always known.
 - The rule-based interpreter is a fallback and a baseline, not a peer of the language model.

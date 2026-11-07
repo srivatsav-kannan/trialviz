@@ -20,11 +20,21 @@ Each stage is tested on its own. For the query stage (`tests/query/`):
 | `test_claude_interpreter.py` | The Claude wrapper with the API faked: the exact request sent, slot conversion, the spend cap, and every failure mode turning into a fallback. Drift guards keep the output schema in step with the request models. |
 | `test_budget.py` | The spend ledger under concurrency and across restarts. |
 
+For the retrieval stage (`tests/retrieval/`), a fake registry served through `httpx.MockTransport` pages like the real API and fails on command:
+
+| File | What it pins down |
+| --- | --- |
+| `test_translate.py` | The exact parameters each filter becomes, injection-proof names, cohort layering, determinism, and which fields each analysis requests. |
+| `test_client.py` | Paging that repeats the first page's query, retries with backoff for 429, 5xx and dropped connections, immediate failure on a 400, request spacing, and a cache that misses when the registry's data version changes. |
+| `test_retriever.py` | The fetch rules: one query per cohort with shared filters, counts fetching only what they cite, no fetch for zero matches, and a sorted, flagged subset above the cap. |
+
 `tests/api/` covers the HTTP contract: both outcome shapes and the single error envelope.
 
 ### 2. Live tests (`tests/live/`, `--run-live`)
 
 A handful of real Claude calls for things only the model can do: typing brand names as interventions, resolving "this drug" from a field, recognizing an unanswerable question. They cost about three cents each and are skipped by default.
+
+The registry tests confirm the API reads the translator's parameters the way the translator assumes: synonyms expand, every filter type is accepted together, alternatives widen and cohort layers narrow, a full fetch returns every match exactly once, and injected syntax is searched as words. That last test found a real hole. The offline suite stripped brackets from names, but the registry still rejected a bare uppercase `AREA`. Names are now lowercased, which disarms every operator keyword.
 
 ### 3. Evaluation (`evals/interpretation/`)
 
@@ -36,7 +46,7 @@ Once retrieval, aggregation and visualization exist, workflow tests will run com
 
 ## Checking the tests themselves
 
-A suite that cannot fail proves nothing. While building the resolver suite, three deliberate bugs were introduced one at a time: letting inferred values win the merge, skipping pair-rule enforcement, and keeping parameters that do not fit the analysis kind. Both the hand-written tests and the property test caught each one.
+A suite that cannot fail proves nothing. While building the resolver suite, three deliberate bugs were introduced one at a time: letting inferred values win the merge, skipping pair-rule enforcement, and keeping parameters that do not fit the analysis kind. Both the hand-written tests and the property test caught each one. The retrieval suite caught all five of its deliberate bugs: dropping the sort on a truncated fetch, dropping the shared filters from a cohort query, retrying a 400, leaving the data version out of the cache key, and skipping name sanitizing.
 
 ## Running
 
