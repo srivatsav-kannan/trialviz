@@ -8,7 +8,9 @@ behaves, which no assertion about our own constants can do.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from pathlib import Path
+from typing import Any
 
 import anthropic
 import httpx
@@ -20,6 +22,8 @@ from tests.workflows.harness import (
     condition_text,
     countries,
     intervention_text,
+    mention_text,
+    nct_id,
     phases,
     run_workflow,
     start_date,
@@ -69,6 +73,40 @@ async def test_the_assignment_example(tmp_path: Path) -> None:
     months = [start_date(study)[:7] for study in cohort.studies]
     assert months == sorted(months, reverse=True), "the capped subset must be the latest starts"
     assert violations(cohort.studies, mentions_any(PEMBROLIZUMAB)) == []
+
+    # Trials that only mention the drug are fetched and reported, but not counted.
+    mentions = cohort.mentions
+    assert mentions is not None and mentions.total > 0 and not cohort.counts_mentions
+    assert resolution.provenance["retrieval.name_matching"] is Source.DEFAULT
+    assert not {nct_id(s) for s in mentions.studies} & {nct_id(s) for s in cohort.studies}
+    assert violations(mentions.studies, lambda s: not mentions_any(PEMBROLIZUMAB)(s)) == [], (
+        "a mention-only trial must not name the drug in a naming field"
+    )
+    cited = sum(any(n in mention_text(s) for n in PEMBROLIZUMAB) for s in mentions.studies)
+    assert cited >= 0.9 * len(mentions.studies), "most mentions must be citable from fetched text"
+
+
+async def test_counting_mentions_adds_them_without_double_counting(tmp_path: Path) -> None:
+    run = await run_workflow(
+        Cassette("mentions_counted"),
+        {
+            "query": "How are melanoma trials involving Keytruda distributed across phases?",
+            "retrieval": {"name_matching": "mentioned"},
+        },
+        tmp_path,
+    )
+    resolution = run.result.resolution
+    assert isinstance(resolution, ResolvedQuery)
+    assert resolution.provenance["retrieval.name_matching"] is Source.USER
+    assert run.result.retrieval is not None
+    [cohort] = run.result.retrieval.cohorts
+    mentions = cohort.mentions
+    assert mentions is not None and mentions.total > 0 and cohort.counts_mentions
+    assert cohort.total == cohort.named.total + mentions.total
+    ids = [nct_id(s) for s in cohort.studies]
+    assert len(ids) == len(set(ids)), "named trials and mentions must not overlap"
+    assert len(cohort.studies) == len(cohort.named.studies) + len(mentions.studies)
+    assert len(cohort.studies) <= MAX_RECORDS, "counted mentions share the cohort's record cap"
 
 
 async def test_a_comparison_queries_each_cohort_under_the_shared_constraint(tmp_path: Path) -> None:
@@ -177,6 +215,40 @@ async def test_a_network_question_on_a_small_result_set_fetches_every_match(tmp_
         assert len(ids) == len(set(ids)) == cohort.total and not cohort.truncated
     assert violations(cohort.studies, lambda s: start_date(s).startswith("2024")) == []
     assert violations(cohort.studies, lambda s: "myeloma" in condition_text(s)) == []
+
+
+async def test_a_scatter_question_brings_back_both_measures_on_almost_every_record(
+    tmp_path: Path,
+) -> None:
+    run = await run_workflow(
+        Cassette("scatter_parkinsons"),
+        {
+            "query": "Is there a relationship between enrollment and duration "
+            "in completed Parkinson's trials?"
+        },
+        tmp_path,
+    )
+    resolution = run.result.resolution
+    assert isinstance(resolution, ResolvedQuery)
+    analysis = resolution.plan.analysis
+    assert analysis.kind == "scatter"
+    assert {analysis.x, analysis.y} == {"enrollment", "duration_months"}  # type: ignore[union-attr]
+
+    assert run.result.retrieval is not None
+    [cohort] = run.result.retrieval.cohorts
+    assert violations(cohort.studies, lambda s: status(s) == "COMPLETED") == []
+    assert violations(cohort.studies, lambda s: "parkinson" in condition_text(s)) == []
+
+    def plottable(study: Mapping[str, Any]) -> bool:
+        design = study["protocolSection"].get("designModule", {})
+        dates = study["protocolSection"].get("statusModule", {})
+        has_end = "completionDateStruct" in dates or "primaryCompletionDateStruct" in dates
+        return "count" in design.get("enrollmentInfo", {}) and bool(start_date(study)) and has_end
+
+    plotted = sum(plottable(study) for study in cohort.studies)
+    assert plotted >= 0.9 * len(cohort.studies), (
+        "a scatter needs enrollment, a start date and an end date on nearly every record"
+    )
 
 
 async def test_hostile_caller_text_reaches_the_registry_disarmed(tmp_path: Path) -> None:

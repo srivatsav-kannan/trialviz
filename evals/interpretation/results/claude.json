@@ -26,6 +26,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -34,7 +37,8 @@
           "analysis.time_field": "inferred",
           "filters.interventions": "inferred",
           "filters.start_year_from": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -65,6 +69,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -72,7 +79,8 @@
           "analysis.kind": "inferred",
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -101,13 +109,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -137,6 +149,9 @@
           "presentation": {
             "sort": "value_desc",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -144,7 +159,8 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "presentation.citations_per_datum": "default",
-          "presentation.sort": "inferred"
+          "presentation.sort": "inferred",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -188,13 +204,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.cohorts": "inferred",
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -238,13 +258,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.cohorts": "inferred",
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -278,6 +302,9 @@
           "presentation": {
             "sort": "value_desc",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -286,7 +313,8 @@
           "filters.conditions": "inferred",
           "filters.statuses": "inferred",
           "presentation.citations_per_datum": "default",
-          "presentation.sort": "inferred"
+          "presentation.sort": "inferred",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -307,9 +335,6 @@
           "filters": {
             "conditions": [
               "multiple myeloma"
-            ],
-            "intervention_types": [
-              "DRUG"
             ]
           },
           "analysis": {
@@ -322,15 +347,18 @@
           "presentation": {
             "chart_type": "network_graph",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.kind": "inferred",
           "analysis.node_types": "inferred",
           "filters.conditions": "inferred",
-          "filters.intervention_types": "inferred",
           "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -366,6 +394,9 @@
           "presentation": {
             "chart_type": "network_graph",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -374,7 +405,8 @@
           "filters.intervention_types": "inferred",
           "filters.keywords": "inferred",
           "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -404,6 +436,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -411,7 +446,8 @@
           "analysis.kind": "inferred",
           "analysis.time_field": "inferred",
           "filters.interventions": "user",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -429,7 +465,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "ambiguous_reference",
-        "message": "The question refers to \"this drug\" but never names it, and no drug was supplied in the caller's fields.",
+        "message": "The question refers to \"this drug\" but never names it, and no caller field supplies a drug. Please specify which drug.",
         "missing": [],
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -461,6 +497,9 @@
           "presentation": {
             "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -468,7 +507,8 @@
           "filters.interventions": "inferred",
           "filters.phases": "user",
           "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
@@ -526,6 +566,9 @@
           "presentation": {
             "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -533,7 +576,8 @@
           "filters.conditions": "inferred",
           "filters.start_year_to": "user",
           "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
@@ -560,7 +604,7 @@
         "plan": {
           "filters": {
             "conditions": [
-              "Alzheimer's disease"
+              "Alzheimer's"
             ],
             "statuses": [
               "RECRUITING"
@@ -574,6 +618,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -583,7 +630,8 @@
           "filters.start_year_from": "inferred",
           "filters.start_year_to": "inferred",
           "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -617,6 +665,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -625,7 +676,8 @@
           "filters.conditions": "inferred",
           "filters.sponsor_classes": "inferred",
           "filters.start_year_from": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -661,8 +713,10 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -670,8 +724,8 @@
           "filters.countries": "inferred",
           "filters.keywords": "inferred",
           "filters.statuses": "inferred",
-          "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -705,6 +759,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -713,7 +770,8 @@
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
           "filters.phases": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -749,6 +807,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -759,7 +820,8 @@
           "filters.keywords": "inferred",
           "filters.start_year_from": "inferred",
           "filters.start_year_to": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -778,10 +840,7 @@
         "plan": {
           "filters": {
             "conditions": [
-              "cancer"
-            ],
-            "statuses": [
-              "COMPLETED"
+              "oncology"
             ]
           },
           "analysis": {
@@ -791,6 +850,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -798,8 +860,8 @@
           "analysis.kind": "inferred",
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
-          "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -830,6 +892,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -837,7 +902,8 @@
           "analysis.measure": "inferred",
           "filters.conditions": "inferred",
           "filters.phases": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -870,6 +936,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -878,7 +947,8 @@
           "analysis.y": "inferred",
           "filters.conditions": "inferred",
           "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -909,6 +979,9 @@
             "sort": "value_desc",
             "top_n": 10,
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -917,7 +990,8 @@
           "filters.conditions": "inferred",
           "presentation.citations_per_datum": "default",
           "presentation.sort": "inferred",
-          "presentation.top_n": "inferred"
+          "presentation.top_n": "inferred",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -949,6 +1023,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -956,7 +1033,8 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.study_types": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -990,6 +1068,9 @@
           "presentation": {
             "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -998,7 +1079,8 @@
           "filters.sponsors": "inferred",
           "filters.start_year_from": "inferred",
           "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1016,7 +1098,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "out_of_scope",
-        "message": "Registry records cannot rank statins by how much they lower cholesterol; that is an efficacy comparison. I can show how many trials study each statin for high cholesterol instead.",
+        "message": "Registry records cannot rank statins by how much they lower cholesterol; that is an efficacy comparison. I can show statin trials for high cholesterol, for example grouped by intervention.",
         "missing": [],
         "notes": [
           {
@@ -1072,6 +1154,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1079,7 +1164,8 @@
           "filters.conditions": "inferred",
           "filters.countries": "inferred",
           "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1116,6 +1202,9 @@
           "presentation": {
             "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1125,12 +1214,13 @@
           "filters.keywords": "inferred",
           "filters.statuses": "inferred",
           "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"sites located in New Jersey (state-level location)\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"sites located in New Jersey (state-level location not filterable; approximated by keyword)\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1150,7 +1240,7 @@
         "plan": {
           "filters": {
             "conditions": [
-              "breast cancer"
+              "Breast cancer"
             ],
             "statuses": [
               "NOT_YET_RECRUITING"
@@ -1162,6 +1252,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1169,7 +1262,8 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1212,13 +1306,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.cohorts": "inferred",
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1247,13 +1345,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.group_by": "user",
           "analysis.kind": "derived",
           "filters.conditions": "user",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
@@ -1284,12 +1386,16 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
@@ -1324,6 +1430,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1332,7 +1441,8 @@
           "analysis.series_by": "inferred",
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1365,7 +1475,11 @@
             "kind": "count"
           },
           "presentation": {
+            "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1373,7 +1487,9 @@
           "filters.countries": "inferred",
           "filters.keywords": "inferred",
           "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1398,7 +1514,7 @@
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"grouped by principal investigator\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"grouped by principal investigator (no such grouping dimension)\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1432,6 +1548,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1439,7 +1558,8 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.phases": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1468,13 +1588,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
@@ -1509,6 +1633,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1516,12 +1643,13 @@
           "analysis.kind": "inferred",
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"not involving insulin\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"excluding trials involving insulin\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1543,6 +1671,16 @@
           "filters": {
             "conditions": [
               "lung cancer"
+            ],
+            "sponsor_classes": [
+              "NIH",
+              "FED",
+              "OTHER_GOV",
+              "INDIV",
+              "NETWORK",
+              "OTHER",
+              "UNKNOWN",
+              "AMBIG"
             ]
           },
           "analysis": {
@@ -1551,20 +1689,20 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "filters.sponsor_classes": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
-        "notes": [
-          {
-            "code": "constraint_not_applied",
-            "message": "The question asks for \"non-industry sponsors (exclusion of INDUSTRY sponsor class)\", which no filter here can express, so the results are not limited by it."
-          }
-        ],
+        "notes": [],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -1586,13 +1724,13 @@
             "kind": "comparison",
             "cohorts": [
               {
-                "label": "Started before 2015",
+                "label": "Before 2015",
                 "filters": {
                   "start_year_to": 2014
                 }
               },
               {
-                "label": "Started after 2015",
+                "label": "After 2015",
                 "filters": {
                   "start_year_from": 2016
                 }
@@ -1602,13 +1740,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.cohorts": "inferred",
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1637,13 +1779,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.start_year_from": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1680,6 +1826,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1688,7 +1837,8 @@
           "filters.countries": "inferred",
           "filters.interventions": "inferred",
           "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1719,13 +1869,17 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.statuses": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1756,6 +1910,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1764,7 +1921,8 @@
           "analysis.series_by": "inferred",
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1798,6 +1956,9 @@
           "presentation": {
             "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1806,9 +1967,15 @@
           "filters.sponsor_classes": "inferred",
           "filters.start_year_from": "inferred",
           "presentation.chart_type": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
-        "notes": [],
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"funded (sponsor class covers lead sponsor only, not collaborators/funders)\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -1844,6 +2011,9 @@
             "sort": "value_desc",
             "top_n": 5,
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1854,7 +2024,8 @@
           "filters.sponsors": "inferred",
           "presentation.citations_per_datum": "default",
           "presentation.sort": "inferred",
-          "presentation.top_n": "inferred"
+          "presentation.top_n": "inferred",
+          "retrieval.name_matching": "default"
         },
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -1902,6 +2073,9 @@
           },
           "presentation": {
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
@@ -1909,7 +2083,8 @@
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
           "filters.interventions": "user",
-          "presentation.citations_per_datum": "default"
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {
@@ -1947,13 +2122,19 @@
             "kind": "count"
           },
           "presentation": {
+            "chart_type": "stat",
             "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
         },
         "provenance": {
           "analysis.kind": "inferred",
           "filters.interventions": "inferred",
-          "presentation.citations_per_datum": "default"
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
         },
         "notes": [
           {

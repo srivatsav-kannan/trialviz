@@ -12,6 +12,7 @@ and the language-model schema all read it.
 
 from __future__ import annotations
 
+from enum import StrEnum
 from typing import Annotated, Literal, Self
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
@@ -197,6 +198,33 @@ class Presentation(BaseModel):
     )
 
 
+class NameMatching(StrEnum):
+    """How strictly a drug or condition name must match a trial.
+
+    `named` counts a trial only when the name is listed among its interventions or
+    conditions. `mentioned` also counts trials that mention the name only in descriptions,
+    such as an arm that permits "a PD-1 inhibitor, for example pembrolizumab". Under either
+    setting, mention-only trials are retrieved and reported. The setting decides whether
+    they are counted.
+    """
+
+    NAMED = "named"
+    MENTIONED = "mentioned"
+
+
+DEFAULT_NAME_MATCHING = NameMatching.NAMED
+
+
+class RetrievalOptions(BaseModel):
+    """How the plan's filters are applied to the registry."""
+
+    model_config = ConfigDict(extra="forbid", frozen=True)
+
+    name_matching: NameMatching | None = Field(
+        None, description="named (default) or mentioned. See NameMatching."
+    )
+
+
 class Plan(BaseModel):
     """Everything the pipeline needs to answer a question, with no open choices left."""
 
@@ -205,3 +233,4 @@ class Plan(BaseModel):
     filters: Filters
     analysis: AnalysisSpec
     presentation: Presentation
+    retrieval: RetrievalOptions = Field(default_factory=RetrievalOptions)

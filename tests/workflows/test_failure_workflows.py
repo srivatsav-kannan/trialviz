@@ -142,11 +142,20 @@ async def test_a_lying_interpreter_cannot_change_what_is_sent_to_the_registry() 
         (NoteCode.INFERRED_VALUE_REJECTED, "filters.start_year_to"),
         (NoteCode.INFERRED_VALUE_NOT_APPLICABLE, "analysis.group_by"),
     }
-    [sent] = registry.params
-    assert {k: v for k, v in sent.items() if k.startswith(("query.", "filter."))} == {
-        "query.intr": "(AREA[InterventionName](pembrolizumab) OR "
-        "AREA[InterventionOtherName](pembrolizumab) OR AREA[InterventionMeshTerm](pembrolizumab))",
+    named, mentions = (
+        {k: v for k, v in p.items() if k.startswith(("query.", "filter."))} for p in registry.params
+    )
+    strict = (
+        "(AREA[InterventionName](pembrolizumab) OR "
+        "AREA[InterventionOtherName](pembrolizumab) OR AREA[InterventionMeshTerm](pembrolizumab))"
+    )
+    assert named == {
+        "query.intr": strict,
         "filter.advanced": "(AREA[StartDate]RANGE[2015-01-01, MAX])",
+    }
+    assert mentions == {
+        "query.intr": "(pembrolizumab)",
+        "filter.advanced": f"(AREA[StartDate]RANGE[2015-01-01, MAX]) AND (NOT ({strict}))",
     }
 
 

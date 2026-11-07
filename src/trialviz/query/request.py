@@ -39,6 +39,7 @@ from trialviz.query.plan import (
     MAX_COHORTS,
     MIN_COHORTS,
     Presentation,
+    RetrievalOptions,
     parameters_of,
     validate_cohorts,
     validate_node_types,
@@ -122,6 +123,7 @@ class QueryRequest(BaseModel):
     filters: Filters = Field(default_factory=Filters)
     analysis: AnalysisFields = Field(default_factory=AnalysisFields)
     presentation: Presentation = Field(default_factory=Presentation)
+    retrieval: RetrievalOptions = Field(default_factory=RetrievalOptions)
     inference: InferenceMode = InferenceMode.AUTO
 
     drug_name: EntityName | None = Field(None, description="Shorthand for filters.interventions.")
@@ -164,6 +166,7 @@ PLAN_SECTIONS: dict[str, type[BaseModel]] = {
     "filters": Filters,
     "analysis": AnalysisFields,
     "presentation": Presentation,
+    "retrieval": RetrievalOptions,
 }
-"""The three parts of a plan and the partial model that parses each. A slot path is
+"""The parts of a plan and the partial model that parses each. A slot path is
 "<section>.<field>", such as "filters.phases"."""

@@ -95,14 +95,43 @@ def translate(*layers: Filters) -> RegistryQuery:
     A comparison cohort is two layers: the plan's shared filters and the cohort's own.
     Inside a layer, values of one field are alternatives. Across layers, everything must
     hold, so a shared `interventions: [A]` and a cohort `interventions: [B]` yield trials
-    that involve both A and B.
+    that involve both A and B. Drug and condition names must appear in their naming fields.
     """
+    return _build(layers, names_in_naming_fields=True)
+
+
+def mention_query(*layers: Filters) -> RegistryQuery | None:
+    """The trials the registry's default search matches that `translate` leaves out.
+
+    These satisfy every filter under the default search, which also reads descriptions,
+    but do not name the drug or condition in a naming field. Together with `translate`
+    they partition the default search exactly: verified on the live API, 2,053 named plus
+    309 mention-only Keytruda trials since 2018 make the 2,362 the default search finds.
+    Returns None when no layer filters on a drug or condition, since then there is
+    nothing to mention.
+    """
+    named = [
+        expression
+        for layer in layers
+        for field, areas in _NAMING_FIELDS.items()
+        if (values := getattr(layer, field)) and (expression := any_of_terms(values, areas))
+    ]
+    if not named:
+        return None
+    exclude = named[0] if len(named) == 1 else all_of(named)
+    return _build(layers, names_in_naming_fields=False, exclude=exclude)
+
+
+def _build(
+    layers: tuple[Filters, ...], *, names_in_naming_fields: bool, exclude: str | None = None
+) -> RegistryQuery:
     names: dict[str, list[str]] = {}
     clauses: list[str] = []
     for layer in layers:
         for field, parameter in _NAME_PARAMETERS.items():
             values = getattr(layer, field)
-            if values and (expression := any_of_terms(values, _NAMING_FIELDS.get(field, ()))):
+            areas = _NAMING_FIELDS.get(field, ()) if names_in_naming_fields else ()
+            if values and (expression := any_of_terms(values, areas)):
                 names.setdefault(parameter, []).append(expression)
         for field, area in _AREAS.items():
             if values := getattr(layer, field):
@@ -117,6 +146,8 @@ def translate(*layers: Filters) -> RegistryQuery:
                     f"{layer.start_year_to}-12-31" if layer.start_year_to else None,
                 )
             )
+    if exclude:
+        clauses.append(f"NOT ({exclude})")
 
     params = {
         parameter: expressions[0] if len(expressions) == 1 else all_of(expressions) or ""
@@ -127,14 +158,11 @@ def translate(*layers: Filters) -> RegistryQuery:
     return RegistryQuery(tuple(sorted(params.items())))
 
 
-def cohort_queries(plan: Plan) -> list[tuple[str | None, RegistryQuery]]:
-    """One query per cohort for a comparison, otherwise a single unlabeled query."""
+def cohort_layers(plan: Plan) -> list[tuple[str | None, tuple[Filters, ...]]]:
+    """The filter layers of each cohort: one per comparison cohort, otherwise one in all."""
     if isinstance(plan.analysis, ComparisonSpec):
-        return [
-            (cohort.label, translate(plan.filters, cohort.filters))
-            for cohort in plan.analysis.cohorts
-        ]
-    return [(None, translate(plan.filters))]
+        return [(c.label, (plan.filters, c.filters)) for c in plan.analysis.cohorts]
+    return [(None, (plan.filters,))]
 
 
 # --- Which record fields to request ---------------------------------------------------
@@ -182,6 +210,15 @@ FILTER_EVIDENCE_FIELDS: dict[str, tuple[str, ...]] = {
 evidence (its country list for a country filter, its drug names for a drug filter).
 Phases, statuses and start dates are base fields. Keywords match anywhere in a record, so
 no single field can show them."""
+
+MENTION_FIELDS = (
+    "OfficialTitle",
+    "BriefSummary",
+    "Keyword",
+    "InterventionDescription",
+    "ArmGroupDescription",
+)
+"""Where a mention-only trial mentions its drug or condition, so the mention can be cited."""
 
 TIME_FIELDS: dict[TimeField, tuple[str, ...]] = {
     TimeField.START_DATE: ("StartDate",),

@@ -16,7 +16,7 @@ import pytest
 
 from trialviz.query.filters import Filters
 from trialviz.retrieval.client import RateLimiter, RegistryClient
-from trialviz.retrieval.translate import translate
+from trialviz.retrieval.translate import RegistryQuery, mention_query, translate
 
 pytestmark = pytest.mark.live
 
@@ -47,6 +47,27 @@ async def test_search_semantics_the_translator_relies_on(client: RegistryClient)
     one = await count(client, {"keywords": ["CAR-T"]})
     together = await count(client, {"keywords": ["CAR-T Non-Hodgkin Lymphoma"]})
     assert 0 < together < one
+
+
+async def test_named_trials_and_mentions_split_the_default_search_exactly(
+    client: RegistryClient,
+) -> None:
+    # The default search is the registry's own, matching names anywhere in a record.
+    shared = Filters(interventions=["Keytruda"], start_year_from=2018)
+    cohort = Filters(conditions=["melanoma"])
+    default = RegistryQuery(
+        (
+            ("filter.advanced", "(AREA[StartDate]RANGE[2018-01-01, MAX])"),
+            ("query.cond", "(melanoma)"),
+            ("query.intr", "(keytruda)"),
+        )
+    )
+    mentions = mention_query(shared, cohort)
+    assert mentions is not None
+    named_total = await client.count(translate(shared, cohort))
+    mention_total = await client.count(mentions)
+    assert named_total > 0 and mention_total > 0
+    assert named_total + mention_total == await client.count(default)
 
 
 async def test_every_filter_type_is_accepted_and_names_cannot_inject_syntax(

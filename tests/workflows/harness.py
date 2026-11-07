@@ -151,6 +151,23 @@ def condition_text(study: Mapping[str, Any]) -> str:
     return " | ".join([*names, *_meshes(study, "conditionBrowseModule")]).lower()
 
 
+def mention_text(study: Mapping[str, Any]) -> str:
+    """Titles, summary, keywords and intervention and arm descriptions, lowercased: where a
+    mention-only trial mentions its drug or condition."""
+    protocol = study.get("protocolSection", {})
+    identification = protocol.get("identificationModule", {})
+    arms = protocol.get("armsInterventionsModule", {})
+    parts = [
+        identification.get("briefTitle", ""),
+        identification.get("officialTitle", ""),
+        protocol.get("descriptionModule", {}).get("briefSummary", ""),
+        *protocol.get("conditionsModule", {}).get("keywords", []),
+        *(i.get("description", "") for i in arms.get("interventions", [])),
+        *(g.get("description", "") for g in arms.get("armGroups", [])),
+    ]
+    return " | ".join(parts).lower()
+
+
 def violations(
     studies: Iterable[Mapping[str, Any]], holds: Callable[[Mapping[str, Any]], bool]
 ) -> list[str]:

@@ -34,6 +34,7 @@ from trialviz.query.filters import Cohort
 from trialviz.query.interpreters.base import Interpretation, Interpreter, InterpreterUnavailable
 from trialviz.query.plan import (
     DEFAULT_CITATIONS_PER_DATUM,
+    DEFAULT_NAME_MATCHING,
     ComparisonSpec,
     Plan,
     kinds_accepting,
@@ -98,6 +99,8 @@ class QueryResolver:
         if (clarification := settle_analysis(draft, notes)) is not None:
             return clarification.model_copy(update={"interpreter": interpreter})
 
+        if "retrieval.name_matching" not in draft.values:
+            draft.set("retrieval.name_matching", DEFAULT_NAME_MATCHING, Source.DEFAULT)
         if "presentation.citations_per_datum" not in draft.values:
             draft.set(
                 "presentation.citations_per_datum", DEFAULT_CITATIONS_PER_DATUM, Source.DEFAULT

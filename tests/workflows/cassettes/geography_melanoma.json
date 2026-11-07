@@ -6,14 +6,933 @@
    "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"filters.statuses\",\"values\":[\"RECRUITING\"]},{\"slot\":\"analysis.kind\",\"values\":[\"distribution\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"country\"]},{\"slot\":\"presentation.sort\",\"values\":[\"value_desc\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3495,
+    "cache_read_input_tokens": 3567,
     "input_tokens": 56,
     "output_tokens": 146
    }
   }
  ],
- "fingerprint": "f8a0e7d38229c2db",
+ "fingerprint": "1160da3205e205be",
  "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLocationCountry%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&pageSize=100&query.cond=%28melanoma%29": {
+   "studies": [
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nevus"
+        },
+        {
+         "term": "Neurodevelopmental Disorders"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {},
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "This assessment will be conducted using the ASQ-3 test. (ASQ-3 stands for Ages and Stages Questionnaires, Third Edition, which is a common screening tool for evaluating developmental progress in young children.)"
+        },
+        {
+         "description": "This meeting will evaluate the parents' acceptance of the lesion and their quality of life using the MARKS test (Measure of Acceptance of Skin Marks). The results will provide insights into how the parents perceive the lesion and how it impacts their daily lives."
+        },
+        {
+         "description": "Collection of patient quality of life data"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Naevi",
+        "Neurodevelopmental Disorder",
+        "Congenital Nevus"
+       ],
+       "keywords": [
+        "Congenital Nevus",
+        "Neurodevelopmental Disorder"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        },
+        {
+         "country": "France"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Congenital Nevus (CN) is a pigmented skin lesion present at birth, which grows in size as the child grows. It can vary in appearance and is classified by its size, from small (less than 1.5 cm) to giant (greater than 40 cm). CN is associated with genetic mutations, mainly in the NRAS/BRAF genes.\n\nA large CN can lead to several clinical issues, including:\n\nRisk of neurological disorders: Large CN can be associated with neurological abnormalities such as neuro-meningeal melanosis, hydrocephalus, or brain malformations. These conditions may cause early neuro-developmental delays. The risk is not well understood and requires further studies.\n\nRisk of melanoma: The risk of developing melanoma is higher for a large CN but remains low for smaller ones. Increased monitoring is necessary during the early years for large and giant CN.\n\nPsycho-social impact: Parents often experience significant anxiety at birth due to the cancer risk and social stigma. As the child grows, a visible CN may impact their quality of life, particularly socially at school.\n\nManagement of CN remains controversial, especially for those of medium to giant size or with multiple satellites. There is an urgent need for further research to clarify best practices in monitoring and treatment, including the need for routine brain imaging and criteria for surgical intervention.\n\nUltimately, this study aims to deepen our understanding of CN, its associated neurological and melanoma risks, and the psycho-social challenges it poses, while striving to establish clear, evidence-based guidelines for monitoring and treatment to enhance patient outcomes and quality of life."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CongenItal Naevus Cohort for Longitudinal Evaluation",
+       "nctId": "NCT06828822",
+       "officialTitle": "CIRCLE : CongenItal Naevus Cohort for Longitudinal Evaluation"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-07-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Stereotyping"
+        },
+        {
+         "term": "Nevus"
+        },
+        {
+         "term": "Cicatrix"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Quality of Life",
+        "Stigmatization"
+       ],
+       "keywords": [
+        "quality of life",
+        "nevus or scar",
+        "stigmatization",
+        "scar"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "Switzerland"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Congenital melanocytic nevi (CMN) are a quite common congenital disorder. Over years, surgical excision was proposed to the patients because transformation into a malignant skin tumor (melanoma) was feared. Recent data proof that the risk for malignancy was overestimated. Nowadays still a lot of patients express their wish for surgical removal out of aesthetic reasons and psychological impacts. Many patients and families experience stigmatization because of the nevus. To proof a medical indication for surgical removal the investigators want to evaluate the quality of life and stigmatization before and after nevus surgery."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Quality of Life and Stigmatization in Children With Congenital Melanocytic Nevi Before and After Nevus Excision",
+       "nctId": "NCT02280889",
+       "officialTitle": "Quality of Life and Experience of Stigmatization in Children With Congenital Melanocytic Nevi Before and After Nevus Excision: a Prospective Study"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2013-05"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will be patients, ages 3 to 25 years, with newly diagnosed pontine DMG (Group A) who have undergone irradiation as part of their upfront therapy. Participants must not have received prior conventional or investigational chemotherapy, targeted therapy, or immunotherapy, except bevacizumab. Biopsy is not required."
+        },
+        {
+         "description": "Participants will be patients, ages 3 to 25 years, with newly diagnosed thalamic DMG (Group B) who have undergone irradiation as part of their upfront therapy. With the exception of temozolomide administered concurrently with radiation and bevacizumab, participants must not have received prior conventional or investigational chemotherapy, targeted therapy, or immunotherapy. Biopsy is required."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Intravenous tumor associated antigen specific T cell (TAA-T) infusion."
+        },
+        {
+         "description": "BBB disruption using the Exablate 4000 Type 2 System with DEFINITY microbubbles."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "DMG",
+        "DIPG"
+       ],
+       "keywords": [
+        "Low-intensity focused ultrasound",
+        "microbubble treatment",
+        "blood-brain barrier disruption",
+        "T cell therapy",
+        "TAA-T cell therapy",
+        "LIFU",
+        "FUS"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is an open-label phase 1 safety and feasibility study evaluating a novel combination therapy for Diffuse Midline Glioma (DMG), an aggressive brain tumor with a very poor prognosis - an average one-year overall survival. This study combines blood-brain barrier (BBB) disruption (BBBD) using low-intensity focused ultrasound (LIFU) and microbubble treatment, and intravenous infusion of autologous, tumor multi-antigen associated specific cytotoxic T lymphocyte (TAA-T) therapy. The TAA-T cell investigational product in this protocol is manufactured to target Preferentially Expressed Antigen of Melanoma (PRAME), Wilms Tumor 1 (WT1), and survivin."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Blood-Brain Barrier Disruption Using Exablate Magnetic Resonance-Guided Low Intensity Focused Ultrasound With Microbubbles in Combination With T-Cell Infusion in Patients With Newly Diagnosed Diffuse Midline Glioma (LIFT)",
+       "nctId": "NCT07796061",
+       "officialTitle": "A Safety and Feasibility Study to Evaluate Blood-Brain Barrier Disruption Using Exablate MR-Guided Low Intensity Focused Ultrasound With Microbubbles in Combination With Preferentially Expressed Antigen of Melanoma (PRAME), Survivin, and Wilms Tumor 1 (WT1)-Targeting Tumor Associated Antigen-specific T-Cell Infusion in Patients With Newly Diagnosed Diffuse Midline Glioma (LIFT)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "OPB-201 Treatment Arm"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "A multi-transgene autologous TCR T cell therapy with optimized alpha and beta chains of a TCR specific for a peptide derived from PRAME and a designed protein which enhances TCR T cell potency."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Endometrial Cancer Recurrent",
+        "Endometrial Cancer",
+        "Advanced Endometrial Cancer",
+        "Ovarian Cancer",
+        "Ovarian Cancer Recurrent",
+        "Platinum Resistant Ovarian Cancer",
+        "Endometrial Cancers"
+       ],
+       "keywords": [
+        "Outpace",
+        "Ovarian cancer",
+        "Endometrial cancer",
+        "advanced ovarian cancer",
+        "advanced endometrial cancer",
+        "cell therapy",
+        "TCR-T",
+        "TCR",
+        "PRAME directed TCR"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The goal of this clinical trial is to learn if OPB-201 is safe in recurrent endometrial and platinum resistant ovarian cancer participants and also to find the optimal dose of OPB-201. Participants will have their own T cells modified in a laboratory and given back to them as OPB-201 in this one-time treatment. Participants will be in the hospital when they receive OPB-201 and then be checked at the clinical site frequently for the first few months."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1 Study to Evaluate OPB-201 in Recurrent Endometrial and Platinum-resistant Ovarian Cancer.",
+       "nctId": "NCT07664735",
+       "officialTitle": "A Phase 1a/b Study to Evaluate the Safety and Efficacy of OPB 201, an Autologous PReferentially Expressed Antigen of MElanoma (PRAME) T Cell Receptor (TCR) T Cell Therapy in Recurrent Endometrial and Platinum-resistant Ovarian Cancer."
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Signs and Symptoms"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Survivors and caregivers are mailed a printed Symptom Management and Survivorship Handbook (SMSH or Handbook), which has been shown to help survivors and caregivers manage symptoms in other studies. The SMSH includes a chapter for 24 common cancer symptoms (e.g., fatigue, depression, anxiety, sleep difficulties, pain, etc.) and provides tips and strategies to help with symptom management. The SMSH also includes lifestyle and behavior tips, survivorship guidelines, and surveillance guidelines. Survivors and caregivers are called by an interventionist via telephone once a week for 10 weeks to assess symptoms and make referrals to chapters in the handbook based on their reports."
+        },
+        {
+         "description": "Survivors and caregivers are mailed the printed Symptom Management and Survivorship Handbook (SMSH or Handbook), which has been shown to help them manage symptoms in other studies. The SMSH includes a chapter for 24 common cancer symptoms (e.g., fatigue, depression, anxiety, sleep difficulties, pain, etc.) and provides tips and strategies to help with symptom management. The SMSH also includes lifestyle and behavior tips, survivorship guidelines, and surveillance guidelines. Trained health coaches will call the survivor and caregiver separately each week for 10 weeks to assess symptoms, make referrals to SMSH, and use behavioral theory techniques to facilitate goal setting and symptom self-management."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Coaches call survivors and caregivers separately each week. In week one, they introduce themselves and the intervention, explain the 10-call structure, and help participants prioritize symptoms and set management goals. Coaches review SMSH recommendations, coach on symptom management strategies, and use techniques such as motivational interviewing and self-monitoring. Coaches remind participants that some strategies help multiple symptoms, and recommend talking to a provider if any symptom scores above 3. In sessions 2-10, coaches check in, administer a symptom questionnaire, review prior goals, and document progress, barriers, and new goals. Each session covers discovery, desired outcome, pathways, context, and design."
+        },
+        {
+         "description": "Survivors and caregivers receive a printed Symptom Management and Survivorship Handbook (SMSH), proven to help manage symptoms. The SMSH covers 24 common cancer symptoms (like fatigue, depression, sleep issues, pain), plus lifestyle, behavior, and survivorship guidelines. For 10 weeks, an interventionist calls weekly to assess symptoms and refer to relevant handbook chapters."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cancer Metastatic",
+        "Symptoms and Signs",
+        "Quality of Life"
+       ],
+       "keywords": [
+        "cancer",
+        "Metastatic cancer",
+        "Symptom management",
+        "Cancer survivorship",
+        "Cancer caregivers"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The protocol will include a 10-week Symptom Management and Survivorship Handbook (SMSH) intervention to address informational needs for the management of physical and psychological symptoms, bundled with telephone delivered health coaching to address their symptom interference with physical, psychological and social functioning. The SMSH intervention, which includes both symptom assessment and management, is simple to implement, scalable, and evidence-based will be delivered to all survivors and caregivers (dyads) in this study, and will serve as an active control. In addition to the SMSH, intervention arm dyads will receive health coaching to address symptom interference and reduce social isolation. Symptom burden is more pronounced in marginalized populations such as Latina/o, rural, older age survivors and their caregivers.18-20 Many health disparities in these populations are underwritten by social isolation due to lack of access, disconnection from linguistically competent health care, mobility, and geographic proximity,21-23 and health coaching can address these issues.\n\nThe specific aims of the proposed feasibility study are to determine among survivors with metastatic or stage IV cancer and their caregivers (dyads):\n\nAim 1: Demonstrate SMSH plus health coaching feasibility (recruitment, retention, satisfaction (acceptability and appropriateness) for cancer survivors and their caregivers. Benchmarks: Recruitment 70% approached, Retention 75%, and participant satisfaction through qualitative exit interviews in week 11.\n\nAim 2: Collect preliminary data for the intervention impact on whether the SMSH + health coaching results in lowered burden of 24 symptoms (primary outcome) over weeks 1-10, and improved HRQoL (social, physical, psychological) (secondary outcome) at week 11, compared to SMSH alone.\n\nAim 3. Examine the enactment of self-management strategies in SMSH+health coaching versus SMSH alone.\n\nThe proposed pilot trial will provide proof of concept for the SMSH coupled with a live telephone delivered health coaching intervention to improve symptom management and HRQoL for metastatic breast, GI, and melanoma cancer survivors and caregivers. By addressing physical and psychological symptoms and survivorship using scalable, accessible interventions delivered via telephone, within reach of traditionally underserved populations, the findings have the potential to lay the foundation for the dissemination and implementation of a practical solution to meet survivor-caregiver needs both locally and nationally."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Symptom Management and Survivorship Plus Coaching for Advanced Cancer Survivors and Their Caregivers",
+       "nctId": "NCT07415564",
+       "officialTitle": "Symptom Management and Survivorship Plus Coaching to Reduce Symptom Severity and Improve Health Related-quality of Life (HR-QOL) for Breast, GI and Melanoma Cancer Survivors and Their Caregivers"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will be recruited pre-operatively by their treating physicians."
+        },
+        {
+         "description": "Participants will be recruited pre-operatively by their treating physicians."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "At the time of axillary lymph node dissection (ALND) or inguinal lymph node dissection (ILND) in the melanoma patient population."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Lymphatic Reconstruction",
+        "Lymphadenectomy"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "To learn if LBP can help to prevent lymphedema when it is performed at the time of surgery rather than after a patient has already developed the disease."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Immediate Lymphatic Reconstruction After Lymphadenectomy in Melanoma Patients: a Parallel Cohort Pilot Study",
+       "nctId": "NCT06887205",
+       "officialTitle": "Immediate Lymphatic Reconstruction After Lymphadenectomy in Melanoma Patients: a Parallel Cohort Pilot Study"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients will initially undergo a standard of care FDG PET with diagnostic CT scan followed by an investigational 68Ga PSMA PET/CT scan."
+        },
+        {
+         "description": "Patients with melanoma who have 1 or more radiographically assessable metastatic lesions on standard of care imaging will undergo a 68Gallium PSMA-PET/CT and standard of care imaging (either FDG PET or CT scan)."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "68Gallium PSMA-PET/CT imaging within 10 days after standard of care FDG-PET/CT."
+        },
+        {
+         "description": "68Gallium PSMA-PET/CT imaging within 10 days after standard of care FDG-PET/CT."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Bladder Cancer"
+       ],
+       "keywords": [
+        "Metastatic",
+        "Urothelial carcinoma",
+        "68Gallium",
+        "PSMA-PET/CT",
+        "22-157"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        },
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The purpose of this study is to see whether 68Gallium PSMA-PET/CT scans are an effective way to detect sites of cancer in people with metastatic bladder cancer or skin cancer. The study researchers want to learn if a 68Gallium PSMA PET/CT scan will work better, the same, or not as well as the PET/CT scans doctors usually use for imaging bladder cancer or skin cancer (FDG-PET/CT scan)."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of 68Gallium PSMA-PET/CT Scans in People With Bladder Cancer or Skin Cancer",
+       "nctId": "NCT05562791",
+       "officialTitle": "Pilot Study of 68Gallium PSMA-PET/CT in Patients With Metastatic Urothelial Carcinoma or Melanoma"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2022-09-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "conditions": [
+        "Microbiome",
+        "Immune Function",
+        "Anti-MDA5 Antibody Positive Dermatomyositis"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The purpose of this study was to analyze the relationship between the microbial community, host immunity and the presence or absence of concurrent rapidly progressive interstitial lung disease patients with anti-MDA5 antibody positive dermatomyositis."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Microecology and Immunity in Patients With Anti-MDA5 Antibody Positive Dermatomyositis and Interstitial Lung Disease",
+       "nctId": "NCT06203249",
+       "officialTitle": "Microecology and Host Immunity in Patients With Anti-melanoma Differentiation Associated Gene 5 Antibody Positive Dermatomyositis and Interstitial Lung Disease"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-01-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Lobular"
+        },
+        {
+         "term": "Barrett Esophagus"
+        },
+        {
+         "term": "Non-alcoholic Fatty Liver Disease"
+        },
+        {
+         "term": "Fibrosis"
+        },
+        {
+         "term": "Carcinoma in Situ"
+        },
+        {
+         "term": "Hematologic Neoplasms"
+        },
+        {
+         "term": "Endometrial Hyperplasia"
+        },
+        {
+         "term": "Giant Cell Tumors"
+        },
+        {
+         "term": "Osteochondroma"
+        },
+        {
+         "term": "Nevus, Epithelioid and Spindle Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will also be asked to complete an intake survey that will include questions about demographics, medical history and family history data.\n\nTissue samples will be collected during a routine visit.\n\nParticipants will be asked to donate any of the following tissue types:\n\n* Blood\n* Buccal swab (saliva) or mouthwash\n* Urine\n* Stool\n* Biopsy or surgical tissue (i.e., bone marrow)\n* Bodily fluids\n* Other tissues"
+        },
+        {
+         "description": "Participants will also be asked to complete an intake survey that will include questions about demographics, medical history and family history data.\n\nTissue samples will be collected during a routine visit.\n\nParticipants will be asked to donate any of the following tissue types:\n\n* Blood\n* Buccal swab (saliva) or mouthwash\n* Urine\n* Stool\n* Biopsy or surgical tissue (i.e., bone marrow)\n* Bodily fluids\n* Other tissues"
+        },
+        {
+         "description": "Participants will also be asked to complete an intake survey that will include questions about demographics, medical history and family history data.\n\nTissue samples will be collected during a routine visit.\n\nParticipants will be asked to donate any of the following tissue types:\n\n* Blood\n* Buccal swab (saliva) or mouthwash\n* Urine\n* Stool\n* Biopsy or surgical tissue (i.e., bone marrow)\n* Bodily fluids\n* Other tissues"
+        },
+        {
+         "description": "These family members will be identified by the patients participating in the study. Blood, buccal cells, or saliva or oral rinses will be collected in one of three ways from family members of patients (i) at the time of consent; (ii) via a mailed blood kit or saliva kit; or (iii) at a separate appointment scheduled by the consented participant"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Tissue samples will be collected during a routine visit. Participants will be asked to donate any of the following tissue types:\n\nBlood, Buccal swab (saliva) or mouthwash, Urine, Stool, Biopsy or surgical tissue (i.e., bone marrow),Bodily fluids, Other tissues"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cancer Risk",
+        "Cancer Predisposition Syndrome",
+        "Hereditary Cancer Prediction",
+        "Childhood Cancer Survivors",
+        "Adult Cancer Survivors",
+        "IARC Carcinogens",
+        "Smoking History",
+        "Lung Cancer",
+        "Ductal/Lobular Carcinoma",
+        "Barrett Esophagus",
+        "Pancreatic Precursor Lesions",
+        "Colonic Dysplasia/Adenomata",
+        "Non-Alcoholic Fatty Liver Disease",
+        "Non Alcoholic Steatohepatitis",
+        "Cirrhosis",
+        "High Grade Prostatic Epithelial Neoplasia",
+        "High-grade Bladder Urothelial Dysplasia/Carcinoma in Situ",
+        "Adenomatous Hyperplasia",
+        "High-risk Oral Precancerous Diseases",
+        "Melanocytic Lesion, Adult",
+        "Hematologic Malignancy",
+        "Lung; Node",
+        "Serous Tubal Intraepithelial Carcinoma",
+        "Endometrial Intraepithelial Neoplasia",
+        "Cervical and Endocervical Carcinoma in Situ",
+        "Vulvar Intraepithelial Neoplasia",
+        "Nephrogenic Rests",
+        "Benign Bone Lesions With Risk of Malignant Degeneration",
+        "Giant Cell Tumor",
+        "Osteochondroma",
+        "Spitz Nevus"
+       ],
+       "keywords": [
+        "Hereditary Risk for Cancer",
+        "Childhood cancer survivors",
+        "Adult cancer survivors",
+        "Precursor Lesions"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This research study is creating a way to collect and store specimens and information from participants who may be at an increased risk of developing cancer, or has been diagnosed with an early phase of a cancer or a family member who has a family member with a precursor condition for cancer.\n\n* The objective of this study is to identify exposures as well as clinical, molecular, and pathological changes that can be used to predict early development of cancer, malignant transformation, and risks of progression to symptomatic cancer that can ultimately be fatal.\n* The ultimate goal is to identify novel markers of early detection and risk stratification to drive potential therapeutic approaches to intercept progression to cancer."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "InAdvance: Surveillance, Prevention, and Interception in a Population at Risk for Cancer",
+       "nctId": "NCT05463796",
+       "officialTitle": "InAdvance: Surveillance, Prevention, and Interception in a Population at Risk For Cancer"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-04-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients with NRAS Mutant Non-melanoma Refractory Solid Tumors."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Do not chew, dissolve or open the capsule. If you miss a dose of medication, you can take the missed dose 8 hours before the next dose. If the time until the next medication is less than 8 hours, it is not recommended to take it again. Every 21 days for one cycle, subjects will use the investigational drug until the treatment termination criteria specified in the protocol are met. The recommended dosage for the first dose reduction is 9mg, twice daily. The recommended second dose reduction is 6mg, twice daily."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Solid Cancers"
+       ],
+       "keywords": [
+        "NRAS",
+        "Tunlametinib",
+        "MEK"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "China"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This study is a single cohort, open label exploratory clinical trial aimed at observing and evaluating the efficacy and safety of Tunlametinib (HL-085) in the treatment of refractory solid tumors with advanced metastatic non melanoma. It is expected that the ORR of Tunlametinib (HL-085) treatment can reach 20%. According to the literature results, the experimental group rate is 0.2 and the target value rate is 0.02. If the bilateral alpha is 0.05 and the beta is 0.2, the sample size is calculated as 12 cases in the experimental group. Considering a 20% dropout rate, a total of 15 cases are required."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase II Trial of Tunlametinib in Patients With NRAS Mutant Non-melanoma Refractory Solid Tumors",
+       "nctId": "NCT07170293",
+       "officialTitle": "An Exploratory, Prospective, Single Arm, Open Label, Single Center, Basket, Phase II Clinical Study of Tunlametinib (HL-085) in Patients With NRAS Mutant Non-melanoma Refractory Solid Tumors"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2027-08-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Disease"
+        },
+        {
+         "term": "Osteochondroma"
+        },
+        {
+         "term": "Nevus, Epithelioid and Spindle Cell"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Colonic Neoplasms"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Adenocarcinoma Of Esophagus"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will also be asked to complete an intake survey that will include questions about demographics, medical history and family history data. Tissue samples will be collected during a routine visit or at patient's home via remote collection. Participants will be asked to donate any the following tissue types: - Blood - Buccal swab (saliva) or mouthwash."
+        },
+        {
+         "description": "Participants will also be asked to complete an intake survey that will include questions about demographics, medical history and family history data. Tissue samples will be collected during a routine visit or at patient's home via remote collection. Participants will be asked to donate any the following tissue types: - Blood - Buccal swab (saliva) or mouthwash."
+        },
+        {
+         "description": "Participants will also be asked to complete an intake survey that will include questions about demographics, medical history and family history data. Tissue samples will be collected during a routine visit or at patient's home via remote collection. Participants will be asked to donate any the following tissue types: - Blood - Buccal swab (saliva) or mouthwash."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Tissue samples will be collected during a routine visit. Participants will be asked to donate any of the following tissue types: Blood, Buccal swab (saliva) or mouthwash, Urine, Stool, Biopsy or surgical tissue (i.e., bone marrow),Bodily fluids, Other tissues"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Lung Cancer (Diagnosis)",
+        "Osteochondroma",
+        "Spitz Nevus",
+        "Solid Cancers",
+        "Breast Cancer",
+        "Gastric (Stomach) Cancer",
+        "Colorectal (Colon or Rectal) Cancer",
+        "Sarcoma",
+        "Ovarian Adenocarcinoma",
+        "Uterine Adenocarcinoma",
+        "Endometrial Adenocarcinoma",
+        "Esophageal Adenocarcinoma",
+        "Head and Neck Cancer",
+        "Therapy-Related Acute Myeloid Leukemia",
+        "Therapy-Related MDS",
+        "Clonal Hematopoiesis of Indeterminate Potential (CHIP)",
+        "Clonal Cytopenia of Undetermined Significance"
+       ],
+       "keywords": [
+        "Adult cancer survivors",
+        "Precursor Lesions",
+        "clonal hematopoiesis",
+        "chemotherapy",
+        "radiation",
+        "therapy-related myeloid neoplasms",
+        "CCUS",
+        "clonal hematopoiesis of indeterminate potential"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The goal of the Clonal Hematopoiesis Chemotherapy and Radiation Effects (CH CARE) Study is to understand how the presence or absence of clonal hematopoiesis (CH) influences outcomes in people receiving chemotherapy and radiation for solid cancers.\n\nThe study will collect biospecimens and clinical information. These data will be used to define clinical and molecular features that predict the presence of high-risk clonal hematopoiesis (CH) in patients exposed to cytotoxic anti-cancer therapy. Predictive features will be utilized to identify populations of cancer patients and survivors who are at the highest risk of developing therapy-related myeloid neoplasms (t-MNs).\n\nUltimately this study will result in the development of a novel novel risk prediction algorithm for t-MNs in patients with solid cancers and drive potential therapeutic approaches to intercept progression from CH to often fatal t-MNs."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Clonal Hematopoiesis Chemotherapy and Radiation Effects Study",
+       "nctId": "NCT07675967",
+       "officialTitle": "Clonal Hematopoiesis Chemotherapy and Radiation Effects Study"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nevus, Pigmented"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "description": "Will be collecting Nevi and completing a DNA analysis, no intervention will be made."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanocytic Nevi"
+       ]
+      },
+      "contactsLocationsModule": {
+       "locations": [
+        {
+         "country": "United States"
+        }
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The objective of this protocol is to further elucidate the genetic mutations that drive melanocytic nevi (benign melanocytic neoplasms, moles). This will be performed by whole genome, whole exome, or targeted sequencing of de-identified specimens.\n\nHerein, the investigators plan to isolate DNA from de-identified skin biopsy specimens and blood samples:\n\n1. From melanocytic nevi collected by skin biopsy (a shave or punch biopsy). A part of the tissue will be submitted for routine diagnostic dermatopathology and investigational histomorphologic and immunohistochemical analysis.\n2. From corresponding normal tissue (blood). DNA isolated from blood will be used as a normal control when analyzing sequencing data to identify somatic mutations in lesional tissue."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Genetic Basis of Melanocytic Nevi",
+       "nctId": "NCT03054584",
+       "officialTitle": "Genetic Basis of Melanocytic Nevi"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2017-06-26"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 12
+  },
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLocationCountry&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&pageSize=100&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvem2f0clD6SuP08FCfCFPHT9tpL1SI",
    "studies": [
@@ -7789,6 +8708,19 @@
     }
    ],
    "totalCount": 471
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&pageSize=1&query.cond=%28melanoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxpZvKs2Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06828822"
+      }
+     }
+    }
+   ],
+   "totalCount": 12
   },
   "/api/v2/version?": {
    "apiVersion": "2.0.5",

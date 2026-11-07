@@ -1,0 +1,8070 @@
+{
+ "claude": [
+  {
+   "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nHow are melanoma trials involving Keytruda distributed across phases?\n</question>",
+   "stop_reason": "end_turn",
+   "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]},{\"slot\":\"analysis.kind\",\"values\":[\"distribution\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
+   "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 3567,
+    "input_tokens": 59,
+    "output_tokens": 123
+   }
+  }
+ ],
+ "fingerprint": "1160da3205e205be",
+ "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm&pageSize=100&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuY_el2fYbmj6SuP08FCfCFfTZ_tBN1CI",
+   "studies": [
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Brain Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "CA-4948"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Immunoglobulin G"
+        },
+        {
+         "term": "Radiosurgery"
+        },
+        {
+         "term": "Magnetic Resonance Spectroscopy"
+        },
+        {
+         "term": "Specimen Handling"
+        },
+        {
+         "term": "Biopsy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Emavusertib",
+         "otherNames": [
+          "CA-4948",
+          "1801344-14-8",
+          "AU 4948",
+          "CA4948",
+          "CA 4948",
+          "Interleukin-1 Receptor-associated Kinase 4 Inhibitor CA-4948",
+          "IRAK4 Inhibitor CA-4948"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "1374853-91-4",
+          "BCD-201",
+          "GME 751",
+          "GME751",
+          "Immunoglobulin G4",
+          "Keytruda",
+          "Lambrolizumab",
+          "MK 3475",
+          "MK3475",
+          "MK-3475",
+          "RPH 075",
+          "RPH-075",
+          "RPH075",
+          "SB 27",
+          "SB-27",
+          "SB27",
+          "SCH 900475",
+          "SCH900475",
+          "SCH-900475"
+         ]
+        },
+        {
+         "name": "Stereotactic Radiosurgery",
+         "otherNames": [
+          "SRS",
+          "Stereotactic External Beam Irradiation",
+          "stereotactic external-beam radiation therapy",
+          "stereotactic radiation therapy",
+          "stereotactic radiotherapy,",
+          "Stereotactic Radiotherapy",
+          "stereotaxic radiation therapy"
+         ]
+        },
+        {
+         "name": "Magnetic Resonance Imaging",
+         "otherNames": [
+          "Magnetic Resonance Imaging (MRI)",
+          "MRI",
+          "Magnetic Resonance Imaging Scan",
+          "MRI Scan",
+          "MRIs",
+          "NMR Imaging",
+          "NMRI",
+          "nuclear magnetic resonance imaging",
+          "sMRI",
+          "Structural MRI"
+         ]
+        },
+        {
+         "name": "Computed Tomography",
+         "otherNames": [
+          "CAT Scan",
+          "Computed Axial Tomography",
+          "computerized axial tomography",
+          "Computerized Tomography (CT) scan",
+          "CT Scan"
+         ]
+        },
+        {
+         "name": "Biospecimen Collection",
+         "otherNames": [
+          "Biological Sample Collection",
+          "Biospecimen Collected",
+          "Sample Collection",
+          "Specimen Collection"
+         ]
+        },
+        {
+         "name": "Biopsy Procedure",
+         "otherNames": [
+          "BIOPSY"
+         ]
+        },
+        {
+         "name": "Survey Administration"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Malignant Neoplasm in the Brain",
+        "Metastatic Melanoma"
+       ],
+       "keywords": [
+        "melanoma",
+        "stereotactic radiosurgery",
+        "brain metastases"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "CA-4948 in Combination With Pembrolizumab and Stereotactic Radiosurgery to Improve Treatment of Melanoma Brain Metastases",
+       "nctId": "NCT05669352"
+      },
+      "statusModule": {
+       "overallStatus": "SUSPENDED",
+       "startDateStruct": {
+        "date": "2026-11-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Surgical Procedures, Operative"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab neoadjuvant treatment"
+        },
+        {
+         "name": "surgery"
+        },
+        {
+         "name": "Adjuvant treatment"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Stage IIB Melanoma",
+        "Stage IIC Melanoma"
+       ],
+       "keywords": [
+        "neoadjuvant",
+        "pembrolizumab",
+        "melanoma",
+        "pathological response",
+        "feasibility",
+        "SLN",
+        "biomarkers"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neoadjuvant Pembrolizumab in Patients With High Risk, Stage IIB/IIC Cutaneous Melanoma: a Single Arm Proof of Concept Phase IIA Study.",
+       "nctId": "NCT07883759"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Irinotecan"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab and Irinotecan"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Unresectable or Metastatic Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1b/2 Clinical Trial to Evaluate the Safety and Efficacy of Combination Therapy With Pembrolizumab and Irinotecan in Patients With Metastatic or Recurrent Malignant Melanoma",
+       "nctId": "NCT07817901"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2026-11-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "AVT32-DRL_PB"
+        },
+        {
+         "name": "Keytruda"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pharmacokinetic Similarity Study to Compare AVT32-DRL_PB With Keytruda® in Participants With Fully Resected Melanoma",
+       "nctId": "NCT07475572"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "Nivolumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Ipilimumab plus nivolumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "Melanoma Stage Stage IIIB",
+        "Melanoma Stage M1",
+        "Melanoma Stage IV"
+       ],
+       "keywords": [
+        "Programmed cell death Protein 1 inhibitor",
+        "pembrolizume",
+        "ipilimumab"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "NeoAdjuvant, Spare-Adjuvant (NASA) in Stage IIIB-IV (M1a) Melanoma",
+       "nctId": "NCT07740941"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Hereditary Sensory and Autonomic Neuropathies"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Merkel Cell"
+        },
+        {
+         "term": "Nasopharyngeal Carcinoma"
+        },
+        {
+         "term": "Small Cell Lung Carcinoma"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "ARV-6723"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "SOC"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor"
+       ],
+       "keywords": [
+        "Advanced solid tumors",
+        "PROTAC",
+        "HPK1",
+        "MAP4K1",
+        "Immune checkpoint inhibitor",
+        "Non-small cell lung cancer (NSCLC)",
+        "Renal cell carcinoma (RCC)",
+        "Melanoma",
+        "Gastric cancer",
+        "Gastroesophageal cancer",
+        "Esophageal cancer",
+        "Head and Neck Squamous cell carcinoma (HSNCC)",
+        "Urothelial carcinoma (UC)",
+        "Colorectal Cancer (CRC)",
+        "Triple-negative breast cancer (TNBC)",
+        "Ovarian cancer",
+        "Cervical cancer",
+        "Merkel cell carcinoma",
+        "Skin squamous cell carcinoma (SCC)",
+        "Nasopharyngeal carcinoma",
+        "Small cell lung cancer (SCLC)",
+        "Hepatocellular carcinoma (HCC)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate ARV-6723 Alone and With Pembrolizumab in Participants With Advanced Solid Tumors",
+       "nctId": "NCT07749586"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "PRTX007"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Stage III"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Efficacy and Safety of PRTX007-003 Combined With Pembrolizumab in Resectable Stage III Melanoma",
+       "nctId": "NCT07565285"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "STX-003"
+        },
+        {
+         "name": "KEYTRUDA®"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor"
+       ],
+       "keywords": [
+        "Intravenous",
+        "Non Small Cell Lung Cancer",
+        "Melanoma",
+        "Advanced Solid Tumors",
+        "mRNA"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1/2 Study of Intravenous Injection of STX-003 in Advanced Solid Tumors as Monotherapy or in Combination With Pembrolizumab",
+       "nctId": "NCT07751042"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Bmab1800"
+        },
+        {
+         "name": "US-Licensed Keytruda"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Adult Patients With Stage IIB, IIC, and Stage III Melanoma Following Complete Resection (Adjuvant Settings)"
+       ],
+       "keywords": [
+        "Pembrolizumab",
+        "Melanoma",
+        "Biosimilar",
+        "Adjuvant Therapy"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pharmacokinetics, Safety, and Immunogenicity of Bmab1800 and Keytruda® as Adjuvant Monotherapy in Patients With Melanoma",
+       "nctId": "NCT07581509"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-06-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Sitagliptin Phosphate"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Sitagliptin"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Renal Cell Carcinoma",
+        "Advanced Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Sitagliptin With Pembro in RCC and Melanoma",
+       "nctId": "NCT07634380"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-05-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "relatlimab"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Ipilimumab 3mg/kg and nivolumab 1mg/kg",
+         "otherNames": [
+          "Arm A"
+         ]
+        },
+        {
+         "name": "Ipilimumab 1mg/kg Nivolumab 480mg and relatlimab 160mg",
+         "otherNames": [
+          "Arm B"
+         ]
+        },
+        {
+         "name": "Nivolumab 480mg and relatlimab 160mg",
+         "otherNames": [
+          "Arm C"
+         ]
+        },
+        {
+         "name": "Ipilimumab 1mg/kg and nivolumab 3mg/kg",
+         "otherNames": [
+          "Arm D (Cohort 1a)"
+         ]
+        },
+        {
+         "name": "Pembrolizumab 200 mg",
+         "otherNames": [
+          "Arm F"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Melanoma",
+        "Mucosal Melanoma"
+       ],
+       "keywords": [
+        "Neoadjuvant",
+        "Immunotherapy",
+        "Randomised trial",
+        "Low Responder"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neo IRENIE (NEOadjuvant Ipilimumab, RElatlimab, NIvolumab Evaluation)",
+       "nctId": "NCT06999980"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Leukemia"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Disease"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Kidney Neoplasms"
+        },
+        {
+         "term": "Liver Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Glioblastoma"
+        },
+        {
+         "term": "Carcinoma, Bronchogenic"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Interleukin-15"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "EBNK-001 + IL-15 + Pembrolizumab",
+         "otherNames": [
+          "Pembrolizumab",
+          "IL-15",
+          "EBNK-001"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Sarcoma",
+        "Leukaemia",
+        "Breast Cancer (Locally Advanced or Metastatic)",
+        "Lung Cancer (Diagnosis)",
+        "Colorectal Cancer",
+        "Melanoma (Skin Cancer)",
+        "Bladder Cancer",
+        "Kidney Cancer",
+        "Pancreatic Cancer Metastatic",
+        "Liver Cancer (Primary and Metastatic)",
+        "Ovarian Cancer",
+        "Esophageal Cancer",
+        "Glioblastoma",
+        "Non-Melanoma Skin Cancer"
+       ],
+       "keywords": [
+        "Natural killer cells",
+        "NK cell therapy",
+        "Solid tumors",
+        "IL-15",
+        "Breast Cancer",
+        "Lung and Bronchus Cancer",
+        "Prostate Cancer",
+        "Colorectal (Colon and Rectal) Cancer",
+        "CAR-T",
+        "Non-Melanoma Skin Cancer",
+        "Melanoma",
+        "Bladder Cancer",
+        "Kidney (Renal Cell and Renal Pelvis) Cancer",
+        "Pancreatic Cancer",
+        "Stomach (Gastric) Cancer",
+        "Esophageal Cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "EBNK-001 Allogeneic NK Cells With Low-Dose IL-15 ± Pembrolizumab in Advanced Solid Tumors",
+       "nctId": "NCT07410676"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-02-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Breast Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Eflornithine"
+        },
+        {
+         "term": "Fulvestrant"
+        },
+        {
+         "term": "capivasertib"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "AMXT 1501 Dicaprate",
+         "otherNames": [
+          "AMXT 1501"
+         ]
+        },
+        {
+         "name": "DFMO",
+         "otherNames": [
+          "Difluoromethylornithine"
+         ]
+        },
+        {
+         "name": "Fulvestrant"
+        },
+        {
+         "name": "Capivasertib"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "HER2-low Hormone Receptor Positive Breast Cancer"
+       ],
+       "keywords": [
+        "breast cancer",
+        "melanoma",
+        "AMXT 1501",
+        "DFMO",
+        "polyamine inhibitor",
+        "advanced solid tumor",
+        "combination therapy",
+        "polyamine"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of AMXT 1501 and DFMO in Combination With Standard Therapies in Advanced Solid Tumors",
+       "nctId": "NCT07287917"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)"
+       ],
+       "keywords": [
+        "IMMUNOTHERAPY",
+        "PRIMARY CUTANOUS MELANOMA",
+        "NEOPRIME trial",
+        "NEOADJUVANT TREATMENT"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neoadjuvant Pembrolizumab in Patients With Stage IIb/c Melanoma",
+       "nctId": "NCT07349303"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-01-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Colonic Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Colitis, Ulcerative"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Squamous Cell"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Adenocarcinoma Of Esophagus"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "nivolumab",
+         "otherNames": [
+          "OPDIVO®"
+         ]
+        },
+        {
+         "name": "pembrolizumab",
+         "otherNames": [
+          "Keytruda®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Renal Cell Carcinoma",
+        "Non Small Cell Lung Cancer",
+        "Melanoma",
+        "Colo-rectal Cancer (dMMR/MSI-H CRC)",
+        "Hepatocellular Carcinoma",
+        "Ulcerative Colitis",
+        "Esophageal Cancer",
+        "Squamous Cell Carcinoma",
+        "Gastric/GEJ",
+        "Cervical Cancer",
+        "Gastro-Esophageal Adenocarcinoma",
+        "Esophageal Adenocarcinoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Patient Preference for Subcutaneous vs. Intravenous Immune Therapy",
+       "nctId": "NCT07223424"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-11-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "NovoTTF-200A"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Melanoma Brain Metastasis"
+       ],
+       "keywords": [
+        "Melanoma Brain Metastasis",
+        "Metastatic Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "NovoTTF-200A + Pembrolizumab In Melanoma Brain Metastasis",
+       "nctId": "NCT04129515"
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2025-10-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "HLX17",
+         "otherNames": [
+          "pembrolizumab"
+         ]
+        },
+        {
+         "name": "US-sourced Keytruda®",
+         "otherNames": [
+          "pembrolizumab"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Non-small Cell Lung Cancer",
+        "Melanoma",
+        "Renal Cell Carcinoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase I Clinical Study to Evaluate the PK Profile, Efficacy, Safety and Immunogenicity of HLX17 vs. Keytruda® in Multiple Resected Solid Tumors",
+       "nctId": "NCT07160335"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2025-09-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Drug Therapy"
+        },
+        {
+         "term": "Dacarbazine"
+        },
+        {
+         "term": "Temozolomide"
+        },
+        {
+         "term": "Immunotherapy"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "relatlimab"
+        },
+        {
+         "term": "Ipilimumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "LNS8801"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Chemotherapy (dacarbazine or temozolomide)"
+        },
+        {
+         "name": "Immunotherapy (Pembrolizumab)"
+        },
+        {
+         "name": "Immunotherapy (nivolumab and relatlimab)"
+        },
+        {
+         "name": "Immunotherapy (ipilimumab and nivolumab)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "Melanoma Stage IIIB-IV",
+        "Cutaneous Melanoma",
+        "Unresectable Melanoma"
+       ],
+       "keywords": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Trial of LNS8801 With or Without Pembrolizumab in Patients With Refractory Melanoma",
+       "nctId": "NCT06624644"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-08-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Skin Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "dabrafenib"
+        },
+        {
+         "term": "trametinib"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "Observation"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Dabrafenib + Trametinib"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Nivolumab"
+        },
+        {
+         "name": "Observation"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma",
+        "Fertility"
+       ],
+       "keywords": [
+        "MELANOMA",
+        "fertility",
+        "skin cancer"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "MELAFERT: Impact of Adjuvant Therapy on FERTility in Patients With Resected MELAnoma at High Risk of Relapse.",
+       "nctId": "NCT07092670"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-08-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Recurrence"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Acasunlimab",
+         "otherNames": [
+          "GEN1046",
+          "DuoBody®-PD-L1×4-1BB"
+         ]
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Melanoma",
+        "Relapsed/Refractory, Locally Advanced Unresectable Melanoma (Stage IIIB, IIIC, or IIID)",
+        "Metastatic Cutaneous Melanoma (Stage IV)"
+       ],
+       "keywords": [
+        "Melanoma",
+        "Cutaneous Melanoma",
+        "Metastatic Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of the Effectiveness and Safety of Acasunlimab Alone and With Pembrolizumab to Treat Advanced Melanoma of the Skin That Has Returned After Treatment With an Approved Checkpoint Inhibitor Therapy (ABBIL1TY MELANOMA-07)",
+       "nctId": "NCT06984328"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2025-07-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "enfortumab vedotin"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "enfortumab vedotin"
+        },
+        {
+         "name": "pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "Melanoma",
+        "Enfortumab",
+        "vedotin",
+        "pembrolizumab"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "PLUG-IN: Pembrolizumab Combined With Enfortumab Vedotin for Advanced Melanoma Patients",
+       "nctId": "NCT06906822"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Baseline 89-Zr Pembrolizumab Immuno PET-CT"
+        },
+        {
+         "name": "Proteomic assay"
+        },
+        {
+         "name": "Follow-up 89-Zr Pembrolizumab Immuno PET-CT"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Triple Negative Breast Cancer",
+        "Uterine Cervical Cancer",
+        "Uterine Corpus Cancer",
+        "Malignant Melanoma",
+        "Clear Cell Renal Cell Carcinoma"
+       ],
+       "keywords": [
+        "spatially fractionated radiotherapy",
+        "immunotherapy",
+        "immuno-PET",
+        "proteomics",
+        "signaling pathways"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Immune PET and Proteomics for the Assessment of Response to Spatially Fractionated or Palliative Radiotherapy With or Without Immunotherapy",
+       "nctId": "NCT06976021"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2025-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Parkinson Disease 4, Autosomal Dominant Lewy Body"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Intismeran autogene",
+         "otherNames": [
+          "mRNA-4157",
+          "V940"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "MK-3475",
+          "KEYTRUDA®"
+         ]
+        },
+        {
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Malignant Melanoma"
+       ],
+       "keywords": [
+        "Programmed Cell Death-1 (PD1, PD-1)",
+        "Programmed Cell Death 1 Ligand 1 (PDL1, PD-L1)",
+        "Programmed Cell Death 1 Ligand 2 (PDL2, PD-L2)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study of Intismeran Autogene (V940) and Pembrolizumab (MK-3475) in People With Melanoma (V940-012/INTerpath-012)",
+       "nctId": "NCT06961006"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-05-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "EIK1001"
+        },
+        {
+         "name": "Pembrolizumab (KEYTRUDA® )"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Melanoma"
+       ],
+       "keywords": [
+        "Metastatic",
+        "Advanced"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of EIK1001 in Combo With Pembro Versus Placebo and Pembro as First-Line Therapy in Patients With Advanced Melanoma.",
+       "nctId": "NCT06697301"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-05-22"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "MK-4700"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "MK-3475",
+          "KEYTRUDA®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Malignant Neoplasm"
+       ],
+       "keywords": [
+        "Head and Neck Squamous Cell Carcinoma",
+        "Melanoma",
+        "Non-small Cell Lung Cancer",
+        "Cervical Cancer",
+        "Triple Negative Breast Cancer",
+        "Urothelial Carcinoma",
+        "Renal Cell Carcinoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of MK-4700 Alone or With Pembrolizumab in Participants With Advanced or Metastatic Solid Tumors (MK-4700-001)",
+       "nctId": "NCT06894771"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2025-04-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase II Clinical Trial on Neo-adjuvant Pembrolizumab in Patients With pT3b-T4a/b cN0M0 Melanoma.",
+       "nctId": "NCT07448831"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-04-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "mRNA-4106"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "mRNA-4200"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumors"
+       ],
+       "keywords": [
+        "Locally advanced",
+        "Metastatic",
+        "Relapsed or refractory solid tumor malignancies",
+        "Pembrolizumab",
+        "Oncology",
+        "Melanoma",
+        "Solid tumors"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of mRNA-4106 or mRNA-4200 Administered Alone or in Combination With Anti-Cancer Agents in Participants With Solid Tumors",
+       "nctId": "NCT06880549"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "lenvatinib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Healthy Donor Fecal Microbiota Transplantation (hdFMT)"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Lenvatinib"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "PD-1 Refractory Advanced Melanoma"
+       ],
+       "keywords": [
+        "CD8+ T-cells",
+        "CD8+ effector T cells",
+        "FoxP3+ regulatory T-cells (T-regs)",
+        "hdFMT (healthy donor Fecal-Microbiota Transplant)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pembrolizumab/Lenvatinib With and Without Healthy Donor FMT (hdFMT) in Relapsed/ Refractory (R/R) Melanoma",
+       "nctId": "NCT06030037"
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2025-03-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "IBI363"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate the Efficacy and Safety of IBI363 Monotherapy Compared to Pembrolizumab in Patients With Unresectable Locally Advanced or Metastatic Mucosal or Acral Melanoma Who Had Not Previously Received Systemic Therapy",
+       "nctId": "NCT06797297"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2025-02-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Dysplastic Nevus Syndrome"
+        },
+        {
+         "term": "Hereditary Sensory and Autonomic Neuropathies"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Pharmaceutical Preparations"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Single agent, adjuvant anti-PD1 therapy",
+         "otherNames": [
+          "OPDIVO®",
+          "Keytruda",
+          "Pembrolizumab",
+          "Nivolumab"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "anti-PD1 therapy",
+        "immune checkpoint blockade",
+        "dysplastic nevi",
+        "BRAF and NRAS mutations"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Effects of Anti-PD1 Adjuvant Checkpoint Blockade Immunotherapy on Atypical/Dysplastic Nevi",
+       "nctId": "NCT06599619"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-02-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma, Cutaneous Malignant"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "relatlimab"
+        },
+        {
+         "term": "Opdualag"
+        },
+        {
+         "term": "lifileucel"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "Dacarbazine"
+        },
+        {
+         "term": "Temozolomide"
+        },
+        {
+         "term": "Paclitaxel"
+        },
+        {
+         "term": "Carboplatin"
+        },
+        {
+         "term": "Albumin-Bound Paclitaxel"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "IMA203",
+         "otherNames": [
+          "anzutresgene autoleucel",
+          "anzu-cel"
+         ]
+        },
+        {
+         "name": "nivolumab plus relatlimab",
+         "otherNames": [
+          "Opdualag®"
+         ]
+        },
+        {
+         "name": "lifileucel",
+         "otherNames": [
+          "AMTAGVI"
+         ]
+        },
+        {
+         "name": "nivolumab",
+         "otherNames": [
+          "Opdivo®"
+         ]
+        },
+        {
+         "name": "pembrolizumab",
+         "otherNames": [
+          "Keytruda®"
+         ]
+        },
+        {
+         "name": "ipilimumab",
+         "otherNames": [
+          "Yervoy"
+         ]
+        },
+        {
+         "name": "Dacarbazine",
+         "otherNames": [
+          "DTIC-Dome"
+         ]
+        },
+        {
+         "name": "temozolomide",
+         "otherNames": [
+          "Temodar"
+         ]
+        },
+        {
+         "name": "paclitaxel",
+         "otherNames": [
+          "Taxol"
+         ]
+        },
+        {
+         "name": "paclitaxel plus carboplatin",
+         "otherNames": [
+          "Carbo/Taxol®"
+         ]
+        },
+        {
+         "name": "Albumin-Bound Paclitaxel",
+         "otherNames": [
+          "Abraxane®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma, Cutaneous Malignant",
+        "Mucosal Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "SUPRAME-ACTengine® IMA203 vs. Investigator's Choice of Treatment in Previously Treated, Unresectable or Metastatic Cutaneous Melanoma",
+       "nctId": "NCT06743126"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-01-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Cyclophosphamide"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Cyclophosphamide"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma",
+        "Melanoma Stage III",
+        "Melanoma (Skin)",
+        "Melanoma Stage IV"
+       ],
+       "keywords": [
+        "Melanoma",
+        "Melanoma, Stage III",
+        "Skin",
+        "Melanoma, Stage IV",
+        "Pembrolizumab",
+        "Cyclophosphamide"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Metronomic Cyclophosphamide With Pembrolizumab in Checkpoint Inhibitor Refractory Melanoma",
+       "nctId": "NCT06771544"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "nivolumab or pembrolizumab",
+         "otherNames": [
+          "Opdivo and Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "High-risk Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Assessment of Short Immunotherapy After Radical Surgery of High-risk Malignant Melanoma",
+       "nctId": "NCT06488482"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "Solutions"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "pembrolizumab (KEYTRUDA®)"
+        },
+        {
+         "name": "BI-1607"
+        },
+        {
+         "name": "Ipilimumab (YervoyTM, 50 mg/10 mL solution)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Metastatic",
+        "Melanoma of Skin",
+        "Melanoma BRAF V600E/K Mutated",
+        "Melanoma Recurrent",
+        "Melanoma Stage III or IV",
+        "Melanoma",
+        "Melanoma Negative for bRAF",
+        "Melanoma Negative for nRAS",
+        "Melanomas",
+        "Uveal Melanoma, Metastatic"
+       ],
+       "keywords": [
+        "anti-CTLA-4",
+        "anti-PD-1",
+        "resistant anti-PD-1",
+        "progressed on treatment with an anti-PD-1/L1",
+        "metastatic"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Different Doses of BI-1607 in Combination With Pembrolizumab and Ipilimumab, in Participants With Unresectable or Metastatic Melanoma",
+       "nctId": "NCT06784648"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "lifileucel"
+        },
+        {
+         "term": "Cyclophosphamide"
+        },
+        {
+         "term": "Mesna"
+        },
+        {
+         "term": "fludarabine"
+        },
+        {
+         "term": "fludarabine phosphate"
+        },
+        {
+         "term": "Interleukin-2"
+        },
+        {
+         "term": "aldesleukin"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "LN-144",
+         "otherNames": [
+          "Autologous Tumor Infiltrating Lymphocytes (TIL)"
+         ]
+        },
+        {
+         "name": "Cyclophosphamide",
+         "otherNames": [
+          "Cytoxan"
+         ]
+        },
+        {
+         "name": "Mesna",
+         "otherNames": [
+          "Mesnex"
+         ]
+        },
+        {
+         "name": "Fludarabine",
+         "otherNames": [
+          "Fludara"
+         ]
+        },
+        {
+         "name": "Interleukin-2 (IL-2)",
+         "otherNames": [
+          "Aldesleukin",
+          "Proleukin"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Stage IIIB Melanoma",
+        "Stage IIIC Melanoma",
+        "Stage IIID Melanoma"
+       ],
+       "keywords": [
+        "Autologous Tumor Infiltrating Lymphocytes",
+        "LN144",
+        "Resectable Melanoma",
+        "Immunotherapy Naive"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Efficacy & Safety for LN144 With Pembrolizumab With High Risk Stage IIIb-dResectable Melanoma",
+       "nctId": "NCT06190249"
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2024-12-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Motor Activity"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Immunotherapy"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "Ipilimumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Immunotherapy",
+         "otherNames": [
+          "pembrolizumab",
+          "nivolumab",
+          "ipilimumab"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma",
+        "Immunotoxicity"
+       ],
+       "keywords": [
+        "physical activity",
+        "melanoma",
+        "immunotherapy",
+        "anti-PD-1",
+        "anti-CTLA4",
+        "immunotoxicity"
+       ]
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Impact of Physical Activity on Immunotherapy-induced Toxicities in Melanoma Management",
+       "nctId": "NCT06627595"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-05"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "LTX-315"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "LTX-315 + pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Stage IIIB-IV"
+       ],
+       "keywords": [
+        "Melanoma",
+        "Neoadjuvant",
+        "Pembrolizumab",
+        "Oncolytic peptide"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "NeoLIPA: Neoadjuvant LTX-315 in Combination with Pembrolizumab in Resectable Stage III/IV Melanoma",
+       "nctId": "NCT06651151"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Breast Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Alpelisib"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Alpelisib + Pembrolizumab",
+         "otherNames": [
+          "BYL 719"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin Cancer)",
+        "Breast Cancer",
+        "Brain Metastasases"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase Ib Study of AlpeliSib With PEmbroLizumab in Patients With mEtastatic Breast caNcer or melanomA (SELENA)",
+       "nctId": "NCT06545682"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Vancomycin"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "MB097"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "KEYTRUDA®"
+         ]
+        },
+        {
+         "name": "Vancomycin"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1b Trial to Evaluate Safety of MB097 in Combination With Pembrolizumab in Melanoma Patients",
+       "nctId": "NCT06540391"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "daromun"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "L19IL2",
+         "otherNames": [
+          "bifikafusp alfa"
+         ]
+        },
+        {
+         "name": "L19TNF",
+         "otherNames": [
+          "onfekafusp alfa"
+         ]
+        },
+        {
+         "name": "L19IL2/L19TNF",
+         "otherNames": [
+          "Daromun"
+         ]
+        },
+        {
+         "name": "KEYTRUDA®",
+         "otherNames": [
+          "pembrolizumab"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Stage III",
+        "Melanoma Stage IV"
+       ],
+       "keywords": [
+        "anti-PD1 checkpoint inhibitors",
+        "Melanoma Stage III",
+        "Melanoma Stage IV",
+        "pembrolizumab"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of the Efficacy of Intratumoral L19IL2 or L19TNF or L19IL2/L19TNF, in Combination With Pembrolizumab, in Unresectable Melanoma Patients",
+       "nctId": "NCT06284590"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "relatlimab"
+        },
+        {
+         "term": "Opdualag"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Vusolimogene Oderparepvec",
+         "otherNames": [
+          "VO",
+          "RP1"
+         ]
+        },
+        {
+         "name": "Nivolumab",
+         "otherNames": [
+          "Opdivo"
+         ]
+        },
+        {
+         "name": "Nivolumab + Relatlimab",
+         "otherNames": [
+          "Opdualag"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Single-agent chemotherapy"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "VO and Nivolumab vs Physician's Choice in Advanced Melanoma That Progressed on Anti-PD-1 & Anti-CTLA-4 Drugs [IGNYTE-3]",
+       "nctId": "NCT06264180"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "FYB206"
+        },
+        {
+         "name": "Keytruda"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma, Stage II",
+        "Melanoma Stage III"
+       ],
+       "keywords": [
+        "pembrolizumab",
+        "biosimilar",
+        "melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Assessment of PK Similarity of FYB206 in Comparison With Keytruda in Resected Stage II or III Melanoma Patients",
+       "nctId": "NCT06551064"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "ASP1012"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Solid Tumor"
+       ],
+       "keywords": [
+        "Locally Advanced Solid Tumors",
+        "Metastatic Solid Tumors",
+        "ASP1012",
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of ASP1012 in Adults With Solid Tumors",
+       "nctId": "NCT06171178"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2024-05-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "GME751"
+        },
+        {
+         "name": "Keytruda - EU"
+        },
+        {
+         "name": "Keytruda - US"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A PK Study to Compare GME751 (Proposed Pembrolizumab Biosimilar) and US-licensed and EU-authorized Keytruda® in Participants With Stage II and III Melanoma",
+       "nctId": "NCT06153238"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-05-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "STX-001"
+        },
+        {
+         "name": "Keytruda®",
+         "otherNames": [
+          "Pembrolizumab"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor"
+       ],
+       "keywords": [
+        "Intratumoral",
+        "Triple Negative Breast Cancer",
+        "Melanoma",
+        "Advance Solid Tumors",
+        "mRNA"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1/2 Study of Intratumoral Injection of STX-001 in Advanced Solid Tumors as Monotherapy or in Combination With Pembrolizumab",
+       "nctId": "NCT06249048"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-05-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Skin Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "Ipilimumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Nivolumab"
+        },
+        {
+         "name": "Ipilimumab/Nivolumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Malignant Melanoma",
+        "Skin Cancer"
+       ],
+       "keywords": [
+        "Immunotherapy",
+        "Immune Checkpoint Inhibitors"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "IFN-Gamma Expression as a Predictor of Response to Immune Checkpoint Inhibitors in First-Line Metastatic Melanoma",
+       "nctId": "NCT07436390"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-03-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "AMG 355"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumors"
+       ],
+       "keywords": [
+        "Advanced Solid Tumors",
+        "AMG 355",
+        "Pembrolizumab",
+        "Pharmacokinetics",
+        "Non-small Cell Lung Cancer (NSCLC)",
+        "Colorectal Cancer (CRC)",
+        "Gastric Cancer (GC)",
+        "Melanoma (MEL)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of AMG 355 Alone and in Combination With Pembrolizumab in Participants With Advanced Solid Tumors",
+       "nctId": "NCT06131398"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-03-07"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Small Cell Lung Carcinoma"
+        },
+        {
+         "term": "Urinary Bladder Neoplasms"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Prostatic Neoplasms, Castration-Resistant"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Esophageal Squamous Cell Carcinoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "MGC026 Dose Escalation"
+        },
+        {
+         "name": "MGC026 Dose for Expansion"
+        },
+        {
+         "name": "Pembrollizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "vobramitamab tavatecan"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor",
+        "Advanced Cancer",
+        "Metastatic Cancer",
+        "Squamous Cell Carcinoma of Head and Neck",
+        "Non Small Cell Lung Cancer",
+        "Small-cell Lung Cancer",
+        "Bladder Cancer",
+        "Sarcoma",
+        "Endometrial Cancer",
+        "Melanoma",
+        "Castration Resistant Prostatic Cancer",
+        "Cervical Cancer",
+        "Colorectal Cancer",
+        "Gastric Cancer",
+        "Gastro-esophageal Cancer",
+        "Pancreas Cancer",
+        "Clear Cell Renal Cell Carcinoma",
+        "Hepatocellular Carcinoma",
+        "Platinum-resistant Ovarian Cancer",
+        "Breast Cancer",
+        "Ovarian Cancer",
+        "Esophageal Squamous Cell Cancer (SCC)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of MGC026 in Participants With Advanced Solid Tumors",
+       "nctId": "NCT06242470"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-03-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "lenvatinib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Lenvatinib",
+         "otherNames": [
+          "Lenvima"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Mucosal Melanoma"
+       ],
+       "keywords": [
+        "Immunotherapy",
+        "VEGF inhibitor",
+        "Neoadjuvant",
+        "Adjuvant",
+        "Pembrolizumab",
+        "Lenvatinib",
+        "Pathlogical respone"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neoadjuvant Pembrolizumab and Lenvatinib for Mucosal Melanoma",
+       "nctId": "NCT05545969"
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2024-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "GB1211"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Head and Neck Squamous Cell Carcinoma"
+       ],
+       "keywords": [
+        "metastatic melanoma",
+        "head and neck squamous cell carcinoma",
+        "pembrolizumab",
+        "galecto",
+        "GB1211"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "GB1211 and Pembrolizumab Versus Pembrolizumab and Placebo in Patients With Metastatic Melanoma and Head and Neck Squamous Cell Carcinoma",
+       "nctId": "NCT05913388"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-02-29"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "GM103 (Part A)"
+        },
+        {
+         "name": "GM103 (Part B)"
+        },
+        {
+         "name": "GM103 and Pembrolizumab (Part C)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Head and Neck Cancer",
+        "Malignant Melanoma",
+        "Colorectal Cancer",
+        "Renal Cell Carcinoma",
+        "Cervical Cancer",
+        "Breast Cancer"
+       ],
+       "keywords": [
+        "Oncolytic Virus",
+        "OV",
+        "Solid tumor"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "GM103 Intratumoral Injection in Patients With Locally Advanced, Unresectable, Refractory and/or Metastatic Solid Tumors",
+       "nctId": "NCT06265025"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-02-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Ex-vivo expanded allogeneic γδ T cells"
+        },
+        {
+         "name": "Recombinant human interferon α1b"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "EARLY_PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Allogeneic Gammadelta T Cells Combined With Interferon-α1b or PD-1 Monoclonal Antibody in Stage III-IV Amenable to Surgical Resection Melanoma",
+       "nctId": "NCT06212388"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-01-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "TJ271 Injection in Combination with Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "First-line Non-small-cell Lung Cancer",
+        "First-line Urothelial Carcinoma",
+        "Second-line Urothelial Carcinoma",
+        "Second-line Melanoma"
+       ],
+       "keywords": [
+        "Evaluate the anti-tumor Efficacy, Safety, Tolerability,Pharmacokinetics and Immunogenicity",
+        "A Multi-center, Open-label Phase II Clinical Trial"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Clinical Trial of TJ271 Injection Combined With Pembrolizumab in the Treatment of Advanced Solid Tumors",
+       "nctId": "NCT05338580"
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2023-12-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab (+) Berahyaluronidase alfa",
+         "otherNames": [
+          "MK-3475A"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "MK-3475, KEYTRUDA®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Non-Small Cell Lung Cancer",
+        "Renal Cell Carcinoma",
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Participant Reported Preference for Subcutaneous Pembrolizumab Coformulated With Berahyaluronidase Alfa (MK-3475A) Over Intravenous Pembrolizumab (MK-3475) Formulation in Multiple Tumor Types (MK-3475A-F11)",
+       "nctId": "NCT06099782"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2023-12-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "IO102-IO103"
+        },
+        {
+         "name": "Pembrolizumab KEYTRUDA®"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma",
+        "Squamous Cell Carcinoma of Head and Neck"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase II Trial of Neoadjuvant and Adjuvant IO102-IO103 and Pembrolizumab KEYTRUDA® in Patients With Resectable Tumors",
+       "nctId": "NCT05280314"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-12-21"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "DF6215"
+        },
+        {
+         "name": "pembrolizumab"
+        },
+        {
+         "name": "KEYTRUDA®"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Solid Tumor, Adult",
+        "Solid Tumor Cancer"
+       ],
+       "keywords": [
+        "DF6215-001",
+        "DF6215",
+        "Melanoma",
+        "HPV-Positive Advanced Malignancies",
+        "Ovarian Cancer",
+        "Head and Neck Cancer",
+        "Non-Small Cell Lung Cancer",
+        "Renal Cell Carcinoma",
+        "Advanced or Metastatic Solid Tumors",
+        "Antineoplastic Agents",
+        "Antineoplastic Agents, Immunological",
+        "Molecular Mechanisms of Pharmacological Action",
+        "Neoplasms",
+        "Solid Tumor",
+        "Dose Escalation",
+        "oncology",
+        "pembrolizumab",
+        "KEYTRUDA®"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of DF6215 in Patients With Advanced Solid Tumors",
+       "nctId": "NCT06108479"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2023-11-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Parkinson Disease 4, Autosomal Dominant Lewy Body"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "IMM60",
+         "otherNames": [
+          "PORT-2"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "KEYTRUDA®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Non-small Cell Lung Cancer",
+        "Melanoma"
+       ],
+       "keywords": [
+        "Invariant natural killer T cells (iNKT)",
+        "Programmed Cell Death-1 (PD1, PD-1)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "IMM60 and Pembrolizumab in Melanoma and NSCLC",
+       "nctId": "NCT05709821"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2023-11-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Astrocytoma"
+        },
+        {
+         "term": "Glioblastoma"
+        },
+        {
+         "term": "Brain Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Esophageal Squamous Cell Carcinoma"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Merkel Cell"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Small Cell Lung Carcinoma"
+        },
+        {
+         "term": "Carcinoma, Squamous Cell"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Central Nervous System Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "NEO212"
+        },
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "regorafenib"
+        },
+        {
+         "term": "Carboplatin"
+        },
+        {
+         "term": "Paclitaxel"
+        },
+        {
+         "term": "IFL protocol"
+        },
+        {
+         "term": "aflibercept"
+        },
+        {
+         "term": "Bevacizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "NEO212 Oral Capsule",
+         "otherNames": [
+          "POH-TMZ"
+         ]
+        },
+        {
+         "name": "Ipilimumab",
+         "otherNames": [
+          "Yervoy"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Nivolumab",
+         "otherNames": [
+          "Opdivo"
+         ]
+        },
+        {
+         "name": "Regorafenib",
+         "otherNames": [
+          "Stivagra"
+         ]
+        },
+        {
+         "name": "Carboplatin",
+         "otherNames": [
+          "Paraplatin"
+         ]
+        },
+        {
+         "name": "Paclitaxel",
+         "otherNames": [
+          "Taxol"
+         ]
+        },
+        {
+         "name": "FOLFIRI Protocol",
+         "otherNames": [
+          "Zaltrap"
+         ]
+        },
+        {
+         "name": "Bevacizumab",
+         "otherNames": [
+          "Avastin",
+          "Mvasi",
+          "Zirabev",
+          "Alymsys",
+          "Vegzelma"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Diffuse Astrocytoma, IDH-Mutant",
+        "Glioblastoma, IDH-wildtype",
+        "Brain Metastases, Adult",
+        "Cervical Cancer",
+        "Colorectal Cancer",
+        "Esophageal Cancer",
+        "Esophageal Squamous Cell Carcinoma",
+        "Gastric Cancer",
+        "Gastroesophageal Junction Adenocarcinoma",
+        "Head and Neck Squamous Cell Carcinoma",
+        "Melanoma",
+        "Merkel Cell Carcinoma",
+        "Microsatellite Instability-High Solid Malignant Tumor",
+        "Mismatch Repair Deficient Solid Malignant Tumor",
+        "Microsatellite Instability-High Colorectal Cancer",
+        "Mismatch Repair Deficient Colorectal Cancer",
+        "Non-small Cell Lung Cancer",
+        "Renal Cell Carcinoma",
+        "Small Cell Lung Cancer",
+        "Squamous Cell Carcinoma",
+        "Urothelial Carcinoma"
+       ],
+       "keywords": [
+        "Astrocytoma",
+        "IDH-mutant",
+        "Glioblastoma",
+        "IDH-wildtype",
+        "Brain Metastases",
+        "CNS Tumor",
+        "GBM",
+        "NeOnc",
+        "Anova",
+        "NEO212",
+        "NEO100",
+        "TMZ"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of NEO212 in Patients With Astrocytoma IDH-mutant, Glioblastoma IDH-wildtype or Brain Metastasis",
+       "nctId": "NCT06047379"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-11-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Opdualag"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "KB707"
+        },
+        {
+         "name": "Opdualag"
+        },
+        {
+         "name": "KEYTRUDA ®( Pembrolizumab)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Melanoma Stage III",
+        "Melanoma Stage IV",
+        "Cutaneous Melanoma"
+       ],
+       "keywords": [
+        "Krystal Biotech",
+        "cancer",
+        "melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study Assessing KB707 for the Treatment of Locally Advanced or Metastatic Solid Tumors",
+       "nctId": "NCT05970497"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-10-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Crizotinib"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "Dacarbazine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "IDE196",
+         "otherNames": [
+          "Darovasertib"
+         ]
+        },
+        {
+         "name": "Crizotinib",
+         "otherNames": [
+          "XALKORI"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Ipilimumab",
+         "otherNames": [
+          "Yervoy"
+         ]
+        },
+        {
+         "name": "Nivolumab",
+         "otherNames": [
+          "Opdivo"
+         ]
+        },
+        {
+         "name": "Dacarbazine",
+         "otherNames": [
+          "DTIC-Dome"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Uveal Melanoma"
+       ],
+       "keywords": [
+        "IDE196",
+        "Darovasertib",
+        "Protein Kinase C",
+        "Metastatic Uveal Melanoma",
+        "Melanoma",
+        "Ocular Oncology",
+        "Ophthalmology",
+        "Crizotinib",
+        "Ocular melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "IDE196 (Darovasertib) in Combination With Crizotinib as First-line Therapy in Metastatic Uveal Melanoma",
+       "nctId": "NCT05987332"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2023-10-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "RPH-075",
+         "otherNames": [
+          "pembrolizumab",
+          "Arfleyda"
+         ]
+        },
+        {
+         "name": "Keytruda®",
+         "otherNames": [
+          "pembrolizumab"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Skin Melanoma"
+       ],
+       "keywords": [
+        "cancer",
+        "melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study сomparing the Efficacy and Safety of RPH-075 and Keytruda® in Patients With Unresectable or Metastatic Skin Melanoma",
+       "nctId": "NCT06320353"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2023-09-27"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "CJRB-101"
+        },
+        {
+         "name": "Pembrolizumab injection"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "NSCLC",
+        "HNSCC",
+        "Melanoma",
+        "Metastatic Cancer",
+        "Advanced Solid Tumor",
+        "Advanced Cancer"
+       ],
+       "keywords": [
+        "Live Biotherapeutic Product",
+        "Keytruda",
+        "CJRB-101",
+        "metastatic",
+        "Immune checkpoint inhibitor",
+        "Pembrolizumab",
+        "CJB-101-01",
+        "anti-PD1",
+        "anti-PDL1"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety, Tolerability, and Preliminary Efficacy of CJRB-101 With Pembrolizumab in Subjects With Selected Types of Advanced or Metastatic Cancer",
+       "nctId": "NCT05877430"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-09-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "encorafenib"
+        },
+        {
+         "term": "binimetinib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda",
+          "MK3475"
+         ]
+        },
+        {
+         "name": "Encorafenib",
+         "otherNames": [
+          "Braftovi"
+         ]
+        },
+        {
+         "name": "Binimetinib",
+         "otherNames": [
+          "Mektovi"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Malignant Melanoma",
+        "Metastatic Melanoma",
+        "Immunotherapy",
+        "BRAF V600E",
+        "Malignant Melanoma Stage IV"
+       ],
+       "keywords": [
+        "Melanoma",
+        "Primary Resistance to Immunotherapy",
+        "Neoplasm"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Overcoming Primary Resistance to Immunotherapy in Metastatic Melanoma",
+       "nctId": "NCT05304546"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2023-09-05"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Anus Neoplasms"
+        },
+        {
+         "term": "Cholangiocarcinoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "PLN-101095"
+        },
+        {
+         "name": "PLN-101095"
+        },
+        {
+         "name": "PLN-101095"
+        },
+        {
+         "name": "PLN-101095"
+        },
+        {
+         "name": "PLN-101095"
+        },
+        {
+         "name": "PLN-101095"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced or Metastatic Solid Tumor"
+       ],
+       "keywords": [
+        "Advanced Solid Tumors Cancer",
+        "Anal Carcinoma",
+        "Biliary tract carcinoma (BTC)",
+        "Cholangiocarcinoma",
+        "Clear cell renal cell carcinoma (ccRCC)",
+        "Colorectal Cancer",
+        "Endometrial Cancer",
+        "Gallbladder",
+        "Head and Neck Squamous Cell Cancer (HNSCC)",
+        "Melanoma",
+        "Non-small cell lung cancer (NSCLC)",
+        "Ovarian Carcinoma",
+        "Triple Negative Breast Cancer (TNBC)",
+        "Tumor mutational burden (TMB)-high tumors",
+        "TMB-low tumors",
+        "Urothelial Carcinoma",
+        "Pembrolizumab",
+        "Immunotherapy"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1 Study of PLN-101095 in Adults With Advanced or Metastatic Solid Tumors",
+       "nctId": "NCT06270706"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-08-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Saline Solution"
+        },
+        {
+         "term": "Glucose"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Intismeran autogene",
+         "otherNames": [
+          "mRNA-4157",
+          "Individualized neoantigen therapy",
+          "V940"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "MK-3475",
+          "Keytruda®"
+         ]
+        },
+        {
+         "name": "Placebo",
+         "otherNames": [
+          "Normal saline",
+          "Dextrose"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Study of Intismeran Autogene (V940) Plus Pembrolizumab in People With High-Risk Melanoma (V940-001)",
+       "nctId": "NCT05933577"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2023-07-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "belapectin"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "GR-MD-02",
+         "otherNames": [
+          "Galactoarabino-rhamnogalactouronate"
+         ]
+        },
+        {
+         "name": "Placebo"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Head and Neck Squamous Cell Carcinoma"
+       ],
+       "keywords": [
+        "HNSCC",
+        "MM",
+        "pembrolizumab",
+        "GR-MD-02",
+        "Galectin Inhibitor",
+        "GRMD-02",
+        "GRMD002"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "GR-MD-02 + Pembrolizumab Versus Pembrolizumab Monotherapy in Melanoma and Squamous Cell Head and Neck Cancer Patients",
+       "nctId": "NCT04987996"
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2023-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Skin Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "encorafenib"
+        },
+        {
+         "term": "binimetinib"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "Nivolumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "encorafenib",
+         "otherNames": [
+          "BRAFTOVI"
+         ]
+        },
+        {
+         "name": "binimetinib",
+         "otherNames": [
+          "MEKTOVI"
+         ]
+        },
+        {
+         "name": "pembrolizumab",
+         "otherNames": [
+          "KEYTRUDA®"
+         ]
+        },
+        {
+         "name": "ipilimumab",
+         "otherNames": [
+          "YERVOY"
+         ]
+        },
+        {
+         "name": "nivolumab",
+         "otherNames": [
+          "OPDIVO"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "BRAF",
+        "BRAF V600E/K melanoma",
+        "metastatic melanoma",
+        "advanced melanoma",
+        "skin cancer",
+        "portside"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study Comparing 3 Study Medicines (Encorafenib, Binimetinib, Pembrolizumab) to 2 Study Medicines (Ipilimumab and Nivolumab) in Patients With Advanced Melanoma",
+       "nctId": "NCT05926960"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2023-06-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Diabetes Mellitus, Insulin-Dependent, 12"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Doxorubicin"
+        },
+        {
+         "term": "Paclitaxel"
+        },
+        {
+         "term": "Bevacizumab"
+        },
+        {
+         "term": "eribulin"
+        },
+        {
+         "term": "trastuzumab deruxtecan"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "GI-102 subcutaneous (SC)"
+        },
+        {
+         "name": "GI-102"
+        },
+        {
+         "name": "doxorubicin"
+        },
+        {
+         "name": "paclitaxel"
+        },
+        {
+         "name": "bevacizumab"
+        },
+        {
+         "name": "eribulin"
+        },
+        {
+         "name": "trastuzumab deruxtecan (T-DXd)",
+         "otherNames": [
+          "ENHERTU®"
+         ]
+        },
+        {
+         "name": "pembrolizumab",
+         "otherNames": [
+          "KEYTRUDA®"
+         ]
+        },
+        {
+         "name": "GI-102"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor",
+        "Metastatic Solid Tumor",
+        "Soft Tissue Sarcoma (STS)",
+        "Platinum-resistant Ovarian Cancer (PROC)",
+        "Hepatocellular Carcinoma (HCC)",
+        "Colorectal Cancer (CRC)",
+        "HER2 Negative Breast Cancer",
+        "Cutaneous Melanoma",
+        "Renal Cell Carcinoma (RCC)"
+       ],
+       "keywords": [
+        "GI-102",
+        "CD80-IgG4 Fc-IL2 variant",
+        "Immunotherapy",
+        "IL-2",
+        "Interleukin-2",
+        "bispecific protein",
+        "immunocytokine",
+        "CD80",
+        "CTLA-4",
+        "Pembrolizumab",
+        "T-DXd",
+        "Trastuzumab deruxtecan",
+        "Doxorubicin",
+        "Paclitaxel",
+        "Bevacizumab",
+        "Eribulin"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate the Safety and Therapeutic Activity of GI-102 As a Single Agent and in Combination with Conventional Anti-cancer Drugs, Pembrolizumab or Trastuzumab Deruxtecan(T-DXd) in Patients with Advanced Solid Tumors (KEYNOTE-G08)",
+       "nctId": "NCT05824975"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-05-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "ON 01910"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Magnetic Resonance Spectroscopy"
+        },
+        {
+         "term": "Biopsy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Rigosertib"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Magnetic Resonance Imaging"
+        },
+        {
+         "name": "Biospecimen Collection"
+        },
+        {
+         "name": "Biopsy"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Clinical Stage III Cutaneous Melanoma AJCC v8",
+        "Clinical Stage IV Cutaneous Melanoma AJCC v8",
+        "Metastatic Melanoma",
+        "Refractory Melanoma",
+        "Unresectable Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Rigosertib Plus Pembrolizumab in Treating Patients With Unresectable/Metastatic Melanoma Refractory to PD-1 Inhibitors",
+       "nctId": "NCT05764395"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2023-05-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Squamous Cell"
+        },
+        {
+         "term": "Carcinoma, Basal Cell"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Merkel Cell"
+        },
+        {
+         "term": "Adenocarcinoma, Sebaceous"
+        },
+        {
+         "term": "Paget Disease, Extramammary"
+        },
+        {
+         "term": "Sarcoma, Kaposi"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Carcinoma, Skin Appendage"
+        },
+        {
+         "term": "Hemangiosarcoma"
+        },
+        {
+         "term": "Skin Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "MQ719"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cutaneous Squamous Cell Carcinoma",
+        "SCC - Squamous Cell Carcinoma",
+        "Basal Cell Carcinoma",
+        "BCC",
+        "BCC - Basal Cell Carcinoma",
+        "Melanoma",
+        "Merkel Cell Carcinoma",
+        "Sebaceous Carcinoma",
+        "Extramammary Paget Disease",
+        "Kaposi Sarcoma",
+        "Head and Neck Squamous Cell Carcinoma",
+        "HNSCC",
+        "Adnexal Carcinoma",
+        "Angiosarcoma",
+        "Cutaneous Neoplasm",
+        "Advanced Cancer",
+        "Metastatic Cancer",
+        "Refractory Cancer",
+        "Solid Tumor"
+       ],
+       "keywords": [
+        "Cutaneous Squamous Cell Carcinoma",
+        "SCC - Squamous Cell Carcinoma",
+        "Basal Cell Carcinoma",
+        "BCC",
+        "Melanoma",
+        "Merkel Cell Carcinoma",
+        "Sebaceous Carcinoma",
+        "Extramammary Paget Disease",
+        "Kaposi Sarcoma",
+        "Head and Neck Squamous Cell Carcinoma",
+        "HNSCC",
+        "Adnexal Carcinoma",
+        "Angiosarcoma",
+        "Cutaneous Neoplasm",
+        "Advanced Cancer",
+        "Metastatic Cancer",
+        "Refractory Cancer",
+        "MQ710",
+        "Memorial Sloan Kettering Cancer Center",
+        "22-278",
+        "Solid Tumor"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of MQ710 With and Without Pembrolizumab in People With Solid Tumor Cancer",
+       "nctId": "NCT05859074"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-05-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "NM1F Injection"
+        },
+        {
+         "name": "Pembrolizumab injection"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Ovarian Cancer",
+        "Melanoma",
+        "Triple Negative Breast Cancer",
+        "Colorectal Cancer"
+       ],
+       "keywords": [
+        "solid tumors，NM1F，Pembrolizumab"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A First-in-human, Phase I, Open-label, Multicenter Study of NM1F(Anti-PVRIG) in Patients With Advanced Solid Tumors",
+       "nctId": "NCT05746897"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-04-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Skin Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "lifileucel"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Lifileucel plus Pembrolizumab",
+         "otherNames": [
+          "LN-144",
+          "Pembrolizumab"
+         ]
+        },
+        {
+         "name": "Pembrolizumab with Optional Crossover Period"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Unresectable Melanoma",
+        "Melanoma"
+       ],
+       "keywords": [
+        "Tumor Infiltrating Lymphocytes",
+        "TIL",
+        "Metastatic Melanoma",
+        "Unresectable Melanoma",
+        "Cell Therapy",
+        "Cellular Immuno-therapy",
+        "IL-2",
+        "Non-myeloablative lymphodepletion (NMALD)",
+        "Check point inhibitor",
+        "Melanoma",
+        "Lifileucel",
+        "Stage III Melanoma",
+        "Stage IV Melanoma",
+        "Skin cancer",
+        "Skin cancer types",
+        "Malignant melanoma",
+        "Autologous Adoptive Cell Therapy",
+        "Autologous Adoptive Cell Transfer",
+        "LN-144",
+        "Pembrolizumab",
+        "Pembro",
+        "Adjuvant/Neo-adjuvant",
+        "BRAF/MEK",
+        "ICI",
+        "BRAF v600",
+        "Immune checkpoint inhibitor",
+        "Tumor infiltrating T-cells",
+        "TILVANCE",
+        "TILVANCE-301"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study to Investigate Lifileucel Regimen Plus Pembrolizumab Compared With Pembrolizumab Alone in Participants With Untreated Advanced Melanoma.",
+       "nctId": "NCT05727904"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-03-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "GV20-0251"
+        },
+        {
+         "name": "GV20-0251"
+        },
+        {
+         "name": "GV20-0251 and Pembrolizumab [KEYTRUDA®]",
+         "otherNames": [
+          "MK-3475"
+         ]
+        },
+        {
+         "name": "GV20-0251 and Pembrolizumab [KEYTRUDA®]",
+         "otherNames": [
+          "MK-3475"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Solid Tumor, Adult",
+        "Refractory Cancer",
+        "Endometrial Carcinoma (EC)",
+        "Squamous Head and Neck Carcinoma",
+        "pMMR/MSS Adenocarcinoma of the Colon or Rectum",
+        "Cutaneous Melanoma",
+        "Non-Small Cell Lung Cancer"
+       ],
+       "keywords": [
+        "GV20-0251"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of GV20-0251 Monotherapy and GV20-0251 in Combination With Pembrolizumab in Participants With Solid Tumor Malignancies",
+       "nctId": "NCT05669430"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-03-23"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "CyPep-1"
+        },
+        {
+         "name": "Pembrolizumab 25 MG/ML [KEYTRUDA®]",
+         "otherNames": [
+          "KEYTRUDA®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Head and Neck Squamous Cell Carcinoma",
+        "Advanced Breast Cancer",
+        "Advanced Melanoma"
+       ],
+       "keywords": [
+        "Cancer",
+        "Tumour",
+        "Oncology",
+        "Immunotherapy",
+        "Oncolytic",
+        "CD8",
+        "Intratumoral",
+        "Neoplasm",
+        "itRECIST"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate the Safety and Efficacy of CyPep-1 in Combination With Pembrolizumab for the Treatment of Advanced or Metastatic Cancers",
+       "nctId": "NCT05383170"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2023-03-21"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Endometrial Neoplasms"
+        },
+        {
+         "term": "Mesothelioma, Malignant"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Leucovorin"
+        },
+        {
+         "term": "Levoleucovorin"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Docetaxel"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Fosifloxuridine Nafalbenamide",
+         "otherNames": [
+          "NUC-3373",
+          "Nucleotide analogue"
+         ]
+        },
+        {
+         "name": "Leucovorin",
+         "otherNames": [
+          "Folinic acid",
+          "Levo-leucovorin"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Docetaxel",
+         "otherNames": [
+          "Taxotere",
+          "Docecad",
+          "Docefrez"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Cancer",
+        "Advanced Solid Tumor",
+        "Neoplasm Malignant",
+        "Metastatic Cancer",
+        "Melanoma",
+        "Classical Hodgkin Lymphoma",
+        "Non Small Cell Lung Cancer",
+        "Renal Cell Carcinoma",
+        "Urothelial Carcinoma",
+        "Head and Neck Squamous Cell Carcinoma",
+        "Subungual Squamous Cell Carcinoma",
+        "Oesophageal Carcinoma",
+        "MSI-H Colorectal Cancer",
+        "Gastric Cancer",
+        "Triple Negative Breast Cancer",
+        "Endometrial Carcinoma",
+        "Pleural Mesothelioma"
+       ],
+       "keywords": [
+        "NuCana plc",
+        "NUC-3373",
+        "Fosifloxuridine nafalbenamide",
+        "Leucovorin",
+        "Pembrolizumab",
+        "Docetaxel",
+        "Antineoplastic agents",
+        "Chemotherapy",
+        "Locally advanced",
+        "Metastatic"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "NUC-3373 in Combination With Other Agents in Patients With Advanced Solid Tumours",
+       "nctId": "NCT05714553"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2023-03-08"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Prostatic Neoplasms"
+        },
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Colonic Neoplasms"
+        },
+        {
+         "term": "Uterine Neoplasms"
+        },
+        {
+         "term": "Pancreatic Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Thyroid Neoplasms"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Kidney Neoplasms"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "KVA12123 - Dose Escalation"
+        },
+        {
+         "name": "KVA12123 Plus Pembrolizumab - Dose Escalation",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "KVA12123 - Dose Expansion"
+        },
+        {
+         "name": "KVA12123 Plus Pembrolizumab - Dose Expansion",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Solid Tumor",
+        "Melanoma",
+        "Carcinoma",
+        "Sarcoma",
+        "Lung Cancer",
+        "Prostate Cancer",
+        "Breast Cancer",
+        "Colo-rectal Cancer",
+        "Uterine Cancer",
+        "Pancreatic Cancer",
+        "Gastric Cancer",
+        "Esophageal Cancer",
+        "Thyroid Cancer",
+        "Ovarian Cancer",
+        "Kidney Cancer",
+        "Head and Neck Cancer"
+       ],
+       "keywords": [
+        "TBS-2025",
+        "VISTA inhibiting antibody",
+        "TuHURA Biosciences, Inc."
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Trial of KVA12123 [TBS-2025] Treatment Alone and in Combination With Pembrolizumab In Advanced Solid Tumors (VISTA-101)",
+       "nctId": "NCT05708950"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2023-03-03"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Carcinoma"
+        },
+        {
+         "term": "Lung Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "RPH-075",
+         "otherNames": [
+          "pembrolizumab"
+         ]
+        },
+        {
+         "name": "Keytruda®",
+         "otherNames": [
+          "pembrolizumab"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Skin Melanoma",
+        "Squamous Non-small-cell Lung Cancer",
+        "Head and Neck Squamous Cell Carcinoma"
+       ],
+       "keywords": [
+        "cancer",
+        "melanoma",
+        "carcinoma",
+        "lung cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study Comparing the Pharmacokinetics, Safety, and Efficacy of RPH-075 and Keytruda® in Patients With Malignant Neoplasms",
+       "nctId": "NCT06307093"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2023-03-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "vactosertib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab, Vactosertib"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Acral Melanoma",
+        "Mucosal Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Antitumor Activity of Vactosertib in Combination With Pembrolizumab in Acral and Mucosal Melanoma Patients Progressed From Prior Immune Check Point Inhibitor",
+       "nctId": "NCT05436990"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2023-02-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Sarcoma, Synovial"
+        },
+        {
+         "term": "Liposarcoma, Myxoid"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Osteosarcoma"
+        },
+        {
+         "term": "Sarcoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Cyclophosphamide"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "PeptiCRAd-1"
+        },
+        {
+         "name": "Cyclophosphamide"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma (Skin)",
+        "Triple-Negative Breast Cancer",
+        "Non-Small Cell Lung Cancer",
+        "Synovial Sarcoma",
+        "Myxoid Liposarcoma",
+        "Colorectal Cancer",
+        "Osteosarcoma",
+        "Sarcoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "START: Safety and Anti-Tumor Activity of PeptiCRAd-1 in Treatment of Cancer",
+       "nctId": "NCT05492682"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2023-02-02"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Parkinson Disease 4, Autosomal Dominant Lewy Body"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab/Vibostolimab",
+         "otherNames": [
+          "MK-7684A"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "MK-3475",
+          "KEYTRUDA®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "Programmed Cell Death-1 (PD1, PD-1)",
+        "T-cell immunoreceptor with immunoglobulin and immunoreceptor tyrosine-based inhibitory motif domains (TIGIT)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Adjuvant Pembrolizumab/Vibostolimab (MK-7684A) Versus Pembrolizumab for Resected High-Risk Melanoma in Participants With High-Risk Stage II-IV Melanoma (MK-7684A-010/KEYVIBE-010)",
+       "nctId": "NCT05665595"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2023-01-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Uveal Melanoma"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Toll-Like Receptor 1"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "TBio-4101",
+         "otherNames": [
+          "TIL, autologous, tumor-reactive, T-cell product"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Breast Cancer",
+        "Colorectal Cancer",
+        "Uveal Melanoma",
+        "Cutaneous Melanoma",
+        "Non-Small Cell Lung Cancer",
+        "Head and Neck Squamous Cell Carcinoma"
+       ],
+       "keywords": [
+        "MSS-CRC",
+        "TIL",
+        "Tumor infiltrating lymphocyte",
+        "TNBC",
+        "HR+ Breast",
+        "ER+ Breast",
+        "MSI-CRC",
+        "personalized medicine",
+        "ocular melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of TBio-4101 (TIL) and Pembrolizumab in Patients With Advanced Solid Tumors",
+       "nctId": "NCT05576077"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2023-01-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Skin Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "cemiplimab"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Fianlimab",
+         "otherNames": [
+          "REGN3767"
+         ]
+        },
+        {
+         "name": "Cemiplimab",
+         "otherNames": [
+          "REGN2810",
+          "Libtayo"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "MK-3475",
+          "lambrolizumab",
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ],
+       "keywords": [
+        "Resected High Risk Melanoma",
+        "Skin Cancer",
+        "Stage IIB",
+        "Stage IIC",
+        "Stage III",
+        "Stage IV",
+        "LAG-3 Lymphocyte activation gene 3",
+        "Adjuvant Setting",
+        "anti-PD-1 Monoclonal Antibody"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Trial to See if the Combination of Fianlimab With Cemiplimab Works Better Than Pembrolizumab for Preventing or Delaying Melanoma From Coming Back After it Has Been Removed With Surgery",
+       "nctId": "NCT05608291"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2023-01-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Breast Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Merkel Cell"
+        },
+        {
+         "term": "Sarcoma"
+        },
+        {
+         "term": "Bone Neoplasms"
+        },
+        {
+         "term": "Osteosarcoma"
+        },
+        {
+         "term": "Carcinoma, Basal Cell"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "poly ICLC"
+        },
+        {
+         "term": "Radiotherapy"
+        },
+        {
+         "term": "Radiation"
+        },
+        {
+         "term": "flt3 ligand protein"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "tocilizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Anti-CD40 Agonist Monoclonal Antibody CDX-1140",
+         "otherNames": [
+          "Agonist CD40 Antibody CDX-1140",
+          "Anti-CD40 Agonistic Monoclonal Antibody CDX-1140",
+          "CDX 1140",
+          "CDX-1140"
+         ]
+        },
+        {
+         "name": "Poly ICLC",
+         "otherNames": [
+          "Hiltonol",
+          "Poly I:Poly C with Poly-L-Lysine Stabilizer",
+          "poly-ICLC",
+          "PolyI:PolyC with Poly-L-Lysine Stabilizer",
+          "Polyinosinic-Polycytidylic Acid Stabilized with Polylysine and Carboxymethylcellulose",
+          "Polyriboinosinic-Polyribocytidylic Acid-Polylysine Carboxymethylcellulose",
+          "Stabilized Polyriboinosinic/Polyribocytidylic Acid"
+         ]
+        },
+        {
+         "name": "Radiation Therapy",
+         "otherNames": [
+          "Cancer Radiotherapy",
+          "Irradiate",
+          "Irradiated",
+          "Irradiation",
+          "Radiation",
+          "Radiation Therapy, NOS",
+          "Radiotherapeutics",
+          "Radiotherapy",
+          "RT",
+          "Therapy, Radiation"
+         ]
+        },
+        {
+         "name": "Recombinant Flt3 Ligand",
+         "otherNames": [
+          "CDX-301",
+          "FLT 3 Ligand",
+          "FLT3 Ligand",
+          "Flt3-Ligand",
+          "Flt3L",
+          "Mobist",
+          "Mobista",
+          "rhuFlt3L"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Tocilizumab",
+         "otherNames": [
+          "Actemra"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Anatomic Stage IV Breast Cancer AJCC v8",
+        "Metastatic Breast Carcinoma",
+        "Prognostic Stage IV Breast Cancer AJCC v8",
+        "Unresectable Breast Carcinoma",
+        "Metastatic Melanoma",
+        "Unresectable Melanoma",
+        "Cutaneous Squamous Cell Carcinoma",
+        "Merkel Cell Carcinoma",
+        "Soft Tissue Sarcoma",
+        "Bone Sarcoma",
+        "Sarcoma,Soft Tissue",
+        "Sarcoma of Bone",
+        "Basal Cell Carcinoma"
+       ],
+       "keywords": [
+        "High-grade bone sarcoma",
+        "High-grade soft tissue sarcoma",
+        "Basal Cell Carcinoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "In Situ Immunomodulation With CDX-301, Radiation Therapy, CDX-1140 and Poly-ICLC in Patients w/ Unresectable and Metastatic Solid Tumors",
+       "nctId": "NCT04616248"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2023-01-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "etakafusp alfa (AB248)"
+        },
+        {
+         "name": "pembrolizumab",
+         "otherNames": [
+          "KEYTRUDA®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Solid Tumor",
+        "Non Small Cell Lung Cancer",
+        "Melanoma",
+        "Squamous Cell Carcinoma of Head and Neck",
+        "Renal Cell Carcinoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study Evaluating AB248 Alone or in Combination With Pembrolizumab in Adult Patients With Solid Tumors",
+       "nctId": "NCT05653882"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2023-01-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Temozolomide"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "HX008 + TACE"
+        },
+        {
+         "name": "Temozolomide + TACE"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Neuroendocrine Tumors Neuroectodermal Tumors Neoplasms Germ Cell and Embryonal Neoplasms by Histologic Type Neoplasms Neoplasms"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of HX008 Plus Transcatheter Arterial Chemoembolization (TACE) in the First-Line Treatment of Subjects With Stage IV (M1c) Melanoma That is Metastatic to the Liver",
+       "nctId": "NCT05647954"
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2022-12-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Nevus, Blue"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "tebentafusp"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Tebentafusp"
+        },
+        {
+         "name": "Tebentafusp with Pembrolizumab"
+        },
+        {
+         "name": "Investigators Choice"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Melanoma"
+       ],
+       "keywords": [
+        "Melanoma",
+        "IMCgp100",
+        "Tebentafusp",
+        "Cutaneous Melanoma",
+        "Immunotherapy",
+        "gp100",
+        "TCR",
+        "Pembrolizumab",
+        "Bispecific T cell receptor fusion protein",
+        "ImmTAC (Immune-mobilizing monoclonal T-cell receptor Against Cancer)",
+        "Immune mobilizing monoclonal T cell receptor against cancer",
+        "KIMMTRAK",
+        "Acral Melanoma",
+        "Mucosal Melanoma",
+        "Blue Nevus",
+        "anti-PDL1",
+        "checkpoint therapy"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Tebentafusp Regimen Versus Investigator's Choice in Previously Treated Advanced Melanoma (TEBE-AM)",
+       "nctId": "NCT05549297"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2022-12-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Ovarian Epithelial"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "XmAb®808"
+        },
+        {
+         "name": "Keytruda® (pembrolizumab)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Head and Neck Squamous Cell Carcinoma",
+        "Melanoma Excluding Uveal Melanoma",
+        "Non-small Cell Lung Cancer, Squamous or Non-squamous",
+        "Urothelial Carcinoma",
+        "Renal Cell Carcinoma, Clear Cell",
+        "Castration-resistant Prostate Cancer",
+        "Ovarian Cancer, Epithelial",
+        "TNBC - Triple-Negative Breast Cancer",
+        "Colorectal Cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 1, First-in-human, Dose-finding and Expansion Study to Evaluate XmAb®808 in Combination With Pembrolizumab in Advanced Solid Tumors",
+       "nctId": "NCT05585034"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2022-12-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Platinum Compounds"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "BAY2965501"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Platinum-based Chemotherapy"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumors"
+       ],
+       "keywords": [
+        "Solid tumors",
+        "Non-small cell lung cancer",
+        "NSCLC",
+        "Gastroesophageal junction adenocarcinoma",
+        "GEJ adenocarcinoma",
+        "Renal cell carcinoma",
+        "RCC",
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A First-in-human Study to Learn How Safe the Study Drug BAY2965501 is, Find the Best Dose (Single Drug & Combination), How it Affects the Body, What Maximum Amount Can be Given, How it Moves Into, Through and Out of the Body, How it Acts on Different Tumors in Participants With Advanced Solid Tumors",
+       "nctId": "NCT05614102"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-11-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma, Cutaneous Malignant"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Adenocarcinoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "dabrafenib"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "IMM-1-104 Monotherapy (Treatment Group A)",
+         "otherNames": [
+          "IMM-1-104"
+         ]
+        },
+        {
+         "name": "IMM-1-104 + modified Gemcitabine/nab-Paclitaxel (Treatment Group B)",
+         "otherNames": [
+          "IMM-1-104 + mGnP"
+         ]
+        },
+        {
+         "name": "IMM-1-104 + modified FOLFIRINOX (Treatment Group C)",
+         "otherNames": [
+          "IMM-1-104 + mFFX"
+         ]
+        },
+        {
+         "name": "IMM-1-104 + dabrafenib (Treatment Group D)",
+         "otherNames": [
+          "IMM-1-104 + dabrafenib"
+         ]
+        },
+        {
+         "name": "IMM-1-104 + pembrolizumab (Treatment Group E)",
+         "otherNames": [
+          "IMM-1-104 + pembro"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumor",
+        "Pancreatic Adenocarcinoma",
+        "Malignant Melanoma (Cutaneous)",
+        "Non-small Cell Lung Cancer (NSCLC)"
+       ],
+       "keywords": [
+        "pan-RAS",
+        "KRAS",
+        "NRAS",
+        "HRAS",
+        "Targeted therapy",
+        "Metastatic cancer",
+        "Advanced cancer",
+        "RAS",
+        "Adenocarcinoma",
+        "MEK",
+        "Dual MEK",
+        "MEK 1/2",
+        "Mitogen-Activated Protein Kinase (MAPK)",
+        "G12A",
+        "G12C",
+        "G12D",
+        "G12F",
+        "G12R",
+        "G12S",
+        "G12V",
+        "G13C",
+        "G13D",
+        "G13R",
+        "Q61H",
+        "Q61K",
+        "Q61L",
+        "Q61R",
+        "A146T",
+        "A146V",
+        "K117N"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1/2a Study of IMM-1-104 in Participants With Advanced or Metastatic Solid Tumors",
+       "nctId": "NCT05585320"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-10-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Ovarian Epithelial"
+        },
+        {
+         "term": "Nasopharyngeal Carcinoma"
+        },
+        {
+         "term": "Thymoma"
+        },
+        {
+         "term": "Anus Neoplasms"
+        },
+        {
+         "term": "Mesothelioma"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Lung Neoplasms"
+        },
+        {
+         "term": "Skin Neoplasms"
+        },
+        {
+         "term": "Kidney Neoplasms"
+        },
+        {
+         "term": "Adenocarcinoma, Clear Cell"
+        },
+        {
+         "term": "Ovarian Neoplasms"
+        },
+        {
+         "term": "Nasopharyngeal Neoplasms"
+        },
+        {
+         "term": "Thymus Neoplasms"
+        },
+        {
+         "term": "Rectal Neoplasms"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Colonic Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Intestinal Neoplasms"
+        },
+        {
+         "term": "Head and Neck Neoplasms"
+        },
+        {
+         "term": "Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "KFA115",
+         "otherNames": [
+          "NVP-KFA115"
+         ]
+        },
+        {
+         "name": "pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Carcinoma, Non-Small-Cell Lung",
+        "Cutaneous Melanoma",
+        "Carcinoma, Renal Cell",
+        "Carcinoma, Ovarian Epithelial",
+        "Nasopharyngeal Carcinoma",
+        "Carcinoma, Thymic",
+        "Anal Cancer",
+        "Mesothelioma",
+        "Esophagogastric Cancer",
+        "High Microsatellite Instability Colorectal Carcinoma",
+        "Squamous Cell Carcinoma of Head and Neck",
+        "Triple Negative Breast Neoplasms"
+       ],
+       "keywords": [
+        "Lung cancer",
+        "Non-small-cell lung cancer",
+        "NSCLC",
+        "Malignant Skin Cancer",
+        "Skin Cancer",
+        "Cutaneous melanoma",
+        "Renal cell carcinoma",
+        "RCC",
+        "Kidney cancer",
+        "Renal cancer",
+        "Clear cell carcinoma",
+        "Cancer of the ovaries",
+        "Female reproductive cancer",
+        "Ovarian carcinoma",
+        "Epithelial ovarian cancer",
+        "Nasopharyngeal Neoplasms",
+        "Nasopharyngeal carcinoma",
+        "NPC",
+        "Thymic carcinoma",
+        "Thymic tumor",
+        "Rectal cancer",
+        "Rectal neoplasms",
+        "Esophageal cancer",
+        "Cancer of throat",
+        "Colon cancer",
+        "Colorectal cancer",
+        "Bowel cancer",
+        "Cancer of the colon and rectum",
+        "High microsatellite instability colorectal carcinoma",
+        "CRC",
+        "MSI-H CRC",
+        "Advanced solid malignancies",
+        "Head and neck cancer",
+        "HNSCC",
+        "SCCHN",
+        "Squamous cell carcinoma of the head and neck",
+        "Cancer",
+        "Advanced cancer",
+        "NVP-KFA115",
+        "Triple Negative Breast Cancer",
+        "TNBC",
+        "Mesothelioma",
+        "Anal cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Safety and Efficacy of KFA115 Alone and in Combo With Pembrolizumab in Patients With Select Advanced Cancers",
+       "nctId": "NCT05544929"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-10-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Esophageal Neoplasms"
+        },
+        {
+         "term": "Stomach Neoplasms"
+        },
+        {
+         "term": "Uterine Cervical Neoplasms"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "atezolizumab"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Enzelkitug",
+         "otherNames": [
+          "RO7502175"
+         ]
+        },
+        {
+         "name": "Atezolizumab",
+         "otherNames": [
+          "Tecentriq"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Locally Advanced or Metastatic Solid Tumors",
+        "NSCLC",
+        "HNSCC",
+        "Melanoma",
+        "TNBC",
+        "Esophageal Cancer",
+        "Gastric Cancer",
+        "Cervical Cancer",
+        "Colorectal Cancer",
+        "Urothelial Carcinoma",
+        "Clear Cell RCC",
+        "HCC"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate the Safety, Pharmacokinetics, and Activity of Enzelkitug as a Single Agent and in Combination With Checkpoint Inhibitor in Participants With Locally Advanced or Metastatic Solid Tumors",
+       "nctId": "NCT05581004"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-10-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Colorectal Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Small Cell Lung Carcinoma"
+        },
+        {
+         "term": "Carcinoma, Transitional Cell"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Hepatocellular"
+        },
+        {
+         "term": "Carcinoma, Ovarian Epithelial"
+        },
+        {
+         "term": "Thyroid Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "lenvatinib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "JK08"
+        },
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Lenvatinib Pill"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Cancer",
+        "Tumor, Solid",
+        "Advanced Solid Tumor",
+        "Metastatic Cancer",
+        "Melanoma",
+        "Colorectal Cancer",
+        "Non-small Cell Lung Cancer",
+        "Small-cell Lung Cancer",
+        "Urothelial Carcinoma",
+        "Squamous Cell Carcinoma of Head and Neck",
+        "Luminal Breast Cancer",
+        "Triple Negative Breast Cancer",
+        "Clear Cell Renal Cell Carcinoma",
+        "Papillary Renal Cell Carcinoma",
+        "Gastric Adenocarcinoma",
+        "GastroEsophageal Cancer",
+        "Squamous Cell Carcinoma Skin",
+        "Pancreatic Adenocarcinoma",
+        "Hepatocellular Carcinoma",
+        "Colorectal Adenocarcinoma",
+        "Epithelial Ovarian Cancer",
+        "Thyroid Cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of JK08 in Patients with Unresectable Locally Advanced or Metastatic Cancer",
+       "nctId": "NCT05620134"
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2022-10-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Brain Neoplasms"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Uveal Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Ipilimumab"
+        },
+        {
+         "term": "CTLA-4 Antigen"
+        },
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Radiosurgery"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Ipilimumab",
+         "otherNames": [
+          "Anti-Cytotoxic T-Lymphocyte-Associated Antigen-4 Monoclonal Antibody",
+          "BMS-734016",
+          "Ipilimumab Biosimilar CS1002",
+          "MDX-010",
+          "MDX-CTLA4",
+          "Yervoy"
+         ]
+        },
+        {
+         "name": "Nivolumab",
+         "otherNames": [
+          "BMS-936558",
+          "CMAB819",
+          "MDX-1106",
+          "NIVO",
+          "Nivolumab Biosimilar CMAB819",
+          "ONO-4538",
+          "Opdivo"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda",
+          "Lambrolizumab",
+          "MK-3475",
+          "SCH 900475"
+         ]
+        },
+        {
+         "name": "Stereotactic Radiosurgery",
+         "otherNames": [
+          "Stereotactic External Beam Irradiation",
+          "stereotactic external-beam radiation therapy",
+          "Stereotactic Radiation Therapy",
+          "Stereotactic Radiotherapy",
+          "stereotaxic radiation therapy",
+          "stereotaxic radiosurgery"
+         ]
+        },
+        {
+         "name": "Tumor Treating Fields Therapy",
+         "otherNames": [
+          "Alternating Electric Field Therapy",
+          "TTF",
+          "TTFields"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Clinical Stage IV Cutaneous Melanoma AJCC v8",
+        "Melanoma of Unknown Primary",
+        "Metastatic Malignant Neoplasm in the Brain",
+        "Metastatic Melanoma",
+        "Metastatic Mucosal Melanoma",
+        "Metastatic Ocular Melanoma",
+        "Pathologic Stage IV Cutaneous Melanoma AJCC v8"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Stereotactic Radiosurgery and Immune Checkpoint Inhibitors With NovoTTF-200M for the Treatment of Melanoma Brain Metastases",
+       "nctId": "NCT05341349"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2022-10-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Recurrence"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        },
+        {
+         "term": "Squamous Cell Carcinoma of Head and Neck"
+        },
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Triple Negative Breast Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "BAY3375968",
+         "otherNames": [
+          "Lanerkitug (INN)"
+         ]
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Advanced Solid Tumors"
+       ],
+       "keywords": [
+        "Relapse",
+        "Immunooncology treatment",
+        "Non small cell lung cancer",
+        "NSCLC",
+        "HNSCC",
+        "Head and neck squamous cell carcinomas",
+        "Melanoma",
+        "TNBC",
+        "Triple negative breast cancer"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A First-in-human Study to Learn How Safe the Study Drug BAY3375968, an Anti-CCR8 Antibody, is, When Given Alone or in Combination With Pembrolizumab, How it Affects the Body, How it Moves Into, Through, and Out of the Body, and to Find the Best Dose in Participants With Advanced Solid Tumors",
+       "nctId": "NCT05537740"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-10-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Uveal Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "olaparib"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        },
+        {
+         "name": "Olaparib",
+         "otherNames": [
+          "AZD2281",
+          "KU-0059736",
+          "Lynparza"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Uveal Melanoma",
+        "Ocular Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Olaparib in Combination With Pembrolizumab for Advanced Uveal Melanoma",
+       "nctId": "NCT05524935"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-10-11"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "EVX-01"
+        },
+        {
+         "name": "Pembrolizumab 25 MG/ML",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma Stage IV",
+        "Unresectable Melanoma"
+       ],
+       "keywords": [
+        "Personalized immunotherapy",
+        "Personal cancer vaccine",
+        "cancer vaccine",
+        "EVX-01"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Single Arm Trial Evaluating the Efficacy and Safety of EVX-01 in Combination With Pembrolizumab in Adults With Unresectable or Metastatic Melanoma",
+       "nctId": "NCT05309421"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2022-09-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "dapansutrile"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Dapansutrile"
+        },
+        {
+         "name": "Pembrolizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Melanoma"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of Dapansutrile Plus Pembrolizumab in Patients With PD-1 Refractory Advanced Melanoma",
+       "nctId": "NCT04971499"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-09-06"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Brain Neoplasms"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Radiosurgery"
+        },
+        {
+         "term": "binimetinib"
+        },
+        {
+         "term": "encorafenib"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Stereotaxic radiosurgery (SRS)"
+        },
+        {
+         "name": "Binimetinib Oral Tablet",
+         "otherNames": [
+          "Mektovi"
+         ]
+        },
+        {
+         "name": "Encorafenib Oral Capsule",
+         "otherNames": [
+          "Braftovi"
+         ]
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Malignant Melanoma",
+        "BRAF V600 Mutation",
+        "Brain Metastases"
+       ],
+       "keywords": [
+        "Melanoma",
+        "BRAF V600",
+        "Brain metastases",
+        "Encorafenib",
+        "Binimetinib",
+        "Pembrolizumab",
+        "Stereotaxic",
+        "SRS"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Binimetinib Encorafenib Pembrolizumab +/- Stereotactic Radiosurgery in BRAFV600 Melanoma With Brain Metastasis",
+       "nctId": "NCT04074096"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2022-09-05"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Melanoma"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "aldesleukin"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab"
+        },
+        {
+         "name": "Aldesleukin"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Melanoma",
+        "Advanced Locoregional Melanoma",
+        "Metastatic Renal Cell Carcinoma",
+        "Clear Cell Histology"
+       ],
+       "keywords": [
+        "Immunotherapy",
+        "Monoclonal Antibody"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase II Trial of Combination Anti-PD-1 and Aldesleukin for Metastatic Melanoma and Renal Cell Carcinoma",
+       "nctId": "NCT05155033"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2022-08-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "conditionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoplasm Metastasis"
+        },
+        {
+         "term": "Neoplasms"
+        },
+        {
+         "term": "Melanoma, Cutaneous Malignant"
+        },
+        {
+         "term": "Carcinoma, Renal Cell"
+        },
+        {
+         "term": "Carcinoma, Non-Small-Cell Lung"
+        }
+       ]
+      },
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "WTX-124"
+        },
+        {
+         "name": "pembrolizumab",
+         "otherNames": [
+          "KEYTRUDA®"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "conditions": [
+        "Metastatic Solid Tumor",
+        "Advanced Solid Tumor"
+       ],
+       "keywords": [
+        "WTX-124",
+        "pembrolizumab",
+        "Tumors",
+        "Cutaneous Malignant Melanoma",
+        "mRCC",
+        "Renal Carcinoma",
+        "IL-2",
+        "Cutaneous SCC (cutaneous squamous cell carcinoma)",
+        "NSCLC (non-small cell lung cancer)"
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Dose Escalation and Expansion Study of WTX-124 as Monotherapy and in Combination With Pembrolizumab (Pembro) in Patients With Selected Advanced or Metastatic Solid Tumors",
+       "nctId": "NCT05479812"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2022-08-15"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 353
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_Gs3_g",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02122861"
+      }
+     }
+    }
+   ],
+   "totalCount": 47
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuY_Og2Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04017897"
+      }
+     }
+    }
+   ],
+   "totalCount": 353
+  },
+  "/api/v2/version?": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-11-06T10:00:05"
+  }
+ }
+}

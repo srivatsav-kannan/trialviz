@@ -3,17 +3,175 @@
   {
    "question": "Today's date: 2026-11-07\n\nCaller's fields:\n{\n  \"filters\": {\n    \"phases\": [\n      \"PHASE2\"\n    ]\n  }\n}\n\n<question>\nHow many phase 3 trials of semaglutide are recruiting?\n</question>",
    "stop_reason": "end_turn",
-   "text": "{\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"semaglutide\"]},{\"slot\":\"filters.phases\",\"values\":[\"PHASE3\"]},{\"slot\":\"filters.statuses\",\"values\":[\"RECRUITING\"]},{\"slot\":\"analysis.kind\",\"values\":[\"count\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
+   "text": "{\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"semaglutide\"]},{\"slot\":\"filters.phases\",\"values\":[\"PHASE3\"]},{\"slot\":\"filters.statuses\",\"values\":[\"RECRUITING\"]},{\"slot\":\"analysis.kind\",\"values\":[\"count\"]},{\"slot\":\"presentation.chart_type\",\"values\":[\"stat\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3495,
+    "cache_read_input_tokens": 3567,
     "input_tokens": 90,
-    "output_tokens": 124
+    "output_tokens": 147
    }
   }
  ],
- "fingerprint": "f8a0e7d38229c2db",
+ "fingerprint": "1160da3205e205be",
  "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&pageSize=3&query.intr=%28semaglutide%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvag2fYanD6SuP08FCfCFfLY9NNI0CI",
+   "studies": [
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {},
+        {},
+        {},
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "2 mg administered subcutaneously (s.c., under the skin) once every 4 weeks",
+         "name": "SG Depot 2 mg"
+        },
+        {
+         "description": "4 mg administered subcutaneously (s.c., under the skin) once every 4 weeks",
+         "name": "SG Depot 4 mg"
+        },
+        {
+         "description": "6 mg administered subcutaneously (s.c., under the skin) once every 4 weeks",
+         "name": "SG Depot 6 mg"
+        },
+        {
+         "description": "8 mg administered subcutaneously (s.c., under the skin) once every 4 weeks",
+         "name": "SG Depot 8 mg"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Diabetes",
+        "Semaglutide Depot",
+        "Long-acting semaglutide",
+        "SG Depot",
+        "semaglutide LAI"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Semaglutide, a glucagon-like peptide-1 (GLP-1) receptor agonist, is an approved and well-established therapy for type 2 diabetes mellitus (T2DM), providing both robust glycemic control and weight reduction. Semaglutide Depot, is a long-acting formulation of semaglutide, designed for once every four weeks administration, intended to reduce treatment burden, and improve adherence supporting sustained glycemic control over time.\n\nThis Phase I/Ila dose escalation study design to evaluate the safety, tolerability, pharmacokinetics and efficacy of Semaglutide Depot in adults with T2DM."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety, Tolerability and Efficacy of Semaglutide Depot in Subjects With Type-2 Diabetes Mellitus",
+       "nctId": "NCT07563699",
+       "officialTitle": "A Prospective, Multicenter, Open Label, Dose Escalation Phase I/IIa Study to Assess the Safety, Tolerability and Efficacy of Semaglutide Depot in Subjects With Type-2 Diabetes Mellitus"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-08-09"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Starting on Day 1, participants will receive icovamenib or placebo 100 mg QD in addition to their currently prescribed GLP-1or GIP/GLP-1 RA based regimen. Treatment will last for 12 weeks.\n\nAt Week 12, participants will continue on a stable dose of their baseline Ozempic-based regimen. The total duration of the trial is approximately 57 weeks (including screening and follow-up)"
+        },
+        {
+         "description": "Starting on Day 1, participants will receive matching placebo QD in addition to their currently prescribed GLP-1-based regimen. Treatment will last for 12 weeks.\n\nAt Week 12, participants will continue on a stable dose of allowable GLP-1-based regimen. The total duration of the trial is approximately 57 weeks (including screening and follow-up)."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "icovamenib 100 mg",
+         "name": "icovamenib 100 mg"
+        },
+        {
+         "description": "Matching placebo",
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Type 2 Diabetes"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is a phase 2 randomized, double-blind, placebo-controlled trial assessing the efficacy and safety of icovamenib in participants with Type 2 Diabetes (T2D) not achieving glycemic targets despite GLP-1-based therapy."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 2 Trial of Icovamenib in Participants With Type 2 Diabetes Mellitus Who Are Not Achieving Glycemic Targets While Using GLP-1-Based Therapy",
+       "nctId": "NCT07502508",
+       "officialTitle": "Phase 2 Randomized, Double-blind, Placebo-Controlled Trial Assessing the Efficacy and Safety of Icovamenib in Participants With Type 2 Diabetes Not Achieving Glycemic Targets Despite GLP-1-Based Therapy"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "Subjects will receive a glucagon-like peptide 1 receptor agonist (either semaglutide, tirzepatide or liraglutide) by self-injection or orally (semaglutide or orforglipron) for as clinically indicated by the treating physician or until the subject receives clearance for staging hysterectomy or for pregnancy pursuit. The choice of glucagon-like peptide 1 receptor agonist for each subject will be at the treating physician's discretion.\n\nSubjects will discontinue the glucagon-like peptide 1 receptor agonist 2 weeks before any elective surgical procedure.",
+         "name": "Glucagon-like peptide 1 receptor agonist"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Endometrial cancer",
+        "endometrial intraepithelial neoplasia",
+        "endometrial adenocarcinoma",
+        "Levonorgestrel IUD"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This study will explore the use of glucagon-like peptide 1 receptor agonist (GLP-1RA) used concurrently with levonorgestrel intrauterine device in patients with poor surgical candidacy for a hysterectomy or patients who are pursuing fertility sparing. GLP-1RA are a class of medications that mimic the natural hormone glucagon-like peptide-1. These medications trigger the pancreas to release insulin which can help lower blood sugar levels and delay gastric emptying. The recent FDA approval of GLP-1RAs has changed the landscape for pharmacotherapy for weight loss. These hormone-based obesity medications are novel and revolutionary in obesity medicine. Liraglutine, semaglutide, and tirzepatide have become exceedingly popular for their effects on weight loss and obesity-related comorbidities. More recently, GLP-1RAs have exhibited risk reduction of various obesity associated cancers, including endometrial cancer but their exact role in prevention and treatment has yet to be measured."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Estimate Early Clinical Efficacy Signals of GLP-1 Agonist Administration in Conjunction With Levonorgestrel Intrauterine Device in Obese Patients With Endometrioid Intraepithelial Neoplasia",
+       "nctId": "NCT07107334",
+       "officialTitle": "A Pilot Study to Estimate Early Clinical Efficacy Signals of a Glucagon-like Peptide 1 Receptor Agonist (GLP-1RA) Administration in Conjunction With Levonorgestrel Intrauterine Device (LNG-IUD) in Obese Patients With Endometrioid Intraepithelial Neoplasia"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-07"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 8
+  },
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&pageSize=3&query.intr=%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvmt3vYalD6SuP08FCfCFfbT9NdM1yI",
    "studies": [
@@ -172,6 +330,19 @@
     }
    ],
    "totalCount": 32
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&pageSize=1&query.intr=%28semaglutide%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxmZPSk1Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07502508"
+      }
+     }
+    }
+   ],
+   "totalCount": 8
   },
   "/api/v2/version?": {
    "apiVersion": "2.0.5",

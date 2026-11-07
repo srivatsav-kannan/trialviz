@@ -179,6 +179,9 @@ SLOT_GUIDE: dict[str, str] = {
     "presentation.sort": _values(SortOrder),
     "presentation.top_n": "one whole number",
     "presentation.citations_per_datum": "one whole number, only if the question asks",
+    "retrieval.name_matching": "named or mentioned. Set mentioned only when the question asks "
+    "for trials that mention a name anywhere, not just trials that list it as an "
+    "intervention or condition",
 }
 
 SYSTEM_PROMPT = f"""\
