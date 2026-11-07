@@ -15,17 +15,43 @@ valid values, near misses and garbage, and check the guarantees the resolver mak
 from __future__ import annotations
 
 import asyncio
+from datetime import date
 from typing import Any
 
 from hypothesis import HealthCheck, given, settings
 from hypothesis import strategies as st
 from pydantic import ValidationError
 
-from tests.support import TODAY, ScriptedInterpreter, plan_slots
 from trialviz.query.consistency import same_meaning
+from trialviz.query.interpreters.base import Interpretation
 from trialviz.query.request import QueryRequest
 from trialviz.query.resolution import ClarificationNeeded, NoteCode, ResolvedQuery, Source
 from trialviz.query.resolver import QueryResolver, explicit_slots
+
+TODAY = date(2026, 11, 7)
+
+
+class ScriptedInterpreter:
+    """Returns a fixed proposal, so each example controls exactly what the resolver sees."""
+
+    name = "scripted"
+
+    def __init__(self, proposal: dict[str, Any]) -> None:
+        self._proposal = proposal
+
+    async def interpret(self, request: QueryRequest, today: date) -> Interpretation:
+        return Interpretation(interpreter=self.name, proposal=self._proposal)
+
+
+def plan_slots(outcome: ResolvedQuery) -> dict[str, Any]:
+    dumped = outcome.plan.model_dump(mode="json")
+    return {
+        f"{section}.{name}": value
+        for section, values in dumped.items()
+        for name, value in values.items()
+        if value is not None
+    }
+
 
 # Each pool mixes canonical values, loose spellings the parsers accept, and values they
 # must reject. The caller pools hold only valid values, because invalid caller input is a

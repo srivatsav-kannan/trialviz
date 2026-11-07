@@ -1,9 +1,10 @@
-"""Real requests to ClinicalTrials.gov. Run with `pytest --run-live`.
+"""Real requests to ClinicalTrials.gov that no recording can stand in for. Run with
+`pytest --run-live`.
 
-The offline tests pin the exact parameters the translator writes. These confirm the
-registry reads them the way the translator assumes: synonyms expand, injected syntax is
-inert, every filter type is accepted, and a full fetch returns every match exactly once.
-Requests are spaced at the client's normal rate, so the module takes about half a minute.
+Recordings prove what the registry returned once. These prove the search semantics the
+translator relies on still hold today: synonyms expand inside the naming fields,
+alternatives widen and cohort layers narrow, every filter type is accepted together, and
+names cannot smuggle in query syntax.
 """
 
 from __future__ import annotations
@@ -14,9 +15,7 @@ import httpx
 import pytest
 
 from trialviz.query.filters import Filters
-from trialviz.query.plan import Plan
 from trialviz.retrieval.client import RateLimiter, RegistryClient
-from trialviz.retrieval.retriever import Retriever
 from trialviz.retrieval.translate import translate
 
 pytestmark = pytest.mark.live
@@ -28,71 +27,51 @@ async def client() -> AsyncIterator[RegistryClient]:
         yield RegistryClient(http, RateLimiter(40))
 
 
-async def count(client: RegistryClient, **filters: object) -> int:
-    return await client.count(translate(Filters.model_validate(filters)))
+async def count(client: RegistryClient, *layers: dict[str, object]) -> int:
+    return await client.count(translate(*(Filters.model_validate(layer) for layer in layers)))
 
 
-async def test_brand_and_code_names_find_the_same_trials_as_the_generic_name(
+async def test_search_semantics_the_translator_relies_on(client: RegistryClient) -> None:
+    generic = await count(client, {"interventions": ["pembrolizumab"]})
+    assert generic > 1000
+    # Synonyms expand even when the name must appear in an intervention field.
+    assert await count(client, {"interventions": ["Keytruda"]}) == generic
+    assert await count(client, {"interventions": ["MK-3475"]}) == generic
+    # Values in one filter are alternatives. Layers (shared filters plus a cohort) must all hold.
+    either = await count(client, {"interventions": ["pembrolizumab", "nivolumab"]})
+    both = await count(
+        client, {"interventions": ["pembrolizumab"]}, {"interventions": ["nivolumab"]}
+    )
+    assert 0 < both < generic < either
+    # Plain words in one keyword are all required, so two names narrow rather than widen.
+    one = await count(client, {"keywords": ["CAR-T"]})
+    together = await count(client, {"keywords": ["CAR-T Non-Hodgkin Lymphoma"]})
+    assert 0 < together < one
+
+
+async def test_every_filter_type_is_accepted_and_names_cannot_inject_syntax(
     client: RegistryClient,
 ) -> None:
-    generic = await count(client, interventions=["pembrolizumab"])
-    assert generic > 1000
-    assert await count(client, interventions=["Keytruda"]) == generic
-    assert await count(client, interventions=["MK-3475"]) == generic
-
-
-async def test_injected_syntax_is_searched_as_words_not_executed(client: RegistryClient) -> None:
-    phase_three = await count(client, phases=["PHASE3"])
-    injected = await count(client, keywords=["AREA[Phase]PHASE3"])
-    # Executed as syntax it would match every phase 3 trial (about 50,000). As words it
-    # matches only records that mention "area", "phase" and "phase3" (under 2,000).
-    assert injected < phase_three / 10
-    assert await count(client, conditions=['Crohn"s disease']) > 0, "a stray quote must not 400"
-
-
-async def test_every_filter_type_is_accepted_together(client: RegistryClient) -> None:
-    total = await count(
-        client,
-        conditions=["melanoma"],
-        interventions=["pembrolizumab"],
-        sponsors=["Merck Sharp & Dohme LLC"],
-        keywords=["adjuvant"],
-        phases=["PHASE3"],
-        statuses=["COMPLETED", "ACTIVE_NOT_RECRUITING"],
-        sponsor_classes=["INDUSTRY"],
-        intervention_types=["BIOLOGICAL", "DRUG"],
-        study_types=["INTERVENTIONAL"],
-        countries=["United States"],
-        start_year_from=2015,
-        start_year_to=2020,
-    )
-    assert 0 < total < 50
-
-
-async def test_alternatives_widen_and_cohort_layers_narrow(client: RegistryClient) -> None:
-    pembrolizumab = await count(client, interventions=["pembrolizumab"])
-    either = await count(client, interventions=["pembrolizumab", "nivolumab"])
-    both = await client.count(
-        translate(Filters(interventions=["pembrolizumab"]), Filters(interventions=["nivolumab"]))
-    )
-    assert both < pembrolizumab < either
-
-
-async def test_a_complete_fetch_returns_every_match_exactly_once(client: RegistryClient) -> None:
-    plan = Plan.model_validate(
-        {
-            "filters": {"conditions": ["melanoma"], "phases": ["PHASE3"], "start_year_from": 2020},
-            "analysis": {"kind": "distribution", "group_by": "sponsor_class"},
-            "presentation": {"citations_per_datum": 3},
-        }
-    )
-    result = await Retriever(client, max_records=10_000).retrieve(plan)
-    [cohort] = result.cohorts
-    ids = [study["protocolSection"]["identificationModule"]["nctId"] for study in cohort.studies]
-    assert 0 < len(ids) == cohort.total < 1000
-    assert len(set(ids)) == len(ids)
-    sponsor_classes = {
-        study["protocolSection"]["sponsorCollaboratorsModule"]["leadSponsor"]["class"]
-        for study in cohort.studies
+    everything = {
+        "conditions": ["melanoma"],
+        "interventions": ["pembrolizumab"],
+        "sponsors": ["Merck Sharp & Dohme LLC"],
+        "keywords": ["adjuvant"],
+        "phases": ["PHASE3"],
+        "statuses": ["COMPLETED", "ACTIVE_NOT_RECRUITING"],
+        "sponsor_classes": ["INDUSTRY"],
+        "intervention_types": ["BIOLOGICAL", "DRUG"],
+        "study_types": ["INTERVENTIONAL"],
+        "countries": ["United States"],
+        "start_year_from": 2015,
+        "start_year_to": 2020,
     }
-    assert "INDUSTRY" in sponsor_classes
+    assert 0 < await count(client, everything) < 50
+
+    phase_three = await count(client, {"phases": ["PHASE3"]})
+    # Run as syntax this would match every phase 3 trial (about 50,000). As words it
+    # matches only records that mention "area", "phase" and "phase3".
+    assert await count(client, {"keywords": ["AREA[Phase]PHASE3"]}) < phase_three / 10
+    # Stray quotes, brackets and uppercase operators must not fail the request.
+    assert await count(client, {"conditions": ['Crohn"s disease (CD']}) > 0
+    assert await count(client, {"keywords": ["RANGE MISSING SEARCH asthma"]}) >= 0
