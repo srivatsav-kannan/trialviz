@@ -1,0 +1,203 @@
+{
+  "request": {
+    "query": "How many semaglutide trials are recruiting in Germany?"
+  },
+  "response": {
+    "status": "resolved",
+    "query": "How many semaglutide trials are recruiting in Germany?",
+    "visualization": {
+      "type": "stat",
+      "reason": "the answer is one number",
+      "encoding": {
+        "value": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        }
+      },
+      "options": {},
+      "data": [
+        {
+          "label": "Trials",
+          "trial_count": 5,
+          "citations": [
+            {
+              "nct_id": "NCT07662213",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+              "excerpt": "Semaglutide",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07662213"
+            },
+            {
+              "nct_id": "NCT07662213",
+              "field": "protocolSection.statusModule.overallStatus",
+              "excerpt": "RECRUITING",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07662213"
+            },
+            {
+              "nct_id": "NCT07662213",
+              "field": "protocolSection.contactsLocationsModule.locations[118].country",
+              "excerpt": "Germany",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07662213"
+            },
+            {
+              "nct_id": "NCT07668388",
+              "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+              "excerpt": "Semaglutide",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07668388"
+            },
+            {
+              "nct_id": "NCT07668388",
+              "field": "protocolSection.statusModule.overallStatus",
+              "excerpt": "RECRUITING",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07668388"
+            },
+            {
+              "nct_id": "NCT07668388",
+              "field": "protocolSection.contactsLocationsModule.locations[31].country",
+              "excerpt": "Germany",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07668388"
+            },
+            {
+              "nct_id": "NCT07597018",
+              "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+              "excerpt": "Cagrilintide B and placebo semaglutide I",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07597018"
+            },
+            {
+              "nct_id": "NCT07597018",
+              "field": "protocolSection.statusModule.overallStatus",
+              "excerpt": "RECRUITING",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07597018"
+            },
+            {
+              "nct_id": "NCT07597018",
+              "field": "protocolSection.contactsLocationsModule.locations[0].country",
+              "excerpt": "Germany",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07597018"
+            }
+          ]
+        }
+      ],
+      "vega_lite": null,
+      "title": "Number of recruiting trials of semaglutide",
+      "subtitle": "With sites in Germany."
+    },
+    "alternatives": [],
+    "meta": {
+      "source": "clinicaltrials.gov",
+      "data_version": "2026-11-06T10:00:05",
+      "interpreter": "claude:claude-opus-5-5",
+      "plan": {
+        "filters": {
+          "conditions": null,
+          "interventions": [
+            "semaglutide"
+          ],
+          "sponsors": null,
+          "keywords": null,
+          "phases": null,
+          "statuses": [
+            "RECRUITING"
+          ],
+          "sponsor_classes": null,
+          "intervention_types": null,
+          "study_types": null,
+          "countries": [
+            "Germany"
+          ],
+          "start_year_from": null,
+          "start_year_to": null
+        },
+        "analysis": {
+          "kind": "count"
+        },
+        "presentation": {
+          "chart_type": null,
+          "sort": null,
+          "top_n": null,
+          "citations_per_datum": 3
+        },
+        "retrieval": {
+          "name_matching": "named"
+        }
+      },
+      "provenance": {
+        "analysis.kind": "inferred",
+        "filters.countries": "inferred",
+        "filters.interventions": "inferred",
+        "filters.statuses": "inferred",
+        "presentation.citations_per_datum": "default",
+        "retrieval.name_matching": "default"
+      },
+      "notes": [
+        {
+          "code": "mentions_reported",
+          "message": "2 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
+          "slot": null
+        }
+      ],
+      "cohorts": [
+        {
+          "label": null,
+          "total": 5,
+          "fetched": 3,
+          "truncated": false,
+          "mentions": 2
+        }
+      ],
+      "chart_choice": {
+        "recommended": {
+          "type": "stat",
+          "reason": "the answer is one number"
+        },
+        "alternatives": [],
+        "ruled_out": []
+      },
+      "mentions": [
+        {
+          "cohort": null,
+          "total": 2,
+          "counted": false,
+          "nct_ids": [
+            "NCT06897475",
+            "NCT06487832"
+          ],
+          "citations": [
+            {
+              "nct_id": "NCT06897475",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "A Study of LY3457263 Compared With Placebo in Participants With Type 2 Diabetes on a Stable Dose of Semaglutide or Tirzepatide",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT06897475"
+            },
+            {
+              "nct_id": "NCT06487832",
+              "field": "protocolSection.armsInterventionsModule.interventions[0].description",
+              "excerpt": "Subcutaneous administration of semaglutide",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT06487832"
+            }
+          ]
+        }
+      ],
+      "registry_requests": [
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BLocationCountry%5D%28%22Germany%22%29%29&query.intr=%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BLocationCountry%5D%28%22Germany%22%29%29&query.intr=%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CLocationCountry&sort=StartDate%3Adesc&pageSize=3&countTotal=true",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BLocationCountry%5D%28%22Germany%22%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&query.intr=%28semaglutide%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BLocationCountry%5D%28%22Germany%22%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&query.intr=%28semaglutide%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CLocationCountry%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&pageSize=30&countTotal=true"
+      ]
+    }
+  }
+}

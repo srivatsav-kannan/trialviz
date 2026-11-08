@@ -1,6 +1,7 @@
 """Run the example questions against the real services and save request and response.
 
-    uv run python -m examples.run_examples
+    uv run python -m examples.run_examples          # every example
+    uv run python -m examples.run_examples 06 07    # only those whose names start so
 
 Each example is written to examples/<name>.json as {"request", "response"}, exactly as
 `POST /v1/query` would return it. The demo UI's samples are read from these files.
@@ -11,6 +12,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -56,13 +58,58 @@ EXAMPLES: list[tuple[str, dict[str, Any]]] = [
             "to overall status?"
         },
     ),
+    (
+        "06_semaglutide_recruiting_germany",
+        {"query": "How many semaglutide trials are recruiting in Germany?"},
+    ),
+    (
+        "07_asthma_enrollment_by_phase",
+        {"query": "How does enrollment vary by phase for completed asthma trials?"},
+    ),
+    (
+        "08_psoriasis_size_duration_sites",
+        {
+            "query": "How do enrollment, duration and number of sites relate for completed "
+            "phase 3 psoriasis trials?"
+        },
+    ),
+    (
+        "09_tirzepatide_timeline",
+        {"query": "List the recruiting phase 3 trials of tirzepatide"},
+    ),
+    (
+        "10_melanoma_drug_combinations",
+        {
+            "query": "Which drugs frequently co-occur in combination studies for melanoma "
+            "trials that started since 2020?"
+        },
+    ),
+    (
+        "11_sponsor_classes_two_cancers",
+        {"query": "Compare sponsor categories across breast cancer and prostate cancer trials"},
+    ),
+    (
+        "12_alzheimers_intervention_types",
+        {"query": "What are the most common intervention types for Alzheimer's disease trials?"},
+    ),
+    (
+        "13_crohns_study_types",
+        {"query": "Show the split of Crohn's disease trials by study type as a donut chart"},
+    ),
+    (
+        "14_obesity_phases_over_time",
+        {"query": "How has the number of obesity trials in each phase changed since 2016?"},
+    ),
 ]
 
 
-async def main() -> None:
+async def main(only: list[str]) -> None:
+    """Run every example, or only those whose names start with one of `only`."""
     settings = Settings()
     pipeline = Pipeline(QueryResolver(build_interpreter(settings)), build_retriever(settings))
     for name, request in EXAMPLES:
+        if only and not any(name.startswith(prefix) for prefix in only):
+            continue
         result = await pipeline.run(QueryRequest.model_validate(request))
         payload = {"request": request, "response": result.response.model_dump(mode="json")}
         (HERE / f"{name}.json").write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n")
@@ -70,4 +117,4 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(main(sys.argv[1:]))

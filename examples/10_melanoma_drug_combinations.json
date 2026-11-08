@@ -1,0 +1,5017 @@
+{
+  "request": {
+    "query": "Which drugs frequently co-occur in combination studies for melanoma trials that started since 2020?"
+  },
+  "response": {
+    "status": "resolved",
+    "query": "Which drugs frequently co-occur in combination studies for melanoma trials that started since 2020?",
+    "visualization": {
+      "type": "network_graph",
+      "reason": "entities as nodes, linked by the trials they share",
+      "encoding": {
+        "node_id": {
+          "field": "id",
+          "type": "nominal",
+          "title": "Entity",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "node_label": {
+          "field": "label",
+          "type": "nominal",
+          "title": "Name",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "node_size": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "node_color": {
+          "field": "community",
+          "type": "nominal",
+          "title": "Cluster",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "edge_source": {
+          "field": "source",
+          "type": "nominal",
+          "title": "From",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "edge_target": {
+          "field": "target",
+          "type": "nominal",
+          "title": "To",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "edge_width": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Shared trials",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "x": {
+          "field": "x",
+          "type": "quantitative",
+          "title": "x",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "y": {
+          "field": "y",
+          "type": "quantitative",
+          "title": "y",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        }
+      },
+      "options": {
+        "relation": "drugs given together in the same treatment arm",
+        "node_types": [
+          "intervention",
+          "intervention"
+        ],
+        "positions": "precomputed force layout scaled to -1..1, optional to use"
+      },
+      "data": {
+        "nodes": [
+          {
+            "id": "intervention:pembrolizumab",
+            "label": "pembrolizumab",
+            "type": "intervention",
+            "degree": 16,
+            "community": 0,
+            "x": 0.0008,
+            "y": -0.0106,
+            "x3": -0.1707,
+            "y3": 0.0349,
+            "z3": -0.1285,
+            "trial_count": 112,
+            "nct_ids": [
+              "NCT05352672",
+              "NCT05859074",
+              "NCT07160335",
+              "NCT05338580",
+              "NCT07422779",
+              "NCT05620134",
+              "NCT05311618",
+              "NCT06171178",
+              "NCT06307093",
+              "NCT06153238",
+              "NCT06131398",
+              "NCT04570332",
+              "NCT05709821",
+              "NCT05714553",
+              "NCT05987332",
+              "NCT05086692",
+              "NCT04830124",
+              "NCT04546074",
+              "NCT06212388",
+              "NCT04930783",
+              "NCT04616248",
+              "NCT07349303",
+              "NCT04485013",
+              "NCT05608291",
+              "NCT05824975",
+              "NCT05647954",
+              "NCT07092670",
+              "NCT05155033",
+              "NCT05614102",
+              "NCT04725331",
+              "NCT05739006",
+              "NCT04834973",
+              "NCT05545969",
+              "NCT05913388",
+              "NCT04148937",
+              "NCT05383170",
+              "NCT05986331",
+              "NCT06697301",
+              "NCT05926960",
+              "NCT06190249",
+              "NCT04452214",
+              "NCT04860076",
+              "NCT05714371",
+              "NCT04799054",
+              "NCT04657991",
+              "NCT04205227",
+              "NCT05420324",
+              "NCT06047379",
+              "NCT05492682",
+              "NCT04068181",
+              "NCT04993677",
+              "NCT04955743",
+              "NCT04140526",
+              "NCT05436990",
+              "NCT05549297",
+              "NCT07740941",
+              "NCT07749586",
+              "NCT05308901",
+              "NCT06108479",
+              "NCT05581004",
+              "NCT04971499",
+              "NCT05091346",
+              "NCT04483778",
+              "NCT04074096",
+              "NCT05877430",
+              "NCT04152863",
+              "NCT04987996",
+              "NCT05669352",
+              "NCT06771544",
+              "NCT07287917",
+              "NCT04752826",
+              "NCT04318717",
+              "NCT05155254",
+              "NCT06320353",
+              "NCT07817901",
+              "NCT05544929",
+              "NCT07565285",
+              "NCT05611229",
+              "NCT04633902",
+              "NCT04107168",
+              "NCT07436390",
+              "NCT06270706",
+              "NCT05576077",
+              "NCT06030037",
+              "NCT07376317",
+              "NCT05537740",
+              "NCT06284590",
+              "NCT05081609",
+              "NCT05309421",
+              "NCT05034536",
+              "NCT07448831",
+              "NCT07634380",
+              "NCT04622566",
+              "NCT05304546",
+              "NCT04207086",
+              "NCT04913025",
+              "NCT04904185",
+              "NCT05479812",
+              "NCT07223424",
+              "NCT04129515",
+              "NCT04609566",
+              "NCT05144698",
+              "NCT03773744",
+              "NCT05746897",
+              "NCT04703426",
+              "NCT06906822",
+              "NCT04768881",
+              "NCT06651151",
+              "NCT06999980",
+              "NCT05060432",
+              "NCT06545682",
+              "NCT05524935"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05352672",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Pembrolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05352672"
+              },
+              {
+                "nct_id": "NCT05352672",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "pembrolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05352672"
+              },
+              {
+                "nct_id": "NCT05859074",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Pembrolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05859074"
+              },
+              {
+                "nct_id": "NCT05859074",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "pembrolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05859074"
+              },
+              {
+                "nct_id": "NCT07160335",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "HLX17",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07160335"
+              },
+              {
+                "nct_id": "NCT07160335",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "pembrolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07160335"
+              }
+            ]
+          },
+          {
+            "id": "intervention:nivolumab",
+            "label": "Nivolumab",
+            "type": "intervention",
+            "degree": 13,
+            "community": 0,
+            "x": 0.0816,
+            "y": 0.1671,
+            "x3": 0.1122,
+            "y3": 0.1689,
+            "z3": -0.0893,
+            "trial_count": 99,
+            "nct_ids": [
+              "NCT06112808",
+              "NCT07422779",
+              "NCT04125719",
+              "NCT06116461",
+              "NCT05116202",
+              "NCT07518043",
+              "NCT05779423",
+              "NCT04949113",
+              "NCT04434560",
+              "NCT06295159",
+              "NCT05987332",
+              "NCT06794775",
+              "NCT04013854",
+              "NCT04930783",
+              "NCT04187833",
+              "NCT05354102",
+              "NCT05704647",
+              "NCT05652673",
+              "NCT07092670",
+              "NCT04495257",
+              "NCT04423029",
+              "NCT04835805",
+              "NCT05302921",
+              "NCT06054555",
+              "NCT07459543",
+              "NCT05655312",
+              "NCT06163170",
+              "NCT06365619",
+              "NCT04899921",
+              "NCT05498792",
+              "NCT03758729",
+              "NCT05169957",
+              "NCT05200143",
+              "NCT04208958",
+              "NCT04133948",
+              "NCT04895709",
+              "NCT05926960",
+              "NCT07501117",
+              "NCT06240143",
+              "NCT04464759",
+              "NCT05004025",
+              "NCT04309409",
+              "NCT05714371",
+              "NCT06047379",
+              "NCT07815574",
+              "NCT07740941",
+              "NCT04526730",
+              "NCT06319196",
+              "NCT06101134",
+              "NCT05704933",
+              "NCT04074967",
+              "NCT03929029",
+              "NCT04091750",
+              "NCT04655157",
+              "NCT05289193",
+              "NCT07230613",
+              "NCT04741997",
+              "NCT05423262",
+              "NCT06034860",
+              "NCT06163820",
+              "NCT04223648",
+              "NCT06683755",
+              "NCT04463368",
+              "NCT07476326",
+              "NCT04493203",
+              "NCT05611229",
+              "NCT05267626",
+              "NCT04674683",
+              "NCT06362369",
+              "NCT04988841",
+              "NCT04107168",
+              "NCT07436390",
+              "NCT05909618",
+              "NCT07862530",
+              "NCT04060407",
+              "NCT05496192",
+              "NCT07376707",
+              "NCT05428007",
+              "NCT04688658",
+              "NCT06112314",
+              "NCT05034536",
+              "NCT07364474",
+              "NCT07504796",
+              "NCT04562129",
+              "NCT05907122",
+              "NCT04913025",
+              "NCT04698187",
+              "NCT04901988",
+              "NCT07223424",
+              "NCT04572451",
+              "NCT04250246",
+              "NCT04695977",
+              "NCT04552223",
+              "NCT06640530",
+              "NCT06250335",
+              "NCT04330430",
+              "NCT04731467",
+              "NCT07631325",
+              "NCT05061017"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06112808",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "BCD-263",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06112808"
+              },
+              {
+                "nct_id": "NCT06112808",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Nivolumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06112808"
+              },
+              {
+                "nct_id": "NCT07422779",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Nivolumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07422779"
+              },
+              {
+                "nct_id": "NCT07422779",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Nivolumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07422779"
+              },
+              {
+                "nct_id": "NCT04125719",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Nivolumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04125719"
+              },
+              {
+                "nct_id": "NCT04125719",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Nivolumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04125719"
+              }
+            ]
+          },
+          {
+            "id": "intervention:ipilimumab",
+            "label": "Ipilimumab",
+            "type": "intervention",
+            "degree": 13,
+            "community": 0,
+            "x": -0.0501,
+            "y": 0.2746,
+            "x3": 0.2476,
+            "y3": 0.1612,
+            "z3": -0.023,
+            "trial_count": 54,
+            "nct_ids": [
+              "NCT07422779",
+              "NCT05116202",
+              "NCT05779423",
+              "NCT04949113",
+              "NCT04434560",
+              "NCT06295159",
+              "NCT05909995",
+              "NCT05987332",
+              "NCT06794775",
+              "NCT04013854",
+              "NCT04495257",
+              "NCT05302921",
+              "NCT06365619",
+              "NCT04899921",
+              "NCT05498792",
+              "NCT05169957",
+              "NCT05200143",
+              "NCT04133948",
+              "NCT05926960",
+              "NCT07501117",
+              "NCT06240143",
+              "NCT04464759",
+              "NCT05004025",
+              "NCT03978611",
+              "NCT05714371",
+              "NCT06712927",
+              "NCT06047379",
+              "NCT07815574",
+              "NCT07740941",
+              "NCT05704933",
+              "NCT04074967",
+              "NCT04996823",
+              "NCT03929029",
+              "NCT04091750",
+              "NCT04655157",
+              "NCT05289193",
+              "NCT07230613",
+              "NCT06163820",
+              "NCT04223648",
+              "NCT06683755",
+              "NCT04463368",
+              "NCT04894994",
+              "NCT06362369",
+              "NCT04988841",
+              "NCT04107168",
+              "NCT07436390",
+              "NCT06594991",
+              "NCT04060407",
+              "NCT05428007",
+              "NCT07364474",
+              "NCT07504796",
+              "NCT04562129",
+              "NCT04250246",
+              "NCT06250335"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07422779",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Ipilimumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07422779"
+              },
+              {
+                "nct_id": "NCT07422779",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "Ipilimumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07422779"
+              },
+              {
+                "nct_id": "NCT05116202",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Ipilimumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05116202"
+              },
+              {
+                "nct_id": "NCT05116202",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Ipilimumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05116202"
+              },
+              {
+                "nct_id": "NCT05779423",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Ipilimumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05779423"
+              },
+              {
+                "nct_id": "NCT05779423",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Ipilimumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05779423"
+              }
+            ]
+          },
+          {
+            "id": "intervention:binimetinib",
+            "label": "binimetinib",
+            "type": "intervention",
+            "degree": 6,
+            "community": 1,
+            "x": 0.2382,
+            "y": 0.4705,
+            "x3": -0.106,
+            "y3": 0.5048,
+            "z3": -0.0382,
+            "trial_count": 27,
+            "nct_ids": [
+              "NCT04720768",
+              "NCT04375527",
+              "NCT05270044",
+              "NCT05340621",
+              "NCT06887088",
+              "NCT04543188",
+              "NCT07092410",
+              "NCT05097378",
+              "NCT05926960",
+              "NCT04221438",
+              "NCT04598009",
+              "NCT05026983",
+              "NCT05103891",
+              "NCT04657991",
+              "NCT04759846",
+              "NCT04913285",
+              "NCT04511013",
+              "NCT04074096",
+              "NCT05767879",
+              "NCT04655157",
+              "NCT04903119",
+              "NCT03878719",
+              "NCT05170334",
+              "NCT05304546",
+              "NCT05355701",
+              "NCT05810740",
+              "NCT05260684"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04720768",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04720768"
+              },
+              {
+                "nct_id": "NCT04720768",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04720768"
+              },
+              {
+                "nct_id": "NCT04375527",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04375527"
+              },
+              {
+                "nct_id": "NCT04375527",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04375527"
+              },
+              {
+                "nct_id": "NCT05270044",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Encorafenib and Binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05270044"
+              },
+              {
+                "nct_id": "NCT05270044",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05270044"
+              }
+            ]
+          },
+          {
+            "id": "intervention:cyclophosphamide",
+            "label": "Cyclophosphamide",
+            "type": "intervention",
+            "degree": 7,
+            "community": 2,
+            "x": 0.3609,
+            "y": -0.0572,
+            "x3": -0.1184,
+            "y3": 0.004,
+            "z3": -0.4621,
+            "trial_count": 26,
+            "nct_ids": [
+              "NCT06961786",
+              "NCT06961357",
+              "NCT05296564",
+              "NCT05075993",
+              "NCT05176470",
+              "NCT05069935",
+              "NCT06626256",
+              "NCT06660420",
+              "NCT05798546",
+              "NCT05470283",
+              "NCT07627698",
+              "NCT05628883",
+              "NCT07651618",
+              "NCT06190249",
+              "NCT05492682",
+              "NCT04119024",
+              "NCT04596033",
+              "NCT04897321",
+              "NCT06204991",
+              "NCT06771544",
+              "NCT06151847",
+              "NCT06237881",
+              "NCT04904185",
+              "NCT03773744",
+              "NCT05269381",
+              "NCT05061017"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06961786",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Cyclophosphamide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961786"
+              },
+              {
+                "nct_id": "NCT06961786",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Cyclophosphamide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961786"
+              },
+              {
+                "nct_id": "NCT06961357",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cyclophosphamide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT06961357",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Cyclophosphamide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT05296564",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "CYCLOPHOSPHAMIDE and FLUDARABIN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05296564"
+              },
+              {
+                "nct_id": "NCT05296564",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Cyclophosphamide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05296564"
+              }
+            ]
+          },
+          {
+            "id": "intervention:cemiplimab",
+            "label": "cemiplimab",
+            "type": "intervention",
+            "degree": 3,
+            "community": 3,
+            "x": -0.3399,
+            "y": 0.7631,
+            "x3": 0.7921,
+            "y3": -0.0543,
+            "z3": -0.1376,
+            "trial_count": 22,
+            "nct_ids": [
+              "NCT05352672",
+              "NCT06190951",
+              "NCT06848088",
+              "NCT07511036",
+              "NCT04913220",
+              "NCT05608291",
+              "NCT06585410",
+              "NCT05878288",
+              "NCT06052852",
+              "NCT07527325",
+              "NCT07223411",
+              "NCT06246916",
+              "NCT05522660",
+              "NCT06413680",
+              "NCT06090266",
+              "NCT06022029",
+              "NCT06594991",
+              "NCT06121180",
+              "NCT07405086",
+              "NCT07808515",
+              "NCT05094804",
+              "NCT05864144"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05352672",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cemiplimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05352672"
+              },
+              {
+                "nct_id": "NCT05352672",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "cemiplimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05352672"
+              },
+              {
+                "nct_id": "NCT06190951",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "cemiplimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06190951"
+              },
+              {
+                "nct_id": "NCT06190951",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "cemiplimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06190951"
+              },
+              {
+                "nct_id": "NCT06848088",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Fianlimab+cemiplimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06848088"
+              },
+              {
+                "nct_id": "NCT06848088",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "cemiplimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06848088"
+              }
+            ]
+          },
+          {
+            "id": "intervention:encorafenib",
+            "label": "encorafenib",
+            "type": "intervention",
+            "degree": 6,
+            "community": 1,
+            "x": 0.3484,
+            "y": 0.363,
+            "x3": -0.1028,
+            "y3": 0.4526,
+            "z3": 0.1141,
+            "trial_count": 20,
+            "nct_ids": [
+              "NCT04720768",
+              "NCT05270044",
+              "NCT06887088",
+              "NCT07092410",
+              "NCT05097378",
+              "NCT06194929",
+              "NCT05926960",
+              "NCT04221438",
+              "NCT05026983",
+              "NCT04657991",
+              "NCT04759846",
+              "NCT04511013",
+              "NCT04074096",
+              "NCT05767879",
+              "NCT04655157",
+              "NCT04903119",
+              "NCT03878719",
+              "NCT05304546",
+              "NCT05260684",
+              "NCT05003622"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04720768",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Encorafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04720768"
+              },
+              {
+                "nct_id": "NCT04720768",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "encorafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04720768"
+              },
+              {
+                "nct_id": "NCT05270044",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Encorafenib and Binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05270044"
+              },
+              {
+                "nct_id": "NCT05270044",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "encorafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05270044"
+              },
+              {
+                "nct_id": "NCT06887088",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Encorafenib + Binimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06887088"
+              },
+              {
+                "nct_id": "NCT06887088",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "encorafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06887088"
+              }
+            ]
+          },
+          {
+            "id": "intervention:trametinib",
+            "label": "trametinib",
+            "type": "intervention",
+            "degree": 3,
+            "community": 4,
+            "x": 0.4717,
+            "y": 0.7502,
+            "x3": -0.1972,
+            "y3": 0.8697,
+            "z3": 0.1043,
+            "trial_count": 20,
+            "nct_ids": [
+              "NCT07440290",
+              "NCT04666272",
+              "NCT05171374",
+              "NCT06346067",
+              "NCT05275374",
+              "NCT07092670",
+              "NCT04310397",
+              "NCT02645149",
+              "NCT05714371",
+              "NCT04417621",
+              "NCT04903119",
+              "NCT05907304",
+              "NCT04547946",
+              "NCT04557956",
+              "NCT05668585",
+              "NCT05260684",
+              "NCT05677373",
+              "NCT05299580",
+              "NCT04961619",
+              "NCT04527549"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07440290",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Trametinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07440290"
+              },
+              {
+                "nct_id": "NCT07440290",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "trametinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07440290"
+              },
+              {
+                "nct_id": "NCT04666272",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "trametinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04666272"
+              },
+              {
+                "nct_id": "NCT04666272",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "trametinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04666272"
+              },
+              {
+                "nct_id": "NCT05171374",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Trametinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05171374"
+              },
+              {
+                "nct_id": "NCT05171374",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "trametinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05171374"
+              }
+            ]
+          },
+          {
+            "id": "intervention:toripalimab",
+            "label": "Toripalimab",
+            "type": "intervention",
+            "degree": 3,
+            "community": 0,
+            "x": 0.428,
+            "y": -0.6754,
+            "x3": 0.3591,
+            "y3": -0.1288,
+            "z3": 0.7475,
+            "trial_count": 16,
+            "nct_ids": [
+              "NCT05827770",
+              "NCT04472806",
+              "NCT05907512",
+              "NCT05451407",
+              "NCT04234620",
+              "NCT07562841",
+              "NCT05955105",
+              "NCT07099430",
+              "NCT05723432",
+              "NCT04884997",
+              "NCT05539118",
+              "NCT05478473",
+              "NCT04072900",
+              "NCT05087602",
+              "NCT05031494",
+              "NCT04640545"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05827770",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Toripalimab combined with Temozolomide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05827770"
+              },
+              {
+                "nct_id": "NCT04472806",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Toripalimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04472806"
+              },
+              {
+                "nct_id": "NCT04472806",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "toripalimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04472806"
+              },
+              {
+                "nct_id": "NCT05907512",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Toripalimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05907512"
+              },
+              {
+                "nct_id": "NCT05907512",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "toripalimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05907512"
+              }
+            ]
+          },
+          {
+            "id": "intervention:dabrafenib",
+            "label": "dabrafenib",
+            "type": "intervention",
+            "degree": 3,
+            "community": 4,
+            "x": 0.6286,
+            "y": 0.6125,
+            "x3": -0.1705,
+            "y3": 0.8064,
+            "z3": 0.2894,
+            "trial_count": 15,
+            "nct_ids": [
+              "NCT07440290",
+              "NCT04666272",
+              "NCT05171374",
+              "NCT07092670",
+              "NCT04310397",
+              "NCT05714371",
+              "NCT04418167",
+              "NCT05388877",
+              "NCT04903119",
+              "NCT04547946",
+              "NCT04557956",
+              "NCT05260684",
+              "NCT05299580",
+              "NCT04961619",
+              "NCT04527549"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07440290",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Dabrafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07440290"
+              },
+              {
+                "nct_id": "NCT07440290",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "dabrafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07440290"
+              },
+              {
+                "nct_id": "NCT04666272",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "dabrafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04666272"
+              },
+              {
+                "nct_id": "NCT04666272",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "dabrafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04666272"
+              },
+              {
+                "nct_id": "NCT05171374",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Dabrafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05171374"
+              },
+              {
+                "nct_id": "NCT05171374",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "dabrafenib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05171374"
+              }
+            ]
+          },
+          {
+            "id": "intervention:fludarabine",
+            "label": "fludarabine",
+            "type": "intervention",
+            "degree": 4,
+            "community": 2,
+            "x": 0.6222,
+            "y": -0.0435,
+            "x3": -0.1686,
+            "y3": 0.1265,
+            "z3": -0.6568,
+            "trial_count": 14,
+            "nct_ids": [
+              "NCT06961786",
+              "NCT06961357",
+              "NCT05176470",
+              "NCT05069935",
+              "NCT06626256",
+              "NCT06660420",
+              "NCT05798546",
+              "NCT07627698",
+              "NCT05628883",
+              "NCT06190249",
+              "NCT04596033",
+              "NCT04897321",
+              "NCT06151847",
+              "NCT06237881"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06961786",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Fludarabine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961786"
+              },
+              {
+                "nct_id": "NCT06961786",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "fludarabine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961786"
+              },
+              {
+                "nct_id": "NCT06961357",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Fludarabine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT06961357",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "fludarabine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT05176470",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Fludarabine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05176470"
+              },
+              {
+                "nct_id": "NCT05176470",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "fludarabine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05176470"
+              }
+            ]
+          },
+          {
+            "id": "intervention:temozolomide",
+            "label": "Temozolomide",
+            "type": "intervention",
+            "degree": 6,
+            "community": 0,
+            "x": -0.008,
+            "y": -0.6674,
+            "x3": 0.0676,
+            "y3": -0.3848,
+            "z3": 0.5738,
+            "trial_count": 14,
+            "nct_ids": [
+              "NCT05106023",
+              "NCT04478279",
+              "NCT05789043",
+              "NCT06346067",
+              "NCT07353073",
+              "NCT05827770",
+              "NCT05588453",
+              "NCT05647954",
+              "NCT06743126",
+              "NCT07807878",
+              "NCT07310784",
+              "NCT04884997",
+              "NCT04397770",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05106023",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Temozolomide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05106023"
+              },
+              {
+                "nct_id": "NCT05106023",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Temozolomide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05106023"
+              },
+              {
+                "nct_id": "NCT04478279",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Temozolomide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04478279"
+              },
+              {
+                "nct_id": "NCT04478279",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Temozolomide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04478279"
+              },
+              {
+                "nct_id": "NCT05789043",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "camrelizumab+apatinib+TMZ",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05789043"
+              }
+            ]
+          },
+          {
+            "id": "intervention:atezolizumab",
+            "label": "atezolizumab",
+            "type": "intervention",
+            "degree": 3,
+            "community": 0,
+            "x": -0.5828,
+            "y": 0.2016,
+            "x3": -0.6717,
+            "y3": 0.094,
+            "z3": -0.226,
+            "trial_count": 13,
+            "nct_ids": [
+              "NCT05116202",
+              "NCT05060003",
+              "NCT04356729",
+              "NCT06090318",
+              "NCT06332755",
+              "NCT04020809",
+              "NCT05581004",
+              "NCT04107168",
+              "NCT05483400",
+              "NCT05770102",
+              "NCT04722575",
+              "NCT06444815",
+              "NCT06066138"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05116202",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Atezolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05116202"
+              },
+              {
+                "nct_id": "NCT05116202",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "atezolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05116202"
+              },
+              {
+                "nct_id": "NCT05060003",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Atezolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05060003"
+              },
+              {
+                "nct_id": "NCT05060003",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "atezolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05060003"
+              },
+              {
+                "nct_id": "NCT04356729",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Atezolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04356729"
+              },
+              {
+                "nct_id": "NCT04356729",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "atezolizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04356729"
+              }
+            ]
+          },
+          {
+            "id": "intervention:interleukin-2",
+            "label": "Interleukin-2",
+            "type": "intervention",
+            "degree": 6,
+            "community": 2,
+            "x": 0.5108,
+            "y": 0.1577,
+            "x3": 0.0792,
+            "y3": 0.2076,
+            "z3": -0.5358,
+            "trial_count": 13,
+            "nct_ids": [
+              "NCT06961357",
+              "NCT05086692",
+              "NCT05798546",
+              "NCT05628883",
+              "NCT07700121",
+              "NCT07183852",
+              "NCT04596033",
+              "NCT04625205",
+              "NCT04812470",
+              "NCT05903937",
+              "NCT06237881",
+              "NCT04165967",
+              "NCT04562129"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06961357",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Interleukin-2",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT06961357",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "Interleukin-2",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT05086692",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "MDNA11",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05086692"
+              },
+              {
+                "nct_id": "NCT05086692",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Interleukin-2",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05086692"
+              },
+              {
+                "nct_id": "NCT05798546",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Interleukin-2",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05798546"
+              },
+              {
+                "nct_id": "NCT05798546",
+                "field": "derivedSection.interventionBrowseModule.meshes[3].term",
+                "excerpt": "Interleukin-2",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05798546"
+              }
+            ]
+          },
+          {
+            "id": "intervention:lenvatinib",
+            "label": "lenvatinib",
+            "type": "intervention",
+            "degree": 3,
+            "community": 0,
+            "x": -0.4784,
+            "y": -0.0167,
+            "x3": -0.5072,
+            "y3": -0.2255,
+            "z3": 0.1012,
+            "trial_count": 13,
+            "nct_ids": [
+              "NCT04700072",
+              "NCT07847359",
+              "NCT04305041",
+              "NCT05545969",
+              "NCT05406466",
+              "NCT04955743",
+              "NCT05308901",
+              "NCT05091346",
+              "NCT04305054",
+              "NCT06030037",
+              "NCT04622566",
+              "NCT04207086",
+              "NCT04889118"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04700072",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Lenvatinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04700072"
+              },
+              {
+                "nct_id": "NCT04700072",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "lenvatinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04700072"
+              },
+              {
+                "nct_id": "NCT07847359",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Lenvatinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07847359"
+              },
+              {
+                "nct_id": "NCT07847359",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "lenvatinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07847359"
+              },
+              {
+                "nct_id": "NCT04305041",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Lenvatinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04305041"
+              },
+              {
+                "nct_id": "NCT04305041",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "lenvatinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04305041"
+              }
+            ]
+          },
+          {
+            "id": "intervention:opdualag",
+            "label": "Opdualag",
+            "type": "intervention",
+            "degree": 3,
+            "community": 0,
+            "x": 0.0229,
+            "y": 0.6328,
+            "x3": 0.4473,
+            "y3": 0.4344,
+            "z3": -0.2152,
+            "trial_count": 12,
+            "nct_ids": [
+              "NCT05418972",
+              "NCT05970497",
+              "NCT06295159",
+              "NCT06712927",
+              "NCT07223411",
+              "NCT06319196",
+              "NCT05625399",
+              "NCT06101134",
+              "NCT05704933",
+              "NCT06246916",
+              "NCT06112314",
+              "NCT07281924"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05418972",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Relatlimab and nivolumab fixed dose combination (FDC)",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05418972"
+              },
+              {
+                "nct_id": "NCT05418972",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "Opdualag",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05418972"
+              },
+              {
+                "nct_id": "NCT05970497",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Opdualag",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05970497"
+              },
+              {
+                "nct_id": "NCT05970497",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Opdualag",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05970497"
+              },
+              {
+                "nct_id": "NCT06295159",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Nivolumab + Relatlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06295159"
+              },
+              {
+                "nct_id": "NCT06295159",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "Opdualag",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06295159"
+              }
+            ]
+          },
+          {
+            "id": "intervention:relatlimab",
+            "label": "relatlimab",
+            "type": "intervention",
+            "degree": 3,
+            "community": 0,
+            "x": -0.1565,
+            "y": 0.4653,
+            "x3": 0.3698,
+            "y3": 0.4072,
+            "z3": 0.01,
+            "trial_count": 11,
+            "nct_ids": [
+              "NCT05704647",
+              "NCT07459543",
+              "NCT03978611",
+              "NCT06101134",
+              "NCT06683755",
+              "NCT05428007",
+              "NCT06112314",
+              "NCT05034536",
+              "NCT07504796",
+              "NCT04552223",
+              "NCT04935229"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05704647",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "BMS-986213 (Relatlimab-Nivolumab FDC)",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05704647"
+              },
+              {
+                "nct_id": "NCT05704647",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "relatlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05704647"
+              },
+              {
+                "nct_id": "NCT07459543",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Nivolumab + Relatlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07459543"
+              },
+              {
+                "nct_id": "NCT07459543",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "relatlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07459543"
+              },
+              {
+                "nct_id": "NCT03978611",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Relatlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03978611"
+              },
+              {
+                "nct_id": "NCT03978611",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "relatlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03978611"
+              }
+            ]
+          },
+          {
+            "id": "intervention:bevacizumab",
+            "label": "Bevacizumab",
+            "type": "intervention",
+            "degree": 7,
+            "community": 0,
+            "x": -0.2212,
+            "y": 0.0599,
+            "x3": -0.2353,
+            "y3": 0.019,
+            "z3": 0.0094,
+            "trial_count": 9,
+            "nct_ids": [
+              "NCT05075993",
+              "NCT04356729",
+              "NCT05824975",
+              "NCT06839105",
+              "NCT06047379",
+              "NCT07004335",
+              "NCT06163820",
+              "NCT04107168",
+              "NCT06229340"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05075993",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "LVGN3616 + LVGN6051 + Bevacizumab + Cyclophosphamide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05075993"
+              },
+              {
+                "nct_id": "NCT05075993",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Bevacizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05075993"
+              },
+              {
+                "nct_id": "NCT04356729",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Bevacizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04356729"
+              },
+              {
+                "nct_id": "NCT04356729",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Bevacizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04356729"
+              },
+              {
+                "nct_id": "NCT05824975",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "bevacizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05824975"
+              },
+              {
+                "nct_id": "NCT05824975",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "Bevacizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05824975"
+              }
+            ]
+          },
+          {
+            "id": "intervention:fianlimab",
+            "label": "Fianlimab",
+            "type": "intervention",
+            "degree": 2,
+            "community": 3,
+            "x": -0.5046,
+            "y": 0.6214,
+            "x3": 0.8119,
+            "y3": 0.1464,
+            "z3": -0.0289,
+            "trial_count": 9,
+            "nct_ids": [
+              "NCT05352672",
+              "NCT06848088",
+              "NCT07511036",
+              "NCT05608291",
+              "NCT07527325",
+              "NCT07223411",
+              "NCT06246916",
+              "NCT06594991",
+              "NCT07808515"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05352672",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Fianlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05352672"
+              },
+              {
+                "nct_id": "NCT06848088",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Fianlimab+cemiplimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06848088"
+              },
+              {
+                "nct_id": "NCT07511036",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Fianlimab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07511036"
+              }
+            ]
+          },
+          {
+            "id": "intervention:paclitaxel",
+            "label": "Paclitaxel",
+            "type": "intervention",
+            "degree": 9,
+            "community": 0,
+            "x": -0.1296,
+            "y": -0.2589,
+            "x3": -0.0465,
+            "y3": -0.1889,
+            "z3": 0.2027,
+            "trial_count": 9,
+            "nct_ids": [
+              "NCT05039801",
+              "NCT05824975",
+              "NCT06839105",
+              "NCT06743126",
+              "NCT06047379",
+              "NCT05107674",
+              "NCT07310784",
+              "NCT04752826",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05039801",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Paclitaxel",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05039801"
+              },
+              {
+                "nct_id": "NCT05039801",
+                "field": "derivedSection.interventionBrowseModule.meshes[3].term",
+                "excerpt": "Paclitaxel",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05039801"
+              },
+              {
+                "nct_id": "NCT05824975",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "paclitaxel",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05824975"
+              },
+              {
+                "nct_id": "NCT05824975",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Paclitaxel",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05824975"
+              },
+              {
+                "nct_id": "NCT06839105",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Taxol",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06839105"
+              }
+            ]
+          },
+          {
+            "id": "intervention:tislelizumab",
+            "label": "tislelizumab",
+            "type": "intervention",
+            "degree": 1,
+            "community": 0,
+            "x": -0.8457,
+            "y": 0.3329,
+            "x3": -0.8699,
+            "y3": -0.393,
+            "z3": 0.2935,
+            "trial_count": 9,
+            "nct_ids": [
+              "NCT04924413",
+              "NCT05542342",
+              "NCT05406466",
+              "NCT05789069",
+              "NCT05238883",
+              "NCT04802876",
+              "NCT04261439",
+              "NCT05661955",
+              "NCT05104801"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04924413",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Tislelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04924413"
+              },
+              {
+                "nct_id": "NCT04924413",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "tislelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04924413"
+              },
+              {
+                "nct_id": "NCT05542342",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Tislelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05542342"
+              },
+              {
+                "nct_id": "NCT05542342",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "tislelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05542342"
+              },
+              {
+                "nct_id": "NCT05406466",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Tislelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05406466"
+              },
+              {
+                "nct_id": "NCT05406466",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "tislelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05406466"
+              }
+            ]
+          },
+          {
+            "id": "intervention:tebentafusp",
+            "label": "tebentafusp",
+            "type": "intervention",
+            "degree": 1,
+            "community": 0,
+            "x": -0.6926,
+            "y": -0.2283,
+            "x3": -0.6605,
+            "y3": 0.3104,
+            "z3": 0.197,
+            "trial_count": 8,
+            "nct_ids": [
+              "NCT06070012",
+              "NCT07057596",
+              "NCT06627244",
+              "NCT07276386",
+              "NCT06414590",
+              "NCT05315258",
+              "NCT05549297",
+              "NCT06246149"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06070012",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Tebentafusp",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06070012"
+              },
+              {
+                "nct_id": "NCT06070012",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "tebentafusp",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06070012"
+              },
+              {
+                "nct_id": "NCT07057596",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Tebentafusp",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07057596"
+              },
+              {
+                "nct_id": "NCT07057596",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "tebentafusp",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07057596"
+              },
+              {
+                "nct_id": "NCT06627244",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Tebentafusp",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06627244"
+              },
+              {
+                "nct_id": "NCT06627244",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "tebentafusp",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06627244"
+              }
+            ]
+          },
+          {
+            "id": "intervention:carboplatin",
+            "label": "Carboplatin",
+            "type": "intervention",
+            "degree": 9,
+            "community": 0,
+            "x": -0.2748,
+            "y": -0.2369,
+            "x3": 0.0255,
+            "y3": -0.2615,
+            "z3": 0.0946,
+            "trial_count": 7,
+            "nct_ids": [
+              "NCT06743126",
+              "NCT04452214",
+              "NCT06047379",
+              "NCT04993677",
+              "NCT07310784",
+              "NCT07492680",
+              "NCT07336979"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06743126",
+                "field": "protocolSection.armsInterventionsModule.interventions[9].name",
+                "excerpt": "paclitaxel plus carboplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06743126"
+              },
+              {
+                "nct_id": "NCT06743126",
+                "field": "derivedSection.interventionBrowseModule.meshes[9].term",
+                "excerpt": "Carboplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06743126"
+              },
+              {
+                "nct_id": "NCT04452214",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Carboplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04452214"
+              },
+              {
+                "nct_id": "NCT04452214",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Carboplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04452214"
+              },
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "excerpt": "Carboplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              },
+              {
+                "nct_id": "NCT06047379",
+                "field": "derivedSection.interventionBrowseModule.meshes[5].term",
+                "excerpt": "Carboplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "id": "intervention:aldesleukin",
+            "label": "Aldesleukin",
+            "type": "intervention",
+            "degree": 5,
+            "community": 2,
+            "x": 0.2216,
+            "y": -0.3984,
+            "x3": 0.0023,
+            "y3": -0.2906,
+            "z3": -0.4414,
+            "trial_count": 6,
+            "nct_ids": [
+              "NCT05296564",
+              "NCT07063875",
+              "NCT05155033",
+              "NCT07651618",
+              "NCT06204991",
+              "NCT05267626"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05296564",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Aldesleukin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05296564"
+              },
+              {
+                "nct_id": "NCT07063875",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Aldesleukin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07063875"
+              },
+              {
+                "nct_id": "NCT07063875",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "aldesleukin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07063875"
+              },
+              {
+                "nct_id": "NCT05155033",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Aldesleukin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05155033"
+              },
+              {
+                "nct_id": "NCT05155033",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "aldesleukin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05155033"
+              }
+            ]
+          },
+          {
+            "id": "intervention:axitinib",
+            "label": "Axitinib",
+            "type": "intervention",
+            "degree": 3,
+            "community": 0,
+            "x": 0.2606,
+            "y": -0.2164,
+            "x3": 0.3859,
+            "y3": 0.1906,
+            "z3": 0.423,
+            "trial_count": 6,
+            "nct_ids": [
+              "NCT05384496",
+              "NCT04996823",
+              "NCT04458259",
+              "NCT04493203",
+              "NCT05070221",
+              "NCT04640545"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05384496",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "axitinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05384496"
+              },
+              {
+                "nct_id": "NCT05384496",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Axitinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05384496"
+              },
+              {
+                "nct_id": "NCT04996823",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Axitinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04996823"
+              },
+              {
+                "nct_id": "NCT04996823",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Axitinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04996823"
+              },
+              {
+                "nct_id": "NCT04458259",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Axitinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04458259"
+              },
+              {
+                "nct_id": "NCT04458259",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Axitinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04458259"
+              }
+            ]
+          },
+          {
+            "id": "intervention:cobimetinib",
+            "label": "cobimetinib",
+            "type": "intervention",
+            "degree": 1,
+            "community": 0,
+            "x": -0.9586,
+            "y": 0.0168,
+            "x3": -1.0,
+            "y3": 0.1135,
+            "z3": -0.3859,
+            "trial_count": 6,
+            "nct_ids": [
+              "NCT04835805",
+              "NCT05768178",
+              "NCT04190628",
+              "NCT04109456",
+              "NCT05260684",
+              "NCT04722575"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04835805",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cobimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04835805"
+              },
+              {
+                "nct_id": "NCT04835805",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "cobimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04835805"
+              },
+              {
+                "nct_id": "NCT05768178",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cobimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05768178"
+              },
+              {
+                "nct_id": "NCT05768178",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "cobimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05768178"
+              },
+              {
+                "nct_id": "NCT04190628",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Cobimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04190628"
+              },
+              {
+                "nct_id": "NCT04190628",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "cobimetinib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04190628"
+              }
+            ]
+          },
+          {
+            "id": "intervention:pemetrexed",
+            "label": "Pemetrexed",
+            "type": "intervention",
+            "degree": 5,
+            "community": 0,
+            "x": -0.1971,
+            "y": -0.4828,
+            "x3": -0.0701,
+            "y3": -0.4779,
+            "z3": -0.0624,
+            "trial_count": 6,
+            "nct_ids": [
+              "NCT05180799",
+              "NCT04328844",
+              "NCT06839105",
+              "NCT04452214",
+              "NCT04993677",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05180799",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Pemetrexed (Alimta)",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05180799"
+              },
+              {
+                "nct_id": "NCT05180799",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "Pemetrexed",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05180799"
+              },
+              {
+                "nct_id": "NCT04328844",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Pemetrexed",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              },
+              {
+                "nct_id": "NCT04328844",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Pemetrexed",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              },
+              {
+                "nct_id": "NCT06839105",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Pemetrexed",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06839105"
+              },
+              {
+                "nct_id": "NCT06839105",
+                "field": "derivedSection.interventionBrowseModule.meshes[3].term",
+                "excerpt": "Pemetrexed",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06839105"
+              }
+            ]
+          },
+          {
+            "id": "intervention:camrelizumab",
+            "label": "camrelizumab",
+            "type": "intervention",
+            "degree": 1,
+            "community": 0,
+            "x": 0.1894,
+            "y": -0.9534,
+            "x3": -0.0657,
+            "y3": -0.4282,
+            "z3": 0.9146,
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT05789043",
+              "NCT04979585",
+              "NCT05051865",
+              "NCT04397770",
+              "NCT05512481"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05789043",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "camrelizumab+apatinib+TMZ",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05789043"
+              },
+              {
+                "nct_id": "NCT05789043",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "camrelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05789043"
+              },
+              {
+                "nct_id": "NCT04979585",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Camrelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04979585"
+              },
+              {
+                "nct_id": "NCT04979585",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "camrelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04979585"
+              },
+              {
+                "nct_id": "NCT05051865",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "camrelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05051865"
+              },
+              {
+                "nct_id": "NCT05051865",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "camrelizumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05051865"
+              }
+            ]
+          },
+          {
+            "id": "intervention:cisplatin",
+            "label": "Cisplatin",
+            "type": "intervention",
+            "degree": 6,
+            "community": 0,
+            "x": -0.3611,
+            "y": -0.6326,
+            "x3": 0.0258,
+            "y3": -0.5942,
+            "z3": 0.1916,
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT07400302",
+              "NCT04328844",
+              "NCT04521686",
+              "NCT07310784",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07400302",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Cisplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07400302"
+              },
+              {
+                "nct_id": "NCT07400302",
+                "field": "derivedSection.interventionBrowseModule.meshes[3].term",
+                "excerpt": "Cisplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07400302"
+              },
+              {
+                "nct_id": "NCT04328844",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Cisplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              },
+              {
+                "nct_id": "NCT04328844",
+                "field": "derivedSection.interventionBrowseModule.meshes[2].term",
+                "excerpt": "Cisplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              },
+              {
+                "nct_id": "NCT04521686",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Cisplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04521686"
+              },
+              {
+                "nct_id": "NCT04521686",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Cisplatin",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04521686"
+              }
+            ]
+          },
+          {
+            "id": "intervention:dacarbazine",
+            "label": "Dacarbazine",
+            "type": "intervention",
+            "degree": 5,
+            "community": 0,
+            "x": -0.5252,
+            "y": -0.476,
+            "x3": -0.2394,
+            "y3": -0.4796,
+            "z3": 0.3771,
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT06346067",
+              "NCT05987332",
+              "NCT07847359",
+              "NCT06743126",
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06346067",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Dacarbazine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06346067"
+              },
+              {
+                "nct_id": "NCT06346067",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Dacarbazine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06346067"
+              },
+              {
+                "nct_id": "NCT05987332",
+                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "excerpt": "Dacarbazine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05987332"
+              },
+              {
+                "nct_id": "NCT05987332",
+                "field": "derivedSection.interventionBrowseModule.meshes[4].term",
+                "excerpt": "Dacarbazine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05987332"
+              },
+              {
+                "nct_id": "NCT07847359",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Dacarbazine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07847359"
+              },
+              {
+                "nct_id": "NCT07847359",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Dacarbazine",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07847359"
+              }
+            ]
+          },
+          {
+            "id": "intervention:fludarabine phosphate",
+            "label": "Fludarabine Phosphate",
+            "type": "intervention",
+            "degree": 4,
+            "community": 2,
+            "x": 0.5519,
+            "y": -0.2814,
+            "x3": -0.2533,
+            "y3": -0.1712,
+            "z3": -0.6367,
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT05470283",
+              "NCT04119024",
+              "NCT04897321",
+              "NCT06204991",
+              "NCT04904185"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05470283",
+                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "excerpt": "Fludarabine Phosphate",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05470283"
+              },
+              {
+                "nct_id": "NCT04119024",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "Fludarabine Phosphate",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04119024"
+              },
+              {
+                "nct_id": "NCT04119024",
+                "field": "derivedSection.interventionBrowseModule.meshes[3].term",
+                "excerpt": "fludarabine phosphate",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04119024"
+              },
+              {
+                "nct_id": "NCT04897321",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "B7-H3 CAR T cells",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04897321"
+              },
+              {
+                "nct_id": "NCT04897321",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "fludarabine phosphate",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04897321"
+              }
+            ]
+          },
+          {
+            "id": "intervention:avelumab",
+            "label": "avelumab",
+            "type": "intervention",
+            "degree": 3,
+            "community": 0,
+            "x": -0.1669,
+            "y": -0.85,
+            "x3": 0.0564,
+            "y3": -0.7554,
+            "z3": -0.2515,
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT04328844",
+              "NCT05222932",
+              "NCT04902040",
+              "NCT05267626"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04328844",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Avelumab Injection",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              },
+              {
+                "nct_id": "NCT04328844",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "avelumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              },
+              {
+                "nct_id": "NCT05222932",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Avelumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05222932"
+              },
+              {
+                "nct_id": "NCT05222932",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "avelumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05222932"
+              },
+              {
+                "nct_id": "NCT04902040",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Avelumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04902040"
+              },
+              {
+                "nct_id": "NCT04902040",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "avelumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04902040"
+              }
+            ]
+          },
+          {
+            "id": "intervention:immune checkpoint inhibitors",
+            "label": "Immune Checkpoint Inhibitors",
+            "type": "intervention",
+            "degree": 1,
+            "community": 3,
+            "x": -0.1146,
+            "y": 1.0,
+            "x3": 0.9299,
+            "y3": -0.3863,
+            "z3": -0.2797,
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT06052852",
+              "NCT07574047",
+              "NCT05878977",
+              "NCT05037825"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06052852",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "BDC-3042",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06052852"
+              },
+              {
+                "nct_id": "NCT06052852",
+                "field": "derivedSection.interventionBrowseModule.meshes[1].term",
+                "excerpt": "Immune Checkpoint Inhibitors",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06052852"
+              },
+              {
+                "nct_id": "NCT07574047",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Immune Checkpoint Inhibitors",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07574047"
+              },
+              {
+                "nct_id": "NCT07574047",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Immune Checkpoint Inhibitors",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07574047"
+              },
+              {
+                "nct_id": "NCT05878977",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Immune checkpoint inhibitor",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05878977"
+              },
+              {
+                "nct_id": "NCT05878977",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Immune Checkpoint Inhibitors",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05878977"
+              }
+            ]
+          },
+          {
+            "id": "intervention:injections",
+            "label": "Injections",
+            "type": "intervention",
+            "degree": 1,
+            "community": 0,
+            "x": 0.7828,
+            "y": -0.5974,
+            "x3": 0.6934,
+            "y3": -0.1727,
+            "z3": 0.813,
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT05135715",
+              "NCT07099430",
+              "NCT06209580",
+              "NCT05047536"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05135715",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "RC48-ADC",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05135715"
+              },
+              {
+                "nct_id": "NCT05135715",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Injections",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05135715"
+              },
+              {
+                "nct_id": "NCT07099430",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "LBL-024 for Injection",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07099430"
+              },
+              {
+                "nct_id": "NCT07099430",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Injections",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07099430"
+              },
+              {
+                "nct_id": "NCT06209580",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "AMT-253 for injection",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06209580"
+              },
+              {
+                "nct_id": "NCT06209580",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Injections",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06209580"
+              }
+            ]
+          },
+          {
+            "id": "intervention:melphalan",
+            "label": "Melphalan",
+            "type": "intervention",
+            "degree": 1,
+            "community": 2,
+            "x": 0.8872,
+            "y": 0.1938,
+            "x3": 0.2476,
+            "y3": 0.3408,
+            "z3": -0.8581,
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT07183852",
+              "NCT05893654",
+              "NCT04812470",
+              "NCT05903937"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07183852",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Melphalan",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07183852"
+              },
+              {
+                "nct_id": "NCT07183852",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Melphalan",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07183852"
+              },
+              {
+                "nct_id": "NCT05893654",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Melphalan Injection",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05893654"
+              },
+              {
+                "nct_id": "NCT05893654",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Melphalan",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05893654"
+              },
+              {
+                "nct_id": "NCT04812470",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Melphalan",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04812470"
+              },
+              {
+                "nct_id": "NCT04812470",
+                "field": "derivedSection.interventionBrowseModule.meshes[0].term",
+                "excerpt": "Melphalan",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04812470"
+              }
+            ]
+          }
+        ],
+        "edges": [
+          {
+            "source": "intervention:ipilimumab",
+            "target": "intervention:nivolumab",
+            "trial_count": 42,
+            "nct_ids": [
+              "NCT07422779",
+              "NCT05116202",
+              "NCT05779423",
+              "NCT04949113",
+              "NCT04434560",
+              "NCT06295159",
+              "NCT06794775",
+              "NCT04013854",
+              "NCT04495257",
+              "NCT05302921",
+              "NCT06365619",
+              "NCT04899921",
+              "NCT05498792",
+              "NCT05169957",
+              "NCT05200143",
+              "NCT05926960",
+              "NCT07501117",
+              "NCT06240143",
+              "NCT04464759",
+              "NCT05004025",
+              "NCT05714371",
+              "NCT06047379",
+              "NCT07815574",
+              "NCT07740941",
+              "NCT05704933",
+              "NCT04074967",
+              "NCT03929029",
+              "NCT04091750",
+              "NCT04655157",
+              "NCT05289193",
+              "NCT07230613",
+              "NCT06683755",
+              "NCT04463368",
+              "NCT04988841",
+              "NCT07436390",
+              "NCT04060407",
+              "NCT05428007",
+              "NCT07364474",
+              "NCT07504796",
+              "NCT04562129",
+              "NCT04250246",
+              "NCT06250335"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07422779",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab\", \"Drug: Ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07422779"
+              },
+              {
+                "nct_id": "NCT05116202",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab\", \"Drug: Ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05116202"
+              },
+              {
+                "nct_id": "NCT05779423",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Ipilimumab\", \"Drug: Nivolumab\", \"Procedure: Cryoablation\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05779423"
+              }
+            ]
+          },
+          {
+            "source": "intervention:binimetinib",
+            "target": "intervention:encorafenib",
+            "trial_count": 16,
+            "nct_ids": [
+              "NCT04720768",
+              "NCT05270044",
+              "NCT06887088",
+              "NCT05097378",
+              "NCT05926960",
+              "NCT04221438",
+              "NCT05026983",
+              "NCT04657991",
+              "NCT04759846",
+              "NCT04511013",
+              "NCT04074096",
+              "NCT05767879",
+              "NCT04655157",
+              "NCT04903119",
+              "NCT03878719",
+              "NCT05260684"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04720768",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Binimetinib\", \"Drug: Encorafenib\", \"Drug: Palbociclib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04720768"
+              },
+              {
+                "nct_id": "NCT05270044",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Encorafenib and Binimetinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05270044"
+              },
+              {
+                "nct_id": "NCT06887088",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Encorafenib + Binimetinib\", \"Drug: cemiplimab+fianlimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06887088"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cyclophosphamide",
+            "target": "intervention:fludarabine",
+            "trial_count": 14,
+            "nct_ids": [
+              "NCT06961786",
+              "NCT06961357",
+              "NCT05176470",
+              "NCT05069935",
+              "NCT06626256",
+              "NCT06660420",
+              "NCT05798546",
+              "NCT07627698",
+              "NCT05628883",
+              "NCT06190249",
+              "NCT04596033",
+              "NCT04897321",
+              "NCT06151847",
+              "NCT06237881"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06961786",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: TILT-123\", \"Biological: TIL\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961786"
+              },
+              {
+                "nct_id": "NCT06961357",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Drug: Interleukin-2\", \"Drug: TIL Product\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT05176470",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Biological: Lifileucel\", \"Biological: Pembrolizumab\", \"Procedure: Therapeutic Conventional Surgery\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05176470"
+              }
+            ]
+          },
+          {
+            "source": "intervention:dabrafenib",
+            "target": "intervention:trametinib",
+            "trial_count": 13,
+            "nct_ids": [
+              "NCT07440290",
+              "NCT04666272",
+              "NCT05171374",
+              "NCT07092670",
+              "NCT04310397",
+              "NCT05714371",
+              "NCT04903119",
+              "NCT04547946",
+              "NCT04557956",
+              "NCT05260684",
+              "NCT05299580",
+              "NCT04961619",
+              "NCT04527549"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07440290",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Dabrafenib\", \"Drug: Trametinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07440290"
+              },
+              {
+                "nct_id": "NCT04666272",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: dabrafenib\", \"Drug: trametinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04666272"
+              },
+              {
+                "nct_id": "NCT05171374",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Dabrafenib\", \"Drug: Trametinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05171374"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cemiplimab",
+            "target": "intervention:fianlimab",
+            "trial_count": 9,
+            "nct_ids": [
+              "NCT05352672",
+              "NCT06848088",
+              "NCT07511036",
+              "NCT05608291",
+              "NCT07527325",
+              "NCT07223411",
+              "NCT06246916",
+              "NCT06594991",
+              "NCT07808515"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05352672",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Fianlimab\", \"Drug: Cemiplimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05352672"
+              },
+              {
+                "nct_id": "NCT06848088",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Fianlimab+cemiplimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06848088"
+              },
+              {
+                "nct_id": "NCT07511036",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Cemiplimab\", \"Drug: Lpilimumab\", \"Drug: Fianlimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07511036"
+              }
+            ]
+          },
+          {
+            "source": "intervention:nivolumab",
+            "target": "intervention:relatlimab",
+            "trial_count": 8,
+            "nct_ids": [
+              "NCT05704647",
+              "NCT07459543",
+              "NCT06101134",
+              "NCT06683755",
+              "NCT05428007",
+              "NCT06112314",
+              "NCT07504796",
+              "NCT04552223"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05704647",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: BMS-986213 (Relatlimab-Nivolumab FDC)\", \"Drug: Nivolumab\", \"Drug: Relatlimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05704647"
+              },
+              {
+                "nct_id": "NCT07459543",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab + Relatlimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07459543"
+              },
+              {
+                "nct_id": "NCT06101134",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: relatlimab+nivolumab\", \"Drug: relatlimab+nivolumab+rHuPH20\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06101134"
+              }
+            ]
+          },
+          {
+            "source": "intervention:lenvatinib",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 7,
+            "nct_ids": [
+              "NCT05545969",
+              "NCT04955743",
+              "NCT05308901",
+              "NCT05091346",
+              "NCT06030037",
+              "NCT04622566",
+              "NCT04207086"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05545969",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Lenvatinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05545969"
+              },
+              {
+                "nct_id": "NCT04955743",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Lenvatinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04955743"
+              },
+              {
+                "nct_id": "NCT05308901",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Lenvatinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05308901"
+              }
+            ]
+          },
+          {
+            "source": "intervention:nivolumab",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 6,
+            "nct_ids": [
+              "NCT07422779",
+              "NCT07092670",
+              "NCT05714371",
+              "NCT06047379",
+              "NCT07436390",
+              "NCT07223424"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07422779",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Nivolumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07422779"
+              },
+              {
+                "nct_id": "NCT07092670",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Nivolumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07092670"
+              },
+              {
+                "nct_id": "NCT05714371",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab\", \"Drug: Ipilimumab + nivolumab\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05714371"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cyclophosphamide",
+            "target": "intervention:fludarabine phosphate",
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT05470283",
+              "NCT04119024",
+              "NCT04897321",
+              "NCT06204991",
+              "NCT04904185"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05470283",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: OBX-115\", \"Drug: Acetazolamide\", \"Drug: Cyclophosphamide\", \"Drug: Furosemide\", \"Drug: Mesna\", \"Drug: Fludarabine Phosphate\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05470283"
+              },
+              {
+                "nct_id": "NCT04119024",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Procedure: Biopsy\", \"Procedure: Biospecimen Collection\", \"Procedure: Computed Tomography\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine Phosphate\", \"Other: Fludeoxyglucose F-18\", \"Biological: IL13Ralpha2-specific Hinge-optimized 4-1BB-co-stimulatory CAR/Truncated CD19-expressing Autologous TN/MEM Cells\", \"Procedure: Magnetic Resonance Imaging\", \"Procedure: Positron Emission Tomography\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04119024"
+              },
+              {
+                "nct_id": "NCT04897321",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Fludarabine\", \"Drug: Cyclophosphamide\", \"Drug: MESNA\", \"Drug: B7-H3 CAR T cells\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04897321"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cyclophosphamide",
+            "target": "intervention:interleukin-2",
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT06961357",
+              "NCT05798546",
+              "NCT05628883",
+              "NCT04596033",
+              "NCT06237881"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06961357",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Drug: Interleukin-2\", \"Drug: TIL Product\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT05798546",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: Neo-T\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Drug: Interleukin-2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05798546"
+              },
+              {
+                "nct_id": "NCT05628883",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: TBio-4101\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Drug: Interleukin-2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05628883"
+              }
+            ]
+          },
+          {
+            "source": "intervention:fludarabine",
+            "target": "intervention:interleukin-2",
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT06961357",
+              "NCT05798546",
+              "NCT05628883",
+              "NCT04596033",
+              "NCT06237881"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06961357",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Drug: Interleukin-2\", \"Drug: TIL Product\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06961357"
+              },
+              {
+                "nct_id": "NCT05798546",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: Neo-T\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Drug: Interleukin-2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05798546"
+              },
+              {
+                "nct_id": "NCT05628883",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: TBio-4101\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine\", \"Drug: Interleukin-2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05628883"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cyclophosphamide",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT06190249",
+              "NCT05492682",
+              "NCT06771544",
+              "NCT04904185"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06190249",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: LN-144\", \"Drug: Cyclophosphamide\", \"Drug: Mesna\", \"Drug: Fludarabine\", \"Biological: Interleukin-2 (IL-2)\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06190249"
+              },
+              {
+                "nct_id": "NCT05492682",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: PeptiCRAd-1\", \"Drug: Cyclophosphamide\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05492682"
+              },
+              {
+                "nct_id": "NCT06771544",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Cyclophosphamide\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06771544"
+              }
+            ]
+          },
+          {
+            "source": "intervention:ipilimumab",
+            "target": "intervention:relatlimab",
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT03978611",
+              "NCT06683755",
+              "NCT05428007",
+              "NCT07504796"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03978611",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Relatlimab\", \"Drug: Ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03978611"
+              },
+              {
+                "nct_id": "NCT06683755",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab\", \"Drug: Relatlimab\", \"Drug: Ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06683755"
+              },
+              {
+                "nct_id": "NCT05428007",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Sarilumab\", \"Drug: Ipilimumab Injection\", \"Drug: Nivolumab/Relatlimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05428007"
+              }
+            ]
+          },
+          {
+            "source": "intervention:aldesleukin",
+            "target": "intervention:cyclophosphamide",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT05296564",
+              "NCT07651618",
+              "NCT06204991"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05296564",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: CYCLOPHOSPHAMIDE and FLUDARABIN\", \"Drug: Cyclophosphamide\", \"Biological: HBI 0201-ESO TCRT\", \"Drug: Aldesleukin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05296564"
+              },
+              {
+                "nct_id": "NCT07651618",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: Tumour Infiltrating Lymphocytes Adoptive Cell Therapy\", \"Drug: Cyclophosphamide + Fludarabine Lymphodepletive Conditioning\", \"Drug: Aldesleukin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07651618"
+              },
+              {
+                "nct_id": "NCT06204991",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: ADP-TILIL7\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine Phosphate\", \"Drug: Proleukin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06204991"
+              }
+            ]
+          },
+          {
+            "source": "intervention:binimetinib",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT05926960",
+              "NCT04657991",
+              "NCT04074096"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05926960",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: encorafenib\", \"Drug: binimetinib\", \"Drug: pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05926960"
+              },
+              {
+                "nct_id": "NCT04657991",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Encorafenib\", \"Drug: Binimetinib\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04657991"
+              },
+              {
+                "nct_id": "NCT04074096",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Binimetinib Oral Tablet\", \"Drug: Encorafenib Oral Capsule\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04074096"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:paclitaxel",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT06047379",
+              "NCT07310784",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[4].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              },
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              },
+              {
+                "nct_id": "NCT07492680",
+                "field": "protocolSection.armsInterventionsModule.armGroups[2].interventionNames",
+                "excerpt": "[\"Drug: Navlimetostat\", \"Drug: Pumitamig\", \"Drug: Pemetrexed\", \"Drug: Carboplatin\", \"Drug: Nab-paclitaxel\", \"Drug: Paclitaxel\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07492680"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT04452214",
+              "NCT06047379",
+              "NCT04993677"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04452214",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: CAN04\", \"Drug: Pembrolizumab\", \"Drug: Carboplatin\", \"Drug: Pemetrexed\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04452214"
+              },
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              },
+              {
+                "nct_id": "NCT04993677",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: SEA-CD40\", \"Drug: pembrolizumab (KEYTRUDA®)\", \"Drug: pemetrexed\", \"Drug: carboplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04993677"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:pemetrexed",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT04452214",
+              "NCT04993677",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04452214",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: CAN04\", \"Drug: Pembrolizumab\", \"Drug: Carboplatin\", \"Drug: Pemetrexed\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04452214"
+              },
+              {
+                "nct_id": "NCT04993677",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: SEA-CD40\", \"Drug: pembrolizumab (KEYTRUDA®)\", \"Drug: pemetrexed\", \"Drug: carboplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04993677"
+              },
+              {
+                "nct_id": "NCT07492680",
+                "field": "protocolSection.armsInterventionsModule.armGroups[2].interventionNames",
+                "excerpt": "[\"Drug: Navlimetostat\", \"Drug: Pumitamig\", \"Drug: Pemetrexed\", \"Drug: Carboplatin\", \"Drug: Nab-paclitaxel\", \"Drug: Paclitaxel\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07492680"
+              }
+            ]
+          },
+          {
+            "source": "intervention:encorafenib",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT05926960",
+              "NCT04657991",
+              "NCT04074096"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05926960",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: encorafenib\", \"Drug: binimetinib\", \"Drug: pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05926960"
+              },
+              {
+                "nct_id": "NCT04657991",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Encorafenib\", \"Drug: Binimetinib\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04657991"
+              },
+              {
+                "nct_id": "NCT04074096",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Binimetinib Oral Tablet\", \"Drug: Encorafenib Oral Capsule\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04074096"
+              }
+            ]
+          },
+          {
+            "source": "intervention:interleukin-2",
+            "target": "intervention:melphalan",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT07183852",
+              "NCT04812470",
+              "NCT05903937"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07183852",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Autologous Tumor Infiltrating Lymphocytes (TIL)\", \"Drug: Melphalan\", \"Drug: Interleukin-2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07183852"
+              },
+              {
+                "nct_id": "NCT04812470",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Autologous Tumor Infiltrating Lymphocytes\", \"Drug: Melphalan\", \"Drug: Interleukin-2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04812470"
+              },
+              {
+                "nct_id": "NCT05903937",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Autologous Tumor Infiltrating Lymphocytes\", \"Drug: Melphalan\", \"Drug: Interleukin-2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05903937"
+              }
+            ]
+          },
+          {
+            "source": "intervention:ipilimumab",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT05714371",
+              "NCT06047379",
+              "NCT07436390"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05714371",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab\", \"Drug: Ipilimumab + nivolumab\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05714371"
+              },
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              },
+              {
+                "nct_id": "NCT07436390",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Ipilimumab/Nivolumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07436390"
+              }
+            ]
+          },
+          {
+            "source": "intervention:bevacizumab",
+            "target": "intervention:paclitaxel",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT05824975",
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05824975",
+                "field": "protocolSection.armsInterventionsModule.armGroups[3].interventionNames",
+                "excerpt": "[\"Drug: paclitaxel\", \"Drug: bevacizumab\", \"Drug: GI-102\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05824975"
+              },
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:camrelizumab",
+            "target": "intervention:temozolomide",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT05789043",
+              "NCT04397770"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05789043",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: camrelizumab+apatinib+TMZ\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05789043"
+              },
+              {
+                "nct_id": "NCT04397770",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: SHR1210\", \"Drug: apatinib mesylate\", \"Drug: Temozolomide Injection\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04397770"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:cisplatin",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT07310784",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              },
+              {
+                "nct_id": "NCT07492680",
+                "field": "protocolSection.armsInterventionsModule.armGroups[2].interventionNames",
+                "excerpt": "[\"Drug: Navlimetostat\", \"Drug: Pumitamig\", \"Drug: Pemetrexed\", \"Drug: Carboplatin\", \"Drug: Nab-paclitaxel\", \"Drug: Paclitaxel\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07492680"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cisplatin",
+            "target": "intervention:paclitaxel",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT07310784",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              },
+              {
+                "nct_id": "NCT07492680",
+                "field": "protocolSection.armsInterventionsModule.armGroups[2].interventionNames",
+                "excerpt": "[\"Drug: Navlimetostat\", \"Drug: Pumitamig\", \"Drug: Pemetrexed\", \"Drug: Carboplatin\", \"Drug: Nab-paclitaxel\", \"Drug: Paclitaxel\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07492680"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cisplatin",
+            "target": "intervention:pemetrexed",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT04328844",
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04328844",
+                "field": "protocolSection.armsInterventionsModule.armGroups[3].interventionNames",
+                "excerpt": "[\"Drug: IOA-244\", \"Drug: Avelumab Injection\", \"Drug: Pemetrexed\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              },
+              {
+                "nct_id": "NCT07492680",
+                "field": "protocolSection.armsInterventionsModule.armGroups[2].interventionNames",
+                "excerpt": "[\"Drug: Navlimetostat\", \"Drug: Pumitamig\", \"Drug: Pemetrexed\", \"Drug: Carboplatin\", \"Drug: Nab-paclitaxel\", \"Drug: Paclitaxel\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07492680"
+              }
+            ]
+          },
+          {
+            "source": "intervention:ipilimumab",
+            "target": "intervention:opdualag",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06295159",
+              "NCT06712927"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06295159",
+                "field": "protocolSection.armsInterventionsModule.armGroups[3].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab + Relatlimab\", \"Drug: Ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06295159"
+              },
+              {
+                "nct_id": "NCT06712927",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Ipilimumab\", \"Drug: Nivolumab + Relatlimab FDC\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06712927"
+              }
+            ]
+          },
+          {
+            "source": "intervention:nivolumab",
+            "target": "intervention:opdualag",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06319196",
+              "NCT06101134"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06319196",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Opdualag\", \"Drug: Nivolumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06319196"
+              },
+              {
+                "nct_id": "NCT06101134",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: relatlimab+nivolumab\", \"Drug: relatlimab+nivolumab+rHuPH20\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06101134"
+              }
+            ]
+          },
+          {
+            "source": "intervention:paclitaxel",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06047379",
+              "NCT04752826"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              },
+              {
+                "nct_id": "NCT04752826",
+                "field": "protocolSection.armsInterventionsModule.armGroups[4].interventionNames",
+                "excerpt": "[\"Drug: BI-1808\", \"Drug: Pembrolizumab (KEYTRUDA® ) 25 Mg/mL Solution for Injection\", \"Drug: Paclitaxel 80 mg/m2 weekly\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04752826"
+              }
+            ]
+          },
+          {
+            "source": "intervention:pembrolizumab",
+            "target": "intervention:pemetrexed",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT04452214",
+              "NCT04993677"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04452214",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: CAN04\", \"Drug: Pembrolizumab\", \"Drug: Carboplatin\", \"Drug: Pemetrexed\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04452214"
+              },
+              {
+                "nct_id": "NCT04993677",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: SEA-CD40\", \"Drug: pembrolizumab (KEYTRUDA®)\", \"Drug: pemetrexed\", \"Drug: carboplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04993677"
+              }
+            ]
+          },
+          {
+            "source": "intervention:temozolomide",
+            "target": "intervention:toripalimab",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT05827770",
+              "NCT04884997"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05827770",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Toripalimab combined with Temozolomide\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05827770"
+              },
+              {
+                "nct_id": "NCT04884997",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: toripalimab\", \"Drug: Temozolomide Injection\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04884997"
+              }
+            ]
+          },
+          {
+            "source": "intervention:aldesleukin",
+            "target": "intervention:avelumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05267626"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05267626",
+                "field": "protocolSection.armsInterventionsModule.armGroups[3].interventionNames",
+                "excerpt": "[\"Drug: AU-007\", \"Drug: Aldesleukin\", \"Drug: Avelumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05267626"
+              }
+            ]
+          },
+          {
+            "source": "intervention:aldesleukin",
+            "target": "intervention:fludarabine phosphate",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06204991"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06204991",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: ADP-TILIL7\", \"Drug: Cyclophosphamide\", \"Drug: Fludarabine Phosphate\", \"Drug: Proleukin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06204991"
+              }
+            ]
+          },
+          {
+            "source": "intervention:aldesleukin",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05267626"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05267626",
+                "field": "protocolSection.armsInterventionsModule.armGroups[4].interventionNames",
+                "excerpt": "[\"Drug: AU-007\", \"Drug: Aldesleukin\", \"Drug: Nivolumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05267626"
+              }
+            ]
+          },
+          {
+            "source": "intervention:aldesleukin",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05155033"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05155033",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pembrolizumab\", \"Drug: Aldesleukin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05155033"
+              }
+            ]
+          },
+          {
+            "source": "intervention:atezolizumab",
+            "target": "intervention:bevacizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04356729"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04356729",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Atezolizumab\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04356729"
+              }
+            ]
+          },
+          {
+            "source": "intervention:atezolizumab",
+            "target": "intervention:cobimetinib",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04722575"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04722575",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Cobimetinib 20 MG Oral Tablet\", \"Drug: Vemurafenib 240 Mg Oral Capsule\", \"Drug: Atezolizumab 1200 MG in 20 ML Injection\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04722575"
+              }
+            ]
+          },
+          {
+            "source": "intervention:atezolizumab",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05581004"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05581004",
+                "field": "protocolSection.armsInterventionsModule.armGroups[3].interventionNames",
+                "excerpt": "[\"Drug: Enzelkitug\", \"Drug: Atezolizumab\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05581004"
+              }
+            ]
+          },
+          {
+            "source": "intervention:avelumab",
+            "target": "intervention:cisplatin",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04328844"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04328844",
+                "field": "protocolSection.armsInterventionsModule.armGroups[3].interventionNames",
+                "excerpt": "[\"Drug: IOA-244\", \"Drug: Avelumab Injection\", \"Drug: Pemetrexed\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              }
+            ]
+          },
+          {
+            "source": "intervention:avelumab",
+            "target": "intervention:pemetrexed",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04328844"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04328844",
+                "field": "protocolSection.armsInterventionsModule.armGroups[3].interventionNames",
+                "excerpt": "[\"Drug: IOA-244\", \"Drug: Avelumab Injection\", \"Drug: Pemetrexed\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04328844"
+              }
+            ]
+          },
+          {
+            "source": "intervention:axitinib",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04996823"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04996823",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Ipilimumab\", \"Drug: Axitinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04996823"
+              }
+            ]
+          },
+          {
+            "source": "intervention:axitinib",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04493203"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04493203",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nivolumab\", \"Drug: Axitinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04493203"
+              }
+            ]
+          },
+          {
+            "source": "intervention:axitinib",
+            "target": "intervention:toripalimab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04640545"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04640545",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: LBL-007\", \"Drug: Toripalimab\", \"Drug: Axitinib Tablets\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04640545"
+              }
+            ]
+          },
+          {
+            "source": "intervention:bevacizumab",
+            "target": "intervention:carboplatin",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:bevacizumab",
+            "target": "intervention:cyclophosphamide",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05075993"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05075993",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: LVGN3616 + LVGN6051 + Nab-Paclitaxel\", \"Drug: LVGN3616 + LVGN6051 + Bevacizumab + Cyclophosphamide\", \"Drug: LVGN3616 + LVGN6051 + LVGN7409 + Nab-Paclitaxel\", \"Drug: LVGN3616 + LVGN6051 + LVGN7409 + Bevacizumab + Cyclophosphamide\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05075993"
+              }
+            ]
+          },
+          {
+            "source": "intervention:bevacizumab",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:bevacizumab",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:bevacizumab",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:binimetinib",
+            "target": "intervention:dabrafenib",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04903119"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04903119",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nilotinib 100mg\", \"Drug: Dabrafenib\", \"Drug: Trametinib\", \"Drug: Encorafenib\", \"Drug: Binimetinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04903119"
+              }
+            ]
+          },
+          {
+            "source": "intervention:binimetinib",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04655157"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04655157",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: encorafenib\", \"Drug: nivolumab\", \"Drug: ipilimumab\", \"Drug: binimetinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04655157"
+              }
+            ]
+          },
+          {
+            "source": "intervention:binimetinib",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04655157"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04655157",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: encorafenib\", \"Drug: nivolumab\", \"Drug: ipilimumab\", \"Drug: binimetinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04655157"
+              }
+            ]
+          },
+          {
+            "source": "intervention:binimetinib",
+            "target": "intervention:trametinib",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04903119"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04903119",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nilotinib 100mg\", \"Drug: Dabrafenib\", \"Drug: Trametinib\", \"Drug: Encorafenib\", \"Drug: Binimetinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04903119"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:dacarbazine",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carboplatin",
+            "target": "intervention:temozolomide",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cemiplimab",
+            "target": "intervention:immune checkpoint inhibitors",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06052852"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06052852",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: BDC-3042\", \"Drug: Cemiplimab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06052852"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cemiplimab",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06594991"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06594991",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Fianlimab\", \"Drug: Cemiplimab\", \"Drug: Ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06594991"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cisplatin",
+            "target": "intervention:dacarbazine",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cisplatin",
+            "target": "intervention:temozolomide",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              }
+            ]
+          },
+          {
+            "source": "intervention:cyclophosphamide",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05061017"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05061017",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Pixatimod\", \"Drug: Nivolumab\", \"Drug: Cyclophosphamide (low dose)\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05061017"
+              }
+            ]
+          },
+          {
+            "source": "intervention:dabrafenib",
+            "target": "intervention:encorafenib",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04903119"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04903119",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nilotinib 100mg\", \"Drug: Dabrafenib\", \"Drug: Trametinib\", \"Drug: Encorafenib\", \"Drug: Binimetinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04903119"
+              }
+            ]
+          },
+          {
+            "source": "intervention:dacarbazine",
+            "target": "intervention:lenvatinib",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07847359"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07847359",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Procedure: Cryoablation\", \"Drug: Iparomlimab and Tuvonralimab\", \"Drug: Dacarbazine\", \"Drug: Lenvatinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07847359"
+              }
+            ]
+          },
+          {
+            "source": "intervention:dacarbazine",
+            "target": "intervention:paclitaxel",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              }
+            ]
+          },
+          {
+            "source": "intervention:dacarbazine",
+            "target": "intervention:temozolomide",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              }
+            ]
+          },
+          {
+            "source": "intervention:encorafenib",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04655157"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04655157",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: encorafenib\", \"Drug: nivolumab\", \"Drug: ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04655157"
+              }
+            ]
+          },
+          {
+            "source": "intervention:encorafenib",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04655157"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04655157",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: encorafenib\", \"Drug: nivolumab\", \"Drug: ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04655157"
+              }
+            ]
+          },
+          {
+            "source": "intervention:encorafenib",
+            "target": "intervention:trametinib",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04903119"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04903119",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Nilotinib 100mg\", \"Drug: Dabrafenib\", \"Drug: Trametinib\", \"Drug: Encorafenib\", \"Drug: Binimetinib\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04903119"
+              }
+            ]
+          },
+          {
+            "source": "intervention:fianlimab",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06594991"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06594991",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Fianlimab\", \"Drug: Cemiplimab\", \"Drug: Ipilimumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06594991"
+              }
+            ]
+          },
+          {
+            "source": "intervention:fludarabine",
+            "target": "intervention:fludarabine phosphate",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04897321"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04897321",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Fludarabine\", \"Drug: Cyclophosphamide\", \"Drug: MESNA\", \"Drug: B7-H3 CAR T cells\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04897321"
+              }
+            ]
+          },
+          {
+            "source": "intervention:fludarabine",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06190249"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06190249",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Biological: LN-144\", \"Drug: Cyclophosphamide\", \"Drug: Mesna\", \"Drug: Fludarabine\", \"Biological: Interleukin-2 (IL-2)\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06190249"
+              }
+            ]
+          },
+          {
+            "source": "intervention:fludarabine phosphate",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04904185"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04904185",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Cyclophosphamide\", \"Drug: Fludarabine Phosphate\", \"Biological: Multiple Antigen Specific Endogenously derived T cells\", \"Drug: Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04904185"
+              }
+            ]
+          },
+          {
+            "source": "intervention:injections",
+            "target": "intervention:toripalimab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07099430"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07099430",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: LBL-024 for Injection\", \"Drug: Toripalimab Injection\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07099430"
+              }
+            ]
+          },
+          {
+            "source": "intervention:interleukin-2",
+            "target": "intervention:ipilimumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04562129"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04562129",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Interleukin-2\", \"Drug: Ipilimumab\", \"Drug: Nivolumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04562129"
+              }
+            ]
+          },
+          {
+            "source": "intervention:interleukin-2",
+            "target": "intervention:nivolumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT04562129"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT04562129",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Interleukin-2\", \"Drug: Ipilimumab\", \"Drug: Nivolumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04562129"
+              }
+            ]
+          },
+          {
+            "source": "intervention:interleukin-2",
+            "target": "intervention:pembrolizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05086692"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05086692",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: MDNA11\", \"Drug: Pembrolizumab (KEYTRUDA®)\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05086692"
+              }
+            ]
+          },
+          {
+            "source": "intervention:ipilimumab",
+            "target": "intervention:paclitaxel",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:lenvatinib",
+            "target": "intervention:tislelizumab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05406466"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05406466",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: Tislelizumab\", \"Drug: Lenvatinib\", \"Drug: Cryoablation\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05406466"
+              }
+            ]
+          },
+          {
+            "source": "intervention:nivolumab",
+            "target": "intervention:paclitaxel",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06047379"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06047379",
+                "field": "protocolSection.armsInterventionsModule.armGroups[7].interventionNames",
+                "excerpt": "[\"Drug: NEO212 Oral Capsule\", \"Drug: Ipilimumab\", \"Drug: Pembrolizumab\", \"Drug: Nivolumab\", \"Drug: Regorafenib\", \"Drug: Carboplatin\", \"Drug: Paclitaxel\", \"Drug: FOLFIRI Protocol\", \"Drug: Bevacizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06047379"
+              }
+            ]
+          },
+          {
+            "source": "intervention:opdualag",
+            "target": "intervention:relatlimab",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06101134"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06101134",
+                "field": "protocolSection.armsInterventionsModule.armGroups[0].interventionNames",
+                "excerpt": "[\"Drug: relatlimab+nivolumab\", \"Drug: relatlimab+nivolumab+rHuPH20\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06101134"
+              }
+            ]
+          },
+          {
+            "source": "intervention:paclitaxel",
+            "target": "intervention:pemetrexed",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07492680"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07492680",
+                "field": "protocolSection.armsInterventionsModule.armGroups[2].interventionNames",
+                "excerpt": "[\"Drug: Navlimetostat\", \"Drug: Pumitamig\", \"Drug: Pemetrexed\", \"Drug: Carboplatin\", \"Drug: Nab-paclitaxel\", \"Drug: Paclitaxel\", \"Drug: Cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07492680"
+              }
+            ]
+          },
+          {
+            "source": "intervention:paclitaxel",
+            "target": "intervention:temozolomide",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT07310784"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT07310784",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Dacarbazine, temozolomide, paclitaxel, carboplatin/cisplatin\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT07310784"
+              }
+            ]
+          },
+          {
+            "source": "intervention:pembrolizumab",
+            "target": "intervention:tebentafusp",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05549297"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05549297",
+                "field": "protocolSection.armsInterventionsModule.armGroups[1].interventionNames",
+                "excerpt": "[\"Drug: Tebentafusp with Pembrolizumab\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05549297"
+              }
+            ]
+          }
+        ]
+      },
+      "vega_lite": null,
+      "title": "Network of interventions used together in melanoma trials",
+      "subtitle": "Drug interventions. Started 2020 or later."
+    },
+    "alternatives": [
+      {
+        "type": "network_graph_3d",
+        "reason": "a dense network spread out in depth, explored by rotating",
+        "encoding": {
+          "node_id": {
+            "field": "id",
+            "type": "nominal",
+            "title": "Entity",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "node_label": {
+            "field": "label",
+            "type": "nominal",
+            "title": "Name",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "node_size": {
+            "field": "trial_count",
+            "type": "quantitative",
+            "title": "Trials",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "node_color": {
+            "field": "community",
+            "type": "nominal",
+            "title": "Cluster",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "edge_source": {
+            "field": "source",
+            "type": "nominal",
+            "title": "From",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "edge_target": {
+            "field": "target",
+            "type": "nominal",
+            "title": "To",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "edge_width": {
+            "field": "trial_count",
+            "type": "quantitative",
+            "title": "Shared trials",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "x": {
+            "field": "x3",
+            "type": "quantitative",
+            "title": "x",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "y": {
+            "field": "y3",
+            "type": "quantitative",
+            "title": "y",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "z": {
+            "field": "z3",
+            "type": "quantitative",
+            "title": "z",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          }
+        },
+        "options": {
+          "relation": "drugs given together in the same treatment arm",
+          "node_types": [
+            "intervention",
+            "intervention"
+          ],
+          "positions": "precomputed force layout scaled to -1..1, optional to use"
+        },
+        "data": null,
+        "vega_lite": null
+      },
+      {
+        "type": "table",
+        "reason": "every link with its trial count",
+        "encoding": {
+          "node_id": {
+            "field": "id",
+            "type": "nominal",
+            "title": "Entity",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "node_label": {
+            "field": "label",
+            "type": "nominal",
+            "title": "Name",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "node_size": {
+            "field": "trial_count",
+            "type": "quantitative",
+            "title": "Trials",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "node_color": {
+            "field": "community",
+            "type": "nominal",
+            "title": "Cluster",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "edge_source": {
+            "field": "source",
+            "type": "nominal",
+            "title": "From",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "edge_target": {
+            "field": "target",
+            "type": "nominal",
+            "title": "To",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "edge_width": {
+            "field": "trial_count",
+            "type": "quantitative",
+            "title": "Shared trials",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "x": {
+            "field": "x",
+            "type": "quantitative",
+            "title": "x",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "y": {
+            "field": "y",
+            "type": "quantitative",
+            "title": "y",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          }
+        },
+        "options": {
+          "relation": "drugs given together in the same treatment arm",
+          "node_types": [
+            "intervention",
+            "intervention"
+          ],
+          "positions": "precomputed force layout scaled to -1..1, optional to use"
+        },
+        "data": null,
+        "vega_lite": null
+      }
+    ],
+    "meta": {
+      "source": "clinicaltrials.gov",
+      "data_version": "2026-11-06T10:00:05",
+      "interpreter": "claude:claude-opus-5-5",
+      "plan": {
+        "filters": {
+          "conditions": [
+            "melanoma"
+          ],
+          "interventions": null,
+          "sponsors": null,
+          "keywords": null,
+          "phases": null,
+          "statuses": null,
+          "sponsor_classes": null,
+          "intervention_types": [
+            "DRUG"
+          ],
+          "study_types": null,
+          "countries": null,
+          "start_year_from": 2020,
+          "start_year_to": null
+        },
+        "analysis": {
+          "kind": "network",
+          "node_types": [
+            "intervention",
+            "intervention"
+          ]
+        },
+        "presentation": {
+          "chart_type": null,
+          "sort": null,
+          "top_n": null,
+          "citations_per_datum": 3
+        },
+        "retrieval": {
+          "name_matching": "named"
+        }
+      },
+      "provenance": {
+        "analysis.kind": "inferred",
+        "analysis.node_types": "inferred",
+        "filters.conditions": "inferred",
+        "filters.intervention_types": "inferred",
+        "filters.start_year_from": "inferred",
+        "presentation.citations_per_datum": "default",
+        "retrieval.name_matching": "default"
+      },
+      "notes": [
+        {
+          "code": "constraint_not_applied",
+          "message": "The question asks for \"combination studies (multiple drugs in one trial)\", which no filter here can express, so the results are not limited by it.",
+          "slot": null
+        },
+        {
+          "code": "mentions_reported",
+          "message": "12 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
+          "slot": null
+        },
+        {
+          "code": "network_pruned",
+          "message": "The network keeps the 35 most frequent entities that have at least one link, and the 83 strongest links. 664 entities and 525 links were left out.",
+          "slot": null
+        }
+      ],
+      "cohorts": [
+        {
+          "label": null,
+          "total": 704,
+          "fetched": 704,
+          "truncated": false,
+          "mentions": 12
+        }
+      ],
+      "chart_choice": {
+        "recommended": {
+          "type": "network_graph",
+          "reason": "entities as nodes, linked by the trials they share"
+        },
+        "alternatives": [
+          {
+            "type": "network_graph_3d",
+            "reason": "a dense network spread out in depth, explored by rotating"
+          },
+          {
+            "type": "table",
+            "reason": "every link with its trial count"
+          }
+        ],
+        "ruled_out": []
+      },
+      "mentions": [
+        {
+          "cohort": null,
+          "total": 12,
+          "counted": false,
+          "nct_ids": [
+            "NCT04225390",
+            "NCT04362722",
+            "NCT04652258",
+            "NCT04727164",
+            "NCT04929535",
+            "NCT05562791",
+            "NCT07813533",
+            "NCT05195762",
+            "NCT04387071",
+            "NCT07477548",
+            "NCT07170293",
+            "NCT04320316"
+          ],
+          "citations": [
+            {
+              "nct_id": "NCT04225390",
+              "field": "protocolSection.identificationModule.officialTitle",
+              "excerpt": "A Phase 2, Single Arm Study on Dacarbazine (DTIC) Followed by Immunotherapy Re-challenge in Unresectable or Metastatic Melanoma With Primary Resistance to PD-1/PD-L1 or PD-1 + CTLA-4 Blockade",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT04225390"
+            },
+            {
+              "nct_id": "NCT04362722",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "Intratumoral Administration of Daromun in Non-melanoma Skin Cancer Patients",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT04362722"
+            },
+            {
+              "nct_id": "NCT04652258",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "Pyrexia Management Using an IL-6 Antibody in BRAF+ Melanoma Patients Treated with Dabrafenib/ Trametinib +/- Immunotherapy",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT04652258"
+            },
+            {
+              "nct_id": "NCT04727164",
+              "field": "protocolSection.identificationModule.officialTitle",
+              "excerpt": "An Open Phase I Study to Evaluate the Safety, Tolerability, PK / PD, and Initial Efficacy of HBM4003 in Combination With Toripalimab in Patients With Advanced Melanoma and Other Solid Tumors",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT04727164"
+            },
+            {
+              "nct_id": "NCT04929535",
+              "field": "protocolSection.identificationModule.officialTitle",
+              "excerpt": "A Phase 2 Double-blind Placebo Randomized Controlled Trial of 30% Topical Application of Hydrogen Peroxide as Neoadjuvant Treatment of Non-melanoma Skin Cancers Prior to Definitive Surgery or Radiation",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT04929535"
+            },
+            {
+              "nct_id": "NCT05562791",
+              "field": "protocolSection.identificationModule.officialTitle",
+              "excerpt": "Pilot Study of 68Gallium PSMA-PET/CT in Patients With Metastatic Urothelial Carcinoma or Melanoma",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT05562791"
+            },
+            {
+              "nct_id": "NCT04387071",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "CMP-001 and INCAGN01949 for Patients With Stage IV Pancreatic Cancer and Other Cancers Except Melanoma",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT04387071"
+            },
+            {
+              "nct_id": "NCT07170293",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "Phase II Trial of Tunlametinib in Patients With NRAS Mutant Non-melanoma Refractory Solid Tumors",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT07170293"
+            }
+          ]
+        }
+      ],
+      "registry_requests": [
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&query.cond=%28melanoma%29&fields=NCTId%2CConditionMeshTerm%2CConditionAncestor&sort=StartDate%3Adesc&pageSize=1000&countTotal=true",
+        "https://clinicaltrials.gov/api/v2/studies?query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&fields=NCTId%2CConditionMeshTerm%2CConditionAncestor&sort=StartDate%3Adesc&pageSize=200&countTotal=true",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CArmGroupDescription%2CArmGroupLabel%2CArmGroupInterventionName&pageSize=1000&countTotal=true",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&query.cond=%28melanoma%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&query.cond=%28melanoma%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CArmGroupDescription%2CArmGroupLabel%2CArmGroupInterventionName%2COfficialTitle%2CBriefSummary%2CInterventionDescription&pageSize=30&countTotal=true"
+      ]
+    }
+  }
+}

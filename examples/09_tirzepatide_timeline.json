@@ -1,0 +1,695 @@
+{
+  "request": {
+    "query": "List the recruiting phase 3 trials of tirzepatide"
+  },
+  "response": {
+    "status": "resolved",
+    "query": "List the recruiting phase 3 trials of tirzepatide",
+    "visualization": {
+      "type": "timeline",
+      "reason": "each trial drawn from its start to its completion",
+      "encoding": {
+        "x": {
+          "field": "start",
+          "type": "temporal",
+          "title": "Start",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "x2": {
+          "field": "end",
+          "type": "temporal",
+          "title": "Completion",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "y": {
+          "field": "title",
+          "type": "nominal",
+          "title": "Trial",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "color": {
+          "field": "phase",
+          "type": "nominal",
+          "title": "Phase",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        }
+      },
+      "options": {
+        "columns": [
+          "nct_id",
+          "title",
+          "phase",
+          "status",
+          "sponsor",
+          "start",
+          "end",
+          "enrollment"
+        ]
+      },
+      "data": [
+        {
+          "nct_id": "NCT06439277",
+          "title": "A Study of Tirzepatide in Adolescents With Obesity and Weight-Related Comorbidities (SURMOUNT-ADOLESCENTS-2)",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Eli Lilly and Company",
+          "start": "2024-06-03",
+          "end": "2030-12",
+          "enrollment": 300.0,
+          "url": "https://clinicaltrials.gov/study/NCT06439277",
+          "citations": [
+            {
+              "nct_id": "NCT06439277",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-06-03",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06439277"
+            },
+            {
+              "nct_id": "NCT06439277",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2030-12",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06439277"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT06246799",
+          "title": "Comparative Effectiveness of Two Initial Combination Therapies in Patients With Recent Onset Diabetes",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "The University of Texas Health Science Center at San Antonio",
+          "start": "2024-11-07",
+          "end": "2029-06-30",
+          "enrollment": 256.0,
+          "url": "https://clinicaltrials.gov/study/NCT06246799",
+          "citations": [
+            {
+              "nct_id": "NCT06246799",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2024-11-07",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06246799"
+            },
+            {
+              "nct_id": "NCT06246799",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2029-06-30",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06246799"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT06630585",
+          "title": "GIP/GLP-1RA as Adjunctive to Automated Insulin Delivery in Adults With Type 1 Diabetes",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "University of Bern",
+          "start": "2025-02-14",
+          "end": "2026-06",
+          "enrollment": 42.0,
+          "url": "https://clinicaltrials.gov/study/NCT06630585",
+          "citations": [
+            {
+              "nct_id": "NCT06630585",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-02-14",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06630585"
+            },
+            {
+              "nct_id": "NCT06630585",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2026-06",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06630585"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT06937086",
+          "title": "Mirikizumab Administered at the Same Time as Tirzepatide in Adult Participants With Moderately to Severely Active Ulcerative Colitis and Obesity or Overweight: Phase 3b Study",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Eli Lilly and Company",
+          "start": "2025-06-26",
+          "end": "2028-04",
+          "enrollment": 350.0,
+          "url": "https://clinicaltrials.gov/study/NCT06937086",
+          "citations": [
+            {
+              "nct_id": "NCT06937086",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-06-26",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06937086"
+            },
+            {
+              "nct_id": "NCT06937086",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2028-04",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06937086"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT06937099",
+          "title": "Mirikizumab and Tirzepatide Administered in Adult Participants With Moderately to Severely Active Crohn's Disease and Obesity or Overweight",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Eli Lilly and Company",
+          "start": "2025-06-26",
+          "end": "2028-05",
+          "enrollment": 290.0,
+          "url": "https://clinicaltrials.gov/study/NCT06937099",
+          "citations": [
+            {
+              "nct_id": "NCT06937099",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-06-26",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06937099"
+            },
+            {
+              "nct_id": "NCT06937099",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2028-05",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT06937099"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT07165028",
+          "title": "A Master Protocol of Multiple Agents in Adults With Metabolic Dysfunction-Associated Steatotic Liver Disease (SYNERGY-Outcomes)",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Eli Lilly and Company",
+          "start": "2025-10-15",
+          "end": "2032-08",
+          "enrollment": 4500.0,
+          "url": "https://clinicaltrials.gov/study/NCT07165028",
+          "citations": [
+            {
+              "nct_id": "NCT07165028",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2025-10-15",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07165028"
+            },
+            {
+              "nct_id": "NCT07165028",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2032-08",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07165028"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT07481747",
+          "title": "Efficacy and Safety of Tirzepatide Once Weekly Versus Placebo in Participants Who Are Either Obese or Overweight With Weight-Related Comorbidities (SURMOUNT-1)",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Hudson Biotech",
+          "start": "2026-02-02",
+          "end": "2028-03-17",
+          "enrollment": 2539.0,
+          "url": "https://clinicaltrials.gov/study/NCT07481747",
+          "citations": [
+            {
+              "nct_id": "NCT07481747",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-02-02",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07481747"
+            },
+            {
+              "nct_id": "NCT07481747",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2028-03-17",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07481747"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT07284511",
+          "title": "A Clinical Trial Using Tirzepatide to Help Adults With Type 1 Diabetes Automatically Control Their Blood Sugar",
+          "phase": "Phase 2/3",
+          "status": "Recruiting",
+          "sponsor": "McGill University Health Centre/Research Institute of the McGill University Health Centre",
+          "start": "2026-05-19",
+          "end": "2029-01",
+          "enrollment": 105.0,
+          "url": "https://clinicaltrials.gov/study/NCT07284511",
+          "citations": [
+            {
+              "nct_id": "NCT07284511",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-05-19",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07284511"
+            },
+            {
+              "nct_id": "NCT07284511",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2029-01",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07284511"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT07817875",
+          "title": "Efficacy, Safety, and Pharmacokinetics of Tirzepatide (LY3298176) Once Weekly Versus Placebo in Pediatric Participants 6 to Less Than 12 Years of Age Who Have Obesity (ADVANCE-SURMOUNT-KIDS)",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Eli Lilly and Company",
+          "start": "2026-09-25",
+          "end": "2032-12",
+          "enrollment": 150.0,
+          "url": "https://clinicaltrials.gov/study/NCT07817875",
+          "citations": [
+            {
+              "nct_id": "NCT07817875",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-09-25",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07817875"
+            },
+            {
+              "nct_id": "NCT07817875",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2032-12",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07817875"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT07845500",
+          "title": "A Study to Learn About Switching to a Monthly Study Medicine Called Berobenatide (PF-08653944) to Help Keep Weight Off in People With Overweight or Obesity",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Pfizer",
+          "start": "2026-09-30",
+          "end": "2028-02-16",
+          "enrollment": 660.0,
+          "url": "https://clinicaltrials.gov/study/NCT07845500",
+          "citations": [
+            {
+              "nct_id": "NCT07845500",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-09-30",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07845500"
+            },
+            {
+              "nct_id": "NCT07845500",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2028-02-16",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07845500"
+            }
+          ]
+        },
+        {
+          "nct_id": "NCT07881458",
+          "title": "A Study of EloraTZP in Adult Participants With Obesity or Overweight and Type 2 Diabetes",
+          "phase": "Phase 3",
+          "status": "Recruiting",
+          "sponsor": "Eli Lilly and Company",
+          "start": "2026-10-16",
+          "end": "2029-11",
+          "enrollment": 1000.0,
+          "url": "https://clinicaltrials.gov/study/NCT07881458",
+          "citations": [
+            {
+              "nct_id": "NCT07881458",
+              "field": "protocolSection.statusModule.startDateStruct.date",
+              "excerpt": "2026-10-16",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07881458"
+            },
+            {
+              "nct_id": "NCT07881458",
+              "field": "protocolSection.statusModule.completionDateStruct.date",
+              "excerpt": "2029-11",
+              "kind": "value",
+              "url": "https://clinicaltrials.gov/study/NCT07881458"
+            }
+          ]
+        }
+      ],
+      "vega_lite": {
+        "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+        "title": "Recruiting Phase 3 trials of tirzepatide",
+        "data": {
+          "values": [
+            {
+              "nct_id": "NCT06439277",
+              "title": "A Study of Tirzepatide in Adolescents With Obesity and Weight-Related Comorbidities (SURMOUNT-ADOLESCENTS-2)",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Eli Lilly and Company",
+              "start": "2024-06-03",
+              "end": "2030-12",
+              "enrollment": 300.0,
+              "url": "https://clinicaltrials.gov/study/NCT06439277"
+            },
+            {
+              "nct_id": "NCT06246799",
+              "title": "Comparative Effectiveness of Two Initial Combination Therapies in Patients With Recent Onset Diabetes",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "The University of Texas Health Science Center at San Antonio",
+              "start": "2024-11-07",
+              "end": "2029-06-30",
+              "enrollment": 256.0,
+              "url": "https://clinicaltrials.gov/study/NCT06246799"
+            },
+            {
+              "nct_id": "NCT06630585",
+              "title": "GIP/GLP-1RA as Adjunctive to Automated Insulin Delivery in Adults With Type 1 Diabetes",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "University of Bern",
+              "start": "2025-02-14",
+              "end": "2026-06",
+              "enrollment": 42.0,
+              "url": "https://clinicaltrials.gov/study/NCT06630585"
+            },
+            {
+              "nct_id": "NCT06937086",
+              "title": "Mirikizumab Administered at the Same Time as Tirzepatide in Adult Participants With Moderately to Severely Active Ulcerative Colitis and Obesity or Overweight: Phase 3b Study",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Eli Lilly and Company",
+              "start": "2025-06-26",
+              "end": "2028-04",
+              "enrollment": 350.0,
+              "url": "https://clinicaltrials.gov/study/NCT06937086"
+            },
+            {
+              "nct_id": "NCT06937099",
+              "title": "Mirikizumab and Tirzepatide Administered in Adult Participants With Moderately to Severely Active Crohn's Disease and Obesity or Overweight",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Eli Lilly and Company",
+              "start": "2025-06-26",
+              "end": "2028-05",
+              "enrollment": 290.0,
+              "url": "https://clinicaltrials.gov/study/NCT06937099"
+            },
+            {
+              "nct_id": "NCT07165028",
+              "title": "A Master Protocol of Multiple Agents in Adults With Metabolic Dysfunction-Associated Steatotic Liver Disease (SYNERGY-Outcomes)",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Eli Lilly and Company",
+              "start": "2025-10-15",
+              "end": "2032-08",
+              "enrollment": 4500.0,
+              "url": "https://clinicaltrials.gov/study/NCT07165028"
+            },
+            {
+              "nct_id": "NCT07481747",
+              "title": "Efficacy and Safety of Tirzepatide Once Weekly Versus Placebo in Participants Who Are Either Obese or Overweight With Weight-Related Comorbidities (SURMOUNT-1)",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Hudson Biotech",
+              "start": "2026-02-02",
+              "end": "2028-03-17",
+              "enrollment": 2539.0,
+              "url": "https://clinicaltrials.gov/study/NCT07481747"
+            },
+            {
+              "nct_id": "NCT07284511",
+              "title": "A Clinical Trial Using Tirzepatide to Help Adults With Type 1 Diabetes Automatically Control Their Blood Sugar",
+              "phase": "Phase 2/3",
+              "status": "Recruiting",
+              "sponsor": "McGill University Health Centre/Research Institute of the McGill University Health Centre",
+              "start": "2026-05-19",
+              "end": "2029-01",
+              "enrollment": 105.0,
+              "url": "https://clinicaltrials.gov/study/NCT07284511"
+            },
+            {
+              "nct_id": "NCT07817875",
+              "title": "Efficacy, Safety, and Pharmacokinetics of Tirzepatide (LY3298176) Once Weekly Versus Placebo in Pediatric Participants 6 to Less Than 12 Years of Age Who Have Obesity (ADVANCE-SURMOUNT-KIDS)",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Eli Lilly and Company",
+              "start": "2026-09-25",
+              "end": "2032-12",
+              "enrollment": 150.0,
+              "url": "https://clinicaltrials.gov/study/NCT07817875"
+            },
+            {
+              "nct_id": "NCT07845500",
+              "title": "A Study to Learn About Switching to a Monthly Study Medicine Called Berobenatide (PF-08653944) to Help Keep Weight Off in People With Overweight or Obesity",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Pfizer",
+              "start": "2026-09-30",
+              "end": "2028-02-16",
+              "enrollment": 660.0,
+              "url": "https://clinicaltrials.gov/study/NCT07845500"
+            },
+            {
+              "nct_id": "NCT07881458",
+              "title": "A Study of EloraTZP in Adult Participants With Obesity or Overweight and Type 2 Diabetes",
+              "phase": "Phase 3",
+              "status": "Recruiting",
+              "sponsor": "Eli Lilly and Company",
+              "start": "2026-10-16",
+              "end": "2029-11",
+              "enrollment": 1000.0,
+              "url": "https://clinicaltrials.gov/study/NCT07881458"
+            }
+          ]
+        },
+        "mark": "bar",
+        "encoding": {
+          "x": {
+            "field": "start",
+            "type": "temporal",
+            "title": "Start"
+          },
+          "x2": {
+            "field": "end"
+          },
+          "y": {
+            "field": "title",
+            "type": "nominal",
+            "title": "Trial",
+            "sort": {
+              "field": "start"
+            }
+          },
+          "color": {
+            "field": "phase",
+            "type": "nominal",
+            "title": "Phase"
+          },
+          "tooltip": [
+            {
+              "field": "title",
+              "type": "nominal",
+              "title": "Trial"
+            },
+            {
+              "field": "start",
+              "type": "temporal",
+              "title": "Start"
+            },
+            {
+              "field": "end",
+              "type": "temporal",
+              "title": "Completion"
+            },
+            {
+              "field": "phase",
+              "type": "nominal",
+              "title": "Phase"
+            }
+          ]
+        }
+      },
+      "title": "Recruiting Phase 3 trials of tirzepatide",
+      "subtitle": null
+    },
+    "alternatives": [
+      {
+        "type": "table",
+        "reason": "every trial with its details",
+        "encoding": {
+          "x": {
+            "field": "start",
+            "type": "temporal",
+            "title": "Start",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "x2": {
+            "field": "end",
+            "type": "temporal",
+            "title": "Completion",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "y": {
+            "field": "title",
+            "type": "nominal",
+            "title": "Trial",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "color": {
+            "field": "phase",
+            "type": "nominal",
+            "title": "Phase",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          }
+        },
+        "options": {
+          "columns": [
+            "nct_id",
+            "title",
+            "phase",
+            "status",
+            "sponsor",
+            "start",
+            "end",
+            "enrollment"
+          ]
+        },
+        "data": null,
+        "vega_lite": null
+      }
+    ],
+    "meta": {
+      "source": "clinicaltrials.gov",
+      "data_version": "2026-11-06T10:00:05",
+      "interpreter": "claude:claude-opus-5-5",
+      "plan": {
+        "filters": {
+          "conditions": null,
+          "interventions": [
+            "tirzepatide"
+          ],
+          "sponsors": null,
+          "keywords": null,
+          "phases": [
+            "PHASE3"
+          ],
+          "statuses": [
+            "RECRUITING"
+          ],
+          "sponsor_classes": null,
+          "intervention_types": null,
+          "study_types": null,
+          "countries": null,
+          "start_year_from": null,
+          "start_year_to": null
+        },
+        "analysis": {
+          "kind": "trial_list"
+        },
+        "presentation": {
+          "chart_type": null,
+          "sort": null,
+          "top_n": null,
+          "citations_per_datum": 3
+        },
+        "retrieval": {
+          "name_matching": "named"
+        }
+      },
+      "provenance": {
+        "analysis.kind": "inferred",
+        "filters.interventions": "inferred",
+        "filters.phases": "inferred",
+        "filters.statuses": "inferred",
+        "presentation.citations_per_datum": "default",
+        "retrieval.name_matching": "default"
+      },
+      "notes": [
+        {
+          "code": "mentions_reported",
+          "message": "1 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
+          "slot": null
+        },
+        {
+          "code": "phase_filter_includes_combined",
+          "message": "The Phase 3 filter follows the registry and includes trials listed under two phases, such as Phase 1/2 or Phase 2/3.",
+          "slot": "filters.phases"
+        }
+      ],
+      "cohorts": [
+        {
+          "label": null,
+          "total": 11,
+          "fetched": 11,
+          "truncated": false,
+          "mentions": 1
+        }
+      ],
+      "chart_choice": {
+        "recommended": {
+          "type": "timeline",
+          "reason": "each trial drawn from its start to its completion"
+        },
+        "alternatives": [
+          {
+            "type": "table",
+            "reason": "every trial with its details"
+          }
+        ],
+        "ruled_out": []
+      },
+      "mentions": [
+        {
+          "cohort": null,
+          "total": 1,
+          "counted": false,
+          "nct_ids": [
+            "NCT07223242"
+          ],
+          "citations": [
+            {
+              "nct_id": "NCT07223242",
+              "field": "protocolSection.armsInterventionsModule.interventions[2].description",
+              "excerpt": "Initiation/intensification of weight loss medications, such as semaglutide or tirzepatide",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT07223242"
+            }
+          ]
+        }
+      ],
+      "registry_requests": [
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BPhase%5D%28PHASE3%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&query.intr=%28AREA%5BInterventionName%5D%28tirzepatide%29+OR+AREA%5BInterventionOtherName%5D%28tirzepatide%29+OR+AREA%5BInterventionMeshTerm%5D%28tirzepatide%29%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BPhase%5D%28PHASE3%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29&query.intr=%28AREA%5BInterventionName%5D%28tirzepatide%29+OR+AREA%5BInterventionOtherName%5D%28tirzepatide%29+OR+AREA%5BInterventionMeshTerm%5D%28tirzepatide%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CLeadSponsorName%2CPrimaryCompletionDate%2CCompletionDate%2CEnrollmentCount%2CCondition&pageSize=1000&countTotal=true",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BPhase%5D%28PHASE3%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28tirzepatide%29+OR+AREA%5BInterventionOtherName%5D%28tirzepatide%29+OR+AREA%5BInterventionMeshTerm%5D%28tirzepatide%29%29%29%29&query.intr=%28tirzepatide%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BPhase%5D%28PHASE3%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28tirzepatide%29+OR+AREA%5BInterventionOtherName%5D%28tirzepatide%29+OR+AREA%5BInterventionMeshTerm%5D%28tirzepatide%29%29%29%29&query.intr=%28tirzepatide%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CLeadSponsorName%2CPrimaryCompletionDate%2CCompletionDate%2CEnrollmentCount%2CCondition%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&pageSize=30&countTotal=true"
+      ]
+    }
+  }
+}

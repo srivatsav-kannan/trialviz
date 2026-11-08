@@ -4,7 +4,7 @@ This page covers how the chart for an answer is chosen and what a frontend recei
 
 ## The chart catalog
 
-The shape of the aggregated data ([aggregation.md](aggregation.md#dataset-shapes)) decides which of the 22 chart types can draw it.
+The shape of the aggregated data ([aggregation.md](aggregation.md#dataset-shapes)) decides which of the 22 chart types can draw it. The fourteen saved answers in [examples/](../examples) use every one of them, as the recommendation or as an alternative.
 
 | Data shape | Charts |
 | --- | --- |

@@ -238,7 +238,7 @@ Every other failure uses the same envelope with an empty `details` list:
 
 ## Limits
 
-The service protects itself and its language-model budget before doing any work on a request. Questions, meaning `POST /v1/query` and `POST /v1/interpret`, are limited per client to 10 a minute and 60 an hour, and to 600 an hour across all clients, since each one can call the model and make dozens of registry requests. Every other request is limited to 120 a minute per client, except `GET /health`. Only four questions are answered at once, and a fifth gets a 503 to retry shortly rather than waiting behind the others. Request bodies larger than 16 KB are refused while they are being read. Every limit can be changed through the settings in the README.
+The service protects itself and its language-model budget before doing any work on a request. Questions, meaning `POST /v1/query` and `POST /v1/interpret`, are limited per client to 10 a minute and 60 an hour, and to 600 an hour across all clients, since each one can call the model and make dozens of registry requests. Every other request is limited to 120 a minute per client, except `GET /health`. Only four questions are answered at once, and a fifth gets a 503 telling it to retry shortly. Request bodies larger than 16 KB are refused while they are being read. Every limit can be changed through the settings in the README.
 
 Each question's response carries three headers that say where the client stands against its tightest limit:
 

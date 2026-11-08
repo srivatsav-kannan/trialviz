@@ -85,11 +85,8 @@ body[data-page="samples"] .home-only { display: none; }
 .hero-trace path { fill: none; stroke: #c9daf3; stroke-width: 2; stroke-linejoin: round; }
 .hero-inner { position: relative; max-width: 1200px; margin: 0 auto; padding: 48px 24px 64px; display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 0 28px; align-items: stretch; }
 .hero-heading { grid-column: 1 / -1; margin-bottom: 24px; }
-.eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 14px; color: var(--accent); font-size: 14px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
-.eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); box-shadow: 0 0 0 4px var(--coral-soft); }
 .hero h1 { font-size: clamp(32px, 3.8vw, 46px); line-height: 1.1; margin: 0 0 12px; }
 .lede { font-size: 17.5px; color: var(--ink-soft); margin: 0 0 24px; max-width: 36em; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 20px; border-radius: 10px; font-weight: 600; font-size: 15.5px; text-decoration: none; border: 1px solid transparent; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
 .button.primary { background: var(--accent); color: #fff; box-shadow: 0 1px 2px rgba(31, 95, 191, 0.3); }
@@ -101,7 +98,7 @@ body[data-page="samples"] .home-only { display: none; }
 .hero-card { margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; display: flex; flex-direction: column; }
 .hero-spark { flex: 1; min-height: 170px; }
 .hero-card-head { display: flex; gap: 14px; align-items: center; margin-bottom: 10px; }
-.pill-icon, .cite-icon, .step-icon, .sample-icon { display: grid; place-items: center; flex: none; border-radius: 12px; }
+.pill-icon, .cite-icon, .sample-icon { display: grid; place-items: center; flex: none; border-radius: 12px; }
 .pill-icon { width: 42px; height: 42px; background: var(--coral-soft); color: var(--coral); }
 .pill-icon svg { width: 24px; height: 24px; }
 .hero-card-title { margin: 0; font-weight: 600; font-size: 16px; }

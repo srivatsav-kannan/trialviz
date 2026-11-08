@@ -45,13 +45,20 @@ const SUGGESTIONS = [
 
 // The icon and tone a sample card wears, by the chart family it opens on.
 const SAMPLE_LOOK = {
+  stat: ["i-hash", 4],
   time_series: ["i-capsule", 1],
+  horizontal_bar_chart: ["i-rank", 3],
   grouped_bar_chart: ["i-compare", 2],
-  horizontal_bar_chart: ["i-globe", 3],
+  normalized_stacked_bar_chart: ["i-stack", 2],
+  donut_chart: ["i-donut", 4],
+  heatmap: ["i-grid", 1],
   choropleth_map: ["i-globe", 3],
+  box_plot: ["i-box", 1],
+  bubble_chart: ["i-scatter", 5],
+  scatter_plot: ["i-scatter", 5],
   network_graph: ["i-network", 5],
-  network_graph_3d: ["i-network", 5],
   sankey: ["i-flow", 4],
+  timeline: ["i-timeline", 3],
 };
 
 const SOURCE_LABELS = {
