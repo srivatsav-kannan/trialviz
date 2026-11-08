@@ -21,6 +21,7 @@
       "options": {},
       "data": [
         {
+          "id": "total",
           "label": "Trials",
           "trial_count": 5,
           "citations": [
@@ -197,7 +198,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BLocationCountry%5D%28%22Germany%22%29%29&query.intr=%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CLocationCountry&sort=StartDate%3Adesc&pageSize=3&countTotal=true",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BLocationCountry%5D%28%22Germany%22%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&query.intr=%28semaglutide%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BLocationCountry%5D%28%22Germany%22%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&query.intr=%28semaglutide%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CLocationCountry%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

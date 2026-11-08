@@ -61,6 +61,7 @@
       "options": {},
       "data": [
         {
+          "id": "Keytruda|EARLY_PHASE1",
           "cohort": "Keytruda",
           "phase": "Early Phase 1",
           "trial_count": 31,
@@ -122,6 +123,7 @@
           ]
         },
         {
+          "id": "Keytruda|PHASE1",
           "cohort": "Keytruda",
           "phase": "Phase 1",
           "trial_count": 390,
@@ -542,6 +544,7 @@
           ]
         },
         {
+          "id": "Keytruda|PHASE1/PHASE2",
           "cohort": "Keytruda",
           "phase": "Phase 1/2",
           "trial_count": 328,
@@ -900,6 +903,7 @@
           ]
         },
         {
+          "id": "Keytruda|PHASE2",
           "cohort": "Keytruda",
           "phase": "Phase 2",
           "trial_count": 909,
@@ -1839,6 +1843,7 @@
           ]
         },
         {
+          "id": "Keytruda|PHASE2/PHASE3",
           "cohort": "Keytruda",
           "phase": "Phase 2/3",
           "trial_count": 39,
@@ -1908,6 +1913,7 @@
           ]
         },
         {
+          "id": "Keytruda|PHASE3",
           "cohort": "Keytruda",
           "phase": "Phase 3",
           "trial_count": 265,
@@ -2203,6 +2209,7 @@
           ]
         },
         {
+          "id": "Keytruda|PHASE4",
           "cohort": "Keytruda",
           "phase": "Phase 4",
           "trial_count": 16,
@@ -2249,6 +2256,7 @@
           ]
         },
         {
+          "id": "Keytruda|NA",
           "cohort": "Keytruda",
           "phase": "Not applicable",
           "trial_count": 23,
@@ -2302,6 +2310,7 @@
           ]
         },
         {
+          "id": "Keytruda|NO_PHASE",
           "cohort": "Keytruda",
           "phase": "No phase (observational)",
           "trial_count": 52,
@@ -2384,6 +2393,7 @@
           ]
         },
         {
+          "id": "Opdivo|EARLY_PHASE1",
           "cohort": "Opdivo",
           "phase": "Early Phase 1",
           "trial_count": 28,
@@ -2442,6 +2452,7 @@
           ]
         },
         {
+          "id": "Opdivo|PHASE1",
           "cohort": "Opdivo",
           "phase": "Phase 1",
           "trial_count": 261,
@@ -2733,6 +2744,7 @@
           ]
         },
         {
+          "id": "Opdivo|PHASE1/PHASE2",
           "cohort": "Opdivo",
           "phase": "Phase 1/2",
           "trial_count": 194,
@@ -2957,6 +2969,7 @@
           ]
         },
         {
+          "id": "Opdivo|PHASE2",
           "cohort": "Opdivo",
           "phase": "Phase 2",
           "trial_count": 568,
@@ -3555,6 +3568,7 @@
           ]
         },
         {
+          "id": "Opdivo|PHASE2/PHASE3",
           "cohort": "Opdivo",
           "phase": "Phase 2/3",
           "trial_count": 23,
@@ -3608,6 +3622,7 @@
           ]
         },
         {
+          "id": "Opdivo|PHASE3",
           "cohort": "Opdivo",
           "phase": "Phase 3",
           "trial_count": 95,
@@ -3733,6 +3748,7 @@
           ]
         },
         {
+          "id": "Opdivo|PHASE4",
           "cohort": "Opdivo",
           "phase": "Phase 4",
           "trial_count": 13,
@@ -3776,6 +3792,7 @@
           ]
         },
         {
+          "id": "Opdivo|NA",
           "cohort": "Opdivo",
           "phase": "Not applicable",
           "trial_count": 17,
@@ -3823,6 +3840,7 @@
           ]
         },
         {
+          "id": "Opdivo|NO_PHASE",
           "cohort": "Opdivo",
           "phase": "No phase (observational)",
           "trial_count": 66,
@@ -3925,91 +3943,109 @@
         "data": {
           "values": [
             {
+              "id": "Keytruda|EARLY_PHASE1",
               "cohort": "Keytruda",
               "phase": "Early Phase 1",
               "trial_count": 31
             },
             {
+              "id": "Keytruda|PHASE1",
               "cohort": "Keytruda",
               "phase": "Phase 1",
               "trial_count": 390
             },
             {
+              "id": "Keytruda|PHASE1/PHASE2",
               "cohort": "Keytruda",
               "phase": "Phase 1/2",
               "trial_count": 328
             },
             {
+              "id": "Keytruda|PHASE2",
               "cohort": "Keytruda",
               "phase": "Phase 2",
               "trial_count": 909
             },
             {
+              "id": "Keytruda|PHASE2/PHASE3",
               "cohort": "Keytruda",
               "phase": "Phase 2/3",
               "trial_count": 39
             },
             {
+              "id": "Keytruda|PHASE3",
               "cohort": "Keytruda",
               "phase": "Phase 3",
               "trial_count": 265
             },
             {
+              "id": "Keytruda|PHASE4",
               "cohort": "Keytruda",
               "phase": "Phase 4",
               "trial_count": 16
             },
             {
+              "id": "Keytruda|NA",
               "cohort": "Keytruda",
               "phase": "Not applicable",
               "trial_count": 23
             },
             {
+              "id": "Keytruda|NO_PHASE",
               "cohort": "Keytruda",
               "phase": "No phase (observational)",
               "trial_count": 52
             },
             {
+              "id": "Opdivo|EARLY_PHASE1",
               "cohort": "Opdivo",
               "phase": "Early Phase 1",
               "trial_count": 28
             },
             {
+              "id": "Opdivo|PHASE1",
               "cohort": "Opdivo",
               "phase": "Phase 1",
               "trial_count": 261
             },
             {
+              "id": "Opdivo|PHASE1/PHASE2",
               "cohort": "Opdivo",
               "phase": "Phase 1/2",
               "trial_count": 194
             },
             {
+              "id": "Opdivo|PHASE2",
               "cohort": "Opdivo",
               "phase": "Phase 2",
               "trial_count": 568
             },
             {
+              "id": "Opdivo|PHASE2/PHASE3",
               "cohort": "Opdivo",
               "phase": "Phase 2/3",
               "trial_count": 23
             },
             {
+              "id": "Opdivo|PHASE3",
               "cohort": "Opdivo",
               "phase": "Phase 3",
               "trial_count": 95
             },
             {
+              "id": "Opdivo|PHASE4",
               "cohort": "Opdivo",
               "phase": "Phase 4",
               "trial_count": 13
             },
             {
+              "id": "Opdivo|NA",
               "cohort": "Opdivo",
               "phase": "Not applicable",
               "trial_count": 17
             },
             {
+              "id": "Opdivo|NO_PHASE",
               "cohort": "Opdivo",
               "phase": "No phase (observational)",
               "trial_count": 66
@@ -4130,91 +4166,109 @@
           "data": {
             "values": [
               {
+                "id": "Keytruda|EARLY_PHASE1",
                 "cohort": "Keytruda",
                 "phase": "Early Phase 1",
                 "trial_count": 31
               },
               {
+                "id": "Keytruda|PHASE1",
                 "cohort": "Keytruda",
                 "phase": "Phase 1",
                 "trial_count": 390
               },
               {
+                "id": "Keytruda|PHASE1/PHASE2",
                 "cohort": "Keytruda",
                 "phase": "Phase 1/2",
                 "trial_count": 328
               },
               {
+                "id": "Keytruda|PHASE2",
                 "cohort": "Keytruda",
                 "phase": "Phase 2",
                 "trial_count": 909
               },
               {
+                "id": "Keytruda|PHASE2/PHASE3",
                 "cohort": "Keytruda",
                 "phase": "Phase 2/3",
                 "trial_count": 39
               },
               {
+                "id": "Keytruda|PHASE3",
                 "cohort": "Keytruda",
                 "phase": "Phase 3",
                 "trial_count": 265
               },
               {
+                "id": "Keytruda|PHASE4",
                 "cohort": "Keytruda",
                 "phase": "Phase 4",
                 "trial_count": 16
               },
               {
+                "id": "Keytruda|NA",
                 "cohort": "Keytruda",
                 "phase": "Not applicable",
                 "trial_count": 23
               },
               {
+                "id": "Keytruda|NO_PHASE",
                 "cohort": "Keytruda",
                 "phase": "No phase (observational)",
                 "trial_count": 52
               },
               {
+                "id": "Opdivo|EARLY_PHASE1",
                 "cohort": "Opdivo",
                 "phase": "Early Phase 1",
                 "trial_count": 28
               },
               {
+                "id": "Opdivo|PHASE1",
                 "cohort": "Opdivo",
                 "phase": "Phase 1",
                 "trial_count": 261
               },
               {
+                "id": "Opdivo|PHASE1/PHASE2",
                 "cohort": "Opdivo",
                 "phase": "Phase 1/2",
                 "trial_count": 194
               },
               {
+                "id": "Opdivo|PHASE2",
                 "cohort": "Opdivo",
                 "phase": "Phase 2",
                 "trial_count": 568
               },
               {
+                "id": "Opdivo|PHASE2/PHASE3",
                 "cohort": "Opdivo",
                 "phase": "Phase 2/3",
                 "trial_count": 23
               },
               {
+                "id": "Opdivo|PHASE3",
                 "cohort": "Opdivo",
                 "phase": "Phase 3",
                 "trial_count": 95
               },
               {
+                "id": "Opdivo|PHASE4",
                 "cohort": "Opdivo",
                 "phase": "Phase 4",
                 "trial_count": 13
               },
               {
+                "id": "Opdivo|NA",
                 "cohort": "Opdivo",
                 "phase": "Not applicable",
                 "trial_count": 17
               },
               {
+                "id": "Opdivo|NO_PHASE",
                 "cohort": "Opdivo",
                 "phase": "No phase (observational)",
                 "trial_count": 66
@@ -4324,91 +4378,109 @@
           "data": {
             "values": [
               {
+                "id": "Keytruda|EARLY_PHASE1",
                 "cohort": "Keytruda",
                 "phase": "Early Phase 1",
                 "trial_count": 31
               },
               {
+                "id": "Keytruda|PHASE1",
                 "cohort": "Keytruda",
                 "phase": "Phase 1",
                 "trial_count": 390
               },
               {
+                "id": "Keytruda|PHASE1/PHASE2",
                 "cohort": "Keytruda",
                 "phase": "Phase 1/2",
                 "trial_count": 328
               },
               {
+                "id": "Keytruda|PHASE2",
                 "cohort": "Keytruda",
                 "phase": "Phase 2",
                 "trial_count": 909
               },
               {
+                "id": "Keytruda|PHASE2/PHASE3",
                 "cohort": "Keytruda",
                 "phase": "Phase 2/3",
                 "trial_count": 39
               },
               {
+                "id": "Keytruda|PHASE3",
                 "cohort": "Keytruda",
                 "phase": "Phase 3",
                 "trial_count": 265
               },
               {
+                "id": "Keytruda|PHASE4",
                 "cohort": "Keytruda",
                 "phase": "Phase 4",
                 "trial_count": 16
               },
               {
+                "id": "Keytruda|NA",
                 "cohort": "Keytruda",
                 "phase": "Not applicable",
                 "trial_count": 23
               },
               {
+                "id": "Keytruda|NO_PHASE",
                 "cohort": "Keytruda",
                 "phase": "No phase (observational)",
                 "trial_count": 52
               },
               {
+                "id": "Opdivo|EARLY_PHASE1",
                 "cohort": "Opdivo",
                 "phase": "Early Phase 1",
                 "trial_count": 28
               },
               {
+                "id": "Opdivo|PHASE1",
                 "cohort": "Opdivo",
                 "phase": "Phase 1",
                 "trial_count": 261
               },
               {
+                "id": "Opdivo|PHASE1/PHASE2",
                 "cohort": "Opdivo",
                 "phase": "Phase 1/2",
                 "trial_count": 194
               },
               {
+                "id": "Opdivo|PHASE2",
                 "cohort": "Opdivo",
                 "phase": "Phase 2",
                 "trial_count": 568
               },
               {
+                "id": "Opdivo|PHASE2/PHASE3",
                 "cohort": "Opdivo",
                 "phase": "Phase 2/3",
                 "trial_count": 23
               },
               {
+                "id": "Opdivo|PHASE3",
                 "cohort": "Opdivo",
                 "phase": "Phase 3",
                 "trial_count": 95
               },
               {
+                "id": "Opdivo|PHASE4",
                 "cohort": "Opdivo",
                 "phase": "Phase 4",
                 "trial_count": 13
               },
               {
+                "id": "Opdivo|NA",
                 "cohort": "Opdivo",
                 "phase": "Not applicable",
                 "trial_count": 17
               },
               {
+                "id": "Opdivo|NO_PHASE",
                 "cohort": "Opdivo",
                 "phase": "No phase (observational)",
                 "trial_count": 66
@@ -4518,91 +4590,109 @@
           "data": {
             "values": [
               {
+                "id": "Keytruda|EARLY_PHASE1",
                 "cohort": "Keytruda",
                 "phase": "Early Phase 1",
                 "trial_count": 31
               },
               {
+                "id": "Keytruda|PHASE1",
                 "cohort": "Keytruda",
                 "phase": "Phase 1",
                 "trial_count": 390
               },
               {
+                "id": "Keytruda|PHASE1/PHASE2",
                 "cohort": "Keytruda",
                 "phase": "Phase 1/2",
                 "trial_count": 328
               },
               {
+                "id": "Keytruda|PHASE2",
                 "cohort": "Keytruda",
                 "phase": "Phase 2",
                 "trial_count": 909
               },
               {
+                "id": "Keytruda|PHASE2/PHASE3",
                 "cohort": "Keytruda",
                 "phase": "Phase 2/3",
                 "trial_count": 39
               },
               {
+                "id": "Keytruda|PHASE3",
                 "cohort": "Keytruda",
                 "phase": "Phase 3",
                 "trial_count": 265
               },
               {
+                "id": "Keytruda|PHASE4",
                 "cohort": "Keytruda",
                 "phase": "Phase 4",
                 "trial_count": 16
               },
               {
+                "id": "Keytruda|NA",
                 "cohort": "Keytruda",
                 "phase": "Not applicable",
                 "trial_count": 23
               },
               {
+                "id": "Keytruda|NO_PHASE",
                 "cohort": "Keytruda",
                 "phase": "No phase (observational)",
                 "trial_count": 52
               },
               {
+                "id": "Opdivo|EARLY_PHASE1",
                 "cohort": "Opdivo",
                 "phase": "Early Phase 1",
                 "trial_count": 28
               },
               {
+                "id": "Opdivo|PHASE1",
                 "cohort": "Opdivo",
                 "phase": "Phase 1",
                 "trial_count": 261
               },
               {
+                "id": "Opdivo|PHASE1/PHASE2",
                 "cohort": "Opdivo",
                 "phase": "Phase 1/2",
                 "trial_count": 194
               },
               {
+                "id": "Opdivo|PHASE2",
                 "cohort": "Opdivo",
                 "phase": "Phase 2",
                 "trial_count": 568
               },
               {
+                "id": "Opdivo|PHASE2/PHASE3",
                 "cohort": "Opdivo",
                 "phase": "Phase 2/3",
                 "trial_count": 23
               },
               {
+                "id": "Opdivo|PHASE3",
                 "cohort": "Opdivo",
                 "phase": "Phase 3",
                 "trial_count": 95
               },
               {
+                "id": "Opdivo|PHASE4",
                 "cohort": "Opdivo",
                 "phase": "Phase 4",
                 "trial_count": 13
               },
               {
+                "id": "Opdivo|NA",
                 "cohort": "Opdivo",
                 "phase": "Not applicable",
                 "trial_count": 17
               },
               {
+                "id": "Opdivo|NO_PHASE",
                 "cohort": "Opdivo",
                 "phase": "No phase (observational)",
                 "trial_count": 66
@@ -5042,7 +5132,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CStudyType&pageSize=1000&pageToken=ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZ_ak1PYTkA",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29%29%29&query.intr=%28opdivo%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29%29%29&query.intr=%28opdivo%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CStudyType%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&sort=StartDate%3Adesc&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

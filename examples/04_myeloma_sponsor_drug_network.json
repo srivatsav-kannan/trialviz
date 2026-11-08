@@ -1635,6 +1635,7 @@
         ],
         "edges": [
           {
+            "id": "intervention:linvoseltamab|lead_sponsor:regeneron pharmaceuticals",
             "source": "intervention:linvoseltamab",
             "target": "lead_sponsor:regeneron pharmaceuticals",
             "trial_count": 4,
@@ -1690,6 +1691,7 @@
             ]
           },
           {
+            "id": "intervention:talquetamab|lead_sponsor:janssen research & development, llc",
             "source": "intervention:talquetamab",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 4,
@@ -1745,6 +1747,7 @@
             ]
           },
           {
+            "id": "intervention:elranatamab|lead_sponsor:pfizer",
             "source": "intervention:elranatamab",
             "target": "lead_sponsor:pfizer",
             "trial_count": 3,
@@ -1799,6 +1802,7 @@
             ]
           },
           {
+            "id": "intervention:teclistamab|lead_sponsor:janssen research & development, llc",
             "source": "intervention:teclistamab",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 3,
@@ -1853,6 +1857,7 @@
             ]
           },
           {
+            "id": "intervention:alnuctamab|lead_sponsor:celgene",
             "source": "intervention:alnuctamab",
             "target": "lead_sponsor:celgene",
             "trial_count": 2,
@@ -1892,6 +1897,7 @@
             ]
           },
           {
+            "id": "intervention:bortezomib|lead_sponsor:janssen research & development, llc",
             "source": "intervention:bortezomib",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
@@ -1931,6 +1937,7 @@
             ]
           },
           {
+            "id": "intervention:cilta-cel|lead_sponsor:janssen research & development, llc",
             "source": "intervention:cilta-cel",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
@@ -1970,6 +1977,7 @@
             ]
           },
           {
+            "id": "intervention:daratumumab|lead_sponsor:brigham and women's hospital",
             "source": "intervention:daratumumab",
             "target": "lead_sponsor:brigham and women's hospital",
             "trial_count": 2,
@@ -2009,6 +2017,7 @@
             ]
           },
           {
+            "id": "intervention:daratumumab|lead_sponsor:janssen research & development, llc",
             "source": "intervention:daratumumab",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
@@ -2048,6 +2057,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:celgene",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:celgene",
             "trial_count": 2,
@@ -2087,6 +2097,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:janssen research & development, llc",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
@@ -2126,6 +2137,7 @@
             ]
           },
           {
+            "id": "intervention:iberdomide|lead_sponsor:national cancer institute (nci)",
             "source": "intervention:iberdomide",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 2,
@@ -2165,6 +2177,7 @@
             ]
           },
           {
+            "id": "intervention:lenalidomide|lead_sponsor:janssen research & development, llc",
             "source": "intervention:lenalidomide",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
@@ -2204,6 +2217,7 @@
             ]
           },
           {
+            "id": "intervention:pomalidomide|lead_sponsor:janssen research & development, llc",
             "source": "intervention:pomalidomide",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
@@ -2243,6 +2257,7 @@
             ]
           },
           {
+            "id": "intervention:alnuctamab|lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "source": "intervention:alnuctamab",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -2267,6 +2282,7 @@
             ]
           },
           {
+            "id": "intervention:belantamab mafodotin|lead_sponsor:massachusetts general hospital",
             "source": "intervention:belantamab mafodotin",
             "target": "lead_sponsor:massachusetts general hospital",
             "trial_count": 1,
@@ -2291,6 +2307,7 @@
             ]
           },
           {
+            "id": "intervention:bortezomib|lead_sponsor:abbvie",
             "source": "intervention:bortezomib",
             "target": "lead_sponsor:abbvie",
             "trial_count": 1,
@@ -2315,6 +2332,7 @@
             ]
           },
           {
+            "id": "intervention:bortezomib|lead_sponsor:national cancer institute (nci)",
             "source": "intervention:bortezomib",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 1,
@@ -2339,6 +2357,7 @@
             ]
           },
           {
+            "id": "intervention:bortezomib|lead_sponsor:peking university first hospital",
             "source": "intervention:bortezomib",
             "target": "lead_sponsor:peking university first hospital",
             "trial_count": 1,
@@ -2363,6 +2382,7 @@
             ]
           },
           {
+            "id": "intervention:bortezomib|lead_sponsor:pfizer",
             "source": "intervention:bortezomib",
             "target": "lead_sponsor:pfizer",
             "trial_count": 1,
@@ -2387,6 +2407,7 @@
             ]
           },
           {
+            "id": "intervention:carfilzomib|lead_sponsor:abbvie",
             "source": "intervention:carfilzomib",
             "target": "lead_sponsor:abbvie",
             "trial_count": 1,
@@ -2411,6 +2432,7 @@
             ]
           },
           {
+            "id": "intervention:carfilzomib|lead_sponsor:celgene",
             "source": "intervention:carfilzomib",
             "target": "lead_sponsor:celgene",
             "trial_count": 1,
@@ -2435,6 +2457,7 @@
             ]
           },
           {
+            "id": "intervention:carfilzomib|lead_sponsor:pfizer",
             "source": "intervention:carfilzomib",
             "target": "lead_sponsor:pfizer",
             "trial_count": 1,
@@ -2459,6 +2482,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|lead_sponsor:janssen research & development, llc",
             "source": "intervention:cyclophosphamide",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 1,
@@ -2483,6 +2507,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "source": "intervention:cyclophosphamide",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -2507,6 +2532,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|lead_sponsor:washington university school of medicine",
             "source": "intervention:cyclophosphamide",
             "target": "lead_sponsor:washington university school of medicine",
             "trial_count": 1,
@@ -2531,6 +2557,7 @@
             ]
           },
           {
+            "id": "intervention:daratumumab|lead_sponsor:celgene",
             "source": "intervention:daratumumab",
             "target": "lead_sponsor:celgene",
             "trial_count": 1,
@@ -2555,6 +2582,7 @@
             ]
           },
           {
+            "id": "intervention:daratumumab|lead_sponsor:national cancer institute (nci)",
             "source": "intervention:daratumumab",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 1,
@@ -2579,6 +2607,7 @@
             ]
           },
           {
+            "id": "intervention:daratumumab|lead_sponsor:peking university people's hospital",
             "source": "intervention:daratumumab",
             "target": "lead_sponsor:peking university people's hospital",
             "trial_count": 1,
@@ -2603,6 +2632,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:abbvie",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:abbvie",
             "trial_count": 1,
@@ -2627,6 +2657,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -2651,6 +2682,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:massachusetts general hospital",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:massachusetts general hospital",
             "trial_count": 1,
@@ -2675,6 +2707,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:mayo clinic",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:mayo clinic",
             "trial_count": 1,
@@ -2699,6 +2732,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:national cancer institute (nci)",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 1,
@@ -2723,6 +2757,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:pfizer",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:pfizer",
             "trial_count": 1,
@@ -2747,6 +2782,7 @@
             ]
           },
           {
+            "id": "intervention:dexamethasone|lead_sponsor:washington university school of medicine",
             "source": "intervention:dexamethasone",
             "target": "lead_sponsor:washington university school of medicine",
             "trial_count": 1,
@@ -2771,6 +2807,7 @@
             ]
           },
           {
+            "id": "intervention:elotuzumab|lead_sponsor:abbvie",
             "source": "intervention:elotuzumab",
             "target": "lead_sponsor:abbvie",
             "trial_count": 1,
@@ -2795,6 +2832,7 @@
             ]
           },
           {
+            "id": "intervention:elotuzumab|lead_sponsor:celgene",
             "source": "intervention:elotuzumab",
             "target": "lead_sponsor:celgene",
             "trial_count": 1,
@@ -2819,6 +2857,7 @@
             ]
           },
           {
+            "id": "intervention:elotuzumab|lead_sponsor:janssen research & development, llc",
             "source": "intervention:elotuzumab",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 1,
@@ -2843,6 +2882,7 @@
             ]
           },
           {
+            "id": "intervention:elotuzumab|lead_sponsor:pfizer",
             "source": "intervention:elotuzumab",
             "target": "lead_sponsor:pfizer",
             "trial_count": 1,
@@ -2867,6 +2907,7 @@
             ]
           },
           {
+            "id": "intervention:elranatamab|lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "source": "intervention:elranatamab",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -2891,6 +2932,7 @@
             ]
           },
           {
+            "id": "intervention:elranatamab|lead_sponsor:m.d. anderson cancer center",
             "source": "intervention:elranatamab",
             "target": "lead_sponsor:m.d. anderson cancer center",
             "trial_count": 1,
@@ -2915,6 +2957,7 @@
             ]
           },
           {
+            "id": "intervention:elranatamab|lead_sponsor:massachusetts general hospital",
             "source": "intervention:elranatamab",
             "target": "lead_sponsor:massachusetts general hospital",
             "trial_count": 1,
@@ -2939,6 +2982,7 @@
             ]
           },
           {
+            "id": "intervention:fludarabine|lead_sponsor:janssen research & development, llc",
             "source": "intervention:fludarabine",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 1,
@@ -2963,6 +3007,7 @@
             ]
           },
           {
+            "id": "intervention:fludarabine|lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "source": "intervention:fludarabine",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -2987,6 +3032,7 @@
             ]
           },
           {
+            "id": "intervention:g-csf|lead_sponsor:m.d. anderson cancer center",
             "source": "intervention:g-csf",
             "target": "lead_sponsor:m.d. anderson cancer center",
             "trial_count": 1,
@@ -3011,6 +3057,7 @@
             ]
           },
           {
+            "id": "intervention:g-csf|lead_sponsor:washington university school of medicine",
             "source": "intervention:g-csf",
             "target": "lead_sponsor:washington university school of medicine",
             "trial_count": 1,
@@ -3035,6 +3082,7 @@
             ]
           },
           {
+            "id": "intervention:iberdomide|lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "source": "intervention:iberdomide",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -3059,6 +3107,7 @@
             ]
           },
           {
+            "id": "intervention:iberdomide|lead_sponsor:pfizer",
             "source": "intervention:iberdomide",
             "target": "lead_sponsor:pfizer",
             "trial_count": 1,
@@ -3083,6 +3132,7 @@
             ]
           },
           {
+            "id": "intervention:isatuximab|lead_sponsor:massachusetts general hospital",
             "source": "intervention:isatuximab",
             "target": "lead_sponsor:massachusetts general hospital",
             "trial_count": 1,
@@ -3107,6 +3157,7 @@
             ]
           },
           {
+            "id": "intervention:lenalidomide|lead_sponsor:m.d. anderson cancer center",
             "source": "intervention:lenalidomide",
             "target": "lead_sponsor:m.d. anderson cancer center",
             "trial_count": 1,
@@ -3131,6 +3182,7 @@
             ]
           },
           {
+            "id": "intervention:lenalidomide|lead_sponsor:mayo clinic",
             "source": "intervention:lenalidomide",
             "target": "lead_sponsor:mayo clinic",
             "trial_count": 1,
@@ -3155,6 +3207,7 @@
             ]
           },
           {
+            "id": "intervention:lenalidomide|lead_sponsor:national cancer institute (nci)",
             "source": "intervention:lenalidomide",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 1,
@@ -3179,6 +3232,7 @@
             ]
           },
           {
+            "id": "intervention:lenalidomide|lead_sponsor:peking university people's hospital",
             "source": "intervention:lenalidomide",
             "target": "lead_sponsor:peking university people's hospital",
             "trial_count": 1,
@@ -3203,6 +3257,7 @@
             ]
           },
           {
+            "id": "intervention:lenalidomide|lead_sponsor:washington university school of medicine",
             "source": "intervention:lenalidomide",
             "target": "lead_sponsor:washington university school of medicine",
             "trial_count": 1,
@@ -3227,6 +3282,7 @@
             ]
           },
           {
+            "id": "intervention:melphalan|lead_sponsor:m.d. anderson cancer center",
             "source": "intervention:melphalan",
             "target": "lead_sponsor:m.d. anderson cancer center",
             "trial_count": 1,
@@ -3251,6 +3307,7 @@
             ]
           },
           {
+            "id": "intervention:mezigdomide|lead_sponsor:celgene",
             "source": "intervention:mezigdomide",
             "target": "lead_sponsor:celgene",
             "trial_count": 1,
@@ -3275,6 +3332,7 @@
             ]
           },
           {
+            "id": "intervention:mezigdomide|lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "source": "intervention:mezigdomide",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -3299,6 +3357,7 @@
             ]
           },
           {
+            "id": "intervention:pomalidomide|lead_sponsor:abbvie",
             "source": "intervention:pomalidomide",
             "target": "lead_sponsor:abbvie",
             "trial_count": 1,
@@ -3323,6 +3382,7 @@
             ]
           },
           {
+            "id": "intervention:pomalidomide|lead_sponsor:celgene",
             "source": "intervention:pomalidomide",
             "target": "lead_sponsor:celgene",
             "trial_count": 1,
@@ -3347,6 +3407,7 @@
             ]
           },
           {
+            "id": "intervention:pomalidomide|lead_sponsor:massachusetts general hospital",
             "source": "intervention:pomalidomide",
             "target": "lead_sponsor:massachusetts general hospital",
             "trial_count": 1,
@@ -3371,6 +3432,7 @@
             ]
           },
           {
+            "id": "intervention:pomalidomide|lead_sponsor:pfizer",
             "source": "intervention:pomalidomide",
             "target": "lead_sponsor:pfizer",
             "trial_count": 1,
@@ -3395,6 +3457,7 @@
             ]
           },
           {
+            "id": "intervention:selinexor|lead_sponsor:abbvie",
             "source": "intervention:selinexor",
             "target": "lead_sponsor:abbvie",
             "trial_count": 1,
@@ -3419,6 +3482,7 @@
             ]
           },
           {
+            "id": "intervention:selinexor|lead_sponsor:national cancer institute (nci)",
             "source": "intervention:selinexor",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 1,
@@ -3443,6 +3507,7 @@
             ]
           },
           {
+            "id": "intervention:selinexor|lead_sponsor:oncotherapeutics",
             "source": "intervention:selinexor",
             "target": "lead_sponsor:oncotherapeutics",
             "trial_count": 1,
@@ -3467,6 +3532,7 @@
             ]
           },
           {
+            "id": "intervention:selinexor|lead_sponsor:washington university school of medicine",
             "source": "intervention:selinexor",
             "target": "lead_sponsor:washington university school of medicine",
             "trial_count": 1,
@@ -3491,6 +3557,7 @@
             ]
           },
           {
+            "id": "intervention:teclistamab|lead_sponsor:national cancer institute (nci)",
             "source": "intervention:teclistamab",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 1,
@@ -3820,7 +3887,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%22multiple+myeloma%22+OR+AREA%5BConditionMeshTerm%5D%22multiple+myeloma%22+OR+AREA%5BKeyword%5D%22multiple+myeloma%22%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CArmGroupDescription%2CArmGroupLabel%2CArmGroupInterventionName&pageSize=1000&countTotal=true",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%22multiple+myeloma%22+OR+AREA%5BConditionMeshTerm%5D%22multiple+myeloma%22+OR+AREA%5BKeyword%5D%22multiple+myeloma%22%29%29%29&query.cond=%28multiple+myeloma%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%22multiple+myeloma%22+OR+AREA%5BConditionMeshTerm%5D%22multiple+myeloma%22+OR+AREA%5BKeyword%5D%22multiple+myeloma%22%29%29%29&query.cond=%28multiple+myeloma%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CArmGroupDescription%2CArmGroupLabel%2CArmGroupInterventionName%2COfficialTitle%2CBriefSummary%2CInterventionDescription&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

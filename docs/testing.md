@@ -8,7 +8,7 @@ uv run pytest --run-live                         # adds the live registry tests
 TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records against Claude and the registry
 ```
 
-The offline run collects 57 cases from 51 test functions, since the spend-cap tests run on both ledgers and over four failure types and the cross-origin test covers both question endpoints, and `--run-live` adds 3 more. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report, which a suite that passes or fails on every run would flatten; it is described in [evaluation.md](evaluation.md).
+The offline run collects 63 cases from 56 test functions, since the spend-cap and answer-store tests run on both backends, the spend-cap tests over four failure types, and the cross-origin test covers both question endpoints, and `--run-live` adds 3 more. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report, which a suite that passes or fails on every run would flatten; it is described in [evaluation.md](evaluation.md).
 
 ## Question workflows
 
@@ -36,7 +36,7 @@ The assertions are about the answer. Every record that comes back must satisfy t
 | Breast cancer by status, capped | The exact registry counts do not add up to the registry's total |
 | Drug combinations | A link does not come from drugs given in the same treatment arm |
 | Three measures | There is no 3D scatter plot, or no flat bubble chart beside it |
-| The HTTP endpoint | `/v1/query` returns anything other than exactly the pipeline's answer |
+| The HTTP endpoints | `/v1/query` returns anything other than exactly the pipeline's answer with its `answer_id`, a repeated question spends anything or reaches the registry, the saved answer does not reopen identically, its CSV has the wrong rows, or the stream does not pass through every stage in order and end with the same answer and a full progress count |
 
 ## Failure workflows
 
@@ -58,7 +58,8 @@ These replay the same recordings under bad conditions.
 | `test_resolver_properties.py` | Six properties of the resolver over 1,500 generated pairings of caller fields with interpreter proposals, among them that caller fields always reach the plan unchanged, every contradiction is reported, and the same input always gives the same output |
 | `test_input_hazards.py` | Hostile requests are refused with a pointer to the exact problem, every kind of failure returns the one error shape, and plausible misreadings are refused ("N/A" read like "1/2", or "Korea") |
 | `test_spend_cap.py` | On both ledgers, the second against a real throwaway Postgres: concurrent calls from two processes cannot jointly cross the cap, spending survives a restart, the daily cap refuses before the total does, a hold left by a process that died mid-call is charged in full, an unreachable ledger refuses every call, and a failed call is charged according to whether it could have been billed |
-| `test_api_contract.py` | What a frontend built from the docs alone relies on, over every saved answer: each validates against the published response model and is served unchanged, each chart carries the rows `docs/api.md` lists with citations that link to their trial, each encoding names a field its rows really have, the docs name every row field, the samples draw all 22 chart types, and a page on another origin can ask questions and read errors, `Retry-After` and the RateLimit headers |
+| `test_api_contract.py` | What a frontend built from the docs alone relies on, over every saved answer: each validates against the published response model and is served unchanged, each chart's rows validate against the row model the OpenAPI document publishes for it, ids are unique and carried into the Vega-Lite values, citations link to their trial, each encoding names a field its rows really have, the docs name every row field, every row model is referenced by the schema, every sample downloads as CSV, the samples draw all 22 chart types, and a page on another origin can ask questions and read errors, `Retry-After` and the RateLimit headers |
+| `test_answer_store.py` | On both stores, the second against a real throwaway Postgres: a saved answer comes back exactly from a new process, only the newest are kept, an answer id changes with the request and the data version, and a store that cannot be reached or written is a miss, never an error |
 | `test_abuse_guards.py` | Over HTTP: each client's question quota with its RateLimit headers, that a forged `X-Forwarded-For` entry earns no fresh quota, the ceiling across all clients (without spending the refused client's quota), the general request limit and the exempt health check, the cap on answers in progress, oversized bodies refused whether or not their length is declared, security headers on every kind of response, and `/v1/status` with a budget, without one, and with an unreachable ledger |
 | `test_scale_guards.py` | A grid of 3,000 trials by lead sponsor and country keeps only the largest rows and columns, honors `top_n`, says so in a note, and stays under 2 MB |
 | `test_counting_guards.py` | The two errors the second recount of the saved answers found: a comparison counts every cell and every known sponsor class exactly, including ones its fetched subset never contained, and a bracketed brand ("Pembrolizumab (KEYTRUDA®)") or a biological left out by the type filter no longer drops a drug or misnames another |

@@ -58,7 +58,7 @@ Each data point carries its trial count, the IDs of every trial behind it, and c
 }
 ```
 
-Every error has the same shape, `{"error": {"code", "message", "details"}}`. Any web page can call the API directly, since it allows every origin and exposes its rate-limit headers. The full reference, with the rows and channels each chart type uses and how to draw it without Vega-Lite, is in [docs/api.md](docs/api.md) and at `/docs` on the running service.
+Every error has the same shape, `{"error": {"code", "message", "details"}}`. Any web page can call the API directly, since it allows every origin and exposes its rate-limit headers. `POST /v1/query/stream` sends progress events while a long answer is computed and then the answer itself. Every answer carries a `meta.answer_id`, so `GET /v1/answers/{id}` reopens it as a shareable link, `/v1/answers/{id}/csv` downloads its rows, and asking the same question again against the same registry data returns the saved answer without spending anything. Every row has a stable `id`, and the rows of each chart type are typed in the OpenAPI document. The full reference, with the rows and channels each chart type uses and how to draw it without Vega-Lite, is in [docs/api.md](docs/api.md) and at `/docs` on the running service.
 
 ## How a question becomes a chart
 
@@ -127,7 +127,7 @@ TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records Claude and registr
 uv run python -m evals.run --interpreter claude  # scores interpretation, about $0.40 a run
 ```
 
-Most of the 57 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes, and a contract test holds every saved answer to what the API reference promises a frontend, after a developer who had only the docs built a working frontend from them. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries. The last recount found two real errors, which were fixed before the answers were saved again. [docs/testing.md](docs/testing.md) describes each test.
+Most of the 63 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes, and a contract test holds every saved answer to what the API reference promises a frontend, after a developer who had only the docs built a working frontend from them. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries. The last recount found two real errors, which were fixed before the answers were saved again. [docs/testing.md](docs/testing.md) describes each test.
 
 Interpretation is measured on 54 labeled questions, scored on the final plan. Claude (`claude-opus-5-5` at low effort) gets all 54 right and the rule-based interpreter gets 15, mostly because it cannot tell drugs from diseases. The questions and the prompt were written together, so [docs/evaluation.md](docs/evaluation.md) explains how far that score can be trusted.
 
@@ -143,7 +143,7 @@ Settings are read from the environment or from `.env`.
 | `INTERPRETER_MAX_TOKENS` | `8000` | Longest answer the model may give, which also bounds what each call sets aside |
 | `LLM_SPEND_CAP_USD` | `20` | Hard cap on total Claude spending |
 | `LLM_DAILY_CAP_USD` | unset | Optional cap on Claude spending per UTC day; empty means none |
-| `DATABASE_URL` | unset | Postgres for the spend total, so the caps hold across restarts and processes; without it, spending is kept in `LLM_LEDGER_PATH` |
+| `DATABASE_URL` | unset | Postgres for the spend total and saved answers, so they survive restarts and are shared by processes; without it, both are kept in local files |
 | `LLM_LEDGER_PATH` | `var/llm_spend.json` | Where spending is recorded locally |
 | `CTGOV_REQUESTS_PER_MINUTE` | `50` | Spacing between registry requests |
 | `CTGOV_CACHE_DIR` | `var/cache/ctgov` | Registry response cache, disabled when set empty |
@@ -155,6 +155,8 @@ Settings are read from the environment or from `.env`.
 | `REQUESTS_PER_MINUTE` | `120` | Other requests one client may make per minute |
 | `MAX_CONCURRENT_ANSWERS` | `4` | Questions answered at once |
 | `MAX_BODY_BYTES` | `16384` | Largest request body accepted |
+| `ANSWER_STORE_DIR` | `var/answers` | Where answers are saved locally when there is no `DATABASE_URL`; empty saves none |
+| `ANSWERS_KEPT` | `1000` | How many of the newest answers are kept |
 | `CORS_ALLOW_ORIGINS` | `*` | Origins whose pages may call the API from a browser, comma-separated |
 | `TRUSTED_PROXY_HOPS` | `0` | Proxies in front of the service, so clients are told apart by the address the proxy saw |
 

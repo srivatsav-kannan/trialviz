@@ -70,13 +70,17 @@ src/trialviz/
     vega.py          Vega-Lite output
     layout.py        deterministic 2D and 3D network layout
     titles.py        titles and subtitles written from the plan
+    contract.py      the row model of each chart type, published in the OpenAPI document
     geo.py           ISO codes for the registry's country names
   answer.py          the final answer model and its assembly
   pipeline.py        the sequence of stages, the answer's request log and its registry deadline
+  progress.py        progress reports for the streaming endpoint, through a context variable
+  store.py           saved answers keyed by request and data version, in files or Postgres
+  export.py          an answer's rows as CSV
   llm/budget.py      the spend caps: a file ledger for local runs, a Postgres one when deployed
   limits.py          rate limits, the cap on answers in progress, body size, security headers
   settings.py        configuration
-  api.py             HTTP routes, error handling, and the pages at /, /samples and /docs
+  api.py             HTTP routes, the stream, error handling, and the pages at /, /samples and /docs
   openapi.py         the API reference's overview, request and response examples, and error models
   ui/                the demo UI (one page for both routes, a stylesheet, a JavaScript module)
                      and the API reference page
@@ -92,4 +96,4 @@ A new grouping dimension is a member of `Dimension`, with its label and whether 
 
 A new analysis kind is a spec class in `plan.py` and an entry in `ANALYSIS_SPECS`, the table that kind derivation, parameter checks and missing-parameter clarifications all read, followed by a dataset builder in `aggregation/build.py`.
 
-A new chart is a member of `ChartType`, a `Candidate` in `visualization/recommend.py` with its fit rule, score and reason, and its encoding in `visualization/spec.py`, after which it is recommended or offered whenever its data shape appears.
+A new chart is a member of `ChartType`, a `Candidate` in `visualization/recommend.py` with its fit rule, score and reason, its encoding in `visualization/spec.py`, and its row model in `visualization/contract.py`, after which it is recommended or offered whenever its data shape appears.

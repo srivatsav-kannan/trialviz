@@ -29,6 +29,7 @@
       "options": {},
       "data": [
         {
+          "id": "INTERVENTIONAL",
           "study_type": "Interventional",
           "key": "INTERVENTIONAL",
           "trial_count": 1347,
@@ -1406,6 +1407,7 @@
           ]
         },
         {
+          "id": "OBSERVATIONAL",
           "study_type": "Observational",
           "key": "OBSERVATIONAL",
           "trial_count": 681,
@@ -2117,6 +2119,7 @@
           ]
         },
         {
+          "id": "EXPANDED_ACCESS",
           "study_type": "Expanded access",
           "key": "EXPANDED_ACCESS",
           "trial_count": 7,
@@ -2160,16 +2163,19 @@
         "data": {
           "values": [
             {
+              "id": "INTERVENTIONAL",
               "study_type": "Interventional",
               "key": "INTERVENTIONAL",
               "trial_count": 1347
             },
             {
+              "id": "OBSERVATIONAL",
               "study_type": "Observational",
               "key": "OBSERVATIONAL",
               "trial_count": 681
             },
             {
+              "id": "EXPANDED_ACCESS",
               "study_type": "Expanded access",
               "key": "EXPANDED_ACCESS",
               "trial_count": 7
@@ -2238,16 +2244,19 @@
           "data": {
             "values": [
               {
+                "id": "INTERVENTIONAL",
                 "study_type": "Interventional",
                 "key": "INTERVENTIONAL",
                 "trial_count": 1347
               },
               {
+                "id": "OBSERVATIONAL",
                 "study_type": "Observational",
                 "key": "OBSERVATIONAL",
                 "trial_count": 681
               },
               {
+                "id": "EXPANDED_ACCESS",
                 "study_type": "Expanded access",
                 "key": "EXPANDED_ACCESS",
                 "trial_count": 7
@@ -2310,16 +2319,19 @@
           "data": {
             "values": [
               {
+                "id": "INTERVENTIONAL",
                 "study_type": "Interventional",
                 "key": "INTERVENTIONAL",
                 "trial_count": 1347
               },
               {
+                "id": "OBSERVATIONAL",
                 "study_type": "Observational",
                 "key": "OBSERVATIONAL",
                 "trial_count": 681
               },
               {
+                "id": "EXPANDED_ACCESS",
                 "study_type": "Expanded access",
                 "key": "EXPANDED_ACCESS",
                 "trial_count": 7
@@ -2507,7 +2519,8 @@
         "https://clinicaltrials.gov/api/v2/studies?query.cond=%28AREA%5BCondition%5D%22crohn+disease%22+OR+AREA%5BConditionMeshTerm%5D%22crohn+disease%22+OR+AREA%5BKeyword%5D%22crohn+disease%22%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType&pageSize=1000&pageToken=ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrZfaj3fUckA",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28NOT+%28%28AREA%5BCondition%5D%22crohn+disease%22+OR+AREA%5BConditionMeshTerm%5D%22crohn+disease%22+OR+AREA%5BKeyword%5D%22crohn+disease%22%29%29%29&query.cond=%28crohn+disease%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28NOT+%28%28AREA%5BCondition%5D%22crohn+disease%22+OR+AREA%5BConditionMeshTerm%5D%22crohn+disease%22+OR+AREA%5BKeyword%5D%22crohn+disease%22%29%29%29&query.cond=%28crohn+disease%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&sort=StartDate%3Adesc&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

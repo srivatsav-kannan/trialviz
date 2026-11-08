@@ -30,6 +30,7 @@
       "options": {},
       "data": [
         {
+          "id": "2008",
           "period": "2008",
           "trial_count": 1,
           "nct_ids": [
@@ -46,12 +47,14 @@
           ]
         },
         {
+          "id": "2009",
           "period": "2009",
           "trial_count": 0,
           "nct_ids": [],
           "citations": []
         },
         {
+          "id": "2010",
           "period": "2010",
           "trial_count": 4,
           "nct_ids": [
@@ -85,6 +88,7 @@
           ]
         },
         {
+          "id": "2011",
           "period": "2011",
           "trial_count": 1,
           "nct_ids": [
@@ -101,6 +105,7 @@
           ]
         },
         {
+          "id": "2012",
           "period": "2012",
           "trial_count": 1,
           "nct_ids": [
@@ -117,6 +122,7 @@
           ]
         },
         {
+          "id": "2013",
           "period": "2013",
           "trial_count": 14,
           "nct_ids": [
@@ -160,6 +166,7 @@
           ]
         },
         {
+          "id": "2014",
           "period": "2014",
           "trial_count": 34,
           "nct_ids": [
@@ -223,6 +230,7 @@
           ]
         },
         {
+          "id": "2015",
           "period": "2015",
           "trial_count": 116,
           "nct_ids": [
@@ -368,6 +376,7 @@
           ]
         },
         {
+          "id": "2016",
           "period": "2016",
           "trial_count": 185,
           "nct_ids": [
@@ -582,6 +591,7 @@
           ]
         },
         {
+          "id": "2017",
           "period": "2017",
           "trial_count": 246,
           "nct_ids": [
@@ -857,6 +867,7 @@
           ]
         },
         {
+          "id": "2018",
           "period": "2018",
           "trial_count": 240,
           "nct_ids": [
@@ -1126,6 +1137,7 @@
           ]
         },
         {
+          "id": "2019",
           "period": "2019",
           "trial_count": 219,
           "nct_ids": [
@@ -1374,6 +1386,7 @@
           ]
         },
         {
+          "id": "2020",
           "period": "2020",
           "trial_count": 237,
           "nct_ids": [
@@ -1640,6 +1653,7 @@
           ]
         },
         {
+          "id": "2021",
           "period": "2021",
           "trial_count": 239,
           "nct_ids": [
@@ -1908,6 +1922,7 @@
           ]
         },
         {
+          "id": "2022",
           "period": "2022",
           "trial_count": 263,
           "nct_ids": [
@@ -2200,6 +2215,7 @@
           ]
         },
         {
+          "id": "2023",
           "period": "2023",
           "trial_count": 227,
           "nct_ids": [
@@ -2456,6 +2472,7 @@
           ]
         },
         {
+          "id": "2024",
           "period": "2024",
           "trial_count": 221,
           "nct_ids": [
@@ -2706,6 +2723,7 @@
           ]
         },
         {
+          "id": "2025",
           "period": "2025",
           "trial_count": 206,
           "nct_ids": [
@@ -2941,6 +2959,7 @@
           ]
         },
         {
+          "id": "2026",
           "period": "2026",
           "trial_count": 192,
           "nct_ids": [
@@ -3162,6 +3181,7 @@
           ]
         },
         {
+          "id": "2027",
           "period": "2027",
           "trial_count": 9,
           "nct_ids": [
@@ -3206,82 +3226,102 @@
         "data": {
           "values": [
             {
+              "id": "2008",
               "period": "2008",
               "trial_count": 1
             },
             {
+              "id": "2009",
               "period": "2009",
               "trial_count": 0
             },
             {
+              "id": "2010",
               "period": "2010",
               "trial_count": 4
             },
             {
+              "id": "2011",
               "period": "2011",
               "trial_count": 1
             },
             {
+              "id": "2012",
               "period": "2012",
               "trial_count": 1
             },
             {
+              "id": "2013",
               "period": "2013",
               "trial_count": 14
             },
             {
+              "id": "2014",
               "period": "2014",
               "trial_count": 34
             },
             {
+              "id": "2015",
               "period": "2015",
               "trial_count": 116
             },
             {
+              "id": "2016",
               "period": "2016",
               "trial_count": 185
             },
             {
+              "id": "2017",
               "period": "2017",
               "trial_count": 246
             },
             {
+              "id": "2018",
               "period": "2018",
               "trial_count": 240
             },
             {
+              "id": "2019",
               "period": "2019",
               "trial_count": 219
             },
             {
+              "id": "2020",
               "period": "2020",
               "trial_count": 237
             },
             {
+              "id": "2021",
               "period": "2021",
               "trial_count": 239
             },
             {
+              "id": "2022",
               "period": "2022",
               "trial_count": 263
             },
             {
+              "id": "2023",
               "period": "2023",
               "trial_count": 227
             },
             {
+              "id": "2024",
               "period": "2024",
               "trial_count": 221
             },
             {
+              "id": "2025",
               "period": "2025",
               "trial_count": 206
             },
             {
+              "id": "2026",
               "period": "2026",
               "trial_count": 192
             },
             {
+              "id": "2027",
               "period": "2027",
               "trial_count": 9
             }
@@ -3351,82 +3391,102 @@
           "data": {
             "values": [
               {
+                "id": "2008",
                 "period": "2008",
                 "trial_count": 1
               },
               {
+                "id": "2009",
                 "period": "2009",
                 "trial_count": 0
               },
               {
+                "id": "2010",
                 "period": "2010",
                 "trial_count": 4
               },
               {
+                "id": "2011",
                 "period": "2011",
                 "trial_count": 1
               },
               {
+                "id": "2012",
                 "period": "2012",
                 "trial_count": 1
               },
               {
+                "id": "2013",
                 "period": "2013",
                 "trial_count": 14
               },
               {
+                "id": "2014",
                 "period": "2014",
                 "trial_count": 34
               },
               {
+                "id": "2015",
                 "period": "2015",
                 "trial_count": 116
               },
               {
+                "id": "2016",
                 "period": "2016",
                 "trial_count": 185
               },
               {
+                "id": "2017",
                 "period": "2017",
                 "trial_count": 246
               },
               {
+                "id": "2018",
                 "period": "2018",
                 "trial_count": 240
               },
               {
+                "id": "2019",
                 "period": "2019",
                 "trial_count": 219
               },
               {
+                "id": "2020",
                 "period": "2020",
                 "trial_count": 237
               },
               {
+                "id": "2021",
                 "period": "2021",
                 "trial_count": 239
               },
               {
+                "id": "2022",
                 "period": "2022",
                 "trial_count": 263
               },
               {
+                "id": "2023",
                 "period": "2023",
                 "trial_count": 227
               },
               {
+                "id": "2024",
                 "period": "2024",
                 "trial_count": 221
               },
               {
+                "id": "2025",
                 "period": "2025",
                 "trial_count": 206
               },
               {
+                "id": "2026",
                 "period": "2026",
                 "trial_count": 192
               },
               {
+                "id": "2027",
                 "period": "2027",
                 "trial_count": 9
               }
@@ -3692,7 +3752,8 @@
         "https://clinicaltrials.gov/api/v2/studies?query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm&pageSize=1000&pageToken=ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZPSj2vMSkA",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28NOT+%28%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29%29%29&query.intr=%28pembrolizumab%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28NOT+%28%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29%29%29&query.intr=%28pembrolizumab%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&sort=StartDate%3Adesc&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

@@ -2716,6 +2716,7 @@
         ],
         "edges": [
           {
+            "id": "intervention:ipilimumab|intervention:nivolumab",
             "source": "intervention:ipilimumab",
             "target": "intervention:nivolumab",
             "trial_count": 42,
@@ -2788,6 +2789,7 @@
             ]
           },
           {
+            "id": "intervention:binimetinib|intervention:encorafenib",
             "source": "intervention:binimetinib",
             "target": "intervention:encorafenib",
             "trial_count": 16,
@@ -2834,6 +2836,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|intervention:fludarabine",
             "source": "intervention:cyclophosphamide",
             "target": "intervention:fludarabine",
             "trial_count": 14,
@@ -2878,6 +2881,7 @@
             ]
           },
           {
+            "id": "intervention:dabrafenib|intervention:trametinib",
             "source": "intervention:dabrafenib",
             "target": "intervention:trametinib",
             "trial_count": 13,
@@ -2921,6 +2925,7 @@
             ]
           },
           {
+            "id": "intervention:cemiplimab|intervention:fianlimab",
             "source": "intervention:cemiplimab",
             "target": "intervention:fianlimab",
             "trial_count": 9,
@@ -2960,6 +2965,7 @@
             ]
           },
           {
+            "id": "intervention:nivolumab|intervention:relatlimab",
             "source": "intervention:nivolumab",
             "target": "intervention:relatlimab",
             "trial_count": 8,
@@ -2998,6 +3004,7 @@
             ]
           },
           {
+            "id": "intervention:lenvatinib|intervention:pembrolizumab",
             "source": "intervention:lenvatinib",
             "target": "intervention:pembrolizumab",
             "trial_count": 7,
@@ -3035,6 +3042,7 @@
             ]
           },
           {
+            "id": "intervention:nivolumab|intervention:pembrolizumab",
             "source": "intervention:nivolumab",
             "target": "intervention:pembrolizumab",
             "trial_count": 6,
@@ -3071,6 +3079,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|intervention:fludarabine phosphate",
             "source": "intervention:cyclophosphamide",
             "target": "intervention:fludarabine phosphate",
             "trial_count": 5,
@@ -3106,6 +3115,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|intervention:interleukin-2",
             "source": "intervention:cyclophosphamide",
             "target": "intervention:interleukin-2",
             "trial_count": 5,
@@ -3141,6 +3151,7 @@
             ]
           },
           {
+            "id": "intervention:fludarabine|intervention:interleukin-2",
             "source": "intervention:fludarabine",
             "target": "intervention:interleukin-2",
             "trial_count": 5,
@@ -3176,6 +3187,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|intervention:pembrolizumab",
             "source": "intervention:cyclophosphamide",
             "target": "intervention:pembrolizumab",
             "trial_count": 4,
@@ -3210,6 +3222,7 @@
             ]
           },
           {
+            "id": "intervention:ipilimumab|intervention:relatlimab",
             "source": "intervention:ipilimumab",
             "target": "intervention:relatlimab",
             "trial_count": 4,
@@ -3244,6 +3257,7 @@
             ]
           },
           {
+            "id": "intervention:aldesleukin|intervention:cyclophosphamide",
             "source": "intervention:aldesleukin",
             "target": "intervention:cyclophosphamide",
             "trial_count": 3,
@@ -3277,6 +3291,7 @@
             ]
           },
           {
+            "id": "intervention:binimetinib|intervention:pembrolizumab",
             "source": "intervention:binimetinib",
             "target": "intervention:pembrolizumab",
             "trial_count": 3,
@@ -3310,6 +3325,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:paclitaxel",
             "source": "intervention:carboplatin",
             "target": "intervention:paclitaxel",
             "trial_count": 3,
@@ -3343,6 +3359,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:pembrolizumab",
             "source": "intervention:carboplatin",
             "target": "intervention:pembrolizumab",
             "trial_count": 3,
@@ -3376,6 +3393,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:pemetrexed",
             "source": "intervention:carboplatin",
             "target": "intervention:pemetrexed",
             "trial_count": 3,
@@ -3409,6 +3427,7 @@
             ]
           },
           {
+            "id": "intervention:encorafenib|intervention:pembrolizumab",
             "source": "intervention:encorafenib",
             "target": "intervention:pembrolizumab",
             "trial_count": 3,
@@ -3442,6 +3461,7 @@
             ]
           },
           {
+            "id": "intervention:interleukin-2|intervention:melphalan",
             "source": "intervention:interleukin-2",
             "target": "intervention:melphalan",
             "trial_count": 3,
@@ -3475,6 +3495,7 @@
             ]
           },
           {
+            "id": "intervention:ipilimumab|intervention:pembrolizumab",
             "source": "intervention:ipilimumab",
             "target": "intervention:pembrolizumab",
             "trial_count": 3,
@@ -3508,6 +3529,7 @@
             ]
           },
           {
+            "id": "intervention:bevacizumab|intervention:paclitaxel",
             "source": "intervention:bevacizumab",
             "target": "intervention:paclitaxel",
             "trial_count": 2,
@@ -3533,6 +3555,7 @@
             ]
           },
           {
+            "id": "intervention:camrelizumab|intervention:temozolomide",
             "source": "intervention:camrelizumab",
             "target": "intervention:temozolomide",
             "trial_count": 2,
@@ -3558,6 +3581,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:cisplatin",
             "source": "intervention:carboplatin",
             "target": "intervention:cisplatin",
             "trial_count": 2,
@@ -3583,6 +3607,7 @@
             ]
           },
           {
+            "id": "intervention:cisplatin|intervention:paclitaxel",
             "source": "intervention:cisplatin",
             "target": "intervention:paclitaxel",
             "trial_count": 2,
@@ -3608,6 +3633,7 @@
             ]
           },
           {
+            "id": "intervention:cisplatin|intervention:pemetrexed",
             "source": "intervention:cisplatin",
             "target": "intervention:pemetrexed",
             "trial_count": 2,
@@ -3633,6 +3659,7 @@
             ]
           },
           {
+            "id": "intervention:ipilimumab|intervention:opdualag",
             "source": "intervention:ipilimumab",
             "target": "intervention:opdualag",
             "trial_count": 2,
@@ -3658,6 +3685,7 @@
             ]
           },
           {
+            "id": "intervention:nivolumab|intervention:opdualag",
             "source": "intervention:nivolumab",
             "target": "intervention:opdualag",
             "trial_count": 2,
@@ -3683,6 +3711,7 @@
             ]
           },
           {
+            "id": "intervention:paclitaxel|intervention:pembrolizumab",
             "source": "intervention:paclitaxel",
             "target": "intervention:pembrolizumab",
             "trial_count": 2,
@@ -3708,6 +3737,7 @@
             ]
           },
           {
+            "id": "intervention:pembrolizumab|intervention:pemetrexed",
             "source": "intervention:pembrolizumab",
             "target": "intervention:pemetrexed",
             "trial_count": 2,
@@ -3733,6 +3763,7 @@
             ]
           },
           {
+            "id": "intervention:temozolomide|intervention:toripalimab",
             "source": "intervention:temozolomide",
             "target": "intervention:toripalimab",
             "trial_count": 2,
@@ -3758,6 +3789,7 @@
             ]
           },
           {
+            "id": "intervention:aldesleukin|intervention:avelumab",
             "source": "intervention:aldesleukin",
             "target": "intervention:avelumab",
             "trial_count": 1,
@@ -3775,6 +3807,7 @@
             ]
           },
           {
+            "id": "intervention:aldesleukin|intervention:fludarabine phosphate",
             "source": "intervention:aldesleukin",
             "target": "intervention:fludarabine phosphate",
             "trial_count": 1,
@@ -3792,6 +3825,7 @@
             ]
           },
           {
+            "id": "intervention:aldesleukin|intervention:nivolumab",
             "source": "intervention:aldesleukin",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -3809,6 +3843,7 @@
             ]
           },
           {
+            "id": "intervention:aldesleukin|intervention:pembrolizumab",
             "source": "intervention:aldesleukin",
             "target": "intervention:pembrolizumab",
             "trial_count": 1,
@@ -3826,6 +3861,7 @@
             ]
           },
           {
+            "id": "intervention:atezolizumab|intervention:bevacizumab",
             "source": "intervention:atezolizumab",
             "target": "intervention:bevacizumab",
             "trial_count": 1,
@@ -3843,6 +3879,7 @@
             ]
           },
           {
+            "id": "intervention:atezolizumab|intervention:cobimetinib",
             "source": "intervention:atezolizumab",
             "target": "intervention:cobimetinib",
             "trial_count": 1,
@@ -3860,6 +3897,7 @@
             ]
           },
           {
+            "id": "intervention:atezolizumab|intervention:pembrolizumab",
             "source": "intervention:atezolizumab",
             "target": "intervention:pembrolizumab",
             "trial_count": 1,
@@ -3877,6 +3915,7 @@
             ]
           },
           {
+            "id": "intervention:avelumab|intervention:cisplatin",
             "source": "intervention:avelumab",
             "target": "intervention:cisplatin",
             "trial_count": 1,
@@ -3894,6 +3933,7 @@
             ]
           },
           {
+            "id": "intervention:avelumab|intervention:pemetrexed",
             "source": "intervention:avelumab",
             "target": "intervention:pemetrexed",
             "trial_count": 1,
@@ -3911,6 +3951,7 @@
             ]
           },
           {
+            "id": "intervention:axitinib|intervention:ipilimumab",
             "source": "intervention:axitinib",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -3928,6 +3969,7 @@
             ]
           },
           {
+            "id": "intervention:axitinib|intervention:nivolumab",
             "source": "intervention:axitinib",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -3945,6 +3987,7 @@
             ]
           },
           {
+            "id": "intervention:axitinib|intervention:toripalimab",
             "source": "intervention:axitinib",
             "target": "intervention:toripalimab",
             "trial_count": 1,
@@ -3962,6 +4005,7 @@
             ]
           },
           {
+            "id": "intervention:bevacizumab|intervention:carboplatin",
             "source": "intervention:bevacizumab",
             "target": "intervention:carboplatin",
             "trial_count": 1,
@@ -3979,6 +4023,7 @@
             ]
           },
           {
+            "id": "intervention:bevacizumab|intervention:cyclophosphamide",
             "source": "intervention:bevacizumab",
             "target": "intervention:cyclophosphamide",
             "trial_count": 1,
@@ -3996,6 +4041,7 @@
             ]
           },
           {
+            "id": "intervention:bevacizumab|intervention:ipilimumab",
             "source": "intervention:bevacizumab",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -4013,6 +4059,7 @@
             ]
           },
           {
+            "id": "intervention:bevacizumab|intervention:nivolumab",
             "source": "intervention:bevacizumab",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -4030,6 +4077,7 @@
             ]
           },
           {
+            "id": "intervention:bevacizumab|intervention:pembrolizumab",
             "source": "intervention:bevacizumab",
             "target": "intervention:pembrolizumab",
             "trial_count": 1,
@@ -4047,6 +4095,7 @@
             ]
           },
           {
+            "id": "intervention:binimetinib|intervention:dabrafenib",
             "source": "intervention:binimetinib",
             "target": "intervention:dabrafenib",
             "trial_count": 1,
@@ -4064,6 +4113,7 @@
             ]
           },
           {
+            "id": "intervention:binimetinib|intervention:ipilimumab",
             "source": "intervention:binimetinib",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -4081,6 +4131,7 @@
             ]
           },
           {
+            "id": "intervention:binimetinib|intervention:nivolumab",
             "source": "intervention:binimetinib",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -4098,6 +4149,7 @@
             ]
           },
           {
+            "id": "intervention:binimetinib|intervention:trametinib",
             "source": "intervention:binimetinib",
             "target": "intervention:trametinib",
             "trial_count": 1,
@@ -4115,6 +4167,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:dacarbazine",
             "source": "intervention:carboplatin",
             "target": "intervention:dacarbazine",
             "trial_count": 1,
@@ -4132,6 +4185,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:ipilimumab",
             "source": "intervention:carboplatin",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -4149,6 +4203,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:nivolumab",
             "source": "intervention:carboplatin",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -4166,6 +4221,7 @@
             ]
           },
           {
+            "id": "intervention:carboplatin|intervention:temozolomide",
             "source": "intervention:carboplatin",
             "target": "intervention:temozolomide",
             "trial_count": 1,
@@ -4183,6 +4239,7 @@
             ]
           },
           {
+            "id": "intervention:cemiplimab|intervention:immune checkpoint inhibitors",
             "source": "intervention:cemiplimab",
             "target": "intervention:immune checkpoint inhibitors",
             "trial_count": 1,
@@ -4200,6 +4257,7 @@
             ]
           },
           {
+            "id": "intervention:cemiplimab|intervention:ipilimumab",
             "source": "intervention:cemiplimab",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -4217,6 +4275,7 @@
             ]
           },
           {
+            "id": "intervention:cisplatin|intervention:dacarbazine",
             "source": "intervention:cisplatin",
             "target": "intervention:dacarbazine",
             "trial_count": 1,
@@ -4234,6 +4293,7 @@
             ]
           },
           {
+            "id": "intervention:cisplatin|intervention:temozolomide",
             "source": "intervention:cisplatin",
             "target": "intervention:temozolomide",
             "trial_count": 1,
@@ -4251,6 +4311,7 @@
             ]
           },
           {
+            "id": "intervention:cyclophosphamide|intervention:nivolumab",
             "source": "intervention:cyclophosphamide",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -4268,6 +4329,7 @@
             ]
           },
           {
+            "id": "intervention:dabrafenib|intervention:encorafenib",
             "source": "intervention:dabrafenib",
             "target": "intervention:encorafenib",
             "trial_count": 1,
@@ -4285,6 +4347,7 @@
             ]
           },
           {
+            "id": "intervention:dacarbazine|intervention:lenvatinib",
             "source": "intervention:dacarbazine",
             "target": "intervention:lenvatinib",
             "trial_count": 1,
@@ -4302,6 +4365,7 @@
             ]
           },
           {
+            "id": "intervention:dacarbazine|intervention:paclitaxel",
             "source": "intervention:dacarbazine",
             "target": "intervention:paclitaxel",
             "trial_count": 1,
@@ -4319,6 +4383,7 @@
             ]
           },
           {
+            "id": "intervention:dacarbazine|intervention:temozolomide",
             "source": "intervention:dacarbazine",
             "target": "intervention:temozolomide",
             "trial_count": 1,
@@ -4336,6 +4401,7 @@
             ]
           },
           {
+            "id": "intervention:encorafenib|intervention:ipilimumab",
             "source": "intervention:encorafenib",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -4353,6 +4419,7 @@
             ]
           },
           {
+            "id": "intervention:encorafenib|intervention:nivolumab",
             "source": "intervention:encorafenib",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -4370,6 +4437,7 @@
             ]
           },
           {
+            "id": "intervention:encorafenib|intervention:trametinib",
             "source": "intervention:encorafenib",
             "target": "intervention:trametinib",
             "trial_count": 1,
@@ -4387,6 +4455,7 @@
             ]
           },
           {
+            "id": "intervention:fianlimab|intervention:ipilimumab",
             "source": "intervention:fianlimab",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -4404,6 +4473,7 @@
             ]
           },
           {
+            "id": "intervention:fludarabine|intervention:fludarabine phosphate",
             "source": "intervention:fludarabine",
             "target": "intervention:fludarabine phosphate",
             "trial_count": 1,
@@ -4421,6 +4491,7 @@
             ]
           },
           {
+            "id": "intervention:fludarabine|intervention:pembrolizumab",
             "source": "intervention:fludarabine",
             "target": "intervention:pembrolizumab",
             "trial_count": 1,
@@ -4438,6 +4509,7 @@
             ]
           },
           {
+            "id": "intervention:fludarabine phosphate|intervention:pembrolizumab",
             "source": "intervention:fludarabine phosphate",
             "target": "intervention:pembrolizumab",
             "trial_count": 1,
@@ -4455,6 +4527,7 @@
             ]
           },
           {
+            "id": "intervention:injections|intervention:toripalimab",
             "source": "intervention:injections",
             "target": "intervention:toripalimab",
             "trial_count": 1,
@@ -4472,6 +4545,7 @@
             ]
           },
           {
+            "id": "intervention:interleukin-2|intervention:ipilimumab",
             "source": "intervention:interleukin-2",
             "target": "intervention:ipilimumab",
             "trial_count": 1,
@@ -4489,6 +4563,7 @@
             ]
           },
           {
+            "id": "intervention:interleukin-2|intervention:nivolumab",
             "source": "intervention:interleukin-2",
             "target": "intervention:nivolumab",
             "trial_count": 1,
@@ -4506,6 +4581,7 @@
             ]
           },
           {
+            "id": "intervention:interleukin-2|intervention:pembrolizumab",
             "source": "intervention:interleukin-2",
             "target": "intervention:pembrolizumab",
             "trial_count": 1,
@@ -4523,6 +4599,7 @@
             ]
           },
           {
+            "id": "intervention:ipilimumab|intervention:paclitaxel",
             "source": "intervention:ipilimumab",
             "target": "intervention:paclitaxel",
             "trial_count": 1,
@@ -4540,6 +4617,7 @@
             ]
           },
           {
+            "id": "intervention:lenvatinib|intervention:tislelizumab",
             "source": "intervention:lenvatinib",
             "target": "intervention:tislelizumab",
             "trial_count": 1,
@@ -4557,6 +4635,7 @@
             ]
           },
           {
+            "id": "intervention:nivolumab|intervention:paclitaxel",
             "source": "intervention:nivolumab",
             "target": "intervention:paclitaxel",
             "trial_count": 1,
@@ -4574,6 +4653,7 @@
             ]
           },
           {
+            "id": "intervention:opdualag|intervention:relatlimab",
             "source": "intervention:opdualag",
             "target": "intervention:relatlimab",
             "trial_count": 1,
@@ -4591,6 +4671,7 @@
             ]
           },
           {
+            "id": "intervention:paclitaxel|intervention:pemetrexed",
             "source": "intervention:paclitaxel",
             "target": "intervention:pemetrexed",
             "trial_count": 1,
@@ -4608,6 +4689,7 @@
             ]
           },
           {
+            "id": "intervention:paclitaxel|intervention:temozolomide",
             "source": "intervention:paclitaxel",
             "target": "intervention:temozolomide",
             "trial_count": 1,
@@ -4625,6 +4707,7 @@
             ]
           },
           {
+            "id": "intervention:pembrolizumab|intervention:tebentafusp",
             "source": "intervention:pembrolizumab",
             "target": "intervention:tebentafusp",
             "trial_count": 1,
@@ -5011,7 +5094,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CArmGroupDescription%2CArmGroupLabel%2CArmGroupInterventionName&pageSize=1000&countTotal=true",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&query.cond=%28melanoma%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&query.cond=%28melanoma%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CArmGroupDescription%2CArmGroupLabel%2CArmGroupInterventionName%2COfficialTitle%2CBriefSummary%2CInterventionDescription&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

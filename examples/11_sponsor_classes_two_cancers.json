@@ -49,6 +49,7 @@
       "options": {},
       "data": [
         {
+          "id": "Breast cancer|INDIV",
           "cohort": "Breast cancer",
           "sponsor_class": "Individual",
           "trial_count": 4,
@@ -56,6 +57,7 @@
           "citations": []
         },
         {
+          "id": "Breast cancer|INDUSTRY",
           "cohort": "Breast cancer",
           "sponsor_class": "Industry",
           "trial_count": 3307,
@@ -1032,6 +1034,7 @@
           ]
         },
         {
+          "id": "Breast cancer|NETWORK",
           "cohort": "Breast cancer",
           "sponsor_class": "Network",
           "trial_count": 304,
@@ -1089,6 +1092,7 @@
           ]
         },
         {
+          "id": "Breast cancer|NIH",
           "cohort": "Breast cancer",
           "sponsor_class": "NIH",
           "trial_count": 368,
@@ -1146,6 +1150,7 @@
           ]
         },
         {
+          "id": "Breast cancer|OTHER",
           "cohort": "Breast cancer",
           "sponsor_class": "Other (academic, hospital, nonprofit)",
           "trial_count": 11900,
@@ -5035,6 +5040,7 @@
           ]
         },
         {
+          "id": "Breast cancer|OTHER_GOV",
           "cohort": "Breast cancer",
           "sponsor_class": "Other government",
           "trial_count": 367,
@@ -5204,6 +5210,7 @@
           ]
         },
         {
+          "id": "Breast cancer|FED",
           "cohort": "Breast cancer",
           "sponsor_class": "U.S. federal (non-NIH)",
           "trial_count": 16,
@@ -5229,6 +5236,7 @@
           ]
         },
         {
+          "id": "Breast cancer|UNKNOWN",
           "cohort": "Breast cancer",
           "sponsor_class": "Unknown",
           "trial_count": 4,
@@ -5236,6 +5244,7 @@
           "citations": []
         },
         {
+          "id": "Prostate cancer|INDIV",
           "cohort": "Prostate cancer",
           "sponsor_class": "Individual",
           "trial_count": 1,
@@ -5253,6 +5262,7 @@
           ]
         },
         {
+          "id": "Prostate cancer|INDUSTRY",
           "cohort": "Prostate cancer",
           "sponsor_class": "Industry",
           "trial_count": 1751,
@@ -6416,6 +6426,7 @@
           ]
         },
         {
+          "id": "Prostate cancer|NETWORK",
           "cohort": "Prostate cancer",
           "sponsor_class": "Network",
           "trial_count": 144,
@@ -6488,6 +6499,7 @@
           ]
         },
         {
+          "id": "Prostate cancer|NIH",
           "cohort": "Prostate cancer",
           "sponsor_class": "NIH",
           "trial_count": 226,
@@ -6597,6 +6609,7 @@
           ]
         },
         {
+          "id": "Prostate cancer|OTHER",
           "cohort": "Prostate cancer",
           "sponsor_class": "Other (academic, hospital, nonprofit)",
           "trial_count": 5059,
@@ -10271,6 +10284,7 @@
           ]
         },
         {
+          "id": "Prostate cancer|OTHER_GOV",
           "cohort": "Prostate cancer",
           "sponsor_class": "Other government",
           "trial_count": 90,
@@ -10375,6 +10389,7 @@
           ]
         },
         {
+          "id": "Prostate cancer|FED",
           "cohort": "Prostate cancer",
           "sponsor_class": "U.S. federal (non-NIH)",
           "trial_count": 56,
@@ -10432,6 +10447,7 @@
           ]
         },
         {
+          "id": "Prostate cancer|UNKNOWN",
           "cohort": "Prostate cancer",
           "sponsor_class": "Unknown",
           "trial_count": 0,
@@ -10445,81 +10461,97 @@
         "data": {
           "values": [
             {
+              "id": "Breast cancer|INDIV",
               "cohort": "Breast cancer",
               "sponsor_class": "Individual",
               "trial_count": 4
             },
             {
+              "id": "Breast cancer|INDUSTRY",
               "cohort": "Breast cancer",
               "sponsor_class": "Industry",
               "trial_count": 3307
             },
             {
+              "id": "Breast cancer|NETWORK",
               "cohort": "Breast cancer",
               "sponsor_class": "Network",
               "trial_count": 304
             },
             {
+              "id": "Breast cancer|NIH",
               "cohort": "Breast cancer",
               "sponsor_class": "NIH",
               "trial_count": 368
             },
             {
+              "id": "Breast cancer|OTHER",
               "cohort": "Breast cancer",
               "sponsor_class": "Other (academic, hospital, nonprofit)",
               "trial_count": 11900
             },
             {
+              "id": "Breast cancer|OTHER_GOV",
               "cohort": "Breast cancer",
               "sponsor_class": "Other government",
               "trial_count": 367
             },
             {
+              "id": "Breast cancer|FED",
               "cohort": "Breast cancer",
               "sponsor_class": "U.S. federal (non-NIH)",
               "trial_count": 16
             },
             {
+              "id": "Breast cancer|UNKNOWN",
               "cohort": "Breast cancer",
               "sponsor_class": "Unknown",
               "trial_count": 4
             },
             {
+              "id": "Prostate cancer|INDIV",
               "cohort": "Prostate cancer",
               "sponsor_class": "Individual",
               "trial_count": 1
             },
             {
+              "id": "Prostate cancer|INDUSTRY",
               "cohort": "Prostate cancer",
               "sponsor_class": "Industry",
               "trial_count": 1751
             },
             {
+              "id": "Prostate cancer|NETWORK",
               "cohort": "Prostate cancer",
               "sponsor_class": "Network",
               "trial_count": 144
             },
             {
+              "id": "Prostate cancer|NIH",
               "cohort": "Prostate cancer",
               "sponsor_class": "NIH",
               "trial_count": 226
             },
             {
+              "id": "Prostate cancer|OTHER",
               "cohort": "Prostate cancer",
               "sponsor_class": "Other (academic, hospital, nonprofit)",
               "trial_count": 5059
             },
             {
+              "id": "Prostate cancer|OTHER_GOV",
               "cohort": "Prostate cancer",
               "sponsor_class": "Other government",
               "trial_count": 90
             },
             {
+              "id": "Prostate cancer|FED",
               "cohort": "Prostate cancer",
               "sponsor_class": "U.S. federal (non-NIH)",
               "trial_count": 56
             },
             {
+              "id": "Prostate cancer|UNKNOWN",
               "cohort": "Prostate cancer",
               "sponsor_class": "Unknown",
               "trial_count": 0
@@ -10630,81 +10662,97 @@
           "data": {
             "values": [
               {
+                "id": "Breast cancer|INDIV",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Individual",
                 "trial_count": 4
               },
               {
+                "id": "Breast cancer|INDUSTRY",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Industry",
                 "trial_count": 3307
               },
               {
+                "id": "Breast cancer|NETWORK",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Network",
                 "trial_count": 304
               },
               {
+                "id": "Breast cancer|NIH",
                 "cohort": "Breast cancer",
                 "sponsor_class": "NIH",
                 "trial_count": 368
               },
               {
+                "id": "Breast cancer|OTHER",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Other (academic, hospital, nonprofit)",
                 "trial_count": 11900
               },
               {
+                "id": "Breast cancer|OTHER_GOV",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Other government",
                 "trial_count": 367
               },
               {
+                "id": "Breast cancer|FED",
                 "cohort": "Breast cancer",
                 "sponsor_class": "U.S. federal (non-NIH)",
                 "trial_count": 16
               },
               {
+                "id": "Breast cancer|UNKNOWN",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Unknown",
                 "trial_count": 4
               },
               {
+                "id": "Prostate cancer|INDIV",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Individual",
                 "trial_count": 1
               },
               {
+                "id": "Prostate cancer|INDUSTRY",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Industry",
                 "trial_count": 1751
               },
               {
+                "id": "Prostate cancer|NETWORK",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Network",
                 "trial_count": 144
               },
               {
+                "id": "Prostate cancer|NIH",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "NIH",
                 "trial_count": 226
               },
               {
+                "id": "Prostate cancer|OTHER",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Other (academic, hospital, nonprofit)",
                 "trial_count": 5059
               },
               {
+                "id": "Prostate cancer|OTHER_GOV",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Other government",
                 "trial_count": 90
               },
               {
+                "id": "Prostate cancer|FED",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "U.S. federal (non-NIH)",
                 "trial_count": 56
               },
               {
+                "id": "Prostate cancer|UNKNOWN",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Unknown",
                 "trial_count": 0
@@ -10812,81 +10860,97 @@
           "data": {
             "values": [
               {
+                "id": "Breast cancer|INDIV",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Individual",
                 "trial_count": 4
               },
               {
+                "id": "Breast cancer|INDUSTRY",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Industry",
                 "trial_count": 3307
               },
               {
+                "id": "Breast cancer|NETWORK",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Network",
                 "trial_count": 304
               },
               {
+                "id": "Breast cancer|NIH",
                 "cohort": "Breast cancer",
                 "sponsor_class": "NIH",
                 "trial_count": 368
               },
               {
+                "id": "Breast cancer|OTHER",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Other (academic, hospital, nonprofit)",
                 "trial_count": 11900
               },
               {
+                "id": "Breast cancer|OTHER_GOV",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Other government",
                 "trial_count": 367
               },
               {
+                "id": "Breast cancer|FED",
                 "cohort": "Breast cancer",
                 "sponsor_class": "U.S. federal (non-NIH)",
                 "trial_count": 16
               },
               {
+                "id": "Breast cancer|UNKNOWN",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Unknown",
                 "trial_count": 4
               },
               {
+                "id": "Prostate cancer|INDIV",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Individual",
                 "trial_count": 1
               },
               {
+                "id": "Prostate cancer|INDUSTRY",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Industry",
                 "trial_count": 1751
               },
               {
+                "id": "Prostate cancer|NETWORK",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Network",
                 "trial_count": 144
               },
               {
+                "id": "Prostate cancer|NIH",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "NIH",
                 "trial_count": 226
               },
               {
+                "id": "Prostate cancer|OTHER",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Other (academic, hospital, nonprofit)",
                 "trial_count": 5059
               },
               {
+                "id": "Prostate cancer|OTHER_GOV",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Other government",
                 "trial_count": 90
               },
               {
+                "id": "Prostate cancer|FED",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "U.S. federal (non-NIH)",
                 "trial_count": 56
               },
               {
+                "id": "Prostate cancer|UNKNOWN",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Unknown",
                 "trial_count": 0
@@ -11004,81 +11068,97 @@
           "data": {
             "values": [
               {
+                "id": "Breast cancer|INDIV",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Individual",
                 "trial_count": 4
               },
               {
+                "id": "Breast cancer|INDUSTRY",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Industry",
                 "trial_count": 3307
               },
               {
+                "id": "Breast cancer|NETWORK",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Network",
                 "trial_count": 304
               },
               {
+                "id": "Breast cancer|NIH",
                 "cohort": "Breast cancer",
                 "sponsor_class": "NIH",
                 "trial_count": 368
               },
               {
+                "id": "Breast cancer|OTHER",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Other (academic, hospital, nonprofit)",
                 "trial_count": 11900
               },
               {
+                "id": "Breast cancer|OTHER_GOV",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Other government",
                 "trial_count": 367
               },
               {
+                "id": "Breast cancer|FED",
                 "cohort": "Breast cancer",
                 "sponsor_class": "U.S. federal (non-NIH)",
                 "trial_count": 16
               },
               {
+                "id": "Breast cancer|UNKNOWN",
                 "cohort": "Breast cancer",
                 "sponsor_class": "Unknown",
                 "trial_count": 4
               },
               {
+                "id": "Prostate cancer|INDIV",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Individual",
                 "trial_count": 1
               },
               {
+                "id": "Prostate cancer|INDUSTRY",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Industry",
                 "trial_count": 1751
               },
               {
+                "id": "Prostate cancer|NETWORK",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Network",
                 "trial_count": 144
               },
               {
+                "id": "Prostate cancer|NIH",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "NIH",
                 "trial_count": 226
               },
               {
+                "id": "Prostate cancer|OTHER",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Other (academic, hospital, nonprofit)",
                 "trial_count": 5059
               },
               {
+                "id": "Prostate cancer|OTHER_GOV",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Other government",
                 "trial_count": 90
               },
               {
+                "id": "Prostate cancer|FED",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "U.S. federal (non-NIH)",
                 "trial_count": 56
               },
               {
+                "id": "Prostate cancer|UNKNOWN",
                 "cohort": "Prostate cancer",
                 "sponsor_class": "Unknown",
                 "trial_count": 0
@@ -11562,7 +11642,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BLeadSponsorClass%5DUNKNOWN%29&query.cond=%28AREA%5BCondition%5D%22breast+cancer%22+OR+AREA%5BConditionMeshTerm%5D%22breast+cancer%22+OR+AREA%5BKeyword%5D%22breast+cancer%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Ductal%2C+Breast%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Lobular%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Hereditary+Breast+and+Ovarian+Cancer+Syndrome%22%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BLeadSponsorClass%5DAMBIG%29&query.cond=%28AREA%5BCondition%5D%22prostate+cancer%22+OR+AREA%5BConditionMeshTerm%5D%22prostate+cancer%22+OR+AREA%5BKeyword%5D%22prostate+cancer%22%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BLeadSponsorClass%5DUNKNOWN%29&query.cond=%28AREA%5BCondition%5D%22prostate+cancer%22+OR+AREA%5BConditionMeshTerm%5D%22prostate+cancer%22+OR+AREA%5BKeyword%5D%22prostate+cancer%22%29&countTotal=true&fields=NCTId&pageSize=1"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

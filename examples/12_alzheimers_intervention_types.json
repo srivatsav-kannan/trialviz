@@ -29,6 +29,7 @@
       "options": {},
       "data": [
         {
+          "id": "DRUG",
           "intervention_type": "Drug",
           "key": "DRUG",
           "trial_count": 1641,
@@ -1700,6 +1701,7 @@
           ]
         },
         {
+          "id": "OTHER",
           "intervention_type": "Other",
           "key": "OTHER",
           "trial_count": 757,
@@ -2487,6 +2489,7 @@
           ]
         },
         {
+          "id": "BEHAVIORAL",
           "intervention_type": "Behavioral",
           "key": "BEHAVIORAL",
           "trial_count": 661,
@@ -3178,6 +3181,7 @@
           ]
         },
         {
+          "id": "DEVICE",
           "intervention_type": "Device",
           "key": "DEVICE",
           "trial_count": 478,
@@ -3686,6 +3690,7 @@
           ]
         },
         {
+          "id": "NOT_REPORTED",
           "intervention_type": "Not reported",
           "key": "NOT_REPORTED",
           "trial_count": 392,
@@ -4086,6 +4091,7 @@
           "citations": []
         },
         {
+          "id": "DIAGNOSTIC_TEST",
           "intervention_type": "Diagnostic test",
           "key": "DIAGNOSTIC_TEST",
           "trial_count": 164,
@@ -4280,6 +4286,7 @@
           ]
         },
         {
+          "id": "BIOLOGICAL",
           "intervention_type": "Biological",
           "key": "BIOLOGICAL",
           "trial_count": 142,
@@ -4452,6 +4459,7 @@
           ]
         },
         {
+          "id": "PROCEDURE",
           "intervention_type": "Procedure",
           "key": "PROCEDURE",
           "trial_count": 136,
@@ -4618,6 +4626,7 @@
           ]
         },
         {
+          "id": "DIETARY_SUPPLEMENT",
           "intervention_type": "Dietary supplement",
           "key": "DIETARY_SUPPLEMENT",
           "trial_count": 97,
@@ -4745,6 +4754,7 @@
           ]
         },
         {
+          "id": "RADIATION",
           "intervention_type": "Radiation",
           "key": "RADIATION",
           "trial_count": 41,
@@ -4816,6 +4826,7 @@
           ]
         },
         {
+          "id": "GENETIC",
           "intervention_type": "Genetic",
           "key": "GENETIC",
           "trial_count": 16,
@@ -4862,6 +4873,7 @@
           ]
         },
         {
+          "id": "COMBINATION_PRODUCT",
           "intervention_type": "Combination product",
           "key": "COMBINATION_PRODUCT",
           "trial_count": 9,
@@ -4907,61 +4919,73 @@
         "data": {
           "values": [
             {
+              "id": "DRUG",
               "intervention_type": "Drug",
               "key": "DRUG",
               "trial_count": 1641
             },
             {
+              "id": "OTHER",
               "intervention_type": "Other",
               "key": "OTHER",
               "trial_count": 757
             },
             {
+              "id": "BEHAVIORAL",
               "intervention_type": "Behavioral",
               "key": "BEHAVIORAL",
               "trial_count": 661
             },
             {
+              "id": "DEVICE",
               "intervention_type": "Device",
               "key": "DEVICE",
               "trial_count": 478
             },
             {
+              "id": "NOT_REPORTED",
               "intervention_type": "Not reported",
               "key": "NOT_REPORTED",
               "trial_count": 392
             },
             {
+              "id": "DIAGNOSTIC_TEST",
               "intervention_type": "Diagnostic test",
               "key": "DIAGNOSTIC_TEST",
               "trial_count": 164
             },
             {
+              "id": "BIOLOGICAL",
               "intervention_type": "Biological",
               "key": "BIOLOGICAL",
               "trial_count": 142
             },
             {
+              "id": "PROCEDURE",
               "intervention_type": "Procedure",
               "key": "PROCEDURE",
               "trial_count": 136
             },
             {
+              "id": "DIETARY_SUPPLEMENT",
               "intervention_type": "Dietary supplement",
               "key": "DIETARY_SUPPLEMENT",
               "trial_count": 97
             },
             {
+              "id": "RADIATION",
               "intervention_type": "Radiation",
               "key": "RADIATION",
               "trial_count": 41
             },
             {
+              "id": "GENETIC",
               "intervention_type": "Genetic",
               "key": "GENETIC",
               "trial_count": 16
             },
             {
+              "id": "COMBINATION_PRODUCT",
               "intervention_type": "Combination product",
               "key": "COMBINATION_PRODUCT",
               "trial_count": 9
@@ -5028,61 +5052,73 @@
           "data": {
             "values": [
               {
+                "id": "DRUG",
                 "intervention_type": "Drug",
                 "key": "DRUG",
                 "trial_count": 1641
               },
               {
+                "id": "OTHER",
                 "intervention_type": "Other",
                 "key": "OTHER",
                 "trial_count": 757
               },
               {
+                "id": "BEHAVIORAL",
                 "intervention_type": "Behavioral",
                 "key": "BEHAVIORAL",
                 "trial_count": 661
               },
               {
+                "id": "DEVICE",
                 "intervention_type": "Device",
                 "key": "DEVICE",
                 "trial_count": 478
               },
               {
+                "id": "NOT_REPORTED",
                 "intervention_type": "Not reported",
                 "key": "NOT_REPORTED",
                 "trial_count": 392
               },
               {
+                "id": "DIAGNOSTIC_TEST",
                 "intervention_type": "Diagnostic test",
                 "key": "DIAGNOSTIC_TEST",
                 "trial_count": 164
               },
               {
+                "id": "BIOLOGICAL",
                 "intervention_type": "Biological",
                 "key": "BIOLOGICAL",
                 "trial_count": 142
               },
               {
+                "id": "PROCEDURE",
                 "intervention_type": "Procedure",
                 "key": "PROCEDURE",
                 "trial_count": 136
               },
               {
+                "id": "DIETARY_SUPPLEMENT",
                 "intervention_type": "Dietary supplement",
                 "key": "DIETARY_SUPPLEMENT",
                 "trial_count": 97
               },
               {
+                "id": "RADIATION",
                 "intervention_type": "Radiation",
                 "key": "RADIATION",
                 "trial_count": 41
               },
               {
+                "id": "GENETIC",
                 "intervention_type": "Genetic",
                 "key": "GENETIC",
                 "trial_count": 16
               },
               {
+                "id": "COMBINATION_PRODUCT",
                 "intervention_type": "Combination product",
                 "key": "COMBINATION_PRODUCT",
                 "trial_count": 9
@@ -5316,7 +5352,8 @@
         "https://clinicaltrials.gov/api/v2/studies?query.cond=%28AREA%5BCondition%5D%22alzheimer+disease%22+OR+AREA%5BConditionMeshTerm%5D%22alzheimer+disease%22+OR+AREA%5BKeyword%5D%22alzheimer+disease%22%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CInterventionName&pageSize=1000&pageToken=ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrZPCg1fwTkA",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28NOT+%28%28AREA%5BCondition%5D%22alzheimer+disease%22+OR+AREA%5BConditionMeshTerm%5D%22alzheimer+disease%22+OR+AREA%5BKeyword%5D%22alzheimer+disease%22%29%29%29&query.cond=%28alzheimer+disease%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28NOT+%28%28AREA%5BCondition%5D%22alzheimer+disease%22+OR+AREA%5BConditionMeshTerm%5D%22alzheimer+disease%22+OR+AREA%5BKeyword%5D%22alzheimer+disease%22%29%29%29&query.cond=%28alzheimer+disease%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CInterventionName%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&sort=StartDate%3Adesc&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

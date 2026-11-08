@@ -48,6 +48,7 @@
       "options": {},
       "data": [
         {
+          "id": "2016|EARLY_PHASE1",
           "period": "2016",
           "phase": "Early Phase 1",
           "trial_count": 4,
@@ -103,6 +104,7 @@
           ]
         },
         {
+          "id": "2016|PHASE1",
           "period": "2016",
           "phase": "Phase 1",
           "trial_count": 21,
@@ -175,6 +177,7 @@
           ]
         },
         {
+          "id": "2016|PHASE1/PHASE2",
           "period": "2016",
           "phase": "Phase 1/2",
           "trial_count": 4,
@@ -230,6 +233,7 @@
           ]
         },
         {
+          "id": "2016|PHASE2",
           "period": "2016",
           "phase": "Phase 2",
           "trial_count": 19,
@@ -300,6 +304,7 @@
           ]
         },
         {
+          "id": "2016|PHASE2/PHASE3",
           "period": "2016",
           "phase": "Phase 2/3",
           "trial_count": 7,
@@ -358,6 +363,7 @@
           ]
         },
         {
+          "id": "2016|PHASE3",
           "period": "2016",
           "phase": "Phase 3",
           "trial_count": 16,
@@ -425,6 +431,7 @@
           ]
         },
         {
+          "id": "2016|PHASE4",
           "period": "2016",
           "phase": "Phase 4",
           "trial_count": 32,
@@ -508,6 +515,7 @@
           ]
         },
         {
+          "id": "2016|NA",
           "period": "2016",
           "phase": "Not applicable",
           "trial_count": 419,
@@ -978,6 +986,7 @@
           ]
         },
         {
+          "id": "2016|NO_PHASE",
           "period": "2016",
           "phase": "No phase (observational)",
           "trial_count": 178,
@@ -1207,6 +1216,7 @@
           ]
         },
         {
+          "id": "2016|NOT_REPORTED",
           "period": "2016",
           "phase": "Not reported",
           "trial_count": 1,
@@ -1224,6 +1234,7 @@
           ]
         },
         {
+          "id": "2017|EARLY_PHASE1",
           "period": "2017",
           "phase": "Early Phase 1",
           "trial_count": 7,
@@ -1282,6 +1293,7 @@
           ]
         },
         {
+          "id": "2017|PHASE1",
           "period": "2017",
           "phase": "Phase 1",
           "trial_count": 10,
@@ -1343,6 +1355,7 @@
           ]
         },
         {
+          "id": "2017|PHASE1/PHASE2",
           "period": "2017",
           "phase": "Phase 1/2",
           "trial_count": 6,
@@ -1400,6 +1413,7 @@
           ]
         },
         {
+          "id": "2017|PHASE2",
           "period": "2017",
           "phase": "Phase 2",
           "trial_count": 30,
@@ -1481,6 +1495,7 @@
           ]
         },
         {
+          "id": "2017|PHASE2/PHASE3",
           "period": "2017",
           "phase": "Phase 2/3",
           "trial_count": 4,
@@ -1536,6 +1551,7 @@
           ]
         },
         {
+          "id": "2017|PHASE3",
           "period": "2017",
           "phase": "Phase 3",
           "trial_count": 13,
@@ -1600,6 +1616,7 @@
           ]
         },
         {
+          "id": "2017|PHASE4",
           "period": "2017",
           "phase": "Phase 4",
           "trial_count": 30,
@@ -1681,6 +1698,7 @@
           ]
         },
         {
+          "id": "2017|NA",
           "period": "2017",
           "phase": "Not applicable",
           "trial_count": 440,
@@ -2172,6 +2190,7 @@
           ]
         },
         {
+          "id": "2017|NO_PHASE",
           "period": "2017",
           "phase": "No phase (observational)",
           "trial_count": 125,
@@ -2348,6 +2367,7 @@
           ]
         },
         {
+          "id": "2017|NOT_REPORTED",
           "period": "2017",
           "phase": "Not reported",
           "trial_count": 1,
@@ -2365,6 +2385,7 @@
           ]
         },
         {
+          "id": "2018|EARLY_PHASE1",
           "period": "2018",
           "phase": "Early Phase 1",
           "trial_count": 9,
@@ -2425,6 +2446,7 @@
           ]
         },
         {
+          "id": "2018|PHASE1",
           "period": "2018",
           "phase": "Phase 1",
           "trial_count": 18,
@@ -2494,6 +2516,7 @@
           ]
         },
         {
+          "id": "2018|PHASE1/PHASE2",
           "period": "2018",
           "phase": "Phase 1/2",
           "trial_count": 8,
@@ -2553,6 +2576,7 @@
           ]
         },
         {
+          "id": "2018|PHASE2",
           "period": "2018",
           "phase": "Phase 2",
           "trial_count": 20,
@@ -2624,6 +2648,7 @@
           ]
         },
         {
+          "id": "2018|PHASE2/PHASE3",
           "period": "2018",
           "phase": "Phase 2/3",
           "trial_count": 3,
@@ -2678,6 +2703,7 @@
           ]
         },
         {
+          "id": "2018|PHASE3",
           "period": "2018",
           "phase": "Phase 3",
           "trial_count": 19,
@@ -2748,6 +2774,7 @@
           ]
         },
         {
+          "id": "2018|PHASE4",
           "period": "2018",
           "phase": "Phase 4",
           "trial_count": 21,
@@ -2820,6 +2847,7 @@
           ]
         },
         {
+          "id": "2018|NA",
           "period": "2018",
           "phase": "Not applicable",
           "trial_count": 451,
@@ -3322,6 +3350,7 @@
           ]
         },
         {
+          "id": "2018|NO_PHASE",
           "period": "2018",
           "phase": "No phase (observational)",
           "trial_count": 140,
@@ -3513,6 +3542,7 @@
           ]
         },
         {
+          "id": "2018|NOT_REPORTED",
           "period": "2018",
           "phase": "Not reported",
           "trial_count": 0,
@@ -3520,6 +3550,7 @@
           "citations": []
         },
         {
+          "id": "2019|EARLY_PHASE1",
           "period": "2019",
           "phase": "Early Phase 1",
           "trial_count": 8,
@@ -3579,6 +3610,7 @@
           ]
         },
         {
+          "id": "2019|PHASE1",
           "period": "2019",
           "phase": "Phase 1",
           "trial_count": 14,
@@ -3644,6 +3676,7 @@
           ]
         },
         {
+          "id": "2019|PHASE1/PHASE2",
           "period": "2019",
           "phase": "Phase 1/2",
           "trial_count": 3,
@@ -3698,6 +3731,7 @@
           ]
         },
         {
+          "id": "2019|PHASE2",
           "period": "2019",
           "phase": "Phase 2",
           "trial_count": 13,
@@ -3762,6 +3796,7 @@
           ]
         },
         {
+          "id": "2019|PHASE2/PHASE3",
           "period": "2019",
           "phase": "Phase 2/3",
           "trial_count": 7,
@@ -3820,6 +3855,7 @@
           ]
         },
         {
+          "id": "2019|PHASE3",
           "period": "2019",
           "phase": "Phase 3",
           "trial_count": 12,
@@ -3883,6 +3919,7 @@
           ]
         },
         {
+          "id": "2019|PHASE4",
           "period": "2019",
           "phase": "Phase 4",
           "trial_count": 31,
@@ -3965,6 +4002,7 @@
           ]
         },
         {
+          "id": "2019|NA",
           "period": "2019",
           "phase": "Not applicable",
           "trial_count": 454,
@@ -4470,6 +4508,7 @@
           ]
         },
         {
+          "id": "2019|NO_PHASE",
           "period": "2019",
           "phase": "No phase (observational)",
           "trial_count": 159,
@@ -4680,6 +4719,7 @@
           ]
         },
         {
+          "id": "2019|NOT_REPORTED",
           "period": "2019",
           "phase": "Not reported",
           "trial_count": 0,
@@ -4687,6 +4727,7 @@
           "citations": []
         },
         {
+          "id": "2020|EARLY_PHASE1",
           "period": "2020",
           "phase": "Early Phase 1",
           "trial_count": 2,
@@ -4726,6 +4767,7 @@
           ]
         },
         {
+          "id": "2020|PHASE1",
           "period": "2020",
           "phase": "Phase 1",
           "trial_count": 28,
@@ -4805,6 +4847,7 @@
           ]
         },
         {
+          "id": "2020|PHASE1/PHASE2",
           "period": "2020",
           "phase": "Phase 1/2",
           "trial_count": 6,
@@ -4862,6 +4905,7 @@
           ]
         },
         {
+          "id": "2020|PHASE2",
           "period": "2020",
           "phase": "Phase 2",
           "trial_count": 16,
@@ -4929,6 +4973,7 @@
           ]
         },
         {
+          "id": "2020|PHASE2/PHASE3",
           "period": "2020",
           "phase": "Phase 2/3",
           "trial_count": 2,
@@ -4968,6 +5013,7 @@
           ]
         },
         {
+          "id": "2020|PHASE3",
           "period": "2020",
           "phase": "Phase 3",
           "trial_count": 8,
@@ -5027,6 +5073,7 @@
           ]
         },
         {
+          "id": "2020|PHASE4",
           "period": "2020",
           "phase": "Phase 4",
           "trial_count": 17,
@@ -5095,6 +5142,7 @@
           ]
         },
         {
+          "id": "2020|NA",
           "period": "2020",
           "phase": "Not applicable",
           "trial_count": 352,
@@ -5498,6 +5546,7 @@
           ]
         },
         {
+          "id": "2020|NO_PHASE",
           "period": "2020",
           "phase": "No phase (observational)",
           "trial_count": 137,
@@ -5686,6 +5735,7 @@
           ]
         },
         {
+          "id": "2020|NOT_REPORTED",
           "period": "2020",
           "phase": "Not reported",
           "trial_count": 1,
@@ -5703,6 +5753,7 @@
           ]
         },
         {
+          "id": "2021|EARLY_PHASE1",
           "period": "2021",
           "phase": "Early Phase 1",
           "trial_count": 6,
@@ -5760,6 +5811,7 @@
           ]
         },
         {
+          "id": "2021|PHASE1",
           "period": "2021",
           "phase": "Phase 1",
           "trial_count": 16,
@@ -5827,6 +5879,7 @@
           ]
         },
         {
+          "id": "2021|PHASE1/PHASE2",
           "period": "2021",
           "phase": "Phase 1/2",
           "trial_count": 4,
@@ -5882,6 +5935,7 @@
           ]
         },
         {
+          "id": "2021|PHASE2",
           "period": "2021",
           "phase": "Phase 2",
           "trial_count": 34,
@@ -5967,6 +6021,7 @@
           ]
         },
         {
+          "id": "2021|PHASE2/PHASE3",
           "period": "2021",
           "phase": "Phase 2/3",
           "trial_count": 4,
@@ -6022,6 +6077,7 @@
           ]
         },
         {
+          "id": "2021|PHASE3",
           "period": "2021",
           "phase": "Phase 3",
           "trial_count": 26,
@@ -6099,6 +6155,7 @@
           ]
         },
         {
+          "id": "2021|PHASE4",
           "period": "2021",
           "phase": "Phase 4",
           "trial_count": 15,
@@ -6165,6 +6222,7 @@
           ]
         },
         {
+          "id": "2021|NA",
           "period": "2021",
           "phase": "Not applicable",
           "trial_count": 447,
@@ -6663,6 +6721,7 @@
           ]
         },
         {
+          "id": "2021|NO_PHASE",
           "period": "2021",
           "phase": "No phase (observational)",
           "trial_count": 132,
@@ -6846,6 +6905,7 @@
           ]
         },
         {
+          "id": "2021|NOT_REPORTED",
           "period": "2021",
           "phase": "Not reported",
           "trial_count": 0,
@@ -6853,6 +6913,7 @@
           "citations": []
         },
         {
+          "id": "2022|EARLY_PHASE1",
           "period": "2022",
           "phase": "Early Phase 1",
           "trial_count": 5,
@@ -6909,6 +6970,7 @@
           ]
         },
         {
+          "id": "2022|PHASE1",
           "period": "2022",
           "phase": "Phase 1",
           "trial_count": 30,
@@ -6990,6 +7052,7 @@
           ]
         },
         {
+          "id": "2022|PHASE1/PHASE2",
           "period": "2022",
           "phase": "Phase 1/2",
           "trial_count": 4,
@@ -7045,6 +7108,7 @@
           ]
         },
         {
+          "id": "2022|PHASE2",
           "period": "2022",
           "phase": "Phase 2",
           "trial_count": 22,
@@ -7118,6 +7182,7 @@
           ]
         },
         {
+          "id": "2022|PHASE2/PHASE3",
           "period": "2022",
           "phase": "Phase 2/3",
           "trial_count": 11,
@@ -7180,6 +7245,7 @@
           ]
         },
         {
+          "id": "2022|PHASE3",
           "period": "2022",
           "phase": "Phase 3",
           "trial_count": 22,
@@ -7253,6 +7319,7 @@
           ]
         },
         {
+          "id": "2022|PHASE4",
           "period": "2022",
           "phase": "Phase 4",
           "trial_count": 22,
@@ -7326,6 +7393,7 @@
           ]
         },
         {
+          "id": "2022|NA",
           "period": "2022",
           "phase": "Not applicable",
           "trial_count": 470,
@@ -7847,6 +7915,7 @@
           ]
         },
         {
+          "id": "2022|NO_PHASE",
           "period": "2022",
           "phase": "No phase (observational)",
           "trial_count": 177,
@@ -8075,6 +8144,7 @@
           ]
         },
         {
+          "id": "2022|NOT_REPORTED",
           "period": "2022",
           "phase": "Not reported",
           "trial_count": 0,
@@ -8082,6 +8152,7 @@
           "citations": []
         },
         {
+          "id": "2023|EARLY_PHASE1",
           "period": "2023",
           "phase": "Early Phase 1",
           "trial_count": 7,
@@ -8140,6 +8211,7 @@
           ]
         },
         {
+          "id": "2023|PHASE1",
           "period": "2023",
           "phase": "Phase 1",
           "trial_count": 32,
@@ -8223,6 +8295,7 @@
           ]
         },
         {
+          "id": "2023|PHASE1/PHASE2",
           "period": "2023",
           "phase": "Phase 1/2",
           "trial_count": 11,
@@ -8285,6 +8358,7 @@
           ]
         },
         {
+          "id": "2023|PHASE2",
           "period": "2023",
           "phase": "Phase 2",
           "trial_count": 40,
@@ -8376,6 +8450,7 @@
           ]
         },
         {
+          "id": "2023|PHASE2/PHASE3",
           "period": "2023",
           "phase": "Phase 2/3",
           "trial_count": 7,
@@ -8434,6 +8509,7 @@
           ]
         },
         {
+          "id": "2023|PHASE3",
           "period": "2023",
           "phase": "Phase 3",
           "trial_count": 34,
@@ -8519,6 +8595,7 @@
           ]
         },
         {
+          "id": "2023|PHASE4",
           "period": "2023",
           "phase": "Phase 4",
           "trial_count": 33,
@@ -8603,6 +8680,7 @@
           ]
         },
         {
+          "id": "2023|NA",
           "period": "2023",
           "phase": "Not applicable",
           "trial_count": 538,
@@ -9192,6 +9270,7 @@
           ]
         },
         {
+          "id": "2023|NO_PHASE",
           "period": "2023",
           "phase": "No phase (observational)",
           "trial_count": 146,
@@ -9389,6 +9468,7 @@
           ]
         },
         {
+          "id": "2023|NOT_REPORTED",
           "period": "2023",
           "phase": "Not reported",
           "trial_count": 0,
@@ -9396,6 +9476,7 @@
           "citations": []
         },
         {
+          "id": "2024|EARLY_PHASE1",
           "period": "2024",
           "phase": "Early Phase 1",
           "trial_count": 11,
@@ -9458,6 +9539,7 @@
           ]
         },
         {
+          "id": "2024|PHASE1",
           "period": "2024",
           "phase": "Phase 1",
           "trial_count": 70,
@@ -9579,6 +9661,7 @@
           ]
         },
         {
+          "id": "2024|PHASE1/PHASE2",
           "period": "2024",
           "phase": "Phase 1/2",
           "trial_count": 14,
@@ -9644,6 +9727,7 @@
           ]
         },
         {
+          "id": "2024|PHASE2",
           "period": "2024",
           "phase": "Phase 2",
           "trial_count": 60,
@@ -9755,6 +9839,7 @@
           ]
         },
         {
+          "id": "2024|PHASE2/PHASE3",
           "period": "2024",
           "phase": "Phase 2/3",
           "trial_count": 4,
@@ -9810,6 +9895,7 @@
           ]
         },
         {
+          "id": "2024|PHASE3",
           "period": "2024",
           "phase": "Phase 3",
           "trial_count": 29,
@@ -9890,6 +9976,7 @@
           ]
         },
         {
+          "id": "2024|PHASE4",
           "period": "2024",
           "phase": "Phase 4",
           "trial_count": 23,
@@ -9964,6 +10051,7 @@
           ]
         },
         {
+          "id": "2024|NA",
           "period": "2024",
           "phase": "Not applicable",
           "trial_count": 513,
@@ -10528,6 +10616,7 @@
           ]
         },
         {
+          "id": "2024|NO_PHASE",
           "period": "2024",
           "phase": "No phase (observational)",
           "trial_count": 145,
@@ -10724,6 +10813,7 @@
           ]
         },
         {
+          "id": "2024|NOT_REPORTED",
           "period": "2024",
           "phase": "Not reported",
           "trial_count": 0,
@@ -10731,6 +10821,7 @@
           "citations": []
         },
         {
+          "id": "2025|EARLY_PHASE1",
           "period": "2025",
           "phase": "Early Phase 1",
           "trial_count": 11,
@@ -10793,6 +10884,7 @@
           ]
         },
         {
+          "id": "2025|PHASE1",
           "period": "2025",
           "phase": "Phase 1",
           "trial_count": 80,
@@ -10924,6 +11016,7 @@
           ]
         },
         {
+          "id": "2025|PHASE1/PHASE2",
           "period": "2025",
           "phase": "Phase 1/2",
           "trial_count": 13,
@@ -10988,6 +11081,7 @@
           ]
         },
         {
+          "id": "2025|PHASE2",
           "period": "2025",
           "phase": "Phase 2",
           "trial_count": 75,
@@ -11114,6 +11208,7 @@
           ]
         },
         {
+          "id": "2025|PHASE2/PHASE3",
           "period": "2025",
           "phase": "Phase 2/3",
           "trial_count": 3,
@@ -11168,6 +11263,7 @@
           ]
         },
         {
+          "id": "2025|PHASE3",
           "period": "2025",
           "phase": "Phase 3",
           "trial_count": 52,
@@ -11271,6 +11367,7 @@
           ]
         },
         {
+          "id": "2025|PHASE4",
           "period": "2025",
           "phase": "Phase 4",
           "trial_count": 39,
@@ -11361,6 +11458,7 @@
           ]
         },
         {
+          "id": "2025|NA",
           "period": "2025",
           "phase": "Not applicable",
           "trial_count": 519,
@@ -11931,6 +12029,7 @@
           ]
         },
         {
+          "id": "2025|NO_PHASE",
           "period": "2025",
           "phase": "No phase (observational)",
           "trial_count": 174,
@@ -12156,6 +12255,7 @@
           ]
         },
         {
+          "id": "2025|NOT_REPORTED",
           "period": "2025",
           "phase": "Not reported",
           "trial_count": 0,
@@ -12163,6 +12263,7 @@
           "citations": []
         },
         {
+          "id": "2026|EARLY_PHASE1",
           "period": "2026",
           "phase": "Early Phase 1",
           "trial_count": 9,
@@ -12223,6 +12324,7 @@
           ]
         },
         {
+          "id": "2026|PHASE1",
           "period": "2026",
           "phase": "Phase 1",
           "trial_count": 121,
@@ -12395,6 +12497,7 @@
           ]
         },
         {
+          "id": "2026|PHASE1/PHASE2",
           "period": "2026",
           "phase": "Phase 1/2",
           "trial_count": 8,
@@ -12454,6 +12557,7 @@
           ]
         },
         {
+          "id": "2026|PHASE2",
           "period": "2026",
           "phase": "Phase 2",
           "trial_count": 71,
@@ -12576,6 +12680,7 @@
           ]
         },
         {
+          "id": "2026|PHASE2/PHASE3",
           "period": "2026",
           "phase": "Phase 2/3",
           "trial_count": 3,
@@ -12630,6 +12735,7 @@
           ]
         },
         {
+          "id": "2026|PHASE3",
           "period": "2026",
           "phase": "Phase 3",
           "trial_count": 99,
@@ -12780,6 +12886,7 @@
           ]
         },
         {
+          "id": "2026|PHASE4",
           "period": "2026",
           "phase": "Phase 4",
           "trial_count": 46,
@@ -12877,6 +12984,7 @@
           ]
         },
         {
+          "id": "2026|NA",
           "period": "2026",
           "phase": "Not applicable",
           "trial_count": 448,
@@ -13376,6 +13484,7 @@
           ]
         },
         {
+          "id": "2026|NO_PHASE",
           "period": "2026",
           "phase": "No phase (observational)",
           "trial_count": 154,
@@ -13581,6 +13690,7 @@
           ]
         },
         {
+          "id": "2026|NOT_REPORTED",
           "period": "2026",
           "phase": "Not reported",
           "trial_count": 0,
@@ -13588,6 +13698,7 @@
           "citations": []
         },
         {
+          "id": "2027|EARLY_PHASE1",
           "period": "2027",
           "phase": "Early Phase 1",
           "trial_count": 0,
@@ -13595,6 +13706,7 @@
           "citations": []
         },
         {
+          "id": "2027|PHASE1",
           "period": "2027",
           "phase": "Phase 1",
           "trial_count": 1,
@@ -13619,6 +13731,7 @@
           ]
         },
         {
+          "id": "2027|PHASE1/PHASE2",
           "period": "2027",
           "phase": "Phase 1/2",
           "trial_count": 0,
@@ -13626,6 +13739,7 @@
           "citations": []
         },
         {
+          "id": "2027|PHASE2",
           "period": "2027",
           "phase": "Phase 2",
           "trial_count": 7,
@@ -13684,6 +13798,7 @@
           ]
         },
         {
+          "id": "2027|PHASE2/PHASE3",
           "period": "2027",
           "phase": "Phase 2/3",
           "trial_count": 0,
@@ -13691,6 +13806,7 @@
           "citations": []
         },
         {
+          "id": "2027|PHASE3",
           "period": "2027",
           "phase": "Phase 3",
           "trial_count": 5,
@@ -13747,6 +13863,7 @@
           ]
         },
         {
+          "id": "2027|PHASE4",
           "period": "2027",
           "phase": "Phase 4",
           "trial_count": 2,
@@ -13786,6 +13903,7 @@
           ]
         },
         {
+          "id": "2027|NA",
           "period": "2027",
           "phase": "Not applicable",
           "trial_count": 26,
@@ -13863,6 +13981,7 @@
           ]
         },
         {
+          "id": "2027|NO_PHASE",
           "period": "2027",
           "phase": "No phase (observational)",
           "trial_count": 11,
@@ -13925,6 +14044,7 @@
           ]
         },
         {
+          "id": "2027|NOT_REPORTED",
           "period": "2027",
           "phase": "Not reported",
           "trial_count": 0,
@@ -13932,6 +14052,7 @@
           "citations": []
         },
         {
+          "id": "2028|EARLY_PHASE1",
           "period": "2028",
           "phase": "Early Phase 1",
           "trial_count": 0,
@@ -13939,6 +14060,7 @@
           "citations": []
         },
         {
+          "id": "2028|PHASE1",
           "period": "2028",
           "phase": "Phase 1",
           "trial_count": 0,
@@ -13946,6 +14068,7 @@
           "citations": []
         },
         {
+          "id": "2028|PHASE1/PHASE2",
           "period": "2028",
           "phase": "Phase 1/2",
           "trial_count": 0,
@@ -13953,6 +14076,7 @@
           "citations": []
         },
         {
+          "id": "2028|PHASE2",
           "period": "2028",
           "phase": "Phase 2",
           "trial_count": 0,
@@ -13960,6 +14084,7 @@
           "citations": []
         },
         {
+          "id": "2028|PHASE2/PHASE3",
           "period": "2028",
           "phase": "Phase 2/3",
           "trial_count": 0,
@@ -13967,6 +14092,7 @@
           "citations": []
         },
         {
+          "id": "2028|PHASE3",
           "period": "2028",
           "phase": "Phase 3",
           "trial_count": 0,
@@ -13974,6 +14100,7 @@
           "citations": []
         },
         {
+          "id": "2028|PHASE4",
           "period": "2028",
           "phase": "Phase 4",
           "trial_count": 1,
@@ -13998,6 +14125,7 @@
           ]
         },
         {
+          "id": "2028|NA",
           "period": "2028",
           "phase": "Not applicable",
           "trial_count": 3,
@@ -14052,6 +14180,7 @@
           ]
         },
         {
+          "id": "2028|NO_PHASE",
           "period": "2028",
           "phase": "No phase (observational)",
           "trial_count": 0,
@@ -14059,6 +14188,7 @@
           "citations": []
         },
         {
+          "id": "2028|NOT_REPORTED",
           "period": "2028",
           "phase": "Not reported",
           "trial_count": 0,
@@ -14066,6 +14196,7 @@
           "citations": []
         },
         {
+          "id": "2029|EARLY_PHASE1",
           "period": "2029",
           "phase": "Early Phase 1",
           "trial_count": 0,
@@ -14073,6 +14204,7 @@
           "citations": []
         },
         {
+          "id": "2029|PHASE1",
           "period": "2029",
           "phase": "Phase 1",
           "trial_count": 0,
@@ -14080,6 +14212,7 @@
           "citations": []
         },
         {
+          "id": "2029|PHASE1/PHASE2",
           "period": "2029",
           "phase": "Phase 1/2",
           "trial_count": 0,
@@ -14087,6 +14220,7 @@
           "citations": []
         },
         {
+          "id": "2029|PHASE2",
           "period": "2029",
           "phase": "Phase 2",
           "trial_count": 0,
@@ -14094,6 +14228,7 @@
           "citations": []
         },
         {
+          "id": "2029|PHASE2/PHASE3",
           "period": "2029",
           "phase": "Phase 2/3",
           "trial_count": 0,
@@ -14101,6 +14236,7 @@
           "citations": []
         },
         {
+          "id": "2029|PHASE3",
           "period": "2029",
           "phase": "Phase 3",
           "trial_count": 0,
@@ -14108,6 +14244,7 @@
           "citations": []
         },
         {
+          "id": "2029|PHASE4",
           "period": "2029",
           "phase": "Phase 4",
           "trial_count": 0,
@@ -14115,6 +14252,7 @@
           "citations": []
         },
         {
+          "id": "2029|NA",
           "period": "2029",
           "phase": "Not applicable",
           "trial_count": 1,
@@ -14139,6 +14277,7 @@
           ]
         },
         {
+          "id": "2029|NO_PHASE",
           "period": "2029",
           "phase": "No phase (observational)",
           "trial_count": 0,
@@ -14146,6 +14285,7 @@
           "citations": []
         },
         {
+          "id": "2029|NOT_REPORTED",
           "period": "2029",
           "phase": "Not reported",
           "trial_count": 0,
@@ -14159,701 +14299,841 @@
         "data": {
           "values": [
             {
+              "id": "2016|EARLY_PHASE1",
               "period": "2016",
               "phase": "Early Phase 1",
               "trial_count": 4
             },
             {
+              "id": "2016|PHASE1",
               "period": "2016",
               "phase": "Phase 1",
               "trial_count": 21
             },
             {
+              "id": "2016|PHASE1/PHASE2",
               "period": "2016",
               "phase": "Phase 1/2",
               "trial_count": 4
             },
             {
+              "id": "2016|PHASE2",
               "period": "2016",
               "phase": "Phase 2",
               "trial_count": 19
             },
             {
+              "id": "2016|PHASE2/PHASE3",
               "period": "2016",
               "phase": "Phase 2/3",
               "trial_count": 7
             },
             {
+              "id": "2016|PHASE3",
               "period": "2016",
               "phase": "Phase 3",
               "trial_count": 16
             },
             {
+              "id": "2016|PHASE4",
               "period": "2016",
               "phase": "Phase 4",
               "trial_count": 32
             },
             {
+              "id": "2016|NA",
               "period": "2016",
               "phase": "Not applicable",
               "trial_count": 419
             },
             {
+              "id": "2016|NO_PHASE",
               "period": "2016",
               "phase": "No phase (observational)",
               "trial_count": 178
             },
             {
+              "id": "2016|NOT_REPORTED",
               "period": "2016",
               "phase": "Not reported",
               "trial_count": 1
             },
             {
+              "id": "2017|EARLY_PHASE1",
               "period": "2017",
               "phase": "Early Phase 1",
               "trial_count": 7
             },
             {
+              "id": "2017|PHASE1",
               "period": "2017",
               "phase": "Phase 1",
               "trial_count": 10
             },
             {
+              "id": "2017|PHASE1/PHASE2",
               "period": "2017",
               "phase": "Phase 1/2",
               "trial_count": 6
             },
             {
+              "id": "2017|PHASE2",
               "period": "2017",
               "phase": "Phase 2",
               "trial_count": 30
             },
             {
+              "id": "2017|PHASE2/PHASE3",
               "period": "2017",
               "phase": "Phase 2/3",
               "trial_count": 4
             },
             {
+              "id": "2017|PHASE3",
               "period": "2017",
               "phase": "Phase 3",
               "trial_count": 13
             },
             {
+              "id": "2017|PHASE4",
               "period": "2017",
               "phase": "Phase 4",
               "trial_count": 30
             },
             {
+              "id": "2017|NA",
               "period": "2017",
               "phase": "Not applicable",
               "trial_count": 440
             },
             {
+              "id": "2017|NO_PHASE",
               "period": "2017",
               "phase": "No phase (observational)",
               "trial_count": 125
             },
             {
+              "id": "2017|NOT_REPORTED",
               "period": "2017",
               "phase": "Not reported",
               "trial_count": 1
             },
             {
+              "id": "2018|EARLY_PHASE1",
               "period": "2018",
               "phase": "Early Phase 1",
               "trial_count": 9
             },
             {
+              "id": "2018|PHASE1",
               "period": "2018",
               "phase": "Phase 1",
               "trial_count": 18
             },
             {
+              "id": "2018|PHASE1/PHASE2",
               "period": "2018",
               "phase": "Phase 1/2",
               "trial_count": 8
             },
             {
+              "id": "2018|PHASE2",
               "period": "2018",
               "phase": "Phase 2",
               "trial_count": 20
             },
             {
+              "id": "2018|PHASE2/PHASE3",
               "period": "2018",
               "phase": "Phase 2/3",
               "trial_count": 3
             },
             {
+              "id": "2018|PHASE3",
               "period": "2018",
               "phase": "Phase 3",
               "trial_count": 19
             },
             {
+              "id": "2018|PHASE4",
               "period": "2018",
               "phase": "Phase 4",
               "trial_count": 21
             },
             {
+              "id": "2018|NA",
               "period": "2018",
               "phase": "Not applicable",
               "trial_count": 451
             },
             {
+              "id": "2018|NO_PHASE",
               "period": "2018",
               "phase": "No phase (observational)",
               "trial_count": 140
             },
             {
+              "id": "2018|NOT_REPORTED",
               "period": "2018",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2019|EARLY_PHASE1",
               "period": "2019",
               "phase": "Early Phase 1",
               "trial_count": 8
             },
             {
+              "id": "2019|PHASE1",
               "period": "2019",
               "phase": "Phase 1",
               "trial_count": 14
             },
             {
+              "id": "2019|PHASE1/PHASE2",
               "period": "2019",
               "phase": "Phase 1/2",
               "trial_count": 3
             },
             {
+              "id": "2019|PHASE2",
               "period": "2019",
               "phase": "Phase 2",
               "trial_count": 13
             },
             {
+              "id": "2019|PHASE2/PHASE3",
               "period": "2019",
               "phase": "Phase 2/3",
               "trial_count": 7
             },
             {
+              "id": "2019|PHASE3",
               "period": "2019",
               "phase": "Phase 3",
               "trial_count": 12
             },
             {
+              "id": "2019|PHASE4",
               "period": "2019",
               "phase": "Phase 4",
               "trial_count": 31
             },
             {
+              "id": "2019|NA",
               "period": "2019",
               "phase": "Not applicable",
               "trial_count": 454
             },
             {
+              "id": "2019|NO_PHASE",
               "period": "2019",
               "phase": "No phase (observational)",
               "trial_count": 159
             },
             {
+              "id": "2019|NOT_REPORTED",
               "period": "2019",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2020|EARLY_PHASE1",
               "period": "2020",
               "phase": "Early Phase 1",
               "trial_count": 2
             },
             {
+              "id": "2020|PHASE1",
               "period": "2020",
               "phase": "Phase 1",
               "trial_count": 28
             },
             {
+              "id": "2020|PHASE1/PHASE2",
               "period": "2020",
               "phase": "Phase 1/2",
               "trial_count": 6
             },
             {
+              "id": "2020|PHASE2",
               "period": "2020",
               "phase": "Phase 2",
               "trial_count": 16
             },
             {
+              "id": "2020|PHASE2/PHASE3",
               "period": "2020",
               "phase": "Phase 2/3",
               "trial_count": 2
             },
             {
+              "id": "2020|PHASE3",
               "period": "2020",
               "phase": "Phase 3",
               "trial_count": 8
             },
             {
+              "id": "2020|PHASE4",
               "period": "2020",
               "phase": "Phase 4",
               "trial_count": 17
             },
             {
+              "id": "2020|NA",
               "period": "2020",
               "phase": "Not applicable",
               "trial_count": 352
             },
             {
+              "id": "2020|NO_PHASE",
               "period": "2020",
               "phase": "No phase (observational)",
               "trial_count": 137
             },
             {
+              "id": "2020|NOT_REPORTED",
               "period": "2020",
               "phase": "Not reported",
               "trial_count": 1
             },
             {
+              "id": "2021|EARLY_PHASE1",
               "period": "2021",
               "phase": "Early Phase 1",
               "trial_count": 6
             },
             {
+              "id": "2021|PHASE1",
               "period": "2021",
               "phase": "Phase 1",
               "trial_count": 16
             },
             {
+              "id": "2021|PHASE1/PHASE2",
               "period": "2021",
               "phase": "Phase 1/2",
               "trial_count": 4
             },
             {
+              "id": "2021|PHASE2",
               "period": "2021",
               "phase": "Phase 2",
               "trial_count": 34
             },
             {
+              "id": "2021|PHASE2/PHASE3",
               "period": "2021",
               "phase": "Phase 2/3",
               "trial_count": 4
             },
             {
+              "id": "2021|PHASE3",
               "period": "2021",
               "phase": "Phase 3",
               "trial_count": 26
             },
             {
+              "id": "2021|PHASE4",
               "period": "2021",
               "phase": "Phase 4",
               "trial_count": 15
             },
             {
+              "id": "2021|NA",
               "period": "2021",
               "phase": "Not applicable",
               "trial_count": 447
             },
             {
+              "id": "2021|NO_PHASE",
               "period": "2021",
               "phase": "No phase (observational)",
               "trial_count": 132
             },
             {
+              "id": "2021|NOT_REPORTED",
               "period": "2021",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2022|EARLY_PHASE1",
               "period": "2022",
               "phase": "Early Phase 1",
               "trial_count": 5
             },
             {
+              "id": "2022|PHASE1",
               "period": "2022",
               "phase": "Phase 1",
               "trial_count": 30
             },
             {
+              "id": "2022|PHASE1/PHASE2",
               "period": "2022",
               "phase": "Phase 1/2",
               "trial_count": 4
             },
             {
+              "id": "2022|PHASE2",
               "period": "2022",
               "phase": "Phase 2",
               "trial_count": 22
             },
             {
+              "id": "2022|PHASE2/PHASE3",
               "period": "2022",
               "phase": "Phase 2/3",
               "trial_count": 11
             },
             {
+              "id": "2022|PHASE3",
               "period": "2022",
               "phase": "Phase 3",
               "trial_count": 22
             },
             {
+              "id": "2022|PHASE4",
               "period": "2022",
               "phase": "Phase 4",
               "trial_count": 22
             },
             {
+              "id": "2022|NA",
               "period": "2022",
               "phase": "Not applicable",
               "trial_count": 470
             },
             {
+              "id": "2022|NO_PHASE",
               "period": "2022",
               "phase": "No phase (observational)",
               "trial_count": 177
             },
             {
+              "id": "2022|NOT_REPORTED",
               "period": "2022",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2023|EARLY_PHASE1",
               "period": "2023",
               "phase": "Early Phase 1",
               "trial_count": 7
             },
             {
+              "id": "2023|PHASE1",
               "period": "2023",
               "phase": "Phase 1",
               "trial_count": 32
             },
             {
+              "id": "2023|PHASE1/PHASE2",
               "period": "2023",
               "phase": "Phase 1/2",
               "trial_count": 11
             },
             {
+              "id": "2023|PHASE2",
               "period": "2023",
               "phase": "Phase 2",
               "trial_count": 40
             },
             {
+              "id": "2023|PHASE2/PHASE3",
               "period": "2023",
               "phase": "Phase 2/3",
               "trial_count": 7
             },
             {
+              "id": "2023|PHASE3",
               "period": "2023",
               "phase": "Phase 3",
               "trial_count": 34
             },
             {
+              "id": "2023|PHASE4",
               "period": "2023",
               "phase": "Phase 4",
               "trial_count": 33
             },
             {
+              "id": "2023|NA",
               "period": "2023",
               "phase": "Not applicable",
               "trial_count": 538
             },
             {
+              "id": "2023|NO_PHASE",
               "period": "2023",
               "phase": "No phase (observational)",
               "trial_count": 146
             },
             {
+              "id": "2023|NOT_REPORTED",
               "period": "2023",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2024|EARLY_PHASE1",
               "period": "2024",
               "phase": "Early Phase 1",
               "trial_count": 11
             },
             {
+              "id": "2024|PHASE1",
               "period": "2024",
               "phase": "Phase 1",
               "trial_count": 70
             },
             {
+              "id": "2024|PHASE1/PHASE2",
               "period": "2024",
               "phase": "Phase 1/2",
               "trial_count": 14
             },
             {
+              "id": "2024|PHASE2",
               "period": "2024",
               "phase": "Phase 2",
               "trial_count": 60
             },
             {
+              "id": "2024|PHASE2/PHASE3",
               "period": "2024",
               "phase": "Phase 2/3",
               "trial_count": 4
             },
             {
+              "id": "2024|PHASE3",
               "period": "2024",
               "phase": "Phase 3",
               "trial_count": 29
             },
             {
+              "id": "2024|PHASE4",
               "period": "2024",
               "phase": "Phase 4",
               "trial_count": 23
             },
             {
+              "id": "2024|NA",
               "period": "2024",
               "phase": "Not applicable",
               "trial_count": 513
             },
             {
+              "id": "2024|NO_PHASE",
               "period": "2024",
               "phase": "No phase (observational)",
               "trial_count": 145
             },
             {
+              "id": "2024|NOT_REPORTED",
               "period": "2024",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2025|EARLY_PHASE1",
               "period": "2025",
               "phase": "Early Phase 1",
               "trial_count": 11
             },
             {
+              "id": "2025|PHASE1",
               "period": "2025",
               "phase": "Phase 1",
               "trial_count": 80
             },
             {
+              "id": "2025|PHASE1/PHASE2",
               "period": "2025",
               "phase": "Phase 1/2",
               "trial_count": 13
             },
             {
+              "id": "2025|PHASE2",
               "period": "2025",
               "phase": "Phase 2",
               "trial_count": 75
             },
             {
+              "id": "2025|PHASE2/PHASE3",
               "period": "2025",
               "phase": "Phase 2/3",
               "trial_count": 3
             },
             {
+              "id": "2025|PHASE3",
               "period": "2025",
               "phase": "Phase 3",
               "trial_count": 52
             },
             {
+              "id": "2025|PHASE4",
               "period": "2025",
               "phase": "Phase 4",
               "trial_count": 39
             },
             {
+              "id": "2025|NA",
               "period": "2025",
               "phase": "Not applicable",
               "trial_count": 519
             },
             {
+              "id": "2025|NO_PHASE",
               "period": "2025",
               "phase": "No phase (observational)",
               "trial_count": 174
             },
             {
+              "id": "2025|NOT_REPORTED",
               "period": "2025",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2026|EARLY_PHASE1",
               "period": "2026",
               "phase": "Early Phase 1",
               "trial_count": 9
             },
             {
+              "id": "2026|PHASE1",
               "period": "2026",
               "phase": "Phase 1",
               "trial_count": 121
             },
             {
+              "id": "2026|PHASE1/PHASE2",
               "period": "2026",
               "phase": "Phase 1/2",
               "trial_count": 8
             },
             {
+              "id": "2026|PHASE2",
               "period": "2026",
               "phase": "Phase 2",
               "trial_count": 71
             },
             {
+              "id": "2026|PHASE2/PHASE3",
               "period": "2026",
               "phase": "Phase 2/3",
               "trial_count": 3
             },
             {
+              "id": "2026|PHASE3",
               "period": "2026",
               "phase": "Phase 3",
               "trial_count": 99
             },
             {
+              "id": "2026|PHASE4",
               "period": "2026",
               "phase": "Phase 4",
               "trial_count": 46
             },
             {
+              "id": "2026|NA",
               "period": "2026",
               "phase": "Not applicable",
               "trial_count": 448
             },
             {
+              "id": "2026|NO_PHASE",
               "period": "2026",
               "phase": "No phase (observational)",
               "trial_count": 154
             },
             {
+              "id": "2026|NOT_REPORTED",
               "period": "2026",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2027|EARLY_PHASE1",
               "period": "2027",
               "phase": "Early Phase 1",
               "trial_count": 0
             },
             {
+              "id": "2027|PHASE1",
               "period": "2027",
               "phase": "Phase 1",
               "trial_count": 1
             },
             {
+              "id": "2027|PHASE1/PHASE2",
               "period": "2027",
               "phase": "Phase 1/2",
               "trial_count": 0
             },
             {
+              "id": "2027|PHASE2",
               "period": "2027",
               "phase": "Phase 2",
               "trial_count": 7
             },
             {
+              "id": "2027|PHASE2/PHASE3",
               "period": "2027",
               "phase": "Phase 2/3",
               "trial_count": 0
             },
             {
+              "id": "2027|PHASE3",
               "period": "2027",
               "phase": "Phase 3",
               "trial_count": 5
             },
             {
+              "id": "2027|PHASE4",
               "period": "2027",
               "phase": "Phase 4",
               "trial_count": 2
             },
             {
+              "id": "2027|NA",
               "period": "2027",
               "phase": "Not applicable",
               "trial_count": 26
             },
             {
+              "id": "2027|NO_PHASE",
               "period": "2027",
               "phase": "No phase (observational)",
               "trial_count": 11
             },
             {
+              "id": "2027|NOT_REPORTED",
               "period": "2027",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2028|EARLY_PHASE1",
               "period": "2028",
               "phase": "Early Phase 1",
               "trial_count": 0
             },
             {
+              "id": "2028|PHASE1",
               "period": "2028",
               "phase": "Phase 1",
               "trial_count": 0
             },
             {
+              "id": "2028|PHASE1/PHASE2",
               "period": "2028",
               "phase": "Phase 1/2",
               "trial_count": 0
             },
             {
+              "id": "2028|PHASE2",
               "period": "2028",
               "phase": "Phase 2",
               "trial_count": 0
             },
             {
+              "id": "2028|PHASE2/PHASE3",
               "period": "2028",
               "phase": "Phase 2/3",
               "trial_count": 0
             },
             {
+              "id": "2028|PHASE3",
               "period": "2028",
               "phase": "Phase 3",
               "trial_count": 0
             },
             {
+              "id": "2028|PHASE4",
               "period": "2028",
               "phase": "Phase 4",
               "trial_count": 1
             },
             {
+              "id": "2028|NA",
               "period": "2028",
               "phase": "Not applicable",
               "trial_count": 3
             },
             {
+              "id": "2028|NO_PHASE",
               "period": "2028",
               "phase": "No phase (observational)",
               "trial_count": 0
             },
             {
+              "id": "2028|NOT_REPORTED",
               "period": "2028",
               "phase": "Not reported",
               "trial_count": 0
             },
             {
+              "id": "2029|EARLY_PHASE1",
               "period": "2029",
               "phase": "Early Phase 1",
               "trial_count": 0
             },
             {
+              "id": "2029|PHASE1",
               "period": "2029",
               "phase": "Phase 1",
               "trial_count": 0
             },
             {
+              "id": "2029|PHASE1/PHASE2",
               "period": "2029",
               "phase": "Phase 1/2",
               "trial_count": 0
             },
             {
+              "id": "2029|PHASE2",
               "period": "2029",
               "phase": "Phase 2",
               "trial_count": 0
             },
             {
+              "id": "2029|PHASE2/PHASE3",
               "period": "2029",
               "phase": "Phase 2/3",
               "trial_count": 0
             },
             {
+              "id": "2029|PHASE3",
               "period": "2029",
               "phase": "Phase 3",
               "trial_count": 0
             },
             {
+              "id": "2029|PHASE4",
               "period": "2029",
               "phase": "Phase 4",
               "trial_count": 0
             },
             {
+              "id": "2029|NA",
               "period": "2029",
               "phase": "Not applicable",
               "trial_count": 1
             },
             {
+              "id": "2029|NO_PHASE",
               "period": "2029",
               "phase": "No phase (observational)",
               "trial_count": 0
             },
             {
+              "id": "2029|NOT_REPORTED",
               "period": "2029",
               "phase": "Not reported",
               "trial_count": 0
@@ -14960,701 +15240,841 @@
           "data": {
             "values": [
               {
+                "id": "2016|EARLY_PHASE1",
                 "period": "2016",
                 "phase": "Early Phase 1",
                 "trial_count": 4
               },
               {
+                "id": "2016|PHASE1",
                 "period": "2016",
                 "phase": "Phase 1",
                 "trial_count": 21
               },
               {
+                "id": "2016|PHASE1/PHASE2",
                 "period": "2016",
                 "phase": "Phase 1/2",
                 "trial_count": 4
               },
               {
+                "id": "2016|PHASE2",
                 "period": "2016",
                 "phase": "Phase 2",
                 "trial_count": 19
               },
               {
+                "id": "2016|PHASE2/PHASE3",
                 "period": "2016",
                 "phase": "Phase 2/3",
                 "trial_count": 7
               },
               {
+                "id": "2016|PHASE3",
                 "period": "2016",
                 "phase": "Phase 3",
                 "trial_count": 16
               },
               {
+                "id": "2016|PHASE4",
                 "period": "2016",
                 "phase": "Phase 4",
                 "trial_count": 32
               },
               {
+                "id": "2016|NA",
                 "period": "2016",
                 "phase": "Not applicable",
                 "trial_count": 419
               },
               {
+                "id": "2016|NO_PHASE",
                 "period": "2016",
                 "phase": "No phase (observational)",
                 "trial_count": 178
               },
               {
+                "id": "2016|NOT_REPORTED",
                 "period": "2016",
                 "phase": "Not reported",
                 "trial_count": 1
               },
               {
+                "id": "2017|EARLY_PHASE1",
                 "period": "2017",
                 "phase": "Early Phase 1",
                 "trial_count": 7
               },
               {
+                "id": "2017|PHASE1",
                 "period": "2017",
                 "phase": "Phase 1",
                 "trial_count": 10
               },
               {
+                "id": "2017|PHASE1/PHASE2",
                 "period": "2017",
                 "phase": "Phase 1/2",
                 "trial_count": 6
               },
               {
+                "id": "2017|PHASE2",
                 "period": "2017",
                 "phase": "Phase 2",
                 "trial_count": 30
               },
               {
+                "id": "2017|PHASE2/PHASE3",
                 "period": "2017",
                 "phase": "Phase 2/3",
                 "trial_count": 4
               },
               {
+                "id": "2017|PHASE3",
                 "period": "2017",
                 "phase": "Phase 3",
                 "trial_count": 13
               },
               {
+                "id": "2017|PHASE4",
                 "period": "2017",
                 "phase": "Phase 4",
                 "trial_count": 30
               },
               {
+                "id": "2017|NA",
                 "period": "2017",
                 "phase": "Not applicable",
                 "trial_count": 440
               },
               {
+                "id": "2017|NO_PHASE",
                 "period": "2017",
                 "phase": "No phase (observational)",
                 "trial_count": 125
               },
               {
+                "id": "2017|NOT_REPORTED",
                 "period": "2017",
                 "phase": "Not reported",
                 "trial_count": 1
               },
               {
+                "id": "2018|EARLY_PHASE1",
                 "period": "2018",
                 "phase": "Early Phase 1",
                 "trial_count": 9
               },
               {
+                "id": "2018|PHASE1",
                 "period": "2018",
                 "phase": "Phase 1",
                 "trial_count": 18
               },
               {
+                "id": "2018|PHASE1/PHASE2",
                 "period": "2018",
                 "phase": "Phase 1/2",
                 "trial_count": 8
               },
               {
+                "id": "2018|PHASE2",
                 "period": "2018",
                 "phase": "Phase 2",
                 "trial_count": 20
               },
               {
+                "id": "2018|PHASE2/PHASE3",
                 "period": "2018",
                 "phase": "Phase 2/3",
                 "trial_count": 3
               },
               {
+                "id": "2018|PHASE3",
                 "period": "2018",
                 "phase": "Phase 3",
                 "trial_count": 19
               },
               {
+                "id": "2018|PHASE4",
                 "period": "2018",
                 "phase": "Phase 4",
                 "trial_count": 21
               },
               {
+                "id": "2018|NA",
                 "period": "2018",
                 "phase": "Not applicable",
                 "trial_count": 451
               },
               {
+                "id": "2018|NO_PHASE",
                 "period": "2018",
                 "phase": "No phase (observational)",
                 "trial_count": 140
               },
               {
+                "id": "2018|NOT_REPORTED",
                 "period": "2018",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2019|EARLY_PHASE1",
                 "period": "2019",
                 "phase": "Early Phase 1",
                 "trial_count": 8
               },
               {
+                "id": "2019|PHASE1",
                 "period": "2019",
                 "phase": "Phase 1",
                 "trial_count": 14
               },
               {
+                "id": "2019|PHASE1/PHASE2",
                 "period": "2019",
                 "phase": "Phase 1/2",
                 "trial_count": 3
               },
               {
+                "id": "2019|PHASE2",
                 "period": "2019",
                 "phase": "Phase 2",
                 "trial_count": 13
               },
               {
+                "id": "2019|PHASE2/PHASE3",
                 "period": "2019",
                 "phase": "Phase 2/3",
                 "trial_count": 7
               },
               {
+                "id": "2019|PHASE3",
                 "period": "2019",
                 "phase": "Phase 3",
                 "trial_count": 12
               },
               {
+                "id": "2019|PHASE4",
                 "period": "2019",
                 "phase": "Phase 4",
                 "trial_count": 31
               },
               {
+                "id": "2019|NA",
                 "period": "2019",
                 "phase": "Not applicable",
                 "trial_count": 454
               },
               {
+                "id": "2019|NO_PHASE",
                 "period": "2019",
                 "phase": "No phase (observational)",
                 "trial_count": 159
               },
               {
+                "id": "2019|NOT_REPORTED",
                 "period": "2019",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2020|EARLY_PHASE1",
                 "period": "2020",
                 "phase": "Early Phase 1",
                 "trial_count": 2
               },
               {
+                "id": "2020|PHASE1",
                 "period": "2020",
                 "phase": "Phase 1",
                 "trial_count": 28
               },
               {
+                "id": "2020|PHASE1/PHASE2",
                 "period": "2020",
                 "phase": "Phase 1/2",
                 "trial_count": 6
               },
               {
+                "id": "2020|PHASE2",
                 "period": "2020",
                 "phase": "Phase 2",
                 "trial_count": 16
               },
               {
+                "id": "2020|PHASE2/PHASE3",
                 "period": "2020",
                 "phase": "Phase 2/3",
                 "trial_count": 2
               },
               {
+                "id": "2020|PHASE3",
                 "period": "2020",
                 "phase": "Phase 3",
                 "trial_count": 8
               },
               {
+                "id": "2020|PHASE4",
                 "period": "2020",
                 "phase": "Phase 4",
                 "trial_count": 17
               },
               {
+                "id": "2020|NA",
                 "period": "2020",
                 "phase": "Not applicable",
                 "trial_count": 352
               },
               {
+                "id": "2020|NO_PHASE",
                 "period": "2020",
                 "phase": "No phase (observational)",
                 "trial_count": 137
               },
               {
+                "id": "2020|NOT_REPORTED",
                 "period": "2020",
                 "phase": "Not reported",
                 "trial_count": 1
               },
               {
+                "id": "2021|EARLY_PHASE1",
                 "period": "2021",
                 "phase": "Early Phase 1",
                 "trial_count": 6
               },
               {
+                "id": "2021|PHASE1",
                 "period": "2021",
                 "phase": "Phase 1",
                 "trial_count": 16
               },
               {
+                "id": "2021|PHASE1/PHASE2",
                 "period": "2021",
                 "phase": "Phase 1/2",
                 "trial_count": 4
               },
               {
+                "id": "2021|PHASE2",
                 "period": "2021",
                 "phase": "Phase 2",
                 "trial_count": 34
               },
               {
+                "id": "2021|PHASE2/PHASE3",
                 "period": "2021",
                 "phase": "Phase 2/3",
                 "trial_count": 4
               },
               {
+                "id": "2021|PHASE3",
                 "period": "2021",
                 "phase": "Phase 3",
                 "trial_count": 26
               },
               {
+                "id": "2021|PHASE4",
                 "period": "2021",
                 "phase": "Phase 4",
                 "trial_count": 15
               },
               {
+                "id": "2021|NA",
                 "period": "2021",
                 "phase": "Not applicable",
                 "trial_count": 447
               },
               {
+                "id": "2021|NO_PHASE",
                 "period": "2021",
                 "phase": "No phase (observational)",
                 "trial_count": 132
               },
               {
+                "id": "2021|NOT_REPORTED",
                 "period": "2021",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2022|EARLY_PHASE1",
                 "period": "2022",
                 "phase": "Early Phase 1",
                 "trial_count": 5
               },
               {
+                "id": "2022|PHASE1",
                 "period": "2022",
                 "phase": "Phase 1",
                 "trial_count": 30
               },
               {
+                "id": "2022|PHASE1/PHASE2",
                 "period": "2022",
                 "phase": "Phase 1/2",
                 "trial_count": 4
               },
               {
+                "id": "2022|PHASE2",
                 "period": "2022",
                 "phase": "Phase 2",
                 "trial_count": 22
               },
               {
+                "id": "2022|PHASE2/PHASE3",
                 "period": "2022",
                 "phase": "Phase 2/3",
                 "trial_count": 11
               },
               {
+                "id": "2022|PHASE3",
                 "period": "2022",
                 "phase": "Phase 3",
                 "trial_count": 22
               },
               {
+                "id": "2022|PHASE4",
                 "period": "2022",
                 "phase": "Phase 4",
                 "trial_count": 22
               },
               {
+                "id": "2022|NA",
                 "period": "2022",
                 "phase": "Not applicable",
                 "trial_count": 470
               },
               {
+                "id": "2022|NO_PHASE",
                 "period": "2022",
                 "phase": "No phase (observational)",
                 "trial_count": 177
               },
               {
+                "id": "2022|NOT_REPORTED",
                 "period": "2022",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2023|EARLY_PHASE1",
                 "period": "2023",
                 "phase": "Early Phase 1",
                 "trial_count": 7
               },
               {
+                "id": "2023|PHASE1",
                 "period": "2023",
                 "phase": "Phase 1",
                 "trial_count": 32
               },
               {
+                "id": "2023|PHASE1/PHASE2",
                 "period": "2023",
                 "phase": "Phase 1/2",
                 "trial_count": 11
               },
               {
+                "id": "2023|PHASE2",
                 "period": "2023",
                 "phase": "Phase 2",
                 "trial_count": 40
               },
               {
+                "id": "2023|PHASE2/PHASE3",
                 "period": "2023",
                 "phase": "Phase 2/3",
                 "trial_count": 7
               },
               {
+                "id": "2023|PHASE3",
                 "period": "2023",
                 "phase": "Phase 3",
                 "trial_count": 34
               },
               {
+                "id": "2023|PHASE4",
                 "period": "2023",
                 "phase": "Phase 4",
                 "trial_count": 33
               },
               {
+                "id": "2023|NA",
                 "period": "2023",
                 "phase": "Not applicable",
                 "trial_count": 538
               },
               {
+                "id": "2023|NO_PHASE",
                 "period": "2023",
                 "phase": "No phase (observational)",
                 "trial_count": 146
               },
               {
+                "id": "2023|NOT_REPORTED",
                 "period": "2023",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2024|EARLY_PHASE1",
                 "period": "2024",
                 "phase": "Early Phase 1",
                 "trial_count": 11
               },
               {
+                "id": "2024|PHASE1",
                 "period": "2024",
                 "phase": "Phase 1",
                 "trial_count": 70
               },
               {
+                "id": "2024|PHASE1/PHASE2",
                 "period": "2024",
                 "phase": "Phase 1/2",
                 "trial_count": 14
               },
               {
+                "id": "2024|PHASE2",
                 "period": "2024",
                 "phase": "Phase 2",
                 "trial_count": 60
               },
               {
+                "id": "2024|PHASE2/PHASE3",
                 "period": "2024",
                 "phase": "Phase 2/3",
                 "trial_count": 4
               },
               {
+                "id": "2024|PHASE3",
                 "period": "2024",
                 "phase": "Phase 3",
                 "trial_count": 29
               },
               {
+                "id": "2024|PHASE4",
                 "period": "2024",
                 "phase": "Phase 4",
                 "trial_count": 23
               },
               {
+                "id": "2024|NA",
                 "period": "2024",
                 "phase": "Not applicable",
                 "trial_count": 513
               },
               {
+                "id": "2024|NO_PHASE",
                 "period": "2024",
                 "phase": "No phase (observational)",
                 "trial_count": 145
               },
               {
+                "id": "2024|NOT_REPORTED",
                 "period": "2024",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2025|EARLY_PHASE1",
                 "period": "2025",
                 "phase": "Early Phase 1",
                 "trial_count": 11
               },
               {
+                "id": "2025|PHASE1",
                 "period": "2025",
                 "phase": "Phase 1",
                 "trial_count": 80
               },
               {
+                "id": "2025|PHASE1/PHASE2",
                 "period": "2025",
                 "phase": "Phase 1/2",
                 "trial_count": 13
               },
               {
+                "id": "2025|PHASE2",
                 "period": "2025",
                 "phase": "Phase 2",
                 "trial_count": 75
               },
               {
+                "id": "2025|PHASE2/PHASE3",
                 "period": "2025",
                 "phase": "Phase 2/3",
                 "trial_count": 3
               },
               {
+                "id": "2025|PHASE3",
                 "period": "2025",
                 "phase": "Phase 3",
                 "trial_count": 52
               },
               {
+                "id": "2025|PHASE4",
                 "period": "2025",
                 "phase": "Phase 4",
                 "trial_count": 39
               },
               {
+                "id": "2025|NA",
                 "period": "2025",
                 "phase": "Not applicable",
                 "trial_count": 519
               },
               {
+                "id": "2025|NO_PHASE",
                 "period": "2025",
                 "phase": "No phase (observational)",
                 "trial_count": 174
               },
               {
+                "id": "2025|NOT_REPORTED",
                 "period": "2025",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2026|EARLY_PHASE1",
                 "period": "2026",
                 "phase": "Early Phase 1",
                 "trial_count": 9
               },
               {
+                "id": "2026|PHASE1",
                 "period": "2026",
                 "phase": "Phase 1",
                 "trial_count": 121
               },
               {
+                "id": "2026|PHASE1/PHASE2",
                 "period": "2026",
                 "phase": "Phase 1/2",
                 "trial_count": 8
               },
               {
+                "id": "2026|PHASE2",
                 "period": "2026",
                 "phase": "Phase 2",
                 "trial_count": 71
               },
               {
+                "id": "2026|PHASE2/PHASE3",
                 "period": "2026",
                 "phase": "Phase 2/3",
                 "trial_count": 3
               },
               {
+                "id": "2026|PHASE3",
                 "period": "2026",
                 "phase": "Phase 3",
                 "trial_count": 99
               },
               {
+                "id": "2026|PHASE4",
                 "period": "2026",
                 "phase": "Phase 4",
                 "trial_count": 46
               },
               {
+                "id": "2026|NA",
                 "period": "2026",
                 "phase": "Not applicable",
                 "trial_count": 448
               },
               {
+                "id": "2026|NO_PHASE",
                 "period": "2026",
                 "phase": "No phase (observational)",
                 "trial_count": 154
               },
               {
+                "id": "2026|NOT_REPORTED",
                 "period": "2026",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2027|EARLY_PHASE1",
                 "period": "2027",
                 "phase": "Early Phase 1",
                 "trial_count": 0
               },
               {
+                "id": "2027|PHASE1",
                 "period": "2027",
                 "phase": "Phase 1",
                 "trial_count": 1
               },
               {
+                "id": "2027|PHASE1/PHASE2",
                 "period": "2027",
                 "phase": "Phase 1/2",
                 "trial_count": 0
               },
               {
+                "id": "2027|PHASE2",
                 "period": "2027",
                 "phase": "Phase 2",
                 "trial_count": 7
               },
               {
+                "id": "2027|PHASE2/PHASE3",
                 "period": "2027",
                 "phase": "Phase 2/3",
                 "trial_count": 0
               },
               {
+                "id": "2027|PHASE3",
                 "period": "2027",
                 "phase": "Phase 3",
                 "trial_count": 5
               },
               {
+                "id": "2027|PHASE4",
                 "period": "2027",
                 "phase": "Phase 4",
                 "trial_count": 2
               },
               {
+                "id": "2027|NA",
                 "period": "2027",
                 "phase": "Not applicable",
                 "trial_count": 26
               },
               {
+                "id": "2027|NO_PHASE",
                 "period": "2027",
                 "phase": "No phase (observational)",
                 "trial_count": 11
               },
               {
+                "id": "2027|NOT_REPORTED",
                 "period": "2027",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2028|EARLY_PHASE1",
                 "period": "2028",
                 "phase": "Early Phase 1",
                 "trial_count": 0
               },
               {
+                "id": "2028|PHASE1",
                 "period": "2028",
                 "phase": "Phase 1",
                 "trial_count": 0
               },
               {
+                "id": "2028|PHASE1/PHASE2",
                 "period": "2028",
                 "phase": "Phase 1/2",
                 "trial_count": 0
               },
               {
+                "id": "2028|PHASE2",
                 "period": "2028",
                 "phase": "Phase 2",
                 "trial_count": 0
               },
               {
+                "id": "2028|PHASE2/PHASE3",
                 "period": "2028",
                 "phase": "Phase 2/3",
                 "trial_count": 0
               },
               {
+                "id": "2028|PHASE3",
                 "period": "2028",
                 "phase": "Phase 3",
                 "trial_count": 0
               },
               {
+                "id": "2028|PHASE4",
                 "period": "2028",
                 "phase": "Phase 4",
                 "trial_count": 1
               },
               {
+                "id": "2028|NA",
                 "period": "2028",
                 "phase": "Not applicable",
                 "trial_count": 3
               },
               {
+                "id": "2028|NO_PHASE",
                 "period": "2028",
                 "phase": "No phase (observational)",
                 "trial_count": 0
               },
               {
+                "id": "2028|NOT_REPORTED",
                 "period": "2028",
                 "phase": "Not reported",
                 "trial_count": 0
               },
               {
+                "id": "2029|EARLY_PHASE1",
                 "period": "2029",
                 "phase": "Early Phase 1",
                 "trial_count": 0
               },
               {
+                "id": "2029|PHASE1",
                 "period": "2029",
                 "phase": "Phase 1",
                 "trial_count": 0
               },
               {
+                "id": "2029|PHASE1/PHASE2",
                 "period": "2029",
                 "phase": "Phase 1/2",
                 "trial_count": 0
               },
               {
+                "id": "2029|PHASE2",
                 "period": "2029",
                 "phase": "Phase 2",
                 "trial_count": 0
               },
               {
+                "id": "2029|PHASE2/PHASE3",
                 "period": "2029",
                 "phase": "Phase 2/3",
                 "trial_count": 0
               },
               {
+                "id": "2029|PHASE3",
                 "period": "2029",
                 "phase": "Phase 3",
                 "trial_count": 0
               },
               {
+                "id": "2029|PHASE4",
                 "period": "2029",
                 "phase": "Phase 4",
                 "trial_count": 0
               },
               {
+                "id": "2029|NA",
                 "period": "2029",
                 "phase": "Not applicable",
                 "trial_count": 1
               },
               {
+                "id": "2029|NO_PHASE",
                 "period": "2029",
                 "phase": "No phase (observational)",
                 "trial_count": 0
               },
               {
+                "id": "2029|NOT_REPORTED",
                 "period": "2029",
                 "phase": "Not reported",
                 "trial_count": 0
@@ -15952,7 +16372,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+MAX%5D%29&query.cond=%28AREA%5BCondition%5D%28obesity%29+OR+AREA%5BConditionMeshTerm%5D%28obesity%29+OR+AREA%5BKeyword%5D%28obesity%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabesity%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Prader-Willi+Syndrome%22%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType&pageSize=1000&pageToken=ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsbPOk1fwfkA",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28obesity%29+OR+AREA%5BConditionMeshTerm%5D%28obesity%29+OR+AREA%5BKeyword%5D%28obesity%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabesity%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Prader-Willi+Syndrome%22%29%29%29&query.cond=%28obesity%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28obesity%29+OR+AREA%5BConditionMeshTerm%5D%28obesity%29+OR+AREA%5BKeyword%5D%28obesity%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabesity%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Prader-Willi+Syndrome%22%29%29%29&query.cond=%28obesity%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&sort=StartDate%3Adesc&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

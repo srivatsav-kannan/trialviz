@@ -2446,6 +2446,7 @@
         ],
         "links": [
           {
+            "id": "0:FED>1:NA",
             "source": "0:FED",
             "target": "1:NA",
             "trial_count": 1,
@@ -2470,6 +2471,7 @@
             ]
           },
           {
+            "id": "0:FED>1:PHASE1",
             "source": "0:FED",
             "target": "1:PHASE1",
             "trial_count": 1,
@@ -2494,6 +2496,7 @@
             ]
           },
           {
+            "id": "0:INDUSTRY>1:NA",
             "source": "0:INDUSTRY",
             "target": "1:NA",
             "trial_count": 2,
@@ -2533,6 +2536,7 @@
             ]
           },
           {
+            "id": "0:INDUSTRY>1:NO_PHASE",
             "source": "0:INDUSTRY",
             "target": "1:NO_PHASE",
             "trial_count": 33,
@@ -2617,6 +2621,7 @@
             ]
           },
           {
+            "id": "0:INDUSTRY>1:PHASE1",
             "source": "0:INDUSTRY",
             "target": "1:PHASE1",
             "trial_count": 57,
@@ -2725,6 +2730,7 @@
             ]
           },
           {
+            "id": "0:INDUSTRY>1:PHASE1/PHASE2",
             "source": "0:INDUSTRY",
             "target": "1:PHASE1/PHASE2",
             "trial_count": 34,
@@ -2810,6 +2816,7 @@
             ]
           },
           {
+            "id": "0:INDUSTRY>1:PHASE2",
             "source": "0:INDUSTRY",
             "target": "1:PHASE2",
             "trial_count": 23,
@@ -2884,6 +2891,7 @@
             ]
           },
           {
+            "id": "0:INDUSTRY>1:PHASE3",
             "source": "0:INDUSTRY",
             "target": "1:PHASE3",
             "trial_count": 24,
@@ -2959,6 +2967,7 @@
             ]
           },
           {
+            "id": "0:INDUSTRY>1:PHASE4",
             "source": "0:INDUSTRY",
             "target": "1:PHASE4",
             "trial_count": 3,
@@ -3013,6 +3022,7 @@
             ]
           },
           {
+            "id": "0:NETWORK>1:NA",
             "source": "0:NETWORK",
             "target": "1:NA",
             "trial_count": 1,
@@ -3037,6 +3047,7 @@
             ]
           },
           {
+            "id": "0:NETWORK>1:PHASE1/PHASE2",
             "source": "0:NETWORK",
             "target": "1:PHASE1/PHASE2",
             "trial_count": 1,
@@ -3061,6 +3072,7 @@
             ]
           },
           {
+            "id": "0:NETWORK>1:PHASE2",
             "source": "0:NETWORK",
             "target": "1:PHASE2",
             "trial_count": 2,
@@ -3100,6 +3112,7 @@
             ]
           },
           {
+            "id": "0:NETWORK>1:PHASE2/PHASE3",
             "source": "0:NETWORK",
             "target": "1:PHASE2/PHASE3",
             "trial_count": 1,
@@ -3124,6 +3137,7 @@
             ]
           },
           {
+            "id": "0:NIH>1:NO_PHASE",
             "source": "0:NIH",
             "target": "1:NO_PHASE",
             "trial_count": 2,
@@ -3163,6 +3177,7 @@
             ]
           },
           {
+            "id": "0:NIH>1:PHASE1",
             "source": "0:NIH",
             "target": "1:PHASE1",
             "trial_count": 5,
@@ -3219,6 +3234,7 @@
             ]
           },
           {
+            "id": "0:NIH>1:PHASE1/PHASE2",
             "source": "0:NIH",
             "target": "1:PHASE1/PHASE2",
             "trial_count": 3,
@@ -3273,6 +3289,7 @@
             ]
           },
           {
+            "id": "0:NIH>1:PHASE2",
             "source": "0:NIH",
             "target": "1:PHASE2",
             "trial_count": 4,
@@ -3328,6 +3345,7 @@
             ]
           },
           {
+            "id": "0:NIH>1:PHASE3",
             "source": "0:NIH",
             "target": "1:PHASE3",
             "trial_count": 1,
@@ -3352,6 +3370,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:EARLY_PHASE1",
             "source": "0:OTHER",
             "target": "1:EARLY_PHASE1",
             "trial_count": 10,
@@ -3413,6 +3432,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:NA",
             "source": "0:OTHER",
             "target": "1:NA",
             "trial_count": 92,
@@ -3556,6 +3576,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:NO_PHASE",
             "source": "0:OTHER",
             "target": "1:NO_PHASE",
             "trial_count": 88,
@@ -3695,6 +3716,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:PHASE1",
             "source": "0:OTHER",
             "target": "1:PHASE1",
             "trial_count": 28,
@@ -3774,6 +3796,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:PHASE1/PHASE2",
             "source": "0:OTHER",
             "target": "1:PHASE1/PHASE2",
             "trial_count": 18,
@@ -3843,6 +3866,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:PHASE2",
             "source": "0:OTHER",
             "target": "1:PHASE2",
             "trial_count": 94,
@@ -3988,6 +4012,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:PHASE2/PHASE3",
             "source": "0:OTHER",
             "target": "1:PHASE2/PHASE3",
             "trial_count": 2,
@@ -4027,6 +4052,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:PHASE3",
             "source": "0:OTHER",
             "target": "1:PHASE3",
             "trial_count": 22,
@@ -4100,6 +4126,7 @@
             ]
           },
           {
+            "id": "0:OTHER>1:PHASE4",
             "source": "0:OTHER",
             "target": "1:PHASE4",
             "trial_count": 3,
@@ -4154,6 +4181,7 @@
             ]
           },
           {
+            "id": "0:OTHER_GOV>1:NA",
             "source": "0:OTHER_GOV",
             "target": "1:NA",
             "trial_count": 2,
@@ -4193,6 +4221,7 @@
             ]
           },
           {
+            "id": "0:OTHER_GOV>1:NO_PHASE",
             "source": "0:OTHER_GOV",
             "target": "1:NO_PHASE",
             "trial_count": 3,
@@ -4247,6 +4276,7 @@
             ]
           },
           {
+            "id": "0:OTHER_GOV>1:PHASE2",
             "source": "0:OTHER_GOV",
             "target": "1:PHASE2",
             "trial_count": 3,
@@ -4301,6 +4331,7 @@
             ]
           },
           {
+            "id": "0:OTHER_GOV>1:PHASE3",
             "source": "0:OTHER_GOV",
             "target": "1:PHASE3",
             "trial_count": 1,
@@ -4325,6 +4356,7 @@
             ]
           },
           {
+            "id": "0:OTHER_GOV>1:PHASE4",
             "source": "0:OTHER_GOV",
             "target": "1:PHASE4",
             "trial_count": 1,
@@ -4349,6 +4381,7 @@
             ]
           },
           {
+            "id": "1:EARLY_PHASE1>2:ACTIVE_NOT_RECRUITING",
             "source": "1:EARLY_PHASE1",
             "target": "2:ACTIVE_NOT_RECRUITING",
             "trial_count": 1,
@@ -4373,6 +4406,7 @@
             ]
           },
           {
+            "id": "1:EARLY_PHASE1>2:COMPLETED",
             "source": "1:EARLY_PHASE1",
             "target": "2:COMPLETED",
             "trial_count": 4,
@@ -4428,6 +4462,7 @@
             ]
           },
           {
+            "id": "1:EARLY_PHASE1>2:TERMINATED",
             "source": "1:EARLY_PHASE1",
             "target": "2:TERMINATED",
             "trial_count": 1,
@@ -4452,6 +4487,7 @@
             ]
           },
           {
+            "id": "1:EARLY_PHASE1>2:UNKNOWN",
             "source": "1:EARLY_PHASE1",
             "target": "2:UNKNOWN",
             "trial_count": 3,
@@ -4506,6 +4542,7 @@
             ]
           },
           {
+            "id": "1:EARLY_PHASE1>2:WITHDRAWN",
             "source": "1:EARLY_PHASE1",
             "target": "2:WITHDRAWN",
             "trial_count": 1,
@@ -4530,6 +4567,7 @@
             ]
           },
           {
+            "id": "1:NA>2:ACTIVE_NOT_RECRUITING",
             "source": "1:NA",
             "target": "2:ACTIVE_NOT_RECRUITING",
             "trial_count": 4,
@@ -4585,6 +4623,7 @@
             ]
           },
           {
+            "id": "1:NA>2:COMPLETED",
             "source": "1:NA",
             "target": "2:COMPLETED",
             "trial_count": 56,
@@ -4692,6 +4731,7 @@
             ]
           },
           {
+            "id": "1:NA>2:RECRUITING",
             "source": "1:NA",
             "target": "2:RECRUITING",
             "trial_count": 1,
@@ -4716,6 +4756,7 @@
             ]
           },
           {
+            "id": "1:NA>2:TERMINATED",
             "source": "1:NA",
             "target": "2:TERMINATED",
             "trial_count": 7,
@@ -4774,6 +4815,7 @@
             ]
           },
           {
+            "id": "1:NA>2:UNKNOWN",
             "source": "1:NA",
             "target": "2:UNKNOWN",
             "trial_count": 27,
@@ -4852,6 +4894,7 @@
             ]
           },
           {
+            "id": "1:NA>2:WITHDRAWN",
             "source": "1:NA",
             "target": "2:WITHDRAWN",
             "trial_count": 3,
@@ -4906,6 +4949,7 @@
             ]
           },
           {
+            "id": "1:NO_PHASE>2:ACTIVE_NOT_RECRUITING",
             "source": "1:NO_PHASE",
             "target": "2:ACTIVE_NOT_RECRUITING",
             "trial_count": 4,
@@ -4961,6 +5005,7 @@
             ]
           },
           {
+            "id": "1:NO_PHASE>2:COMPLETED",
             "source": "1:NO_PHASE",
             "target": "2:COMPLETED",
             "trial_count": 69,
@@ -5081,6 +5126,7 @@
             ]
           },
           {
+            "id": "1:NO_PHASE>2:RECRUITING",
             "source": "1:NO_PHASE",
             "target": "2:RECRUITING",
             "trial_count": 12,
@@ -5144,6 +5190,7 @@
             ]
           },
           {
+            "id": "1:NO_PHASE>2:SUSPENDED",
             "source": "1:NO_PHASE",
             "target": "2:SUSPENDED",
             "trial_count": 1,
@@ -5168,6 +5215,7 @@
             ]
           },
           {
+            "id": "1:NO_PHASE>2:TERMINATED",
             "source": "1:NO_PHASE",
             "target": "2:TERMINATED",
             "trial_count": 9,
@@ -5228,6 +5276,7 @@
             ]
           },
           {
+            "id": "1:NO_PHASE>2:UNKNOWN",
             "source": "1:NO_PHASE",
             "target": "2:UNKNOWN",
             "trial_count": 29,
@@ -5308,6 +5357,7 @@
             ]
           },
           {
+            "id": "1:NO_PHASE>2:WITHDRAWN",
             "source": "1:NO_PHASE",
             "target": "2:WITHDRAWN",
             "trial_count": 2,
@@ -5347,6 +5397,7 @@
             ]
           },
           {
+            "id": "1:PHASE1>2:ACTIVE_NOT_RECRUITING",
             "source": "1:PHASE1",
             "target": "2:ACTIVE_NOT_RECRUITING",
             "trial_count": 7,
@@ -5405,6 +5456,7 @@
             ]
           },
           {
+            "id": "1:PHASE1>2:COMPLETED",
             "source": "1:PHASE1",
             "target": "2:COMPLETED",
             "trial_count": 52,
@@ -5508,6 +5560,7 @@
             ]
           },
           {
+            "id": "1:PHASE1>2:RECRUITING",
             "source": "1:PHASE1",
             "target": "2:RECRUITING",
             "trial_count": 1,
@@ -5532,6 +5585,7 @@
             ]
           },
           {
+            "id": "1:PHASE1>2:TERMINATED",
             "source": "1:PHASE1",
             "target": "2:TERMINATED",
             "trial_count": 18,
@@ -5601,6 +5655,7 @@
             ]
           },
           {
+            "id": "1:PHASE1>2:UNKNOWN",
             "source": "1:PHASE1",
             "target": "2:UNKNOWN",
             "trial_count": 9,
@@ -5661,6 +5716,7 @@
             ]
           },
           {
+            "id": "1:PHASE1>2:WITHDRAWN",
             "source": "1:PHASE1",
             "target": "2:WITHDRAWN",
             "trial_count": 4,
@@ -5716,6 +5772,7 @@
             ]
           },
           {
+            "id": "1:PHASE1/PHASE2>2:ACTIVE_NOT_RECRUITING",
             "source": "1:PHASE1/PHASE2",
             "target": "2:ACTIVE_NOT_RECRUITING",
             "trial_count": 5,
@@ -5772,6 +5829,7 @@
             ]
           },
           {
+            "id": "1:PHASE1/PHASE2>2:COMPLETED",
             "source": "1:PHASE1/PHASE2",
             "target": "2:COMPLETED",
             "trial_count": 27,
@@ -5850,6 +5908,7 @@
             ]
           },
           {
+            "id": "1:PHASE1/PHASE2>2:SUSPENDED",
             "source": "1:PHASE1/PHASE2",
             "target": "2:SUSPENDED",
             "trial_count": 1,
@@ -5874,6 +5933,7 @@
             ]
           },
           {
+            "id": "1:PHASE1/PHASE2>2:TERMINATED",
             "source": "1:PHASE1/PHASE2",
             "target": "2:TERMINATED",
             "trial_count": 11,
@@ -5936,6 +5996,7 @@
             ]
           },
           {
+            "id": "1:PHASE1/PHASE2>2:UNKNOWN",
             "source": "1:PHASE1/PHASE2",
             "target": "2:UNKNOWN",
             "trial_count": 10,
@@ -5997,6 +6058,7 @@
             ]
           },
           {
+            "id": "1:PHASE1/PHASE2>2:WITHDRAWN",
             "source": "1:PHASE1/PHASE2",
             "target": "2:WITHDRAWN",
             "trial_count": 2,
@@ -6036,6 +6098,7 @@
             ]
           },
           {
+            "id": "1:PHASE2>2:ACTIVE_NOT_RECRUITING",
             "source": "1:PHASE2",
             "target": "2:ACTIVE_NOT_RECRUITING",
             "trial_count": 5,
@@ -6092,6 +6155,7 @@
             ]
           },
           {
+            "id": "1:PHASE2>2:COMPLETED",
             "source": "1:PHASE2",
             "target": "2:COMPLETED",
             "trial_count": 53,
@@ -6196,6 +6260,7 @@
             ]
           },
           {
+            "id": "1:PHASE2>2:SUSPENDED",
             "source": "1:PHASE2",
             "target": "2:SUSPENDED",
             "trial_count": 1,
@@ -6220,6 +6285,7 @@
             ]
           },
           {
+            "id": "1:PHASE2>2:TERMINATED",
             "source": "1:PHASE2",
             "target": "2:TERMINATED",
             "trial_count": 14,
@@ -6285,6 +6351,7 @@
             ]
           },
           {
+            "id": "1:PHASE2>2:UNKNOWN",
             "source": "1:PHASE2",
             "target": "2:UNKNOWN",
             "trial_count": 40,
@@ -6376,6 +6443,7 @@
             ]
           },
           {
+            "id": "1:PHASE2>2:WITHDRAWN",
             "source": "1:PHASE2",
             "target": "2:WITHDRAWN",
             "trial_count": 13,
@@ -6440,6 +6508,7 @@
             ]
           },
           {
+            "id": "1:PHASE2/PHASE3>2:COMPLETED",
             "source": "1:PHASE2/PHASE3",
             "target": "2:COMPLETED",
             "trial_count": 1,
@@ -6464,6 +6533,7 @@
             ]
           },
           {
+            "id": "1:PHASE2/PHASE3>2:UNKNOWN",
             "source": "1:PHASE2/PHASE3",
             "target": "2:UNKNOWN",
             "trial_count": 2,
@@ -6503,6 +6573,7 @@
             ]
           },
           {
+            "id": "1:PHASE3>2:ACTIVE_NOT_RECRUITING",
             "source": "1:PHASE3",
             "target": "2:ACTIVE_NOT_RECRUITING",
             "trial_count": 2,
@@ -6542,6 +6613,7 @@
             ]
           },
           {
+            "id": "1:PHASE3>2:COMPLETED",
             "source": "1:PHASE3",
             "target": "2:COMPLETED",
             "trial_count": 20,
@@ -6613,6 +6685,7 @@
             ]
           },
           {
+            "id": "1:PHASE3>2:TERMINATED",
             "source": "1:PHASE3",
             "target": "2:TERMINATED",
             "trial_count": 8,
@@ -6672,6 +6745,7 @@
             ]
           },
           {
+            "id": "1:PHASE3>2:UNKNOWN",
             "source": "1:PHASE3",
             "target": "2:UNKNOWN",
             "trial_count": 17,
@@ -6740,6 +6814,7 @@
             ]
           },
           {
+            "id": "1:PHASE3>2:WITHDRAWN",
             "source": "1:PHASE3",
             "target": "2:WITHDRAWN",
             "trial_count": 1,
@@ -6764,6 +6839,7 @@
             ]
           },
           {
+            "id": "1:PHASE4>2:COMPLETED",
             "source": "1:PHASE4",
             "target": "2:COMPLETED",
             "trial_count": 4,
@@ -6819,6 +6895,7 @@
             ]
           },
           {
+            "id": "1:PHASE4>2:TERMINATED",
             "source": "1:PHASE4",
             "target": "2:TERMINATED",
             "trial_count": 1,
@@ -6843,6 +6920,7 @@
             ]
           },
           {
+            "id": "1:PHASE4>2:UNKNOWN",
             "source": "1:PHASE4",
             "target": "2:UNKNOWN",
             "trial_count": 2,
@@ -7136,7 +7214,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%22lung+cancer%22+OR+AREA%5BConditionMeshTerm%5D%22lung+cancer%22+OR+AREA%5BKeyword%5D%22lung+cancer%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Adenocarcinoma+of+Lung%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Bronchial+Neoplasms%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Bronchogenic%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Non-Small-Cell+Lung%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Mesothelioma%2C+Malignant%22%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLeadSponsorClass%2CLeadSponsorName%2CStudyType&pageSize=1000&countTotal=true",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%22lung+cancer%22+OR+AREA%5BConditionMeshTerm%5D%22lung+cancer%22+OR+AREA%5BKeyword%5D%22lung+cancer%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Adenocarcinoma+of+Lung%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Bronchial+Neoplasms%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Bronchogenic%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Non-Small-Cell+Lung%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Mesothelioma%2C+Malignant%22%29%29%29&query.cond=%28lung+cancer%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%22lung+cancer%22+OR+AREA%5BConditionMeshTerm%5D%22lung+cancer%22+OR+AREA%5BKeyword%5D%22lung+cancer%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Adenocarcinoma+of+Lung%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Bronchial+Neoplasms%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Bronchogenic%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Carcinoma%2C+Non-Small-Cell+Lung%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Mesothelioma%2C+Malignant%22%29%29%29&query.cond=%28lung+cancer%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLeadSponsorClass%2CLeadSponsorName%2CStudyType%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&sort=StartDate%3Adesc&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }

@@ -63,6 +63,7 @@
       },
       "data": [
         {
+          "id": "EARLY_PHASE1",
           "phase": "Early Phase 1",
           "n": 16,
           "min": 9.0,
@@ -128,6 +129,7 @@
           ]
         },
         {
+          "id": "PHASE1",
           "phase": "Phase 1",
           "n": 304,
           "min": 2.0,
@@ -561,6 +563,7 @@
           ]
         },
         {
+          "id": "PHASE1/PHASE2",
           "phase": "Phase 1/2",
           "n": 35,
           "min": 10.0,
@@ -645,6 +648,7 @@
           ]
         },
         {
+          "id": "PHASE2",
           "phase": "Phase 2",
           "n": 466,
           "min": 2.0,
@@ -1340,6 +1344,7 @@
           ]
         },
         {
+          "id": "PHASE2/PHASE3",
           "phase": "Phase 2/3",
           "n": 36,
           "min": 10.0,
@@ -1429,6 +1434,7 @@
           ]
         },
         {
+          "id": "PHASE3",
           "phase": "Phase 3",
           "n": 483,
           "min": 0.0,
@@ -2109,6 +2115,7 @@
           ]
         },
         {
+          "id": "PHASE4",
           "phase": "Phase 4",
           "n": 337,
           "min": 5.0,
@@ -2603,6 +2610,7 @@
           ]
         },
         {
+          "id": "NA",
           "phase": "Not applicable",
           "n": 891,
           "min": 1.0,
@@ -3911,6 +3919,7 @@
           ]
         },
         {
+          "id": "NO_PHASE",
           "phase": "No phase (observational)",
           "n": 822,
           "min": 1.0,
@@ -5252,6 +5261,7 @@
         "data": {
           "values": [
             {
+              "id": "EARLY_PHASE1",
               "phase": "Early Phase 1",
               "n": 16,
               "min": 9.0,
@@ -5266,6 +5276,7 @@
               "trial_count": 16
             },
             {
+              "id": "PHASE1",
               "phase": "Phase 1",
               "n": 304,
               "min": 2.0,
@@ -5280,6 +5291,7 @@
               "trial_count": 304
             },
             {
+              "id": "PHASE1/PHASE2",
               "phase": "Phase 1/2",
               "n": 35,
               "min": 10.0,
@@ -5294,6 +5306,7 @@
               "trial_count": 35
             },
             {
+              "id": "PHASE2",
               "phase": "Phase 2",
               "n": 466,
               "min": 2.0,
@@ -5308,6 +5321,7 @@
               "trial_count": 466
             },
             {
+              "id": "PHASE2/PHASE3",
               "phase": "Phase 2/3",
               "n": 36,
               "min": 10.0,
@@ -5322,6 +5336,7 @@
               "trial_count": 36
             },
             {
+              "id": "PHASE3",
               "phase": "Phase 3",
               "n": 483,
               "min": 0.0,
@@ -5336,6 +5351,7 @@
               "trial_count": 483
             },
             {
+              "id": "PHASE4",
               "phase": "Phase 4",
               "n": 337,
               "min": 5.0,
@@ -5350,6 +5366,7 @@
               "trial_count": 337
             },
             {
+              "id": "NA",
               "phase": "Not applicable",
               "n": 891,
               "min": 1.0,
@@ -5364,6 +5381,7 @@
               "trial_count": 891
             },
             {
+              "id": "NO_PHASE",
               "phase": "No phase (observational)",
               "n": 822,
               "min": 1.0,
@@ -5576,6 +5594,7 @@
         },
         "data": [
           {
+            "id": "0-10",
             "open_ended": false,
             "bin_start": 0.0,
             "bin_end": 10.0,
@@ -5662,6 +5681,7 @@
             ]
           },
           {
+            "id": "10-20",
             "open_ended": false,
             "bin_start": 10.0,
             "bin_end": 20.0,
@@ -5953,6 +5973,7 @@
             ]
           },
           {
+            "id": "20-50",
             "open_ended": false,
             "bin_start": 20.0,
             "bin_end": 50.0,
@@ -6770,6 +6791,7 @@
             ]
           },
           {
+            "id": "50-100",
             "open_ended": false,
             "bin_start": 50.0,
             "bin_end": 100.0,
@@ -7448,6 +7470,7 @@
             ]
           },
           {
+            "id": "100-200",
             "open_ended": false,
             "bin_start": 100.0,
             "bin_end": 200.0,
@@ -7993,6 +8016,7 @@
             ]
           },
           {
+            "id": "200-500",
             "open_ended": false,
             "bin_start": 200.0,
             "bin_end": 500.0,
@@ -8610,6 +8634,7 @@
             ]
           },
           {
+            "id": "500-1000",
             "open_ended": false,
             "bin_start": 500.0,
             "bin_end": 1000.0,
@@ -8915,6 +8940,7 @@
             ]
           },
           {
+            "id": "1000-2000",
             "open_ended": false,
             "bin_start": 1000.0,
             "bin_end": 2000.0,
@@ -9070,6 +9096,7 @@
             ]
           },
           {
+            "id": "2000-5000",
             "open_ended": false,
             "bin_start": 2000.0,
             "bin_end": 5000.0,
@@ -9167,6 +9194,7 @@
             ]
           },
           {
+            "id": "5000-10000",
             "open_ended": false,
             "bin_start": 5000.0,
             "bin_end": 10000.0,
@@ -9231,6 +9259,7 @@
             ]
           },
           {
+            "id": "10000-20000",
             "open_ended": false,
             "bin_start": 10000.0,
             "bin_end": 20000.0,
@@ -9281,6 +9310,7 @@
             ]
           },
           {
+            "id": "20000-50000",
             "open_ended": true,
             "bin_start": 20000.0,
             "bin_end": 50000.0,
@@ -9356,6 +9386,7 @@
           "data": {
             "values": [
               {
+                "id": "0-10",
                 "open_ended": false,
                 "bin_start": 0.0,
                 "bin_end": 10.0,
@@ -9363,6 +9394,7 @@
                 "trial_count": 54
               },
               {
+                "id": "10-20",
                 "open_ended": false,
                 "bin_start": 10.0,
                 "bin_end": 20.0,
@@ -9370,6 +9402,7 @@
                 "trial_count": 259
               },
               {
+                "id": "20-50",
                 "open_ended": false,
                 "bin_start": 20.0,
                 "bin_end": 50.0,
@@ -9377,6 +9410,7 @@
                 "trial_count": 785
               },
               {
+                "id": "50-100",
                 "open_ended": false,
                 "bin_start": 50.0,
                 "bin_end": 100.0,
@@ -9384,6 +9418,7 @@
                 "trial_count": 646
               },
               {
+                "id": "100-200",
                 "open_ended": false,
                 "bin_start": 100.0,
                 "bin_end": 200.0,
@@ -9391,6 +9426,7 @@
                 "trial_count": 513
               },
               {
+                "id": "200-500",
                 "open_ended": false,
                 "bin_start": 200.0,
                 "bin_end": 500.0,
@@ -9398,6 +9434,7 @@
                 "trial_count": 585
               },
               {
+                "id": "500-1000",
                 "open_ended": false,
                 "bin_start": 500.0,
                 "bin_end": 1000.0,
@@ -9405,6 +9442,7 @@
                 "trial_count": 273
               },
               {
+                "id": "1000-2000",
                 "open_ended": false,
                 "bin_start": 1000.0,
                 "bin_end": 2000.0,
@@ -9412,6 +9450,7 @@
                 "trial_count": 123
               },
               {
+                "id": "2000-5000",
                 "open_ended": false,
                 "bin_start": 2000.0,
                 "bin_end": 5000.0,
@@ -9419,6 +9458,7 @@
                 "trial_count": 65
               },
               {
+                "id": "5000-10000",
                 "open_ended": false,
                 "bin_start": 5000.0,
                 "bin_end": 10000.0,
@@ -9426,6 +9466,7 @@
                 "trial_count": 32
               },
               {
+                "id": "10000-20000",
                 "open_ended": false,
                 "bin_start": 10000.0,
                 "bin_end": 20000.0,
@@ -9433,6 +9474,7 @@
                 "trial_count": 18
               },
               {
+                "id": "20000-50000",
                 "open_ended": true,
                 "bin_start": 20000.0,
                 "bin_end": 50000.0,
@@ -9735,7 +9777,8 @@
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28COMPLETED%29%29&query.cond=%28AREA%5BCondition%5D%28asthma%29+OR+AREA%5BConditionMeshTerm%5D%28asthma%29+OR+AREA%5BKeyword%5D%28asthma%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Status+Asthmaticus%22%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType%2CEnrollmentCount%2CEnrollmentType&pageSize=1000&pageToken=ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsYPet3fQZkA",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28COMPLETED%29%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28asthma%29+OR+AREA%5BConditionMeshTerm%5D%28asthma%29+OR+AREA%5BKeyword%5D%28asthma%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Status+Asthmaticus%22%29%29%29&query.cond=%28asthma%29&countTotal=true&fields=NCTId&pageSize=1",
         "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BOverallStatus%5D%28COMPLETED%29%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28asthma%29+OR+AREA%5BConditionMeshTerm%5D%28asthma%29+OR+AREA%5BKeyword%5D%28asthma%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Status+Asthmaticus%22%29%29%29&query.cond=%28asthma%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType%2CEnrollmentCount%2CEnrollmentType%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&sort=StartDate%3Adesc&pageSize=30&countTotal=true"
-      ]
+      ],
+      "answer_id": null
     }
   }
 }
