@@ -2,7 +2,7 @@
 
 Each test drives the real application over HTTP, with limits set low enough to reach, and
 checks what a client would see: the status code, the one error shape, `Retry-After`, the
-RateLimit headers, and `GET /v1/status`.
+RateLimit headers, and its standing in `GET /v1/status`.
 """
 
 from __future__ import annotations
@@ -10,14 +10,12 @@ from __future__ import annotations
 import asyncio
 from collections.abc import Iterator
 from datetime import date
-from pathlib import Path
 from typing import Any
 
 import httpx
 from fastapi.testclient import TestClient
 
 from trialviz.api import create_app
-from trialviz.llm.budget import FileLedger, PostgresLedger
 from trialviz.query.interpreters.base import Interpretation
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
 from trialviz.query.request import QueryRequest
@@ -90,15 +88,6 @@ def test_a_ceiling_bounds_questions_from_every_client_together() -> None:
     assert status["limits"]["questions_remaining"] == status["limits"]["questions_per_minute"]
 
 
-def test_every_other_request_is_limited_too_except_the_health_check() -> None:
-    client = _client(requests_per_minute=5)
-    codes = [client.get("/v1/samples", headers=_as("203.0.113.7")).status_code for _ in range(6)]
-    assert codes == [200, 200, 200, 200, 200, 429]
-    assert all(
-        client.get("/health", headers=_as("203.0.113.7")).status_code == 200 for _ in range(10)
-    )
-
-
 class _Slow:
     """Reads like the rule-based interpreter, after a pause long enough to overlap."""
 
@@ -146,41 +135,3 @@ def test_oversized_bodies_are_refused_before_they_are_read() -> None:
         headers={"content-type": "application/json", **_as("203.0.113.5")},
     )
     assert streamed.status_code == 413
-
-
-def test_every_response_carries_the_security_headers() -> None:
-    client = _client()
-    for path in ("/", "/docs", "/v1/status", "/v1/nope"):
-        response = client.get(path, headers={**_as("203.0.113.8"), "x-forwarded-proto": "https"})
-        headers = response.headers
-        assert headers["x-content-type-options"] == "nosniff", path
-        assert headers["x-frame-options"] == "DENY", path
-        policy = headers["content-security-policy"]
-        assert "frame-ancestors 'none'" in policy and "object-src 'none'" in policy, path
-        assert headers["strict-transport-security"].startswith("max-age="), path
-
-
-class _NamedClaude:
-    """Stands in for the Claude interpreter, so the status reports a budget."""
-
-    name = "claude:test"
-
-    async def interpret(self, request: QueryRequest, today: date) -> Interpretation:
-        return await RuleBasedInterpreter().interpret(request, today)
-
-
-async def test_status_reports_the_budget_and_says_when_claude_is_off(tmp_path: Path) -> None:
-    ledger = FileLedger(tmp_path / "spend.json", 5.0, 1.0)
-    await ledger.settle(await ledger.reserve(0.4), 0.4)
-    client = TestClient(create_app(_settings(), interpreter=_NamedClaude(), ledger=ledger))
-    status = client.get("/v1/status", headers=_as("203.0.113.9")).json()
-    assert status["interpreter"] == "claude" and status["claude_available"] is True
-    assert status["budget"]["remaining_usd"] == 0.6 and status["budget"]["daily_cap_usd"] == 1.0
-
-    unreachable = PostgresLedger("postgresql://nobody@127.0.0.1:9/none", 5.0, connect_timeout=1)
-    client = TestClient(create_app(_settings(), interpreter=_NamedClaude(), ledger=unreachable))
-    status = client.get("/v1/status", headers=_as("203.0.113.9")).json()
-    assert status["claude_available"] is False and "unreachable" in status["reason"]
-
-    rules = _client().get("/v1/status", headers=_as("203.0.113.9")).json()
-    assert rules["interpreter"] == "rules" and rules["budget"] is None

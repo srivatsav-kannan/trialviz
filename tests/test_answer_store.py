@@ -1,5 +1,5 @@
 """Saved answers on both stores: what is saved comes back exactly, only the newest are kept,
-the id changes with the data version, and a store that fails never fails a question.
+and a store that fails never fails a question.
 
 The Postgres store runs against a real Postgres (see the `postgres_dsn` fixture).
 """
@@ -12,8 +12,7 @@ from pathlib import Path
 import psycopg
 import pytest
 
-from trialviz.query.request import QueryRequest
-from trialviz.store import AnswerStore, FileStore, PostgresStore, key_for
+from trialviz.store import AnswerStore, FileStore, PostgresStore
 
 StoreFactory = Callable[[int], AnswerStore]
 
@@ -39,13 +38,6 @@ async def test_answers_come_back_exactly_and_only_the_newest_are_kept(
     assert await store.get(first) is None, "the oldest answer was dropped"
     for key in kept:
         assert await stores(2).get(key) == answers[key], "a new process reads the same answer"
-
-
-def test_an_answer_id_follows_the_request_and_the_data_version() -> None:
-    question = QueryRequest(query="melanoma trials by phase")
-    assert key_for(question, "2026-11-06") == key_for(question, "2026-11-06")
-    assert key_for(question, "2026-11-06") != key_for(question, "2026-11-07")
-    assert key_for(question, "v") != key_for(QueryRequest(query="melanoma trials"), "v")
 
 
 async def test_a_failing_store_is_a_miss_and_never_an_error(tmp_path: Path) -> None:

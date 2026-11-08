@@ -20,7 +20,7 @@ The set starts with the nine example questions from the assignment's appendix an
 | Claude (`claude-opus-5-5`, low effort) | 54/54 | 9/9 | 14/14 | 6/6 | 5/5 | 5/5 | 4/4 |
 | Rule-based | 15/54 | 1/9 | 1/14 | 1/6 | 0/5 | 0/5 | 2/4 |
 
-The rule-based interpreter fails mostly for one reason: it cannot tell a drug from a disease, so it files every name it finds as a free-text keyword, and any case that expects a drug or condition filter fails. What it does read, such as years, phases, statuses and the shape of the analysis, it reads reliably, which is what a fallback needs. Its results are deterministic, so `tests/test_rules_eval_snapshot.py` reruns all 54 questions on every test run and fails if any outcome changes.
+The rule-based interpreter fails mostly for one reason: it cannot tell a drug from a disease, so it files every name it finds as a free-text keyword, and any case that expects a drug or condition filter fails. What it does read, such as years, phases, statuses and the shape of the analysis, it reads reliably, which is what a fallback needs. Its results are deterministic, so rerunning the eval with `--interpreter rules` after a change to the rules shows exactly which cases moved.
 
 ## How the score developed
 

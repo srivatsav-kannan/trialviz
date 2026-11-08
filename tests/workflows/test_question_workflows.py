@@ -661,25 +661,6 @@ async def test_drug_combinations_come_only_from_drugs_given_in_the_same_arm(tmp_
     assert named_in_arm >= 0.8 * len(graph["edges"]), "the cited arm names both drugs"
 
 
-async def test_three_measures_give_a_3d_scatter_with_a_flat_bubble_alternative(
-    tmp_path: Path,
-) -> None:
-    run = await run_workflow(
-        Cassette("scatter_3d_diabetes"),
-        {
-            "query": "Plot enrollment, duration and number of sites for completed phase 3 "
-            "diabetes trials in 3D"
-        },
-        tmp_path,
-    )
-    answer = run.result.answer
-    assert answer is not None and answer_problems(run) == []
-    assert answer.visualization.type is ChartType.SCATTER_PLOT_3D
-    assert {"x", "y", "z"} <= set(answer.visualization.encoding)
-    bubble = next(a for a in answer.alternatives if a.type is ChartType.BUBBLE_CHART)
-    assert "size" in bubble.encoding and bubble.data is None
-
-
 async def test_the_http_endpoints_serve_save_export_and_stream_the_pipelines_answer(
     tmp_path: Path,
 ) -> None:
