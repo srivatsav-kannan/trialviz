@@ -5,10 +5,10 @@ clarification) is right, not merely the interpreter's raw guess. Expectations ar
 on purpose: a case names the slots that matter and those that must stay empty, and says
 nothing about the rest.
 
-    uv run python -m evals.interpretation.run --interpreter rules
-    uv run python -m evals.interpretation.run --interpreter claude   # spends against the cap
+    uv run python -m evals.run --interpreter rules
+    uv run python -m evals.run --interpreter claude   # spends against the cap
 
-Results are written to evals/interpretation/results/<interpreter>.json.
+Results are written to evals/results/<interpreter>.json.
 """
 
 from __future__ import annotations

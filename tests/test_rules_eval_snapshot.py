@@ -1,4 +1,4 @@
-"""The 49 eval questions through the deterministic path: rule-based interpreter, resolver.
+"""The 54 eval questions through the deterministic path: rule-based interpreter, resolver.
 
 The rule-based interpreter and the resolver are fully deterministic, so their eval results
 are a snapshot. This test reruns every question offline and fails if any case changes
@@ -12,10 +12,10 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from evals.interpretation.run import run
+from evals.run import run
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
 
-EVAL = Path(__file__).parent.parent / "evals" / "interpretation"
+EVAL = Path(__file__).parent.parent / "evals"
 
 
 async def test_rule_based_eval_outcomes_match_the_committed_snapshot() -> None:
@@ -27,5 +27,5 @@ async def test_rule_based_eval_outcomes_match_the_committed_snapshot() -> None:
     changed = [r["id"] for r in results if expected.get(r["id"]) != (r["passed"], r["outcome"])]
     assert changed == [], (
         f"outcomes changed for {changed}. If intended, regenerate with "
-        "`uv run python -m evals.interpretation.run --interpreter rules`."
+        "`uv run python -m evals.run --interpreter rules`."
     )

@@ -1,10 +1,10 @@
 # Visualization
 
-How the chart is chosen, and what a frontend receives. Every answer has one recommended chart, the reason for it, and every other chart that can draw the same data, each with its reason. Charts that cannot draw the data are listed too, with why.
+This document covers how the chart for an answer is chosen and what a frontend receives in order to draw it. Every answer comes with one recommended chart and the reason for it, every other chart that can draw the same data with its own reason, and the charts that were ruled out along with the rule each one failed.
 
-## The catalog
+## The chart catalog
 
-The shape of the data decides which charts can draw it:
+The shape of the aggregated data ([aggregation.md](aggregation.md#dataset-shapes)) decides which of the 22 chart types can draw it.
 
 | Data shape | Charts |
 | --- | --- |
@@ -20,35 +20,19 @@ The shape of the data decides which charts can draw it:
 
 ## How the chart is chosen
 
-The choice is made by rules, never by a model, so the same data always gets the same chart (`visualization/recommend.py`):
+The choice is made by fixed rules in `visualization/recommend.py`, so the same data always gets the same chart and the language model plays no part in it.
 
-1. **Shape.** The dataset's shape selects the candidate charts.
-2. **Fit.** Each candidate checks facts about the actual data, and either fits or says why not:
-   - A donut needs 2 to 5 groups that are shares of one whole. Countries, drugs and conditions never qualify, since a trial can be in several.
-   - A line needs at least 3 periods and at most 8 series.
-   - Grouped bars need 5 or fewer bars per group. The smaller dimension becomes the bars within each group, so Keytruda vs Opdivo by phase shows phases on the axis with two bars each.
-   - Stacked and normalized bars need each trial in exactly one segment.
-   - A choropleth needs countries.
-   - A box plot needs at least 2 groups with 5 or more values.
-   - A scatter needs at least 5 trials with every measure.
-   - A timeline shows at most 60 trials.
-3. **Score.** Fitting candidates are scored on documented preferences, and the highest wins:
-   - Lines for change over time.
-   - Sorted horizontal bars for rankings and long names, because lengths compare more precisely than colors or areas.
-   - Natural order for phases and years.
-   - A world map when there are many countries and the question is not a ranking.
-   - Shares (normalized bars) when compared groups differ in size by more than 2 to 1.
-   - A heatmap when there are too many combinations for bars.
-   - A 3D network when a network is too dense to read flat.
-4. **Requests.** A chart named by the caller (`presentation.chart_type`), or by the question ("show it as a map"), wins whenever it fits. When it does not, the recommendation stands and a note says why: "A donut chart was requested, but a donut needs groups that are shares of one whole, but a trial can be in several of these groups, so a horizontal bar chart is shown instead."
+The dataset's shape first selects the candidate charts from the catalog above. Each candidate then checks facts about the actual data and either fits or states why it does not. A donut needs 2 to 5 groups that are shares of one whole, which rules out countries, drugs and conditions, since a trial can belong to several of those. A line needs at least 3 periods and at most 8 series. Grouped bars need 5 or fewer bars per group, and the smaller dimension becomes the bars within each group, so Keytruda vs Opdivo by phase puts the phases on the axis with two bars at each. Stacked and normalized bars need every trial to sit in exactly one segment, a choropleth needs countries, a box plot needs at least 2 groups with 5 or more values each, a scatter plot needs at least 5 trials that have every measure, and a timeline shows at most 60 trials.
 
-`meta.chart_choice` reports the outcome: the recommended chart and reason, the alternatives with theirs, and the charts ruled out with the rule each failed.
+Candidates that fit are scored on a short list of documented preferences, and the highest score wins. Lines are preferred for change over time. Sorted horizontal bars are preferred for rankings and long names, because lengths compare more precisely than colors or areas. Phases and years keep their natural order, a world map is preferred when there are many countries and the question is not a ranking, normalized bars are preferred when the compared groups differ in size by more than 2 to 1, a heatmap takes over when there are too many combinations for bars, and a 3D network is preferred when a network has more than 80 nodes.
 
-Example: "Which countries have the most recruiting melanoma trials?" gives counts over 53 countries. The donut is ruled out (a trial can be in several countries), and the bar chart is ruled out (more than 30 bars). The question asks for a ranking, so the horizontal bar chart scores highest. The alternatives are a choropleth map, a treemap and a table.
+A chart that the caller names in `presentation.chart_type`, or that the question asks for ("show it as a map"), wins whenever it fits. When it does not fit, the recommendation stands and a note explains which rule the requested chart failed.
+
+`meta.chart_choice` reports the outcome in full. For "Which countries have the most recruiting melanoma trials?", the data holds counts for 53 countries. The donut is ruled out because a trial can be in several countries, and the plain bar chart is ruled out because more than 30 bars cannot be read side by side. The question asks for a ranking, so the horizontal bar chart scores highest, and the alternatives are a choropleth map, a treemap and a table.
 
 ## What a frontend receives
 
-An abridged excerpt of [the assignment example's actual response](../examples/01_assignment_example.json):
+This is an abridged excerpt of [the assignment example's actual response](../examples/01_assignment_example.json):
 
 ```json
 {
@@ -73,32 +57,24 @@ An abridged excerpt of [the assignment example's actual response](../examples/01
 }
 ```
 
-- **`encoding`** maps visual channels to row fields, with a type (nominal, ordinal, quantitative, temporal), a title, and where it matters a sort order, a stack mode, or `"scale": "symlog"` for a heavily skewed measure. A symmetric log scale behaves like a log scale for large values but stays linear near zero, so trials that report zero enrollment are still drawn. The Vega-Lite spec labels such an axis 0, 1, 2, 5, 10, 20, 50 and so on, since Vega's default ticks on it are linear and leave the small values unlabeled.
-- **`data`** holds the rows. Alternatives that draw the same rows set `data` to null and reuse the recommended chart's rows, so switching views needs no request. An alternative with a different row shape (bins next to box statistics) carries its own.
-- **`options`** carry chart-specific details: `display_limit` when a bar chart has too many bars to show at once (the data stays complete), the TopoJSON source for maps, the network relation, and the Sankey stages.
-- **`vega_lite`** is a complete Vega-Lite spec, generated mechanically from the encoding, for every chart Vega-Lite can draw. Citations and trial ID lists are left out of the embedded data to keep it small, and stay in `data`. Treemaps, 3D charts, networks and Sankey diagrams have no Vega-Lite form and get null.
+`encoding` maps each visual channel to a row field, with a type (nominal, ordinal, quantitative or temporal), a title, and where it matters a sort order, a stack mode, or `"scale": "symlog"` for a heavily skewed measure. A symmetric log scale behaves like a log scale for large values and stays linear near zero, so trials that report zero enrollment are still drawn. The generated Vega-Lite spec labels such an axis 0, 1, 2, 5, 10, 20, 50 and so on, because Vega's default ticks on a symlog axis are linear and leave the small values unlabeled.
 
-Row formats by chart family are listed in [api.md](api.md#rows-by-chart).
+`data` holds the rows. An alternative that draws the same rows sets its own `data` to null and reuses the recommended chart's rows, so a frontend can switch views without another request, while an alternative with a different row shape (histogram bins next to box statistics, for example) carries its own rows. The row format for each chart family is listed in [api.md](api.md#rows-by-chart).
 
-## 3D
+`options` carries chart-specific details: `display_limit` when a bar chart has more bars than fit at once (the data itself stays complete), the TopoJSON source for maps, the relation a network draws, and the stages of a Sankey diagram.
 
-Networks and scatter plots have 3D variants:
+`vega_lite` is a complete Vega-Lite spec, generated mechanically from the encoding, for every chart that Vega-Lite can draw. Citations and trial ID lists are left out of the embedded data to keep it small, and they remain in `data`. Treemaps, 3D charts, networks and Sankey diagrams have no Vega-Lite form, so their `vega_lite` is null.
 
-- **`network_graph_3d`** shares the 2D network's nodes and edges. Every node carries a precomputed 2D position (`x`, `y`) and 3D position (`x3`, `y3`, `z3`) from a deterministic force-directed layout, scaled to -1..1. A frontend with its own layout engine can ignore them, and one without (such as a plain three.js scene) can draw the graph directly. The 3D view is recommended over the flat one when the network has more than 80 nodes.
-- **`scatter_plot_3d`** is offered when the question has a third measure (`analysis.z`). The flat alternative is a bubble chart that shows the third measure as point size.
+## 3D charts
 
-## The demo UI
+`network_graph_3d` shares the nodes and edges of the flat network. Every node carries a precomputed 2D position (`x`, `y`) and 3D position (`x3`, `y3`, `z3`) from a deterministic force-directed layout scaled to the range -1 to 1, which means a frontend with its own layout engine can ignore them and one without (a plain three.js scene, say) can draw the graph directly. The 3D view is recommended over the flat one when the network has more than 80 nodes.
 
-The service serves a single page at `/` (`src/trialviz/ui/`) that calls `/v1/query` and draws every chart type. It is a reference consumer of the response, so it decides nothing about the data:
-
-- Every view in `visualization` and `alternatives` becomes a tab, with the backend's reason under it. Switching tabs makes no request.
-- Charts with a `vega_lite` spec are drawn by vega-embed from that spec, with only the theme and size changed. Treemaps, Sankey diagrams and 3D scatter plots use Plotly, and networks use force-graph and 3d-force-graph at the positions the backend computed. The 3D libraries load only when a 3D view is opened.
-- Selecting a bar, point, cell, node, edge or table row shows that datum's trials and citations: the registry field and the exact value each trial was counted by, linked to the record.
-- "How the question was read" lists the resolved plan with the source of each value, and the notes, mention-only trials and registry requests follow.
-- The optional fields map to the request's shorthands, so they are binding in the same way. Clarifications and errors are shown as the API returns them.
-
-It is plain HTML, CSS and one JavaScript module with no build step, follows the system's light or dark mode, and works at phone width.
+`scatter_plot_3d` is offered when the question names a third measure (`analysis.z`), and its flat alternative is a bubble chart that shows the third measure as point size.
 
 ## Titles
 
-Titles are written from the plan, deterministically: what was counted and how it was grouped, such as "Recruiting melanoma trials by country" or "Keytruda vs Opdivo: trials by phase". Filters that do not fit the title (countries, years, sponsor and study types) go in the subtitle, so no applied constraint goes unstated.
+Titles are written deterministically from the plan, stating what was counted and how it was grouped, as in "Recruiting melanoma trials by country" or "Keytruda vs Opdivo: trials by phase". Filters that do not fit naturally in the title (countries, years, sponsor and study types) go in the subtitle, so every applied constraint is stated somewhere on the chart.
+
+## The demo UI
+
+The service also serves a single page at `/`, from `src/trialviz/ui/`, which shows what a frontend can build from the response. It renders saved sample answers and live questions, draws whichever view is selected using the response's own specs and rows, and shows the citations behind any datum that is selected. It makes no decisions about the data, since the chart choice, the reasons and the numbers all come from the backend. The page is plain HTML, CSS and JavaScript with no build step.

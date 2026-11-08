@@ -1,5 +1,7 @@
 # Architecture
 
+This page describes how a request moves through the service, where the language model sits, and how the code is laid out. Read it first if you want to change the service or judge its design, since the other docs each zoom in on one stage.
+
 ## The pipeline
 
 ```
@@ -7,82 +9,82 @@ QueryRequest ──► Interpreter ──► Resolver ──► Plan ──► R
                  (proposes)      (decides)             (fetches)      (groups, cites)  (recommends)
 ```
 
-Each stage hands the next a typed object, and each object is validated where it is created:
+Every stage hands the next one a typed object that is validated where it is created, so a stage can rely on what it receives without checking it again.
 
-| Stage | Input | Output | Trust |
+| Stage | Takes | Produces | How far it is trusted |
 | --- | --- | --- | --- |
-| Request boundary | JSON body | `QueryRequest` | Caller input, held to a closed schema. Invalid input is a 422. |
-| Interpreter | `QueryRequest` | `Interpretation` (a proposal) | Untrusted. Shaped like a partial plan, but never typed as one. |
-| Resolver | request + proposal | `ResolvedQuery` or `ClarificationNeeded` | Produces a complete `Plan` with provenance, or says what is missing. |
-| Retriever | `Plan` | `Retrieval`: raw records per cohort, exact totals, request URLs | Deterministic. Fixed translation table and fetch rules. |
-| Aggregator | `Plan` + `Retrieval` | a dataset in one of nine shapes, every datum cited, plus notes | Deterministic. Exact registry counts for capped result sets. |
-| Visualizer | dataset | recommended chart, alternatives, specs, Vega-Lite | Deterministic rules. A requested chart wins when it fits. |
+| Request boundary | The JSON body | `QueryRequest` | Caller input held to a closed schema, where anything invalid is a 422 |
+| Interpreter | `QueryRequest` | `Interpretation`, a proposal | Untrusted: it is shaped like a partial plan but is never typed as one |
+| Resolver | The request and the proposal | `ResolvedQuery` or `ClarificationNeeded` | Produces a complete `Plan` with the source of every value, or says what is missing |
+| Retriever | `Plan` | `Retrieval`: raw records per cohort, exact totals, and every request URL | Deterministic, following a fixed translation table and fetch rules |
+| Aggregator | `Plan` and `Retrieval` | A dataset in one of nine shapes, with every datum cited, plus notes | Deterministic, with exact registry counts when only part of a result set was fetched |
+| Visualizer | The dataset | A recommended chart, its alternatives, their specs and Vega-Lite | Deterministic rules, under which a requested chart wins whenever it can draw the data |
 
-## Where the language model sits, and why only there
+The stages are described in [query-resolution.md](query-resolution.md), [retrieval.md](retrieval.md), [aggregation.md](aggregation.md) and [visualization.md](visualization.md).
 
-The language model is used for the one step that genuinely needs language understanding: deciding that "Keytruda vs Opdivo since 2018" means two cohorts filtered by intervention, with a start-year bound. It is kept away from everything that can be computed, because a model that writes numbers can write wrong ones convincingly.
+## Where the language model sits
 
-Three things keep that step honest:
+The model handles the one step that needs language understanding, which is deciding that "Keytruda vs Opdivo since 2018" means two cohorts filtered by intervention with a lower bound on the start year. Everything that can be computed is computed by code, because a model that writes numbers can write wrong ones convincingly, and a reader has no way to tell.
 
-1. **A closed output shape.** Claude answers with slot assignments (`{"slot": "filters.phases", "values": ["PHASE3"]}`), enforced by structured output. The list of slot names is generated from the request models, so the model cannot propose a slot the system does not have.
-2. **Validation after the model.** Structured output guarantees the shape, not the meaning. Every proposed value is parsed by the same field validators that parse caller input, so "PHASE5" or "Korea" is dropped with a note.
-3. **Caller precedence enforced in code.** The model sees the caller's fields so it can resolve "this drug", but the merge that decides the final value ignores what the model did with them.
+Three properties keep that step honest. Claude answers with slot assignments such as `{"slot": "filters.phases", "values": ["PHASE3"]}`, enforced by structured output, and the list of slot names is generated from the request models so the model can only propose slots the system has. Every proposed value is then parsed by the same validators that parse caller input, since structured output guarantees the shape of an answer and says nothing about its meaning, which is how a proposed "PHASE5" or "Korea" gets dropped with a note. Finally, the model sees the caller's fields so that it can resolve phrases like "this drug", but the merge that decides each final value is code that ignores whatever the model did with those fields.
 
-A first version gave Claude one JSON object with a nullable field per slot. The API rejected it: two dozen nullable fields, repeated inside each comparison cohort, compiled into a grammar over the size limit. The assignment-list format replaced it. It is smaller, and the model writes only what the question actually settles.
+The slot-assignment format came from a failure. The first version asked Claude for one JSON object with a nullable field per slot, and the API rejected it, because two dozen nullable fields repeated inside each comparison cohort compiled into a grammar over the size limit. The list of assignments is smaller, and it has the side benefit that the model writes only what the question actually settles.
 
-## Interpreters are interchangeable
+## Interchangeable interpreters
 
-`Interpreter` is a protocol with one method. Two implementations exist:
+`Interpreter` is a protocol with a single method, and two implementations exist. `ClaudeInterpreter` reads the question with Claude under a hard spend cap, and `RuleBasedInterpreter` reads it with pattern matching, which is what runs without an API key, as the fallback, and as the baseline in the [evaluation](evaluation.md).
 
-- `ClaudeInterpreter`: reads the question with Claude under a hard spend cap.
-- `RuleBasedInterpreter`: pattern matching, used without an API key, as a fallback, and as the evaluation baseline.
-
-`FallbackInterpreter` chains them. When Claude is unavailable (no key, spend cap, refusal, outage, unreadable output), the next interpreter answers and the response carries a note naming the reason. The resolver cannot tell which interpreter produced a proposal, and the test suite depends on that. Every resolver test drives it with a scripted interpreter.
+`FallbackInterpreter` chains the two. When Claude cannot answer (no key, the spend cap, a refusal, an outage or unreadable output), the rule-based interpreter takes over and the response carries a note naming the reason. The resolver cannot tell which interpreter produced a proposal, and the tests depend on that property, since every resolver test drives it with a scripted interpreter.
 
 ## Package layout
 
 ```
 src/trialviz/
-  vocabulary/        canonical values and parsers (phases, statuses, countries, dimensions)
+  vocabulary/        canonical values and their parsers (phases, statuses, countries, dimensions)
   query/
     fields.py        reusable annotated field types
-    consistency.py   rules relating two slots, and value equivalence
+    consistency.py   rules that relate two slots, and when two values mean the same thing
     filters.py       Filters and Cohort
-    plan.py          the resolved plan and the per-kind analysis specs
-    request.py       the public request and the plan sections table
-    resolution.py    resolver outputs: provenance, notes, clarifications
+    plan.py          the resolved plan and the analysis spec for each kind
+    request.py       the public request and the table of plan sections
+    resolution.py    what the resolver returns: provenance, notes and clarifications
     resolver.py      the merge
-    interpreters/    the protocol, the fallback chain, rules, Claude
+    interpreters/    the protocol, the fallback chain, the rules and Claude
   retrieval/
-    essie.py         building query expressions, and making names safe to search
-    translate.py     plan filters to API parameters, and which fields to request
-    client.py        HTTP: paging, retries, rate limit, version-keyed cache
-    retriever.py     the fetch rules: cohorts, counts, record limits, truncation
+    essie.py         building registry query expressions and making names safe to search
+    translate.py     mapping plan filters to API parameters and choosing which fields to request
+    client.py        HTTP, with paging, retries, the rate limit and a version-keyed cache
+    retriever.py     the fetch rules for cohorts, counts, record limits and truncation
   aggregation/
-    evidence.py      reading record fields with citations, and following citation paths
-    extract.py       what each dimension and measure means for one trial
+    evidence.py      reading record fields with citations, and following citation paths back
+    extract.py       what each dimension and measure means for a single trial
     datasets.py      the nine dataset shapes
     build.py         building a dataset from a plan and its records
-    exact.py         exact registry counts for capped result sets
+    exact.py         exact registry counts for result sets that were only partly fetched
     mentions.py      quoting where mention-only trials mention their drug or condition
   visualization/
-    recommend.py     the chart catalog, fit rules, scoring, and the recommendation
+    recommend.py     the chart catalog, fit rules, scoring and the recommendation
     spec.py          rows, encodings and the visualization spec models
     vega.py          Vega-Lite output
     layout.py        deterministic 2D and 3D network layout
     titles.py        titles and subtitles written from the plan
     geo.py           ISO codes for the registry's country names
   answer.py          the final answer model and its assembly
-  pipeline.py        sequencing the stages
+  pipeline.py        the sequence of stages
   llm/budget.py      the spend ledger and price table
   settings.py        configuration
   api.py             HTTP, and the demo UI at /
-  ui/                the demo UI: one HTML page, a stylesheet and a JavaScript module
+  ui/                the demo UI, which is one HTML page, a stylesheet and a JavaScript module
 ```
 
-## Extending it
+## Extending the service
 
-- **A new filter**: add a field to `Filters`. Request validation, the plan, the resolver, and the Claude schema pick it up automatically. Add a line to `SLOT_GUIDE` in the Claude interpreter (a test fails until you do) and a mapping in `retrieval/translate.py`.
-- **A new grouping dimension**: add it to `Dimension` with its label and whether it is multi-valued, and list the record fields it reads in `DIMENSION_FIELDS`. Every analysis that takes a dimension accepts it.
-- **A new analysis kind**: add a spec class to `plan.py` and an entry in `ANALYSIS_SPECS`. Kind derivation, parameter checks and missing-parameter clarifications all read that table. Then add a dataset builder in `aggregation/build.py`.
-- **A new chart**: add it to `ChartType`, add a `Candidate` with its fit rule, score and reason in `visualization/recommend.py`, and its encoding in `visualization/spec.py`. It is then recommended or offered whenever its data shape appears.
+Most extensions touch one table and are picked up everywhere else automatically.
+
+A new filter is a field on `Filters`, which request validation, the plan, the resolver and the Claude schema all read. It also needs a line in `SLOT_GUIDE` in the Claude interpreter (the module refuses to import until the guide and the slot list agree) and a mapping in `retrieval/translate.py`.
+
+A new grouping dimension is a member of `Dimension`, with its label and whether a trial can hold several values of it, plus the record fields it reads in `DIMENSION_FIELDS` in `retrieval/translate.py`. Every analysis that takes a dimension then accepts it.
+
+A new analysis kind is a spec class in `plan.py` and an entry in `ANALYSIS_SPECS`, the table that kind derivation, parameter checks and missing-parameter clarifications all read, followed by a dataset builder in `aggregation/build.py`.
+
+A new chart is a member of `ChartType`, a `Candidate` in `visualization/recommend.py` with its fit rule, score and reason, and its encoding in `visualization/spec.py`, after which it is recommended or offered whenever its data shape appears.
