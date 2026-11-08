@@ -8,7 +8,8 @@ This page lists every endpoint, request field and response field, with the value
 | --- | --- |
 | `POST /v1/query` | Answers a question with a recommended visualization, alternative views of the same data, and citations to the registry records behind every number. It returns either an [answer](#answer) or a [clarification](#needs_clarification), told apart by `status`. |
 | `POST /v1/interpret` | Takes the same request and returns the resolved plan, or what is needed to resolve it, without fetching any data, so a caller can see exactly how a question was understood before anything runs. |
-| `GET /health` | Returns `{"status": "ok"}`. |
+| `GET /health` | Returns `{"status": "ok"}`. It is never rate limited, so a host can poll it. |
+| `GET /v1/status` | Reports whether Claude or the rules read questions, how much of the language-model budget is left, and how many questions you may still ask. See [Limits](#limits). |
 | `GET /`, `GET /samples` | Serve the demo UI's two pages, asking questions and browsing saved answers. Their files live under `/ui`. |
 | `GET /docs` | Serves the interactive API reference. |
 | `GET /v1/samples` | Lists the saved sample answers in `examples/` with each one's request, title, chart type and totals. The demo UI's samples page reads it. |
@@ -227,7 +228,42 @@ Every other failure uses the same envelope with an empty `details` list:
 | 404 | `not_found` | There is nothing at the path |
 | 404 | `sample_not_found` | No saved sample has that name |
 | 405 | `method_not_allowed` | The path does not accept that HTTP method |
+| 413 | `request_too_large` | The request body is larger than `MAX_BODY_BYTES` (16 KB by default) |
+| 429 | `rate_limited` | The client, or all clients together, asked too many questions or made too many requests; `Retry-After` gives the seconds to wait |
 | 500 | `internal_error` | The service failed unexpectedly |
 | 502 | `registry_rejected_query` | ClinicalTrials.gov refused a query it was sent |
 | 503 | `registry_unavailable` | ClinicalTrials.gov could not be reached after four attempts |
+| 503 | `busy` | The service is already answering as many questions as it allows at once; `Retry-After` says when to try again |
 | 504 | `answer_timeout` | The answer needed more registry time than `ANSWER_DEADLINE_SECONDS` (180 by default) allows |
+
+## Limits
+
+The service protects itself and its language-model budget before doing any work on a request. Questions, meaning `POST /v1/query` and `POST /v1/interpret`, are limited per client to 10 a minute and 60 an hour, and to 600 an hour across all clients, since each one can call the model and make dozens of registry requests. Every other request is limited to 120 a minute per client, except `GET /health`. Only four questions are answered at once, and a fifth gets a 503 to retry shortly rather than waiting behind the others. Request bodies larger than 16 KB are refused while they are being read. Every limit can be changed through the settings in the README.
+
+Each question's response carries three headers that say where the client stands against its tightest limit:
+
+| Header | Meaning |
+| --- | --- |
+| `RateLimit-Limit` | Questions allowed in the window |
+| `RateLimit-Remaining` | Questions left in it |
+| `RateLimit-Reset` | Seconds until another question frees up |
+
+A refused request carries `Retry-After` instead. Behind a proxy, the client is identified by the address the proxy added to `X-Forwarded-For` (`TRUSTED_PROXY_HOPS`), so writing other addresses into that header does not earn a fresh quota.
+
+The language-model budget has a total cap and an optional daily cap. Each call sets aside its worst-case cost before it is made and settles to the real cost afterwards, so concurrent calls cannot jointly cross a cap. On a deployed service the running total is kept in Postgres (`DATABASE_URL`), shared by every process and kept across restarts, and a hold left by a process that died mid-call is charged in full after ten minutes. If the database cannot be reached, the model is not called and the question is read by rules. `GET /v1/status` returns:
+
+```json
+{
+  "interpreter": "claude",
+  "claude_available": true,
+  "reason": null,
+  "budget": { "cap_usd": 5.0, "daily_cap_usd": 1.0, "spent_usd": 0.42, "spent_today_usd": 0.12, "remaining_usd": 0.88 },
+  "limits": {
+    "questions_per_minute": 10, "questions_per_hour": 60, "questions_remaining": 9, "resets_in_seconds": 51,
+    "answers_in_progress": 0, "max_answers_in_progress": 4, "max_body_bytes": 16384
+  },
+  "client": "203.0.113.7"
+}
+```
+
+Every response also carries security headers: a content security policy that lets the pages load scripts only from this service and one CDN and forbids framing, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: no-referrer`, and `Strict-Transport-Security` when served over HTTPS.

@@ -73,7 +73,8 @@ src/trialviz/
     geo.py           ISO codes for the registry's country names
   answer.py          the final answer model and its assembly
   pipeline.py        the sequence of stages, the answer's request log and its registry deadline
-  llm/budget.py      the spend ledger and price table
+  llm/budget.py      the spend caps: a file ledger for local runs, a Postgres one when deployed
+  limits.py          rate limits, the cap on answers in progress, body size, security headers
   settings.py        configuration
   api.py             HTTP routes, error handling, and the pages at /, /samples and /docs
   openapi.py         the API reference's overview, request and response examples, and error models

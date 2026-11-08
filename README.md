@@ -2,7 +2,7 @@
 
 trialviz answers questions about clinical trials with charts that a frontend can draw directly, using data from the [ClinicalTrials.gov API](https://clinicaltrials.gov/data-api/api). You ask a question in plain English, optionally with structured fields such as a drug or a phase, and get back a recommended chart with the reason it was chosen, the other charts that could show the same data, and a citation for every number that points to the trial record and the exact value it was counted from.
 
-The service runs locally. Its home page at `http://localhost:8000` asks questions, `/samples` opens five saved answers without spending anything, and `/docs` is the API reference.
+A live instance runs at **https://trialviz.onrender.com**, on Render's free plan, so the first visit after a quiet spell takes about a minute to wake. Its home page asks questions, [`/samples`](https://trialviz.onrender.com/samples) opens five saved answers without spending anything, and [`/docs`](https://trialviz.onrender.com/docs) is the API reference. The same service runs locally with the steps below.
 
 ## Running it
 
@@ -101,6 +101,10 @@ How many requests a question becomes follows fixed rules: one query per group be
 
 A drug or condition has to appear in the fields where a trial names its interventions or conditions. The registry's default search also reads descriptions, and in recorded queries about one in ten "Keytruda" trials only listed pembrolizumab as one allowed option among several. Searching the naming fields raised precision from about 90 percent to over 99 percent, at the cost of 3 to 15 percent of matches, and the trials left out are still reported in every answer as mentions, with quoted examples. Names of several words are searched as phrases, so that "type 1 diabetes" no longer matches a type 2 trial that happens to have the keyword "phase 1". A condition also includes the narrower MeSH terms filed under it, which the registry cannot search for directly, so "lung cancer" counts trials filed only under "Carcinoma, Non-Small-Cell Lung". [docs/retrieval.md](docs/retrieval.md) covers the measurements behind these choices.
 
+### Protecting the service
+
+Every question can call the language model and make dozens of registry requests, so the service limits them before doing any work: per client each minute and hour, across all clients each hour, and to a few answered at once, with a `Retry-After` on every refusal and `GET /v1/status` showing where a client stands. Spending on Claude has a total and a daily cap, and each call sets aside its worst-case cost before it is made. On the deployed service the running total lives in Postgres, so the caps survive restarts, and if that database cannot be reached the model is simply not called. [docs/api.md](docs/api.md#limits) lists every limit.
+
 ### Citations and counts
 
 A citation shows why a trial belongs to a particular data point: its phase for a phase bar, the matching site for a country bar, the treatment arm that gives two drugs together for a combination. When more than 10,000 trials match, each bar is counted by the registry itself with a query that defines the group exactly as the chart does, so the bars are exact even though only part of the data was downloaded. For breast cancer by status, the bars add up to the registry's total of 16,344. A chart that cannot be counted that way is marked as an estimate throughout, since mixing exact and estimated bars would mislead. [docs/aggregation.md](docs/aggregation.md) describes the groups and the counting.
@@ -114,7 +118,7 @@ TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records Claude and registr
 uv run python -m evals.run --interpreter claude  # scores interpretation, about $0.40 a run
 ```
 
-Most of the 36 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries, and every count matched. [docs/testing.md](docs/testing.md) describes each test.
+Most of the 48 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries, and every count matched. [docs/testing.md](docs/testing.md) describes each test.
 
 Interpretation is measured on 54 labeled questions, scored on the final plan. Claude (`claude-opus-5-5` at low effort) gets all 54 right and the rule-based interpreter gets 15, mostly because it cannot tell drugs from diseases. The questions and the prompt were written together, so [docs/evaluation.md](docs/evaluation.md) explains how far that score can be trusted.
 
@@ -129,12 +133,20 @@ Settings are read from the environment or from `.env`.
 | `INTERPRETER_EFFORT` | `low` | Reasoning effort (`low`, `medium` or `high`) |
 | `INTERPRETER_MAX_TOKENS` | `8000` | Longest answer the model may give, which also bounds what each call sets aside |
 | `LLM_SPEND_CAP_USD` | `20` | Hard cap on total Claude spending |
-| `LLM_LEDGER_PATH` | `var/llm_spend.json` | Where spending is recorded |
+| `LLM_DAILY_CAP_USD` | unset | Optional cap on Claude spending per UTC day |
+| `DATABASE_URL` | unset | Postgres for the spend total, so the caps hold across restarts and processes; without it, spending is kept in `LLM_LEDGER_PATH` |
+| `LLM_LEDGER_PATH` | `var/llm_spend.json` | Where spending is recorded locally |
 | `CTGOV_REQUESTS_PER_MINUTE` | `50` | Spacing between registry requests |
 | `CTGOV_CACHE_DIR` | `var/cache/ctgov` | Registry response cache, disabled when set empty |
 | `RETRIEVAL_MAX_RECORDS` | `10000` | Most trials downloaded per query |
 | `CTGOV_TIMEOUT_SECONDS` | `30` | Timeout for each registry request |
 | `ANSWER_DEADLINE_SECONDS` | `180` | Longest one answer may spend on registry requests |
+| `QUESTIONS_PER_MINUTE`, `QUESTIONS_PER_HOUR` | `10`, `60` | Questions one client may ask |
+| `QUESTIONS_PER_HOUR_TOTAL` | `600` | Questions all clients together may ask per hour |
+| `REQUESTS_PER_MINUTE` | `120` | Other requests one client may make per minute |
+| `MAX_CONCURRENT_ANSWERS` | `4` | Questions answered at once |
+| `MAX_BODY_BYTES` | `16384` | Largest request body accepted |
+| `TRUSTED_PROXY_HOPS` | `0` | Proxies in front of the service, so clients are told apart by the address the proxy saw |
 
 ## Limitations
 
