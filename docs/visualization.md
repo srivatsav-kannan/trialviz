@@ -1,6 +1,6 @@
 # Visualization
 
-This document covers how the chart for an answer is chosen and what a frontend receives in order to draw it. Every answer comes with one recommended chart and the reason for it, every other chart that can draw the same data with its own reason, and the charts that were ruled out along with the rule each one failed.
+This page covers how the chart for an answer is chosen and what a frontend receives in order to draw it. Every answer comes with one recommended chart and the reason for it, every other chart that can draw the same data with its own reason, and the charts that were ruled out along with the rule each one failed.
 
 ## The chart catalog
 
@@ -22,9 +22,20 @@ The shape of the aggregated data ([aggregation.md](aggregation.md#dataset-shapes
 
 The choice is made by fixed rules in `visualization/recommend.py`, so the same data always gets the same chart and the language model plays no part in it.
 
-The dataset's shape first selects the candidate charts from the catalog above. Each candidate then checks facts about the actual data and either fits or states why it does not. A donut needs 2 to 5 groups that are shares of one whole, which rules out countries, drugs and conditions, since a trial can belong to several of those. A line needs at least 3 periods and at most 8 series. Grouped bars need 5 or fewer bars per group, and the smaller dimension becomes the bars within each group, so Keytruda vs Opdivo by phase puts the phases on the axis with two bars at each. Stacked and normalized bars need every trial to sit in exactly one segment, a choropleth needs countries, a box plot needs at least 2 groups with 5 or more values each, a scatter plot needs at least 5 trials that have every measure, and a timeline shows at most 60 trials.
+The dataset's shape first selects the candidate charts from the catalog above. Each candidate then checks the actual data and either fits or says why it does not:
 
-Candidates that fit are scored on a short list of documented preferences, and the highest score wins. Lines are preferred for change over time. Sorted horizontal bars are preferred for rankings and long names, because lengths compare more precisely than colors or areas. Phases and years keep their natural order, a world map is preferred when there are many countries and the question is not a ranking, normalized bars are preferred when the compared groups differ in size by more than 2 to 1, a heatmap takes over when there are too many combinations for bars, and a 3D network is preferred when a network has more than 80 nodes.
+| Chart | Fits when |
+| --- | --- |
+| Donut | There are 2 to 5 groups that are shares of one whole, which rules out countries, drugs, conditions, investigators and sites, since a trial can belong to several |
+| Line | There are at least 3 periods and at most 8 series |
+| Grouped bars | There are 5 or fewer bars per group; the smaller dimension becomes the bars within each group, so Keytruda vs Opdivo by phase puts phases on the axis with two bars at each |
+| Stacked and normalized bars | Every trial sits in exactly one segment |
+| Map | The groups are countries |
+| Box plot | At least 2 groups have 5 or more values each |
+| Scatter | At least 5 trials have every measure |
+| Timeline | There are at most 60 trials |
+
+Charts that fit are then scored on a few stated preferences, and the highest score wins. Lines are preferred for change over time, and sorted horizontal bars for rankings and long names, because lengths compare more precisely than colors or areas. Phases and years keep their natural order. A world map is preferred when there are many countries and the question is not a ranking, shares are preferred when compared groups differ in size by more than 2 to 1, a heatmap takes over when there are too many combinations for bars, and a 3D network is preferred above 80 nodes.
 
 A chart that the caller names in `presentation.chart_type`, or that the question asks for ("show it as a map"), wins whenever it fits. When it does not fit, the recommendation stands and a note explains which rule the requested chart failed.
 
@@ -57,7 +68,7 @@ This is an abridged excerpt of [the assignment example's actual response](../exa
 }
 ```
 
-`encoding` maps each visual channel to a row field, with a type (nominal, ordinal, quantitative or temporal), a title, and where it matters a sort order, a stack mode, or `"scale": "symlog"` for a heavily skewed measure. A symmetric log scale behaves like a log scale for large values and stays linear near zero, so trials that report zero enrollment are still drawn. The generated Vega-Lite spec labels such an axis 0, 1, 2, 5, 10, 20, 50 and so on, because Vega's default ticks on a symlog axis are linear and leave the small values unlabeled.
+`encoding` maps each visual channel to a row field, with a type (nominal, ordinal, quantitative or temporal), a title, and where it matters a sort order, a stack mode, or `"scale": "symlog"` for a heavily skewed measure such as enrollment. That scale behaves like a log scale for large values but stays linear near zero, so trials that enrolled no one are still drawn, and the generated Vega-Lite spec labels its axis 0, 1, 2, 5, 10, 20, 50 and so on so the small values are readable.
 
 `data` holds the rows. An alternative that draws the same rows sets its own `data` to null and reuses the recommended chart's rows, so a frontend can switch views without another request, while an alternative with a different row shape (histogram bins next to box statistics, for example) carries its own rows. The row format for each chart family is listed in [api.md](api.md#rows-by-chart).
 
@@ -67,7 +78,7 @@ This is an abridged excerpt of [the assignment example's actual response](../exa
 
 ## 3D charts
 
-`network_graph_3d` shares the nodes and edges of the flat network. Every node carries a precomputed 2D position (`x`, `y`) and 3D position (`x3`, `y3`, `z3`) from a deterministic force-directed layout scaled to the range -1 to 1, which means a frontend with its own layout engine can ignore them and one without (a plain three.js scene, say) can draw the graph directly. The 3D view is recommended over the flat one when the network has more than 80 nodes.
+`network_graph_3d` shares the nodes and edges of the flat network. Every node carries a precomputed position in 2D (`x`, `y`) and in 3D (`x3`, `y3`, `z3`), scaled to the range -1 to 1 and the same on every run, so a frontend with its own layout engine can ignore them and one without can draw the graph directly. The 3D view is recommended over the flat one when the network has more than 80 nodes.
 
 `scatter_plot_3d` is offered when the question names a third measure (`analysis.z`), and its flat alternative is a bubble chart that shows the third measure as point size.
 

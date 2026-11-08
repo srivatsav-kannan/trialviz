@@ -26,15 +26,15 @@ The stages are described in [query-resolution.md](query-resolution.md), [retriev
 
 The model handles the one step that needs language understanding, which is deciding that "Keytruda vs Opdivo since 2018" means two cohorts filtered by intervention with a lower bound on the start year. Everything that can be computed is computed by code, because a model that writes numbers can write wrong ones convincingly, and a reader has no way to tell.
 
-Three properties keep that step honest. Claude answers with slot assignments such as `{"slot": "filters.phases", "values": ["PHASE3"]}`, enforced by structured output, and the list of slot names is generated from the request models so the model can only propose slots the system has. Every proposed value is then parsed by the same validators that parse caller input, since structured output guarantees the shape of an answer and says nothing about its meaning, which is how a proposed "PHASE5" or "Korea" gets dropped with a note. Finally, the model sees the caller's fields so that it can resolve phrases like "this drug", but the merge that decides each final value is code that ignores whatever the model did with those fields.
+Three things keep that step honest. Claude answers in a fixed format, a list of slot assignments such as `{"slot": "filters.phases", "values": ["PHASE3"]}`, and the slot names it may use are generated from the request models, so it can only propose slots the system has. Every value it proposes is then checked by the same validators that check caller input, because a fixed format guarantees the shape of an answer but nothing about its meaning; that is how a proposed "PHASE5" or "Korea" is dropped with a note. And although the model sees the caller's fields, so that it can resolve phrases like "this drug", the code that decides each final value ignores whatever the model did with them.
 
-The slot-assignment format came from a failure. The first version asked Claude for one JSON object with a nullable field per slot, and the API rejected it, because two dozen nullable fields repeated inside each comparison cohort compiled into a grammar over the size limit. The list of assignments is smaller, and it has the side benefit that the model writes only what the question actually settles.
+The format came from a failure. The first version asked Claude for one object with an optional field for every slot, and the API rejected the schema as too large, because the fields were repeated inside every comparison cohort. A list of assignments is far smaller, and the model writes only what the question actually settles.
 
 ## Interchangeable interpreters
 
 `Interpreter` is a protocol with a single method, and two implementations exist. `ClaudeInterpreter` reads the question with Claude under a hard spend cap, and `RuleBasedInterpreter` reads it with pattern matching, which is what runs without an API key, as the fallback, and as the baseline in the [evaluation](evaluation.md).
 
-`FallbackInterpreter` chains the two. When Claude cannot answer (no key, the spend cap, a refusal, an outage, unreadable output or any unexpected error), the rule-based interpreter takes over and the response carries a note naming the reason. Each Claude call reserves its worst-case cost before it is made and settles the reservation on every way out of the call, so a failure can neither cross the cap nor leave part of it reserved. The resolver cannot tell which interpreter produced a proposal, and the tests depend on that property, since every resolver test drives it with a scripted interpreter.
+`FallbackInterpreter` chains the two. When Claude cannot answer, for lack of a key, the spend cap, an outage, unreadable output or any unexpected error, the rule-based interpreter takes over and the answer carries a note saying why. Each Claude call reserves its worst-case cost before it is made and releases the reservation however the call ends, so a failure can neither cross the cap nor leave part of it held. The resolver cannot tell which interpreter produced a proposal, which is also what lets its tests drive it with a scripted one.
 
 ## Package layout
 
@@ -87,7 +87,7 @@ Most extensions touch one table and are picked up everywhere else automatically.
 
 A new filter is a field on `Filters`, which request validation, the plan, the resolver and the Claude schema all read. It also needs a line in `SLOT_GUIDE` in the Claude interpreter (the module refuses to import until the guide and the slot list agree) and a mapping in `retrieval/translate.py`.
 
-A new grouping dimension is a member of `Dimension`, with its label and whether a trial can hold several values of it, plus the record fields it reads in `DIMENSION_FIELDS` in `retrieval/translate.py`. Every analysis that takes a dimension then accepts it.
+A new grouping dimension is a member of `Dimension`, with its label and whether a trial can hold several values of it, an extractor in `aggregation/extract.py` that reads its values from a trial record, and the record fields to fetch in `DIMENSION_FIELDS` in `retrieval/translate.py`. Every analysis that takes a dimension then accepts it, as investigators and sites showed when they were added.
 
 A new analysis kind is a spec class in `plan.py` and an entry in `ANALYSIS_SPECS`, the table that kind derivation, parameter checks and missing-parameter clarifications all read, followed by a dataset builder in `aggregation/build.py`.
 

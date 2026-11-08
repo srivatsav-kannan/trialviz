@@ -1,6 +1,6 @@
 # API reference
 
-This page lists every endpoint, request field and response field, with the values each one accepts. It is meant for anyone writing a client. The service also publishes an OpenAPI document at `/openapi.json`, generated from the same Pydantic models that validate requests, and renders it as an interactive reference at `/docs` with request examples, response examples cut from a saved answer, and a curl command for every endpoint. The overview, examples and error descriptions in that reference live in `src/trialviz/openapi.py`, and its request examples are validated against the request model when the service starts.
+This page lists every endpoint, request field and response field, with the values each one accepts, for anyone writing a client. The service also publishes an OpenAPI document at `/openapi.json`, generated from the same models that validate requests, and renders it as a reference at `/docs` with request examples, response examples taken from a saved answer, and a curl command for every endpoint. The text and examples of that reference live in `src/trialviz/openapi.py`, and its request examples are checked against the request model when the service starts, so they cannot drift from what the API accepts.
 
 ## Endpoints
 
@@ -66,9 +66,9 @@ A caller can set any subset of the analysis. `kind` picks the shape of the answe
 | `flow` | `stages` (2 or 3 dimensions) | | How trials move from one stage to the next |
 | `trial_list` | | | The individual trials, with their dates |
 
-The dimensions are `phase`, `status`, `sponsor_class`, `lead_sponsor`, `intervention`, `intervention_type`, `condition`, `country`, `study_type` and `start_year`, and the measures are `enrollment`, `duration_months` and `site_count`.
+The dimensions are `phase`, `status`, `sponsor_class`, `lead_sponsor`, `intervention`, `intervention_type`, `condition`, `country`, `investigator`, `site`, `study_type` and `start_year`, and the measures are `enrollment`, `duration_months` and `site_count`. An investigator is one of a trial's overall officials, and a site is a facility with its city and country ([aggregation.md](aggregation.md#grouping-trials)).
 
-A few checks apply to whatever subset is sent. `group_by` and `series_by` must differ, and so must `x`, `y` and `z`. Flow stages must be different dimensions that hold one value per trial, which rules out countries, drugs and conditions. A network can link a dimension to itself only when a trial can hold several values of it, so drugs can be linked to drugs while lead sponsors cannot be linked to lead sponsors. Each cohort needs a unique label and at least one filter, no two cohorts may have the same filters, and a cohort's filters apply on top of the shared `filters`.
+A few checks apply to whatever subset is sent. `group_by` and `series_by` must differ, and so must `x`, `y` and `z`. Flow stages must be different dimensions that hold one value per trial, which rules out countries, drugs, conditions, investigators and sites. A network can link a dimension to itself only when a trial can hold several values of it, so drugs can be linked to drugs while lead sponsors cannot be linked to lead sponsors. Each cohort needs a unique label and at least one filter, no two cohorts may have the same filters, and a cohort's filters apply on top of the shared `filters`.
 
 ### Presentation
 
@@ -99,7 +99,7 @@ Like every other slot, it can be set by the caller, inferred from the question (
 | `meta.plan`, `meta.provenance` | The resolved plan and the source of each value, described under [`resolved`](#resolved) |
 | `meta.notes` | Every decision a reader might otherwise misjudge, with the codes listed below |
 | `meta.chart_choice` | The recommended chart, the alternatives and the charts ruled out, each with a reason |
-| `meta.cohorts` | For each cohort, its `label`, the exact `total`, how many records were `fetched`, whether results describe only part of the matching trials (`truncated`, which is false for answers built from the registry's counts, such as a count or a comparison of totals, even though they fetch only the records they cite), and the number of mention-only trials |
+| `meta.cohorts` | For each cohort, its `label`, the exact `total`, how many records were `fetched`, `truncated` when the results describe only part of the matching trials, and the number of mention-only trials. An answer made of the registry's own counts, such as a count or a comparison of totals, fetches only the records it cites and is not truncated. |
 | `meta.mentions` | For each cohort with mention-only trials, their exact total, whether they were counted, the IDs of the trials fetched (up to 30 when they are not counted, all of them when they are), and quoted sentences as citations |
 | `meta.registry_requests` | Every ClinicalTrials.gov request made for the answer, including the lookups of MeSH terms under a condition and the exact counts |
 | `meta.data_version` | The registry's data timestamp at the time of answering |
