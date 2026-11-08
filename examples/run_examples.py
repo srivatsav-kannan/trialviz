@@ -75,6 +75,11 @@ def write_readme() -> None:
         "actual JSON each one produced. Regenerate with `uv run python -m examples.run_examples`.",
         "Because the registry updates daily, a rerun gives slightly different counts.",
         "",
+        "Claude's reading of a question can also differ between runs where the question allows",
+        "two readings. The network question has been read both as all myeloma trials started in",
+        "2024 and as only those with a drug intervention (117 trials instead of 186). Either way,",
+        "`meta.plan` and the subtitle state exactly which reading was used.",
+        "",
         "| Example | Recommended chart, and why | Alternatives | Trials |",
         "| --- | --- | --- | --- |",
     ]
