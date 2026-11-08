@@ -43,7 +43,10 @@ EXAMPLES: list[tuple[str, dict[str, Any]]] = [
         "04_myeloma_sponsor_drug_network",
         {
             "query": "Show a network of sponsors and drugs for multiple myeloma trials "
-            "that started in 2024"
+            "that started in 2024",
+            # Claude has read "drugs" both as a node type and as a filter on intervention
+            # type. The structured field pins the second reading, as a caller would.
+            "filters": {"intervention_types": ["DRUG"]},
         },
     ),
     (
