@@ -11,6 +11,7 @@ This page lists every endpoint, request field and response field, with the value
 | `POST /v1/query/stream` | Takes the same request and streams the answer as [server-sent events](#streaming-progress): progress while it is computed, then the answer itself. |
 | `GET /v1/answers/{answer_id}` | Reopens a [saved answer](#saved-answers-and-csv) by its `meta.answer_id`, without recomputing it, or returns a 404 once it has expired. |
 | `GET /v1/answers/{answer_id}/csv` | Downloads a saved answer's rows as CSV. |
+| `GET /v1/answers/{answer_id}/request` | Returns the request an answer was given for, kept long after the answer expires, with `answer_available` saying whether the answer itself can still be reopened. |
 | `POST /mcp` | The same answers as tools for AI agents, over the [Model Context Protocol](#ai-agents-over-mcp). |
 | `GET /health` | Returns `{"status": "ok"}`. It is never rate limited, so a host can poll it. |
 | `GET /v1/status` | Reports whether Claude or the rules read questions, how much of the language-model budget is left, and how many questions you may still ask. See [Limits](#limits). |
@@ -194,7 +195,7 @@ for (let chunk; !(chunk = await reader.read()).done; ) {
 
 ### Saved answers and CSV
 
-Every answer is saved under `meta.answer_id`, a hash of the request and the registry's data version, so the same request against the same data always has the same id. `GET /v1/answers/{answer_id}` reopens it without recomputing anything, which makes an answer shareable as a link, and asking the same question again returns the saved answer without calling the language model or the registry. A new registry data version, which arrives daily, gives new ids, so a saved answer is never served for data it was not computed from. The newest 1,000 answers are kept (`ANSWERS_KEPT`), in Postgres on a deployed service and in files locally, and a store that fails only means the answer is computed again.
+Every answer is saved under `meta.answer_id`, a hash of the request and the registry's data version, so the same request against the same data always has the same id. `GET /v1/answers/{answer_id}` reopens it without recomputing anything, which makes an answer shareable as a link, and asking the same question again returns the saved answer without calling the language model or the registry. A new registry data version, which arrives daily, gives new ids, so a saved answer is never served for data it was not computed from. The newest 1,000 answers are kept (`ANSWERS_KEPT`), in Postgres on a deployed service and in files locally, and a store that fails only means the answer is computed again. The request behind each answer, a few hundred bytes, is kept for the newest 100,000, so `GET /v1/answers/{answer_id}/request` can still say what an expired answer asked. Sending that request to `POST /v1/query` answers it again with today's registry data, which is a new answer with a new id, since the original counts cannot be recovered once the registry has moved on. An id is the first 80 bits of a SHA-256 hash, so two answers sharing one is not a practical concern.
 
 `GET /v1/answers/{answer_id}/csv` and `GET /v1/samples/{name}/csv` return the recommended chart's rows as CSV, with every field except citations and lists such as `nct_ids` joined by semicolons. A network or Sankey diagram has two tables, so `?part=links` (the default, with both ends' labels) or `?part=nodes` picks one. Text a spreadsheet would run as a formula is prefixed with an apostrophe, since titles and sponsor names are free text.
 
@@ -210,7 +211,7 @@ claude mcp add --transport http trialviz https://trialviz.onrender.com/mcp
 | --- | --- |
 | `ask` | Answers a request (the same body as `POST /v1/query`) and reports progress to clients that ask for it |
 | `interpret_question` | Returns the plan a request resolves to, as `POST /v1/interpret` does |
-| `get_answer` | Reopens a saved answer by its `answer_id`, compact by default or complete with `full` |
+| `get_answer` | Reopens a saved answer by its `answer_id`, compact by default or complete with `full`; for an expired answer, it returns the original request so the agent can ask it again |
 | `list_samples`, `get_sample` | Browse the saved sample answers |
 
 An agent reads every token it is given, so `ask` returns a compact answer: the chart, its reason, the alternatives, the cohort totals, up to 50 rows without their trial ID lists but with one citation each, the notes, and links to the answer in the UI, its CSV and the complete response. The tools run the same code as the HTTP endpoints, so a question asked through MCP counts against the same per-client limits and spending cap and is refused with the same message, and is saved under the same `answer_id`. The endpoint is stateless and needs no sign-in, since the API is public and read-only.

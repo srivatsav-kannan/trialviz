@@ -207,7 +207,11 @@ def create_app(
             result = await pipeline.run(request)
         if result.answer is not None:
             result.answer.meta.answer_id = key
-            await store.put(key, result.answer.model_dump(mode="json"))
+            await store.put(
+                key,
+                result.answer.model_dump(mode="json"),
+                request.model_dump(mode="json", exclude_none=True),
+            )
         return result.response
 
     async def read(request: QueryRequest) -> Resolution:
@@ -398,6 +402,24 @@ def create_app(
         if isinstance(saved, JSONResponse):
             return saved
         return _csv(saved, part, answer_id)
+
+    @app.get(
+        "/v1/answers/{answer_id}/request",
+        tags=["Answers"],
+        summary="See what a saved answer was asked",
+        operation_id="getAnswerRequest",
+        responses={404: ANSWER_NOT_FOUND},
+    )
+    async def saved_request(answer_id: str) -> Any:
+        """The request an answer was given for, kept long after the answer itself expires, so
+        a link to an expired answer can say what was asked and offer to ask it again.
+        Sending it to `POST /v1/query` answers it with today's registry data, as a new answer
+        with a new id. `answer_available` says whether the original answer can still be
+        reopened."""
+        request = await store.request(answer_id) if _ANSWER_ID.fullmatch(answer_id) else None
+        if request is None:
+            return _error(404, "answer_not_found", f"There is no saved answer {answer_id!r}.")
+        return {"request": request, "answer_available": await load(answer_id) is not None}
 
     async def _saved(key: str) -> dict[str, Any] | JSONResponse:
         saved = await load(key)
@@ -592,6 +614,7 @@ def create_app(
         answer=answer,
         interpret=read,
         saved=load,
+        asked=store.request,
         quota=question_quota,
         failure=_failure,
         samples=SAMPLES_DIRECTORY,

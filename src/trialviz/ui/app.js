@@ -1103,7 +1103,9 @@ async function openAnswer(id) {
   try {
     const response = await fetch(`/v1/answers/${encodeURIComponent(id)}`);
     if (response.status === 404) {
-      showProblem("This shared answer has expired or never existed.", ["Answers are kept for a while and then make room for newer ones. Ask the question again and it will be computed afresh."]);
+      const asked = await fetch(`/v1/answers/${encodeURIComponent(id)}/request`);
+      if (asked.ok) showExpired((await asked.json()).request);
+      else showProblem("There is no saved answer at this link.", ["Check that the link was copied in full."]);
       return;
     }
     if (!response.ok) throw new Error(`The service answered ${response.status}.`);
@@ -1112,6 +1114,26 @@ async function openAnswer(id) {
   } catch (error) {
     showProblem("This shared answer could not be opened.", [String(error.message ?? error)]);
   }
+}
+
+// An answer that made room for newer ones still has its request, so the page can say what was
+// asked and ask it again. The rerun uses today's registry data and is a new answer.
+function showExpired(request) {
+  const status = $("status");
+  status.className = "status clarify";
+  const again = el("button", { type: "button", class: "button primary small", onclick: () => {
+    $("question").value = request.query;
+    history.replaceState(null, "", "/");
+    ask(request);
+  } }, "Ask it again with today's data");
+  status.replaceChildren(el("div", { class: "status-box" },
+    el("h3", {}, "This answer has expired"),
+    el("p", {}, "Saved answers make room for newer ones after a while. It was asked as:"),
+    el("blockquote", { class: "asked" }, request.query),
+    el("p", {}, "Asking again runs it against today's registry data, so the numbers can differ from the original."),
+    again));
+  status.hidden = false;
+  status.scrollIntoView({ block: "start" });
 }
 
 function showGallery() {

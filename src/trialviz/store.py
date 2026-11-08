@@ -8,9 +8,12 @@ or the registry. A new data version gives new ids, so a saved answer is never se
 data it was not computed from.
 
 On a deployed service the answers live in Postgres beside the spending ledger, since its
-disk is wiped on restart; locally they are files. Only the newest answers are kept. The
-store is a convenience, so its failures never fail a question: a lookup that fails is a
-miss, and a save that fails is skipped.
+disk is wiped on restart; locally they are files. Only the newest answers are kept. Each
+answer's request is kept far longer, since it is a few hundred bytes, so a link to an answer
+that has expired can still say what was asked and offer to ask it again with today's data.
+A rerun is a new answer with a new id, because the registry has moved on since. The store
+is a convenience, so its failures never fail a question: a lookup that fails is a miss, and
+a save that fails is skipped.
 """
 
 from __future__ import annotations
@@ -32,6 +35,9 @@ log = logging.getLogger(__name__)
 FORMAT = 1
 """Raised when the answer format changes, so answers saved before are not served."""
 
+REQUESTS_KEPT = 100_000
+"""Requests outlive their answers by this much: 100,000 of a few hundred bytes each."""
+
 
 def key_for(request: QueryRequest, data_version: str) -> str:
     canonical = json.dumps(
@@ -48,7 +54,10 @@ def key_for(request: QueryRequest, data_version: str) -> str:
 
 class AnswerStore(Protocol):
     async def get(self, answer_id: str) -> dict[str, Any] | None: ...
-    async def put(self, answer_id: str, answer: dict[str, Any]) -> None: ...
+    async def request(self, answer_id: str) -> dict[str, Any] | None: ...
+    async def put(
+        self, answer_id: str, answer: dict[str, Any], request: dict[str, Any]
+    ) -> None: ...
 
 
 class NoStore:
@@ -57,7 +66,10 @@ class NoStore:
     async def get(self, answer_id: str) -> dict[str, Any] | None:
         return None
 
-    async def put(self, answer_id: str, answer: dict[str, Any]) -> None:
+    async def request(self, answer_id: str) -> dict[str, Any] | None:
+        return None
+
+    async def put(self, answer_id: str, answer: dict[str, Any], request: dict[str, Any]) -> None:
         return None
 
 
@@ -71,10 +83,12 @@ def _unpack(blob: bytes) -> dict[str, Any]:
 
 
 class FileStore:
-    """Answers as compressed files in a folder, the newest `keep` of them."""
+    """Answers as compressed files in a folder, the newest `keep` of them, and their requests
+    in a `requests` folder beside them."""
 
     def __init__(self, directory: Path, keep: int) -> None:
         self._directory, self._keep = directory, keep
+        self._requests = directory / "requests"
 
     async def get(self, answer_id: str) -> dict[str, Any] | None:
         path = self._directory / f"{answer_id}.json.z"
@@ -86,18 +100,35 @@ class FileStore:
             log.warning("saved answer %s unreadable: %s", answer_id, error)
             return None
 
-    async def put(self, answer_id: str, answer: dict[str, Any]) -> None:
+    async def request(self, answer_id: str) -> dict[str, Any] | None:
+        path = self._requests / f"{answer_id}.json"
         try:
-            await asyncio.to_thread(self._write, answer_id, _pack(answer))
+            request: dict[str, Any] = json.loads(await asyncio.to_thread(path.read_text))
+            return request
+        except FileNotFoundError:
+            return None
+        except (OSError, ValueError) as error:
+            log.warning("saved request %s unreadable: %s", answer_id, error)
+            return None
+
+    async def put(self, answer_id: str, answer: dict[str, Any], request: dict[str, Any]) -> None:
+        try:
+            await asyncio.to_thread(self._write, answer_id, _pack(answer), json.dumps(request))
         except OSError as error:
             log.warning("answer %s not saved: %s", answer_id, error)
 
-    def _write(self, answer_id: str, blob: bytes) -> None:
-        self._directory.mkdir(parents=True, exist_ok=True)
+    def _write(self, answer_id: str, blob: bytes, request: str) -> None:
+        self._requests.mkdir(parents=True, exist_ok=True)
+        (self._requests / f"{answer_id}.json").write_text(request)
         (self._directory / f"{answer_id}.json.z").write_bytes(blob)
-        saved = sorted(self._directory.glob("*.json.z"), key=lambda p: p.stat().st_mtime_ns)
-        for old in saved[: max(0, len(saved) - self._keep)]:
-            old.unlink(missing_ok=True)
+        _prune(self._directory, "*.json.z", self._keep)
+        _prune(self._requests, "*.json", REQUESTS_KEPT)
+
+
+def _prune(directory: Path, pattern: str, keep: int) -> None:
+    saved = sorted(directory.glob(pattern), key=lambda p: p.stat().st_mtime_ns)
+    for old in saved[: max(0, len(saved) - keep)]:
+        old.unlink(missing_ok=True)
 
 
 _SCHEMA = """
@@ -105,7 +136,13 @@ create table if not exists saved_answers (
     id text primary key,
     saved_at timestamptz not null default now(),
     body bytea not null
-)
+);
+create table if not exists saved_requests (
+    id text primary key,
+    saved_at timestamptz not null default now(),
+    request text not null
+);
+create index if not exists saved_requests_by_age on saved_requests (saved_at)
 """
 
 
@@ -138,18 +175,35 @@ class PostgresStore:
             log.warning("saved answer %s unreadable: %s", answer_id, error)
             return None
 
-    async def put(self, answer_id: str, answer: dict[str, Any]) -> None:
+    async def request(self, answer_id: str) -> dict[str, Any] | None:
         try:
             async with await self._connect() as connection:
-                await connection.execute(
-                    "insert into saved_answers (id, body) values (%s, %s) "
-                    "on conflict (id) do nothing",
-                    (answer_id, _pack(answer)),
+                cursor = await connection.execute(
+                    "select request from saved_requests where id = %s", (answer_id,)
                 )
-                await connection.execute(
-                    "delete from saved_answers where id in (select id from saved_answers "
-                    "order by saved_at desc offset %s)",
-                    (self._keep,),
-                )
+                row = await cursor.fetchone()
+            request: dict[str, Any] | None = json.loads(row[0]) if row else None
+            return request
+        except (psycopg.Error, ValueError) as error:
+            log.warning("saved request %s unreadable: %s", answer_id, error)
+            return None
+
+    async def put(self, answer_id: str, answer: dict[str, Any], request: dict[str, Any]) -> None:
+        try:
+            async with await self._connect() as connection:
+                for table, column, value, keep in (
+                    ("saved_answers", "body", _pack(answer), self._keep),
+                    ("saved_requests", "request", json.dumps(request), REQUESTS_KEPT),
+                ):
+                    await connection.execute(
+                        f"insert into {table} (id, {column}) values (%s, %s) "
+                        "on conflict (id) do nothing",
+                        (answer_id, value),
+                    )
+                    await connection.execute(
+                        f"delete from {table} where id in (select id from {table} "
+                        "order by saved_at desc offset %s)",
+                        (keep,),
+                    )
         except psycopg.Error as error:
             log.warning("answer %s not saved: %s", answer_id, error)

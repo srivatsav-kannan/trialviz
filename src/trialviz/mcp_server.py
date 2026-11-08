@@ -55,6 +55,7 @@ def build_mcp(
     answer: Answering,
     interpret: Answering,
     saved: Callable[[str], Awaitable[dict[str, Any] | None]],
+    asked: Callable[[str], Awaitable[dict[str, Any] | None]],
     quota: Callable[[Request], Awaitable[None]],
     failure: Failure,
     samples: Path,
@@ -106,7 +107,13 @@ def build_mcp(
         response with `full`. Saved answers expire after a while."""
         body = await saved(answer_id)
         if body is None:
-            raise ToolError(f"There is no saved answer {answer_id!r}; ask the question again.")
+            request = await asked(answer_id)
+            if request is None:
+                raise ToolError(f"There is no saved answer {answer_id!r}.")
+            raise ToolError(
+                f"The answer {answer_id!r} has expired. It was asked as {json.dumps(request)}; "
+                "call ask with that request to answer it with today's registry data."
+            )
         return body if full else _compact(body, _base(ctx))
 
     @server.tool(annotations=_READ_ONLY)

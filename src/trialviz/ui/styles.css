@@ -195,6 +195,8 @@ kbd { font-family: var(--sans); font-size: 12px; padding: 1px 6px; border: 1px s
 .progress-bar { height: 6px; border-radius: 999px; background: var(--surface-sunk); overflow: hidden; margin-bottom: 8px; }
 .progress-bar span { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 999px; transition: width 0.3s ease; }
 .progress-totals { margin: 0; font-size: 13.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.asked { margin: 8px 0 12px; padding: 10px 14px; border-left: 3px solid var(--accent); background: var(--surface); border-radius: 0 8px 8px 0; color: var(--ink); }
+.status .button.small { margin-top: 6px; }
 .result-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
 .button.small { padding: 6px 12px; font-size: 14px; border-radius: 8px; gap: 6px; }
 .button.small svg { width: 16px; height: 16px; flex: none; }
