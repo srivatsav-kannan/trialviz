@@ -18,6 +18,8 @@ import asyncio
 import hashlib
 import json
 import os
+import re
+import shutil
 import time
 from collections.abc import Awaitable, Callable, Mapping
 from dataclasses import dataclass
@@ -72,28 +74,47 @@ class RateLimiter:
 
 
 class ResponseCache:
-    """JSON responses on disk, one file per request, written atomically."""
+    """JSON responses on disk, one file per request, written atomically, in one folder per
+    registry data version. When the version changes, older folders are removed, so the
+    cache never serves or keeps data from a superseded version."""
 
     def __init__(self, directory: Path) -> None:
         self._directory = directory
 
     @staticmethod
-    def key(data_version: str, path: str, params: Mapping[str, str]) -> str:
-        material = json.dumps([data_version, path, sorted(params.items())])
+    def key(path: str, params: Mapping[str, str]) -> str:
+        material = json.dumps([path, sorted(params.items())])
         return hashlib.sha256(material.encode()).hexdigest()
 
-    def get(self, key: str) -> dict[str, Any] | None:
-        file = self._directory / f"{key}.json"
+    def _folder(self, data_version: str) -> Path:
+        return self._directory / re.sub(r"[^0-9A-Za-z]+", "-", data_version)
+
+    def get(self, data_version: str, key: str) -> dict[str, Any] | None:
+        file = self._folder(data_version) / f"{key}.json"
         if not file.exists():
             return None
         data: dict[str, Any] = json.loads(file.read_text())
         return data
 
-    def put(self, key: str, data: Mapping[str, Any]) -> None:
-        self._directory.mkdir(parents=True, exist_ok=True)
-        temporary = self._directory / f"{key}.tmp"
+    def put(self, data_version: str, key: str, data: Mapping[str, Any]) -> None:
+        folder = self._folder(data_version)
+        folder.mkdir(parents=True, exist_ok=True)
+        temporary = folder / f"{key}.{os.getpid()}.tmp"
         temporary.write_text(json.dumps(data))
-        os.replace(temporary, self._directory / f"{key}.json")
+        os.replace(temporary, folder / f"{key}.json")
+
+    def prune(self, data_version: str) -> None:
+        """Remove every response stored under another data version."""
+        if not self._directory.exists():
+            return
+        keep = self._folder(data_version)
+        for entry in self._directory.iterdir():
+            if entry == keep:
+                continue
+            if entry.is_dir():
+                shutil.rmtree(entry, ignore_errors=True)
+            else:
+                entry.unlink(missing_ok=True)
 
 
 @dataclass(frozen=True)
@@ -116,6 +137,8 @@ class RegistryClient:
         max_attempts: int = 4,
         backoff_seconds: float = 2.0,
         sleep: Sleep = asyncio.sleep,
+        version_ttl_seconds: float = 900.0,
+        clock: Callable[[], float] = time.monotonic,
     ) -> None:
         self._http = http
         self._limiter = limiter
@@ -124,13 +147,26 @@ class RegistryClient:
         self._max_attempts = max_attempts
         self._backoff = backoff_seconds
         self._sleep = sleep
+        self._version_ttl = version_ttl_seconds
+        self._clock = clock
         self._data_version: str | None = None
+        self._version_checked = 0.0
+
+    async def aclose(self) -> None:
+        """Close the HTTP connection pool."""
+        await self._http.aclose()
 
     async def data_version(self) -> str:
-        """The registry's current `dataTimestamp`, fetched once per client."""
-        if self._data_version is None:
+        """The registry's current `dataTimestamp`, checked again once it is older than the
+        TTL, so a long-running server picks up the registry's daily refresh. When it changes,
+        cached responses from the old version are removed."""
+        now = self._clock()
+        if self._data_version is None or now - self._version_checked >= self._version_ttl:
             body = await self._request("/version", {})
-            self._data_version = str(body["dataTimestamp"])
+            version = str(body["dataTimestamp"])
+            if version != self._data_version and self._cache is not None:
+                await asyncio.to_thread(self._cache.prune, version)
+            self._data_version, self._version_checked = version, now
         return self._data_version
 
     async def count(self, query: RegistryQuery) -> int:
@@ -178,11 +214,13 @@ class RegistryClient:
     async def _get(self, path: str, params: Mapping[str, str]) -> dict[str, Any]:
         if self._cache is None:
             return await self._request(path, params)
-        key = ResponseCache.key(await self.data_version(), path, params)
-        if (cached := self._cache.get(key)) is not None:
+        version = await self.data_version()
+        key = ResponseCache.key(path, params)
+        # File reads and writes run in a thread so they never stall the event loop.
+        if (cached := await asyncio.to_thread(self._cache.get, version, key)) is not None:
             return cached
         body = await self._request(path, params)
-        self._cache.put(key, body)
+        await asyncio.to_thread(self._cache.put, version, key, body)
         return body
 
     async def _request(self, path: str, params: Mapping[str, str]) -> dict[str, Any]:

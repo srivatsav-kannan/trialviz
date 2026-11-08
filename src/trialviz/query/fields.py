@@ -15,6 +15,7 @@ from typing import Annotated
 
 from pydantic import AfterValidator, BeforeValidator, Field, StringConstraints
 
+from trialviz.retrieval.essie import name_words
 from trialviz.vocabulary import Phase, parse_country, parse_phases
 from trialviz.vocabulary.analysis import (
     AnalysisKind,
@@ -73,7 +74,20 @@ def _in_declared_order[E: StrEnum](enum: type[E]) -> Callable[[list[E]], list[E]
     return order
 
 
-EntityName = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=200)]
+def _searchable(name: str) -> str:
+    """Retrieval reduces names to plain search words, so a name that reduces to nothing
+    ("???", or only a parenthetical such as "(CD)") would become an empty search and
+    silently drop its filter. It is refused here, by the same function retrieval uses."""
+    if not re.search(r"[^\W_]", name_words(name)):
+        raise ValueError(f"{name!r} has no words to search for")
+    return name
+
+
+EntityName = Annotated[
+    str,
+    StringConstraints(strip_whitespace=True, min_length=1, max_length=200),
+    AfterValidator(_searchable),
+]
 """A drug, condition, sponsor or search term exactly as written. Resolution against the
 registry happens at retrieval time, not here."""
 

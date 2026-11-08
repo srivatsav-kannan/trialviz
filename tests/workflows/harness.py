@@ -176,7 +176,7 @@ def answer_problems(run: Run) -> list[str]:
     - every citation resolves: following its path through the cited trial's raw record
       gives exactly its excerpt (a value citation) or text containing it (a quote);
     - every datum's trials were really fetched, each listed once, and its count agrees
-      with them: equal, or larger when the count came from the registry for a capped set;
+      with them: equal, or larger when the count came from the registry;
     - the recommended chart and each alternative carry a Vega-Lite spec exactly when
       Vega-Lite can draw that chart.
     """
@@ -187,7 +187,11 @@ def answer_problems(run: Run) -> list[str]:
         for cohort in retrieval.cohorts
         for study in (*cohort.named.studies, *(cohort.mentions.studies if cohort.mentions else ()))
     }
-    exact = any(n.code.value == "counts_exact_from_registry" for n in answer.meta.notes)
+    # Counts can exceed the listed trials only when they came from the registry: exact
+    # counts for a capped set, or a comparison of totals that fetched records only to cite.
+    exact = any(n.code.value == "counts_exact_from_registry" for n in answer.meta.notes) or all(
+        cohort.sampled for cohort in retrieval.cohorts
+    )
     problems: list[str] = []
 
     def walk(node: Any) -> None:

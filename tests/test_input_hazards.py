@@ -97,3 +97,26 @@ def test_registry_vocabulary_traps() -> None:
     assert scan("sites in New Jersey and New South Wales") == []
     assert scan("Papua New Guinea") == ["Papua New Guinea"]
     assert scan("trials in Nigeria and Niger") == ["Nigeria", "Niger"]
+
+
+class _Broken:
+    name = "broken"
+
+    async def interpret(self, request: object, today: object) -> object:
+        raise RuntimeError("a bug")
+
+
+def test_every_failure_has_the_one_error_shape() -> None:
+    client = TestClient(create_app(interpreter=RuleBasedInterpreter()))
+    broken = TestClient(create_app(interpreter=_Broken()), raise_server_exceptions=False)  # type: ignore[arg-type]
+    cases = [
+        (client.get("/v1/nope"), 404, "not_found"),
+        (client.get("/v1/query"), 405, "method_not_allowed"),
+        (client.get("/v1/samples/no_such_sample"), 404, "sample_not_found"),
+        (broken.post("/v1/interpret", json={"query": "q"}), 500, "internal_error"),
+    ]
+    for response, status, code in cases:
+        assert response.status_code == status
+        body = response.json()
+        assert set(body) == {"error"} and set(body["error"]) == {"code", "message", "details"}
+        assert body["error"]["code"] == code

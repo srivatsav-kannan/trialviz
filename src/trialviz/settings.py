@@ -32,3 +32,6 @@ class Settings(BaseSettings):
     retrieval_max_records: int = Field(
         10_000, ge=1, description="Most records fetched per cohort before truncating."
     )
+    answer_deadline_seconds: float = Field(
+        180.0, gt=0, description="Longest an answer may spend on registry requests."
+    )

@@ -27,6 +27,7 @@ from trialviz.retrieval.client import (
     ResponseCache,
 )
 from trialviz.retrieval.retriever import Retriever
+from trialviz.retrieval.translate import RegistryQuery
 
 pytestmark = pytest.mark.skipif(
     RECORDING, reason="replays cassettes recorded by the question workflows"
@@ -82,6 +83,43 @@ async def test_the_cache_serves_repeats_and_misses_after_a_registry_refresh(tmp_
     refreshed.registry["/api/v2/version?"]["dataTimestamp"] = "2026-11-08T10:00:05"
     after_refresh = await run_workflow(refreshed, ASSIGNMENT, tmp_path, cache=cache)
     assert len(after_refresh.cassette.sent) == len(first.cassette.sent)
+
+
+async def test_a_long_running_server_sees_the_registry_refresh(tmp_path: Path) -> None:
+    """One client lives as long as the server, so it must notice the registry's daily
+    refresh by itself, and drop responses cached under the superseded version."""
+    import httpx
+
+    version = {"dataTimestamp": "2026-11-06T10:00:05"}
+    pages: list[str] = []
+
+    def answer(request: httpx.Request) -> httpx.Response:
+        if request.url.path.endswith("/version"):
+            return httpx.Response(200, json=version)
+        pages.append(str(request.url))
+        return httpx.Response(200, json={"studies": [], "totalCount": 7})
+
+    now = [0.0]
+    cache = ResponseCache(tmp_path / "cache")
+    client = RegistryClient(
+        httpx.AsyncClient(transport=httpx.MockTransport(answer)),
+        RateLimiter(1e9),
+        cache=cache,
+        version_ttl_seconds=900,
+        clock=lambda: now[0],
+    )
+    query = RegistryQuery((("query.cond", "(melanoma)"),))
+    assert await client.count(query) == 7 and await client.count(query) == 7
+    assert len(pages) == 1, "a repeat within the same version is served from the cache"
+
+    version["dataTimestamp"] = "2026-11-07T10:00:05"
+    now[0] = 600.0
+    assert await client.data_version() == "2026-11-06T10:00:05", "checked again only after the TTL"
+    now[0] = 901.0
+    assert await client.data_version() == "2026-11-07T10:00:05"
+    await client.count(query)
+    assert len(pages) == 2, "the new version is fetched afresh"
+    assert [folder.name for folder in (tmp_path / "cache").iterdir()] == ["2026-11-07T10-00-05"]
 
 
 class _LyingInterpreter:

@@ -8,6 +8,7 @@ for a question that is not yet understood.
 
 from __future__ import annotations
 
+import asyncio
 from dataclasses import dataclass
 
 from trialviz.aggregation.build import build
@@ -16,7 +17,11 @@ from trialviz.answer import Answer, present
 from trialviz.query.request import QueryRequest
 from trialviz.query.resolution import ClarificationNeeded, ResolvedQuery
 from trialviz.query.resolver import QueryResolver
-from trialviz.retrieval.retriever import Retrieval, Retriever
+from trialviz.retrieval.retriever import RequestLog, Retrieval, Retriever
+
+
+class AnswerTimeout(Exception):
+    """The registry phase of an answer ran past its deadline."""
 
 
 @dataclass(frozen=True)
@@ -36,20 +41,34 @@ class PipelineResult:
 
 
 class Pipeline:
-    def __init__(self, resolver: QueryResolver, retriever: Retriever) -> None:
+    def __init__(
+        self,
+        resolver: QueryResolver,
+        retriever: Retriever,
+        *,
+        deadline_seconds: float | None = None,
+    ) -> None:
         self._resolver = resolver
         self._retriever = retriever
+        self._deadline = deadline_seconds
 
     async def run(self, request: QueryRequest) -> PipelineResult:
         resolution = await self._resolver.resolve(request)
         if isinstance(resolution, ClarificationNeeded):
             return PipelineResult(resolution, None, None)
         plan = resolution.plan
-        retrieval = await self._retriever.retrieve(plan)
-        built = build(plan, retrieval)
-        await apply_exact_counts(
-            plan, retrieval, built, self._retriever.count, self._retriever.first_year
-        )
-        return PipelineResult(
-            resolution, retrieval, present(request.query, resolution, retrieval, built)
-        )
+        log: RequestLog = []
+        try:
+            async with asyncio.timeout(self._deadline):
+                retrieval = await self._retriever.retrieve(plan)
+                built = await asyncio.to_thread(build, plan, retrieval)
+                await apply_exact_counts(
+                    plan, retrieval, built, self._retriever.count, self._retriever.first_year, log
+                )
+        except TimeoutError as error:
+            raise AnswerTimeout(
+                f"Answering took longer than {self._deadline:g} seconds of registry requests. "
+                "Narrow the question, for example with a phase, a status or a start year."
+            ) from error
+        answer = await asyncio.to_thread(present, request.query, resolution, retrieval, built, log)
+        return PipelineResult(resolution, retrieval, answer)

@@ -62,16 +62,22 @@ Every error has the same shape, `{"error": {"code", "message", "details"}}`, whe
 
 | Status | Code | Meaning |
 | --- | --- | --- |
+| 404 | `not_found` | There is nothing at this path. |
 | 404 | `sample_not_found` | No saved sample has that name. |
+| 405 | `method_not_allowed` | The path does not accept that method. |
 | 422 | `invalid_request` | The body breaks the schema, or a value is ambiguous ("Korea"). |
+| 500 | `internal_error` | The service failed unexpectedly. |
 | 502 | `registry_rejected_query` | ClinicalTrials.gov rejected the query it was sent. |
 | 503 | `registry_unavailable` | ClinicalTrials.gov could not be reached after retries. |
+| 504 | `answer_timeout` | The answer needed more registry time than its deadline. |
 
 ## Limits
 
 Registry requests are spaced to 50 per minute, and at most 10,000 trial records are fetched
-per cohort, with group counts taken from the registry itself when more trials match.
-Answers reflect the registry at the time stated in `meta.data_version`.
+per cohort, shared between the cohorts of a comparison, with group counts taken from the
+registry itself when more trials match. An answer may spend at most 180 seconds on registry
+requests by default, after which it returns a 504. Answers reflect the registry at the time
+stated in `meta.data_version`, which a running server checks again every 15 minutes.
 """.strip()
 
 TAGS = [

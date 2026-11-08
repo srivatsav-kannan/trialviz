@@ -19,10 +19,17 @@ from collections.abc import Awaitable, Callable, Iterable
 
 from trialviz.aggregation.build import Built
 from trialviz.aggregation.datasets import Categorical, Group, Matrix, TimeSeries
-from trialviz.aggregation.extract import NOT_REPORTED, NOT_REPORTED_LABEL, Value, sort_key
+from trialviz.aggregation.extract import (
+    NO_PHASE,
+    NO_PHASE_LABEL,
+    NOT_REPORTED,
+    NOT_REPORTED_LABEL,
+    Value,
+    sort_key,
+)
 from trialviz.query.plan import ComparisonSpec, DistributionSpec, Plan, TimeSeriesSpec
 from trialviz.query.resolution import Note, NoteCode
-from trialviz.retrieval.retriever import CohortRecords, Retrieval
+from trialviz.retrieval.retriever import CohortRecords, RequestLog, Retrieval
 from trialviz.retrieval.translate import RegistryQuery
 from trialviz.vocabulary import (
     Dimension,
@@ -38,8 +45,8 @@ from trialviz.vocabulary import (
 COUNT_BUDGET = 30
 """Most extra count requests one answer may make (about 36 seconds at the polite rate)."""
 
-Count = Callable[[RegistryQuery], Awaitable[int]]
-FirstYear = Callable[[RegistryQuery, str], Awaitable[str | None]]
+Count = Callable[[RegistryQuery, RequestLog], Awaitable[int]]
+FirstYear = Callable[[RegistryQuery, str, RequestLog], Awaitable[str | None]]
 
 _AREAS = {
     Dimension.STATUS: "OverallStatus",
@@ -52,8 +59,12 @@ _AREAS = {
 def group_clause(dimension: Dimension, key: str) -> str | None:
     """A registry clause matching exactly one aggregation group, or None if impossible."""
     if dimension is Dimension.PHASE:
+        # A missing phase means "no phase by design" for observational and expanded-access
+        # studies and "left out" for interventional trials, as in aggregation.
         if key == NOT_REPORTED:
-            return "AREA[Phase]MISSING"
+            return "AREA[Phase]MISSING AND AREA[StudyType]INTERVENTIONAL"
+        if key == NO_PHASE:
+            return "AREA[Phase]MISSING AND NOT AREA[StudyType]INTERVENTIONAL"
         included = key.split("/")
         excluded = [p.value for p in Phase if p.value not in included]
         required = " AND ".join(f"AREA[Phase]{p}" for p in included)
@@ -73,9 +84,15 @@ def group_clause(dimension: Dimension, key: str) -> str | None:
 
 
 async def apply_exact_counts(
-    plan: Plan, retrieval: Retrieval, built: Built, count: Count, first_year: FirstYear
+    plan: Plan,
+    retrieval: Retrieval,
+    built: Built,
+    count: Count,
+    first_year: FirstYear,
+    log: RequestLog,
 ) -> None:
-    """Replace subset-based counts with registry counts where possible, in place."""
+    """Replace subset-based counts with registry counts where possible, in place. Every
+    request made is added to `log`, so the answer lists the calls behind its numbers."""
     truncated = [c for c in retrieval.cohorts if c.truncated]
     if not truncated:
         return
@@ -84,7 +101,7 @@ async def apply_exact_counts(
         # The fetched subset is the most recent trials, so its years start too late. The
         # series must start at the earliest trial in the registry, not in the subset.
         area = _time_area(plan.analysis.time_field)
-        earliest = await first_year(retrieval.cohorts[0].named.query, area)
+        earliest = await first_year(retrieval.cohorts[0].named.query, area, log)
         original_periods = list(built.dataset.periods)
         _extend_periods(built.dataset, earliest)
     if isinstance(built.dataset, Categorical) and isinstance(plan.analysis, DistributionSpec):
@@ -100,9 +117,9 @@ async def apply_exact_counts(
             built.dataset.periods = original_periods  # no padding with zeros we cannot vouch for
         return
     for group, cohort, clause in requests:
-        total = await count(cohort.named.query.and_clause(clause))
+        total = await count(cohort.named.query.and_clause(clause), log)
         if cohort.counts_mentions and cohort.mentions:
-            total += await count(cohort.mentions.query.and_clause(clause))
+            total += await count(cohort.mentions.query.and_clause(clause), log)
         group.exact_count = total
     if isinstance(built.dataset, Categorical):
         built.dataset.groups = [g for g in built.dataset.groups if g.count > 0]
@@ -177,7 +194,8 @@ _KNOWN_VALUES: dict[Dimension, list[tuple[str, str]]] = {
     Dimension.PHASE: [
         (key, Phase(key).label if "/" not in key else f"Phase {key[5]}/{key[-1]}")
         for key in _PHASE_GROUPS
-    ],
+    ]
+    + [(NO_PHASE, NO_PHASE_LABEL)],
     Dimension.STATUS: [(s.value, s.label) for s in OverallStatus],
     Dimension.SPONSOR_CLASS: [(c.value, c.label) for c in SponsorClass],
     Dimension.STUDY_TYPE: [(t.value, t.label) for t in StudyType],

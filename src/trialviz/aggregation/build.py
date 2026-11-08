@@ -10,8 +10,9 @@ from __future__ import annotations
 import math
 import statistics
 from collections import Counter
-from collections.abc import Iterable, Sequence
+from collections.abc import Callable, Iterable, Sequence
 from dataclasses import dataclass, field
+from functools import partial
 from itertools import combinations, pairwise
 
 from trialviz.aggregation.datasets import (
@@ -42,7 +43,13 @@ from trialviz.aggregation.extract import (
     MEASURES,
     NOT_REPORTED,
     ORDERED_DIMENSIONS,
+    Drug,
+    Extractors,
     arm_drug_sets,
+    extractors,
+    find_name,
+    learn_aliases,
+    shared_meshes,
     sort_key,
     time_period,
 )
@@ -62,10 +69,14 @@ from trialviz.query.plan import (
 )
 from trialviz.query.resolution import Note, NoteCode
 from trialviz.retrieval.retriever import CohortRecords, Retrieval
-from trialviz.vocabulary import Dimension, Measure, TimeField, TimeGranularity
+from trialviz.vocabulary import Dimension, Measure, Phase, TimeField, TimeGranularity
 
 DEFAULT_NETWORK_NODES = 40
 MAX_NETWORK_EDGES = 300
+MAX_GRID_ROWS = 30
+MAX_GRID_COLUMNS = 12
+"""Largest grid drawn for two unordered dimensions (or `presentation.top_n` of each). Ten
+thousand trials by sponsor and country would otherwise be tens of thousands of cells."""
 
 
 @dataclass
@@ -76,39 +87,139 @@ class Built:
 
 def build(plan: Plan, retrieval: Retrieval) -> Built:
     built = _dataset(plan, retrieval)
-    # A count fetches only the records it cites, so its "subset" is by design, not a caveat.
-    subset = [] if isinstance(plan.analysis, CountSpec) else _subset_notes(retrieval, plan)
-    built.notes[:0] = subset + _mention_notes(retrieval)
+    _limit_grid(built, plan.presentation.top_n)
+    built.notes[:0] = [
+        *_subset_notes(retrieval, plan),
+        *_mention_notes(retrieval),
+        *_descendant_notes(retrieval),
+        *_phase_filter_notes(plan),
+        *_period_notes(built, retrieval.data_version),
+    ]
     return built
+
+
+def _limit_grid(built: Built, top_n: int | None) -> None:
+    """Keep the largest rows and columns of a grid over unordered dimensions, in place."""
+    grid = built.dataset
+    if not isinstance(grid, Matrix):
+        return
+    totals: Counter[str] = Counter()
+    for (row, column), group in grid.cells.items():
+        totals[f"r:{row}"] += group.count
+        totals[f"c:{column}"] += group.count
+    dropped = []
+    for axis, ordered, limit, name in (
+        ("rows", grid.ordered_rows, top_n or MAX_GRID_ROWS, grid.row_dimension),
+        ("columns", grid.ordered_columns, top_n or MAX_GRID_COLUMNS, grid.column_dimension),
+    ):
+        values: list[tuple[str, str]] = getattr(grid, axis)
+        if ordered or len(values) <= limit:
+            continue
+        prefix = "r:" if axis == "rows" else "c:"
+        kept = sorted(values, key=lambda v: -totals[prefix + v[0]])[:limit]
+        setattr(grid, axis, [v for v in values if v in kept])
+        dropped.append(f"the {limit} largest of {len(values)} {name.lower()} values")
+    if dropped:
+        rows, columns = {r for r, _ in grid.rows}, {c for c, _ in grid.columns}
+        grid.cells = {k: g for k, g in grid.cells.items() if k[0] in rows and k[1] in columns}
+        built.notes.append(
+            Note(
+                code=NoteCode.GRID_LIMITED,
+                message=f"Showing {' and '.join(dropped)}, by number of trials.",
+                slot="presentation.top_n",
+            )
+        )
+
+
+def _descendant_notes(retrieval: Retrieval) -> list[Note]:
+    notes = []
+    for cohort in retrieval.cohorts:
+        for name, terms in (cohort.descendants or {}).items():
+            if not terms:
+                continue
+            quoted = [f'"{t}"' for t in terms[:6]]
+            if len(terms) > 6:
+                quoted.append(f"{len(terms) - 6} more")
+            listed = quoted[0] if len(quoted) == 1 else f"{', '.join(quoted[:-1])} or {quoted[-1]}"
+            notes.append(
+                Note(
+                    code=NoteCode.CONDITION_INCLUDES_MESH_TERMS,
+                    message=f"{name.capitalize()} also includes trials whose MeSH condition is "
+                    f"{listed}, which sit under it in the MeSH tree.",
+                    slot="filters.conditions",
+                )
+            )
+    return notes
+
+
+def _phase_filter_notes(plan: Plan) -> list[Note]:
+    layers = [plan.filters]
+    if isinstance(plan.analysis, ComparisonSpec):
+        layers += [c.filters for c in plan.analysis.cohorts]
+    combinable = {Phase.PHASE1, Phase.PHASE2, Phase.PHASE3}
+    asked = [p for layer in layers for p in (layer.phases or []) if p in combinable]
+    if not asked:
+        return []
+    labels = " or ".join(dict.fromkeys(p.label for p in asked))
+    return [
+        Note(
+            code=NoteCode.PHASE_FILTER_INCLUDES_COMBINED,
+            message=f"The {labels} filter follows the registry and includes trials listed under "
+            "two phases, such as Phase 1/2 or Phase 2/3.",
+            slot="filters.phases",
+        )
+    ]
+
+
+def _period_notes(built: Built, data_version: str) -> list[Note]:
+    series = built.dataset
+    if not isinstance(series, TimeSeries) or not series.periods:
+        return []
+    today = data_version[:7]  # "2026-11"
+    current = today if series.granularity is TimeGranularity.MONTH else today[:4]
+    last = series.periods[-1]
+    if last < current:
+        return []
+    parts = []
+    if current in series.periods:
+        parts.append(f"{current} is still in progress (registry data as of {data_version[:10]})")
+    if last > current:
+        parts.append(f"periods after {current} count trials planned for then")
+    return [Note(code=NoteCode.PERIODS_INCOMPLETE, message="; ".join(parts).capitalize() + ".")]
 
 
 def _dataset(plan: Plan, retrieval: Retrieval) -> Built:
     analysis = plan.analysis
     studies = list(retrieval.cohorts[0].studies)
+    every_study = [study for cohort in retrieval.cohorts for study in cohort.studies]
+    types = plan.filters.intervention_types
+    read = extractors(every_study, types)
     match analysis:
         case CountSpec():
             return _scalar(plan.filters, retrieval.cohorts[0])
         case DistributionSpec() if analysis.series_by:
-            return _matrix_by_dimensions(studies, analysis.group_by, analysis.series_by)
+            return _matrix_by_dimensions(studies, analysis.group_by, analysis.series_by, read)
         case DistributionSpec():
-            return _categorical(studies, analysis.group_by)
+            return _categorical(studies, analysis.group_by, read)
         case TimeSeriesSpec():
             return _time_series(
-                studies, analysis.time_field, analysis.granularity, analysis.series_by
+                studies, analysis.time_field, analysis.granularity, analysis.series_by, read
             )
         case ComparisonSpec() if analysis.group_by:
-            return _cohort_matrix(retrieval.cohorts, analysis.group_by)
+            return _cohort_matrix(retrieval.cohorts, analysis.group_by, read)
         case ComparisonSpec():
             return _cohort_totals(retrieval.cohorts)
         case HistogramSpec():
-            return _distribution(studies, analysis.measure, analysis.group_by)
+            return _distribution(studies, analysis.measure, analysis.group_by, read)
         case ScatterSpec():
-            return _points(studies, analysis.x, analysis.y, analysis.z, analysis.series_by)
+            return _points(studies, analysis.x, analysis.y, analysis.z, analysis.series_by, read)
         case NetworkSpec():
             limit = plan.presentation.top_n or DEFAULT_NETWORK_NODES
-            return _graph(studies, analysis.node_types, limit)
+            allowed = frozenset(t.value for t in types) if types else None
+            arms = partial(arm_drug_sets, aliases=learn_aliases(every_study), types=allowed)
+            return _graph(studies, analysis.node_types, limit, read, arms)
         case FlowSpec():
-            return _flow(studies, analysis.stages)
+            return _flow(studies, analysis.stages, read)
         case TrialListSpec():
             return _trials(studies)
     raise AssertionError(f"no dataset builder for {analysis.kind}")
@@ -130,11 +241,11 @@ def _several_note(dimension: Dimension, trials: int) -> list[Note]:
     ]
 
 
-def _groups(studies: Iterable[Study], dimension: Dimension) -> dict[str, Group]:
+def _groups(studies: Iterable[Study], dimension: Dimension, read: Extractors) -> dict[str, Group]:
     groups: dict[str, Group] = {}
     for study in studies:
         identifier = nct_id(study)
-        for value in DIMENSIONS[dimension](study):
+        for value in read[dimension](study):
             group = groups.setdefault(value.key, Group(value.key, value.label))
             group.add(identifier, value.citations)
     return groups
@@ -151,16 +262,28 @@ def _ordered(groups: dict[str, Group], dimension: Dimension) -> list[Group]:
 
 
 def _scalar(filters: Filters, cohort: CohortRecords) -> Built:
-    citations = [c for study in cohort.studies for c in filter_citations(study, filters)[:1]]
+    synonyms = shared_meshes(list(cohort.studies))
+    citations = [c for study in cohort.studies for c in filter_citations(study, filters, synonyms)]
     return Built(Scalar("Trials", cohort.total, citations))
 
 
-def filter_citations(study: Study, filters: Filters) -> list[Citation]:
-    """Why a trial matched: the field behind each active filter, in filter order."""
+def filter_citations(
+    study: Study, filters: Filters, synonyms: Sequence[str] = ()
+) -> list[Citation]:
+    """Why a trial matched: the field behind each active filter, in filter order.
+
+    A drug or condition is cited where the record names it, or names one of the
+    `synonyms` the registry expanded it to. When neither appears, that filter is not
+    cited for this trial, since any other value would cite the wrong thing.
+    """
     found = []
+    for kind, names in (
+        ("interventions", filters.interventions),
+        ("conditions", filters.conditions),
+    ):
+        if names and (match := find_name(study, kind, names) or find_name(study, kind, synonyms)):
+            found.append(match.citation(study))
     checks: list[tuple[object, str, str | None]] = [
-        (filters.interventions, "derivedSection.interventionBrowseModule.meshes", "term"),
-        (filters.conditions, "derivedSection.conditionBrowseModule.meshes", "term"),
         (filters.phases, "protocolSection.designModule.phases", None),
         (filters.statuses, "protocolSection.statusModule.overallStatus", None),
         (filters.countries, "protocolSection.contactsLocationsModule.locations", "country"),
@@ -182,9 +305,7 @@ def filter_citations(study: Study, filters: Filters) -> list[Citation]:
         if item:
             wanted = {str(v).casefold() for v in active} if isinstance(active, list) else set()
             items = list(each(study, path, item))
-            match = next(
-                (i for i in items if str(i.value).casefold() in wanted), items[0] if items else None
-            )
+            match = next((i for i in items if str(i.value).casefold() in wanted), None)
             if match:
                 found.append(match.citation(study))
         elif (value := one(study, path)) is not None:
@@ -192,8 +313,8 @@ def filter_citations(study: Study, filters: Filters) -> list[Citation]:
     return found or [cite(study, "protocolSection.identificationModule.briefTitle", title(study))]
 
 
-def _categorical(studies: list[Study], dimension: Dimension) -> Built:
-    groups = _ordered(_groups(studies, dimension), dimension)
+def _categorical(studies: list[Study], dimension: Dimension, read: Extractors) -> Built:
+    groups = _ordered(_groups(studies, dimension, read), dimension)
     dataset = Categorical(
         dimension=dimension.label,
         field=_field(dimension),
@@ -228,15 +349,17 @@ def _matrix(
     return Matrix(labels[0], labels[1], labels[2], labels[3], rows, columns, cells, *ordered)
 
 
-def _matrix_by_dimensions(studies: list[Study], rows_by: Dimension, columns_by: Dimension) -> Built:
+def _matrix_by_dimensions(
+    studies: list[Study], rows_by: Dimension, columns_by: Dimension, read: Extractors
+) -> Built:
     cells: dict[tuple[str, str], Group] = {}
     row_values: dict[str, DimensionValue] = {}
     column_values: dict[str, DimensionValue] = {}
     for study in studies:
         identifier = nct_id(study)
-        for row in DIMENSIONS[rows_by](study):
+        for row in read[rows_by](study):
             row_values.setdefault(row.key, row)
-            for column in DIMENSIONS[columns_by](study):
+            for column in read[columns_by](study):
                 column_values.setdefault(column.key, column)
                 cell = cells.setdefault(
                     (row.key, column.key),
@@ -261,7 +384,9 @@ def _matrix_by_dimensions(studies: list[Study], rows_by: Dimension, columns_by: 
     return Built(matrix, notes)
 
 
-def _cohort_matrix(cohorts: Sequence[CohortRecords], columns_by: Dimension) -> Built:
+def _cohort_matrix(
+    cohorts: Sequence[CohortRecords], columns_by: Dimension, read: Extractors
+) -> Built:
     cells: dict[tuple[str, str], Group] = {}
     column_values: dict[str, DimensionValue] = {}
     rows = []
@@ -269,7 +394,7 @@ def _cohort_matrix(cohorts: Sequence[CohortRecords], columns_by: Dimension) -> B
         row = cohort.label or ""
         rows.append((row, row))
         for study in cohort.studies:
-            for column in DIMENSIONS[columns_by](study):
+            for column in read[columns_by](study):
                 column_values.setdefault(column.key, column)
                 cell = cells.setdefault(
                     (row, column.key), Group(f"{row}|{column.key}", f"{row}, {column.label}")
@@ -298,6 +423,7 @@ def _time_series(
     time_field: TimeField,
     granularity: TimeGranularity,
     series_by: Dimension | None,
+    read: Extractors,
 ) -> Built:
     monthly = granularity is TimeGranularity.MONTH
     path_key = "start" if time_field is TimeField.START_DATE else "completion"
@@ -310,7 +436,7 @@ def _time_series(
             undated += 1
             continue
         date_citation = cite(study, period.path, one(study, period.path).value)  # type: ignore[union-attr]
-        values = DIMENSIONS[series_by](study) if series_by else [DimensionValue("", "")]
+        values = read[series_by](study) if series_by else [DimensionValue("", "")]
         for value in values:
             series_values.setdefault(value.key, value)
             cell = cells.setdefault(
@@ -371,7 +497,9 @@ def _missing_note(count: int, reason: str) -> list[Note]:
 # --- Measures ----------------------------------------------------------------------------
 
 
-def _distribution(studies: list[Study], measure: Measure, group_by: Dimension | None) -> Built:
+def _distribution(
+    studies: list[Study], measure: Measure, group_by: Dimension | None, read: Extractors
+) -> Built:
     spreads: dict[str, Spread] = {}
     excluded = 0
     for study in studies:
@@ -379,7 +507,7 @@ def _distribution(studies: list[Study], measure: Measure, group_by: Dimension | 
         if measured is None:
             excluded += 1
             continue
-        groups = DIMENSIONS[group_by](study) if group_by else [DimensionValue("", "All trials")]
+        groups = read[group_by](study) if group_by else [DimensionValue("", "All trials")]
         for group in groups:
             spread = spreads.setdefault(group.key, Spread(group.key, group.label, []))
             spread.values.append(Value(nct_id(study), measured.value, measured.citations))
@@ -483,7 +611,12 @@ def _nice(width: float) -> float:
 
 
 def _points(
-    studies: list[Study], x: Measure, y: Measure, z: Measure | None, color_by: Dimension | None
+    studies: list[Study],
+    x: Measure,
+    y: Measure,
+    z: Measure | None,
+    color_by: Dimension | None,
+    read: Extractors,
 ) -> Built:
     points = []
     excluded = 0
@@ -493,7 +626,7 @@ def _points(
         if mx is None or my is None or (z and mz is None):
             excluded += 1
             continue
-        color = DIMENSIONS[color_by](study)[0].label if color_by else None
+        color = read[color_by](study)[0].label if color_by else None
         citations = mx.citations + my.citations + (mz.citations if mz else ())
         points.append(
             Point(
@@ -522,7 +655,13 @@ def _points(
 # --- Networks, flows, trial lists --------------------------------------------------------
 
 
-def _graph(studies: list[Study], node_types: tuple[Dimension, Dimension], limit: int) -> Built:
+def _graph(
+    studies: list[Study],
+    node_types: tuple[Dimension, Dimension],
+    limit: int,
+    read: Extractors,
+    arms: Callable[[Study], list[tuple[list[Drug], Citation]]],
+) -> Built:
     first, second = node_types
     nodes: dict[str, Node] = {}
     edges: dict[tuple[str, str], Group] = {}
@@ -545,22 +684,18 @@ def _graph(studies: list[Study], node_types: tuple[Dimension, Dimension], limit:
     for study in studies:
         identifier = nct_id(study)
         if co_occurrence and first is Dimension.INTERVENTION:
-            for given, arm_citation in arm_drug_sets(study):
-                ids = []
-                for drug in given:
-                    value = DimensionValue(drug.key, drug.label, drug.citations)
-                    nodes_id = node(first, value)
-                    nodes[nodes_id].group.add(identifier, drug.citations)
-                    ids.append(nodes_id)
+            # Every trial that gives a drug counts toward its node, and links come only
+            # from arms that give drugs together, so a trial with no arms still counts.
+            for value in read[first](study):
+                if value.key != NOT_REPORTED:
+                    nodes[node(first, value)].group.add(identifier, value.citations)
+            for given, arm_citation in arms(study):
+                ids = [f"{first.value}:{drug.key}" for drug in given]
                 for a, b in combinations(sorted(set(ids)), 2):
                     link(a, b, study, (arm_citation,))
             continue
-        left = [v for v in DIMENSIONS[first](study) if v.key != NOT_REPORTED]
-        right = (
-            left
-            if co_occurrence
-            else [v for v in DIMENSIONS[second](study) if v.key != NOT_REPORTED]
-        )
+        left = [v for v in read[first](study) if v.key != NOT_REPORTED]
+        right = left if co_occurrence else [v for v in read[second](study) if v.key != NOT_REPORTED]
         evidence: dict[str, tuple[Citation, ...]] = {}
         for dimension, values in ((first, left), (second, right)):
             for value in values:
@@ -638,14 +773,14 @@ def _communities(nodes: list[Node], edges: list[Edge]) -> None:
         n.community = renumbered[labels[n.id]]
 
 
-def _flow(studies: list[Study], stages: list[Dimension]) -> Built:
+def _flow(studies: list[Study], stages: list[Dimension], read: Extractors) -> Built:
     nodes: dict[str, FlowNode] = {}
     links: dict[tuple[str, str], Group] = {}
     for study in studies:
         identifier = nct_id(study)
         path = []
         for index, stage in enumerate(stages):
-            value = DIMENSIONS[stage](study)[0]
+            value = read[stage](study)[0]
             node_id = f"{index}:{value.key}"
             nodes.setdefault(
                 node_id, FlowNode(node_id, index, value.label, Group(node_id, value.label))

@@ -8,15 +8,17 @@ behaves, which no assertion about our own constants can do.
 
 from __future__ import annotations
 
-from collections.abc import Mapping
+import re
+from collections.abc import Callable, Mapping
 from itertools import pairwise
 from pathlib import Path
 from typing import Any
 
 import anthropic
 import httpx
+import pytest
 
-from tests.workflows.cassette import Cassette
+from tests.workflows.cassette import RECORDING, Cassette
 from tests.workflows.harness import (
     MAX_RECORDS,
     MODEL,
@@ -204,9 +206,22 @@ async def test_a_field_that_contradicts_the_question_wins_all_the_way_to_the_reg
     assert answer.visualization.type is ChartType.STAT
     [datum] = answer.visualization.data  # type: ignore[misc]
     assert datum["trial_count"] == cohort.total
-    assert all(
-        c["field"].startswith("derivedSection.interventionBrowseModule") for c in datum["citations"]
-    )
+    # Each cited trial is cited for every active filter: where it names the drug, its phase
+    # and its status. A drug citation must actually name the drug, never another one.
+    by_trial: dict[str, list[dict[str, str]]] = {}
+    for citation in datum["citations"]:
+        by_trial.setdefault(citation["nct_id"], []).append(citation)
+    assert by_trial
+    names = ("semaglutide", "ozempic", "wegovy", "rybelsus", "nn9535")
+    for citations in by_trial.values():
+        fields = [c["field"] for c in citations]
+        assert any(
+            "intervention" in c["field"].casefold()
+            and any(n in c["excerpt"].casefold() for n in names)
+            for c in citations
+        ), citations
+        assert "protocolSection.designModule.phases" in fields
+        assert "protocolSection.statusModule.overallStatus" in fields
 
 
 async def test_a_geography_question_brings_back_country_evidence(tmp_path: Path) -> None:
@@ -360,7 +375,7 @@ async def test_hostile_caller_text_reaches_the_registry_disarmed(tmp_path: Path)
         "Phase 3",
         "Phase 4",
     ]
-    natural += ["Not applicable", "Not reported"]
+    natural += ["Not applicable", "No phase (observational)", "Not reported"]
     assert shown == [p for p in natural if p in shown], "phases keep their natural order"
 
 
@@ -459,6 +474,97 @@ async def test_a_flow_conserves_trials_at_every_stage(tmp_path: Path) -> None:
     first_stage = sum(n["trial_count"] for n in flow["nodes"] if n["stage"] == 0)
     assert first_stage == len(run.result.retrieval.cohorts[0].studies)
 
+    # "Lung cancer" must include trials filed under MeSH terms below Lung Neoplasms, such as
+    # "Carcinoma, Non-Small-Cell Lung", which the registry cannot search by hierarchy. An
+    # independent audit found 57 such trials wrongly reported as mere mentions.
+    [cohort] = run.result.retrieval.cohorts
+    assert (
+        cohort.descendants and "Carcinoma, Non-Small-Cell Lung" in cohort.descendants["lung cancer"]
+    )
+    terms = set(cohort.descendants["lung cancer"])
+
+    def meshes(study: Mapping[str, Any]) -> set[str]:
+        browse = study.get("derivedSection", {}).get("conditionBrowseModule", {})
+        return {m["term"] for m in browse.get("meshes", [])}
+
+    # Some trials are in only because of their MeSH term, not their own wording.
+    by_mesh_only = [
+        nct_id(study)
+        for study in cohort.studies
+        if "lung cancer" not in condition_text(study) and meshes(study) & terms
+    ]
+    assert by_mesh_only, "the MeSH descendants must bring in trials the wording misses"
+    included = {nct_id(study) for study in cohort.studies}
+    assert cohort.mentions is not None
+    assert not included & {nct_id(study) for study in cohort.mentions.studies}
+    # And no mention-only trial is filed under a single one of those MeSH terms.
+    assert [
+        nct_id(s) for s in cohort.mentions.studies if len(meshes(s)) == 1 and meshes(s) & terms
+    ] == []
+    assert any(n.code is NoteCode.CONDITION_INCLUDES_MESH_TERMS for n in answer.meta.notes)
+    # Observational studies have no phase by design and are labeled so, not "Not reported".
+    phase_labels = {n["label"] for n in flow["nodes"] if n["stage"] == 1}
+    assert "No phase (observational)" in phase_labels
+
+
+async def test_two_named_conditions_are_matched_as_phrases_not_loose_words(
+    tmp_path: Path,
+) -> None:
+    # An audit found "type 1 diabetes" matching a trial whose condition was "Type 2
+    # Diabetes Mellitus" and whose keyword was "phase 1", because the words were matched
+    # separately. Each cohort must now hold only trials that name its own type.
+    run = await run_workflow(
+        Cassette("diabetes_types_2024"),
+        {"query": "Compare type 1 and type 2 diabetes trials that started in 2024 by phase"},
+        tmp_path,
+    )
+    answer = run.result.answer
+    assert answer is not None and answer_problems(run) == []
+    assert run.result.retrieval is not None
+    first, second = run.result.retrieval.cohorts
+    assert first.total > 0 and second.total > 0
+
+    type_one = re.compile(r"type (1|i)\b|\bt1d|(?<!non)(?<!non-)insulin-dependent|juvenile|iddm")
+    type_two = re.compile(r"type (2|ii)\b|\bt2d|non-?insulin|niddm")
+
+    def names(kind: re.Pattern[str]) -> Callable[[Mapping[str, Any]], bool]:
+        return lambda study: bool(kind.search(condition_text(study)))
+
+    for cohort in (first, second):
+        own, other = (type_one, type_two) if "1" in (cohort.label or "") else (type_two, type_one)
+        # A trial may study both types. It may not study only the other one.
+        wrong = [nct_id(s) for s in cohort.studies if names(other)(s) and not names(own)(s)]
+        assert wrong == [], (cohort.label, wrong)
+        if cohort.mentions is not None:
+            assert len(cohort.mentions.studies) <= 30, "reported mentions are only quoted"
+
+
+async def test_cohort_totals_come_from_counts_without_fetching_the_cohorts(
+    tmp_path: Path,
+) -> None:
+    # A comparison of totals needs only the registry's counts. A review found it fetching
+    # 40,000 records for two numbers, then calling the exact totals a subset.
+    run = await run_workflow(
+        Cassette("totals_keytruda_opdivo_2024"),
+        {"query": "How many Keytruda trials versus Opdivo trials started in 2024?"},
+        tmp_path,
+    )
+    resolution = run.result.resolution
+    assert isinstance(resolution, ResolvedQuery)
+    assert resolution.plan.analysis.kind == "comparison"
+    assert resolution.plan.analysis.group_by is None  # type: ignore[union-attr]
+    answer = run.result.answer
+    assert answer is not None and answer_problems(run) == []
+    assert run.result.retrieval is not None
+    for cohort in run.result.retrieval.cohorts:
+        assert len(cohort.studies) <= 3 and not cohort.truncated
+    bars = {row["cohort"]: row["trial_count"] for row in answer.visualization.data}  # type: ignore[index]
+    assert bars == {c.label: c.total for c in run.result.retrieval.cohorts}
+    assert not any(n.code is NoteCode.COMPUTED_FROM_SUBSET for n in answer.meta.notes)
+    assert len(answer.meta.registry_requests) == len(run.cassette.sent) - 1, (
+        "every registry request except the version check is listed in the answer"
+    )
+
 
 async def test_a_timeline_lists_each_matching_trial_in_start_order(tmp_path: Path) -> None:
     run = await run_workflow(
@@ -542,6 +648,8 @@ async def test_three_measures_give_a_3d_scatter_with_a_flat_bubble_alternative(
 
 
 async def test_the_http_endpoint_serves_exactly_the_pipelines_answer(tmp_path: Path) -> None:
+    if RECORDING:
+        pytest.skip("replays the cassette the assignment workflow records")
     request = {
         "query": "How has the number of trials for this drug changed over time?",
         "drug_name": "Pembrolizumab",

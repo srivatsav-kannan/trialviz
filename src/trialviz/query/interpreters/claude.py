@@ -360,14 +360,33 @@ class ClaudeInterpreter:
         except BudgetExceeded as error:
             raise InterpreterUnavailable(str(error)) from error
 
+        # Every way out of this block settles the reservation exactly once, so a failure
+        # can never leave part of the cap reserved for the life of the process.
         try:
             response = await self._call(user_message)
         except _CallFailed as error:
             # A dropped connection may still have been billed, so it is charged in full.
             await self._ledger.settle(worst_case, worst_case if error.possibly_billed else 0.0)
             raise
-        await self._ledger.settle(worst_case, _cost_of(response, prices))
-        return self._read(response)
+        except BaseException as error:
+            # Anything unexpected (an SDK error, a cancellation) may have been billed too.
+            await self._ledger.settle(worst_case, worst_case)
+            if isinstance(error, Exception):
+                raise InterpreterUnavailable(
+                    f"unexpected {type(error).__name__}: {error}"
+                ) from error
+            raise
+        try:
+            cost = _cost_of(response, prices)
+        except Exception:
+            cost = worst_case
+        await self._ledger.settle(worst_case, cost)
+        try:
+            return self._read(response)
+        except InterpreterUnavailable:
+            raise
+        except Exception as error:
+            raise InterpreterUnavailable(f"unreadable answer: {type(error).__name__}") from error
 
     async def _call(self, user_message: str) -> Any:
         try:

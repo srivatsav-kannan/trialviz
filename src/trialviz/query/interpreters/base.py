@@ -103,6 +103,11 @@ class FallbackInterpreter:
             except InterpreterUnavailable as error:
                 failures.append(Fallback(interpreter.name, error.reason))
                 continue
+            except Exception as error:
+                # A bug in one interpreter should cost the question its best reading, not
+                # the whole request, so the next interpreter still gets a turn.
+                failures.append(Fallback(interpreter.name, f"failed with {type(error).__name__}"))
+                continue
             return interpretation.after_fallbacks(tuple(failures))
         summary = "; ".join(f"{failure.interpreter}: {failure.reason}" for failure in failures)
         raise InterpreterUnavailable(f"every interpreter failed ({summary})")

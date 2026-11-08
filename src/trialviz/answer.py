@@ -9,6 +9,7 @@ registry requests behind the numbers.
 
 from __future__ import annotations
 
+from collections.abc import Sequence
 from typing import Annotated, Literal
 
 from pydantic import BaseModel, Field
@@ -116,7 +117,13 @@ def _single_valued(plan: Plan, built: Built) -> bool:
     return False
 
 
-def present(query: str, resolution: ResolvedQuery, retrieval: Retrieval, built: Built) -> Answer:
+def present(
+    query: str,
+    resolution: ResolvedQuery,
+    retrieval: Retrieval,
+    built: Built,
+    extra_requests: Sequence[str] = (),
+) -> Answer:
     plan = resolution.plan
     presentation = plan.presentation
     limit = presentation.citations_per_datum or 0
@@ -213,6 +220,9 @@ def present(query: str, resolution: ResolvedQuery, retrieval: Retrieval, built: 
                 ruled_out=[ChartOption(type=r.chart, reason=r.reason) for r in choice.ruled_out],
             ),
             mentions=mention_reports(plan, retrieval),
-            registry_requests=[url for c in retrieval.cohorts for url in c.requests],
+            registry_requests=[
+                *(url for c in retrieval.cohorts for url in c.requests),
+                *extra_requests,
+            ],
         ),
     )

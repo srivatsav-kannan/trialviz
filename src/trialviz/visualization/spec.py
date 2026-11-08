@@ -106,6 +106,12 @@ def _datum(group: Group, limit: int) -> dict[str, Any]:
     }
 
 
+def _citations_of_trials(citations: list[Citation], trials: int) -> list[dict[str, Any]]:
+    """Every citation for the first `trials` trials cited, so each one is fully shown."""
+    kept = list(dict.fromkeys(c.nct_id for c in citations))[:trials]
+    return [c.model_dump(mode="json") for c in citations if c.nct_id in kept]
+
+
 def _citations(
     citations: list[Citation] | tuple[Citation, ...], limit: int
 ) -> list[dict[str, Any]]:
@@ -131,7 +137,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
                 {
                     "label": dataset.label,
                     COUNT: dataset.total,
-                    "citations": _citations(dataset.citations, limit),
+                    "citations": _citations_of_trials(dataset.citations, limit),
                 }
             ]
         case Categorical():

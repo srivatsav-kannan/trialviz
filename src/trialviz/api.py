@@ -17,6 +17,8 @@ from __future__ import annotations
 
 import json
 import re
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import date
 from pathlib import Path
 from typing import Annotated, Any
@@ -25,6 +27,7 @@ from fastapi import Body, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.responses import Response
 
 from trialviz.answer import Answer, QueryResponse
@@ -43,7 +46,7 @@ from trialviz.openapi import (
     answer_examples,
     resolution_examples,
 )
-from trialviz.pipeline import Pipeline
+from trialviz.pipeline import AnswerTimeout, Pipeline
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
@@ -97,7 +100,15 @@ def create_app(
 ) -> FastAPI:
     settings = settings or Settings()
     resolver = QueryResolver(interpreter or build_interpreter(settings), today=date.today)
-    pipeline = Pipeline(resolver, retriever or build_retriever(settings))
+    owned = retriever is None
+    retriever = retriever or build_retriever(settings)
+    pipeline = Pipeline(resolver, retriever, deadline_seconds=settings.answer_deadline_seconds)
+
+    @asynccontextmanager
+    async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+        yield
+        if owned:
+            await retriever.aclose()
 
     app = FastAPI(
         title="trialviz API",
@@ -112,6 +123,7 @@ def create_app(
         },
         docs_url=None,
         redoc_url=None,
+        lifespan=lifespan,
     )
 
     for page, file in [("/", "index.html"), ("/samples", "index.html"), ("/docs", "api.html")]:
@@ -146,7 +158,8 @@ def create_app(
         The response is either an answer (`status: resolved`) or a request for clarification
         (`status: needs_clarification`) when the question cannot be answered as asked, such as
         a reference to "this drug" that nothing names. Most questions take a few seconds, and
-        questions that match tens of thousands of trials can take up to a minute.
+        questions that match tens of thousands of trials can take a minute or two, and an
+        answer that would need more than the configured deadline returns a 504.
         """
         return (await pipeline.run(request)).response
 
@@ -209,6 +222,29 @@ def create_app(
     async def health() -> dict[str, str]:
         """Returns `ok` while the service is running. It does not contact the registry."""
         return {"status": "ok"}
+
+    @app.exception_handler(AnswerTimeout)
+    async def too_slow(_: Request, error: AnswerTimeout) -> JSONResponse:
+        return _error(504, "answer_timeout", str(error))
+
+    @app.exception_handler(StarletteHTTPException)
+    async def http_error(_: Request, error: StarletteHTTPException) -> JSONResponse:
+        codes = {404: "not_found", 405: "method_not_allowed"}
+        message = {
+            404: "There is nothing at this path.",
+            405: "This path does not accept that method.",
+        }
+        return _error(
+            error.status_code,
+            codes.get(error.status_code, "http_error"),
+            message.get(error.status_code, str(error.detail)),
+        )
+
+    @app.exception_handler(Exception)
+    async def unexpected(_: Request, error: Exception) -> JSONResponse:
+        return _error(
+            500, "internal_error", f"The service failed unexpectedly ({type(error).__name__})."
+        )
 
     @app.exception_handler(RegistryQueryError)
     async def registry_rejected(_: Request, error: RegistryQueryError) -> JSONResponse:

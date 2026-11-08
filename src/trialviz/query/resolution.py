@@ -50,6 +50,10 @@ class NoteCode(StrEnum):
     MENTIONS_COUNTED = "mentions_counted"
     TOP_N_APPLIED = "top_n_applied"
     CHART_PREFERENCE_NOT_FITTING = "chart_preference_not_fitting"
+    CONDITION_INCLUDES_MESH_TERMS = "condition_includes_mesh_terms"
+    PHASE_FILTER_INCLUDES_COMBINED = "phase_filter_includes_combined"
+    PERIODS_INCOMPLETE = "periods_incomplete"
+    GRID_LIMITED = "grid_limited"
 
 
 class Note(BaseModel):

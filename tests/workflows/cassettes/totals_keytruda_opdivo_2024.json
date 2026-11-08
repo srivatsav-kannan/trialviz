@@ -1,0 +1,2961 @@
+{
+ "claude": [
+  {
+   "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nHow many Keytruda trials versus Opdivo trials started in 2024?\n</question>",
+   "stop_reason": "end_turn",
+   "text": "{\"slots\":[{\"slot\":\"analysis.kind\",\"values\":[\"comparison\"]},{\"slot\":\"filters.start_year_from\",\"values\":[\"2024\"]},{\"slot\":\"filters.start_year_to\",\"values\":[\"2024\"]}],\"unexpressed\":[],\"cohorts\":[{\"label\":\"Keytruda\",\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]}]},{\"label\":\"Opdivo\",\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"Opdivo\"]}]}],\"issue\":null}",
+   "usage": {
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 3890,
+    "input_tokens": 61,
+    "output_tokens": 182
+   }
+  }
+ ],
+ "fingerprint": "cb980bb633d0f033",
+ "registry": {
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29&pageSize=30&query.intr=%28keytruda%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvCk3_YelD6SuP08FCfCEvHV8dBK2CI",
+   "studies": [
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "bemcentinib"
+        },
+        {
+         "term": "11-(2-pyrrolidin-1-ylethoxy)-14,19-dioxa-5,7,26-triazatetracyclo(19.3.1.1(2,6).1(8,12))heptacosa-1(25),2(26),3,5,8,10,12(27),16,21,23-decaene"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients will receive bemcentinib and pacritinib in combination from Days 1 to Day 28. PK samples will be collected on Day 1 (pre-dose, 4, 6h), pre-dose Day 2, Day 7 (pre-dose, 4h and 6h post-dose), pre-dose Day 8, pre-dose Day 14, and Day 22 (pre-dose and 6h post-dose) samples. The Day 22 sample will cover the steady state values for both compounds.\n\nSix dose levels of combination treatments will be considered:\n\n* Dose level -1: pacritinib 100 mg oral dose (p.o.) daily + bemcentinib 50 mg p.o. daily;\n* Dose level 1: pacritinib 100 mg oral dose (p.o.) twice daily (BID) + bemcentinib 50 mg p.o. daily;\n* Dose level 2: pacritinib 100 mg p.o. BID + bemcentinib 75 mg p.o. daily;\n* Dose level 3: pacritinib 100 mg BID + bemcentinib 100 mg p.o. daily;\n* Dose level 4: pacritinib 200 mg BID + bemcentinib 100 mg p.o. daily;\n* Dose level 5: pacritinib 200 mg BID + bemcentinib 125 mg p.o. daily."
+        },
+        {
+         "description": "Of these participants taking the Maximum tolerated dose, up to 15 will undergo a biopsy. Progression free survival will be the primary objective of this study phase."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Bemcentinib has been investigated in a phase I/II clinical trials for solid tumors. Phase I and II clinical studies of BGB324 are ongoing in non-small cell carcinoma, in which combinations with other agents such as Phase I study of docetaxel (NCT02922777), erlotinib (NCT02424617), and pembrolizumab (NCT03184571) are also being investigated. In a phase I dose escalation study of bemcentinib in combination with docetaxel study, patients with treatment naïve, advanced lung adenocarcinoma receive docetaxel 75 mg/m2 given IV every 21 days in combination with bemcentinib. Bemcentinib dose will be escalated in a standard 3+3 fashion until a maximum tolerated dose is determined.",
+         "name": "bemcentinib"
+        },
+        {
+         "description": "For use in clinical studies as an oral agent, pacritinib is supplied as size #0 hard gelatin capsules with gray bodies and scarlet caps. Capsules contain 100 mg pacritinib (free base) and the following inactive ingredients: microcrystalline cellulose NF, polyethylene glycol 8000 NF, and magnesium stearate NF. The capsule gelatin is bovine derived. Pharmacies at investigational sites will receive subject-specific bottles containing 120 capsules packaged in 200 mL high-density polyethylene bottles with child-resistant closures.",
+         "name": "pacritinib"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This is a Phase Ib/II, open-label, single institution dose-escalation, safety, pharmacokinetics, pharmacodynamic and efficacy study."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study of Bemcentinib Plus Pacritinib In Patients With Advanced Lung Adenocarcinoma",
+       "nctId": "NCT06516887",
+       "officialTitle": "A Phase Ib/II Open-Label, Dose-Escalation, Safety, Pharmacokinetic, Pharmacodynamic and Efficacy Study of Bemcentinib Plus Pacritinib In Patients With Advanced Lung Adenocarcinoma"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2024-12-27"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "sintilimab"
+        },
+        {
+         "term": "lenvatinib"
+        },
+        {
+         "term": "Capecitabine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "sintilimab 200mg ivgtt d1+oxaliplatin 130mg/m2 ivgtt d1+xeloda 1000mg/m2 bid po d1-14，q3w"
+        },
+        {
+         "description": "sintilimab (200mg for the first time, 100mg for the second time, in alteration) ivgtt d1+oxaliplatin 85mg/m2 ivgtt d1+Nab-paclitaxel 125 mg/m2 ivgtt d1+5FU 2.4g/m2 civ48h, q2w"
+        },
+        {
+         "description": "sintilimab 200mg ivgtt d1+oxaliplatin 130mg/m2 ivgtt d1+xeloda 1000mg/m2 bid po d1-14+lenvatinib 8mg(\\<60kg) or 12mg(≥60kg) po qd，q3w"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Patients were randomized in a 1:1:1 ratio to three treatment groups: control group A: pembrolizumab combined with XELOX regimen, the regimen was repeated every 3 weeks, and tumor efficacy was evaluated every 2 treatment cycles. Group B: treatment regimen was pembrolizumab combined with Nab-POF regimen, the regimen was repeated every 2 weeks, and tumor efficacy was evaluated every 3 treatment cycles. Group C: treatment regimen was pembrolizumab combined with XELOX regimen and lenvatinib, the regimen was repeated every 3 weeks, and tumor efficacy was evaluated every 2 treatment cycles.",
+         "name": "Sintilimab, oxalipaltin, 5FU,Nab-paclitaxel,lenvatinib",
+         "otherNames": [
+          "xeloda"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This trial is a prospective, open, randomized, phase II clinical study. It compares the current first-line treatment for advanced gastric cancer in phase II clinical trials, with the best efficacy being the combination of orient-16 study with sintilimab and XELOX regimen. The purpose of this study is to evaluate whether adding anti-angiogenic drugs or chemotherapy drugs on the basis of two-drug chemotherapy regimen (XELOX regimen) and PD-1 monoclonal antibody can improve efficacy for advanced gastric cancer."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Comparing the Efficacy of Sintilimab Plus Nab-POF Regimen, Sintilimab Plus XELOX Chemotherapy, and Lenvatinib, Sintilimab Plus XELOX Chemotherapy in the Treatment of HER2-negative, Metastatic Gastric Cancer",
+       "nctId": "NCT06748508",
+       "officialTitle": "A Multicenter, Prospective, Open-label, Randomized Controlled, Phase II Clinical Trial Comparing the Efficacy of Sintilimab Plus Nab-POF Regimen, Sintilimab Plus XELOX Chemotherapy, and Lenvatinib, Sintilimab Plus XELOX Chemotherapy in the Treatment of HER2-negative, Metastatic Gastric Cancer"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "trilaciclib"
+        },
+        {
+         "term": "Drug Therapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Trilaciclib 240mg/m2, intravenous infusion for 30 minutes, completed within 4 hours before daily chemotherapy; Chemotherapy regimen: FP regimen (cisplatin/carboplatin +5-FU regimen: cisplatin 75mg/m2 D1, D2, D3 or carboplatin AUC 5, intravenous infusion D1; 5-FU 1000 mg/m2, intravenous infusion, D1-4; Q3W); TP regimen (cisplatin/carboplatin +5-FU regimen: cisplatin 75mg/m2 D1, D2, D3 or carboplatin AUC 5, intravenous infusion D1; Docetaxel 75mg/m2 or albumin paclitaxel 200mg, IV infusion, D1, 8; Q3W). The specific dose can be adjusted according to the situation.\n\nImmunotherapy: pembrolizumab 200mg q2w Targeted therapy: cetuximab (400mg/m2 qw 250mg/m2 qw) Some patients could be treated with maintenance therapy, and the treatment regimen was immunotherapy or targeted therapy combined with treaclib."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Trilaciclib 240mg/m2, intravenous infusion for 30 minutes, completed within 4 hours before daily chemotherapy; Chemotherapy regimen: FP regimen (cisplatin/carboplatin +5-FU regimen: cisplatin 75mg/m2 D1, D2, D3 or carboplatin AUC 5, intravenous infusion D1; 5-FU 1000 mg/m2, intravenous infusion, D1-4; Q3W); TP regimen (cisplatin/carboplatin +5-FU regimen: cisplatin 75mg/m2 D1, D2, D3 or carboplatin AUC 5, intravenous infusion D1; Docetaxel 75mg/m2 or albumin paclitaxel 200mg, IV infusion, D1, 8; Q3W). The specific dose can be adjusted according to the situation.\n\nImmunotherapy: Pembrolizumab 200mg q2w Targeted therapy: cetuximab (400mg/m2 qw 250mg/m2 qw) Some patients can be treated with maintenance therapy, and the treatment regimen is immunotherapy or targeted therapy combined with Trilaciclib",
+         "name": "Trilaciclib",
+         "otherNames": [
+          "chemotherapy",
+          "immune/targeted therapy"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Head and neck squamous cell carcinoma",
+        "Chemotherapy induced myelosuppression",
+        "Trilaciclib"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This prospective, single-arm, exploratory, phase II study was designed to evaluate the efficacy and safety of Trilaciclib in reducing chemotherapy-induced neutropenia in patients with recurrent or metastatic head and neck squamous cell carcinoma. Eligible subjects screened by the inclusion and exclusion criteria will receive chemotherapy alone or combined with immune/targeted therapy and Trilaciclib for 4-6 cycles of continuous treatment. If the efficacy is not progressive after 4-6 cycles of treatment, the investigators can combine with Trilaciclib during immune and/or targeted maintenance therapy according to the specific conditions of the subjects until disease progression or intolerance. The efficacy of Trilaciclib will be evaluated by the incidence of grade ≥3 neutropenia during chemotherapy as the primary endpoint.\n\nAfter the progression of treatment, if the subjects were treated with chemotherapy for subsequent treatment and were considered to be able to use Trilaciclib according to the evaluation of the investigator, the use of treaclib could be considered until the subjects had disease progression again or were intolerant to treatment."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Trilaciclib in Preventing Hematopoietic Suppression in Patients with Recurrent or Metastatic Head and Neck Squamous Cell Carcinoma",
+       "nctId": "NCT06714266",
+       "officialTitle": "A Prospective, Single-arm, Phase II Clinical Trial to Evaluate the Efficacy and Safety of Trilaciclib in Preventing Hematopoietic Suppression in Patients with Recurrent or Metastatic Head and Neck Squamous Cell Carcinoma Receiving Either Single Chemotherapy or Chemotherapy Combined with Immunotherapy/targeted Therapy."
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants with confirmed or suspected metastatic Renal Cell Carcinoma (RCC) and who are candidates for standard of care metastatectomy or debulking/consolidative nephrectomy will be selected for study participation and will undergo study procedures as outlined:\n\n* Placement of 1-6 microdevice(s) 72 +/- 24 hours prior to scheduled, standard of care surgery. The number of microdevices implanted into a tumor will be made on a case-by-case basis based on tumor and participant factors before and during the procedure.\n* At the time of standard of care surgery, surgical removal of microdevice(s) along with surrounding tumor tissue.\n* Monitoring for safety endpoints during inpatient stay and at a follow-up clinic visit."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Small, implantable device with 20 microreservoirs for drug and drug combinations, via needle, percutaneously, and guided by interventional radiologic techniques.\n\nDrugs include all or a subset of the following: Cabozantinib, Pazopanib, Lenvatinib, Axitinib, Ipilimumab, Nivolumab, Pembrolizumab, Carboplatin, Paclitaxel, Abemaciclib, Gemcitabine, Everolimus, Belzutifan, Cabozantinib + nivolumab, Cabozantinib + belzutifan, Ipilimumab + nivolumab, Lenvatinib + pembrolizumab, Lenvatinib + everolimus, Abemaciclib + belzutifan, and Tivozanib. Other medications on the microdevice may be substituted pending updates in clinical and scientific data.",
+         "name": "Implantable Microdevice (IMD)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Renal Cell Carcinoma",
+        "Metastatic Renal Cell Carcinoma",
+        "Kidney Cancer",
+        "Suspected Renal Cell Carcinoma"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This research is being done to study the safety and feasibility of implanting and retrieving a microdevice that releases microdoses of 19 specific drugs or drug combinations as a possible tool to evaluate the effectiveness of several cancer drugs against metastatic renal cell carcinoma (RCC).\n\nThe name of the intervention(s) involved in this study are:\n\n* Implantable Microdevice (IMD)\n* Surgery (excision of tumor)\n* Drugs used in this study will only include drugs already used as standard of care for the treatment of metastatic renal cell carcinoma (RCC)"
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Drug Screening Using Novel IMD in Renal Cell Carcinoma",
+       "nctId": "NCT05700461",
+       "officialTitle": "Pilot Study of an Implantable Microdevice for in Situ Evaluation of Drug Response in Renal Cell Carcinoma"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Nivolumab, XELOX/FOLFOX"
+        },
+        {
+         "description": "Nivolumab, XELOX/FOLFOX"
+        },
+        {
+         "description": "Bevacizumab, Atezolizumab"
+        },
+        {
+         "description": "Bevacizumab, Atezolizumab"
+        },
+        {
+         "description": "Pembrolizumab"
+        },
+        {
+         "description": "Pembrolizumab"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Nivolumab 360mg 6 weekly (up to 2 years) + XELOX Nivolumab 240mg 4 weekly (up to 2 years) + FOLFOX",
+         "name": "Extended Dosing Interval - A"
+        },
+        {
+         "description": "Bevacizumab + Atezolizumab 1200mg 6 weekly (up to 2 years)",
+         "name": "Extended Dosing Interval - B"
+        },
+        {
+         "description": "Pembrolizumab 200mg 6 weekly (up to 2 years)",
+         "name": "Extended Dosing Interval - C"
+        },
+        {
+         "description": "Nivolumab 360mg 3 weekly (up to 2 years) + XELOX Nivolumab 240mg 2 weekly (up to 2 years) + FOLFOX",
+         "name": "Standard of Care - A"
+        },
+        {
+         "description": "Bevacizumab + Atezolizumab 1200mg 3 weekly (up to 2 years)",
+         "name": "Standard of Care - B"
+        },
+        {
+         "description": "Pembrolizumab 200mg 3 weekly (up to 2 years)",
+         "name": "Standard of Care - C"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Nivolumab",
+        "Atezolizumab",
+        "Pembrolizumab",
+        "Extended dosing interval"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This study is a prospective, open label, multi-centre phase 2 trial which assesses the efficacy and safety of standard dosing compared to extended dosing interval of nivolumab, atezolizumab or pembrolizumab in advanced/unresectable gastric/gastroesophageal junction/oesphageal adenocarcinomas with PDL1 CPS ≥5%, hepatocellular carcinoma andnon-small cell lung cancer with PDL1 TPS≥50% with no prior treatment. The investigators hypothesize that nivolumab, pembrolizumab and atezolizumab can be used efficiently at extended dosing intervals, compared to their approved labels with comparable clinical outcome."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Value-Driven Study on Reducing Immune Checkpoint Inhibitor Dosing Frequency in Advanced Cancers",
+       "nctId": "NCT06422403",
+       "officialTitle": "A Value-Driven Study on Reducing Immune Checkpoint Inhibitor Dosing Frequency in Advanced Cancers: Phase 2 Randomized Trial (VALUE-CHECK)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Injections"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "TQB2102 for Injection and bemarituzumab are administered intravenously every three weeks, while chemotherapy is given orally from Day 1 to Day 15, with each treatment cycle lasting 21 days.\n\nTQB2102 and bemosubicinumab for injection every three weeks and capecitabine Day1-Day15 administered orally in 21-day cycles"
+        },
+        {
+         "description": "TQB2102 for Injection and bemarituzumab are administered intravenously every three weeks, while chemotherapy is given orally from Day 1 to Day 15, with each treatment cycle lasting 21 days."
+        },
+        {
+         "description": "TQB2102 for Injection and Penpulimab are administered intravenously every three weeks, while chemotherapy is given orally from Day 1 to Day 15, with each treatment cycle lasting 21 days."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "TQB2102 for injection is an antibody-coupled drug Benmelstobart is a Programmed cell death -Ligand 1 (PD-L1) Antibody",
+         "name": "TQB2102 for injection (7.5 mg) +Benmelstobart+Chemotherapy"
+        },
+        {
+         "description": "TQB2102 for injection is an antibody-coupled drug Benmelstobart is a PD-L1 Antibody",
+         "name": "TQB2102 for injection (6 mg/7.5 mg) +Benmelstobart+Chemotherapy"
+        },
+        {
+         "description": "TQB2102 for injection is an antibody-coupled drug",
+         "name": "TQB2102 for injection (6 mg/7.5 mg) +Penpulimab+Chemotherapy"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "TQB2102 for injection is a novel antibody-coupled drug (ADC) that enhances binding to tumor cell surface HER2 proteins by simultaneously targeting the two non-overlapping epitopes of the HER2 protein, Endothelial Cell Dysfunction 2 (ECD2) and Endothelial Cell Dysfunction 4 (ECD4), increasing HER2 internalization, and then down-regulating the tumor cell surface HER2 proteins more effectively, and doubly blocking the HER2 signaling, to achieve the effects of trastuzumab and Pertuzumab alone and in combination. This is a Phase II study to evaluate the efficacy and safety of TQB2102 for injection in combination with Benmelstobart Injection /Penpulimab Injection ± chemotherapy in patients with unresectable locally advanced, recurrent or metastatic HER2-positive gastroesophageal adenocarcinoma"
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Clinical Trial Evaluating TQB2102 for Injection in Combination With Behmosubaisumab/Payamprolizumab With or Without Chemotherapy in Unresectable Locally Advanced, Recurrent, or Metastatic Human Epidermal Growth Factor Receptor 2 (HER2)-Positive Gastroesophageal Adenocarcinoma",
+       "nctId": "NCT06767800",
+       "officialTitle": "Phase II Clinical Trial Evaluating the Efficacy and Safety of TQB2102 for Injection in Chemotherapy With Behmosubstituted Monoclonalb/Pembrolizumab ± Chemotherapy in Patients With Unresectable, Locally Advanced, Recurrent, or Metastatic HER2-Positive Gastroesophageal Adenocarcinoma"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-21"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Propranolol"
+        },
+        {
+         "term": "sintilimab"
+        },
+        {
+         "term": "Drug Therapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients receive propranolol hydrochloride PO BID, pembrolizumab IV over 30 minutes of day 1 and chemotherapy IV. Courses repeat every 3 weeks for up to 2 years in the absence of disease progression or unacceptable toxicity."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "10 mg, PO, BID, for up to 2 years until disease progression/intolerable toxicity/withdrawal of informed consent.",
+         "name": "Propranolol hydrochloride",
+         "otherNames": [
+          "Inderal"
+         ]
+        },
+        {
+         "description": "intravenous infusion (IV), 200 mg, Day1, Q3W, for up to 2 years until disease progression/intolerable toxicity/withdrawal of informed consent.",
+         "name": "Sintilimab"
+        },
+        {
+         "description": "Platinum-based chemotherapy:\n\nFor non-squamous cell carcinoma options: carboplatin/cisplatin + pemetrexed; For squamous cell carcinoma: carboplatin/cisplatin + paclitaxel/gemcitabine. Carboplatin: IV, AUC 5, Day1, Q3W; Cisplatin: IV, 75 mg/m2, Day1-3, Q3W; Pemetrexed: IV, 500 mg/m2, Day1, Q3W; Paclitaxel: IV, 175 mg/m², Day1, Q3W; Albumin-bound paclitaxel: IV, 100 mg/m², Day1, 8, 15; or 260 mg/m2, Q3W; Gemcitabine: IV, 1000mg/m2, Day1, 8, Q3W; After 4-6 cycles of sintilimab and platinum-based chemotherapy, the patients of non-squamous cell carcinoma will be received with sintilimab and pemetrexed for maintenance therapy, for up to 2 years until disease progression/intolerable toxicity/withdrawal of informed consent.",
+         "name": "Chemotherapy"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This study is a prospective single-center Phase I clinical study in patients with EGFR/ALK/ROS1 driver oncogene negative, and advanced or metastatic NSCLC. This study is to evaluate the efficacy and safety preliminarily in a small-size of propranolol hydrochloride in combination with sintilimab and platinum-based chemotherapy in first-line therapy. Propranolol hydrochloride is a beta- adrenergic blocking agent which is associated with augment of immune cell responses. Propranolol hydrochloride may improve the responses of immune checkpoint inhibitors in treating patients with advanced NSCLC."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Propranolol Hydrochloride in Combination With Sintilimab and Platinum-based Chemotherapy for Treatment of Advanced Non-small Cell Lung Cancer",
+       "nctId": "NCT05979818",
+       "officialTitle": "Study of Propranolol Hydrochloride in Combination With Sintilimab and Platinum-based Chemotherapy for Treatment of Advanced Non-small Cell Lung Cancer (BRIO)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-13"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Intravenous infusion"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "9x10\\^10 BST08 cells, Intravenous infusion，3 subject is planned to be enrolled",
+         "name": "Single drug group A"
+        },
+        {
+         "description": "9x10\\^10 BST08 cells+ Pembrolizumab Injection，200mg，Q3W, Intravenous infusion，6subject is planned to be enrolled",
+         "name": "Combined treatment group B"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This study is an exploratory clinical trial initiated by an open, single arm researcher to evaluate the safety, tolerability, and preliminary efficacy of BST08 in the treatment of advanced non-small cell lung cancer in subjects. This study plans to set up two experimental groups: monotherapy group A: 9x10 \\^ 10 BST08 (3 cases) and combination therapy group B: 9x10 \\^ 10 BST08+Pabolizhu 200mg Q3W (6 cases)."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study on the Safety and Efficacy of BST08 in Treating Advanced Non-Small Cell Lung Cancer",
+       "nctId": "NCT06643910",
+       "officialTitle": "A Study on the Safety and Efficacy of BST08 in Treating Advanced Non-Small Cell Lung Cancer"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Intervention 1 week:\n\n\\- 1 Injection of INT230-6 into primary tumor of the breast\n\nThereafter\n\n* Standard of Care including surgery (30 weeks)\n* Immuno-chemotherapy -\\> 24 weeks\n\nNeoadjuvant therapy as Keynote-522 (Standard of Care) - 24 Weeks\n\nPembrolizumab q3W in combination with\n\n* Cycles 1-4: Paclitaxel q1W + Carboplatin q1W or q3W\n* Cycle 5-8: Doxorubicin or Epirubicin q3W + Cyclophospahmide q3W\n* MRI\n* Surgery"
+        },
+        {
+         "description": "Intervention 1 week:\n\n\\- No intervention - start of immune-chemotherapy after randomization\n\nThereafter\n\n* Standard of Care including surgery (30 weeks)\n* Immuno-chemotherapy -\\> 24 weeks\n\nNeoadjuvant therapy as Keynote-522 (Standard of Care) - 24 Weeks\n\nPembrolizumab q3W in combination with\n\n* Cycles 1-4: Paclitaxel q1W + Carboplatin q1W or q3W\n* Cycle 5-8: Doxorubicin or Epirubicin q3W + Cyclophospahmide q3W\n* MRI\n* Surgery"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "INT230-6 is a formulation consisting of an proprietary amphiphilic cell penetration enhancer molecule, 8-((2-hydroxybenzoyl)amino)octanoate, also referred to as SHAO, combined with cisplatin and vinblastine sulfate.\n\nThe IMP is without marketing authorization in Switzerland and anywhere in the world.",
+         "name": "INT230-6"
+        },
+        {
+         "description": "Standard of care",
+         "name": "neoadjuvant immuno-chemotherapy"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "triple-negative breast cancer",
+        "TNBC",
+        "Intratumoral INT230-6",
+        "neoadjuvant immuno-chemotherapy",
+        "INT230-6",
+        "early stage"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "About 10-20% of all individuals with breast cancer have a so-called triple-negative tumor (TNBC). This type of breast cancer has a particularly unfavorable course and a higher mortality rate compared to other forms of breast cancer. Research studies show that it is important for individuals with TNBC to achieve a so-called pathologic complete response (pCR) to treatment. In the phase II study SAKK 66/22, it is being investigated whether the administration of the drug INT230-6 before surgery for breast cancer can increase the rate of pCR in the tumor and affected lymph nodes. The tolerability of INT230-6 as well as other factors such as response to treatment and the possibility of breast-conserving surgery are also being examined."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Intratumoral INT230-6 Followed by Neoadjuvant Immuno-chemotherapy in Patients With Early TNBC. INVINCIBLE-4-SAKK",
+       "nctId": "NCT06358573",
+       "officialTitle": "Intratumoral INT230-6 Followed by Neoadjuvant Immuno-chemotherapy in Patients With Early Triple-negative Breast Cancer (TNBC). An Open-label Randomized Two-cohort Phase 2 Clinical Trial. INVINCIBLE-4-SAKK"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-24"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients receiving treatment with an Antibody-Drug conjugate (e.g Trastuzumab-Deruxtecan, Sacituzumab-Govitecan)"
+        },
+        {
+         "description": "Patients receiving treatment with an immune checkpoint inhibitor (ICI) (e.g pembrolizumab)"
+        },
+        {
+         "description": "Patients receiving treatment with a PARP inhibitor (e.g Olaparib)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "mBC",
+        "biomarkers",
+        "ADCs",
+        "immunotherapy",
+        "PARPi",
+        "Breast Cancer"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Ample evidence has highlighted the significant clinical benefit of novel therapies for many patients with advanced breast cancer (aBC). The use of CDK inhibitors, antibody-drug conjugates (ADCs), immune checkpoint inhibitors (ICIs), and PARP inhibitors as first-line or subsequent treatments has improved progression-free survival (PFS) rates compared to conventional therapies. In selected cases, these treatments have also increased overall survival (OS), reshaping the therapeutic landscape for advanced breast cancer.\n\nHowever, several key questions remain unanswered. For example, what should be the first-line treatment when multiple effective options are available? Determining the optimal sequence of drugs in successive lines of therapy is another major challenge. Furthermore, the development of resistance to treatment and the occurrence of severe adverse events that may lead to early discontinuation or fatal outcomes are pressing concerns.\n\nThat said, identifying robust predictive biomarkers of response or resistance is crucial for ensuring that patients receive the most effective treatment while avoiding unnecessary exposure to therapies that could cause harm without benefit. Additionally, when multiple effective options exist, selecting the optimal treatment algorithm for each patient based on clinical, pathological, and molecular biomarkers is essential.\n\nWe herein, aim at employing high throughput methodologies, such as Whole Exome Sequencing, circulating tumour DNA (ctDNA) analysis, digital pathology and radiomics analyses, as well as real-world data obtained both from patients records for the training of a ML-based algorithm that can predict response or resistance to a specific treatment, based on the genetic make-up of the patient and the molecular profile of the tumour."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Mechanisms of Response and Resistance to Innovative Treatments in Patients With Locally Advanced or Metastatic Breast Cancer",
+       "nctId": "NCT07066917",
+       "officialTitle": "Mechanisms of Response and Resistance to Innovative Treatments in Patients With Locally Advanced or Metastatic Breast Cancer"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Immunotherapy"
+        },
+        {
+         "term": "Biological Therapy"
+        },
+        {
+         "term": "Radiotherapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "This group includes patients with metastatic non small cell lung cancer (NSCLC) who received immune checkpoints inhibitors (Nivolumab, Atezolizumab or Pembrolizumab) without any associated radiotherapy during the course of treatment"
+        },
+        {
+         "description": "This group includes patients with metastatic non-small cell lung cancer (NSCLC) who received immune checkpoint inhibitors (Nivolumab, Atezolizumab, or Pembrolizumab) in combination with radiotherapy. Radiotherapy was delivered either concomitantly or sequentially to immunotherapy."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "The immunotherapy intervention consists of treatment with immune checkpoint inhibitors, specifically Nivolumab (OPDIVO), Atezolizumab (TECENTRIQ), Pembrolizumab (KEYTRUDA).\n\nThese drugs are monoclonal antibodies that block PD-1 or PD-L1 pathways, aiming to enhance the immune system's ability to recognize and destroy cancer cells. The treatment is administered intravenously according to standard dosing schedules.",
+         "name": "Immunotherapy",
+         "otherNames": [
+          "Biological Therapy"
+         ]
+        },
+        {
+         "description": "The radiotherapy intervention involves targeted delivery of ionizing radiation to metastatic lesions. Radiotherapy may be given either concurrently with immunotherapy or sequentially afterward, depending on the patient's treatment plan. The purpose is to achieve local tumor control and potentially enhance the systemic immune response through immunogenic cell death. Different radiation techniques and dose regimens may be employed based on lesion size, location, and clinical considerations.",
+         "name": "Radiotherapy",
+         "otherNames": [
+          "Radiation Therapy",
+          "External Beam Radiotherapy",
+          "Radiation Treatment"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "non small cell lung cancer",
+        "NSCLC",
+        "metastatic",
+        "radiotherapy",
+        "immunotherapy"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The aim of this retrospective, multicenter, observational study is to evaluate the potential clinical benefit of adding radiotherapy (administered either concomitantly or sequentially) to immunotherapy in patients with metastatic non-small cell lung cancer (NSCLC).\n\nOne promising approach involves the integration of radiotherapy into the treatment plan. Radiotherapy is known not only for its cytotoxic local effects, but also for its ability to modulate the tumor microenvironment, increase antigen presentation, and stimulate systemic immune responses.\n\nThis study will compare two cohorts of patients with metastatic NSCLC treated in real-world clinical settings. The first cohort includes patients treated with immunotherapy alone, while the second includes those who received immunotherapy in combination with radiotherapy. Radiotherapy may have been administered concurrently or sequentially with respect to immunotherapy, based on clinical judgment.\n\nThe primary objective is to determine whether the addition of radiotherapy improves progression-free survival (PFS) by at least 30%, compared to immunotherapy alone. This threshold reflects clinically meaningful differences reported in randomized controlled trials in similar populations and treatment lines. Secondary objectives include overall survival (OS) and exploring predictive factors of treatment response, such as patient demographics, tumor characteristics, mutational status, timing of radiotherapy and abscopal effect evaluation, to refine patient selection for future combination strategies.\n\nEligible participants are adults with histologically confirmed metastatic NSCLC, treated with first-line or second-line immunotherapy, and with no prior exposure to immunotherapy. Data will be retrospectively collected from medical records, and treatment arms will be assigned based on actual clinical care paths.\n\nParticipants will:\n\n* Be retrospectively identified from hospital records.\n* Be assigned to one of two cohorts: immunotherapy alone or immunotherapy + radiotherapy (concomitant or sequential).\n* Have their data analyzed for OS, PFS, toxicity, and potential predictive biomarkers.\n\nThe results of this study will contribute to a better understanding of real-world outcomes in metastatic NSCLC patients and may inform future prospective trials evaluating radiotherapy as a modulator of immunotherapy efficacy."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Survival Efficacy of Combined Radiotherapy and Immunotherapy in Patients With Metastatic Non-small Cell Lung Carcinoma",
+       "nctId": "NCT07111104",
+       "officialTitle": "Survival Efficacy of Combined Radiotherapy and Immunotherapy in Patients With Metastatic Non-small Cell Lung Carcinoma: an Observational Retrospective Multicenter Study"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-10-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "The goal of this observational study is to evaluate the clinical outcomes, side effects, and costs of Avelumab maintenance therapy in first-line and Pembrolizumab in second-line for platinum-fit patients with advanced urothelial cancer who have not shown disease progression after 4-6 cycles of platinum-based first-line chemotherapy.\n\nResearchers will compare the effects of Avelumab (used as maintenance in first-line) and Pembrolizumab (used in second-line) to see if there are differences in clinical outcomes, toxicity profiles, and costs.\n\nParticipants will:\n\nReceive Avelumab as maintenance therapy in the first-line or Pembrolizumab in the second-line as per standard clinical practice.\n\nBe monitored for clinical outcomes, side effects, and costs over a period of up to 12 months prospectively and 10 years retrospectively."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Evaluation of Clinical Outcomes, Tolerability, and Costs of Avelumab Maintenance and Pembrolizumab Second-Line Therapy in Advanced Urothelial Cancer.",
+       "nctId": "NCT07207928",
+       "officialTitle": "Evaluation of Clinical Outcomes, Tolerability, and Costs of Avelumab as First-Line Maintenance Therapy and Pembrolizumab as Second-Line Therapy in Patients With Advanced Urothelial Cancer Without Disease Progression After First-Line Platinum-Based Chemotherapy: A Multicenter Retro-Prospective Observational Study in Real-World Clinical Practice"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-09-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "All patients treated with 177Lu-PSMA-617."
+        },
+        {
+         "description": "Patients treated with 177Lu-PSMA-617 after at least 1 ARPI and at least 1 taxane treatment. ARPIs include abiraterone, enzalutamide, darolutamide, and apalutamide. Taxanes include cabazitaxel and docetaxel."
+        },
+        {
+         "description": "Patients treated with 177Lu-PSMA-617 after 1 ARPI and 1 taxane treatment. ARPIs include abiraterone, enzalutamide, darolutamide, and apalutamide. Taxanes include cabazitaxel and docetaxel."
+        },
+        {
+         "description": "Patients with evidence of 1 ARPI and 1 taxane treatment plus at least 1 additional ARPI or taxane before 177Lu-PSMA-617 initiation. ARPIs include abiraterone, enzalutamide, darolutamide, and apalutamide. Taxanes include cabazitaxel and docetaxel."
+        },
+        {
+         "description": "Patients treated with any guideline-recommended treatment for mCRPC after 177Lu-PSMA-617 discontinuation. Guideline-recommended treatments include abiraterone, enzalutamide, darolutamide, apalutamide, cabazitaxel, docetaxel, pembrolizumab, sipuleucel-T, niraparib, olaparib, talazoparib, rucaparib, radium-223; carboplatin, cisplatin, etoposide, and mitoxantrone."
+        },
+        {
+         "description": "Patients treated with any ARPI or taxane after 177Lu-PSMA-617 discontinuation (i.e., abiraterone, enzalutamide, darolutamide, apalutamide, cabazitaxel, docetaxel)."
+        },
+        {
+         "description": "Patients treated with any ARPI after 177Lu-PSMA-617 discontinuation (i.e., abiraterone, enzalutamide, darolutamide, apalutamide)."
+        },
+        {
+         "description": "Patients treated with any taxane after 177Lu-PSMA-617 discontinuation (i.e., cabazitaxel, docetaxel)."
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Lutetium-177 (177Lu) Vipivotide Tetraxetan",
+        "177Lu-PSMA-617",
+        "Clinical Outcomes",
+        "Prostate Cancer",
+        "Prostate-specific Antigen",
+        "Metastatic Castration-resistant Prostate Cancer"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The aim of this study was to assess the characteristics, treatment patterns, and clinical outcomes among metastatic castration-resistant prostate cancer (mCRPC) patients in the United States (US) who were treated with lutetium-177 vipivotide tetraxetan (177Lu-PSMA-617) in the real-world setting."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "A Real-world Study of Characteristics, Treatment Patterns, and Clinical Outcomes Among Lutetium-177 Vipivotide Tetraxetan Treated Patients",
+       "nctId": "NCT07477756",
+       "officialTitle": "Real-World Characteristics, Treatment Patterns, and Clinical Outcomes Among Patients Receiving Lutetium-177 Vipivotide Tetraxetan"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-09-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Gemcitabine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Low-dose Gemcitabine and Cisplatin Chemotherapy:\n\nGemcitabine 500 mg/m2 Cisplatin 12.5 mg/m2 on day 1 and day 8 of each 21-day cycle for up to eight cycles\n\nPD-1/PD-L1Antibody:\n\nPembrolizumab 200mg on day 1 of each 21-day cycle Durvalumab 1500 mg on day 1 of each 21-day cycle After completion of gemcitabine and cisplatin, 200mg of Pembrolizumab or 1500 mg of Durvalumab may administer once every 3 or 4 weeks until clinical or imaging (per RECIST v1.1) disease progression or until unacceptable toxicity, withdrawal of consent, or any other discontinuation criteria were met."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Low-dose Gemcitabine and Cisplatin Chemotherapy:\n\nGemcitabine 500 mg/m2 Cisplatin 12.5 mg/m2 on day 1 and day 8 of each 21-day cycle for up to eight cycles\n\nPD-1/PD-L1Antibody:\n\nPembrolizumab 200mg on day 1 of each 21-day cycle Durvalumab 1500 mg on day 1 of each 21-day cycle After completion of gemcitabine and cisplatin, 200mg of Pembrolizumab or 1500 mg of Durvalumab may administer once every 3 or 4 weeks until clinical or imaging (per RECIST v1.1) disease progression or until unacceptable toxicity, withdrawal of consent, or any other discontinuation criteria were met.",
+         "name": "Low-dose Gemcitabine and Cisplatin Chemotherapy plus PD-1/PD-L1Antibody",
+         "otherNames": [
+          "LDGC-PB"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "In this phase 2 study, researchers aimed to evaluate the efficacy and safety of low-dose gemcitabine and cisplatin chemotherapy and the immune checkpoint inhibitor PD-1/PD-L1 antibody in patients with advanced and unresectable intrahepatic cholangiocarcinoma."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Low-dose Gemcitabine and Cisplatin and PD-1/PD-L1 Antibody Therapy in Intrahepatic Cholangiocarcinoma",
+       "nctId": "NCT06567600",
+       "officialTitle": "Combined Therapy Using Low-dose Gemcitabine and Cisplatin Chemotherapy and PD-1/PD-L1Antibody for Patients With Advanced and Unresectable Intrahepatic Cholangiocarcinoma: an Open-label, Multicenter, Single-arm Clinical Trial"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-09-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Bevacizumab"
+        },
+        {
+         "term": "Oxaliplatin"
+        },
+        {
+         "term": "Capecitabine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "all enrolled patients received a combination of chemotherapy and immunotherapy, as outlined below:\n\nPembrolizumab:\n\nDay 1：Pembrolizumab injection 200mg was administered once and repeated every 21 days, expected to last 2-4 cycles. Two vials (200 mg) of pembrolizumab injection should be diluted into 100-200 mL of saline, and the infusion time should be more than 30 minutes.\n\nChemotherapy (CapeOX regimen):\n\nDay 2: Bevacizumab (7.5 mg/kg) + Oxaliplatin (135 mg/m2) + Capecitabine (1 g/m2, did, d1-d14). Treatment repeated every 3 weeks (q3w) until disease progression or intolerable toxicity."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Pabolizumab is an lgG4 subclass monoclonal antibody humanized against PD-l molecules thatblocks the immune escape mechanism of cancer cells by inhibiting the PD-l receptor oflymphocytes, thereby allowing the immune system to destroy them.\n\nIn the single-arm study, all enrolled patients received a combination of chemotherapy and immunotherapy, as outlined below:\n\nPembrolizumab:\n\nDay 1：Pembrolizumab injection 200mg was administered once and repeated every 21 days, expected to last 2-4 cycles. Two vials (200 mg) of pembrolizumab injection should be diluted into 100-200 mL of saline, and the infusion time should be more than 30 minutes.\n\nChemotherapy (CapeOX regimen):\n\nDay 2: Bevacizumab (7.5 mg/kg) + Oxaliplatin (135 mg/m2) + Capecitabine (1 g/m2, did, d1-d14). Treatment repeated every 3 weeks (q3w) until disease progression or intolerable toxicity.",
+         "name": "Pabolizumab+ bevacizumab and CapeOX (bevacizumab + oxaliplatin + capecitabine)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Locally advanced colorectal cancer (LACRC)",
+        "pembrolizumab",
+        "microsatellite-stabilized",
+        "CapeOX neoadjuvant"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "To explore the efficacy and safety of pembrolizumab in combination with bevacizumab and CapeOX neoadjuvant therapy for the treatment of RAS-mutated, BRAF wild-type, microsatellite-stabilized, locally advanced colorectal cancer.\n\nMethods and analysis: A prospective, open-label, single-arm, phase 2 clinical study protocol will enroll a total of 20 patients. The study is designed as a Simon II Optimal study involving 20 locally advanced rectal cancer (LACRC) patients. Initially, 9 patients will be recruited in the Simon I phase, and if more than 1 patient achieves a pathological complete response (pCR), the study will proceed to the II phase. Recruit up to 20 patients in Phase II, and if more than 4 patients achieve pCR, the trial will be considered successful. All enrolled patients will receive 2-4 cycles of neoadjuvant therapy with pembrolizumab + bevacizumab and CapeOX (bevacizumab + oxaliplatin + capecitabine). The primary efficacy endpoint is the pathological complete response (pCR) of the cancer following neoadjuvant therapy. Secondary efficacy endpoints include major pathological response (MPR), objective response rate (ORR), and assessment of adverse events (AEs).\n\nEthics: Ethics approval has been obtained from the Ethics Committee at the First Affliated Hospital (Xijing Hospital)(KY20232402-F-1)"
+      },
+      "designModule": {
+       "phases": [
+        "PHASE4"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Safety and Efficacy of Pembrolizumab in Combination with Bevacizumab + CapeOX in the Neoadjuvant Treatment of RAS-mutated, BRAF Wild-type, Microsatellite-stabilized, Locally Advanced Colorectal Cancer",
+       "nctId": "NCT06550453",
+       "officialTitle": "Safety and Efficacy of Pembrolizumab in Combination with Bevacizumab + CapeOX in the Neoadjuvant Treatment of RAS-mutated, BRAF Wild-type, Microsatellite-stabilized, Locally Advanced Colorectal Cancer"
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2024-09-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "After randomization, patients in the experimental arm (Arm A) will receive GnRH agonist injection within 7 days of randomization and during neoadjuvant chemotherapy treatment. The protocol-defined chemotherapy will be given 7 to 14 days after GnRH agonist injection. The choice of GnRH agonist, including goserelin, leuprorelin and triptorelin giving in monthly, three-monthly or sixth-monthly, will be made by per investigator's discretion.\n\n* Anthracycline-cyclophosphamide combination or Anthracycline-cyclophosphamide combination, dose-dense schedule\n* Taxane (docetaxel or paclitaxel) ± optional platinum (Use of platinum or not will be stratified.)\n* Optional pembrolizumab(Use of pembrolizumab or not will be stratified.)"
+        },
+        {
+         "description": "* Anthracycline-cyclophosphamide combination or Anthracycline-cyclophosphamide combination, dose-dense schedule\n* Taxane (docetaxel or paclitaxel) ± optional platinum (Use of platinum or not will be stratified.)\n* Optional pembrolizumab(Use of pembrolizumab or not will be stratified.)"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "After randomization, patients in the experimental arm (Arm A) will receive GnRH agonist injection within 7 days of randomization and during neoadjuvant chemotherapy treatment. The choice of GnRH agonist, including goserelin, leuprorelin and triptorelin giving in monthly, three-monthly or sixth-monthly, will be made by per investigator's discretion.",
+         "name": "Goserelin Acetate 3.6mg、Goserelin Acetate 10.8mg、Leuprolide Acetate 3.75mg、Leuprorelin Acetate 22.5mg、Triptorelin pamoate 11.25mg、Triptorelin pamoate 22.5mg"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Neoadjuvant chemotherapy",
+        "Triple negative breast cancer",
+        "Gonadotropin Releasing Hormone Agonist",
+        "Premenopausal Breast Cancer"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Breast cancer (BC), especially premenopausal, is emerging rapidly in East Asia in recent 20 years. Half of the breast cancer patients in Asia are younger than 50 years of age. In general, younger or premenopausal patients are associated with poorer prognosis.\n\nPremenopausal patients have higher estrogen levels than those in older (postmenopausal) patients. Estrogen is known to suppress anti-tumor T cell response and leading to tumor progression in different animal models (Clin Cancer Res 2016 22:6204), including lung cancer, melanoma, ovarian cancer. One of the mechanisms that contributes to estrogen's suppression of T cell function is via the mobilization of myeloid-derived suppressor cells (MDSC). Targeting ER signaling with hormonal therapy can abolish MDSC mobilization, and sensitize tumor cells to antigen specific T cell or NK cell killing (Cancer Discovery 2018 7:72 2017). These study results further support the hypothesis that, E2 is associated with immunosuppressive effect, and may contribute to the suppression of immune surveillance in young female breast cancer patients. These results suggest that E2 may suppress anti-tumor immunity, and E2 reduction improve the anti-tumor immunity. In our preliminary works, the investigators found higher dose (equivalent to premenopausal women serum level) of E2 suppressed T cell activities, while lower dose E2 (postmenopausal serum level) activated T cell activity. The investigators have investigated the combination of anti-PD1 antibody and GnRH agonist plus exemestane (an aromatase inhibitor which will block the production of E2 from adipose tissue) in ER positive premenopausal breast cancer patient refractory to prior endocrine therapy in metastatic setting. The response rate was 38.4%, and median progression-free survival (PFS) was 10.2 months. This outstanding result were presented in AACR 2021 oral session (Cancer Res 2021 81:13\\_Supplement, CT028). On the other hand, progesterone is also well known for its anti-inflammation and immune tolerance activity. This possibly makes estrogen reduction treatments, such as gonadotropin-releasing hormone agonist (GnRH agonist), an important partner in augmenting neoadjuvant therapy for patients with premenopausal breast cancer.\n\nFor triple negative breast cancer (TNBC), endocrine therapy has no anti-tumor effect. On the other hand, the use of GnRH agonist has been tested for the protection of ovary function of young female while receiving adjuvant chemotherapy. Surprisingly, the concomitant use of goserelin and adjuvant chemotherapy improved disease-free survival (HR 0.47, P=0.04) and overall survival (HR 0.45, P=0.05) versus chemotherapy alone in ER negative premenopausal early BC patients in POEMS study, which was initially aimed to improve the success pregnant rate (N Engl J Med 2015 372;923). Endocrine therapy is theoretically antagonist to chemotherapy therapy when concomitantly use. In another report analyzed the outcome of both pre- and postmenopausal women who entered two randomized trials (Gruppo Oncologico Nord-Ovest-Mammella Intergruppo studies) on adjuvant chemotherapy and received either concomitant or sequential hormonal therapy. The result showed a decreasing trend (P = 0.015) in hazard ratio of death with increasing age was observed, indicating that concomitant therapy is more effective than sequential therapy in young patients (Annals of Oncology 2008;19(2):299-307). These results support the hypothesis that, E2 suppression/ER inhibition therapy may modulate immune microenvironment, thereby enhancing the chemotherapy induced immunogenic death effect.\n\nThe investigators hypothesized that, estrogen level reduction by ovarian function suppression can modulate immune microenvironment, thereby augmenting adjuvant chemotherapy efficacy, regardless of the estrogen receptor (ER) status of cancer cell. Therefore, the investigators plan to test this hypothesis in real clinical model, with standard clinical recommended treatment doses.\n\nThe study is designed to evaluate whether the GnRH agonist can provide the therapeutic benefit for premenopausal TNBC patients via modulating immune microenvironment. Premenopausal TNBC patients will receive GnRH agonist and neoadjuvant chemotherapy, and the efficacy and immune microenvironment change of co-administration arm will be measured and compared with chemotherapy alone control arm."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Neoadjuvant Chemotherapy With or Without GnRH Agonist for Premenopausal Triple-negative Early Breast Cancer Patients",
+       "nctId": "NCT06225284",
+       "officialTitle": "A Randomized Phase II Study of Neoadjuvant Chemotherapy With or Without GnRH Agonist for Premenopausal Triple-negative Early Breast Cancer Patients: ESCALATE Study"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-22"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "keywords": [
+        "metastatic",
+        "endometrial",
+        "cancer",
+        "endometrial cancer",
+        "metastatic cancer"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "LARENA is a multicentric retrospective study (secondary use of data) of consecutive patients prospectively registered in the lenvatinib plus pembrolizumab French early access program (Temporary Authorisation for Use). The source of data will be the patient's medical file. We will manually review all files of the participating centers."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Efficacy Assessment of Lenvatinib Associated with Pembrolizumab in Metastatic Endometrial Cancer: a French Multicentric Retrospective Early Access Program-based Study",
+       "nctId": "NCT06599463",
+       "officialTitle": "Efficacy Assessment of Lenvatinib Associated with Pembrolizumab in Metastatic Endometrial Cancer: a French Multicentric Retrospective Early Access Program-based Study"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-08-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Tyrosine Kinase Inhibitors"
+        },
+        {
+         "term": "Immune Checkpoint Inhibitors"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Each patient should receive at least 2 cycles of HAIC and 1cycles of TKIs plus ICIs. The interval between HAIC and TKIs plus ICIs should be within 2 weeks."
+        },
+        {
+         "description": "Each patient should receive at least 2 cycles of ICIs. The interval between TKIs and ICIs should be within 2 weeks."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Hepatic arterial infusion chemotherapy including FOLFOX and RALOX",
+         "name": "hepatic artery infusion chemotherapy"
+        },
+        {
+         "description": "TKIs including Lenvatinib, Sorafenib, Apatinib, Donafenib, Bevacizumab",
+         "name": "Tyrosine kinase inhibitor (TKIs)"
+        },
+        {
+         "description": "ICIs including Camrelizumab, Sintilimab, Tislelizumab, Pembrolizumab, Atezolizumab",
+         "name": "Immune Checkpoint Inhibitors"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "The purpose of this study is to evaluate the safety and efficacy of hepatic arterial infusion chemotherapy (HAIC) in combination with PD-1 inhibitors and Lenvatinib in patients with different tumor burden advanced-stage hepatocellular carcinoma (HCC) with portal vein tumor thrombus (PVTT)."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "HAIC in Combination with Immune Checkpoint Inhibitors and Tyrosine Kinase Inhibitors for Advanced HCC",
+       "nctId": "NCT06632106",
+       "officialTitle": "In Which Tumor Burden Range Does Advanced Hepatocellular Carcinoma Patients Benefit More from Hepatic Arterial Infusion Chemotherapy Plus Immune Checkpoint Inhibitors and Tyrosine Kinase Inhibitors Than Immune Checkpoint Inhibitors Plus Tyrosine Kinase Inhibitors? a Multi-center, Retrospective, Propensity Score Matching Study"
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2024-08-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Heavy Ion Radiotherapy"
+        },
+        {
+         "term": "Base Sequence"
+        },
+        {
+         "term": "Radiotherapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "The patient will receive carbon ion radiotherapy with 70Gy per 20 fractions. Patients with genetic mutations (including but not limited to EGFR, ALK, etc.) should receive targeted therapy as their systemic therapy. For patients who are not suitable for targeted therapy, we recommend single regimen chemotherapy in sequence with radiotherapy. The drugs include etoposide, platinum (carboplatin, cisplatin, nedaplatin or loplatin), vinorelbine, paclitaxel (including liposome paclitaxel and albumin paclitaxel), docetaxel, pemetrexel, gemcitabine, etc. If there is no contraindication to PD-1/PD-L1 immunotherapy, it can be combined with immunotherapy, such as Pembrolizumab. For patients who cannot tolerate chemotherapy, PD-1/PD-L1 immunotherapy is recommended. The progression-free survival rate, toxicity, local control rate, cause-specific survival rate and overall survival rate were observed with regular follow-up after treatment."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "The patient will receive carbon ion radiotherapy with 70Gy per 20 fractions. Patients with genetic mutations (including but not limited to EGFR, ALK, etc.) should receive targeted therapy as their systemic therapy. For patients who are not suitable for targeted therapy, we recommend single regimen chemotherapy in sequence with radiotherapy. The drugs include etoposide, platinum (carboplatin, cisplatin, nedaplatin or loplatin), vinorelbine, paclitaxel (including liposome paclitaxel and albumin paclitaxel), docetaxel, pemetrexel, gemcitabine, etc. If there is no contraindication to PD-1/PD-L1 immunotherapy, it can be combined with immunotherapy, such as Pembrolizumab. For patients who cannot tolerate chemotherapy, PD-1/PD-L1 immunotherapy is recommended. The progression-free survival rate, toxicity, local control rate, cause-specific survival rate and overall survival rate were observed with regular follow-up after treatment.",
+         "name": "carbon ion radiotherapy"
+        },
+        {
+         "description": "targeted therapy",
+         "name": "targeted therapy"
+        },
+        {
+         "description": "single regimen chemotherapy in sequence with radiotherapy",
+         "name": "single regimen chemotherapy in sequence with radiotherapy"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "To observe the effect and toxicity of carbon ion radiotherapy on local advanced non-small cell lung cancer over 75 years old patients. Systemic therapy could be targeted therapy, chemotherapy or immunotherapy."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Carbon Ion Radiotherapy for Locally Advanced Lung Cancer in Elderly Patients",
+       "nctId": "NCT06311981",
+       "officialTitle": "A Prospective Phase II Clinical Study of Carbon Ion Radiotherapy for Locally Advanced Non-small Cell Lung Cancer in the Older Adult"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-08"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Ramucirumab"
+        },
+        {
+         "term": "Paclitaxel"
+        },
+        {
+         "term": "patritumab deruxtecan"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants receive ramucirumab at 8mg/kg via intravenous (IV) infusion on days 1 and 15 of each 4-week cycle for up to \\~60 weeks plus paclitaxel at 80 mg/M\\^2 via IV infusion on Days 1, 8, and 15 of each 4-week cycle (3 weeks on and 1 week off) until discontinuation."
+        },
+        {
+         "description": "Following a 28-day run-in with sacituzumab tirumotecan at 3 mg/kg and 4 mg/kg IV infusion on Days 1 and 15 of a 6-week cycle plus paclitaxel at 80 mg/M\\^2 IV infusion on days 1, 8 and 15 of a 4-week cycle, participants receive paclitaxel at 80 mg/M\\^2 IV infusion on days 1, 8, 15 of each 4-week cycle (3 weeks on and 1 week off) plus sacituzumab tirumotecan at selected dose IV infusion on days 1, 15, 29 of every 6-week cycle until discontinuation."
+        },
+        {
+         "description": "Participants receive HER3-DXd via IV infusion on days 1 and 22 of each 6-week cycle plus ramucirumab at 8mg/kg via IV infusion on days 1 and 15 and 29 of each 6-week cycle until discontinuation."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "8 mg/kg IV Infusion",
+         "name": "Ramucirumab"
+        },
+        {
+         "description": "80 mg/M\\^2 IV infusion",
+         "name": "Paclitaxel"
+        },
+        {
+         "description": "3 mg/kg or 4 mg/kg IV Infusion",
+         "name": "Sacituzumab Tirumotecan",
+         "otherNames": [
+          "MK-2870",
+          "SKB264",
+          "sac-TMT"
+         ]
+        },
+        {
+         "description": "Participants receive rescue medications according to each approved drug's product label. Recommended rescue medications for the Sacituzumab Tirumotecan + Paclitaxel arm include antihistamines (histamine-1 and histamine-2 receptor antagonists), acetaminophen or equivalent, dexamethasone or equivalent infusion, and steroid mouth wash (dexamethasone or equivalent) and rescue medications for the HER3-DXd + ramucirumab arm include 5-HT3-receptor antagonist, NK-1 receptor antagonist, and corticosteroids.",
+         "name": "Rescue Medications"
+        },
+        {
+         "description": "IV Infusion",
+         "name": "HER3-DXd",
+         "otherNames": [
+          "patritumab deruxtecan",
+          "MK-1022",
+          "U3-1402"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Programmed Cell Death 1 (PD1, PD-1)",
+        "Programmed Cell Death 1 Ligand 1(PDL1, PD-L1)",
+        "Programmed Cell Death 1 Ligand 2 (PDL2, PD-L2)"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is a phase 1/2 multicenter, open-label umbrella platform study that will evaluate the safety and efficacy of sacituzumab tirumotecan (MK-2870) plus paclitaxel versus ramucirumab plus paclitaxel, and HER3-DXD plus ramucirumab versus ramucirumab plus paclitaxel for the treatment of participants with advanced or metastatic gastric adenocarcinoma, gastroesophageal junction (GEJ) adenocarcinoma, or esophageal adenocarcinoma who have failed 1 prior line of therapy. This is an estimation study, and no formal hypothesis testing will be performed."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Substudy 06D: Combination Therapies in Second Line (2L) Gastroesophageal Adenocarcinoma (MK-3475-06D/Keymaker-U06)",
+       "nctId": "NCT06445972",
+       "officialTitle": "A Phase 1/2 Open-Label, Umbrella Platform Design Study to Evaluate the Safety and Efficacy of Investigational Agents in Combination With Standard of Care Treatments as the Second-Line Treatment of Participants With Advanced/Metastatic Gastroesophageal Adenocarcinoma: Substudy 06D"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-07"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "conditionsModule": {
+       "keywords": [
+        "pembrolizumab"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is a single-centre, observational, prospective and exploratory study, which involves the use of human tissues from patients affected by Relapsed/Refractory classic Hodgkin Lymphoma treated with pembrolizumab at the Departmental Diagnosis and Therapy program for chronic lymphoproliferative syndromes of the IRCCS AOU of Bologna. Peripheral blood samples will be used for the study and will be taken:\n\n* before starting treatment with pembrolizumab.\n* undergoing therapy with pembrolizumab (cycle 2 (C2), C3, C4, C8, C12)."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Immunological Senescence Phenotype as a Resistance Profile to Pembrolizumab in Patients With Relapsed/Refractory Hodgkin's Lymphoma",
+       "nctId": "NCT06733987",
+       "officialTitle": "Immunological Senescence Phenotype as a Resistance Profile to Pembrolizumab in Patients With Relapsed/Refractory Hodgkin's Lymphoma"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "KEYNOTE-522 regimen: Carboplatin + paclitaxel + pembrolizumab followed by doxorubicin + cyclophosphamide + pembrolizumab"
+        },
+        {
+         "description": "Carboplatin + paclitaxel + pembrolizumab followed by niraparib + pembrolizumab"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Carboplatin + paclitaxel + pembrolizumab followed by doxorubicin + cyclophosphamide + pembrolizumab",
+         "name": "TN"
+        },
+        {
+         "description": "Carboplatin + paclitaxel + pembrolizumab followed by niraparib + pembrolizumab Niraparib Pembrolizumab AC",
+         "name": "TN-1",
+         "otherNames": [
+          "KEYNOTE-522 regimen"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "Randomized phase II trial targeting early-stage breast cancer (stage II-III) applicable to preoperative chemotherapy (NAC), comparing standard treatment with multiple experimental treatments."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Sustainable and Efficient Platform Trial of New Therapeutic Development for Early Breast Cancer",
+       "nctId": "NCT06535893",
+       "officialTitle": "Sustainable and Efficient Platform of New Therapeutic Development for Early Breast Cancer (S-FACT)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients receiving nivolumab or pembrolizumab."
+        },
+        {
+         "description": "Patients receiving ipilimumab plus nivolumab."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Kinase activity profile will be correlated to the observed clinical outcome parameters (including survival and toxicity associated with the therapy) of standard of care treatments",
+         "name": "PBMC Kinase Activity Profile",
+         "otherNames": [
+          "IOpener-melanoma"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "melanoma",
+        "IOpener",
+        "immunotherapy",
+        "immune checkpoint inhibitor"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The goal of this observational study is to assess whether the IOpener® melanoma test can assist treating physicians in deciding which therapy is most suitable for patients with skin cancer (advanced cutaneous melanoma). For this purpose it is evaluated how well the IOpener-melanoma test can predict the result of cancer treatment in the treatment groups (standard of care anti-PD1 mono-therapy and standard of care anti-PD1 + anti-CTLA-4 therapy).\n\nParticipants will be asked to provide blood sample for analysis using IOpener®-melanoma test. Patients will receive regular medical care, the test results will not be used to make any treatment decisions. The patients will visit the clinic for treatment administration and clinical evaluation as part of their regular medical care."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Observational Study of Patients With Advanced Melanoma (Skin Cancer) to Assess if IOpener®-Melanoma Test Can Predict Response to Immunotherapy.",
+       "nctId": "NCT06784778",
+       "officialTitle": "A Prospective, Observational, Multicenter Clinical Performance Study to Evaluate IOpener®-Melanoma Test for Predicting Response to Combination or Mono Immunotherapy in Stage III or IV Cutaneous Melanoma Patients."
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Immune Checkpoint Inhibitors"
+        },
+        {
+         "term": "Antineoplastic Agents"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients will receive standardized anti-tumor therapy including immunotherapy according to clinical guidelines. Patients who treated with immuno-monotherapy, or immuno- plus targeted therapy, or immuno- plus chemotherapy will be recruit in to test the serum ferritin level"
+        },
+        {
+         "description": "Patients will receive standardized anti-tumor therapy including targeted therapy according to clinical guidelines. Patients who treated with targeted monotherapy, or targeted plus chemotherapy will be recruit in to test the serum ferritin level"
+        },
+        {
+         "description": "Patients will receive standardized anti-tumor therapy including chemotherapy according to clinical guidelines. Patients who treated with chemotherapy will be recruit in to test the serum ferritin level"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "PD-1 inhibitor includes pembrolizumab，Nivolumab，Sintilimab，tislelizumab，Triplimab，Camrelizumab, Serplulimab.\n\nPD-L1 inhibitor includes durvalumab,Atezolizumab,Adebrelimab,Envafolimab.",
+         "name": "PD-1 and PD-L1 inhibitor"
+        },
+        {
+         "description": "Targeted drugs includes EGFR-TKIs,ALK-TKIs,Multitargeted Tyrosine Kinase Inhibitors, VEGF antibody, EGFR antibody, antibody-drug conjugates drugs",
+         "name": "Targeted drugs"
+        },
+        {
+         "description": "Chemotherapy drugs are determined based on the investigator's decision.",
+         "name": "chemotherapy drugs"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This is a prospective clinical study to clarify serum ferritin as a biomarker for the diagnosis, differential diagnosis and prognosis of immune-related adverse event(irAE)."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Effect of Serum Ferritin in irAE",
+       "nctId": "NCT06702566",
+       "officialTitle": "The Significance of Serum Ferritin in the Diagnosis, Differential Diagnosis, and Prognosis of Immune-related Adverse Event (irAE)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "spartalizumab"
+        },
+        {
+         "term": "Drug Therapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will receive upfront hypofractionated radiotherapy (HFRT) of the primary lesion and positive lymph nodes (24 Gy/6 fractions). Afterwards, systemic therapy consisted of CAPOX and PD-1 antibodies will be administered every three weeks, for at least 3 cycles. Then, reassessment will be performed within 4 weeks afterwards. For resectable participants, surgical resections of primary lesion will be performed. Postoperative treatment will be determined by the investigators. For unresectable or inoperable participants, the subsequent treatment will be determined by investigators or MDT."
+        },
+        {
+         "description": "Participants will receive treatment every three weeks, for at least 3 cycles. Each cycle of treatment consists of irradiation (6 Gy/1 fraction) to the primary lesion and positive lymph nodes on day 1, and systemic therapy consisted of CAPOX and PD-1 antibodies will be administered on day 2. Then, reassessment was performed within 4 weeks afterwards. For resectable participants, surgical resections of primary lesion will be performed. Postoperative treatment will be determined by the investigators. For unresectable or inoperable participants, the subsequent treatment will be determined by investigators or MDT."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Hypofractionated radiotherapy (HFRT) targeted to the primary lesion and positive lymph nodes (4Gy × 6 fractions)",
+         "name": "HFRT targeted to the primary lesion and positive lymph nodes"
+        },
+        {
+         "description": "Irradiation targeted to the primary lesion and positive lymph nodes (6 Gy/1 fraction)",
+         "name": "PULSAR targeted to the primary lesion and positive lymph nodes"
+        },
+        {
+         "description": "The anti-PD-1 mAb is used on day 1 along with each cycle of chemotherapy. There are no restrictions on the choice of anti-PD-1 mAb. Patients can choose commonly used accessible monoclonal antibodies based on their personal preferences and financial status. The commonly used anti-PD-1 mAb usages are as follows: Nivolumab, 360mg solution intravenously once daily, Q3W; OR Pembrolizumab/Sintilimab, 200mg solution intravenously once daily, Q3W.",
+         "name": "Anti-PD-1 monoclonal antibody"
+        },
+        {
+         "description": "CAPOX: Capecitabine 1000 mg/m2 twice a day, days 1-14 and oxaliplatin 130 mg/m2, day 1, every 3 weeks",
+         "name": "Chemotherapy"
+        },
+        {
+         "description": "For resectable participants, gastrectomy with standard D2 lymphadenectomy is commonly used. The type of gastrectomy performed depends on the location and extent of the primary lesion.",
+         "name": "R0 total/subtotal gastrectomy with D2 lymphadenectomy"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "radiotherapy",
+        "PD-1 inhibitors",
+        "chemotherapy",
+        "locally advanced",
+        "gastrectomy",
+        "neoadjuvant",
+        "hypofractionated radiotherapy"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The goal of this clinical trial is to evaluate the efficacy and safety of the multimodal treatment, which includes radiotherapy, chemotherapy and anti-PD-1 immunotherapy. The trial is designed using a pick-the-winner strategy.\n\nThe main questions it aims to answer are:\n\n1. If the multimodal treatment will improve the pCR rate.\n2. If the multimodal treatment can be performed safely.\n3. Hypofractionated radiotherapy (HFRT) or personalized hyperfractionated stereotactic adaptive radiotherapy (PULSAR), which pattern of radiotherapy can better synergize with immunotherapy.\n\nParticipants will receive HFRT or PULSAR for the primary lesion and positive lymph nodes, combined with CAPOX and anti-PD-1 immunotherapy. Then, reassessment will be performed within 4 weeks afterwards. For resectable participants, surgical resections will be performed. Postoperative treatment will be determined by the investigators. For unresectable or inoperable participants, the subsequent treatment will be determined by investigators or MDT."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Preoperative HFRT Verses PULSAR for Locally Advanced GEJ or Proximal Gastric Adenocarcinoma",
+       "nctId": "NCT06728657",
+       "officialTitle": "A Phase II Randomized Trial of Preoperative Hypofractionated Radiotherapy (HFRT) Compared to Personalized Hyperfractionated Stereotactic Adaptive Radiotherapy (PULSAR), Combined With Chemotherapy and PD-1 Monoclonal Antibody for Locally Advanced Gastroesophageal Junction/Proximal Gastric Adenocarcinoma"
+      },
+      "statusModule": {
+       "overallStatus": "SUSPENDED",
+       "startDateStruct": {
+        "date": "2024-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "tislelizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Gemcitabine combined with cisplatin regimen combined with Tislelizumab"
+        },
+        {
+         "description": "cisplatin, nab-paclitaxel and capecitabine regimen combined with Tislelizumab"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Gemcitabine combined with cisplatin regimen combined with Tislelizumab",
+         "name": "GP combined with Tislelizumab"
+        },
+        {
+         "description": "cisplatin, nab-paclitaxel and capecitabine regimen combined with Tislelizumab",
+         "name": "TPC combined with Tislelizumab"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Nasopharyngeal Carcinoma With Bone Metastasis",
+        "immunochemotherapy"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is a prospective, open-label phase III clinical trial evaluating the efficacy and safety of the GP（Gemcitabine combined with cisplatin） regimen in combination with Tislelizumab versus the TPC（cisplatin, nab-paclitaxel and capecitabine）regimen in combination with Tislelizumab for the first-line treatment of Nasopharyngeal Carcinoma patients With Bone Metastasis."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Tislelizumab in Combination With GP or TPC Regimen for the Treatment of Nasopharyngeal Carcinoma With Bone Metastasis.",
+       "nctId": "NCT06383780",
+       "officialTitle": "A Randomized, Controlled, Multicenter Clinical Study Comparing the Efficacy of Pembrolizumab in Combination With Nab-TPC Regimen Versus the GP Regimen in the First-Line Treatment of Nasopharyngeal Carcinoma With Bone Metastases."
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-05-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "ivosidenib"
+        },
+        {
+         "term": "lenvatinib"
+        },
+        {
+         "term": "Immune Checkpoint Inhibitors"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {},
+        {},
+        {},
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "Oral, selective, small-molecule inhibitor of the mutant isocitrate dehydrogenase 1 (IDH1) enzyme. Administered at a dose of 500 mg, taken orally once daily. This is the core investigational drug in all study arms.",
+         "name": "Ivosidenib"
+        },
+        {
+         "description": "Oral, multi-targeted tyrosine kinase inhibitor. Administered at a weight-based dose (8 mg for body weight \\<60 kg or 12 mg for body weight ≥60 kg), taken orally once daily. Used in combination arms.",
+         "name": "Lenvatinib"
+        },
+        {
+         "description": "Intravenous immune checkpoint inhibitor. Specific agent (e.g., Pembrolizumab, Durvalumab, Toripalimab, or Tislelizumab) may be chosen based on local availability and patient access. Administered at standard doses (e.g., 200 mg, 1500 mg, or 240 mg) via IV infusion every three weeks. Used in combination arms.",
+         "name": "PD-1/PD-L1 inhibitor"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This is a multicenter, non-randomized, umbrella, open-label phase II clinical study, aiming to observe and evaluate, as well as explore the efficacy and safety of precision targeted therapy based on NGS technology for IDH1-mutated patients, specifically the combination of ivosidenib with multi-target tyrosine kinase inhibitors represented by lenvatinib or PD-1/PD-L1 in advanced biliary tract cancer patients who have failed systemic chemotherapy."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "An Exploratory Study on the Use of Ivosidenib for the Precise Treatment of Advanced Biliary Tract Malignancies With IDH1 Mutations in the Later Line of Therapy.",
+       "nctId": "NCT07282262",
+       "officialTitle": "An Exploratory Study on the Use of Ivosidenib for the Precise Treatment of Advanced Biliary Tract Malignancies With IDH1 Mutations in the Later Line of Therapy."
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-05-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {},
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "No intervention added by the study",
+         "name": "No intervention"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Non metastatic Triple-negative breast cancer",
+        "Triple-negative breast cancer",
+        "Chronotherapy",
+        "Immunotherapy"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Background: Triple negative breast cancer (TNBC) is characterized by an aggressive biological behaviour responsible for higher risk of recurrence and shorter median survival. Pembrolizumab, an immune checkpoint inhibitor (ICI) targeting programmed death (PD-1), in association to chemotherapy showed improvement of event-free survival in patients with previously untreated stage II or III TNBC and has been approved in Europe since March 2022 for this indication (KEYNOTE-522). Circadian timing system controls many various biological functions in humans including xenobiotic metabolism and elimination, immune functions, cell cycle event and apoptosis. Thus, chronotherapeutic approaches have shown improved efficacy and tolerability in the treatment of different types of cancer, notably in colorectal cancer. Pronounced circadian rhythms in immune functions are generated by cell-autonomous molecular clocks in T and B lymphocytes, macrophages, neutrophils, and dendritic cells. Recently, first evidence of the effect of timing infusion of immune checkpoint inhibitors on prognosis of patients with cancer has been reported in several retrospective trials. Landre et al.'s meta-analysis of 7 retrospective studies including 1019 patients who had metastatic cancer was presented at the American Society of Clinical Oncology (ASCO) meeting in 2023. An early time-of-day ICI infusions was associated with an increase overall survival (HR: 0.49, \\[95% CI: 0.36-0.69\\] p \\< 0.0001).\n\nObjectives: The aim is to analyze immunotherapy infusion timing impact on histological response, toxicity and Event Free-Survival (EFS) in patients with TNBC treated with Neo-Adjuvant Chemotherapy (NAC) associated with pembroluzimab. Measure of histological response is the primary objective determined by Residual Cancer Burden (RCB). Secondary endpoints are Event free Survival (EFS), calculated from the date of diagnosis to invasive local, regional, or metastatic relapse, contralateral breast cancer, or death from any cause), toxicity which is assessed by recording adverse events (CT-CAE v5) occurring from start of treatment to last course.\n\nMethods: Data from patients with histologically proven early TNBC treated from July 2021 to May 2023 with the association of Pembrolizumab, Paclitaxel Carboplatine followed with Pembrolizumab Cyclophosphamide Epirubicine (according to KEYNOTE 522 study) will be collected. Dosing times of each Pembrolizumab and chemotherapy infusions given to consecutive patients as a neoadjuvant standard treatment, associated with chemotherapy, for early TNBC are retrieved from hospital records. Adjuvant Pembrolizumab timing intake will be also recorded as EFS is a secondary endpoint.\n\nStatistics: First, median clock hour of all infusions of Pembrolizumab will be determined. Then, patients will be dichotomized between \"morning' and 'afternoon' groups using 2 cut-offs: 1/ median clock of all infusions of pembrolizumab ('morning group' will include the patients who receive the majority of Pembrolizumab infusions before this median clock hour and 'afternoon group', patients who receive the majority of Pembrolizumab infusions after this median clock hour) and 2/ cut-off optimizing differences of RCB between two groups.\n\nPatient's characteristics, toxicities, tumor response and EFS will be compared."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Association of Pembrolizumab Infusion Time and Efficacy in Patients With Non-metastatic Triple-negative Breast Cancer (TNBC) Treated With Neoadjuvant Chemotherapy and Immunotherapy",
+       "nctId": "NCT06418139",
+       "officialTitle": "Etude de l'Effet de l'Horaire de Perfusion de l'immunothérapie Sur la réponse et la toxicité Des Traitements Chez Les Patientes Atteintes de Cancer du Sein Triple négatif à Haut Risque traité Par chimiothérapie néoadjuvante et Pembrolizumab"
+      },
+      "statusModule": {
+       "overallStatus": "UNKNOWN",
+       "startDateStruct": {
+        "date": "2024-05"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "atezolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "9 mg VB10.16 via i.m. needle free injections in the deltoid muscles and quadricep or gluteus muscle.\n\nPlacebo will be given via IV infusions."
+        },
+        {
+         "description": "9 mg VB10.16 via i.m. needle free injections in the deltoid muscles and quadricep or gluteus muscle.\n\nAtezolizumab will be given via IV infusions."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Intramuscular (i.m.) administrations of VB10.16 every 3 weeks (Q3W) during a 12-week induction period, followed by a maintenance period with administrations every 6 weeks (Q6W) from Week 13 until Week 49.\n\nA total of up to 11 i.m. administrations will be given. VB10.16 will be administered via Pharma Jet® Stratis 0.5 mL needle free injection system.",
+         "name": "VB10.16"
+        },
+        {
+         "description": "Intravenous (IV) infusions of atezolizumab (saline solution) every 3 weeks.",
+         "name": "Atezolizumab Injection [Tecentriq]"
+        },
+        {
+         "description": "Intravenous (IV) infusions of placebo (saline solution) every 3 weeks.",
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Recurrent",
+        "metastatic",
+        "HPV16-positive",
+        "PD-L1 positive"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is a multi-center study in patients with recurrent or metastatic HPV16-positive, PD-L1 positive cervical cancer who has progressed during or after treatment with the first-line standard of care (pembrolizumab with chemotherapy with/without bevacizumab).\n\nThe trial is designed to investigate VB10.16 alone or in combination with the immune checkpoint inhibitor, atezolizumab.\n\nThe trial consist of 2 parts: the first part which investigates VB10.16 + placebo versus VB10.16 + atezolizumab. Approximately 30 patients will be included in each group. The goal of this part is to evaluate which of the two treatments is the best.\n\nThe second part of the study will select the best treatment from part 1 and investigate the safety and efficacy of additional 70 patients."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Efficacy and Safety of VB10.16 Alone or in Combination With Atezolizumab in Patients With Advanced Cervical Cancer.",
+       "nctId": "NCT06099418",
+       "officialTitle": "A Two-Arm Randomized, Double-Blind, Placebo-Controlled Phase 2 Selection Trial to Evaluate the Efficacy and Safety of VB10.16 Alone or in Combination With Atezolizumab in Patients With HPV16-Positive, PD-L1-positive, Recurrent or Metastatic Cervical Cancer Who Are Refractory to Pembrolizumab With Chemotherapy With/Without Bevacizumab."
+      },
+      "statusModule": {
+       "overallStatus": "WITHDRAWN",
+       "startDateStruct": {
+        "date": "2024-04-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Treatment with IAM1363 capsules, dosed orally alone or in combination with other anti-cancer agents, in 14- or 21-day cycles."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "IAM1363 monotherapy OR IAM1363 in combination with capecitabine + trastuzumab OR IAM1363 in combination with capecitabine + zanidatamab OR IAM1363 in combination with T-Dxd OR IAM1363 in combination with pembrolizumab +/- carboplatin and pemetrexed",
+         "name": "IAM1363"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "ERBB2 protein, human",
+        "Molecular Targeted Therapy",
+        "Genes, erbB-2",
+        "Receptor, ErbB-2 / antagonists &amp;amp; inhibitors",
+        "Neoplasms / drug therapy",
+        "HER2 positive",
+        "HER2 overexpressing",
+        "HER2 altered",
+        "Human epidermal growth factor receptor",
+        "ErbB Receptors",
+        "HER2",
+        "brain metastases"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is a Phase 1/1b open-label, multi-center dose escalation and dose optimization study designed to evaluate the safety and preliminary efficacy of IAM1363 in participants with advanced cancers that harbor HER2 alterations."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Phase 1/1b Study of IAM1363 in HER2 Cancers",
+       "nctId": "NCT06253871",
+       "officialTitle": "A Phase 1/1b Study of IAM1363 in Participants With Advanced Cancers Harboring HER2 Alterations"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-03-25"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 39
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29%29%29&pageSize=30&query.intr=%28opdivo%29": {
+   "studies": [
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "1 capsule / day",
+         "name": "EXL01"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Immunotherapy",
+        "microbiota",
+        "Lung Cancer bacteria",
+        "Faecalibacterium prausnitzii"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "As treatment options are limited following progression on anti PD-(L)1 and platinum-based chemotherapy, we propose this trial for patients who have failed to respond or have shown intolerance to standard therapies or for whom no appropriate therapies are known to provide clinical benefit. Considering the strong therapeutic rationale of an association between antineoplastic immunotherapy and EXL01 (single-strain of F. prausnitzii, a bacteria which is a dominant member of the healthy gut microbiota), we propose to assess this combination for NSCLC treatment. This is a pilot, Phase I/II, one-arm, monocentric study evaluating the combination of EXL01 with nivolumab treatment for Non-Small Cell Lung Cancer patients."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "EXL01 in Combination With Nivolumab for Advanced NSCLC Refractory to Immunotherapy.",
+       "nctId": "NCT06448572",
+       "officialTitle": "EXL01 in Combination With Nivolumab for Advanced NSCLC Refractory to Immunotherapy"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-16"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "description": "Patients in the cohort received neoadjuvant immune checkpoint inhibitors (ICIs), including PD-1/PD-L1 inhibitors, as part of routine clinical care. The specific regimens included monotherapy or combination with chemotherapy. The agents used may include nivolumab, camrelizumab, sintilimab, atezolizumab, or others.\n\nThis is a retrospective observational study. All interventions (neoadjuvant immunotherapy ± chemotherapy, surgery, or other treatments) were determined by treating physicians as part of standard care. The study aims to evaluate perioperative and survival outcomes across different treatment paths in real-world clinical settings.",
+         "name": "neoadjuvant immunotherapy"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "lung cancer",
+        "neoadjuvant immunotherapy",
+        "real-world study",
+        "radiotherapy",
+        "thoracic surgery"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This multicenter retrospective real-world study aims to evaluate the safety, efficacy and survival outcomes of neoadjuvant/induction immunotherapy in patients with non-small cell lung cancer (NSCLC). The study covers diverse treatment pathways, including surgery, definitive radiotherapy, and non-surgical strategies. It addresses gaps in existing trials by establishing a comprehensive cohort spanning neoadjuvant/induction therapy, perioperative management, and follow-up, providing real-world evidence to support treatment decisions in both operable and inoperable cases."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Safety, Efficacy, and Survival Outcomes of Neoadjuvant/Induction Immunotherapy in Surgical and Radiotherapeutic Management of Non-Small Cell Lung Cancer",
+       "nctId": "NCT06926179",
+       "officialTitle": "Safety, Efficacy, and Survival Outcomes of Neoadjuvant/Induction Immunotherapy in Surgical and Radiotherapeutic Management of Non-Small Cell Lung Cancer: A Multicenter Real-World Study"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Immune Checkpoint Inhibitors"
+        },
+        {
+         "term": "Antineoplastic Agents"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients will receive standardized anti-tumor therapy including immunotherapy according to clinical guidelines. Patients who treated with immuno-monotherapy, or immuno- plus targeted therapy, or immuno- plus chemotherapy will be recruit in to test the serum ferritin level"
+        },
+        {
+         "description": "Patients will receive standardized anti-tumor therapy including targeted therapy according to clinical guidelines. Patients who treated with targeted monotherapy, or targeted plus chemotherapy will be recruit in to test the serum ferritin level"
+        },
+        {
+         "description": "Patients will receive standardized anti-tumor therapy including chemotherapy according to clinical guidelines. Patients who treated with chemotherapy will be recruit in to test the serum ferritin level"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "PD-1 inhibitor includes pembrolizumab，Nivolumab，Sintilimab，tislelizumab，Triplimab，Camrelizumab, Serplulimab.\n\nPD-L1 inhibitor includes durvalumab,Atezolizumab,Adebrelimab,Envafolimab.",
+         "name": "PD-1 and PD-L1 inhibitor"
+        },
+        {
+         "description": "Targeted drugs includes EGFR-TKIs,ALK-TKIs,Multitargeted Tyrosine Kinase Inhibitors, VEGF antibody, EGFR antibody, antibody-drug conjugates drugs",
+         "name": "Targeted drugs"
+        },
+        {
+         "description": "Chemotherapy drugs are determined based on the investigator's decision.",
+         "name": "chemotherapy drugs"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This is a prospective clinical study to clarify serum ferritin as a biomarker for the diagnosis, differential diagnosis and prognosis of immune-related adverse event(irAE)."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Effect of Serum Ferritin in irAE",
+       "nctId": "NCT06702566",
+       "officialTitle": "The Significance of Serum Ferritin in the Diagnosis, Differential Diagnosis, and Prognosis of Immune-related Adverse Event (irAE)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-04"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Nivolumab, XELOX/FOLFOX"
+        },
+        {
+         "description": "Nivolumab, XELOX/FOLFOX"
+        },
+        {
+         "description": "Bevacizumab, Atezolizumab"
+        },
+        {
+         "description": "Bevacizumab, Atezolizumab"
+        },
+        {
+         "description": "Pembrolizumab"
+        },
+        {
+         "description": "Pembrolizumab"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Nivolumab 360mg 6 weekly (up to 2 years) + XELOX Nivolumab 240mg 4 weekly (up to 2 years) + FOLFOX",
+         "name": "Extended Dosing Interval - A"
+        },
+        {
+         "description": "Bevacizumab + Atezolizumab 1200mg 6 weekly (up to 2 years)",
+         "name": "Extended Dosing Interval - B"
+        },
+        {
+         "description": "Pembrolizumab 200mg 6 weekly (up to 2 years)",
+         "name": "Extended Dosing Interval - C"
+        },
+        {
+         "description": "Nivolumab 360mg 3 weekly (up to 2 years) + XELOX Nivolumab 240mg 2 weekly (up to 2 years) + FOLFOX",
+         "name": "Standard of Care - A"
+        },
+        {
+         "description": "Bevacizumab + Atezolizumab 1200mg 3 weekly (up to 2 years)",
+         "name": "Standard of Care - B"
+        },
+        {
+         "description": "Pembrolizumab 200mg 3 weekly (up to 2 years)",
+         "name": "Standard of Care - C"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Nivolumab",
+        "Atezolizumab",
+        "Pembrolizumab",
+        "Extended dosing interval"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This study is a prospective, open label, multi-centre phase 2 trial which assesses the efficacy and safety of standard dosing compared to extended dosing interval of nivolumab, atezolizumab or pembrolizumab in advanced/unresectable gastric/gastroesophageal junction/oesphageal adenocarcinomas with PDL1 CPS ≥5%, hepatocellular carcinoma andnon-small cell lung cancer with PDL1 TPS≥50% with no prior treatment. The investigators hypothesize that nivolumab, pembrolizumab and atezolizumab can be used efficiently at extended dosing intervals, compared to their approved labels with comparable clinical outcome."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Value-Driven Study on Reducing Immune Checkpoint Inhibitor Dosing Frequency in Advanced Cancers",
+       "nctId": "NCT06422403",
+       "officialTitle": "A Value-Driven Study on Reducing Immune Checkpoint Inhibitor Dosing Frequency in Advanced Cancers: Phase 2 Randomized Trial (VALUE-CHECK)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-11-25"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients undergo standard of care treatment with ipilimumab/nivolumab and answer questions and enter symptoms in the mobile Vigilant application. Patients wearing a compatible watch have their vital signs recorded at the same time symptoms are being entered. Based on the severity of symptoms, patients may be recommended to reach out to their healthcare team or to go to the emergency room. Additionally, patients complete a survey and may have their medical charts reviewed on study."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Non-Interventional study",
+         "name": "Non-Interventional Study"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This study is being done to better understand patient experiences with using a mobile application, known as Vigilant, to monitor symptoms as outpatients and to gather preliminary data on the potential clinical benefit to remote monitoring of adverse events."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Digital Remote Monitoring of Immune Checkpoint Inhibitor Therapy Induced Toxicity Using the Vigilant App",
+       "nctId": "NCT06675643",
+       "officialTitle": "Digital Remote Monitoring of Immune Checkpoint Inhibitor Therapy Induced Toxicity: A Feasibility Study of the Vigilant App (Vigilant-2)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Immune Checkpoint Inhibitors"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "High-intensity focused ultrasound histotripsy combined with ipilimumab + nivolumab"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "High-Intensify Focused Ultrasound Histotripsy",
+         "name": "HIFU-HT"
+        },
+        {
+         "description": "Ipilimumab and nivolumab",
+         "name": "ICI",
+         "otherNames": [
+          "Immune checkpoint inhibitors"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Metastasized",
+        "Unresectable",
+        "Progressive after regular treatment"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This phase 1 clinical trial aims to evaluate the safety, tolerability and feasibility of combination treatment of High Intensity Focused Ultrasound Histotripsy (HIFU-HT) and immune checkpoint inhibitors (ICI) in adult patients with metastatic or unresectable cancer that have progressive disease after regular treatment. Patients will undergo one single session of HIFU-HT during treatment with ipilimumab and nivolumab. Safety, tolerability and feasibility endpoints will be studied as well as radiologic, immunologic and clinical response."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Treatment of Cancer With Immune Checkpoint Inhibition Therapy Boosted by High Intensity Focused Ultrasound Histotripsy",
+       "nctId": "NCT06524570",
+       "officialTitle": "Treatment of Cancer With Immune Checkpoint Inhibition Therapy Boosted by High Intensity Focused Ultrasound Histotripsy; the iFOCUS Study"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-26"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants with confirmed or suspected metastatic Renal Cell Carcinoma (RCC) and who are candidates for standard of care metastatectomy or debulking/consolidative nephrectomy will be selected for study participation and will undergo study procedures as outlined:\n\n* Placement of 1-6 microdevice(s) 72 +/- 24 hours prior to scheduled, standard of care surgery. The number of microdevices implanted into a tumor will be made on a case-by-case basis based on tumor and participant factors before and during the procedure.\n* At the time of standard of care surgery, surgical removal of microdevice(s) along with surrounding tumor tissue.\n* Monitoring for safety endpoints during inpatient stay and at a follow-up clinic visit."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Small, implantable device with 20 microreservoirs for drug and drug combinations, via needle, percutaneously, and guided by interventional radiologic techniques.\n\nDrugs include all or a subset of the following: Cabozantinib, Pazopanib, Lenvatinib, Axitinib, Ipilimumab, Nivolumab, Pembrolizumab, Carboplatin, Paclitaxel, Abemaciclib, Gemcitabine, Everolimus, Belzutifan, Cabozantinib + nivolumab, Cabozantinib + belzutifan, Ipilimumab + nivolumab, Lenvatinib + pembrolizumab, Lenvatinib + everolimus, Abemaciclib + belzutifan, and Tivozanib. Other medications on the microdevice may be substituted pending updates in clinical and scientific data.",
+         "name": "Implantable Microdevice (IMD)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Renal Cell Carcinoma",
+        "Metastatic Renal Cell Carcinoma",
+        "Kidney Cancer",
+        "Suspected Renal Cell Carcinoma"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This research is being done to study the safety and feasibility of implanting and retrieving a microdevice that releases microdoses of 19 specific drugs or drug combinations as a possible tool to evaluate the effectiveness of several cancer drugs against metastatic renal cell carcinoma (RCC).\n\nThe name of the intervention(s) involved in this study are:\n\n* Implantable Microdevice (IMD)\n* Surgery (excision of tumor)\n* Drugs used in this study will only include drugs already used as standard of care for the treatment of metastatic renal cell carcinoma (RCC)"
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Drug Screening Using Novel IMD in Renal Cell Carcinoma",
+       "nctId": "NCT05700461",
+       "officialTitle": "Pilot Study of an Implantable Microdevice for in Situ Evaluation of Drug Response in Renal Cell Carcinoma"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Immunotherapy"
+        },
+        {
+         "term": "Biological Therapy"
+        },
+        {
+         "term": "Radiotherapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "This group includes patients with metastatic non small cell lung cancer (NSCLC) who received immune checkpoints inhibitors (Nivolumab, Atezolizumab or Pembrolizumab) without any associated radiotherapy during the course of treatment"
+        },
+        {
+         "description": "This group includes patients with metastatic non-small cell lung cancer (NSCLC) who received immune checkpoint inhibitors (Nivolumab, Atezolizumab, or Pembrolizumab) in combination with radiotherapy. Radiotherapy was delivered either concomitantly or sequentially to immunotherapy."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "The immunotherapy intervention consists of treatment with immune checkpoint inhibitors, specifically Nivolumab (OPDIVO), Atezolizumab (TECENTRIQ), Pembrolizumab (KEYTRUDA).\n\nThese drugs are monoclonal antibodies that block PD-1 or PD-L1 pathways, aiming to enhance the immune system's ability to recognize and destroy cancer cells. The treatment is administered intravenously according to standard dosing schedules.",
+         "name": "Immunotherapy",
+         "otherNames": [
+          "Biological Therapy"
+         ]
+        },
+        {
+         "description": "The radiotherapy intervention involves targeted delivery of ionizing radiation to metastatic lesions. Radiotherapy may be given either concurrently with immunotherapy or sequentially afterward, depending on the patient's treatment plan. The purpose is to achieve local tumor control and potentially enhance the systemic immune response through immunogenic cell death. Different radiation techniques and dose regimens may be employed based on lesion size, location, and clinical considerations.",
+         "name": "Radiotherapy",
+         "otherNames": [
+          "Radiation Therapy",
+          "External Beam Radiotherapy",
+          "Radiation Treatment"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "non small cell lung cancer",
+        "NSCLC",
+        "metastatic",
+        "radiotherapy",
+        "immunotherapy"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The aim of this retrospective, multicenter, observational study is to evaluate the potential clinical benefit of adding radiotherapy (administered either concomitantly or sequentially) to immunotherapy in patients with metastatic non-small cell lung cancer (NSCLC).\n\nOne promising approach involves the integration of radiotherapy into the treatment plan. Radiotherapy is known not only for its cytotoxic local effects, but also for its ability to modulate the tumor microenvironment, increase antigen presentation, and stimulate systemic immune responses.\n\nThis study will compare two cohorts of patients with metastatic NSCLC treated in real-world clinical settings. The first cohort includes patients treated with immunotherapy alone, while the second includes those who received immunotherapy in combination with radiotherapy. Radiotherapy may have been administered concurrently or sequentially with respect to immunotherapy, based on clinical judgment.\n\nThe primary objective is to determine whether the addition of radiotherapy improves progression-free survival (PFS) by at least 30%, compared to immunotherapy alone. This threshold reflects clinically meaningful differences reported in randomized controlled trials in similar populations and treatment lines. Secondary objectives include overall survival (OS) and exploring predictive factors of treatment response, such as patient demographics, tumor characteristics, mutational status, timing of radiotherapy and abscopal effect evaluation, to refine patient selection for future combination strategies.\n\nEligible participants are adults with histologically confirmed metastatic NSCLC, treated with first-line or second-line immunotherapy, and with no prior exposure to immunotherapy. Data will be retrospectively collected from medical records, and treatment arms will be assigned based on actual clinical care paths.\n\nParticipants will:\n\n* Be retrospectively identified from hospital records.\n* Be assigned to one of two cohorts: immunotherapy alone or immunotherapy + radiotherapy (concomitant or sequential).\n* Have their data analyzed for OS, PFS, toxicity, and potential predictive biomarkers.\n\nThe results of this study will contribute to a better understanding of real-world outcomes in metastatic NSCLC patients and may inform future prospective trials evaluating radiotherapy as a modulator of immunotherapy efficacy."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Survival Efficacy of Combined Radiotherapy and Immunotherapy in Patients With Metastatic Non-small Cell Lung Carcinoma",
+       "nctId": "NCT07111104",
+       "officialTitle": "Survival Efficacy of Combined Radiotherapy and Immunotherapy in Patients With Metastatic Non-small Cell Lung Carcinoma: an Observational Retrospective Multicenter Study"
+      },
+      "statusModule": {
+       "overallStatus": "COMPLETED",
+       "startDateStruct": {
+        "date": "2024-10-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Patients receiving nivolumab or pembrolizumab."
+        },
+        {
+         "description": "Patients receiving ipilimumab plus nivolumab."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Kinase activity profile will be correlated to the observed clinical outcome parameters (including survival and toxicity associated with the therapy) of standard of care treatments",
+         "name": "PBMC Kinase Activity Profile",
+         "otherNames": [
+          "IOpener-melanoma"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "melanoma",
+        "IOpener",
+        "immunotherapy",
+        "immune checkpoint inhibitor"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The goal of this observational study is to assess whether the IOpener® melanoma test can assist treating physicians in deciding which therapy is most suitable for patients with skin cancer (advanced cutaneous melanoma). For this purpose it is evaluated how well the IOpener-melanoma test can predict the result of cancer treatment in the treatment groups (standard of care anti-PD1 mono-therapy and standard of care anti-PD1 + anti-CTLA-4 therapy).\n\nParticipants will be asked to provide blood sample for analysis using IOpener®-melanoma test. Patients will receive regular medical care, the test results will not be used to make any treatment decisions. The patients will visit the clinic for treatment administration and clinical evaluation as part of their regular medical care."
+      },
+      "designModule": {},
+      "identificationModule": {
+       "briefTitle": "Observational Study of Patients With Advanced Melanoma (Skin Cancer) to Assess if IOpener®-Melanoma Test Can Predict Response to Immunotherapy.",
+       "nctId": "NCT06784778",
+       "officialTitle": "A Prospective, Observational, Multicenter Clinical Performance Study to Evaluate IOpener®-Melanoma Test for Predicting Response to Combination or Mono Immunotherapy in Stage III or IV Cutaneous Melanoma Patients."
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "spartalizumab"
+        },
+        {
+         "term": "Drug Therapy"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will receive upfront hypofractionated radiotherapy (HFRT) of the primary lesion and positive lymph nodes (24 Gy/6 fractions). Afterwards, systemic therapy consisted of CAPOX and PD-1 antibodies will be administered every three weeks, for at least 3 cycles. Then, reassessment will be performed within 4 weeks afterwards. For resectable participants, surgical resections of primary lesion will be performed. Postoperative treatment will be determined by the investigators. For unresectable or inoperable participants, the subsequent treatment will be determined by investigators or MDT."
+        },
+        {
+         "description": "Participants will receive treatment every three weeks, for at least 3 cycles. Each cycle of treatment consists of irradiation (6 Gy/1 fraction) to the primary lesion and positive lymph nodes on day 1, and systemic therapy consisted of CAPOX and PD-1 antibodies will be administered on day 2. Then, reassessment was performed within 4 weeks afterwards. For resectable participants, surgical resections of primary lesion will be performed. Postoperative treatment will be determined by the investigators. For unresectable or inoperable participants, the subsequent treatment will be determined by investigators or MDT."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Hypofractionated radiotherapy (HFRT) targeted to the primary lesion and positive lymph nodes (4Gy × 6 fractions)",
+         "name": "HFRT targeted to the primary lesion and positive lymph nodes"
+        },
+        {
+         "description": "Irradiation targeted to the primary lesion and positive lymph nodes (6 Gy/1 fraction)",
+         "name": "PULSAR targeted to the primary lesion and positive lymph nodes"
+        },
+        {
+         "description": "The anti-PD-1 mAb is used on day 1 along with each cycle of chemotherapy. There are no restrictions on the choice of anti-PD-1 mAb. Patients can choose commonly used accessible monoclonal antibodies based on their personal preferences and financial status. The commonly used anti-PD-1 mAb usages are as follows: Nivolumab, 360mg solution intravenously once daily, Q3W; OR Pembrolizumab/Sintilimab, 200mg solution intravenously once daily, Q3W.",
+         "name": "Anti-PD-1 monoclonal antibody"
+        },
+        {
+         "description": "CAPOX: Capecitabine 1000 mg/m2 twice a day, days 1-14 and oxaliplatin 130 mg/m2, day 1, every 3 weeks",
+         "name": "Chemotherapy"
+        },
+        {
+         "description": "For resectable participants, gastrectomy with standard D2 lymphadenectomy is commonly used. The type of gastrectomy performed depends on the location and extent of the primary lesion.",
+         "name": "R0 total/subtotal gastrectomy with D2 lymphadenectomy"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "radiotherapy",
+        "PD-1 inhibitors",
+        "chemotherapy",
+        "locally advanced",
+        "gastrectomy",
+        "neoadjuvant",
+        "hypofractionated radiotherapy"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The goal of this clinical trial is to evaluate the efficacy and safety of the multimodal treatment, which includes radiotherapy, chemotherapy and anti-PD-1 immunotherapy. The trial is designed using a pick-the-winner strategy.\n\nThe main questions it aims to answer are:\n\n1. If the multimodal treatment will improve the pCR rate.\n2. If the multimodal treatment can be performed safely.\n3. Hypofractionated radiotherapy (HFRT) or personalized hyperfractionated stereotactic adaptive radiotherapy (PULSAR), which pattern of radiotherapy can better synergize with immunotherapy.\n\nParticipants will receive HFRT or PULSAR for the primary lesion and positive lymph nodes, combined with CAPOX and anti-PD-1 immunotherapy. Then, reassessment will be performed within 4 weeks afterwards. For resectable participants, surgical resections will be performed. Postoperative treatment will be determined by the investigators. For unresectable or inoperable participants, the subsequent treatment will be determined by investigators or MDT."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Preoperative HFRT Verses PULSAR for Locally Advanced GEJ or Proximal Gastric Adenocarcinoma",
+       "nctId": "NCT06728657",
+       "officialTitle": "A Phase II Randomized Trial of Preoperative Hypofractionated Radiotherapy (HFRT) Compared to Personalized Hyperfractionated Stereotactic Adaptive Radiotherapy (PULSAR), Combined With Chemotherapy and PD-1 Monoclonal Antibody for Locally Advanced Gastroesophageal Junction/Proximal Gastric Adenocarcinoma"
+      },
+      "statusModule": {
+       "overallStatus": "SUSPENDED",
+       "startDateStruct": {
+        "date": "2024-07-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "The patients will be treated with Oral Impact® administered at the dose of two bricks/day for 21 days + one brick/day for 14 days, starting exactly one week before Anti PD-1 treatment (nivolumab) or anti PD1 based regimen therapy (Nivolumab plus Ipilimumab or Nivolumab plus Relatlimab)as per clinical practice, administered up to two years."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "One Arm: 2 Impact brick/d for 21 days + 1 brick/d for 14 days, starting exactly one week before Anti PD-1 treatment in patients with inoperable locally advanced or metastatic melanoma Treatment duration: 35 days",
+         "name": "Oral Impact®"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "This is a monocentric, prospective study evaluating the effectiveness in reducing immune-related adverse events, and translational study conducted on 20 patients with inoperable locally advanced or metastatic melanoma.\n\nThe patients will be treated with Oral Impact® administered at the dose of two bricks/day for 21 days + one brick/day for 14 days, starting exactly one week before Anti PD-1 treatment (nivolumab) or anti PD1 based regimen therapy (Nivolumab plus Ipilimumab or Nivolumab plus Relatlimab) as per clinical practice.\n\nThe comparison will be done with historical literature data on patients matched by age, sex, disease stage, and therapy dosage, not treated with Impact."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Study to Evaluate Impact® as Support to Anti PD1 or Anti PD1 Based Regimen Treatment in Patients With Inoperable Locally Advanced or Metastatic Melanoma",
+       "nctId": "NCT06880198",
+       "officialTitle": "An Interventional, Not Pharmacological Study to Evaluate Impact® as Support to Anti PD1 or Anti PD1 Based Regimen Treatment in Patients With Inoperable Locally Advanced or Metastatic Melanoma"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-01"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "nimotuzumab"
+        },
+        {
+         "term": "Capecitabine"
+        },
+        {
+         "term": "Gemcitabine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {},
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "Albumin paclitaxel 200g/m2, intravenous drip administration, d1; Cisplatin 60 mg/m2， Intravenous , d1; Capecitabine, 1000mg/m2, orally administered D1-14； Triprolizumab injection 240mg, intravenous D1; Nivolumab 400mg, intravenous D1; Q3W 1 cycle, 3 cycles Period, 3 weeks in total",
+         "name": "Nimotuzumab,Toripalimab，Cisplatin, albumin paclitaxel, capecitabine"
+        },
+        {
+         "description": "Cisplatin 80 mg/m2， Intravenous drip administration, d1; Gemcitabine, 1000mg/m2,Intravenous ，D1,D8； Triprolizumab injection 240mg, intravenous ； Nivolumab 400mg, intravenous； Q3W 1 cycle, 3 cycles",
+         "name": "Nimotuzumab,Toripalimab，Cisplatin, Gemcitabine"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "We expect to conduct a clinical trial in high-risk locally advanced nasopharyngeal carcinoma patients to explore the efficacy and safety of sequential radical radiotherapy treatment after induction chemotherapy (TPC vs. GP) with combination therapy of nivolumab and triprolizumab."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "TPC VS. GP Induced Chemotherapy Combined With Nimotuzumab and Toripalimab in the Treatment of Locally Advanced Nasopharyngeal Carcinoma",
+       "nctId": "NCT06561763",
+       "officialTitle": "TPC Versus GP Induced Chemotherapy Combined With Nimotuzumab and Toripalimab in the Treatment of Localized Advanced Nasopharyngeal Carcinoma:Multi Center, Open Label, Randomized Controlled, Non Inferiority Design, Phase III Clinical Study"
+      },
+      "statusModule": {
+       "overallStatus": "NOT_YET_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-20"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Opdualag"
+        },
+        {
+         "term": "Irinotecan"
+        },
+        {
+         "term": "Pharmaceutical Preparations"
+        },
+        {
+         "term": "Temozolomide"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Drug: Irinotecan, Drug: Temozolomide, Drug: Paxalisib. Irinotecan starting at 50mg/m2/day, intravenous, on days 1-5, 28 day cycle, 13 cycles.\n\nTemozolomide starting at 150mg/m2/day, oral, on days 1-5, 28 day cycle, 13 cycles.\n\nPaxalisib starting at 21mg/m2 oral, daily, 28 day cycle, 13 cycles."
+        },
+        {
+         "description": "Drug: Opdualag, a fixed dose combination of Nivolumab and Relatlimab Opdualag, a fixed-dose combination of Nivolumab 480mg and Relatlimab 160mg, intravenous, on day 1, 28 day cycle, 26 cycles."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Paxalisib starting at 21mg/m2 oral, daily, 28 day cycle, 13 cycles.",
+         "name": "Paxalisib"
+        },
+        {
+         "description": "Opdualag, a fixed-dose combination of Nivolumab 480mg and Relatlimab 160mg, intravenous, on day 1, 28 day cycle, 26 cycles",
+         "name": "Opdualag"
+        },
+        {
+         "description": "Irinotecan starting at 50mg/m2/day, intravenous, on days 1-5, 28 day cycle, 13 cycles.",
+         "name": "Irinotecan (drug)"
+        },
+        {
+         "description": "Temozolomide starting at 150mg/m2/day, oral, on days 1-5, 28 day cycle, 13 cycles.",
+         "name": "Temozolomide (TMZ)"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "children",
+        "basket trial",
+        "platform study",
+        "pediatric",
+        "solid tumor",
+        "paediatric",
+        "solid tumour",
+        "CNS tumor",
+        "CNS tumour",
+        "lymphoma"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "A companion platform trial to test novel targeted agents based on the patient's tumor profile."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Optimal Precision TherapIes to CustoMISE Care in Childhood and Adolescent Cancer",
+       "nctId": "NCT06208657",
+       "officialTitle": "Optimal Precision TherapIes to CustoMISE Care in Childhood and Adolescent Cancer"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-07-10"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Nivo-AVD cohort patients will receive 2 cycles of nivolumab monotherapy (40 mg) followed by Nivo-AVD combination therapy (6 cycles total)"
+        },
+        {
+         "description": "In the Standard cohort, patients will receive therapy according to current clinical guidelines for first-line therapy of cHL, which include starting first-line therapy with 2 cycles of BEACOPP-like regimens and, after assessing response after 2 courses, switching to an A(B)VD regimen (when achieving CR by PET/CT) or continuing therapy with BEACOPP-like regimens (when achieving PR,SD by PET/CT)"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "1. Monotherapy phase - Nivolumab - 40 mg every 14 days x 2 cycles\n2. Combination therapy phase - Nivo-AVD x 6 cycles Nivolumab - 40 mg every 14 days; Doxorubicin 25 mg/m2 in D1 and 15; Vinblastine 6 mg/m2 (no more than 10 mg) in D 1 and 15; Dacarbazine 375 mg/m2 in D 1 and 15;",
+         "name": "Nivo-AVD"
+        },
+        {
+         "description": "* BEACOPP-like regimens x 2 cycles + BEACOPP-like regimens x 4 (for patients with PR, SD by PET/CT after 2 cycles)\n* BEACOPP-like regimens x 2 + A(B)VD x 4 cycles (for patients with CR by PET/CT after 2 cycles)",
+         "name": "BEACOPP-like"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Hodgkin Lymphoma",
+        "N-AVD",
+        "nuvolumab",
+        "BEACOPPesc",
+        "Low dose nivolumab"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Patients in this prospective multicenter phase II study will be randomized between two first-line therapy strategies for advanced stages of cHL. In the Nivo-AVD cohort, patients will receive 2 cycles of nivolumab monotherapy followed by a switch to Nivo-AVD combination therapy (total of 6 cycles); in the Standard cohort, patients will receive therapy according to current clinical guidelines in Russian Federation for first-line therapy of cHL, which include starting first-line therapy with 2 cycles of BEACOPP-like regimens and, after assessing response after 2 courses, switching to A(B)VD or continuing with BEACOPP-like regimens"
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Comparison of AVD + Low-Dose Nivolumab vs. PET-Adapted BEACOPP-like in Advanced cHL",
+       "nctId": "NCT07234487",
+       "officialTitle": "Randomized Study Comparing AVD Combined With Fixed-Dose Nivolumab Versus PET-Adapted BEACOPP-like Regimen as First-Line Treatment in Advanced Classical Hodgkin Lymphoma"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-10-14"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "The intervention group will receive an oral dosage of 4 x 10\\^9 cfu/g/day Bifidobacterium animalis subsp. lactis BL-04 strain (Danisco, USA) and 1 gram of maltodextrin (Danisco, USA) in conjunction with the conventional treatment, which consisted of systemic cancer immunotherapy with nivolumab at a dose of 3 mg/kg administered intravenously every two weeks. The immunotherapy with nivolumab will be completed in twelve weeks.\n\nA probiotic strain is provided to the intervention group in the form of a sachet. Patients will be asked to pour the entire sachet into a glass of water (100 mL, room temperature), mix, and drink it every day for 12 weeks."
+        },
+        {
+         "description": "The plasebo group will receive the conventional treatment, which consisted of systemic cancer immunotherapy with nivolumab at a dose of 3 mg/kg administered intravenously every two weeks. The immunotherapy with nivolumab will be completed in twelve weeks.\n\nIn addition to the traditional treatment (nivolumab), the plasebo group will be given 1 g/day maltodextrin (Danisco, USA) as placebo. Maltodextrin will be provided to the intervention group in the form of a sachet. Patients will be asked to pour the entire sachet into a glass of water (100 mL, room temperature), mix, and drink it every day for 12 weeks."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "4 x 10\\^9 cfu/g/day Bifidobacterium animalis subsp. lactis Bl-04 for 12 weeks",
+         "name": "Bifidobacterium animalis subsp. lactis Bl-04"
+        },
+        {
+         "description": "1 g/day maltodextrin for 12 weeks",
+         "name": "Plasebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "immunotherapy",
+        "lung cancer",
+        "probiotics",
+        "Bifidobacterium animalis",
+        "microbiota"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The aim of this study is to evaluate the effect of a probiotic supplement containing Bifidobacterium animalis lactis BL-04 on the clinical effectiveness of immunotherapy in patients diagnosed with metastatic non-small cell lung cancer who are receiving immunotherapy."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "The Impact of Probiotic on Survival and Treatment Response in Metastatic Non-small Cell Lung Cancer Patients",
+       "nctId": "NCT06428422",
+       "officialTitle": "The Impact of Bifidobacterium Lactis Supplementation on Survival and Treatment Response in Metastatic Non-small Cell Lung Cancer Patients Receiving Immunotherapy (Nivolumab)"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-12"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Radical cystectomy and pelvic lymphadenectomy upfront, according to the standar-of-care management"
+        },
+        {
+         "description": "SURE-01 trial: 4 courses of sacituzumab Govitecan, intravenously, at the dose of 7.5 mg/Kg on Day 1 and 8, every 21 days."
+        },
+        {
+         "description": "SURE-02 trial: 4 courses of sacituzumab Govitecan, intravenously, at the dose of 7.5 mg/Kg on Day 1 and 8, every 21 days, added to pembrolizumab, intravenously, at the dose of 200 mg every 21 days, followed by radical cystectomy. After cystectomy, 13 courses of 200 mg pembrolizumab, intravenously, every 21 days."
+        },
+        {
+         "description": "NureCombo trial: 4 cycles of 360 mg nivolumab, every 3 weeks, added to nab-paclitaxel 125 mg/m2 on days 1 and 8, every 21 days, before radical cystectomy. After cystectomy, 13 courses of 360 mg nivolumab, intravenously, every 21 days."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Radical cystectomy, Sacituzumab Govitecan (SG), SG + pembrolizumab, nivolumab+abraxane",
+         "name": "various neoadjuvant therapies"
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "Background:\n\nMuscle-invasive bladder cancer (MIBC) is a systemic disease as \\>40% of patients (pts) ultimately develop recurrence after radical cystectomy (RC). For pts who cannot receive or refuse cisplatin-based chemotherapy there is no standard-of-care neoadjuvant therapy. Single-agent pembrolizumab, given neoadjuvantly in patients with T2-4N0M0 MIBC, documented a 42% pathologic complete response-rate (ypT0N0) in a previous AIRC-supported trial (PURE-01, NCT02736266; PMID: 30343614). However, there is a huge proportion of pts who do not benefit from single-agent immunotherapy. Antibody-drug conjugates (ADC) represent the next wave of MIBC treatment revolution. An umbrella of various neoadjuvant therapies including the ADC Sacituzumab govitecan (SG), SG plus pembrolizumab, and chemoimmunotherapy combination has been established to improve our knowledge on MIBC biology and to improve the outcomes.\n\nHypothesis:\n\nBy developing a robust biomarker program associated with therapeutic benefit of novel therapies or their combinations, along with an imaging biomarker development, the investigators will be able to identify suitable tumor characteristics for personalizing perioperative therapies in MIBC, coupled with the possibility to predict the pathological response to treatment.\n\nAims:\n\nThe project is aimed at characterizing the tumor and microenvironment characteristics of muscle-invasive bladder cancer, with a special focus on their changes induced by various neoadjuvant therapies preceding radical cystectomy.\n\nThe investigators will aim to evaluate the tumor and immune profile on matched pre- vs post-therapy samples and noninvasively monitor the response to treatment with the use of radiological assessments.\n\nExperimental design:\n\nThe investigators will access tumor samples from matched pre-therapy (transurethral resection of the bladder tumor) and post-therapy (radical cystectomy) surgical interventions. They will also analyze the imaging analyses of combined bladder multiparametric MRI/Fluorodeoxyglucose Positron Emission Tomography (PET) scans pre-post neoadjuvant therapies, and will associate the data with the pathological response to treatment, expanding our previously reported work (PMID: 31882281).\n\nBiomarker analyses will include the following: i.) multiplex immunofluorescence assays will allow the investigators defining the immune contexture of tumor lesion; ii.) multiparametric flow cytometry will allow the phenotypic and functional analysis of peripheral blood cells at single cell level; iii.) a whole transcriptome assay will enable investigators to assign specific molecular subtypes to pathological response and outcome, as previously reported (PMID: 33785257; 32165065).\n\nExpected results:\n\nThe investigators will expect to identify the tumor characteristics and immune-profiling enabling them to delineate the selection of patients most suited for certain novel perioperative therapies, thus anticipating the developments in clinical research that are being conducted worldwide in MIBC.\n\nThe investigators will be also able to develop noninvasive tools for pathological complete response identification, thus enabling them to develop a next-generation of clinical trials aimed at sparing any radical local therapy on the bladder tumor.\n\nImpact on cancer:\n\nIn principle, the present personalized strategy yields the potential to enhance the therapeutic standards achievable with RC alone as well as with single-agent immunotherapy and RC."
+      },
+      "designModule": {
+       "phases": [
+        "NA"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Investigator Grant (IG) 2022 27746",
+       "nctId": "NCT06341478",
+       "officialTitle": "Understanding Tumor and Immune Dynamics and Predicting Response to Various Perioperative Therapies in Patients With Muscle-invasive Bladder Cancer"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-03-15"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Mesalamine"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will receive 500mg of Mesalamine QID (four times a day) in combination with standard of care Immunotherapy"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Mesalamine, also known as 5-aminosalicylic acid (5-ASA)",
+         "name": "Mesalamine",
+         "otherNames": [
+          "Salofalk"
+         ]
+        }
+       ]
+      },
+      "conditionsModule": {},
+      "descriptionModule": {
+       "briefSummary": "The study team's principal interest is to address the question, \"Will prophylactic treatment with mesalamine reduce the incidence and severity of immune-related diarrhea occurring secondarily to treatment with ipi/nivo?\""
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Prophylactic Mesalamine to Prevent Colitis Following Treatment With Ipilimumab/Nivolumab (Ipi/Nivo)",
+       "nctId": "NCT05663775",
+       "officialTitle": "Prophylactic Oral Mesalamine for the Prevention of Immune-Related Colitis in Patients Treated With Ipilimumab/Nivolumab"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-08-20"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 17
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=3&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvKg3vEdmj6SuP08FCfCEPLV8tdP3Q",
+   "studies": [
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "ALN-BCAT"
+        },
+        {
+         "name": "Pembrolizumab",
+         "otherNames": [
+          "Keytruda",
+          "MK-3475"
+         ]
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Evaluate ALN-BCAT in Patients With Hepatocellular Carcinoma",
+       "nctId": "NCT06600321"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Pemetrexed"
+        },
+        {
+         "term": "Carboplatin"
+        },
+        {
+         "term": "Cisplatin"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "MB12 (Proposed Pembrolizumab Biosimilar)"
+        },
+        {
+         "name": "EU-sourced Keytruda®"
+        },
+        {
+         "name": "US-sourced Keytruda®"
+        },
+        {
+         "name": "Pemetrexed"
+        },
+        {
+         "name": "Carboplatin"
+        },
+        {
+         "name": "Cisplatin"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Compare Pharmacokinetics, Efficacy, Safety, and Immunogenicity of MB12 (Proposed Pembrolizumab Biosimilar) to Keytruda® in Non-small Cell Lung Cancer (BENITO Study)",
+       "nctId": "NCT06687369"
+      },
+      "statusModule": {
+       "overallStatus": "ACTIVE_NOT_RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "pembrolizumab"
+        },
+        {
+         "term": "Paclitaxel"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Pembrolizumab 25 mg/ml",
+         "otherNames": [
+          "keytruda"
+         ]
+        },
+        {
+         "name": "Paclitaxel injection",
+         "otherNames": [
+          "Taxol"
+         ]
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Pembrolizumab and Chemotherapy Treatment or no Treatment Guided by the Level of TILs in Resected Early-stage TNBC",
+       "nctId": "NCT06078384"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-27"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 221
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=3&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29&sort=StartDate%3Adesc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvKh2fIcmD6SuP08FCfCFfPQ9NZJ0iI",
+   "studies": [
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "relatlimab"
+        },
+        {
+         "term": "Ipilimumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "Nivolumab"
+        },
+        {
+         "name": "Relatlimab"
+        },
+        {
+         "name": "Ipilimumab"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE1",
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase I/IIa Dose Finding Study of Triplet Regimen of Relatlimab Ipilimumab and NIvolumab in First Line Therapy of Metastatic Melanoma (TRINITY)",
+       "nctId": "NCT06683755"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-31"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Nivolumab"
+        },
+        {
+         "term": "pembrolizumab"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "nivolumab or pembrolizumab",
+         "otherNames": [
+          "Opdivo and Keytruda"
+         ]
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Assessment of Short Immunotherapy After Radical Surgery of High-risk Malignant Melanoma",
+       "nctId": "NCT06488482"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-19"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Neoadjuvant Therapy"
+        },
+        {
+         "term": "Maintenance"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "interventions": [
+        {
+         "name": "JPB898 (Induction and Maintenance)"
+        },
+        {
+         "name": "Opdivo-EU (Induction)"
+        },
+        {
+         "name": "Opdivo-US (Induction)"
+        },
+        {
+         "name": "Yervoy-EU (Induction)"
+        },
+        {
+         "name": "Opdivo-EU (Maintenance)"
+        }
+       ]
+      },
+      "designModule": {
+       "phases": [
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Integrated Pharmacokinetics (PK)/Efficacy, Safety, and Immunogenicity Study to Demonstrate Similarity of JPB898, a Proposed Biosimilar to Nivolumab, to Opdivo® in Combination With Yervoy®",
+       "nctId": "NCT06587451"
+      },
+      "statusModule": {
+       "overallStatus": "TERMINATED",
+       "startDateStruct": {
+        "date": "2024-12-19"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 81
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZvKt3vIW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06328673"
+      }
+     }
+    }
+   ],
+   "totalCount": 221
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZfKh2vcW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06325683"
+      }
+     }
+    }
+   ],
+   "totalCount": 81
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29&pageSize=1&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrZvOg2vMW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06211114"
+      }
+     }
+    }
+   ],
+   "totalCount": 39
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29%29%29&pageSize=1&query.intr=%28opdivo%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZPeg3PAW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06448572"
+      }
+     }
+    }
+   ],
+   "totalCount": 17
+  },
+  "/api/v2/version?": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-11-06T10:00:05"
+  }
+ }
+}

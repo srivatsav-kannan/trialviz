@@ -25,33 +25,59 @@ from collections.abc import Iterable
 # Characters that carry meaning in Essie (grouping, phrases, field selectors, boosts).
 _SYNTAX_CHARACTERS = re.compile(r"[\[\](){}\"^~:<>=\\*?!|]")
 _WHITESPACE = re.compile(r"\s+")
+# Characters that would end or escape a quoted phrase.
+_QUOTE_UNSAFE = re.compile(r'["\\]')
+
+
+# A possessive or apostrophe. MeSH drops possessives ("Alzheimer Disease", "Crohn Disease"),
+# and searching "alzheimer's disease" finds fewer trials than "alzheimer disease".
+_APOSTROPHE = re.compile(r"[\"'\u2019]s\b|['\u2019]")
+# A parenthetical, closed or not. In a name it is an abbreviation or an alias ("Crohn's
+# disease (CD)"), and since names of several words are searched as phrases, keeping it
+# would make the phrase match nothing.
+_PARENTHETICAL = re.compile(r"\([^)]*(\)|$)")
 
 
 def sanitize_term(text: str) -> str:
     """Reduce free text to lowercase search words, with no Essie syntax left in it."""
-    without_syntax = _SYNTAX_CHARACTERS.sub(" ", text)
+    without_syntax = _SYNTAX_CHARACTERS.sub(" ", _APOSTROPHE.sub("", text))
     return _WHITESPACE.sub(" ", without_syntax).strip().lower()
 
 
-def any_of_terms(terms: Iterable[str], areas: Iterable[str] = ()) -> str | None:
+def name_words(name: str) -> str:
+    """A drug or condition name as the words searched for in its naming fields: like
+    `sanitize_term`, without any parenthetical, which would break the phrase."""
+    return sanitize_term(_PARENTHETICAL.sub(" ", name))
+
+
+def any_of_terms(
+    terms: Iterable[str], areas: Iterable[str] = (), exact: Iterable[tuple[str, str]] = ()
+) -> str | None:
     """Alternatives for a `query.*` parameter: `(breast cancer) OR (lung cancer)`.
 
     With `areas`, each term must appear in one of those fields, which the registry still
     expands with synonyms: `(AREA[Condition](melanoma) OR AREA[ConditionMeshTerm](melanoma))`.
-    Terms that sanitize to nothing are dropped. Returns None if none are left, so the
-    caller can omit the parameter rather than send an empty search.
+    A term of several words is searched there as a phrase, since unquoted words may match
+    anywhere across a trial's conditions: `type 1 diabetes` unquoted matches a trial whose
+    condition is "Type 2 Diabetes Mellitus" and whose keyword is "phase 1".
+
+    `exact` adds (area, value) alternatives matched as whole field values, such as the MeSH
+    terms found to sit under a condition in the MeSH tree. Terms that sanitize to nothing
+    are dropped. Returns None if nothing is left, so the caller can omit the parameter.
     """
-    cleaned = list(dict.fromkeys(term for term in map(sanitize_term, terms) if term))
-    if not cleaned:
-        return None
     fields = list(areas)
+    clean = name_words if fields else sanitize_term
+    cleaned = list(dict.fromkeys(term for term in map(clean, terms) if term))
 
     def one(term: str) -> str:
         if not fields:
             return f"({term})"
-        return "(" + " OR ".join(f"AREA[{area}]({term})" for area in fields) + ")"
+        phrase = f'"{term}"' if " " in term else f"({term})"
+        return "(" + " OR ".join(f"AREA[{area}]{phrase}" for area in fields) + ")"
 
-    return " OR ".join(one(term) for term in cleaned)
+    parts = [one(term) for term in cleaned]
+    parts += [f'(AREA[{area}]"{_QUOTE_UNSAFE.sub(" ", value)}")' for area, value in exact]
+    return " OR ".join(parts) or None
 
 
 def area_any_of(area: str, values: Iterable[str], *, quoted: bool = False) -> str:

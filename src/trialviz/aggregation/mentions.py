@@ -12,11 +12,11 @@ the registry expanded the name to.
 from __future__ import annotations
 
 import re
-from collections import Counter
 
 from pydantic import BaseModel, ConfigDict, Field
 
 from trialviz.aggregation.evidence import Citation, CitationKind, Study, cite, each, nct_id, one
+from trialviz.aggregation.extract import shared_meshes
 from trialviz.query.filters import Filters
 from trialviz.query.plan import ComparisonSpec, Plan
 from trialviz.retrieval.essie import sanitize_term
@@ -87,19 +87,7 @@ def _terms(layers: list[Filters], cohort: CohortRecords) -> list[str]:
         for layer in layers
         for name in [*(layer.interventions or []), *(layer.conditions or [])]
     ]
-    shared: Counter[str] = Counter()
-    for study in cohort.named.studies:
-        meshes = {
-            str(found.value).casefold()
-            for path in (
-                "derivedSection.interventionBrowseModule.meshes",
-                "derivedSection.conditionBrowseModule.meshes",
-            )
-            for found in each(study, path, "term")
-        }
-        shared.update(meshes)
-    majority = [term for term, n in shared.items() if n * 2 >= max(1, len(cohort.named.studies))]
-    return [t for t in dict.fromkeys([*asked, *majority]) if t]
+    return [t for t in dict.fromkeys([*asked, *shared_meshes(list(cohort.named.studies))]) if t]
 
 
 def quote(study: Study, terms: list[str]) -> Citation | None:

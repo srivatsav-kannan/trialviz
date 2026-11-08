@@ -32,6 +32,7 @@ collaborators, and the plan's `sponsors` filter means lead sponsors.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
 from urllib.parse import urlencode
 
@@ -98,18 +99,25 @@ class RegistryQuery:
         return f"{STUDIES_URL}?{query}" if query else STUDIES_URL
 
 
-def translate(*layers: Filters) -> RegistryQuery:
+Descendants = Mapping[str, tuple[str, ...]]
+"""For a condition name, the MeSH terms found to sit under it in the MeSH tree, such as
+"Carcinoma, Non-Small-Cell Lung" for "lung cancer". The registry cannot search the tree
+itself, so retrieval finds these terms and adds them as exact alternatives."""
+
+
+def translate(*layers: Filters, descendants: Descendants | None = None) -> RegistryQuery:
     """Build one query that requires every layer to match.
 
     A comparison cohort is two layers: the plan's shared filters and the cohort's own.
     Inside a layer, values of one field are alternatives. Across layers, everything must
     hold, so a shared `interventions: [A]` and a cohort `interventions: [B]` yield trials
-    that involve both A and B. Drug and condition names must appear in their naming fields.
+    that involve both A and B. Drug and condition names must appear in their naming fields,
+    and a condition also matches the MeSH terms in `descendants`.
     """
-    return _build(layers, names_in_naming_fields=True)
+    return _build(layers, names_in_naming_fields=True, descendants=descendants or {})
 
 
-def mention_query(*layers: Filters) -> RegistryQuery | None:
+def mention_query(*layers: Filters, descendants: Descendants | None = None) -> RegistryQuery | None:
     """The trials the registry's default search matches that `translate` leaves out.
 
     These satisfy every filter under the default search, which also reads descriptions,
@@ -119,20 +127,33 @@ def mention_query(*layers: Filters) -> RegistryQuery | None:
     Returns None when no layer filters on a drug or condition, since then there is
     nothing to mention.
     """
+    found = descendants or {}
     named = [
         expression
         for layer in layers
         for field, areas in _NAMING_FIELDS.items()
-        if (values := getattr(layer, field)) and (expression := any_of_terms(values, areas))
+        if (values := getattr(layer, field))
+        and (expression := any_of_terms(values, areas, _exact(field, values, found)))
     ]
     if not named:
         return None
     exclude = named[0] if len(named) == 1 else all_of(named)
-    return _build(layers, names_in_naming_fields=False, exclude=exclude)
+    return _build(layers, names_in_naming_fields=False, exclude=exclude, descendants={})
+
+
+def _exact(field: str, values: list[str], descendants: Descendants) -> list[tuple[str, str]]:
+    if field != "conditions":
+        return []
+    terms = dict.fromkeys(term for value in values for term in descendants.get(value, ()))
+    return [("ConditionMeshTerm", term) for term in terms]
 
 
 def _build(
-    layers: tuple[Filters, ...], *, names_in_naming_fields: bool, exclude: str | None = None
+    layers: tuple[Filters, ...],
+    *,
+    names_in_naming_fields: bool,
+    descendants: Descendants,
+    exclude: str | None = None,
 ) -> RegistryQuery:
     names: dict[str, list[str]] = {}
     clauses: list[str] = []
@@ -140,7 +161,8 @@ def _build(
         for field, parameter in _NAME_PARAMETERS.items():
             values = getattr(layer, field)
             areas = _NAMING_FIELDS.get(field, ()) if names_in_naming_fields else ()
-            if values and (expression := any_of_terms(values, areas)):
+            exact = _exact(field, values, descendants) if values and areas else []
+            if values and (expression := any_of_terms(values, areas, exact)):
                 names.setdefault(parameter, []).append(expression)
         for field, area in _AREAS.items():
             if values := getattr(layer, field):
@@ -182,14 +204,16 @@ BASE_FIELDS = ("NCTId", "BriefTitle", "OverallStatus", "Phase", "StartDate")
 """Always fetched: enough to identify and describe any trial cited in a result."""
 
 DIMENSION_FIELDS: dict[Dimension, tuple[str, ...]] = {
-    Dimension.PHASE: ("Phase",),
+    Dimension.PHASE: ("Phase", "StudyType"),
     Dimension.STATUS: ("OverallStatus",),
     Dimension.SPONSOR_CLASS: ("LeadSponsorClass", "LeadSponsorName"),
     Dimension.LEAD_SPONSOR: ("LeadSponsorName", "LeadSponsorClass"),
     Dimension.INTERVENTION: (
         "InterventionName",
+        "InterventionOtherName",
         "InterventionType",
         "InterventionMeshTerm",
+        "ArmGroupDescription",
         "ArmGroupLabel",
         "ArmGroupInterventionName",
     ),

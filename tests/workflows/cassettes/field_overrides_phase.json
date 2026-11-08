@@ -14,9 +14,311 @@
  ],
  "fingerprint": "cb980bb633d0f033",
  "registry": {
-  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&pageSize=3&query.intr=%28semaglutide%29&sort=StartDate%3Adesc": {
-   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvag2fYanD6SuP08FCfCFfLY9NNI0CI",
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&pageSize=30&query.intr=%28semaglutide%29": {
    "studies": [
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Starting on Day 1, participants will receive icovamenib or placebo 100 mg QD in addition to their currently prescribed GLP-1or GIP/GLP-1 RA based regimen. Treatment will last for 12 weeks.\n\nAt Week 12, participants will continue on a stable dose of their baseline Ozempic-based regimen. The total duration of the trial is approximately 57 weeks (including screening and follow-up)"
+        },
+        {
+         "description": "Starting on Day 1, participants will receive matching placebo QD in addition to their currently prescribed GLP-1-based regimen. Treatment will last for 12 weeks.\n\nAt Week 12, participants will continue on a stable dose of allowable GLP-1-based regimen. The total duration of the trial is approximately 57 weeks (including screening and follow-up)."
+        }
+       ],
+       "interventions": [
+        {
+         "description": "icovamenib 100 mg",
+         "name": "icovamenib 100 mg"
+        },
+        {
+         "description": "Matching placebo",
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Type 2 Diabetes"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This is a phase 2 randomized, double-blind, placebo-controlled trial assessing the efficacy and safety of icovamenib in participants with Type 2 Diabetes (T2D) not achieving glycemic targets despite GLP-1-based therapy."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Phase 2 Trial of Icovamenib in Participants With Type 2 Diabetes Mellitus Who Are Not Achieving Glycemic Targets While Using GLP-1-Based Therapy",
+       "nctId": "NCT07502508",
+       "officialTitle": "Phase 2 Randomized, Double-blind, Placebo-Controlled Trial Assessing the Efficacy and Safety of Icovamenib in Participants With Type 2 Diabetes Not Achieving Glycemic Targets Despite GLP-1-Based Therapy"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-30"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Resistance Training"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Tailored moderate-intensity exercise training video with weekly virtual meetings with a coach"
+        },
+        {
+         "description": "Tailored moderate-intensity exercise training videos with weekly virtual meetings with a coach + initiation/intensification of pharmacological weight loss"
+        },
+        {
+         "description": "Tailored moderate-intensity exercise training videos with weekly virtual meetings with a coach + tailored resistance training videos"
+        },
+        {
+         "description": "Tailored moderate-intensity exercise training videos with weekly virtual meetings with a coach + tailored resistance training videos + initiation/intensification of pharmacological weight loss"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Tailored moderate-intensity exercise training video with weekly virtual meetings with a coach",
+         "name": "Moderate-intensity continuous training (MCT)"
+        },
+        {
+         "description": "Resistance training videos assigned to patient",
+         "name": "Resistance training"
+        },
+        {
+         "description": "Initiation/intensification of weight loss medications, such as semaglutide or tirzepatide",
+         "name": "Weight loss"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Diabetic cardiomyopathy",
+        "Remote exercise training",
+        "Weight loss",
+        "Rehab"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "Heart failure with preserved ejection fraction (HFpEF) is associated with a high morbidity and mortality burden. There are limited pharmacological options available for the treatment of HFpEF. Exercise intolerance (EI) is the cardinal symptom of HFpEF, which manifests as dyspnea and fatigue. EI leads to functional deconditioning and reduced quality of life (QOL), both of which elevate risk of death and hospitalization in patients with HFpEF. Supervised exercised training is associated with improvements in exercise capacity and QOL in adults with HFpEF. However, supervised exercise has not been widely utilized for the treatment of HFpEF due to logistical and fiscal barriers.\n\nThis study will investigate the effects of a remote exercise training intervention on exercise capacity and skeletal muscle composition in patients with HFpEF, or those at risk for it. In addition, it will compare four different lifestyle interventions for their effects on exercise capacity."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Tailored Exercise Training Study Among Adults With HFpEF",
+       "nctId": "NCT07223242",
+       "officialTitle": "Tailored Exercise Training Study Among Adults With HFpEF"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-02-18"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {
+      "interventionBrowseModule": {
+       "meshes": [
+        {
+         "term": "Metformin"
+        },
+        {
+         "term": "Sirolimus"
+        },
+        {
+         "term": "Naltrexone"
+        },
+        {
+         "term": "Ascorbic Acid"
+        }
+       ]
+      }
+     },
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Month 1: 500mg/d MET, reduce Wegovy (or equivalent) to 1.7mg/wk or Ozempic (or equivalent) to 1.0mg/wk, add LDN 1.5mg b.i.d.\n\nMonth 2: Increase MET to 1000mg/d, reduce Wegovy (or equivalent) to 1.0mg/wk or Ozempic (or equivalent) to 0.5mg/wk, increase LDN to 3mg b.i.d.\n\nMonth 3: Increase MET to 1500mg/d, reduce Wegovy (or equivalent) to 0.5mg/wk or Ozempic (or equivalent) to 0.25mg/wk, increase LDN to 4.5mg b.i.d.\n\nMonths 4-12: increase MET to 2000mg/d, stop Wegovy (or equivalent) or Ozempic (or equivalent) entirely, continue LDN 4.5mg b.i.d."
+        },
+        {
+         "description": "Month 1: 500mg/d MET, reduce Wegovy (or equivalent) to 1.7mg/wk or Ozempic (or equivalent) to 1.0mg/wk\n\nMonth 2: Increase MET to 1000mg/d, reduce Wegovy (or equivalent) to 1.0mg/wk or Ozempic (or equivalent) to 0.5mg/wk\n\nMonth 3: Increase MET to 1500mg/d, reduce Wegovy (or equivalent) to 0.5mg/wk or Ozempic (or equivalent) to 0.25mg/wk\n\nMonths 4-12: increase MET to 2000mg/d, stop Wegovy (or equivalent) or Ozempic (or equivalent) entirely"
+        },
+        {
+         "description": "Month 1: 500mg/d MET, reduce Wegovy (or equivalent) to 1.7mg/wk or Ozempic (or equivalent) to 1.0mg/wk, add 1mg/wk rapamycin\n\nMonth 2: Increase MET to 1000mg/d, reduce Wegovy (or equivalent) to 1.0mg/wk or Ozempic (or equivalent) to 0.5mg/wk, increase rapamycin to 2mg/wk\n\nMonth 3: Increase MET to 1500mg/d, reduce Wegovy (or equivalent) to 0.5mg/wk or Ozempic (or equivalent) to 0.25mg/wk, increase rapamycin to 4mg/wk\n\nMonths 4-12: increase MET to 2000mg/d, stop Wegovy (or equivalent) or Ozempic (or equivalent) entirely, increase rapamycin to 6mg/wk"
+        },
+        {
+         "description": "Month 1: 250mg/d Vitamin C, reduce Wegovy (or equivalent) to 1.7mg/wk or Ozempic (or equivalent) to 1.0mg/wk\n\nMonth 2: Increase Vitamin C to 500mg/d, reduce Wegovy (or equivalent) to 1.0mg/wk or Ozempic (or equivalent) to 0.5mg/wk\n\nMonth 3: Increase Vitamin C to 750mg/d, reduce Wegovy (or equivalent) to 0.5mg/wk or Ozempic (or equivalent) to 0.25mg/wk\n\nMonths 4-12: increase Vitamin C to 1000mg/d, stop Wegovy (or equivalent) or Ozempic (or equivalent) entirely"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Increasing doses from 500mg/d to 2000mg/d metformin",
+         "name": "Metformin"
+        },
+        {
+         "description": "Increasing doses from 1mg/wk to 6mg/wk rapamycin",
+         "name": "Rapamycin"
+        },
+        {
+         "description": "Increasing doses from 1.5mg b.i.d. to 4.5mg b.i.d. low-dose naltrexone",
+         "name": "Naltrexone"
+        },
+        {
+         "description": "Placebo control - increasing doses from 250mg/d to 1000mg/d vitamin C (ascorbic acid)",
+         "name": "Vitamin C"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Longevity",
+        "Aging",
+        "Healthy Aging",
+        "GLP-1"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The goal of this randomized, controlled trial is to evaluate the effectiveness of alternative therapies (metformin alone, with rapamycin, and with low-dose naltrexone) in maintaining weight loss in patients weaning off GLP-1 medications.\n\nThe main questions it aims to answer are:\n\n* Whether the combination of metformin, with or without rapamycin or low-dose naltrexone, will be adequate to maintain the relative weight of individuals gradually discontinuing GLP-1 receptor agonist use.\n* Whether individuals discontinuing GLP-1 receptor agonist use who instead use a combination of metformin, with or without rapamycin or low-dose naltrexone, will experience less weight regain over the course of six months post-cessation than those who do not use any alternative medications.\n\nResearchers will compare the four groups: 1) control, 2) metformin, 3) metformin + rapamycin, and 4) metformin + low-dose naltrexone, to assess changes in the percentage of weight regain, metabolic indicators (e.g., HbA1c, lipid profile), and quality of life PROs, six months after cessation of GLP-1 therapy.\n\nParticipants will:\n\n* Administer the assigned intervention following a dosing and administration protocol provided by the study and medical team.\n* Complete a medical intake for overall health status, medical history and demographic information,\n* Complete patient-reported outcomes/surveys and assessments\n* Complete blood work at baseline and every 16 weeks thereafter to measure CBC, CMP, and standard health biomarker panels (e.g., cholesterol, glucose, creatinine, sodium, potassium).\n* Share data from health wearables with the research team throughout the study to improve the accuracy of evaluating activity, sleep, heart rate, and other related healthspan measures."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2",
+        "PHASE3"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "Effectiveness of Alternative Therapies in Maintaining Weight Loss Achieved by GLP-1 Medications Post-Cessation",
+       "nctId": "NCT07092618",
+       "officialTitle": "Effectiveness of Alternative Therapies in Maintaining Weight Loss Achieved by GLP-1 Medications Post-Cessation: A Randomized, Controlled Trial"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2024-12-17"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {
+         "description": "Participants will receive LY3457263 subcutaneously (SC)"
+        },
+        {
+         "description": "Participants will receive LY3457263 SC"
+        },
+        {
+         "description": "Participants will receive LY3457263 SC"
+        },
+        {
+         "description": "Participants will receive placebo SC"
+        }
+       ],
+       "interventions": [
+        {
+         "description": "Administered SC",
+         "name": "LY3457263"
+        },
+        {
+         "description": "Administered SC",
+         "name": "Placebo"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Obesity",
+        "Overweight"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "The purpose of this study is to measure the change in hemoglobin A1c (HbA1c) with LY3457263 compared with placebo in participants with type 2 diabetes who are not at HbA1c goal when treated with a stable dose of semaglutide or tirzepatide. Participation in the study will last about 9 months."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study of LY3457263 Compared With Placebo in Participants With Type 2 Diabetes on a Stable Dose of Semaglutide or Tirzepatide",
+       "nctId": "NCT06897475",
+       "officialTitle": "A Parallel-Group Treatment, Phase 2, Double-Blind Study of Once-Weekly Subcutaneous LY3457263 Compared to Placebo in Participants With Type 2 Diabetes Mellitus on a Stable Dose of Semaglutide or Tirzepatide Who Failed to Achieve HbA1c Goal"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2025-03-28"
+       }
+      }
+     }
+    },
+    {
+     "derivedSection": {},
+     "protocolSection": {
+      "armsInterventionsModule": {
+       "armGroups": [
+        {}
+       ],
+       "interventions": [
+        {
+         "description": "Subjects will receive a glucagon-like peptide 1 receptor agonist (either semaglutide, tirzepatide or liraglutide) by self-injection or orally (semaglutide or orforglipron) for as clinically indicated by the treating physician or until the subject receives clearance for staging hysterectomy or for pregnancy pursuit. The choice of glucagon-like peptide 1 receptor agonist for each subject will be at the treating physician's discretion.\n\nSubjects will discontinue the glucagon-like peptide 1 receptor agonist 2 weeks before any elective surgical procedure.",
+         "name": "Glucagon-like peptide 1 receptor agonist"
+        }
+       ]
+      },
+      "conditionsModule": {
+       "keywords": [
+        "Endometrial cancer",
+        "endometrial intraepithelial neoplasia",
+        "endometrial adenocarcinoma",
+        "Levonorgestrel IUD"
+       ]
+      },
+      "descriptionModule": {
+       "briefSummary": "This study will explore the use of glucagon-like peptide 1 receptor agonist (GLP-1RA) used concurrently with levonorgestrel intrauterine device in patients with poor surgical candidacy for a hysterectomy or patients who are pursuing fertility sparing. GLP-1RA are a class of medications that mimic the natural hormone glucagon-like peptide-1. These medications trigger the pancreas to release insulin which can help lower blood sugar levels and delay gastric emptying. The recent FDA approval of GLP-1RAs has changed the landscape for pharmacotherapy for weight loss. These hormone-based obesity medications are novel and revolutionary in obesity medicine. Liraglutine, semaglutide, and tirzepatide have become exceedingly popular for their effects on weight loss and obesity-related comorbidities. More recently, GLP-1RAs have exhibited risk reduction of various obesity associated cancers, including endometrial cancer but their exact role in prevention and treatment has yet to be measured."
+      },
+      "designModule": {
+       "phases": [
+        "PHASE2"
+       ]
+      },
+      "identificationModule": {
+       "briefTitle": "A Study to Estimate Early Clinical Efficacy Signals of GLP-1 Agonist Administration in Conjunction With Levonorgestrel Intrauterine Device in Obese Patients With Endometrioid Intraepithelial Neoplasia",
+       "nctId": "NCT07107334",
+       "officialTitle": "A Pilot Study to Estimate Early Clinical Efficacy Signals of a Glucagon-like Peptide 1 Receptor Agonist (GLP-1RA) Administration in Conjunction With Levonorgestrel Intrauterine Device (LNG-IUD) in Obese Patients With Endometrioid Intraepithelial Neoplasia"
+      },
+      "statusModule": {
+       "overallStatus": "RECRUITING",
+       "startDateStruct": {
+        "date": "2026-04-07"
+       }
+      }
+     }
+    },
     {
      "derivedSection": {},
      "protocolSection": {
@@ -82,31 +384,34 @@
      "protocolSection": {
       "armsInterventionsModule": {
        "armGroups": [
-        {
-         "description": "Starting on Day 1, participants will receive icovamenib or placebo 100 mg QD in addition to their currently prescribed GLP-1or GIP/GLP-1 RA based regimen. Treatment will last for 12 weeks.\n\nAt Week 12, participants will continue on a stable dose of their baseline Ozempic-based regimen. The total duration of the trial is approximately 57 weeks (including screening and follow-up)"
-        },
-        {
-         "description": "Starting on Day 1, participants will receive matching placebo QD in addition to their currently prescribed GLP-1-based regimen. Treatment will last for 12 weeks.\n\nAt Week 12, participants will continue on a stable dose of allowable GLP-1-based regimen. The total duration of the trial is approximately 57 weeks (including screening and follow-up)."
-        }
+        {},
+        {}
        ],
        "interventions": [
         {
-         "description": "icovamenib 100 mg",
-         "name": "icovamenib 100 mg"
+         "description": "Participants prescribed a GLP-1 receptor agonist by their physician will be enrolled in this arm of the study. All participants will receive study provided calcium \\& vitamin D supplement to support bone health and to reduce this as a confounding factor in overall outcomes",
+         "name": "GLP-1 receptor agonist"
         },
         {
-         "description": "Matching placebo",
-         "name": "Placebo"
+         "description": "Participants receiving usual lifestyle interventions will be enrolled in this arm of the study. All participants will receive study provided calcium \\& vitamin D supplement to support bone health and t",
+         "name": "Lifestyle intervention"
         }
        ]
       },
       "conditionsModule": {
        "keywords": [
-        "Type 2 Diabetes"
+        "obesity",
+        "obesity in children",
+        "bone strength",
+        "GLP-1",
+        "Lifestyle modification",
+        "bone density",
+        "semaglutide",
+        "liraglutide"
        ]
       },
       "descriptionModule": {
-       "briefSummary": "This is a phase 2 randomized, double-blind, placebo-controlled trial assessing the efficacy and safety of icovamenib in participants with Type 2 Diabetes (T2D) not achieving glycemic targets despite GLP-1-based therapy."
+       "briefSummary": "The goal of this clinical trial is to compare bone health markers over 24 months in participants 12 - 21 years of age with obesity who are starting the glucagon-like peptide-1 receptor agonists (GLP-1RAs) as compared to those with similar weight followed by lifestyle management.\n\nParticipants will:\n\n* Take GLP-1RA as prescribed or continue to work on lifestyle management for weight loss\n* Take provided calcium and vitamin D supplements\n* Attend 6 study visits over 24 months with two at the beginning and then every 6 months that include:\n\n  * History and Physical Exams\n  * Lab Work\n  * Imaging studies\n  * Questionnaires\n  * 24-hour dietary recalls"
       },
       "designModule": {
        "phases": [
@@ -114,14 +419,14 @@
        ]
       },
       "identificationModule": {
-       "briefTitle": "Phase 2 Trial of Icovamenib in Participants With Type 2 Diabetes Mellitus Who Are Not Achieving Glycemic Targets While Using GLP-1-Based Therapy",
-       "nctId": "NCT07502508",
-       "officialTitle": "Phase 2 Randomized, Double-blind, Placebo-Controlled Trial Assessing the Efficacy and Safety of Icovamenib in Participants With Type 2 Diabetes Not Achieving Glycemic Targets Despite GLP-1-Based Therapy"
+       "briefTitle": "Bone Metabolism in 12-21 Year Olds Undergoing Glucagon Like Peptide (GLP)-1 Receptor Agonist Therapy",
+       "nctId": "NCT06903923",
+       "officialTitle": "Bone Metabolism in Adolescents Undergoing GLP-1 Receptor Agonist Therapy"
       },
       "statusModule": {
        "overallStatus": "RECRUITING",
        "startDateStruct": {
-        "date": "2026-04-30"
+        "date": "2025-07-31"
        }
       }
      }
@@ -131,40 +436,49 @@
      "protocolSection": {
       "armsInterventionsModule": {
        "armGroups": [
-        {}
+        {
+         "description": "Names for Surgery: Laparoscopic Sleeve Gastrectomy. Names for drugs: Semaglutide. Dosage:The starting dose was 0.25 mg per week and was subsequently titrated up based on individual patient response to a maximum maintenance dose of 2.4 mg per week.\n\nFrequency: Once per week. Duration: The treatment continued until the completion of the 6-month postoperative period."
+        },
+        {
+         "description": "Names for Surgery: Laparoscopic Sleeve Gastrectomy. Names for drugs: N/A. Observation Group: Received only basic nutritional recommendation interventions after surgery."
+        }
        ],
        "interventions": [
         {
-         "description": "Subjects will receive a glucagon-like peptide 1 receptor agonist (either semaglutide, tirzepatide or liraglutide) by self-injection or orally (semaglutide or orforglipron) for as clinically indicated by the treating physician or until the subject receives clearance for staging hysterectomy or for pregnancy pursuit. The choice of glucagon-like peptide 1 receptor agonist for each subject will be at the treating physician's discretion.\n\nSubjects will discontinue the glucagon-like peptide 1 receptor agonist 2 weeks before any elective surgical procedure.",
-         "name": "Glucagon-like peptide 1 receptor agonist"
+         "description": "1. Basic Treatment Measures Within 0-30 days after sleeve gastrectomy, all patients received very low-calorie enteral nutrition powder (100 kcal/day). From 30 to 90 days post-surgery, a low-energy diet (400 kcal/day) was provided. Beyond 90 days post-surgery, a calorie-restricted diet was implemented (1,500 kcal/day for men and 1,200 kcal/day for women).\n2. In addition to laparoscopic sleeve gastrectomy and postoperative basic nutritional counseling,the intervention group received subcutaneous semaglutide injections from 1 to 6 months postoperatively.The specific protocol was as follows:In the intervention group, semaglutide treatment was initiated at 1 month after LSG. The starting dose was 0.25 mg per week and was subsequently titrated up based on individual patient response to a maximum maintenance dose of 2.4 mg per week. The treatment continued until the completion of the 6-month postoperative period.",
+         "name": "BS-GLP group"
+        },
+        {
+         "description": "1. Basic Treatment Measures Within 0-30 days after sleeve gastrectomy, all patients received very low-calorie enteral nutrition powder (100 kcal/day). From 30 to 90 days post-surgery, a low-energy diet (400 kcal/day) was provided. Beyond 90 days post-surgery, a calorie-restricted diet was implemented (1,500 kcal/day for men and 1,200 kcal/day for women).\n2. Observation Group: Received only basic nutritional recommendation interventions after surgery.",
+         "name": "BS group"
         }
        ]
       },
       "conditionsModule": {
        "keywords": [
-        "Endometrial cancer",
-        "endometrial intraepithelial neoplasia",
-        "endometrial adenocarcinoma",
-        "Levonorgestrel IUD"
+        "obesity",
+        "Glucagon-Like Peptide-1 Receptor Agonists",
+        "Bariatric Surgery"
        ]
       },
       "descriptionModule": {
-       "briefSummary": "This study will explore the use of glucagon-like peptide 1 receptor agonist (GLP-1RA) used concurrently with levonorgestrel intrauterine device in patients with poor surgical candidacy for a hysterectomy or patients who are pursuing fertility sparing. GLP-1RA are a class of medications that mimic the natural hormone glucagon-like peptide-1. These medications trigger the pancreas to release insulin which can help lower blood sugar levels and delay gastric emptying. The recent FDA approval of GLP-1RAs has changed the landscape for pharmacotherapy for weight loss. These hormone-based obesity medications are novel and revolutionary in obesity medicine. Liraglutine, semaglutide, and tirzepatide have become exceedingly popular for their effects on weight loss and obesity-related comorbidities. More recently, GLP-1RAs have exhibited risk reduction of various obesity associated cancers, including endometrial cancer but their exact role in prevention and treatment has yet to be measured."
+       "briefSummary": "Obese patients exhibit considerable heterogeneity and complex comorbidities, making long-term effective management challenging with single therapies. While bariatric surgery remains the most effective weight-loss intervention, postoperative weight regain and metabolic deterioration require attention. GLP-1 RAs offer distinct advantages for weight and metabolic improvement, and their combined application with surgery may yield synergistic benefits. This study investigates the efficacy and safety of bariatric surgery combined with GLP-1 receptor agonist adjuvant therapy for severe obesity."
       },
       "designModule": {
        "phases": [
+        "PHASE1",
         "PHASE2"
        ]
       },
       "identificationModule": {
-       "briefTitle": "A Study to Estimate Early Clinical Efficacy Signals of GLP-1 Agonist Administration in Conjunction With Levonorgestrel Intrauterine Device in Obese Patients With Endometrioid Intraepithelial Neoplasia",
-       "nctId": "NCT07107334",
-       "officialTitle": "A Pilot Study to Estimate Early Clinical Efficacy Signals of a Glucagon-like Peptide 1 Receptor Agonist (GLP-1RA) Administration in Conjunction With Levonorgestrel Intrauterine Device (LNG-IUD) in Obese Patients With Endometrioid Intraepithelial Neoplasia"
+       "briefTitle": "Bariatric Surgery Combined With GLP-1 Receptor Agonists Study",
+       "nctId": "NCT07336862",
+       "officialTitle": "The Efficacy and Safety of Bariatric Surgery Combined With GLP-1 Receptor Agonists for Patients With Severe Obesity: A Prospective, Multicenter Cohort Study"
       },
       "statusModule": {
        "overallStatus": "RECRUITING",
        "startDateStruct": {
-        "date": "2026-04-07"
+        "date": "2024-01-01"
        }
       }
      }

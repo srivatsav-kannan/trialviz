@@ -63,6 +63,9 @@ class _Failing:
             ),
             "nothing",
         ),
+        # Anything unexpected (an SDK change, a bug) may have been billed, and must still
+        # reach the fallback chain as an unavailable interpreter instead of a server error.
+        (TypeError("unexpected keyword argument"), "worst case"),
     ],
 )
 async def test_failed_calls_are_charged_by_whether_they_could_have_been_billed(
@@ -78,3 +81,5 @@ async def test_failed_calls_are_charged_by_whether_they_could_have_been_billed(
         assert ledger.spent_usd() > 8000 * 25 / 1_000_000, "the full output allowance is charged"
     else:
         assert ledger.spent_usd() == 0
+    # Whatever happened, the reservation is released: the rest of the cap is still usable.
+    await ledger.reserve(20.0 - ledger.spent_usd() - 0.001)
