@@ -21,6 +21,7 @@ or a `ClarificationNeeded` that names the slots that would complete it.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass, field
 from datetime import date
@@ -157,14 +158,7 @@ class QueryResolver:
             )
             for fallback in interpretation.fallbacks
         )
-        notes.extend(
-            Note(
-                code=NoteCode.CONSTRAINT_NOT_APPLIED,
-                message=f'The question asks for "{constraint}", which no filter here can '
-                "express, so the results are not limited by it.",
-            )
-            for constraint in interpretation.unexpressed
-        )
+        notes.extend(_unapplied(constraint) for constraint in interpretation.unexpressed)
         return interpretation
 
 
@@ -412,6 +406,26 @@ def describe(value: Any) -> str:
     if isinstance(value, StrEnum):
         return str(getattr(value, "label", value.value))
     return str(value)
+
+
+_CHART_WORDS = re.compile(r"\b(chart|graph|plot|diagram|map|visuali[sz]ation)s?\b", re.IGNORECASE)
+
+
+def _unapplied(constraint: str) -> Note:
+    """A part of the question the plan cannot express. A chart the service does not draw
+    ("as a spaghetti chart") reaches here too, and is reported as a chart, not a filter."""
+    if _CHART_WORDS.search(constraint):
+        return Note(
+            code=NoteCode.CHART_PREFERENCE_NOT_FITTING,
+            slot="presentation.chart_type",
+            message=f'The question asks for "{constraint}", which is not a chart this service '
+            "draws, so the recommended chart is shown instead.",
+        )
+    return Note(
+        code=NoteCode.CONSTRAINT_NOT_APPLIED,
+        message=f'The question asks for "{constraint}", which no filter here can express, '
+        "so the results are not limited by it.",
+    )
 
 
 def _rejected(path: str, reason: str) -> Note:

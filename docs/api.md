@@ -250,7 +250,7 @@ Each note in `notes` has a `code`, a `message`, and the `slot` it concerns when 
 | `condition_includes_mesh_terms` | A condition also matched trials filed under MeSH terms that sit under it, which the note names |
 | `phase_filter_includes_combined` | A phase filter includes trials listed under two phases, such as Phase 1/2 for a Phase 2 filter |
 | `periods_incomplete` | The last period of a time series is still in progress, or counts trials planned to start later |
-| `chart_preference_not_fitting` | The requested chart cannot draw the data, with the reason |
+| `chart_preference_not_fitting` | The requested chart cannot draw the data, or the question names a chart the service does not draw, with the reason |
 | `interpreter_fallback` | The first interpreter was unavailable and another one read the question |
 | `interpreter_unavailable` | No interpreter could read the question, so only the fields were used |
 | `question_not_interpreted` | `inference` was `off` |
