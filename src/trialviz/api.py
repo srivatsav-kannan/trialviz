@@ -3,6 +3,11 @@
 `POST /v1/query` answers a question with a recommended visualization, alternative views
 of the same data, and citations to the registry records behind every number.
 
+`POST /v1/query/stream` answers the same way as server-sent events, with progress while
+the answer is computed. Every answer is saved under `meta.answer_id`, which
+`GET /v1/answers/{answer_id}` reopens and `/csv` downloads, and a repeated question is served
+from it at no cost.
+
 `POST /v1/interpret` resolves a request into a plan without fetching any data, so a
 caller can see exactly how a question was read (and which values came from where) before
 running it.

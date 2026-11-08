@@ -13,7 +13,7 @@ This page lists every endpoint, request field and response field, with the value
 | `GET /v1/answers/{answer_id}/csv` | Downloads a saved answer's rows as CSV. |
 | `GET /health` | Returns `{"status": "ok"}`. It is never rate limited, so a host can poll it. |
 | `GET /v1/status` | Reports whether Claude or the rules read questions, how much of the language-model budget is left, and how many questions you may still ask. See [Limits](#limits). |
-| `GET /`, `GET /samples` | Serve the demo UI's two pages, asking questions and browsing saved answers. Their files live under `/ui`. |
+| `GET /`, `GET /samples` | Serve the demo UI's two pages, asking questions and browsing saved answers. `/?answer={answer_id}` reopens a saved answer and `/samples?open={name}` a sample, which are the links the UI copies. Their files live under `/ui`. |
 | `GET /docs` | Serves the interactive API reference. |
 | `GET /v1/samples` | Lists the saved sample answers in `examples/` with each one's request, title, chart type and totals. The demo UI's samples page reads it. |
 | `GET /v1/samples/{name}` | Returns one saved answer exactly as `POST /v1/query` produced it, or a 404 for an unknown name. |

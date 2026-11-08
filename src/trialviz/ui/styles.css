@@ -185,6 +185,20 @@ kbd { font-family: var(--sans); font-size: 12px; padding: 1px 6px; border: 1px s
 .pulse-loader { width: 64px; height: 28px; flex: none; color: var(--accent); }
 .pulse-loader path { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 120; animation: beat 1.4s linear infinite; }
 @keyframes beat { from { stroke-dashoffset: 240; } to { stroke-dashoffset: 0; } }
+.progress-body { flex: 1; min-width: 0; }
+.progress-message { margin: 0 0 10px; color: var(--ink); font-weight: 600; }
+.progress-steps { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.progress-steps li { font-size: 13px; padding: 3px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--faint); background: var(--surface); }
+.progress-steps li[data-state="active"] { border-color: var(--accent); color: var(--accent-strong); background: var(--accent-wash); font-weight: 600; }
+.progress-steps li[data-state="done"] { color: var(--ink-soft); border-color: var(--line-strong); }
+.progress-steps li[data-state="done"]::before { content: "\2713\00a0"; color: var(--accent); }
+.progress-bar { height: 6px; border-radius: 999px; background: var(--surface-sunk); overflow: hidden; margin-bottom: 8px; }
+.progress-bar span { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 999px; transition: width 0.3s ease; }
+.progress-totals { margin: 0; font-size: 13.5px; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.result-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
+.button.small { padding: 6px 12px; font-size: 14px; border-radius: 8px; gap: 6px; }
+.button.small svg { width: 16px; height: 16px; flex: none; }
+.action-note { font-size: 13.5px; color: var(--ink-soft); word-break: break-all; }
 
 /* Result */
 .result { max-width: 1200px; margin: 0 auto; padding: 56px 24px 8px; outline: none; }
@@ -321,6 +335,7 @@ table.data tr.selectable:focus-visible { outline-offset: -3px; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .pulse-loader path { animation: none; stroke-dasharray: none; }
+  .progress-bar span { transition: none; }
   .button { transition: none; }
 }
 

@@ -188,35 +188,71 @@ async function ask(request) {
   const button = $("ask-button");
   button.disabled = true;
   $("result").hidden = true;
-  showLoading();
+  const progress = showProgress();
   try {
-    const response = await fetch("/v1/query", {
+    const response = await fetch("/v1/query/stream", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(request),
     });
-    const body = await response.json();
     if (!response.ok) {
-      const error = body.error ?? { message: `The service answered ${response.status}.`, details: [] };
-      showProblem(error.message, (error.details ?? []).map((d) => (d.path ? `${FIELD_LABELS[d.path] ?? d.path}: ${d.message}` : d.message)));
-    } else if (body.status === "needs_clarification") {
-      showClarification(body);
-    } else {
-      $("status").hidden = true;
-      markSample(null);
-      showAnswer(body, "Live answer");
+      showError(await response.json().catch(() => ({})), response.status);
+      return;
     }
+    await readEvents(response, (kind, body) => {
+      if (kind === "progress") progress.update(body);
+      else if (kind === "error") showError(body, body.status);
+      else if (body.status === "needs_clarification") showClarification(body);
+      else {
+        $("status").hidden = true;
+        markSample(null);
+        if (body.meta.answer_id) history.pushState({ answer: body.meta.answer_id }, "", `/?answer=${body.meta.answer_id}`);
+        showAnswer(body, "Live answer", { answer: body.meta.answer_id });
+      }
+    });
   } catch (error) {
     showProblem("The service could not be reached. Check that it is running and try again.", [String(error.message ?? error)]);
   } finally {
     button.disabled = false;
-    clearInterval(showLoading.timer);
+    progress.stop();
   }
 }
 
-function showLoading() {
+function showError(body, status) {
+  const error = body.error ?? { message: `The service answered ${status}.`, details: [] };
+  showProblem(error.message, (error.details ?? []).map((d) => (d.path ? `${FIELD_LABELS[d.path] ?? d.path}: ${d.message}` : d.message)));
+}
+
+// The stream is server-sent events over a POST, which EventSource cannot send, so the
+// blocks are split by hand: "event: <kind>" and "data: <json>", separated by a blank line.
+async function readEvents(response, handle) {
+  const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+  let buffer = "";
+  for (let chunk = await reader.read(); !chunk.done; chunk = await reader.read()) {
+    buffer += chunk.value;
+    let end;
+    while ((end = buffer.indexOf("\n\n")) >= 0) {
+      const block = buffer.slice(0, end);
+      buffer = buffer.slice(end + 2);
+      const kind = block.match(/^event: (.*)$/m)?.[1];
+      const data = block.match(/^data: (.*)$/m)?.[1];
+      if (kind && data) handle(kind, JSON.parse(data));
+    }
+  }
+}
+
+const STAGES = [
+  ["reading", "Reading the question"],
+  ["retrieving", "Fetching trials"],
+  ["aggregating", "Grouping"],
+  ["counting", "Exact counts"],
+  ["presenting", "Choosing the chart"],
+];
+
+// What the service is doing, from its progress events: the stages passed, a bar while trial
+// records arrive, and running totals. A saved answer arrives before any progress at all.
+function showProgress() {
   const status = $("status");
-  const elapsed = el("span", {}, "");
   status.className = "status loading";
   const loader = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   loader.setAttribute("class", "pulse-loader");
@@ -225,11 +261,38 @@ function showLoading() {
   const trace = document.createElementNS("http://www.w3.org/2000/svg", "path");
   trace.setAttribute("d", "M2 15h16l4-8 6 16 5-12 3 4h26");
   loader.append(trace);
-  status.replaceChildren(el("div", { class: "status-box" }, loader, el("span", {}, "Reading the question, querying ClinicalTrials.gov and citing the records. Large questions take up to a minute. ", elapsed)));
+  const message = el("p", { class: "progress-message" }, "Sending the question");
+  const steps = STAGES.map(([stage, label]) => el("li", { "data-stage": stage }, label));
+  const fill = el("span", {});
+  const bar = el("div", { class: "progress-bar", role: "progressbar", "aria-label": "Trial records fetched", hidden: "" }, fill);
+  const totals = el("p", { class: "progress-totals" }, "");
+  status.replaceChildren(el("div", { class: "status-box" }, loader, el("div", { class: "progress-body" }, message, el("ol", { class: "progress-steps" }, ...steps), bar, totals)));
   status.hidden = false;
   const started = Date.now();
-  clearInterval(showLoading.timer);
-  showLoading.timer = setInterval(() => (elapsed.textContent = `${Math.round((Date.now() - started) / 1000)}s`), 1000);
+  let last = null;
+  const describe = () => {
+    const seconds = `${Math.round((Date.now() - started) / 1000)}s`;
+    if (!last) return seconds;
+    const records = last.records_expected ? `${number(last.records_fetched)} of ${number(last.records_expected)} trial records` : null;
+    return [records, `${number(last.registry_requests)} registry requests`, seconds].filter(Boolean).join(" · ");
+  };
+  const timer = setInterval(() => (totals.textContent = describe()), 1000);
+  return {
+    update(step) {
+      last = step;
+      message.textContent = step.message;
+      const reached = STAGES.findIndex(([stage]) => stage === step.stage);
+      steps.forEach((item, index) => (item.dataset.state = index < reached ? "done" : index === reached ? "active" : "todo"));
+      if (step.records_expected) {
+        const share = Math.min(1, step.records_fetched / step.records_expected);
+        bar.hidden = false;
+        bar.setAttribute("aria-valuenow", String(Math.round(share * 100)));
+        fill.style.width = `${share * 100}%`;
+      }
+      totals.textContent = describe();
+    },
+    stop: () => clearInterval(timer),
+  };
 }
 
 function showProblem(message, details) {
@@ -249,7 +312,7 @@ function showClarification(body) {
 
 // --- Answer ----------------------------------------------------------------------------------
 
-function showAnswer(answer, kind) {
+function showAnswer(answer, kind, source = {}) {
   const views = [answer.visualization, ...answer.alternatives].map((view) => ({
     view,
     data: view.data ?? answer.visualization.data,
@@ -274,6 +337,7 @@ function showAnswer(answer, kind) {
     ),
   );
 
+  renderActions(answer, source);
   renderReading(answer.meta);
   renderNotes(answer.meta.notes);
   renderMentions(answer.meta.mentions);
@@ -285,6 +349,41 @@ function showAnswer(answer, kind) {
   $("result").focus({ preventScroll: true });
   if (PAGE === "samples") window.scrollTo(0, 0);
   else $("result").scrollIntoView({ block: "start" });
+}
+
+// A link that reopens this answer, and its rows to download. A live answer is saved under
+// its answer_id; a sample has its own page and CSV.
+function renderActions(answer, { answer: id, sample }) {
+  const actions = $("result-actions");
+  const base = sample ? `/v1/samples/${encodeURIComponent(sample)}` : id ? `/v1/answers/${id}` : null;
+  const link = sample ? `${location.origin}/samples?open=${encodeURIComponent(sample)}` : id ? `${location.origin}/?answer=${id}` : null;
+  const name = sample ?? id ?? "trialviz-answer";
+  const copied = el("span", { class: "action-note", role: "status" }, "");
+  const buttons = [];
+  if (link) {
+    buttons.push(el("button", { type: "button", class: "button secondary small", onclick: async () => {
+      try {
+        await navigator.clipboard.writeText(link);
+        copied.textContent = "Link copied";
+      } catch {
+        copied.textContent = link;
+      }
+      setTimeout(() => (copied.textContent = ""), 4000);
+    } }, icon("i-link"), "Copy link"));
+  }
+  if (base) {
+    const parts = Array.isArray(answer.visualization.data) ? [["links", "CSV"]] : [["links", "Links CSV"], ["nodes", "Nodes CSV"]];
+    for (const [part, label] of parts) {
+      buttons.push(el("a", { class: "button secondary small", href: `${base}/csv?part=${part}`, download: `${name}${part === "nodes" ? "-nodes" : ""}.csv` }, icon("i-download"), label));
+    }
+  }
+  buttons.push(el("button", { type: "button", class: "button secondary small", onclick: () => {
+    const blob = new Blob([JSON.stringify(answer, null, 2)], { type: "application/json" });
+    const href = URL.createObjectURL(blob);
+    el("a", { href, download: `${name}.json` }).click();
+    setTimeout(() => URL.revokeObjectURL(href), 1000);
+  } }, icon("i-download"), "JSON"));
+  actions.replaceChildren(...buttons, copied);
 }
 
 // Arrow keys move between views, as in any tab list.
@@ -456,6 +555,10 @@ function sameValue(rowValue, datumValue) {
 function matchRow(rows, datum) {
   if (!Array.isArray(rows)) return null;
   const source = datum.properties ? { ...datum, ...datum.properties } : datum;
+  // Rows carry a stable id that the Vega-Lite values keep. A map's shapes have ids of their
+  // own (numeric country codes), so a miss falls through to matching by field values.
+  const byId = typeof source.id === "string" ? rows.find((row) => row.id === source.id) : null;
+  if (byId) return byId;
   let best = null;
   let bestScore = 0;
   for (const row of rows) {
@@ -926,7 +1029,7 @@ async function openSample(name, { push = true } = {}) {
     $("status").hidden = true;
     $("samples").hidden = true;
     markSample(name);
-    showAnswer(answer, "Saved answer");
+    showAnswer(answer, "Saved answer", { sample: name });
   } catch (error) {
     showProblem("This sample could not be opened.", [String(error.message ?? error)]);
   }
@@ -996,6 +1099,21 @@ async function drawHero(sample) {
   }
 }
 
+async function openAnswer(id) {
+  try {
+    const response = await fetch(`/v1/answers/${encodeURIComponent(id)}`);
+    if (response.status === 404) {
+      showProblem("This shared answer has expired or never existed.", ["Answers are kept for a while and then make room for newer ones. Ask the question again and it will be computed afresh."]);
+      return;
+    }
+    if (!response.ok) throw new Error(`The service answered ${response.status}.`);
+    $("status").hidden = true;
+    showAnswer(await response.json(), "Shared answer", { answer: id });
+  } catch (error) {
+    showProblem("This shared answer could not be opened.", [String(error.message ?? error)]);
+  }
+}
+
 function showGallery() {
   clearSelection();
   $("result").hidden = true;
@@ -1014,17 +1132,29 @@ function goBack(event) {
     }
     return;
   }
+  if (history.state?.answer) {
+    history.back();
+    return;
+  }
+  history.replaceState(null, "", "/");
+  showAsk();
+}
+
+function showAsk() {
   clearSelection();
   $("result").hidden = true;
+  $("status").hidden = true;
   window.scrollTo(0, 0);
   $("question").focus();
 }
 
 window.addEventListener("popstate", () => {
-  if (PAGE !== "samples") return;
-  const name = new URLSearchParams(location.search).get("open");
-  if (name) openSample(name, { push: false });
-  else showGallery();
+  const params = new URLSearchParams(location.search);
+  if (PAGE === "samples") {
+    if (params.get("open")) openSample(params.get("open"), { push: false });
+    else showGallery();
+  } else if (params.get("answer")) openAnswer(params.get("answer"));
+  else showAsk();
 });
 
 // The page is chosen by an inline script in index.html before anything renders.
@@ -1033,5 +1163,6 @@ document.querySelector(`[data-nav="${PAGE}"]`)?.setAttribute("aria-current", "pa
 
 setUpForm();
 loadSamples();
-const opened = new URLSearchParams(location.search).get("open");
-if (PAGE === "samples" && opened) openSample(opened, { push: false });
+const params = new URLSearchParams(location.search);
+if (PAGE === "samples" && params.get("open")) openSample(params.get("open"), { push: false });
+if (PAGE === "home" && params.get("answer")) openAnswer(params.get("answer"));

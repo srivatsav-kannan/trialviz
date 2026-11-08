@@ -20,7 +20,7 @@ Every stage hands the next one a typed object that is validated where it is crea
 | Aggregator | `Plan` and `Retrieval` | A dataset in one of nine shapes, with every datum cited, plus notes | Deterministic, with exact registry counts when only part of a result set was fetched |
 | Visualizer | The dataset | A recommended chart, its alternatives, their specs and Vega-Lite | Deterministic rules, under which a requested chart wins whenever it can draw the data |
 
-The stages are described in [query-resolution.md](query-resolution.md), [retrieval.md](retrieval.md), [aggregation.md](aggregation.md) and [visualization.md](visualization.md).
+Before the pipeline runs, the API looks the request up among saved answers, keyed by a hash of the request and the registry's data version, and returns a saved answer without running anything ([api.md](api.md#saved-answers-and-csv)). While it runs, each stage reports its progress through a context variable that the streaming endpoint listens to, so no stage takes an extra argument for it. The stages are described in [query-resolution.md](query-resolution.md), [retrieval.md](retrieval.md), [aggregation.md](aggregation.md) and [visualization.md](visualization.md).
 
 ## Where the language model sits
 
@@ -82,7 +82,8 @@ src/trialviz/
   settings.py        configuration
   api.py             HTTP routes, the stream, error handling, and the pages at /, /samples and /docs
   openapi.py         the API reference's overview, request and response examples, and error models
-  ui/                the demo UI (one page for both routes, a stylesheet, a JavaScript module)
+  ui/                the demo UI (one page for both routes, a stylesheet, a JavaScript module that
+                     streams progress, shares links and downloads CSV and JSON)
                      and the API reference page
 ```
 

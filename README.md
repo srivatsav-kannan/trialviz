@@ -2,7 +2,7 @@
 
 trialviz answers questions about clinical trials with charts that a frontend can draw directly, using data from the [ClinicalTrials.gov API](https://clinicaltrials.gov/data-api/api). You ask a question in plain English, optionally with structured fields such as a drug or a phase, and get back a recommended chart with the reason it was chosen, the other charts that could show the same data, and a citation for every number that points to the trial record and the exact value it was counted from.
 
-A live instance runs at **https://trialviz.onrender.com**, on Render's free plan, so the first visit after a quiet spell takes about a minute to wake. Its home page asks questions, [`/samples`](https://trialviz.onrender.com/samples) opens fourteen saved answers without spending anything, and [`/docs`](https://trialviz.onrender.com/docs) is the API reference. The same service runs locally with the steps below.
+A live instance runs at **https://trialviz.onrender.com**, on Render's free plan, so the first visit after a quiet spell takes about a minute to wake. Its home page asks questions and shows each stage of the answer as it runs, with a bar while trial records arrive; every answer can be shared as a link or downloaded as CSV or JSON. [`/samples`](https://trialviz.onrender.com/samples) opens fourteen saved answers without spending anything, and [`/docs`](https://trialviz.onrender.com/docs) is the API reference. The same service runs locally with the steps below.
 
 ## Running it
 
