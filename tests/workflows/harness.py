@@ -15,7 +15,7 @@ import httpx
 
 from tests.workflows.cassette import RECORDING, Cassette
 from trialviz.aggregation.evidence import at
-from trialviz.llm.budget import SpendLedger
+from trialviz.llm.budget import FileLedger
 from trialviz.pipeline import Pipeline, PipelineResult
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter, MessagesClient
@@ -57,16 +57,16 @@ async def run_workflow(
     request: Mapping[str, Any],
     tmp_path: Path,
     *,
-    interpreter: Callable[[MessagesClient, SpendLedger], Interpreter] | None = None,
+    interpreter: Callable[[MessagesClient, FileLedger], Interpreter] | None = None,
     registry_failures: Mapping[int, int] | None = None,
     cache: ResponseCache | None = None,
     spend_cap: float = 20.0,
 ) -> Run:
     settings = Settings()
     ledger = (
-        SpendLedger(settings.llm_ledger_path, settings.llm_spend_cap_usd)
+        FileLedger(settings.llm_ledger_path, settings.llm_spend_cap_usd)
         if RECORDING
-        else SpendLedger(tmp_path / "spend.json", spend_cap)
+        else FileLedger(tmp_path / "spend.json", spend_cap)
     )
     real = None
     if RECORDING and settings.anthropic_api_key:
@@ -96,7 +96,7 @@ async def run_workflow(
     return Run(result, cassette, sleeps, ledger.spent_usd() - spent_before)
 
 
-def default_interpreter(messages: MessagesClient, ledger: SpendLedger) -> Interpreter:
+def default_interpreter(messages: MessagesClient, ledger: FileLedger) -> Interpreter:
     claude = ClaudeInterpreter(messages, ledger, model=MODEL, effort="low", max_tokens=8000)
     return FallbackInterpreter(claude, RuleBasedInterpreter())
 

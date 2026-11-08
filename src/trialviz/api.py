@@ -23,7 +23,7 @@ from datetime import date
 from pathlib import Path
 from typing import Annotated, Any
 
-from fastapi import Body, FastAPI, Request
+from fastapi import Body, Depends, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
@@ -31,18 +31,34 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.responses import Response
 
 from trialviz.answer import Answer, QueryResponse
-from trialviz.llm.budget import SpendLedger
+from trialviz.limits import (
+    AnswerSlots,
+    BodySizeLimit,
+    RateLimited,
+    SecurityHeaders,
+    ServiceBusy,
+    SlidingWindowLimiter,
+    Window,
+    client_address,
+)
+from trialviz.llm.budget import BudgetExceeded, FileLedger, Ledger, PostgresLedger
 from trialviz.openapi import (
     DESCRIPTION,
     INVALID_REQUEST,
+    RATE_LIMITED,
     REGISTRY_REJECTED,
-    REGISTRY_UNAVAILABLE,
+    REGISTRY_UNAVAILABLE_OR_BUSY,
     REQUEST_EXAMPLES,
+    REQUEST_TOO_LARGE,
     SAMPLE_NOT_FOUND,
     SAMPLES_DIRECTORY,
+    SERVICE_BUSY,
     TAGS,
+    BudgetStatus,
     Health,
+    LimitStatus,
     SampleSummary,
+    ServiceStatus,
     answer_examples,
     resolution_examples,
 )
@@ -78,14 +94,28 @@ class _RevalidatedStaticFiles(StaticFiles):
         return response
 
 
-def build_interpreter(settings: Settings) -> Interpreter:
+def build_ledger(settings: Settings) -> Ledger:
+    """Postgres when a database is configured, as on a deployed service whose disk is wiped
+    on every restart, and a local JSON file otherwise."""
+    if settings.database_url is not None:
+        return PostgresLedger(
+            settings.database_url.get_secret_value(),
+            settings.llm_spend_cap_usd,
+            settings.llm_daily_cap_usd,
+        )
+    return FileLedger(
+        settings.llm_ledger_path, settings.llm_spend_cap_usd, settings.llm_daily_cap_usd
+    )
+
+
+def build_interpreter(settings: Settings, ledger: Ledger | None = None) -> Interpreter:
     """Claude first when a key is configured, with the rule-based interpreter behind it."""
     rules = RuleBasedInterpreter()
     if settings.anthropic_api_key is None:
         return rules
     claude = ClaudeInterpreter.from_api_key(
         settings.anthropic_api_key.get_secret_value(),
-        SpendLedger(settings.llm_ledger_path, settings.llm_spend_cap_usd),
+        ledger or build_ledger(settings),
         model=settings.interpreter_model,
         effort=settings.interpreter_effort,
         max_tokens=settings.interpreter_max_tokens,
@@ -97,9 +127,41 @@ def create_app(
     settings: Settings | None = None,
     interpreter: Interpreter | None = None,
     retriever: Retriever | None = None,
+    ledger: Ledger | None = None,
 ) -> FastAPI:
     settings = settings or Settings()
-    resolver = QueryResolver(interpreter or build_interpreter(settings), today=date.today)
+    if interpreter is None and ledger is None and settings.anthropic_api_key is not None:
+        ledger = build_ledger(settings)
+    interpreter = interpreter or build_interpreter(settings, ledger)
+    resolver = QueryResolver(interpreter, today=date.today)
+    questions = SlidingWindowLimiter(
+        [
+            Window(settings.questions_per_minute, 60, "per minute"),
+            Window(settings.questions_per_hour, 3600, "per hour"),
+        ],
+        what="questions",
+    )
+    all_questions = SlidingWindowLimiter(
+        [Window(settings.questions_per_hour_total, 3600, "per hour across all clients")],
+        what="questions",
+    )
+    requests = SlidingWindowLimiter(
+        [Window(settings.requests_per_minute, 60, "per minute")], what="requests"
+    )
+    slots = AnswerSlots(settings.max_concurrent_answers)
+
+    def client(request: Request) -> str:
+        return client_address(request, settings.trusted_proxy_hops)
+
+    async def question_quota(request: Request) -> None:
+        """Counts a question against its client's limits and the overall ceiling, before
+        any work is done. The overall ceiling is checked first, so a client's own quota is
+        not spent on a question that is refused anyway."""
+        if all_questions.peek("all").remaining == 0:
+            all_questions.hit("all")  # raises with the time until a slot frees up
+        request.state.quota = questions.hit(client(request))
+        all_questions.hit("all")
+
     owned = retriever is None
     retriever = retriever or build_retriever(settings)
     pipeline = Pipeline(resolver, retriever, deadline_seconds=settings.answer_deadline_seconds)
@@ -131,6 +193,22 @@ def create_app(
 
     app.mount("/ui", _RevalidatedStaticFiles(directory=UI_DIRECTORY), name="ui")
 
+    @app.middleware("http")
+    async def request_quota(request: Request, call_next: Any) -> Any:
+        # Every request counts against a general per-client limit, except the health check,
+        # which the host polls.
+        if request.url.path != "/health":
+            try:
+                requests.hit(client(request))
+            except RateLimited as error:
+                return _rate_limited(error)
+        return await call_next(request)
+
+    # Added last, so they run first: the size limit sees the body before anything reads
+    # it, and every response, refusals included, carries the security headers.
+    app.add_middleware(BodySizeLimit, max_bytes=settings.max_body_bytes)
+    app.add_middleware(SecurityHeaders)
+
     @app.post(
         "/v1/query",
         response_model=QueryResponse,
@@ -143,14 +221,15 @@ def create_app(
                 "description": "An answer, or what is needed before the question can be answered.",
                 "content": {"application/json": {"examples": answer_examples()}},
             },
+            413: REQUEST_TOO_LARGE,
             422: INVALID_REQUEST,
+            429: RATE_LIMITED,
             502: REGISTRY_REJECTED,
-            503: REGISTRY_UNAVAILABLE,
+            503: REGISTRY_UNAVAILABLE_OR_BUSY,
         },
+        dependencies=[Depends(question_quota)],
     )
-    async def query(
-        request: Annotated[QueryRequest, Body(openapi_examples=REQUEST_EXAMPLES)],
-    ) -> Any:
+    async def query(request: QueryBody) -> Any:
         """Reads the question and any structured fields, fetches the matching trials from
         ClinicalTrials.gov, and returns the recommended chart with every alternative and a
         citation behind every number.
@@ -160,8 +239,12 @@ def create_app(
         a reference to "this drug" that nothing names. Most questions take a few seconds, and
         questions that match tens of thousands of trials can take a minute or two, and an
         answer that would need more than the configured deadline returns a 504.
+
+        Questions are rate limited per client and overall (see `GET /v1/status` and the
+        RateLimit headers on every answer), and only a few are answered at once.
         """
-        return (await pipeline.run(request)).response
+        async with slots.take():
+            return (await pipeline.run(request)).response
 
     @app.post(
         "/v1/interpret",
@@ -174,15 +257,21 @@ def create_app(
                 "description": "The resolved plan, or what is needed to resolve it.",
                 "content": {"application/json": {"examples": resolution_examples()}},
             },
+            413: REQUEST_TOO_LARGE,
             422: INVALID_REQUEST,
+            429: RATE_LIMITED,
+            503: SERVICE_BUSY,
         },
+        dependencies=[Depends(question_quota)],
     )
     async def interpret(request: QueryBody) -> Any:
         """Takes the same body as `POST /v1/query` and returns the plan it would run, with
         the source of every value and every note, without fetching any data. Use it to check
-        how a question will be read before spending time on retrieval.
+        how a question will be read before spending time on retrieval. It counts against the
+        same question limits as `POST /v1/query`, since it can call the language model.
         """
-        return await resolver.resolve(request)
+        async with slots.take():
+            return await resolver.resolve(request)
 
     @app.get(
         "/v1/samples",
@@ -222,6 +311,63 @@ def create_app(
     async def health() -> dict[str, str]:
         """Returns `ok` while the service is running. It does not contact the registry."""
         return {"status": "ok"}
+
+    @app.get(
+        "/v1/status",
+        response_model=ServiceStatus,
+        tags=["Service"],
+        summary="See the service's limits and your standing",
+        operation_id="getStatus",
+    )
+    async def status(request: Request) -> ServiceStatus:
+        """Reports which interpreter reads questions, how much of the language-model budget is
+        left, and how many questions you may still ask this minute and this hour. It does not
+        count against the question limits."""
+        uses_claude = "claude" in interpreter.name
+        budget, reason = None, None
+        if not uses_claude:
+            reason = "No language-model key is configured, so questions are read by rules."
+        elif ledger is not None:
+            try:
+                spend = await ledger.status()
+                budget = BudgetStatus(
+                    cap_usd=spend.cap_usd,
+                    daily_cap_usd=spend.daily_cap_usd,
+                    spent_usd=round(spend.spent_usd, 2),
+                    spent_today_usd=round(spend.spent_today_usd, 2),
+                    remaining_usd=round(spend.remaining_usd, 2),
+                )
+                if spend.remaining_usd <= 0:
+                    reason = "The language-model budget is used up, so questions are read by rules."
+            except BudgetExceeded as error:
+                reason = f"{str(error).capitalize()}, so questions are read by rules."
+        standing = questions.peek(client(request))
+        return ServiceStatus(
+            interpreter="claude" if uses_claude else "rules",
+            claude_available=uses_claude and reason is None,
+            reason=reason,
+            budget=budget,
+            limits=LimitStatus(
+                questions_per_minute=settings.questions_per_minute,
+                questions_per_hour=settings.questions_per_hour,
+                questions_remaining=standing.remaining,
+                resets_in_seconds=standing.reset_seconds,
+                answers_in_progress=slots.size - slots.free,
+                max_answers_in_progress=slots.size,
+                max_body_bytes=settings.max_body_bytes,
+            ),
+            client=client(request),
+        )
+
+    @app.exception_handler(RateLimited)
+    async def rate_limited(_: Request, error: RateLimited) -> JSONResponse:
+        return _rate_limited(error)
+
+    @app.exception_handler(ServiceBusy)
+    async def busy(_: Request, error: ServiceBusy) -> JSONResponse:
+        response = _error(503, "busy", str(error))
+        response.headers["Retry-After"] = str(error.retry_after)
+        return response
 
     @app.exception_handler(AnswerTimeout)
     async def too_slow(_: Request, error: AnswerTimeout) -> JSONResponse:
@@ -299,6 +445,12 @@ def _summarize_sample(path: Path) -> dict[str, Any]:
         ],
         "data_version": response["meta"]["data_version"],
     }
+
+
+def _rate_limited(error: RateLimited) -> JSONResponse:
+    response = _error(429, "rate_limited", str(error))
+    response.headers["Retry-After"] = str(error.retry_after)
+    return response
 
 
 def _error(status: int, code: str, message: str) -> JSONResponse:

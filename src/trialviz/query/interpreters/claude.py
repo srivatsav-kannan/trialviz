@@ -18,6 +18,7 @@ InterpreterUnavailable, and the fallback chain moves on to the rule-based interp
 
 from __future__ import annotations
 
+import contextlib
 import json
 from collections.abc import Iterable, Mapping
 from datetime import date
@@ -25,7 +26,7 @@ from typing import Any, Literal, Protocol, cast
 
 import anthropic
 
-from trialviz.llm.budget import BudgetExceeded, SpendLedger, TokenPrices, prices_for
+from trialviz.llm.budget import BudgetExceeded, Hold, Ledger, TokenPrices, prices_for
 from trialviz.query.filters import Filters
 from trialviz.query.interpreters.base import (
     Interpretation,
@@ -321,7 +322,7 @@ class ClaudeInterpreter:
     def __init__(
         self,
         messages: MessagesClient,
-        ledger: SpendLedger,
+        ledger: Ledger,
         *,
         model: str,
         effort: str,
@@ -335,7 +336,7 @@ class ClaudeInterpreter:
 
     @classmethod
     def from_api_key(
-        cls, api_key: str, ledger: SpendLedger, *, model: str, effort: str, max_tokens: int
+        cls, api_key: str, ledger: Ledger, *, model: str, effort: str, max_tokens: int
     ) -> ClaudeInterpreter:
         client = anthropic.AsyncAnthropic(api_key=api_key, timeout=60.0, max_retries=2)
         # The SDK's heavily overloaded `create` is structurally compatible with the narrow
@@ -356,21 +357,21 @@ class ClaudeInterpreter:
         user_message = build_user_message(request, today)
         worst_case = self._worst_case_cost(prices, user_message)
         try:
-            await self._ledger.reserve(worst_case)
+            hold = await self._ledger.reserve(worst_case)
         except BudgetExceeded as error:
             raise InterpreterUnavailable(str(error)) from error
 
-        # Every way out of this block settles the reservation exactly once, so a failure
-        # can never leave part of the cap reserved for the life of the process.
+        # Every way out of this block settles the hold exactly once, so a failure can never
+        # leave part of the cap set aside.
         try:
             response = await self._call(user_message)
         except _CallFailed as error:
             # A dropped connection may still have been billed, so it is charged in full.
-            await self._ledger.settle(worst_case, worst_case if error.possibly_billed else 0.0)
+            await self._settle(hold, worst_case if error.possibly_billed else 0.0)
             raise
         except BaseException as error:
             # Anything unexpected (an SDK error, a cancellation) may have been billed too.
-            await self._ledger.settle(worst_case, worst_case)
+            await self._settle(hold, worst_case)
             if isinstance(error, Exception):
                 raise InterpreterUnavailable(
                     f"unexpected {type(error).__name__}: {error}"
@@ -380,13 +381,19 @@ class ClaudeInterpreter:
             cost = _cost_of(response, prices)
         except Exception:
             cost = worst_case
-        await self._ledger.settle(worst_case, cost)
+        await self._settle(hold, cost)
         try:
             return self._read(response)
         except InterpreterUnavailable:
             raise
         except Exception as error:
             raise InterpreterUnavailable(f"unreadable answer: {type(error).__name__}") from error
+
+    async def _settle(self, hold: Hold, usd: float) -> None:
+        # If the ledger cannot record the charge now, the hold stays and is charged in full
+        # when it expires, so the cap is never under-counted, and a good reading is kept.
+        with contextlib.suppress(BudgetExceeded):
+            await self._ledger.settle(hold, usd)
 
     async def _call(self, user_message: str) -> Any:
         try:

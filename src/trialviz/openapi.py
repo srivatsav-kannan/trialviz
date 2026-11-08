@@ -65,13 +65,23 @@ Every error has the same shape, `{"error": {"code", "message", "details"}}`, whe
 | 404 | `not_found` | There is nothing at this path. |
 | 404 | `sample_not_found` | No saved sample has that name. |
 | 405 | `method_not_allowed` | The path does not accept that method. |
+| 413 | `request_too_large` | The request body is larger than the service accepts. |
 | 422 | `invalid_request` | The body breaks the schema, or a value is ambiguous ("Korea"). |
+| 429 | `rate_limited` | Too many requests; `Retry-After` says when to try again. |
 | 500 | `internal_error` | The service failed unexpectedly. |
 | 502 | `registry_rejected_query` | ClinicalTrials.gov rejected the query it was sent. |
 | 503 | `registry_unavailable` | ClinicalTrials.gov could not be reached after retries. |
+| 503 | `busy` | The service is answering as many questions as it allows at once; retry shortly. |
 | 504 | `answer_timeout` | The answer needed more registry time than its deadline. |
 
 ## Limits
+
+Questions (`POST /v1/query` and `POST /v1/interpret`) are limited per client, to 10 a minute
+and 60 an hour by default, and to 600 an hour across all clients. Every other request is
+limited to 120 a minute per client. Each question response carries `RateLimit-Limit`,
+`RateLimit-Remaining` and `RateLimit-Reset` headers, a refused one carries `Retry-After`,
+and `GET /v1/status` shows your standing and how much of the language-model budget is left.
+Only a few questions are answered at once, and request bodies over 16 KB are refused.
 
 Registry requests are spaced to 50 per minute, and at most 10,000 trial records are fetched
 per cohort, shared between the cohorts of a comparison, with group counts taken from the
@@ -116,6 +126,38 @@ class ErrorResponse(BaseModel):
 
 class Health(BaseModel):
     status: str = Field(description="`ok` while the service is running.")
+
+
+class BudgetStatus(BaseModel):
+    cap_usd: float = Field(description="Total the language model may ever spend.")
+    daily_cap_usd: float | None = Field(description="Most it may spend in one UTC day, if set.")
+    spent_usd: float = Field(description="Spent so far, including calls in progress.")
+    spent_today_usd: float = Field(description="Spent today (UTC), including calls in progress.")
+    remaining_usd: float = Field(description="What is left under both caps.")
+
+
+class LimitStatus(BaseModel):
+    questions_per_minute: int = Field(description="Questions one client may ask per minute.")
+    questions_per_hour: int = Field(description="Questions one client may ask per hour.")
+    questions_remaining: int = Field(description="Questions you may still ask now.")
+    resets_in_seconds: int = Field(description="Seconds until another question frees up.")
+    answers_in_progress: int = Field(description="Questions being answered right now.")
+    max_answers_in_progress: int = Field(description="Most questions answered at once.")
+    max_body_bytes: int = Field(description="Largest request body accepted.")
+
+
+class ServiceStatus(BaseModel):
+    """What the service can do right now, and your standing against its limits."""
+
+    interpreter: str = Field(description="`claude`, or `rules` when no key is configured.")
+    claude_available: bool = Field(
+        description="Whether Claude will read the next question. False when no key is "
+        "configured, the budget is used up, or the spend ledger cannot be reached."
+    )
+    reason: str | None = Field(description="Why Claude is unavailable, when it is.")
+    budget: BudgetStatus | None = Field(description="The language-model budget, if any.")
+    limits: LimitStatus
+    client: str = Field(description="Your address as the service sees it.")
 
 
 class SampleCohort(BaseModel):
@@ -222,6 +264,33 @@ REGISTRY_UNAVAILABLE = _error_example(
     "ClinicalTrials.gov did not answer /studies after 4 attempts (last: HTTP 503)",
     [],
 )
+REQUEST_TOO_LARGE = _error_example(
+    413, "request_too_large", "The request body is larger than 16384 bytes.", []
+)
+RATE_LIMITED = _error_example(
+    429,
+    "rate_limited",
+    "Too many questions: the limit is 10 per minute. Try again in 42 seconds.",
+    [],
+)
+SERVICE_BUSY = _error_example(
+    503, "busy", "The service is already answering 4 questions. Try again shortly.", []
+)
+REGISTRY_UNAVAILABLE_OR_BUSY = {
+    "model": ErrorResponse,
+    "description": "The registry could not be reached, or the service is answering as many "
+    "questions as it allows at once.",
+    "content": {
+        "application/json": {
+            "examples": {
+                "registry_unavailable": {
+                    "value": REGISTRY_UNAVAILABLE["content"]["application/json"]["example"]
+                },
+                "busy": {"value": SERVICE_BUSY["content"]["application/json"]["example"]},
+            }
+        }
+    },
+}
 SAMPLE_NOT_FOUND = _error_example(
     404, "sample_not_found", "There is no saved sample named 'missing'.", []
 )

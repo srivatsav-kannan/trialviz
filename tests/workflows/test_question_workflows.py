@@ -36,7 +36,7 @@ from tests.workflows.harness import (
     violations,
 )
 from trialviz.api import create_app
-from trialviz.llm.budget import SpendLedger
+from trialviz.llm.budget import FileLedger
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter, MessagesClient
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
@@ -389,7 +389,7 @@ class _Overloaded:
         )
 
 
-def _claude_down(_: MessagesClient, ledger: SpendLedger) -> Interpreter:
+def _claude_down(_: MessagesClient, ledger: FileLedger) -> Interpreter:
     claude = ClaudeInterpreter(_Overloaded(), ledger, model=MODEL, effort="low", max_tokens=8000)
     return FallbackInterpreter(claude, RuleBasedInterpreter())
 
@@ -689,7 +689,7 @@ async def test_the_http_endpoint_serves_exactly_the_pipelines_answer(tmp_path: P
     assert direct.result.answer is not None
 
     cassette = Cassette("assignment_example")
-    ledger = SpendLedger(tmp_path / "http-spend.json", 20.0)
+    ledger = FileLedger(tmp_path / "http-spend.json", 20.0)
     client = RegistryClient(
         httpx.AsyncClient(transport=cassette.registry_transport()), RateLimiter(1e9)
     )

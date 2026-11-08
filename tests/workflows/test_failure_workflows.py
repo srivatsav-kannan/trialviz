@@ -12,7 +12,7 @@ import pytest
 
 from tests.workflows.cassette import RECORDING, Cassette
 from tests.workflows.harness import run_workflow
-from trialviz.llm.budget import SpendLedger
+from trialviz.llm.budget import FileLedger
 from trialviz.pipeline import Pipeline
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpretation
 from trialviz.query.interpreters.claude import ClaudeInterpreter
@@ -203,8 +203,8 @@ class _NeverCalled:
 
 
 async def test_at_the_spend_cap_questions_resolve_without_calling_claude(tmp_path: Path) -> None:
-    ledger = SpendLedger(tmp_path / "spend.json", cap_usd=20.0)
-    await ledger.settle(0.0, 19.95)
+    ledger = FileLedger(tmp_path / "spend.json", cap_usd=20.0)
+    await ledger.settle(await ledger.reserve(19.95), 19.95)
     interpreter = FallbackInterpreter(
         ClaudeInterpreter(
             _NeverCalled(), ledger, model="claude-opus-5-5", effort="low", max_tokens=8000
