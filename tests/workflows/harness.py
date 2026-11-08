@@ -60,13 +60,12 @@ async def run_workflow(
     interpreter: Callable[[MessagesClient, FileLedger], Interpreter] | None = None,
     registry_failures: Mapping[int, int] | None = None,
     cache: ResponseCache | None = None,
-    spend_cap: float = 20.0,
 ) -> Run:
     settings = Settings()
     ledger = (
         FileLedger(settings.llm_ledger_path, settings.llm_spend_cap_usd)
         if RECORDING
-        else FileLedger(tmp_path / "spend.json", spend_cap)
+        else FileLedger(tmp_path / "spend.json", 20.0)
     )
     real = None
     if RECORDING and settings.anthropic_api_key:

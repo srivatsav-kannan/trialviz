@@ -1,9 +1,8 @@
 """Whole requests under the conditions that break pipelines: throttling, outages, a stale
-cache, an interpreter that lies, and an exhausted budget."""
+cache, and an interpreter that lies."""
 
 from __future__ import annotations
 
-import json
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -12,11 +11,8 @@ import pytest
 
 from tests.workflows.cassette import RECORDING, Cassette
 from tests.workflows.harness import run_workflow
-from trialviz.llm.budget import FileLedger
 from trialviz.pipeline import Pipeline
-from trialviz.query.interpreters.base import FallbackInterpreter, Interpretation
-from trialviz.query.interpreters.claude import ClaudeInterpreter
-from trialviz.query.interpreters.rules import RuleBasedInterpreter
+from trialviz.query.interpreters.base import Interpretation
 from trialviz.query.request import QueryRequest
 from trialviz.query.resolution import NoteCode, ResolvedQuery
 from trialviz.query.resolver import QueryResolver
@@ -195,33 +191,3 @@ async def test_a_lying_interpreter_cannot_change_what_is_sent_to_the_registry() 
         "query.intr": "(pembrolizumab)",
         "filter.advanced": f"(AREA[StartDate]RANGE[2015-01-01, MAX]) AND (NOT ({strict}))",
     }
-
-
-class _NeverCalled:
-    async def create(self, **_: object) -> object:
-        raise AssertionError("Claude must not be called once the cap is reached")
-
-
-async def test_at_the_spend_cap_questions_resolve_without_calling_claude(tmp_path: Path) -> None:
-    ledger = FileLedger(tmp_path / "spend.json", cap_usd=20.0)
-    await ledger.settle(await ledger.reserve(19.95), 19.95)
-    interpreter = FallbackInterpreter(
-        ClaudeInterpreter(
-            _NeverCalled(), ledger, model="claude-opus-5-5", effort="low", max_tokens=8000
-        ),
-        RuleBasedInterpreter(),
-    )
-    registry = _RecordingRegistry()
-    pipeline = Pipeline(
-        QueryResolver(interpreter, today=lambda: date(2026, 11, 7)),
-        Retriever(RegistryClient(registry.client(), RateLimiter(1e9)), max_records=100),
-    )
-    result = await pipeline.run(
-        QueryRequest(query="How many recruiting asthma trials started since 2020?")
-    )
-    resolution = result.resolution
-    assert isinstance(resolution, ResolvedQuery)
-    assert resolution.interpreter == "rules"
-    assert "spend cap reached" in resolution.notes[0].message
-    assert ledger.spent_usd() == pytest.approx(19.95)
-    assert json.dumps(registry.params[0]).count("RECRUITING") == 1

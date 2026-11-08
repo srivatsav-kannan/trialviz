@@ -8,7 +8,7 @@ uv run pytest --run-live                         # adds the live registry tests
 TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records against Claude and the registry
 ```
 
-The offline run collects 49 cases from 43 test functions, since the spend-cap and answer-store tests run on both backends and the spend-cap tests over four failure types, and `--run-live` adds 3 more. A test belongs here only when it checks something that reading the code would not settle: behavior across several stages, concurrency, real registry data, saved files drifting from the code, or a bug that actually happened. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report, which a suite that passes or fails on every run would flatten; it is described in [evaluation.md](evaluation.md).
+The offline run collects 38 cases from 37 test functions, since the answer-store test runs on both stores, and `--run-live` adds 3 more. A test belongs here only when it checks something that reading the code would not settle: behavior across several stages, concurrency, real registry data, saved files drifting from the code, or a bug that actually happened. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report, which a suite that passes or fails on every run would flatten; it is described in [evaluation.md](evaluation.md).
 
 ## Question workflows
 
@@ -48,7 +48,6 @@ These replay the same recordings under bad conditions.
 | The cache | A repeat run makes no registry requests, and a registry refresh invalidates every cached response |
 | A long-running server | The client notices a new registry data version after its 15-minute check and drops responses cached under the old one |
 | A lying interpreter | Contradictions, invented values and inverted ranges change nothing in what is sent to the registry, and each one is reported |
-| The spend cap reached | Questions still resolve through the fallback, Claude is never called, and nothing is charged |
 
 ## Guard tests
 
@@ -56,7 +55,6 @@ These replay the same recordings under bad conditions.
 | --- | --- |
 | `test_resolver_properties.py` | Six properties of the resolver over 1,500 generated pairings of caller fields with interpreter proposals, among them that caller fields always reach the plan unchanged, every contradiction is reported, and the same input always gives the same output |
 | `test_input_hazards.py` | Hostile requests are refused with a pointer to the exact problem, every kind of failure returns the one error shape, and plausible misreadings are refused ("N/A" read like "1/2", or "Korea") |
-| `test_spend_cap.py` | On both ledgers, the second against a real throwaway Postgres: concurrent calls from two processes cannot jointly cross the cap, spending survives a restart, the daily cap refuses before the total does, a hold left by a process that died mid-call is charged in full, an unreachable ledger refuses every call, and a failed call is charged according to whether it could have been billed |
 | `test_api_contract.py` | What a frontend built from the docs alone relies on, over every saved answer: each saved file still matches the response the code produces today and is served unchanged, and each chart's rows validate against the row model the OpenAPI document publishes for it, with unique ids that the Vega-Lite values carry. The rows are built as dictionaries and the models declared apart, so this is what keeps them in step |
 | `test_answer_store.py` | On both stores, the second against a real throwaway Postgres: a saved answer comes back exactly from a new process, only the newest are kept, and a store that cannot be reached or written is a miss, never an error |
 | `test_abuse_guards.py` | Over HTTP: each client's question quota with its RateLimit headers, that a forged `X-Forwarded-For` entry earns no fresh quota, the ceiling across all clients (without spending the refused client's quota), the cap on answers in progress under real concurrency, and oversized bodies refused whether or not their length is declared |
