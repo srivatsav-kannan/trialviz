@@ -149,6 +149,18 @@ class Retriever:
         """Exact match count for an arbitrary query, for stages that need more totals."""
         return await self._client.count(query)
 
+    async def first_year(self, query: RegistryQuery, date_area: str) -> str | None:
+        """The year of the earliest date in `date_area` among the query's matches."""
+        fetched = await self._client.fetch(
+            query, fields=("NCTId", date_area), limit=1, sort=f"{date_area}:asc"
+        )
+        if not fetched.studies:
+            return None
+        status = fetched.studies[0].get("protocolSection", {}).get("statusModule", {})
+        key = "startDateStruct" if date_area == "StartDate" else "completionDateStruct"
+        date = status.get(key, {}).get("date")
+        return str(date)[:4] if date else None
+
     async def _cohort(
         self,
         label: str | None,

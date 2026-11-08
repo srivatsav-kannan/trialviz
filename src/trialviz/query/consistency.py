@@ -48,6 +48,8 @@ FILTER_RULES = (
 ANALYSIS_RULES = (
     PairRule(("group_by", "series_by"), operator.ne, "grouping and series must differ"),
     PairRule(("x", "y"), operator.ne, "a scatter plot needs two different measures"),
+    PairRule(("x", "z"), operator.ne, "the third measure must differ from the first"),
+    PairRule(("y", "z"), operator.ne, "the third measure must differ from the second"),
 )
 
 

@@ -392,7 +392,6 @@
             ]
           },
           "presentation": {
-            "chart_type": "network_graph",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -404,7 +403,6 @@
           "analysis.node_types": "inferred",
           "filters.intervention_types": "inferred",
           "filters.keywords": "inferred",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
@@ -465,7 +463,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "ambiguous_reference",
-        "message": "The question refers to \"this drug\" but never names it, and no caller field supplies a drug. Please specify which drug.",
+        "message": "The question refers to \"this drug\" but never names it, and no caller field supplies one. Please say which drug you mean.",
         "missing": [],
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -533,7 +531,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "conflicting_analysis",
-        "message": "The question reads as a time_series analysis, but analysis.group_by applies to distribution or comparison. Set analysis.kind to say which you want.",
+        "message": "The question reads as a time_series analysis, but analysis.group_by applies to distribution or comparison or histogram. Set analysis.kind to say which you want.",
         "missing": [
           "analysis.kind"
         ],
@@ -564,7 +562,6 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -575,7 +572,6 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.start_year_to": "user",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
@@ -841,6 +837,9 @@
           "filters": {
             "conditions": [
               "oncology"
+            ],
+            "statuses": [
+              "COMPLETED"
             ]
           },
           "analysis": {
@@ -860,6 +859,7 @@
           "analysis.kind": "inferred",
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
@@ -1066,7 +1066,6 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -1078,7 +1077,6 @@
           "filters.conditions": "inferred",
           "filters.sponsors": "inferred",
           "filters.start_year_from": "inferred",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
@@ -1098,7 +1096,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "out_of_scope",
-        "message": "Registry records cannot rank statins by how much they lower cholesterol; that is an efficacy comparison. I can show statin trials for high cholesterol, for example grouped by intervention.",
+        "message": "Registry records can't rank statins by how much they lower cholesterol. That's an efficacy comparison, and it needs trial results or meta-analyses. I can show which statin trials exist for high cholesterol, for example counts by intervention.",
         "missing": [],
         "notes": [
           {
@@ -1200,7 +1198,6 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -1213,14 +1210,13 @@
           "filters.countries": "inferred",
           "filters.keywords": "inferred",
           "filters.statuses": "inferred",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"sites located in New Jersey (state-level location not filterable; approximated by keyword)\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"sites in New Jersey (state-level location; approximated by United States plus keyword)\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1240,7 +1236,7 @@
         "plan": {
           "filters": {
             "conditions": [
-              "Breast cancer"
+              "breast cancer"
             ],
             "statuses": [
               "NOT_YET_RECRUITING"
@@ -1475,7 +1471,6 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -1487,7 +1482,6 @@
           "filters.countries": "inferred",
           "filters.keywords": "inferred",
           "filters.statuses": "inferred",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
@@ -1514,7 +1508,7 @@
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"grouped by principal investigator (no such grouping dimension)\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"grouping by principal investigator (no such dimension)\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1671,16 +1665,6 @@
           "filters": {
             "conditions": [
               "lung cancer"
-            ],
-            "sponsor_classes": [
-              "NIH",
-              "FED",
-              "OTHER_GOV",
-              "INDIV",
-              "NETWORK",
-              "OTHER",
-              "UNKNOWN",
-              "AMBIG"
             ]
           },
           "analysis": {
@@ -1698,11 +1682,15 @@
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
-          "filters.sponsor_classes": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
-        "notes": [],
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"non-industry sponsors (exclusion of INDUSTRY sponsor class)\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -1724,13 +1712,13 @@
             "kind": "comparison",
             "cohorts": [
               {
-                "label": "Before 2015",
+                "label": "Started before 2015",
                 "filters": {
                   "start_year_to": 2014
                 }
               },
               {
-                "label": "After 2015",
+                "label": "Started after 2015",
                 "filters": {
                   "start_year_from": 2016
                 }
@@ -1970,12 +1958,7 @@
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
-        "notes": [
-          {
-            "code": "constraint_not_applied",
-            "message": "The question asks for \"funded (sponsor class covers lead sponsor only, not collaborators/funders)\", which no filter here can express, so the results are not limited by it."
-          }
-        ],
+        "notes": [],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -2142,6 +2125,239 @@
             "message": "The question asks for \"in combination with chemotherapy\", which no filter here can express, so the results are not limited by it."
           }
         ],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "flow-three-stages",
+      "tags": [
+        "flow",
+        "new-kinds"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "lung cancer"
+            ]
+          },
+          "analysis": {
+            "kind": "flow",
+            "stages": [
+              "sponsor_class",
+              "phase",
+              "status"
+            ]
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.stages": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "flow-end-up",
+      "tags": [
+        "flow",
+        "new-kinds",
+        "hard"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "phases": [
+              "PHASE3"
+            ],
+            "sponsor_classes": [
+              "INDUSTRY"
+            ]
+          },
+          "analysis": {
+            "kind": "flow",
+            "stages": [
+              "phase",
+              "status"
+            ]
+          },
+          "presentation": {
+            "chart_type": "sankey",
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.stages": "inferred",
+          "filters.phases": "inferred",
+          "filters.sponsor_classes": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "trial-list-timeline",
+      "tags": [
+        "trial-list",
+        "new-kinds"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "melanoma"
+            ],
+            "interventions": [
+              "Keytruda"
+            ],
+            "phases": [
+              "PHASE3"
+            ]
+          },
+          "analysis": {
+            "kind": "trial_list"
+          },
+          "presentation": {
+            "chart_type": "timeline",
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "filters.interventions": "inferred",
+          "filters.phases": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "histogram-grouped",
+      "tags": [
+        "histogram",
+        "new-kinds"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "asthma"
+            ],
+            "statuses": [
+              "COMPLETED"
+            ]
+          },
+          "analysis": {
+            "kind": "histogram",
+            "measure": "enrollment",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "analysis.measure": "inferred",
+          "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
+        "interpreter": "claude:claude-opus-5-5"
+      }
+    },
+    {
+      "id": "scatter-three-measures",
+      "tags": [
+        "scatter",
+        "new-kinds"
+      ],
+      "passed": true,
+      "problems": [],
+      "interpreter": "claude:claude-opus-5-5",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "diabetes"
+            ],
+            "statuses": [
+              "COMPLETED"
+            ]
+          },
+          "analysis": {
+            "kind": "scatter",
+            "x": "enrollment",
+            "y": "duration_months",
+            "z": "site_count"
+          },
+          "presentation": {
+            "chart_type": "scatter_plot_3d",
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.x": "inferred",
+          "analysis.y": "inferred",
+          "analysis.z": "inferred",
+          "filters.conditions": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.chart_type": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
         "interpreter": "claude:claude-opus-5-5"
       }
     }

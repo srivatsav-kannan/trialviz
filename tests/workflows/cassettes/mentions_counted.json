@@ -6,13 +6,13 @@
    "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]},{\"slot\":\"analysis.kind\",\"values\":[\"distribution\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3567,
+    "cache_read_input_tokens": 3890,
     "input_tokens": 59,
     "output_tokens": 123
    }
   }
  ],
- "fingerprint": "1160da3205e205be",
+ "fingerprint": "cb980bb633d0f033",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm&pageSize=100&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuY_el2fYbmj6SuP08FCfCFfTZ_tBN1CI",
@@ -8036,6 +8036,123 @@
    ],
    "totalCount": 353
   },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DEARLY_PHASE1+AND+NOT+AREA%5BPhase%5D%28PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxqbPOk3_0W",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06212388"
+      }
+     }
+    }
+   ],
+   "totalCount": 6
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DMISSING%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxpY_Gi1PUW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02083484"
+      }
+     }
+    }
+   ],
+   "totalCount": 13
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DNA+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxubfei2PUW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07422779"
+      }
+     }
+    }
+   ],
+   "totalCount": 3
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DPHASE1+AND+AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxqbPOl2vg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05180799"
+      }
+     }
+    }
+   ],
+   "totalCount": 84
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DPHASE1+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxnZvWh3vg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05859074"
+      }
+     }
+    }
+   ],
+   "totalCount": 102
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DPHASE2+AND+AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrZ_Sh3_AW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06624644"
+      }
+     }
+    }
+   ],
+   "totalCount": 4
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuY_Og2Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04017897"
+      }
+     }
+    }
+   ],
+   "totalCount": 116
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtZvSm1fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05352672"
+      }
+     }
+    }
+   ],
+   "totalCount": 24
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BPhase%5DPHASE4+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+NA%29%29&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZPag2_cbkA",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT03715205"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
   "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_Gs3_g",
    "studies": [
@@ -8048,6 +8165,105 @@
     }
    ],
    "totalCount": 47
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DEARLY_PHASE1+AND+NOT+AREA%5BPhase%5D%28PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZ_Om1fMakA",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT01789827"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DMISSING%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxobfes1PQW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT03843593"
+      }
+     }
+    }
+   ],
+   "totalCount": 18
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DNA+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_mh2PEW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02716077"
+      }
+     }
+    }
+   ],
+   "totalCount": 6
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DPHASE1+AND+AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxmYfSg1fQW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07040436"
+      }
+     }
+    }
+   ],
+   "totalCount": 3
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DPHASE1+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_Gs3_g",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02122861"
+      }
+     }
+    }
+   ],
+   "totalCount": 9
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DPHASE2+AND+AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "studies": [],
+   "totalCount": 0
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYPGs3_YW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04951583"
+      }
+     }
+    }
+   ],
+   "totalCount": 9
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE4+OR+NA%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtZfCt3vIW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05751928"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29+AND+%28AREA%5BPhase%5DPHASE4+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+NA%29%29&pageSize=1&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
+   "studies": [],
+   "totalCount": 0
   },
   "/api/v2/studies?countTotal=true&fields=NCTId&pageSize=1&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuY_Og2Pg",

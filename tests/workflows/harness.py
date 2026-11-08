@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from collections.abc import Callable, Iterable, Mapping
 from dataclasses import dataclass, field
 from datetime import date
@@ -13,6 +14,7 @@ import anthropic
 import httpx
 
 from tests.workflows.cassette import RECORDING, Cassette
+from trialviz.aggregation.evidence import at
 from trialviz.llm.budget import SpendLedger
 from trialviz.pipeline import Pipeline, PipelineResult
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
@@ -166,6 +168,88 @@ def mention_text(study: Mapping[str, Any]) -> str:
         *(g.get("description", "") for g in arms.get("armGroups", [])),
     ]
     return " | ".join(parts).lower()
+
+
+def answer_problems(run: Run) -> list[str]:
+    """Checks every answer must pass, whatever the question:
+
+    - every citation resolves: following its path through the cited trial's raw record
+      gives exactly its excerpt (a value citation) or text containing it (a quote);
+    - every datum's trials were really fetched, each listed once, and its count agrees
+      with them: equal, or larger when the count came from the registry for a capped set;
+    - the recommended chart and each alternative carry a Vega-Lite spec exactly when
+      Vega-Lite can draw that chart.
+    """
+    answer, retrieval = run.result.answer, run.result.retrieval
+    assert answer is not None and retrieval is not None
+    records = {
+        nct_id(study): study
+        for cohort in retrieval.cohorts
+        for study in (*cohort.named.studies, *(cohort.mentions.studies if cohort.mentions else ()))
+    }
+    exact = any(n.code.value == "counts_exact_from_registry" for n in answer.meta.notes)
+    problems: list[str] = []
+
+    def walk(node: Any) -> None:
+        if isinstance(node, dict):
+            for citation in node.get("citations", []):
+                problems.extend(_citation_problem(citation, records))
+            if "nct_ids" in node and "trial_count" in node:
+                unknown = [i for i in node["nct_ids"] if i not in records]
+                if unknown:
+                    problems.append(f"datum cites unfetched trials {unknown[:3]}")
+                if len(set(node["nct_ids"])) != len(node["nct_ids"]):
+                    problems.append("a datum counts the same trial more than once")
+                count, listed = node["trial_count"], len(node["nct_ids"])
+                if (count < listed) or (count != listed and not exact):
+                    problems.append(f"datum count {count} disagrees with its {listed} trials")
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for item in node:
+                walk(item)
+
+    walk(answer.visualization.model_dump(mode="json")["data"])
+    for view in answer.alternatives:
+        walk(view.model_dump(mode="json")["data"])
+    for report in answer.meta.mentions:
+        for citation in report.citations:
+            problems.extend(_citation_problem(citation.model_dump(mode="json"), records))
+    for view in [answer.visualization, *answer.alternatives]:
+        if (view.vega_lite is not None) != (view.type.value in VEGA_CHARTS):
+            problems.append(f"{view.type.value} has the wrong Vega-Lite presence")
+    return problems
+
+
+VEGA_CHARTS = {
+    "bar_chart", "horizontal_bar_chart", "donut_chart", "choropleth_map", "grouped_bar_chart",
+    "stacked_bar_chart", "normalized_stacked_bar_chart", "heatmap", "time_series",
+    "stacked_area_chart", "histogram", "box_plot", "scatter_plot", "bubble_chart", "timeline",
+}  # fmt: skip
+
+
+def _citation_problem(
+    citation: Mapping[str, Any], records: Mapping[str, Mapping[str, Any]]
+) -> list[str]:
+    study = records.get(citation["nct_id"])
+    if study is None:
+        return [f"citation of unfetched trial {citation['nct_id']}"]
+    try:
+        value = at(study, citation["field"])
+    except (KeyError, IndexError, TypeError):
+        return [f"{citation['nct_id']}: path {citation['field']} does not exist"]
+    text = value if isinstance(value, str) else json.dumps(value, ensure_ascii=False)
+    holds = (
+        citation["excerpt"] in text if citation["kind"] == "quote" else citation["excerpt"] == text
+    )
+    return (
+        []
+        if holds
+        else [
+            f"{citation['nct_id']}: {citation['field']} is {text[:60]!r}, "
+            f"not {citation['excerpt'][:60]!r}"
+        ]
+    )
 
 
 def violations(

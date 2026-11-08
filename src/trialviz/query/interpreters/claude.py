@@ -174,6 +174,9 @@ SLOT_GUIDE: dict[str, str] = {
     "analysis.measure": _values(Measure),
     "analysis.x": _values(Measure),
     "analysis.y": _values(Measure),
+    "analysis.z": f"optional third measure for a scatter: {_values(Measure)}",
+    "analysis.stages": "two or three of: phase, status, sponsor_class, lead_sponsor, "
+    "study_type, start_year, in flow order",
     "analysis.node_types": f"exactly two of: {_values(Dimension)}",
     "presentation.chart_type": _values(ChartType),
     "presentation.sort": _values(SortOrder),
@@ -183,6 +186,10 @@ SLOT_GUIDE: dict[str, str] = {
     "for trials that mention a name anywhere, not just trials that list it as an "
     "intervention or condition",
 }
+
+_unexplained = set(SLOT_PATHS) ^ set(SLOT_GUIDE)
+if _unexplained:  # a new plan field must be explained to the model before it ships
+    raise RuntimeError(f"SLOT_GUIDE and SLOT_PATHS disagree on: {sorted(_unexplained)}")
 
 SYSTEM_PROMPT = f"""\
 You translate questions about clinical trials into slots of a query plan for the \
@@ -231,6 +238,11 @@ start_year for "per year" comparisons).
 - scatter: one point per trial with measures x and y.
 - network: node_types is a pair of dimensions linked when they share a trial. Use the \
 same dimension twice for co-occurrence, such as drugs used together.
+- flow: trials moving through two or three dimensions in order, such as sponsor class \
+to phase to status ("how do industry phase 3 trials end up"). Set stages.
+- trial_list: the individual trials, for "which trials" or a timeline of trials.
+- histogram also takes group_by to compare the spread across groups (enrollment by \
+phase). scatter also takes z, a third measure.
 Leave a parameter out when the question does not settle it. Never guess a grouping.
 
 Presentation: include only what the question asks for ("top 10" sets top_n).

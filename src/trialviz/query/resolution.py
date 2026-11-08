@@ -36,6 +36,16 @@ class NoteCode(StrEnum):
     QUESTION_NOT_INTERPRETED = "question_not_interpreted"
     CONSTRAINT_NOT_APPLIED = "constraint_not_applied"
     COHORT_NARROWED_BY_SHARED_FILTER = "cohort_narrowed_by_shared_filter"
+    # Raised after resolution, by aggregation and visualization.
+    COUNTED_IN_SEVERAL_GROUPS = "counted_in_several_groups"
+    COMPUTED_FROM_SUBSET = "computed_from_subset"
+    COUNTS_EXACT_FROM_REGISTRY = "counts_exact_from_registry"
+    VALUES_MISSING = "values_missing"
+    NETWORK_PRUNED = "network_pruned"
+    MENTIONS_REPORTED = "mentions_reported"
+    MENTIONS_COUNTED = "mentions_counted"
+    TOP_N_APPLIED = "top_n_applied"
+    CHART_PREFERENCE_NOT_FITTING = "chart_preference_not_fitting"
 
 
 class Note(BaseModel):

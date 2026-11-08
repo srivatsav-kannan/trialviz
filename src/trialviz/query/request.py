@@ -40,6 +40,7 @@ from trialviz.query.plan import (
     MIN_COHORTS,
     Presentation,
     RetrievalOptions,
+    Stages,
     parameters_of,
     validate_cohorts,
     validate_node_types,
@@ -54,7 +55,7 @@ class AnalysisFields(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     kind: AnalysisKindField | None = None
-    group_by: DimensionField | None = Field(None, description="distribution, comparison")
+    group_by: DimensionField | None = Field(None, description="distribution, comparison, histogram")
     series_by: DimensionField | None = Field(None, description="distribution, time_series, scatter")
     time_field: TimeFieldField | None = Field(None, description="time_series")
     granularity: GranularityField | None = Field(None, description="time_series")
@@ -69,6 +70,8 @@ class AnalysisFields(BaseModel):
     measure: MeasureField | None = Field(None, description="histogram")
     x: MeasureField | None = Field(None, description="scatter")
     y: MeasureField | None = Field(None, description="scatter")
+    z: MeasureField | None = Field(None, description="scatter (size in 2D, depth in 3D)")
+    stages: Stages | None = Field(None, description="flow")
     node_types: (
         Annotated[tuple[DimensionField, DimensionField], AfterValidator(validate_node_types)] | None
     ) = Field(None, description="network")

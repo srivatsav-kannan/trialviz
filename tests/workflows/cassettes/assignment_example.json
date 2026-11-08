@@ -6,13 +6,13 @@
    "text": "{\"slots\":[{\"slot\":\"analysis.kind\",\"values\":[\"time_series\"]},{\"slot\":\"analysis.time_field\",\"values\":[\"start_date\"]},{\"slot\":\"analysis.granularity\",\"values\":[\"year\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3567,
+    "cache_read_input_tokens": 3890,
     "input_tokens": 89,
     "output_tokens": 98
    }
   }
  ],
- "fingerprint": "1160da3205e205be",
+ "fingerprint": "cb980bb633d0f033",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28NOT+%28%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29%29%29&pageSize=100&query.intr=%28pembrolizumab%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvKt3f0fnj6SuP08FCfCFfbY8tdN1iI",
@@ -12242,6 +12242,275 @@
     }
    ],
    "totalCount": 2659
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CStartDate&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29&sort=StartDate%3Aasc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZPis3fAfmj6SuP08FCfCFfHW8dVP0yI",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04898751"
+      },
+      "statusModule": {
+       "startDateStruct": {
+        "date": "2008-01-01"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 2659
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2008-01-01%2C+2008-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZfaj2_QYkA",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04898751"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2009-01-01%2C+2009-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "studies": [],
+   "totalCount": 0
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2010-01-01%2C+2010-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxpbPaj2PwW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT01174121"
+      }
+     }
+    }
+   ],
+   "totalCount": 4
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2011-01-01%2C+2011-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtZfil2fQakA",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT01295827"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2012-01-01%2C+2012-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsbfSs3PAckA",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT01704287"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2013-01-01%2C+2013-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrbfah3vcW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT01876511"
+      }
+     }
+    }
+   ],
+   "totalCount": 14
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2014-01-01%2C+2014-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxnZfCm1Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02267603"
+      }
+     }
+    }
+   ],
+   "totalCount": 34
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2015-01-01%2C+2015-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxpbPil2fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02586207"
+      }
+     }
+    }
+   ],
+   "totalCount": 116
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZfCj1fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02940496"
+      }
+     }
+    }
+   ],
+   "totalCount": 185
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2017-01-01%2C+2017-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_ii3_g",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT03012620"
+      }
+     }
+    }
+   ],
+   "totalCount": 246
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+2018-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsYvCs2Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT03414229"
+      }
+     }
+    }
+   ],
+   "totalCount": 240
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2019-01-01%2C+2019-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrbfel0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT02757391"
+      }
+     }
+    }
+   ],
+   "totalCount": 219
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+2020-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtZvCi0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04032418"
+      }
+     }
+    }
+   ],
+   "totalCount": 237
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2021-01-01%2C+2021-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxpbPWt0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05064059"
+      }
+     }
+    }
+   ],
+   "totalCount": 239
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2022-01-01%2C+2022-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZfCm2_g",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05258279"
+      }
+     }
+    }
+   ],
+   "totalCount": 263
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2023-01-01%2C+2023-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsYPan2fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05856981"
+      }
+     }
+    }
+   ],
+   "totalCount": 227
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZvKt3vIW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06328673"
+      }
+     }
+    }
+   ],
+   "totalCount": 221
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2025-01-01%2C+2025-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_Wl2Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06809140"
+      }
+     }
+    }
+   ],
+   "totalCount": 206
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2026-01-01%2C+2026-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxubfWs0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06724042"
+      }
+     }
+    }
+   ],
+   "totalCount": 192
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2027-01-01%2C+2027-12-31%5D%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxmbPil2fAW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07689240"
+      }
+     }
+    }
+   ],
+   "totalCount": 9
   },
   "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28NOT+%28%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29%29%29&pageSize=1&query.intr=%28pembrolizumab%29": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_Gs3_g",

@@ -15,7 +15,7 @@ from __future__ import annotations
 from enum import StrEnum
 from typing import Annotated, Literal, Self
 
-from pydantic import BaseModel, ConfigDict, Field, model_validator
+from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
 from pydantic.fields import FieldInfo
 
 from trialviz.query.consistency import ANALYSIS_RULES, broken_rules, same_meaning
@@ -110,18 +110,22 @@ class ComparisonSpec(_AnalysisSpec):
 
 
 class HistogramSpec(_AnalysisSpec):
-    """The spread of one numeric measure across trials."""
+    """The spread of one numeric measure across trials, optionally split into groups
+    (enrollment by phase), which is drawn as one box per group."""
 
     kind: Literal[AnalysisKind.HISTOGRAM] = AnalysisKind.HISTOGRAM
     measure: MeasureField
+    group_by: DimensionField | None = None
 
 
 class ScatterSpec(_AnalysisSpec):
-    """One point per trial, positioned by two numeric measures."""
+    """One point per trial, positioned by two numeric measures. A third measure `z`
+    becomes point size in 2D or depth in 3D."""
 
     kind: Literal[AnalysisKind.SCATTER] = AnalysisKind.SCATTER
     x: MeasureField
     y: MeasureField
+    z: MeasureField | None = None
     series_by: DimensionField | None = None
 
 
@@ -137,6 +141,37 @@ class NetworkSpec(_AnalysisSpec):
         return self
 
 
+def validate_stages(stages: list[Dimension]) -> list[Dimension]:
+    if len(set(stages)) != len(stages):
+        raise ValueError("flow stages must be different dimensions")
+    multi = [stage.value for stage in stages if stage.multi_valued]
+    if multi:
+        raise ValueError(
+            f"{', '.join(multi)} can hold several values per trial, so a trial would follow "
+            "several paths at once. Flow stages must have one value per trial"
+        )
+    return stages
+
+
+Stages = Annotated[
+    list[DimensionField], Field(min_length=2, max_length=3), AfterValidator(validate_stages)
+]
+
+
+class FlowSpec(_AnalysisSpec):
+    """Trials flowing through two or three single-valued dimensions in order, such as
+    sponsor class, then phase, then status."""
+
+    kind: Literal[AnalysisKind.FLOW] = AnalysisKind.FLOW
+    stages: Stages
+
+
+class TrialListSpec(_AnalysisSpec):
+    """The individual trials, with their dates, for a timeline or a table."""
+
+    kind: Literal[AnalysisKind.TRIAL_LIST] = AnalysisKind.TRIAL_LIST
+
+
 AnalysisSpec = Annotated[
     CountSpec
     | DistributionSpec
@@ -144,7 +179,9 @@ AnalysisSpec = Annotated[
     | ComparisonSpec
     | HistogramSpec
     | ScatterSpec
-    | NetworkSpec,
+    | NetworkSpec
+    | FlowSpec
+    | TrialListSpec,
     Field(discriminator="kind"),
 ]
 
@@ -156,6 +193,8 @@ ANALYSIS_SPECS: dict[AnalysisKind, type[_AnalysisSpec]] = {
     AnalysisKind.HISTOGRAM: HistogramSpec,
     AnalysisKind.SCATTER: ScatterSpec,
     AnalysisKind.NETWORK: NetworkSpec,
+    AnalysisKind.FLOW: FlowSpec,
+    AnalysisKind.TRIAL_LIST: TrialListSpec,
 }
 
 

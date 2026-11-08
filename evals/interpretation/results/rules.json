@@ -537,7 +537,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "conflicting_analysis",
-        "message": "The question reads as a time_series analysis, but analysis.group_by applies to distribution or comparison. Set analysis.kind to say which you want.",
+        "message": "The question reads as a time_series analysis, but analysis.group_by applies to distribution or comparison or histogram. Set analysis.kind to say which you want.",
         "missing": [
           "analysis.kind"
         ],
@@ -1105,7 +1105,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "missing_parameter",
-        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.",
         "missing": [
           "analysis.kind"
         ],
@@ -1127,7 +1127,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "missing_parameter",
-        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.",
         "missing": [
           "analysis.kind"
         ],
@@ -1497,7 +1497,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "missing_parameter",
-        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.",
         "missing": [
           "analysis.kind"
         ],
@@ -1805,13 +1805,13 @@
       ],
       "passed": false,
       "problems": [
-        "expected resolved, got needs_clarification (What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.)"
+        "expected resolved, got needs_clarification (What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.)"
       ],
       "interpreter": "rules",
       "outcome": {
         "status": "needs_clarification",
         "reason": "missing_parameter",
-        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network.",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.",
         "missing": [
           "analysis.kind"
         ],
@@ -2011,6 +2011,195 @@
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "flow-three-stages",
+      "tags": [
+        "flow",
+        "new-kinds"
+      ],
+      "passed": false,
+      "problems": [
+        "expected resolved, got needs_clarification (What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.)"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.",
+        "missing": [
+          "analysis.kind"
+        ],
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "flow-end-up",
+      "tags": [
+        "flow",
+        "new-kinds",
+        "hard"
+      ],
+      "passed": false,
+      "problems": [
+        "analysis.kind: expected 'flow', got 'distribution'",
+        "analysis.stages: expected a value, got none"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "end status Sankey"
+            ],
+            "phases": [
+              "PHASE3"
+            ],
+            "sponsor_classes": [
+              "INDUSTRY"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "phase"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "filters.phases": "inferred",
+          "filters.sponsor_classes": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "trial-list-timeline",
+      "tags": [
+        "trial-list",
+        "new-kinds"
+      ],
+      "passed": false,
+      "problems": [
+        "analysis.kind: expected 'trial_list', got 'time_series'",
+        "filters.conditions: expected ['melanoma'], got None",
+        "filters.interventions: expected ['Keytruda'], got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "Keytruda melanoma"
+            ],
+            "phases": [
+              "PHASE3"
+            ]
+          },
+          "analysis": {
+            "kind": "time_series",
+            "time_field": "start_date",
+            "granularity": "year"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.granularity": "default",
+          "analysis.kind": "inferred",
+          "analysis.time_field": "default",
+          "filters.keywords": "inferred",
+          "filters.phases": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "histogram-grouped",
+      "tags": [
+        "histogram",
+        "new-kinds"
+      ],
+      "passed": false,
+      "problems": [
+        "analysis.group_by: expected 'phase', got None"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "phases asthma"
+            ],
+            "statuses": [
+              "COMPLETED"
+            ]
+          },
+          "analysis": {
+            "kind": "histogram",
+            "measure": "enrollment"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.kind": "inferred",
+          "analysis.measure": "inferred",
+          "filters.keywords": "inferred",
+          "filters.statuses": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
+        "interpreter": "rules"
+      }
+    },
+    {
+      "id": "scatter-three-measures",
+      "tags": [
+        "scatter",
+        "new-kinds"
+      ],
+      "passed": false,
+      "problems": [
+        "expected resolved, got needs_clarification (What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.)"
+      ],
+      "interpreter": "rules",
+      "outcome": {
+        "status": "needs_clarification",
+        "reason": "missing_parameter",
+        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.",
+        "missing": [
+          "analysis.kind"
+        ],
         "notes": [],
         "interpreter": "rules"
       }

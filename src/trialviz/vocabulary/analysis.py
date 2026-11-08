@@ -23,11 +23,19 @@ class AnalysisKind(StrEnum):
     HISTOGRAM = "histogram"
     SCATTER = "scatter"
     NETWORK = "network"
+    FLOW = "flow"
+    TRIAL_LIST = "trial_list"
 
 
 parse_analysis_kind = enum_parser(
     AnalysisKind,
-    {"trend": AnalysisKind.TIME_SERIES, "compare": AnalysisKind.COMPARISON},
+    {
+        "trend": AnalysisKind.TIME_SERIES,
+        "compare": AnalysisKind.COMPARISON,
+        "sankey": AnalysisKind.FLOW,
+        "timeline": AnalysisKind.TRIAL_LIST,
+        "list": AnalysisKind.TRIAL_LIST,
+    },
     noun="analysis kind",
 )
 
@@ -156,22 +164,52 @@ parse_time_granularity = enum_parser(
 
 
 class ChartType(StrEnum):
-    """Chart types a caller may ask for. The visualization stage checks fit against the data."""
+    """Every chart the service can recommend or draw. Which ones fit a given result is
+    decided by the visualization stage, from the data's shape and facts about it."""
 
     STAT = "stat"
     BAR_CHART = "bar_chart"
+    HORIZONTAL_BAR_CHART = "horizontal_bar_chart"
+    DONUT_CHART = "donut_chart"
+    TREEMAP = "treemap"
+    CHOROPLETH_MAP = "choropleth_map"
+    TABLE = "table"
     GROUPED_BAR_CHART = "grouped_bar_chart"
     STACKED_BAR_CHART = "stacked_bar_chart"
+    NORMALIZED_STACKED_BAR_CHART = "normalized_stacked_bar_chart"
+    HEATMAP = "heatmap"
     TIME_SERIES = "time_series"
+    STACKED_AREA_CHART = "stacked_area_chart"
     HISTOGRAM = "histogram"
+    BOX_PLOT = "box_plot"
     SCATTER_PLOT = "scatter_plot"
+    BUBBLE_CHART = "bubble_chart"
+    SCATTER_PLOT_3D = "scatter_plot_3d"
     NETWORK_GRAPH = "network_graph"
-    TABLE = "table"
+    NETWORK_GRAPH_3D = "network_graph_3d"
+    SANKEY = "sankey"
+    TIMELINE = "timeline"
 
 
 parse_chart_type = enum_parser(
     ChartType,
-    {"bar": ChartType.BAR_CHART, "line": ChartType.TIME_SERIES, "scatter": ChartType.SCATTER_PLOT},
+    {
+        "bar": ChartType.BAR_CHART,
+        "column chart": ChartType.BAR_CHART,
+        "line": ChartType.TIME_SERIES,
+        "line chart": ChartType.TIME_SERIES,
+        "area": ChartType.STACKED_AREA_CHART,
+        "pie": ChartType.DONUT_CHART,
+        "pie chart": ChartType.DONUT_CHART,
+        "map": ChartType.CHOROPLETH_MAP,
+        "scatter": ChartType.SCATTER_PLOT,
+        "network": ChartType.NETWORK_GRAPH,
+        "graph": ChartType.NETWORK_GRAPH,
+        "3d network": ChartType.NETWORK_GRAPH_3D,
+        "3d scatter": ChartType.SCATTER_PLOT_3D,
+        "gantt": ChartType.TIMELINE,
+        "boxplot": ChartType.BOX_PLOT,
+    },
     noun="chart type",
 )
 

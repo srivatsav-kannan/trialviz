@@ -1,6 +1,6 @@
 {
  "claude": [],
- "fingerprint": "1160da3205e205be",
+ "fingerprint": "cb980bb633d0f033",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&pageSize=100&query.term=%28car-t+non-hodgkin+lymphoma%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvWl2_wdnj6SuP08FCfCFPfU89pI3Q",
@@ -1910,6 +1910,24 @@
    ],
    "totalCount": 245
   },
+  "/api/v2/studies?countTotal=true&fields=NCTId%2CStartDate&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29&sort=StartDate%3Aasc": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYPmm3vwanD6SuP08FCfCFfnU_9tJ1CI",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04300998"
+      },
+      "statusModule": {
+       "startDateStruct": {
+        "date": "2020-03-04"
+       }
+      }
+     }
+    }
+   ],
+   "totalCount": 245
+  },
   "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrYPOm2vg",
    "studies": [
@@ -1922,6 +1940,110 @@
     }
    ],
    "totalCount": 245
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+2020-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZ_Sm2vIW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04223765"
+      }
+     }
+    }
+   ],
+   "totalCount": 6
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2021-01-01%2C+2021-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxoYPag2Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04920617"
+      }
+     }
+    }
+   ],
+   "totalCount": 11
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2022-01-01%2C+2022-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxoZfaj1fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05659628"
+      }
+     }
+    }
+   ],
+   "totalCount": 15
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2023-01-01%2C+2023-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZfOl2v0W",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05826535"
+      }
+     }
+    }
+   ],
+   "totalCount": 30
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrYPOm2vg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06458439"
+      }
+     }
+    }
+   ],
+   "totalCount": 69
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2025-01-01%2C+2025-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxoYvOl2vg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06940960"
+      }
+     }
+    }
+   ],
+   "totalCount": 65
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2026-01-01%2C+2026-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsYPmn3f0W",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07220993"
+      }
+     }
+    }
+   ],
+   "totalCount": 48
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29+AND+%28AREA%5BStartDate%5DRANGE%5B2027-01-01%2C+2027-12-31%5D%29&pageSize=1&query.term=%28car-t+non-hodgkin+lymphoma%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtY_mg2PwW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06902012"
+      }
+     }
+    }
+   ],
+   "totalCount": 1
   },
   "/api/v2/version?": {
    "apiVersion": "2.0.5",

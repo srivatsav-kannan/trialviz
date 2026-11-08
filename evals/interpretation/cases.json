@@ -1126,5 +1126,118 @@
         "constraint_not_applied:None"
       ]
     }
+  },
+  {
+    "id": "flow-three-stages",
+    "tags": [
+      "flow",
+      "new-kinds"
+    ],
+    "request": {
+      "query": "How do lung cancer trials flow from sponsor class to phase to overall status?"
+    },
+    "expect": {
+      "status": "resolved",
+      "slots": {
+        "analysis.kind": "flow",
+        "analysis.stages": [
+          "sponsor_class",
+          "phase",
+          "status"
+        ],
+        "filters.conditions": [
+          "lung cancer"
+        ]
+      }
+    }
+  },
+  {
+    "id": "flow-end-up",
+    "tags": [
+      "flow",
+      "new-kinds",
+      "hard"
+    ],
+    "request": {
+      "query": "How do industry-sponsored phase 3 trials end up, by phase and status, as a Sankey?"
+    },
+    "expect": {
+      "status": "resolved",
+      "slots": {
+        "analysis.kind": "flow",
+        "filters.sponsor_classes": [
+          "INDUSTRY"
+        ]
+      },
+      "present": [
+        "analysis.stages"
+      ]
+    }
+  },
+  {
+    "id": "trial-list-timeline",
+    "tags": [
+      "trial-list",
+      "new-kinds"
+    ],
+    "request": {
+      "query": "Timeline of phase 3 Keytruda melanoma trials"
+    },
+    "expect": {
+      "status": "resolved",
+      "slots": {
+        "analysis.kind": "trial_list",
+        "filters.phases": [
+          "PHASE3"
+        ],
+        "filters.conditions": [
+          "melanoma"
+        ],
+        "filters.interventions": [
+          "Keytruda"
+        ]
+      }
+    }
+  },
+  {
+    "id": "histogram-grouped",
+    "tags": [
+      "histogram",
+      "new-kinds"
+    ],
+    "request": {
+      "query": "Compare enrollment sizes across phases for completed asthma trials"
+    },
+    "expect": {
+      "status": "resolved",
+      "slots": {
+        "analysis.kind": "histogram",
+        "analysis.measure": "enrollment",
+        "analysis.group_by": "phase",
+        "filters.statuses": [
+          "COMPLETED"
+        ]
+      }
+    }
+  },
+  {
+    "id": "scatter-three-measures",
+    "tags": [
+      "scatter",
+      "new-kinds"
+    ],
+    "request": {
+      "query": "Plot enrollment, duration and number of sites for completed diabetes trials in 3D"
+    },
+    "expect": {
+      "status": "resolved",
+      "slots": {
+        "analysis.kind": "scatter",
+        "presentation.chart_type": "scatter_plot_3d"
+      },
+      "present": [
+        "analysis.z"
+      ]
+    }
   }
 ]

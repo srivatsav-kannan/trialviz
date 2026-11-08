@@ -3,16 +3,16 @@
   {
    "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nShow a network of sponsors and drugs for multiple myeloma trials that started in 2024\n</question>",
    "stop_reason": "end_turn",
-   "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"multiple myeloma\"]},{\"slot\":\"filters.start_year_from\",\"values\":[\"2024\"]},{\"slot\":\"filters.start_year_to\",\"values\":[\"2024\"]},{\"slot\":\"filters.intervention_types\",\"values\":[\"DRUG\"]},{\"slot\":\"analysis.kind\",\"values\":[\"network\"]},{\"slot\":\"analysis.node_types\",\"values\":[\"lead_sponsor\",\"intervention\"]},{\"slot\":\"presentation.chart_type\",\"values\":[\"network_graph\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
+   "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"multiple myeloma\"]},{\"slot\":\"filters.start_year_from\",\"values\":[\"2024\"]},{\"slot\":\"filters.start_year_to\",\"values\":[\"2024\"]},{\"slot\":\"analysis.kind\",\"values\":[\"network\"]},{\"slot\":\"analysis.node_types\",\"values\":[\"lead_sponsor\",\"intervention\"]},{\"slot\":\"filters.intervention_types\",\"values\":[\"DRUG\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3567,
+    "cache_read_input_tokens": 3890,
     "input_tokens": 66,
-    "output_tokens": 205
+    "output_tokens": 180
    }
   }
  ],
- "fingerprint": "1160da3205e205be",
+ "fingerprint": "cb980bb633d0f033",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionMeshTerm%2CArmGroupLabel%2CArmGroupInterventionName%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29%29%29&pageSize=100&query.cond=%28multiple+myeloma%29": {
    "studies": [

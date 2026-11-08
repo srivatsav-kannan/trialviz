@@ -3,16 +3,16 @@
   {
    "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nCompare phases for trials involving Keytruda vs Opdivo since 2018\n</question>",
    "stop_reason": "end_turn",
-   "text": "{\"slots\":[{\"slot\":\"filters.start_year_from\",\"values\":[\"2018\"]},{\"slot\":\"analysis.kind\",\"values\":[\"comparison\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]}],\"unexpressed\":[],\"cohorts\":[{\"label\":\"Keytruda\",\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]}]},{\"label\":\"Opdivo\",\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"Opdivo\"]}]}],\"issue\":null}",
+   "text": "{\"slots\":[{\"slot\":\"analysis.kind\",\"values\":[\"comparison\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]},{\"slot\":\"filters.start_year_from\",\"values\":[\"2018\"]}],\"unexpressed\":[],\"cohorts\":[{\"label\":\"Keytruda\",\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]}]},{\"label\":\"Opdivo\",\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"Opdivo\"]}]}],\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3567,
+    "cache_read_input_tokens": 3890,
     "input_tokens": 63,
     "output_tokens": 181
    }
   }
  ],
- "fingerprint": "1160da3205e205be",
+ "fingerprint": "cb980bb633d0f033",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29&pageSize=100&query.intr=%28keytruda%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvKt3f0fnj6SuP08FCfCFfbY8tdN1iI",
@@ -23463,6 +23463,227 @@
     }
    ],
    "totalCount": 1265
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DEARLY_PHASE1+AND+NOT+AREA%5BPhase%5D%28PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrZPim1fAW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04134325"
+      }
+     }
+    }
+   ],
+   "totalCount": 28
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DMISSING%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtZvCs2PwW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06345183"
+      }
+     }
+    }
+   ],
+   "totalCount": 52
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DMISSING%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxpY_al2fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04169867"
+      }
+     }
+    }
+   ],
+   "totalCount": 66
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DNA+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxubfei2PUW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07422779"
+      }
+     }
+    }
+   ],
+   "totalCount": 23
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DNA+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtZfOj3vg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06158919"
+      }
+     }
+    }
+   ],
+   "totalCount": 17
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE1+AND+AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtbPWk1Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05084430"
+      }
+     }
+    }
+   ],
+   "totalCount": 328
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE1+AND+AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxrbPat0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT03655613"
+      }
+     }
+    }
+   ],
+   "totalCount": 194
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE1+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxubfWs0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06724042"
+      }
+     }
+    }
+   ],
+   "totalCount": 390
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE1+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE2+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxqZvWm0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07075120"
+      }
+     }
+    }
+   ],
+   "totalCount": 261
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE2+AND+AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtY_Ch2vIW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT07815665"
+      }
+     }
+    }
+   ],
+   "totalCount": 39
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE2+AND+AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxoYfej3fg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT03092674"
+      }
+     }
+    }
+   ],
+   "totalCount": 23
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtZvCi0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04032418"
+      }
+     }
+    }
+   ],
+   "totalCount": 909
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE2+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE3+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZfGl2Pg",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04413123"
+      }
+     }
+    }
+   ],
+   "totalCount": 568
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxpbPWt0A",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT05064059"
+      }
+     }
+    }
+   ],
+   "totalCount": 265
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE3+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE4+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxtY_Sj2_g",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT06022861"
+      }
+     }
+    }
+   ],
+   "totalCount": 95
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE4+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZfit3PMW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT04554524"
+      }
+     }
+    }
+   ],
+   "totalCount": 16
+  },
+  "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28AREA%5BPhase%5DPHASE4+AND+NOT+AREA%5BPhase%5D%28EARLY_PHASE1+OR+PHASE1+OR+PHASE2+OR+PHASE3+OR+NA%29%29&pageSize=1&query.intr=%28AREA%5BInterventionName%5D%28opdivo%29+OR+AREA%5BInterventionOtherName%5D%28opdivo%29+OR+AREA%5BInterventionMeshTerm%5D%28opdivo%29%29": {
+   "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZPWm3_UW",
+   "studies": [
+    {
+     "protocolSection": {
+      "identificationModule": {
+       "nctId": "NCT03313544"
+      }
+     }
+    }
+   ],
+   "totalCount": 13
   },
   "/api/v2/studies?countTotal=true&fields=NCTId&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2018-01-01%2C+MAX%5D%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29&pageSize=1&query.intr=%28keytruda%29": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxsZPKm3fg",

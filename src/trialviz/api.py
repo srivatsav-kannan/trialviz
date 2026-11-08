@@ -1,8 +1,11 @@
 """HTTP interface.
 
+`POST /v1/query` answers a question with a recommended visualization, alternative views
+of the same data, and citations to the registry records behind every number.
+
 `POST /v1/interpret` resolves a request into a plan without fetching any data, so a
 caller can see exactly how a question was read (and which values came from where) before
-running it. The full query endpoint builds on the same resolver.
+running it.
 
 Every error response has one shape, `{"error": {"code", "message", "details"}}`, so a
 client needs a single error handler.
@@ -17,13 +20,17 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
+from trialviz.answer import QueryResponse
 from trialviz.llm.budget import SpendLedger
+from trialviz.pipeline import Pipeline
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
 from trialviz.query.request import QueryRequest
 from trialviz.query.resolution import Resolution
 from trialviz.query.resolver import QueryResolver
+from trialviz.retrieval.client import RegistryQueryError, RegistryUnavailable
+from trialviz.retrieval.retriever import Retriever, build_retriever
 from trialviz.settings import Settings
 
 
@@ -42,9 +49,14 @@ def build_interpreter(settings: Settings) -> Interpreter:
     return FallbackInterpreter(claude, rules)
 
 
-def create_app(settings: Settings | None = None, interpreter: Interpreter | None = None) -> FastAPI:
+def create_app(
+    settings: Settings | None = None,
+    interpreter: Interpreter | None = None,
+    retriever: Retriever | None = None,
+) -> FastAPI:
     settings = settings or Settings()
     resolver = QueryResolver(interpreter or build_interpreter(settings), today=date.today)
+    pipeline = Pipeline(resolver, retriever or build_retriever(settings))
 
     app = FastAPI(
         title="trialviz",
@@ -55,6 +67,19 @@ def create_app(settings: Settings | None = None, interpreter: Interpreter | None
     @app.get("/health")
     async def health() -> dict[str, str]:
         return {"status": "ok"}
+
+    @app.post("/v1/query", response_model=QueryResponse, response_model_exclude_none=False)
+    async def query(request: QueryRequest) -> Any:
+        """Answer the question with a recommended chart, alternatives, and citations."""
+        return (await pipeline.run(request)).response
+
+    @app.exception_handler(RegistryQueryError)
+    async def registry_rejected(_: Request, error: RegistryQueryError) -> JSONResponse:
+        return _error(502, "registry_rejected_query", str(error))
+
+    @app.exception_handler(RegistryUnavailable)
+    async def registry_down(_: Request, error: RegistryUnavailable) -> JSONResponse:
+        return _error(503, "registry_unavailable", str(error))
 
     @app.post("/v1/interpret", response_model=Resolution)
     async def interpret(request: QueryRequest) -> Any:
@@ -82,6 +107,12 @@ def create_app(settings: Settings | None = None, interpreter: Interpreter | None
         )
 
     return app
+
+
+def _error(status: int, code: str, message: str) -> JSONResponse:
+    return JSONResponse(
+        status_code=status, content={"error": {"code": code, "message": message, "details": []}}
+    )
 
 
 def _path(location: tuple[Any, ...]) -> str:

@@ -39,11 +39,13 @@ from trialviz.query.filters import Filters
 from trialviz.query.plan import (
     ComparisonSpec,
     DistributionSpec,
+    FlowSpec,
     HistogramSpec,
     NetworkSpec,
     Plan,
     ScatterSpec,
     TimeSeriesSpec,
+    TrialListSpec,
 )
 from trialviz.retrieval.essie import all_of, any_of_terms, area_any_of, area_range
 from trialviz.vocabulary import Dimension, Measure, TimeField
@@ -82,6 +84,13 @@ class RegistryQuery:
     """
 
     params: tuple[tuple[str, str], ...] = ()
+
+    def and_clause(self, clause: str) -> RegistryQuery:
+        """The same query, also requiring an extra `filter.advanced` clause."""
+        params = dict(self.params)
+        current = params.get("filter.advanced")
+        params["filter.advanced"] = f"{current} AND ({clause})" if current else f"({clause})"
+        return RegistryQuery(tuple(sorted(params.items())))
 
     def url(self, **extra: str) -> str:
         """The request URL, for traceability. Extra parameters (paging, fields) go last."""
@@ -211,6 +220,16 @@ evidence (its country list for a country filter, its drug names for a drug filte
 Phases, statuses and start dates are base fields. Keywords match anywhere in a record, so
 no single field can show them."""
 
+TRIAL_LIST_FIELDS = (
+    "LeadSponsorName",
+    "PrimaryCompletionDate",
+    "CompletionDate",
+    "EnrollmentCount",
+    "Condition",
+    "InterventionName",
+)
+"""What a timeline or trial table shows for each trial, beyond the base fields."""
+
 MENTION_FIELDS = (
     "OfficialTitle",
     "BriefSummary",
@@ -250,11 +269,17 @@ def fields_for(plan: Plan) -> tuple[str, ...]:
             dimensions.append(analysis.group_by)
         case HistogramSpec():
             measures.append(analysis.measure)
+            dimensions.append(analysis.group_by)
         case ScatterSpec():
             measures += [analysis.x, analysis.y]
+            measures += [analysis.z] if analysis.z else []
             dimensions.append(analysis.series_by)
         case NetworkSpec():
             dimensions += list(analysis.node_types)
+        case FlowSpec():
+            dimensions += list(analysis.stages)
+        case TrialListSpec():
+            extra += TRIAL_LIST_FIELDS
     for dimension in dimensions:
         if dimension is not None:
             extra += DIMENSION_FIELDS[dimension]

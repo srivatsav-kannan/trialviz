@@ -53,5 +53,6 @@ plugins = ["pydantic.mypy"]
 # Registry country names contain typographic apostrophes ("Côte d’Ivoire") by design.
 "src/trialviz/vocabulary/countries.py" = ["RUF001"]
 "src/trialviz/vocabulary/_parsing.py" = ["RUF002"]
+"src/trialviz/visualization/geo.py" = ["RUF001", "RUF002"]
 # Tests feed real-world punctuation (curly apostrophes, en dashes) on purpose.
 "tests/**" = ["RUF001"]

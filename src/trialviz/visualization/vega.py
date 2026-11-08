@@ -1,0 +1,225 @@
+"""Vega-Lite specs generated from our own, for every chart Vega-Lite can draw.
+
+The translation is mechanical: it reads the view's encoding and makes no decisions of its
+own. Citations and trial ID lists are left out of the embedded data to keep the spec
+small. They stay in the response's rows, keyed the same way, for tooltips and drill-down.
+Treemaps, 3D charts, networks and Sankey diagrams have no Vega-Lite form and get None.
+"""
+
+from __future__ import annotations
+
+from typing import Any
+
+from trialviz.visualization.spec import COUNT, Channel, Rows
+from trialviz.vocabulary import ChartType
+
+SCHEMA = "https://vega.github.io/schema/vega-lite/v5.json"
+_HEAVY = {"citations", "nct_ids", "outliers"}
+
+
+def _channel(channel: Channel, **extra: Any) -> dict[str, Any]:
+    spec: dict[str, Any] = {"field": channel.field, "type": channel.type, "title": channel.title}
+    if isinstance(channel.sort, list):
+        spec["sort"] = channel.sort
+    if channel.scale == "log":
+        spec["scale"] = {"type": "log"}
+    if channel.stack:
+        spec["stack"] = channel.stack
+    return spec | extra
+
+
+def _tooltip(*channels: Channel) -> list[dict[str, Any]]:
+    return [{"field": c.field, "type": c.type, "title": c.title} for c in channels]
+
+
+def to_vega_lite(
+    chart: ChartType, encoding: dict[str, Channel], data: Rows, title: str, options: dict[str, Any]
+) -> dict[str, Any] | None:
+    if not isinstance(data, list):
+        return None
+    values = [{k: v for k, v in row.items() if k not in _HEAVY} for row in data]
+    if chart is ChartType.CHOROPLETH_MAP:
+        return _choropleth(encoding, values, title, options)
+    body = _body(chart, encoding, options)
+    if body is None:
+        return None
+    spec: dict[str, Any] = {"$schema": SCHEMA, "title": title, "data": {"values": values}, **body}
+    if limit := options.get("display_limit"):
+        sort_field = (
+            encoding.get("x") if chart is ChartType.HORIZONTAL_BAR_CHART else encoding.get("y")
+        )
+        field = sort_field.field if sort_field else COUNT
+        spec["transform"] = [
+            {
+                "window": [{"op": "rank", "as": "_rank"}],
+                "sort": [{"field": field, "order": "descending"}],
+            },
+            {"filter": f"datum._rank <= {limit}"},
+        ]
+    return spec
+
+
+def _choropleth(
+    e: dict[str, Channel], values: list[dict[str, Any]], title: str, options: dict[str, Any]
+) -> dict[str, Any]:
+    """World countries from TopoJSON, colored by joining each country's numeric ISO code to
+    the rows. Countries with no trials stay grey."""
+    topology = {"url": options["topology"], "format": {"type": "topojson", "feature": "countries"}}
+    lookup = {"data": {"values": values}, "key": "iso_numeric", "fields": [COUNT, e["label"].field]}
+    return {
+        "$schema": SCHEMA,
+        "title": title,
+        "projection": {"type": "equalEarth"},
+        "layer": [
+            {"data": topology, "mark": {"type": "geoshape", "fill": "#e8e8e8", "stroke": "white"}},
+            {
+                "data": topology,
+                "transform": [
+                    {"lookup": "id", "from": lookup},
+                    {"filter": f"isValid(datum.{COUNT})"},
+                ],
+                "mark": {"type": "geoshape", "stroke": "white"},
+                "encoding": {
+                    "color": _channel(e["color"]),
+                    "tooltip": _tooltip(e["label"], e["color"]),
+                },
+            },
+        ],
+    }
+
+
+def _body(
+    chart: ChartType, e: dict[str, Channel], options: dict[str, Any]
+) -> dict[str, Any] | None:
+    match chart:
+        case ChartType.BAR_CHART:
+            return {
+                "mark": "bar",
+                "encoding": {
+                    "x": _channel(e["x"]),
+                    "y": _channel(e["y"]),
+                    "tooltip": _tooltip(e["x"], e["y"]),
+                },
+            }
+        case ChartType.HORIZONTAL_BAR_CHART:
+            return {
+                "mark": "bar",
+                "encoding": {
+                    "y": _channel(e["y"], sort="-x"),
+                    "x": _channel(e["x"]),
+                    "tooltip": _tooltip(e["y"], e["x"]),
+                },
+            }
+        case ChartType.DONUT_CHART:
+            return {
+                "mark": {"type": "arc", "innerRadius": 60},
+                "encoding": {
+                    "theta": _channel(e["theta"]),
+                    "color": _channel(e["color"]),
+                    "tooltip": _tooltip(e["color"], e["theta"]),
+                },
+            }
+        case ChartType.GROUPED_BAR_CHART:
+            return {
+                "mark": "bar",
+                "encoding": {
+                    "x": _channel(e["x"]),
+                    "y": _channel(e["y"]),
+                    "color": _channel(e["color"]),
+                    "xOffset": _channel(e["x_offset"]),
+                    "tooltip": _tooltip(e["x"], e["color"], e["y"]),
+                },
+            }
+        case ChartType.STACKED_BAR_CHART | ChartType.NORMALIZED_STACKED_BAR_CHART:
+            return {
+                "mark": "bar",
+                "encoding": {
+                    "x": _channel(e["x"]),
+                    "y": _channel(e["y"]),
+                    "color": _channel(e["color"]),
+                    "tooltip": _tooltip(e["x"], e["color"], e["y"]),
+                },
+            }
+        case ChartType.HEATMAP:
+            return {
+                "mark": "rect",
+                "encoding": {
+                    "x": _channel(e["x"]),
+                    "y": _channel(e["y"]),
+                    "color": _channel(e["color"]),
+                    "tooltip": _tooltip(e["x"], e["y"], e["color"]),
+                },
+            }
+        case ChartType.TIME_SERIES:
+            enc = {
+                "x": _channel(e["x"]),
+                "y": _channel(e["y"]),
+                "tooltip": _tooltip(e["x"], e["y"]),
+            }
+            if "color" in e:
+                enc["color"] = _channel(e["color"])
+            return {"mark": {"type": "line", "point": True}, "encoding": enc}
+        case ChartType.STACKED_AREA_CHART:
+            enc = {
+                "x": _channel(e["x"]),
+                "y": _channel(e["y"]),
+                "tooltip": _tooltip(e["x"], e["y"]),
+            }
+            if "color" in e:
+                enc["color"] = _channel(e["color"])
+            return {"mark": "area", "encoding": enc}
+        case ChartType.HISTOGRAM:
+            return {
+                "mark": "bar",
+                "encoding": {
+                    "x": _channel(e["x"], bin={"binned": True}),
+                    "x2": {"field": e["x2"].field},
+                    "y": _channel(e["y"]),
+                    "tooltip": _tooltip(e["x"], e["x2"], e["y"]),
+                },
+            }
+        case ChartType.BOX_PLOT:
+            x = _channel(e["x"])
+            return {
+                "layer": [
+                    {
+                        "mark": "rule",
+                        "encoding": {
+                            "x": x,
+                            "y": _channel(e["whisker_low"]),
+                            "y2": {"field": "whisker_high"},
+                        },
+                    },
+                    {
+                        "mark": {"type": "bar", "size": 18},
+                        "encoding": {"x": x, "y": _channel(e["q1"]), "y2": {"field": "q3"}},
+                    },
+                    {
+                        "mark": {"type": "tick", "color": "white", "size": 18},
+                        "encoding": {"x": x, "y": _channel(e["median"])},
+                    },
+                ]
+            }
+        case ChartType.SCATTER_PLOT | ChartType.BUBBLE_CHART:
+            enc = {
+                "x": _channel(e["x"]),
+                "y": _channel(e["y"]),
+                "tooltip": _tooltip(e["tooltip"], e["x"], e["y"]),
+            }
+            if "color" in e:
+                enc["color"] = _channel(e["color"])
+            if "size" in e:
+                enc["size"] = _channel(e["size"])
+            return {"mark": {"type": "circle", "opacity": 0.7}, "encoding": enc}
+        case ChartType.TIMELINE:
+            return {
+                "mark": "bar",
+                "encoding": {
+                    "x": _channel(e["x"]),
+                    "x2": {"field": e["x2"].field},
+                    "y": _channel(e["y"], sort={"field": "start"}),
+                    "color": _channel(e["color"]),
+                    "tooltip": _tooltip(e["y"], e["x"], e["x2"], e["color"]),
+                },
+            }
+    return None
