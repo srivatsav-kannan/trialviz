@@ -52,7 +52,7 @@ Each data point carries its trial count, the IDs of every trial behind it, and c
 }
 ```
 
-Invalid requests get a 422 with a single error shape, `{"error": {"code", "message", "details": [{"path", "message"}]}}`. The full field reference, including the row format for every chart type, is in [docs/api.md](docs/api.md).
+Every error has the same shape, `{"error": {"code", "message", "details": [{"path", "message"}]}}`, whether it is a 422 for an invalid request, a 404 for an unknown path, a 502 or 503 when the registry fails, or a 504 when an answer runs past its deadline. The full field reference, including the row format for every chart type, is in [docs/api.md](docs/api.md).
 
 ## How a question becomes a chart
 
@@ -78,10 +78,10 @@ Five questions were run against the live registry on 6 November 2026, and their 
 | [How has the number of trials for this drug changed over time? (drug: Pembrolizumab)](examples/01_assignment_example.json) | Time series | Bar chart, table | 2,659 |
 | [Compare phases for trials involving Keytruda vs Opdivo since 2018](examples/02_compare_keytruda_opdivo.json) | Grouped bars | Stacked bars, normalized bars, heatmap, table | 2,053 and 1,265 |
 | [Which countries have the most recruiting melanoma trials?](examples/03_recruiting_melanoma_by_country.json) | Ranked horizontal bars | World map, treemap, table | 471 |
-| [Show a network of sponsors and drugs for multiple myeloma trials that started in 2024](examples/04_myeloma_sponsor_drug_network.json) | Network | 3D network, table | 117 |
-| [How do lung cancer trials started in 2016 flow from sponsor class to phase to overall status?](examples/05_lung_cancer_flow.json) | Sankey diagram | Table | 516 |
+| [Show a network of sponsors and drugs for multiple myeloma trials that started in 2024 (intervention type: drug)](examples/04_myeloma_sponsor_drug_network.json) | Network | 3D network, table | 117 |
+| [How do lung cancer trials started in 2016 flow from sponsor class to phase to overall status?](examples/05_lung_cancer_flow.json) | Sankey diagram | Table | 565 |
 
-The fourth question can be read two ways, and Claude has read it both as only the trials with a drug intervention (117 trials, the saved run) and as every myeloma trial started in 2024 (186 trials). The plan and the chart's subtitle state which reading was used, and a caller who needs one reading can set `intervention_types` directly.
+The fourth question can be read two ways, and Claude has read it both as only the trials with a drug intervention (117 trials) and as every myeloma trial started in 2024 (186 trials, which also draws biopsies and scans as interventions). The saved request therefore pins `intervention_types` to `DRUG`, which is what the structured fields are for: whatever a caller sets is binding, and the plan and the chart's subtitle state the reading either way.
 
 ## Design decisions
 
@@ -91,11 +91,15 @@ Structured fields and the question fill the same plan slot by slot, with the cal
 
 ### Retrieval
 
-The plan maps to API parameters through a fixed table, and the number of requests follows fixed rules as well: one query per comparison cohort, a count before any fetch, only the fields the analysis reads, and a reproducible subset of 10,000 trials when more than that match. Drug and condition names have to appear in the fields that name a trial's interventions or conditions, because the registry's default search also matches description text, and recordings of real queries showed that about one in ten "Keytruda" trials only listed pembrolizumab as a permitted option. That change raised precision from about 90 percent to over 99 percent at a cost of 3 to 15 percent of matches. The trials that mention a name only in their descriptions are fetched by a second query that splits the default search exactly, and every answer reports them, while counting them requires `retrieval.name_matching: "mentioned"`, since telling "patients will receive pembrolizumab" apart from "agents include pembrolizumab" takes a judgment the pipeline should not make on its own. Names from callers or the model are reduced to plain lowercase words before they reach the registry, which would otherwise execute search syntax embedded in them, and cached responses are keyed by the registry's data version so that a cached answer always matches current data. [docs/retrieval.md](docs/retrieval.md) covers the query translation and the measurements behind these choices.
+The plan maps to API parameters through a fixed table, and the number of requests follows fixed rules as well: one query per comparison cohort, a count before any fetch, only the fields the analysis reads, and a reproducible subset of 10,000 trials when more than that match, shared between the cohorts of a comparison. An answer whose numbers are the registry's own counts, such as a single count or a comparison of cohort totals, fetches only the few records it cites. Drug and condition names have to appear in the fields that name a trial's interventions or conditions, because the registry's default search also matches description text, and recordings of real queries showed that about one in ten "Keytruda" trials only listed pembrolizumab as a permitted option. That change raised precision from about 90 percent to over 99 percent at a cost of 3 to 15 percent of matches.
+
+A name of several words is matched there as a phrase, because loose words match across a trial's separate conditions: "type 1 diabetes" and "type 2 diabetes" shared 641 trials as loose words and 506 as phrases, the rest being trials that really study both. A condition also matches the MeSH terms that sit under it, which the registry cannot search for directly, so retrieval learns them from a sample of trials before running the query. "Lung cancer" then includes trials filed only under "Carcinoma, Non-Small-Cell Lung", which an independent audit found being reported as mere mentions, and 565 lung cancer trials started in 2016 are counted where 516 were before. The trials that mention a name only in their descriptions are counted by a second query that splits the default search exactly, and every answer reports them with a few quoted examples, while counting them requires `retrieval.name_matching: "mentioned"`, since telling "patients will receive pembrolizumab" apart from "agents include pembrolizumab" takes a judgment the pipeline should not make on its own.
+
+Names from callers or the model are reduced to plain lowercase words before they reach the registry, which would otherwise execute search syntax embedded in them, and a name that reduces to nothing, such as "???", is refused instead of silently dropping its filter. Cached responses are stored per registry data version, which the server checks again every 15 minutes, so a long-running server moves to the registry's daily refresh and discards the older responses. [docs/retrieval.md](docs/retrieval.md) covers the query translation and the measurements behind these choices.
 
 ### Citations and counts
 
-Every citation is a JSON path into one trial's registry record together with the exact value found there, and it shows why that trial belongs to that data point: its phases for a phase bar, the matching entry in its locations for a country bar, or the treatment arm that gives two drugs together for a combination. When more than 10,000 trials match, each group in the chart is counted by the registry itself with a query that defines the group exactly as aggregation does, so that "Phase 2" excludes Phase 1/2 trials, and the per-status counts for breast cancer sum to the registry's total of 16,344. A chart that cannot be counted exactly stays an estimate throughout and says so, because a chart that mixed exact and estimated bars would mislead. [docs/aggregation.md](docs/aggregation.md) describes the groups, the datasets and the exact-count queries.
+Every citation is a JSON path into one trial's registry record together with the exact value found there, and it shows why that trial belongs to that data point: its phases for a phase bar, the matching entry in its locations for a country bar, or the treatment arm that gives two drugs together for a combination. A count cites every active filter for each trial it cites, and a drug or condition only where the record names it. When more than 10,000 trials match, each group in the chart is counted by the registry itself with a query that defines the group exactly as aggregation does, so that a "Phase 2" bar excludes Phase 1/2 trials, and the per-status counts for breast cancer sum to the registry's total of 16,344. A phase filter follows the registry instead, so a "Phase 2" filter includes Phase 1/2 and Phase 2/3 trials, and a note says so. A chart that cannot be counted exactly stays an estimate throughout and says so, because a chart that mixed exact and estimated bars would mislead. [docs/aggregation.md](docs/aggregation.md) describes the groups, the datasets and the exact-count queries.
 
 ## Testing and evaluation
 
@@ -106,7 +110,7 @@ TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records Claude and registr
 uv run python -m evals.run --interpreter claude  # scores interpretation, about $0.40 a run
 ```
 
-Most of the 29 offline tests run a whole question through the pipeline using recordings of real Claude and registry traffic, and then check that every fetched record satisfies the question, that the recommended chart is the right one, and that every citation resolves to the exact value in the record it cites. Three live tests confirm that the registry's search still behaves the way retrieval assumes. To make sure the tests can fail, 32 bugs were introduced into the code one at a time, and the suite caught all of them. [docs/testing.md](docs/testing.md) describes each test and what it guards.
+Most of the 35 offline tests run a whole question through the pipeline using recordings of real Claude and registry traffic, and then check that every fetched record satisfies the question, that the recommended chart is the right one, and that every citation resolves to the exact value in the record it cites. Three live tests confirm that the registry's search still behaves the way retrieval assumes. To make sure the tests could fail, 32 bugs were introduced into the code one at a time, and the suite caught all of them. That did not make the suite complete: an independent code review and an independent audit of the answers against the registry later found bugs it had missed, among them unbounded responses, a filter that a name of punctuation silently dropped, citations of the wrong drug, a cache that a long-running server never refreshed, and lung cancer trials left out because they were filed under a narrower MeSH term. Each of those is fixed and now has a test. [docs/testing.md](docs/testing.md) describes each test and what it guards.
 
 Interpretation is measured separately on 54 labeled questions, scored on the final resolved plan. Claude (`claude-opus-5-5` at low effort) gets all 54 right and the rule-based interpreter gets 16, mostly because it files every name it finds as a free-text keyword. The questions and the prompt were written in the same session, so [docs/evaluation.md](docs/evaluation.md) explains how far that score can be trusted.
 
@@ -126,6 +130,7 @@ Settings are read from the environment or from `.env`.
 | `CTGOV_CACHE_DIR` | `var/cache/ctgov` | Registry response cache, disabled when set empty |
 | `RETRIEVAL_MAX_RECORDS` | `10000` | Most records fetched per cohort |
 | `CTGOV_TIMEOUT_SECONDS` | `30` | Timeout for each registry request |
+| `ANSWER_DEADLINE_SECONDS` | `180` | Longest one answer may spend on registry requests before it returns a 504 |
 
 ## Limitations
 
@@ -134,6 +139,11 @@ Settings are read from the environment or from `.env`.
 - Names are matched by the registry's own search, which expands synonyms and brand names but does not correct spelling, so a misspelled drug simply matches fewer trials.
 - When more than 10,000 trials match and a chart cannot be counted exactly (sponsors and drugs are free text, and some charts would need more than 30 counts), its figures describe the 10,000 most recently started trials, and the response says so.
 - A distribution of the drugs combined with a given drug shows that drug as its largest bar, which a drug network answers better.
+- A drug network links two drugs given in the same arm unless the arm's label or description says they are alternatives ("investigator's choice", "monotherapy", "nivolumab or pembrolizumab"), so an arm that offers a choice without saying so is still read as a combination.
+- A trial that lists a drug only among one intervention's other names, as one of several alternatives, still matches that drug, which the audit measured at about 1.4 percent of the pembrolizumab trials.
+- A status filter applies to the trial's overall status, so "recruiting trials by country" counts a country even when none of the trial's sites there is recruiting yet (Germany has 38 recruiting melanoma trials by overall status and 34 by site status).
+- MeSH terms under a condition are learned from samples of nearby trials, so a narrower term that never appears alone on such a trial is not added.
+- An answer that would need more than three minutes of registry requests, such as a comparison of six very large cohorts, stops with a 504 and a suggestion to narrow the question.
 - Scatter plots over thousands of trials produce large responses, about 1 MB for 1,300 points, because every point carries its citations.
 - Claude can read an ambiguous question differently from one run to the next, as the fourth sample shows, although the plan always states the reading it used.
 - The demo pages and the API reference load their libraries from public CDNs, so the browser needs internet access.

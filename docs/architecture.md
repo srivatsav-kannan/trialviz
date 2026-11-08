@@ -34,7 +34,7 @@ The slot-assignment format came from a failure. The first version asked Claude f
 
 `Interpreter` is a protocol with a single method, and two implementations exist. `ClaudeInterpreter` reads the question with Claude under a hard spend cap, and `RuleBasedInterpreter` reads it with pattern matching, which is what runs without an API key, as the fallback, and as the baseline in the [evaluation](evaluation.md).
 
-`FallbackInterpreter` chains the two. When Claude cannot answer (no key, the spend cap, a refusal, an outage or unreadable output), the rule-based interpreter takes over and the response carries a note naming the reason. The resolver cannot tell which interpreter produced a proposal, and the tests depend on that property, since every resolver test drives it with a scripted interpreter.
+`FallbackInterpreter` chains the two. When Claude cannot answer (no key, the spend cap, a refusal, an outage, unreadable output or any unexpected error), the rule-based interpreter takes over and the response carries a note naming the reason. Each Claude call reserves its worst-case cost before it is made and settles the reservation on every way out of the call, so a failure can neither cross the cap nor leave part of it reserved. The resolver cannot tell which interpreter produced a proposal, and the tests depend on that property, since every resolver test drives it with a scripted interpreter.
 
 ## Package layout
 
@@ -53,11 +53,13 @@ src/trialviz/
   retrieval/
     essie.py         building registry query expressions and making names safe to search
     translate.py     mapping plan filters to API parameters and choosing which fields to request
-    client.py        HTTP, with paging, retries, the rate limit and a version-keyed cache
-    retriever.py     the fetch rules for cohorts, counts, record limits and truncation
+    client.py        HTTP, with paging, retries, the rate limit and a cache kept per data version
+    retriever.py     the fetch rules for cohorts, counts, record limits, truncation and the
+                     MeSH terms under a condition
   aggregation/
     evidence.py      reading record fields with citations, and following citation paths back
-    extract.py       what each dimension and measure means for a single trial
+    extract.py       what each dimension and measure means for a single trial, and how
+                     drug names are tied to MeSH terms
     datasets.py      the nine dataset shapes
     build.py         building a dataset from a plan and its records
     exact.py         exact registry counts for result sets that were only partly fetched
@@ -70,7 +72,7 @@ src/trialviz/
     titles.py        titles and subtitles written from the plan
     geo.py           ISO codes for the registry's country names
   answer.py          the final answer model and its assembly
-  pipeline.py        the sequence of stages
+  pipeline.py        the sequence of stages, the answer's request log and its registry deadline
   llm/budget.py      the spend ledger and price table
   settings.py        configuration
   api.py             HTTP routes, error handling, and the pages at /, /samples and /docs

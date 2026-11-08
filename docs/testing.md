@@ -8,7 +8,7 @@ uv run pytest --run-live                         # adds the live registry tests
 TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records against Claude and the registry
 ```
 
-The offline run collects 29 cases from 27 test functions (the spend-cap failure test is parametrized three ways), and `--run-live` adds 3 more. The interpretation eval is separate from the suite, since a language model's output is a measurement to report and cannot be a pass or fail gate; it is described in [evaluation.md](evaluation.md).
+The offline run collects 35 cases from 32 test functions (the spend-cap failure test is parametrized four ways), and `--run-live` adds 3 more. The interpretation eval is separate from the suite, since a language model's output is a measurement to report and cannot be a pass or fail gate; it is described in [evaluation.md](evaluation.md).
 
 ## Question workflows
 
@@ -23,14 +23,16 @@ The table lists each question workflow and what would have to go wrong for it to
 | The assignment example | "This drug" becomes a second search, a stray filter creeps in, the capped subset is not the latest trials, the drug search returns trials that do not test the drug, mention-only trials overlap named ones or cannot be cited, or the yearly counts are not exact |
 | Counting mentions | Counted mentions are double counted, break the exact total, or exceed the cohort's record cap |
 | Keytruda vs Opdivo since 2018 | The year is applied per cohort instead of shared, a cohort's records do not involve its drug, or the chart is not grouped bars with phases on the axis |
-| A field contradicting the question | The question's phase reaches the registry in place of the caller's, or a count downloads more records than it cites |
+| A field contradicting the question | The question's phase reaches the registry in place of the caller's, a count downloads more records than it cites, or a cited trial lacks a citation for each filter or has a drug citation that names another drug |
 | Countries with the most recruiting melanoma trials | Non-recruiting or non-melanoma trials come back, the ranking is unsorted, or the map alternative cannot join countries by ISO code |
 | A small network question | A complete fetch misses or repeats a trial, a sponsor links to a sponsor, or the 3D layout is flat |
 | Enrollment against duration | Non-completed or off-topic trials come back, or records lack the enrollment and dates a scatter plot needs |
 | Hostile caller text | Injected syntax or a stray quote reaches the registry, or the cleaned query stops finding trials |
 | Claude down | The rule-based fallback does not carry the question through, or two names widen the search when they should narrow it |
 | Enrollment by phase | A box's statistics are out of order, or the histogram alternative covers different trials than the boxes |
-| A three-stage flow | Trials appear or vanish between stages, or links skip a stage |
+| A three-stage flow | Trials appear or vanish between stages, links skip a stage, lung cancer leaves out trials filed only under narrower MeSH terms, a mention-only trial is filed under one of those terms alone, or observational studies are labeled "Not reported" |
+| Type 1 vs type 2 diabetes in 2024 | A cohort holds a trial that names only the other type, or reported mentions fetch more than the 30 records needed to quote them |
+| Keytruda vs Opdivo totals in 2024 | A cohort fetches more than the records it cites, a bar differs from the registry's total, a subset note appears, or a registry request is missing from the answer |
 | A trial timeline | Trials are out of start order, or some do not match the question |
 | Breast cancer by status, capped | The exact registry counts do not sum to the registry's total |
 | Drug combinations | A link does not come from a shared treatment arm |
@@ -48,10 +50,11 @@ These replay the same recordings under bad conditions.
 | The cache | A repeat run makes no registry requests, and a registry data refresh invalidates every cached response |
 | A lying interpreter | Contradictions, invented values and inverted ranges change nothing in what is sent to the registry, and each one is reported |
 | The spend cap reached | Questions still resolve through the fallback, Claude is never called, and nothing is charged |
+| A long-running server | One client keeps the registry's data version past its 15-minute check, refetches within a version, or keeps responses cached under the old version |
 
 ## Guard tests
 
-Four files in `tests/` cover failures that the workflows cannot reach. `test_resolver_properties.py` checks six guarantees of the resolver over 1,500 generated pairings of caller fields with interpreter proposals: it always returns a plan or a clarification, caller fields reach the plan unchanged, the plan's slots and provenance keys match, inferred values come only from the proposal, every contradiction is reported, and the same input always gives the same output. `test_input_hazards.py` sends hostile requests through HTTP, each of which must be refused with a pointer to the exact problem, and checks the vocabulary traps where a plausible parse would query the wrong trials ("N/A" split like "1/2", "Korea", and a country name the registry stores with a trailing space). `test_spend_cap.py` checks the cap under concurrent calls and confirms that failed calls are charged according to whether they could have been billed. `test_rules_eval_snapshot.py` runs all 54 eval questions through the deterministic path (the rule-based interpreter and the resolver) and fails if any outcome changes in either direction.
+Five files in `tests/` cover failures that the workflows cannot reach. `test_resolver_properties.py` checks six guarantees of the resolver over 1,500 generated pairings of caller fields with interpreter proposals: it always returns a plan or a clarification, caller fields reach the plan unchanged, the plan's slots and provenance keys match, inferred values come only from the proposal, every contradiction is reported, and the same input always gives the same output. `test_input_hazards.py` sends hostile requests through HTTP, each of which must be refused with a pointer to the exact problem, checks that unknown paths, wrong methods, missing samples and unexpected failures all return the one error shape, and checks the vocabulary traps where a plausible parse would query the wrong trials ("N/A" split like "1/2", "Korea", and a country name the registry stores with a trailing space). `test_spend_cap.py` checks the cap under concurrent calls, confirms that failed calls are charged according to whether they could have been billed, that an unexpected error reaches the fallback instead of failing the request, and that every failure releases its reservation. `test_scale_guards.py` builds a grid of 3,000 synthetic trials by lead sponsor and country and checks that the answer keeps only the largest rows and columns, honors `top_n`, says so in a note, and stays under 2 MB. `test_rules_eval_snapshot.py` runs all 54 eval questions through the deterministic path (the rule-based interpreter and the resolver) and fails if any outcome changes in either direction.
 
 ## Live tests
 
@@ -60,6 +63,10 @@ The three tests in `tests/live/` run only with `--run-live`. They confirm that t
 ## Checking the suite with deliberate bugs
 
 To check that the suite catches real mistakes, 32 bugs were introduced one at a time across every stage: the resolver, the translator, the mention tier, the client, the retriever, the rule-based interpreter, the spend cap, the vocabulary, aggregation, exact counts, citations, chart recommendation, layouts and row ordering. The current suite catches all 32. Two earlier misses each exposed a weak test, and both were fixed. One was a spend-cap test that checked a fresh ledger instead of the one in use, which let a ledger that never released its reservations pass. The other was the missing check that each data point lists a trial only once, which would have caught network nodes counting a trial once per treatment arm.
+
+## What independent review found
+
+The deliberate bugs only test the suite against mistakes its author thought to make. Two independent reviews of the finished service, one reading the code and one checking the saved answers against the live registry with its own queries, found bugs the suite had missed. Every saved count reproduced exactly, but grouping ten thousand trials by sponsor and country returned 90,000 rows with `top_n` ignored, a comparison of totals fetched 40,000 records for two numbers and then called them a subset, a name made only of punctuation silently dropped its filter, a count cited "Carboplatin" for a Keytruda filter, a long-running server never noticed the registry's refresh, an unexpected SDK error leaked part of the spend cap and skipped the fallback, and errors outside validation used FastAPI's default shape. The registry audit found the semantic ones: lung cancer trials filed only under "Carcinoma, Non-Small-Cell Lung" reported as mere mentions, "type 1 diabetes" matched as loose words, biopsies and scans drawn as drugs, either/or arms counted as combinations, and observational studies labeled "Not reported". Each is fixed, and each has a workflow assertion or a guard test above that fails without the fix.
 
 ## What the tests found
 

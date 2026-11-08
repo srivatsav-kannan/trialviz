@@ -35,7 +35,7 @@ Values inside one field are alternatives, so `"phases": ["PHASE2", "PHASE3"]` ma
 
 | Field | Type | Accepted values |
 | --- | --- | --- |
-| `conditions` | string[] | Free text, as written |
+| `conditions` | string[] | Free text, as written. A name of several words is matched as a phrase, and the MeSH terms under a condition match too ([retrieval.md](retrieval.md#conditions-and-the-mesh-tree)). |
 | `interventions` | string[] | Free text, as written |
 | `sponsors` | string[] | Free text, matched against the lead sponsor |
 | `keywords` | string[] | Free text, matched anywhere in a trial record |
@@ -48,7 +48,7 @@ Values inside one field are alternatives, so `"phases": ["PHASE2", "PHASE3"]` ma
 | `start_year_from` | integer | 1900 to 2100, the earliest trial start year, inclusive |
 | `start_year_to` | integer | 1900 to 2100, the latest trial start year, inclusive, and no earlier than `start_year_from` |
 
-Lists are cleaned deterministically: free-text names are deduplicated without regard to case, keeping the first spelling, and enum lists come back in their canonical order.
+A name that reduces to no searchable words once query syntax and parentheticals are removed, such as "???" or "(CD)", is refused with a 422, since it would otherwise drop its filter. Lists are cleaned deterministically: free-text names are deduplicated without regard to case, keeping the first spelling, and enum lists come back in their canonical order.
 
 ### Analysis
 
@@ -99,9 +99,9 @@ Like every other slot, it can be set by the caller, inferred from the question (
 | `meta.plan`, `meta.provenance` | The resolved plan and the source of each value, described under [`resolved`](#resolved) |
 | `meta.notes` | Every decision a reader might otherwise misjudge, with the codes listed below |
 | `meta.chart_choice` | The recommended chart, the alternatives and the charts ruled out, each with a reason |
-| `meta.cohorts` | For each cohort, its `label`, the exact `total`, how many records were `fetched`, whether the fetch was `truncated`, and the number of mention-only trials |
-| `meta.mentions` | For each cohort with mention-only trials, its total, whether they were counted, their trial IDs, and quoted sentences as citations |
-| `meta.registry_requests` | Every ClinicalTrials.gov request behind the numbers |
+| `meta.cohorts` | For each cohort, its `label`, the exact `total`, how many records were `fetched`, whether results describe only part of the matching trials (`truncated`, which is false for answers built from the registry's counts, such as a count or a comparison of totals, even though they fetch only the records they cite), and the number of mention-only trials |
+| `meta.mentions` | For each cohort with mention-only trials, their exact total, whether they were counted, the IDs of the trials fetched (up to 30 when they are not counted, all of them when they are), and quoted sentences as citations |
+| `meta.registry_requests` | Every ClinicalTrials.gov request made for the answer, including the lookups of MeSH terms under a condition and the exact counts |
 | `meta.data_version` | The registry's data timestamp at the time of answering |
 | `meta.interpreter` | Which interpreter read the question, or null when the question was not read |
 | `meta.source` | Always `clinicaltrials.gov` |
@@ -174,6 +174,10 @@ Each note in `notes` has a `code`, a `message`, and the `slot` it concerns when 
 | `network_pruned` | The network was cut to its most frequent entities and strongest links |
 | `mentions_reported`, `mentions_counted` | Some trials only mention the drug or condition, and the code says whether they were counted |
 | `top_n_applied` | Only the largest groups are shown, as requested |
+| `grid_limited` | A grid over two unordered dimensions shows only its largest rows and columns, 30 and 12 or `top_n` of each |
+| `condition_includes_mesh_terms` | A condition also matched trials filed under MeSH terms that sit under it, which the note names |
+| `phase_filter_includes_combined` | A phase filter includes trials listed under two phases, such as Phase 1/2 for a Phase 2 filter |
+| `periods_incomplete` | The last period of a time series is still in progress, or counts trials planned to start later |
 | `chart_preference_not_fitting` | The requested chart cannot draw the data, with the reason |
 | `interpreter_fallback` | The first interpreter was unavailable and another one read the question |
 | `interpreter_unavailable` | No interpreter could read the question, so only the fields were used |
@@ -216,4 +220,14 @@ Every error uses one envelope, `{"error": {"code", "message", "details"}}`, so a
 }
 ```
 
-A failure talking to ClinicalTrials.gov returns 503 with the code `registry_unavailable` once retries are exhausted, or 502 with `registry_rejected_query` when the registry refuses a query.
+Every other failure uses the same envelope with an empty `details` list:
+
+| Status | Code | Meaning |
+| --- | --- | --- |
+| 404 | `not_found` | There is nothing at the path |
+| 404 | `sample_not_found` | No saved sample has that name |
+| 405 | `method_not_allowed` | The path does not accept that HTTP method |
+| 500 | `internal_error` | The service failed unexpectedly |
+| 502 | `registry_rejected_query` | ClinicalTrials.gov refused a query it was sent |
+| 503 | `registry_unavailable` | ClinicalTrials.gov could not be reached after four attempts |
+| 504 | `answer_timeout` | The answer needed more registry time than `ANSWER_DEADLINE_SECONDS` (180 by default) allows |
