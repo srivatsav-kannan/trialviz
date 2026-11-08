@@ -15,17 +15,29 @@ Each question workflow is recorded once against the real services (Claude's read
 
 The assertions are about the answer, not the code. Every record that comes back must satisfy the plan: the drug named in an intervention field, the start date in range, the right status, phase and country. This tests the query translation against how the registry really behaves.
 
+Every workflow also runs one shared check on the final answer:
+- every citation resolves, meaning that following its JSON path through the raw record it cites gives exactly its excerpt;
+- every data point lists each of its trials once, and its count agrees with them;
+- the recommended chart and each alternative carry a Vega-Lite spec exactly when Vega-Lite can draw that chart.
+
 | Workflow | What would have to go wrong for it to fail |
 | --- | --- |
-| The assignment example | "This drug" becomes a second search, a stray filter creeps in, the capped subset is not the latest trials, the drug search returns trials that do not test the drug, or mention-only trials overlap named ones, name the drug after all, or cannot be cited from the fetched text |
+| The assignment example | "This drug" becomes a second search, a stray filter creeps in, the capped subset is not the latest trials, the drug search returns trials that do not test the drug, mention-only trials overlap named ones or cannot be cited, or the yearly counts are not exact |
 | Counting mentions | Counted mentions are double counted, break the exact total, or exceed the cohort's record cap |
-| Keytruda vs Opdivo since 2018 | The year is applied per cohort instead of shared, or a cohort's records do not involve its drug |
+| Keytruda vs Opdivo since 2018 | The year is applied per cohort instead of shared, a cohort's records do not involve its drug, or the chart is not grouped bars with phases on the axis |
 | A field contradicting the question | The question's phase reaches the registry instead of the caller's, or a count downloads more than it cites |
-| Countries with the most recruiting melanoma trials | Non-recruiting or non-melanoma trials come back, or records lack the site countries the breakdown needs |
-| A small network question | A complete fetch misses or repeats a trial, or the fields a network needs are not requested |
+| Countries with the most recruiting melanoma trials | Non-recruiting or non-melanoma trials come back, the ranking is unsorted, or the map alternative cannot join countries by ISO code |
+| A small network question | A complete fetch misses or repeats a trial, a sponsor links to a sponsor, or the 3D layout is flat |
 | Enrollment against duration | Non-completed or off-topic trials come back, or records lack the enrollment and dates a scatter plot needs |
 | Hostile caller text | Injected syntax or a stray quote reaches the registry, or the cleaned query stops finding trials |
 | Claude down | The rule-based fallback does not carry the question through, or two names widen the search instead of narrowing it |
+| Enrollment by phase | A box's statistics are out of order, or the histogram alternative covers different trials than the boxes |
+| A three-stage flow | Trials appear or vanish between stages, or links skip a stage |
+| A trial timeline | Trials out of start order, or trials that do not match |
+| Breast cancer by status, capped | Exact registry counts do not sum to the registry's total |
+| Drug combinations | A link that does not come from a shared treatment arm |
+| Three measures | No 3D scatter, or no flat bubble alternative |
+| The HTTP endpoint | `/v1/query` returns anything other than exactly the pipeline's answer |
 
 The failure workflows replay the same recordings under bad conditions:
 
@@ -39,7 +51,7 @@ The failure workflows replay the same recordings under bad conditions:
 
 ## Guards (`tests/`)
 
-Four tests guard failures the workflows cannot reach:
+These guard failures the workflows cannot reach:
 
 - `test_resolver_properties.py`: six guarantees of the resolver (caller fields win, complete provenance, every contradiction reported, determinism and more) over 1,500 generated combinations of caller fields and interpreter proposals.
 - `test_input_hazards.py`: hostile requests through HTTP, each refused with a pointer to the exact problem, and the vocabulary traps where a plausible parse would query the wrong trials ("N/A" split like "1/2", "Korea", a trailing space the registry stores in a country name).
@@ -56,7 +68,7 @@ How well each interpreter reads 49 hard questions, scored through the full resol
 
 ## Is the suite sharp?
 
-Twenty deliberate bugs were introduced one at a time, across the resolver, the translator, the mention tier, the client, the retriever, the rule-based interpreter, the spend cap and the vocabulary. The suite caught all twenty. In the first round of sixteen, it caught fifteen. The miss was a spend-cap test that checked a fresh ledger instead of the one in use, so a ledger that never released reservations passed. That test was fixed.
+Thirty-two deliberate bugs were introduced one at a time, across every stage: the resolver, the translator, the mention tier, the client, the retriever, the rule-based interpreter, the spend cap, the vocabulary, aggregation, exact counts, citations, chart recommendation, layouts and row ordering. The current suite catches all thirty-two. Two earlier misses each exposed a weak test, which was fixed: a spend-cap test that checked a fresh ledger instead of the one in use, and a missing check that each data point lists a trial only once (network nodes counted a trial once per treatment arm). The miss was a spend-cap test that checked a fresh ledger instead of the one in use, so a ledger that never released reservations passed. That test was fixed.
 
 ## What testing found
 
@@ -65,4 +77,6 @@ The suite earns its keep by finding things:
 - Recording the workflows showed the registry's default drug search matches description text. One in ten "Keytruda" trials only listed pembrolizumab as one permitted option in an arm description. Drug and condition names now have to appear in the fields that name a trial's interventions or conditions (see [retrieval.md](retrieval.md)).
 - The live injection test showed that a bare uppercase `AREA` still broke a request after brackets were stripped. Names are now lowercased.
 - Real records mix "2026-12" and "2026-12-01" start dates, so dates are compared at month precision.
+- The exact-count workflow showed per-status counts summing to 32 short of the registry's total, because statuses too rare to appear in the fetched subset were never counted. Every known value is now counted.
+- The box plot workflow caught the default quartile method putting a quartile outside its own whisker for small groups, and a rule that disqualified box plots whenever any one group was tiny.
 - An earlier, larger suite caught "N/A" being split like "1/2" and cohorts that differed only by letter case.

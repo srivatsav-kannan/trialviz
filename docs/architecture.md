@@ -3,8 +3,8 @@
 ## The pipeline
 
 ```
-QueryRequest ──► Interpreter ──► Resolver ──► Plan ──► Retriever ──► Aggregator ──► Visualization
-                 (proposes)      (decides)             (fetches)      (next stage)
+QueryRequest ──► Interpreter ──► Resolver ──► Plan ──► Retriever ──► Aggregator ──► Visualizer ──► Answer
+                 (proposes)      (decides)             (fetches)      (groups, cites)  (recommends)
 ```
 
 Each stage hands the next a typed object, and each object is validated where it is created:
@@ -15,7 +15,8 @@ Each stage hands the next a typed object, and each object is validated where it 
 | Interpreter | `QueryRequest` | `Interpretation` (a proposal) | Untrusted. Shaped like a partial plan, but never typed as one. |
 | Resolver | request + proposal | `ResolvedQuery` or `ClarificationNeeded` | Produces a complete `Plan` with provenance, or says what is missing. |
 | Retriever | `Plan` | `Retrieval`: raw records per cohort, exact totals, request URLs | Deterministic. Fixed translation table and fetch rules. |
-| Aggregation, visualization | `Retrieval` | visualization spec with citations | Deterministic code over registry data. |
+| Aggregator | `Plan` + `Retrieval` | a dataset in one of nine shapes, every datum cited, plus notes | Deterministic. Exact registry counts for capped result sets. |
+| Visualizer | dataset | recommended chart, alternatives, specs, Vega-Lite | Deterministic rules. A requested chart wins when it fits. |
 
 ## Where the language model sits, and why only there
 
@@ -57,6 +58,22 @@ src/trialviz/
     translate.py     plan filters to API parameters, and which fields to request
     client.py        HTTP: paging, retries, rate limit, version-keyed cache
     retriever.py     the fetch rules: cohorts, counts, record limits, truncation
+  aggregation/
+    evidence.py      reading record fields with citations, and following citation paths
+    extract.py       what each dimension and measure means for one trial
+    datasets.py      the nine dataset shapes
+    build.py         building a dataset from a plan and its records
+    exact.py         exact registry counts for capped result sets
+    mentions.py      quoting where mention-only trials mention their drug or condition
+  visualization/
+    recommend.py     the chart catalog, fit rules, scoring, and the recommendation
+    spec.py          rows, encodings and the visualization spec models
+    vega.py          Vega-Lite output
+    layout.py        deterministic 2D and 3D network layout
+    titles.py        titles and subtitles written from the plan
+    geo.py           ISO codes for the registry's country names
+  answer.py          the final answer model and its assembly
+  pipeline.py        sequencing the stages
   llm/budget.py      the spend ledger and price table
   settings.py        configuration
   api.py             HTTP
@@ -66,4 +83,5 @@ src/trialviz/
 
 - **A new filter**: add a field to `Filters`. Request validation, the plan, the resolver, and the Claude schema pick it up automatically. Add a line to `SLOT_GUIDE` in the Claude interpreter (a test fails until you do) and a mapping in `retrieval/translate.py`.
 - **A new grouping dimension**: add it to `Dimension` with its label and whether it is multi-valued, and list the record fields it reads in `DIMENSION_FIELDS`. Every analysis that takes a dimension accepts it.
-- **A new analysis kind**: add a spec class to `plan.py` and an entry in `ANALYSIS_SPECS`. Kind derivation, parameter checks and missing-parameter clarifications all read that table.
+- **A new analysis kind**: add a spec class to `plan.py` and an entry in `ANALYSIS_SPECS`. Kind derivation, parameter checks and missing-parameter clarifications all read that table. Then add a dataset builder in `aggregation/build.py`.
+- **A new chart**: add it to `ChartType`, add a `Candidate` with its fit rule, score and reason in `visualization/recommend.py`, and its encoding in `visualization/spec.py`. It is then recommended or offered whenever its data shape appears.

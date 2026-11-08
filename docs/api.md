@@ -2,9 +2,13 @@
 
 The service publishes an OpenAPI document at `/openapi.json` and interactive docs at `/docs`, both generated from the same Pydantic models that validate requests. This page is the readable version.
 
+## `POST /v1/query`
+
+Answers a question with a recommended visualization, alternative views of the same data, and citations to the registry records behind every number. It takes the [request](#request) described below and returns either an [answer](#answer) or a [clarification](#needs_clarification), told apart by `status`.
+
 ## `POST /v1/interpret`
 
-Reads a question and returns the resolved plan, or what is needed to resolve it. No trial data is fetched. It shows exactly how a question was understood before anything runs.
+Takes the same request and returns the resolved plan, or what is needed to resolve it, without fetching any data. It shows exactly how a question was understood before anything runs.
 
 ## Request
 
@@ -77,7 +81,43 @@ Checks applied to any subset: `group_by` and `series_by` must differ, `x` and `y
 
 Like every other slot, it can be set by the caller, inferred from the question ("trials that mention Keytruda anywhere"), or defaulted, and its source is reported in `provenance`.
 
-## Response
+## Answer
+
+`POST /v1/query` returns status 200 with `"status": "resolved"`:
+
+| Field | Contents |
+| --- | --- |
+| `query` | The question as asked |
+| `visualization` | The recommended chart: `type`, `title`, `subtitle`, `reason`, `encoding`, `data`, `options`, `vega_lite` |
+| `alternatives` | Other charts that draw the same data, each with `type`, `reason`, `encoding`, `options`, `vega_lite`, and `data` (null when it reuses the visualization's rows) |
+| `meta.plan`, `meta.provenance` | The resolved plan and the source of each value, as described below |
+| `meta.notes` | Every decision a reader might otherwise misjudge (codes listed below) |
+| `meta.chart_choice` | The recommended chart, the alternatives and the charts ruled out, each with a reason |
+| `meta.cohorts` | Per cohort: the exact total, how many records were fetched, whether the fetch was capped, and the number of mention-only trials |
+| `meta.mentions` | Trials that only mention the drug or condition: total, trial IDs, and quoted sentences |
+| `meta.registry_requests` | Every ClinicalTrials.gov request behind the numbers |
+| `meta.data_version` | The registry's data timestamp at the time of answering |
+
+How charts are chosen, and the full encoding conventions, are in [visualization.md](visualization.md). Real responses are in [examples/](../examples).
+
+### Rows by chart
+
+Every count-like datum has `trial_count`, `nct_ids` (every contributing trial) and `citations` (see [aggregation.md](aggregation.md#citations)).
+
+| Charts | `data` |
+| --- | --- |
+| `stat` | `[{"label", "trial_count", "citations"}]` |
+| bar, horizontal bar, donut, treemap, map, table over categories | One row per group: the dimension field (such as `"country"`), `key`, the datum fields, and for countries `iso_a3` and `iso_numeric` |
+| grouped, stacked, normalized bars, heatmap | One row per combination: both dimension fields and the datum fields, including zero cells |
+| time series, stacked area, bars over time | One row per period (and series): `period` ("2019" or "2019-03"), the series field if any, and the datum fields |
+| `histogram` | One row per bin: `bin_start`, `bin_end`, `label`, and the datum fields |
+| `box_plot` | One row per group: `n`, `min`, `q1`, `median`, `q3`, `max`, `whisker_low`, `whisker_high`, `mean`, `small_sample`, `outliers`, and the datum fields |
+| scatter, bubble, 3D scatter | One row per trial: `nct_id`, `title`, the measure fields (`enrollment`, `duration_months`, `site_count`), the color field if any, and `citations` |
+| network (2D and 3D) | `{"nodes": [...], "edges": [...]}`. A node has `id`, `label`, `type`, `degree`, `community`, `x`, `y`, `x3`, `y3`, `z3` and the datum fields. An edge has `source`, `target` and the datum fields. |
+| `sankey` | `{"nodes": [...], "links": [...]}`. A node has `id`, `stage`, `stage_label`, `label` and the datum fields. A link has `source`, `target` and the datum fields. |
+| `timeline` | One row per trial: `nct_id`, `title`, `phase`, `status`, `sponsor`, `start`, `end`, `enrollment`, `url`, `citations` |
+
+## Response to `/v1/interpret`
 
 Status 200 with one of two shapes, discriminated by `status`.
 
@@ -119,6 +159,14 @@ This is the actual response to `{"query": "How has the number of trials for this
 | `inferred_value_not_applicable` | The interpreter proposed a parameter the final analysis kind does not use |
 | `constraint_not_applied` | The question asked for something no filter can express |
 | `cohort_narrowed_by_shared_filter` | A cohort and the shared filters constrain the same field |
+| `counted_in_several_groups` | A trial can be in several groups, so groups can add up to more than the trial total |
+| `computed_from_subset` | More trials matched than could be fetched, and the figures describe the most recently started ones |
+| `counts_exact_from_registry` | Counts for a capped result set were taken directly from the registry |
+| `values_missing` | Some trials had no value for a measure or date, and were left out |
+| `network_pruned` | The network was cut to its most frequent entities and strongest links |
+| `mentions_reported`, `mentions_counted` | Trials that only mention the drug or condition, and whether they were counted |
+| `top_n_applied` | Only the largest groups are shown, as requested |
+| `chart_preference_not_fitting` | The requested chart cannot draw the data, and why |
 | `interpreter_fallback` | The first interpreter was unavailable, and another read the question |
 | `interpreter_unavailable` | No interpreter could read the question, so only fields were used |
 | `question_not_interpreted` | `inference` was `off` |
@@ -159,6 +207,8 @@ A request that fails validation returns 422:
   }
 }
 ```
+
+A failure talking to ClinicalTrials.gov uses the same envelope: 503 with `registry_unavailable` after retries are exhausted, or 502 with `registry_rejected_query` if the registry refuses a query.
 
 ## `GET /health`
 
