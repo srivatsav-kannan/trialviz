@@ -25,6 +25,7 @@ from trialviz.aggregation.extract import (
     NOT_REPORTED,
     NOT_REPORTED_LABEL,
     Value,
+    phase_label,
     sort_key,
 )
 from trialviz.query.plan import ComparisonSpec, DistributionSpec, Plan, TimeSeriesSpec
@@ -108,13 +109,20 @@ async def apply_exact_counts(
         # Groups too rare to appear in the subset would otherwise never be counted. For a
         # dimension with a known set of values, every value is counted, and empty ones dropped.
         _add_unseen_groups(built.dataset, plan.analysis.group_by)
+    grid = None
+    if isinstance(built.dataset, Matrix):
+        # Every cell is counted, including combinations and known values the subset never
+        # showed, so a rare sponsor class is not left at zero for one cohort.
+        grid = (built.dataset.rows, built.dataset.columns, dict(built.dataset.cells))
+        _complete_grid(built.dataset, plan)
     requests = _requests(plan, retrieval.cohorts, built)
-    if requests is None:
-        return
-    per_group = sum(2 if c.counts_mentions and c.mentions else 1 for _, c, _ in requests)
-    if per_group > COUNT_BUDGET:
+    per_group = sum(2 if c.counts_mentions and c.mentions else 1 for _, c, _ in requests or [])
+    if requests is None or per_group > COUNT_BUDGET:
+        # Nothing is counted, so nothing is padded with zeros we cannot vouch for.
         if original_periods is not None and isinstance(built.dataset, TimeSeries):
-            built.dataset.periods = original_periods  # no padding with zeros we cannot vouch for
+            built.dataset.periods = original_periods
+        if grid is not None and isinstance(built.dataset, Matrix):
+            built.dataset.rows, built.dataset.columns, built.dataset.cells = grid
         return
     for group, cohort, clause in requests:
         total = await count(cohort.named.query.and_clause(clause), log)
@@ -123,6 +131,8 @@ async def apply_exact_counts(
         group.exact_count = total
     if isinstance(built.dataset, Categorical):
         built.dataset.groups = [g for g in built.dataset.groups if g.count > 0]
+    if isinstance(built.dataset, Matrix):
+        _drop_empty(built.dataset, rows=isinstance(plan.analysis, DistributionSpec))
     # The counts no longer come from the subset, so the subset caveat no longer applies.
     built.notes[:] = [n for n in built.notes if n.code is not NoteCode.COMPUTED_FROM_SUBSET]
     built.notes.append(
@@ -191,10 +201,7 @@ _PHASE_GROUPS = [
 ]
 
 _KNOWN_VALUES: dict[Dimension, list[tuple[str, str]]] = {
-    Dimension.PHASE: [
-        (key, Phase(key).label if "/" not in key else f"Phase {key[5]}/{key[-1]}")
-        for key in _PHASE_GROUPS
-    ]
+    Dimension.PHASE: [(key, phase_label(key)) for key in _PHASE_GROUPS]
     + [(NO_PHASE, NO_PHASE_LABEL)],
     Dimension.STATUS: [(s.value, s.label) for s in OverallStatus],
     Dimension.SPONSOR_CLASS: [(c.value, c.label) for c in SponsorClass],
@@ -212,6 +219,48 @@ def _add_unseen_groups(dataset: Categorical, dimension: Dimension) -> None:
     if NOT_REPORTED not in present:
         dataset.groups.append(Group(NOT_REPORTED, NOT_REPORTED_LABEL))
     dataset.groups.sort(key=lambda g: sort_key(dimension, Value(g.key, g.label)))
+
+
+def _complete_grid(dataset: Matrix, plan: Plan) -> None:
+    """Adds unseen known values along the dimensions the registry can count, then a cell
+    for every row and column."""
+    analysis = plan.analysis
+    if isinstance(analysis, ComparisonSpec) and analysis.group_by:
+        dataset.columns = _with_unseen(dataset.columns, analysis.group_by)
+    elif isinstance(analysis, DistributionSpec) and analysis.series_by:
+        dataset.rows = _with_unseen(dataset.rows, analysis.group_by)
+        dataset.columns = _with_unseen(dataset.columns, analysis.series_by)
+    for row, row_label in dataset.rows:
+        for column, column_label in dataset.columns:
+            dataset.cells.setdefault(
+                (row, column), Group(f"{row}|{column}", f"{row_label}, {column_label}")
+            )
+
+
+def _with_unseen(values: list[tuple[str, str]], dimension: Dimension) -> list[tuple[str, str]]:
+    known = _KNOWN_VALUES.get(dimension)
+    if known is None:
+        return values
+    present = {key for key, _ in values}
+    merged = values + [(key, label) for key, label in known if key not in present]
+    return sorted(merged, key=lambda kv: sort_key(dimension, Value(*kv)))
+
+
+def _drop_empty(dataset: Matrix, *, rows: bool) -> None:
+    """Removes columns, and for a distribution rows, that the registry counted as empty."""
+
+    def filled(row: str | None, column: str | None) -> bool:
+        return any(
+            cell.count > 0
+            for (r, c), cell in dataset.cells.items()
+            if (row is None or r == row) and (column is None or c == column)
+        )
+
+    dataset.columns = [(k, label) for k, label in dataset.columns if filled(None, k)]
+    if rows:
+        dataset.rows = [(k, label) for k, label in dataset.rows if filled(k, None)]
+    keep = {(r, c) for r, _ in dataset.rows for c, _ in dataset.columns}
+    dataset.cells = {key: cell for key, cell in dataset.cells.items() if key in keep}
 
 
 def _time_area(time_field: TimeField) -> str:

@@ -19,7 +19,7 @@ the same data, so a frontend can let people switch views without another request
 from __future__ import annotations
 
 from collections.abc import Callable
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 from trialviz.aggregation.datasets import (
     Categorical,
@@ -60,7 +60,6 @@ class Facts:
     long_labels: bool = False
     ranking: bool = False
     """The question asks for an order (top N, most, sorted by size)."""
-    cohort_rows: bool = False
     uneven_rows: bool = False
     """Row totals differ by more than 2 to 1, so shares compare better than counts."""
     values: int = 0
@@ -98,7 +97,6 @@ class Recommendation:
     alternatives: list[Choice]
     ruled_out: list[Choice]
     preference_note: str | None = None
-    facts: Facts = field(default_factory=lambda: Facts(shape=""))
 
 
 def _never(_: Facts) -> str | None:
@@ -439,7 +437,6 @@ def facts_of(dataset: Dataset, presentation: Presentation, single_valued: bool) 
                 rows=len(dataset.rows),
                 columns=len(dataset.columns),
                 parts_of_whole=single_valued,
-                cohort_rows=dataset.row_field == "cohort",
                 uneven_rows=bool(positive) and max(positive) > 2 * min(positive),
             )
         case TimeSeries():
@@ -508,4 +505,4 @@ def recommend(
         top.chart, f"requested by {requested_by}" if requested is top.chart else top.why(facts)
     )
     alternatives = [Choice(c.chart, c.why(facts)) for c in ranked[1:]]
-    return Recommendation(recommended, alternatives, ruled_out, note, facts)
+    return Recommendation(recommended, alternatives, ruled_out, note)

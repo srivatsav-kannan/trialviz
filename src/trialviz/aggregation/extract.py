@@ -15,6 +15,9 @@ Decisions recorded here:
   intervention: the term appears in its name ("pembrolizumab 200 mg") or in its other
   names ("Keytruda", listing "MK-3475, pembrolizumab"), or the trial has exactly one
   drug and one MeSH term left unpaired. Otherwise the intervention's own name is used.
+  An intervention that names a combination ("BO-112 plus pembrolizumab") is split into
+  its drugs when a part ties to a MeSH term; one that offers a choice ("nivolumab or
+  pembrolizumab") is not split, since its drugs are not given together.
   Placebo, sham, vehicle and saline control arms are not drugs and are left out.
 - Partial dates ("2019-03") count as the first day of the month.
 """
@@ -22,8 +25,9 @@ Decisions recorded here:
 from __future__ import annotations
 
 import re
+import statistics
 from collections import Counter
-from collections.abc import Callable, Iterable, Iterator
+from collections.abc import Callable, Iterable, Iterator, Sequence
 from dataclasses import dataclass, field
 from datetime import date
 
@@ -84,6 +88,14 @@ def _enum_value(study: Study, path: str, label: Callable[[str], str]) -> list[Va
     return [Value(str(found.value), label(str(found.value)), (found.citation(study),))]
 
 
+def phase_label(key: str) -> str:
+    """ "PHASE1/PHASE2" reads as "Phase 1/2", and a single phase by its own label."""
+    phases = [Phase(part) for part in key.split("/")]
+    if len(phases) == 1:
+        return phases[0].label
+    return "Phase " + "/".join(p.label.removeprefix("Phase ") for p in phases)
+
+
 def _phase(study: Study) -> list[Value]:
     found = one(study, _PATHS["phases"])
     if found is None:
@@ -94,11 +106,7 @@ def _phase(study: Study) -> list[Value]:
     phases = [Phase(p) for p in found.value if p in Phase.__members__.values()]
     ordered = [p for p in Phase if p in phases]
     key = "/".join(p.value for p in ordered)
-    if len(ordered) == 1:
-        label = ordered[0].label
-    else:
-        label = "Phase " + "/".join(p.label.removeprefix("Phase ") for p in ordered)
-    return [Value(key, label, (found.citation(study),))]
+    return [Value(key, phase_label(key), (found.citation(study),))]
 
 
 def phase_order(key: str) -> tuple[int, ...]:
@@ -145,7 +153,10 @@ Aliases = dict[str, str]
 class _Entry:
     found: Found
     names: list[str]
+    kind: object
     mesh: Found | None = None
+    part: str | None = None
+    """For one drug of a combined intervention name, that drug's part of the name."""
 
 
 def _entries(study: Study, types: frozenset[str] | None) -> list[_Entry]:
@@ -157,18 +168,58 @@ def _entries(study: Study, types: frozenset[str] | None) -> list[_Entry]:
         path = f"{_PATHS['interventions']}[{index}]"
         name = one(study, f"{path}.name")
         kind = intervention.value.get("type") if isinstance(intervention.value, dict) else None
-        if name is None or _NOT_A_DRUG.search(str(name.value)) or (types and kind not in types):
+        if name is None:
             continue
-        names = [str(name.value), *(str(o.value) for o in each(study, f"{path}.otherNames"))]
+        text = str(name.value)
+        names = [text, *(str(o.value) for o in each(study, f"{path}.otherNames"))]
+        # "Pembrolizumab (KEYTRUDA®)" names the drug outside the brackets and inside them.
+        names += [part for n in names if _BRACKETED.search(n) for part in _BRACKETED.split(n)]
         tied = {str(m.value).casefold(): m for m in meshes if any(_ties(m.value, n) for n in names)}
-        # Names that tie to several MeSH terms list alternatives ("Sintilimab", other names
-        # "Pembrolizumab, Nivolumab"), so the intervention is not tied to any of them.
-        entries.append(_Entry(name, names, next(iter(tied.values())) if len(tied) == 1 else None))
+        not_a_drug = bool(_NOT_A_DRUG.search(text))
+        if len(tied) == 1 and not not_a_drug:
+            entries.append(_Entry(name, names, kind, next(iter(tied.values()))))
+            continue
+        parts = _combined_parts(text, meshes)
+        if parts:
+            entries += [_Entry(name, [part], kind, mesh, part) for part, mesh in parts]
+        elif not not_a_drug:
+            # Names that tie to several MeSH terms without naming a combination list
+            # alternatives ("Sintilimab", other names "Pembrolizumab, Nivolumab"), so the
+            # intervention is not tied to any of them.
+            entries.append(_Entry(name, names, kind))
+    # Pairing looks at every intervention, so a term tied to a biological left out by
+    # `types` is not handed to the one unpaired drug.
     unpaired_meshes = [m for m in meshes if all(m is not e.mesh for e in entries)]
     unpaired = [e for e in entries if e.mesh is None]
     if len(unpaired) == 1 and len(unpaired_meshes) == 1:
         unpaired[0].mesh = unpaired_meshes[0]
-    return entries
+    return [e for e in entries if not types or e.kind in types]
+
+
+_BRACKETED = re.compile(r"[()\[\]]")
+_COMBINED = re.compile(
+    r"\s*(?:\+|,|;|/|&|\bin combination with\b|\bcombined with\b|\bfollowed by\b|"
+    r"\bplus\b|\band\b|\bwith\b)\s*",
+    re.IGNORECASE,
+)
+_CHOICE = re.compile(r"\b(or|versus|vs)\b", re.IGNORECASE)
+
+
+def _combined_parts(name: str, meshes: list[Found]) -> list[tuple[str, Found | None]]:
+    """The drugs of an intervention named as a combination, each with its MeSH term, or
+    nothing when the name offers a choice or no part ties to a term."""
+    if _CHOICE.search(name):
+        return []
+    parts = []
+    for raw in _COMBINED.split(_BRACKETED.sub(" ", name)):
+        words = re.split(r"[\s/]+", sanitize_term(raw))
+        if _NOT_A_DRUG.search(raw) or all(not w or _DOSE_WORDS.match(w) for w in words):
+            continue
+        tied = [m for m in meshes if _ties(m.value, raw)]
+        parts.append((raw.strip(), tied[0] if len(tied) == 1 else None))
+    if len(parts) < 2 or all(mesh is None for _, mesh in parts):
+        return []
+    return parts
 
 
 def learn_aliases(studies: Iterable[Study]) -> Aliases:
@@ -192,15 +243,24 @@ def drugs(
     tied or learned from other trials, else by the intervention's own name. With `types`,
     only interventions of those types count."""
     result: dict[str, Drug] = {}
+    for drug in _each_drug(study, aliases, types):
+        result.setdefault(drug.key, drug)
+    return list(result.values())
+
+
+def _each_drug(
+    study: Study, aliases: Aliases | None, types: frozenset[str] | None
+) -> Iterator[Drug]:
+    """Every intervention's drugs, before merging, so each intervention name is kept."""
     for entry in _entries(study, types):
         name = str(entry.found.value)
-        learned = None if entry.mesh else (aliases or {}).get(name.casefold())
-        label = str(entry.mesh.value) if entry.mesh else learned or name
+        own = entry.part or name
+        learned = None if entry.mesh else (aliases or {}).get(own.casefold())
+        label = str(entry.mesh.value) if entry.mesh else learned or own
         citations: tuple[Citation, ...] = (entry.found.citation(study),)
         if entry.mesh:
             citations += (entry.mesh.citation(study),)
-        result.setdefault(label.casefold(), Drug(label.casefold(), label, name, citations))
-    return list(result.values())
+        yield Drug(label.casefold(), label, name, citations)
 
 
 # Words a drug's name can carry beyond the substance itself: doses, units, routes, forms.
@@ -208,7 +268,8 @@ _DOSE_WORDS = re.compile(
     r"^(\d+([.,]\d+)?|mg|g|mcg|ug|µg|kg|m2|ml|iu|units?|per|q\d*w|iv|sc|im|po|oral|"
     r"intravenous|subcutaneous|intramuscular|injection|infusion|tablets?|capsules?|"
     r"solution|dose|doses|dosing|high|low|standard|fixed|weekly|daily|regimen|arm|and|or|"
-    r"plus|with|in|of|the|a|at|/|-|\+)$"
+    r"plus|with|in|of|the|a|at|combination|neoadjuvant|adjuvant|intrathecal|intratumoral|"
+    r"monotherapy|therapy|treatment|maintenance|/|-|\+)$"
 )
 
 
@@ -220,8 +281,8 @@ def _ties(term: object, name: object) -> bool:
     t, n = sanitize_term(str(term)), sanitize_term(str(name))
     if not t or f" {t} " not in f" {n} ":
         return False
-    rest = f" {n} ".replace(f" {t} ", " ", 1).split()
-    return all(_DOSE_WORDS.match(word) for word in rest)
+    rest = re.split(r"[\s/]+", f" {n} ".replace(f" {t} ", " ", 1).strip())
+    return all(not word or _DOSE_WORDS.match(word) for word in rest)
 
 
 def _names_match(term: object, name: object) -> bool:
@@ -414,6 +475,15 @@ ORDERED_DIMENSIONS = frozenset({Dimension.PHASE, Dimension.STATUS, Dimension.STA
 # --- Measures ----------------------------------------------------------------------------
 
 
+def skewed(numbers: Sequence[float]) -> bool:
+    """Whether a measure is skewed enough to need a log-like axis: its largest value is more
+    than twenty times its median, as enrollment almost always is."""
+    if not numbers:
+        return False
+    median = statistics.median(numbers)
+    return median > 0 and max(numbers) / median > 20
+
+
 @dataclass(frozen=True)
 class Measured:
     value: float
@@ -495,7 +565,9 @@ def arm_drug_sets(
     ("investigator's choice", "anti-PD-1 monotherapy", "nivolumab or pembrolizumab"). Two
     drugs in different arms of the same trial are not a combination either.
     """
-    by_name = {drug.name.casefold(): drug for drug in drugs(study, aliases, types)}
+    by_name: dict[str, list[Drug]] = {}
+    for drug in _each_drug(study, aliases, types):
+        by_name.setdefault(drug.name.casefold(), []).append(drug)
     sets = []
     for index, _ in enumerate(each(study, _PATHS["arms"])):
         path = f"{_PATHS['arms']}[{index}]"
@@ -510,7 +582,7 @@ def arm_drug_sets(
         ):
             continue
         names = [_TYPE_PREFIX.sub("", str(n)).casefold() for n in arm.value]
-        given = list({by_name[n].key: by_name[n] for n in names if n in by_name}.values())
+        given = list({d.key: d for n in names for d in by_name.get(n, [])}.values())
         if given:
             sets.append((given, arm.citation(study)))
     return sets

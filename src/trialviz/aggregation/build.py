@@ -50,6 +50,7 @@ from trialviz.aggregation.extract import (
     find_name,
     learn_aliases,
     shared_meshes,
+    skewed,
     sort_key,
     time_period,
 )
@@ -518,49 +519,30 @@ def _distribution(
     )
     values = [v for spread in ordered for v in spread.values]
     numbers = sorted(v.value for v in values)
-    skewed = (
-        bool(numbers)
-        and statistics.median(numbers) > 0
-        and numbers[-1] / statistics.median(numbers) > 20
-    )
+    is_skewed = skewed(numbers)
     dataset = Distribution(
         measure=measure,
         group_dimension=group_by.label if group_by else None,
         group_field=_field(group_by) if group_by else None,
         spreads=ordered,
-        bins=_log_bins(values) if skewed else _bins(values),
+        bins=_bins(values, skewed=is_skewed),
         excluded=excluded,
-        skewed=skewed,
+        skewed=is_skewed,
     )
     return Built(dataset, _missing_note(excluded, f"no usable {measure.label.lower()}"))
 
 
-def _bins(values: list[Value]) -> list[Bin]:
-    """Equal-width bins with a "nice" width (1, 2 or 5 times a power of ten), chosen by the
-    Freedman-Diaconis rule on the 1st to 99th percentile so a few huge trials do not flatten
-    everything else. Values beyond that range go to the last bin, which is marked open-ended
-    and keeps the normal width, so one huge trial does not stretch the axis."""
+def _bins(values: list[Value], *, skewed: bool) -> list[Bin]:
+    """Bins over the values, with edges chosen to suit their spread. Values beyond the last
+    edge go to the last bin, which is marked open-ended and keeps its normal width, so one
+    huge trial does not stretch the axis."""
     if not values:
         return []
     numbers = sorted(v.value for v in values)
-    if len(numbers) < 4 or numbers[0] == numbers[-1]:
-        low, high = numbers[0], numbers[-1] or 1.0
-        edges = [low, high if high > low else low + 1]
-    else:
-        q1, _, q3 = statistics.quantiles(numbers, n=4)
-        p99 = numbers[min(len(numbers) - 1, math.ceil(0.99 * len(numbers)) - 1)]
-        raw_width = 2 * (q3 - q1) / len(numbers) ** (1 / 3) or (p99 - numbers[0]) / 10 or 1.0
-        width = _nice(max(raw_width, (p99 - numbers[0]) / 40))
-        start = math.floor(numbers[0] / width) * width
-        count = max(1, math.ceil((p99 - start) / width))
-        edges = [start + i * width for i in range(count + 1)]
+    edges = _log_edges(numbers) if skewed else _even_edges(numbers)
     bins = [
-        Bin(
-            edges[i],
-            edges[i + 1],
-            Group(f"{edges[i]:g}-{edges[i + 1]:g}", f"{edges[i]:g} to {edges[i + 1]:g}"),
-        )
-        for i in range(len(edges) - 1)
+        Bin(start, end, Group(f"{start:g}-{end:g}", f"{start:g} to {end:g}"))
+        for start, end in pairwise(edges)
     ]
     if numbers[-1] >= bins[-1].end and len(bins) > 1:
         bins[-1].open_ended = True
@@ -571,36 +553,40 @@ def _bins(values: list[Value]) -> list[Bin]:
     return bins
 
 
-def _log_bins(values: list[Value]) -> list[Bin]:
-    """Bins whose edges step 1, 2, 5 times each power of ten (0, 10, 20, 50, 100, ...), for
-    heavily skewed measures such as enrollment, where equal widths put almost every trial
-    in the first bin. Drawn on a log-like axis, each bin gets similar room."""
-    numbers = sorted(v.value for v in values)
-    p99 = numbers[min(len(numbers) - 1, math.ceil(0.99 * len(numbers)) - 1)]
+def _p99(numbers: list[float]) -> float:
+    return numbers[min(len(numbers) - 1, math.ceil(0.99 * len(numbers)) - 1)]
+
+
+def _even_edges(numbers: list[float]) -> list[float]:
+    """Equal widths of a "nice" size (1, 2 or 5 times a power of ten), chosen by the
+    Freedman-Diaconis rule on the 1st to 99th percentile, so a few huge trials do not
+    flatten everything else."""
+    if len(numbers) < 4 or numbers[0] == numbers[-1]:
+        low, high = numbers[0], numbers[-1] or 1.0
+        return [low, high if high > low else low + 1]
+    q1, _, q3 = statistics.quantiles(numbers, n=4)
+    p99 = _p99(numbers)
+    raw_width = 2 * (q3 - q1) / len(numbers) ** (1 / 3) or (p99 - numbers[0]) / 10 or 1.0
+    width = _nice(max(raw_width, (p99 - numbers[0]) / 40))
+    start = math.floor(numbers[0] / width) * width
+    count = max(1, math.ceil((p99 - start) / width))
+    return [start + i * width for i in range(count + 1)]
+
+
+def _log_edges(numbers: list[float]) -> list[float]:
+    """Edges at 0, 10, 20, 50, 100, 200 and so on, for skewed measures such as enrollment,
+    where equal widths put almost every trial in the first bin. Drawn on a log-like axis,
+    each bin gets similar room."""
+    p99 = _p99(numbers)
     edges = [0.0]
     step = 1
     while edges[-1] < p99:
         for multiple in (1, 2, 5):
-            edge = float(multiple * 10**step)
-            edges.append(edge)
-            if edge >= p99:
+            edges.append(float(multiple * 10**step))
+            if edges[-1] >= p99:
                 break
         step += 1
-    bins = [
-        Bin(
-            edges[i],
-            edges[i + 1],
-            Group(f"{edges[i]:g}-{edges[i + 1]:g}", f"{edges[i]:g} to {edges[i + 1]:g}"),
-        )
-        for i in range(len(edges) - 1)
-    ]
-    if numbers[-1] >= bins[-1].end and len(bins) > 1:
-        bins[-1].open_ended = True
-        bins[-1].group.label = f"{bins[-1].start:g} or more"
-    for value in values:
-        index = next((i for i, b in enumerate(bins) if value.value < b.end), len(bins) - 1)
-        bins[index].group.add(value.nct_id, value.citations)
-    return bins
+    return edges
 
 
 def _nice(width: float) -> float:

@@ -150,8 +150,6 @@ class Node:
     group: Group
     degree: int = 0
     community: int = 0
-    position_2d: tuple[float, float] = (0.0, 0.0)
-    position_3d: tuple[float, float, float] = (0.0, 0.0, 0.0)
 
 
 @dataclass

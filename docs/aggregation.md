@@ -23,9 +23,11 @@ Several dimensions let a trial sit in more than one group. A trial with sites in
 
 ### Drugs
 
-The registry tags a trial's interventions with MeSH terms, but does not say which term belongs to which intervention, so the pairing follows fixed rules. A term belongs to an intervention when the intervention's name, or one of its other names, is that term with nothing added except dose, unit, route or form words, as in "pembrolizumab 200 mg IV". It also belongs when exactly one drug and one term in the trial are left unpaired. "Bone Marrow Aspiration and Biopsy" therefore stays separate from "Biopsy", and a combination product named "Bortezomib-bendamustine-melphalan" stays separate from "Melphalan".
+The registry tags a trial's interventions with MeSH terms, but does not say which term belongs to which intervention, so the pairing follows fixed rules. A term belongs to an intervention when the intervention's name, or one of its other names, is that term with nothing added except dose, unit, route or form words, as in "pembrolizumab 200 mg IV". A name in brackets counts as well, so "Pembrolizumab (KEYTRUDA®)" is pembrolizumab. A term also belongs to an intervention when exactly one intervention and one term in the trial are left unpaired, counting interventions of every type, so a term that belongs to a biological the plan leaves out is never handed to a drug. "Bone Marrow Aspiration and Biopsy" therefore stays separate from "Biopsy", and a combination product named "Bortezomib-bendamustine-melphalan" stays separate from "Melphalan".
 
 An intervention whose names point to several MeSH terms is listing alternatives, as in "Sintilimab" with the other names "Pembrolizumab, Nivolumab", so it is paired with none of them. Brand and code names that one trial in the answer pairs with a MeSH term are applied to the rest, so a trial that says only "Opdivo" joins Nivolumab when another trial shows the pairing. An intervention that cannot be paired keeps its own name.
+
+Many trials name a combination as one intervention, such as "BO-112 plus pembrolizumab" or "Lenvatinib, Pembrolizumab". When a name joins parts with words like "plus", "and", "with" or "+", and at least one part pairs with a MeSH term, each part becomes its own drug, and an arm that gives the intervention links them. A name that offers a choice, such as "nivolumab or pembrolizumab", is never split, since its drugs are not given together. An independent recount of the melanoma network found that before this split, about one in five trials that give pembrolizumab were missing from its node.
 
 When the plan filters on intervention types, only interventions of those types become groups, so a question about drug trials does not draw their biopsies and scans as drugs.
 
@@ -101,7 +103,7 @@ When more trials match than the record cap, which is 10,000 by default, only a s
 
 The clause matches the group exactly as aggregation defines it. "Phase 2" becomes `AREA[Phase]PHASE2 AND NOT AREA[Phase](EARLY_PHASE1 OR PHASE1 OR PHASE3 OR PHASE4 OR NA)`, which leaves out Phase 1/2 trials, and a missing phase is split by study type into "Not reported" for interventional trials and "No phase (observational)" for the rest. Of the 3,391 breast cancer trials with no phase, 1 is interventional and 3,390 are not, and the two counts add up exactly.
 
-Every known value of a dimension is counted, including values that never appear in the subset, so the 13 per-status counts for breast cancer add up to the registry's total of 16,344. A capped time series starts at the registry's earliest year, found with one sorted request, rather than at the subset's.
+Every known value of a dimension is counted, including values that never appear in the subset, so the 13 per-status counts for breast cancer add up to the registry's total of 16,344. A capped time series starts at the earliest year among all matching trials, found with one sorted request, so the subset's own range does not cut it short.
 
 An answer makes at most 30 count requests. When a chart would need more, or when any of its groups cannot be counted exactly, all of its counts stay estimates, because a chart that mixed exact and estimated bars would mislead. The response then says the figures describe the most recently started trials, and for a trend over start dates, that earlier years are undercounted.
 

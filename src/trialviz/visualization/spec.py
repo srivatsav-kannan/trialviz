@@ -32,6 +32,7 @@ from trialviz.aggregation.datasets import (
     Trials,
 )
 from trialviz.aggregation.evidence import Citation
+from trialviz.aggregation.extract import skewed
 from trialviz.visualization.geo import COUNTRY_CODES
 from trialviz.visualization.layout import force_layout
 from trialviz.vocabulary import ChartType, Measure, SortOrder, TimeGranularity
@@ -313,14 +314,12 @@ def _count(stack: Literal["zero", "normalize"] | None = None) -> Channel:
 
 
 def _measure(measure: Measure, values: list[float]) -> Channel:
-    ordered = sorted(values)
-    median = statistics.median(ordered) if ordered else 0
-    skewed = bool(ordered) and median > 0 and ordered[-1] / median > 20
+    is_skewed = skewed(values)
     return Channel(
         field=measure.value,
         type="quantitative",
         title=f"{measure.label} ({measure.unit})",
-        scale="symlog" if skewed else "linear",
+        scale="symlog" if is_skewed else "linear",
     )
 
 

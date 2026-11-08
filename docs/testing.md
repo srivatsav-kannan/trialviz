@@ -8,7 +8,7 @@ uv run pytest --run-live                         # adds the live registry tests
 TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records against Claude and the registry
 ```
 
-The offline run collects 48 cases from 43 test functions, since the spend-cap tests run on both ledgers and over four failure types, and `--run-live` adds 3 more. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report rather than something to pass or fail on every run; it is described in [evaluation.md](evaluation.md).
+The offline run collects 50 cases from 45 test functions, since the spend-cap tests run on both ledgers and over four failure types, and `--run-live` adds 3 more. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report, which a suite that passes or fails on every run would flatten; it is described in [evaluation.md](evaluation.md).
 
 ## Question workflows
 
@@ -60,6 +60,7 @@ These replay the same recordings under bad conditions.
 | `test_spend_cap.py` | On both ledgers, the second against a real throwaway Postgres: concurrent calls from two processes cannot jointly cross the cap, spending survives a restart, the daily cap refuses before the total does, a hold left by a process that died mid-call is charged in full, an unreachable ledger refuses every call, and a failed call is charged according to whether it could have been billed |
 | `test_abuse_guards.py` | Over HTTP: each client's question quota with its RateLimit headers, that a forged `X-Forwarded-For` entry earns no fresh quota, the ceiling across all clients (without spending the refused client's quota), the general request limit and the exempt health check, the cap on answers in progress, oversized bodies refused whether or not their length is declared, security headers on every kind of response, and `/v1/status` with a budget, without one, and with an unreachable ledger |
 | `test_scale_guards.py` | A grid of 3,000 trials by lead sponsor and country keeps only the largest rows and columns, honors `top_n`, says so in a note, and stays under 2 MB |
+| `test_counting_guards.py` | The two errors the second recount of the saved answers found: a comparison counts every cell and every known sponsor class exactly, including ones its fetched subset never contained, and a bracketed brand ("Pembrolizumab (KEYTRUDA®)") or a biological left out by the type filter no longer drops a drug or misnames another |
 | `test_rules_eval_snapshot.py` | All 54 eval questions give the same outcome through the rule-based interpreter as last time, so any change to that deterministic path is noticed |
 
 ## Live tests
@@ -69,6 +70,8 @@ The three tests in `tests/live/` run only with `--run-live`. They confirm that t
 ## Checking beyond the suite
 
 The finished service was checked in two more ways. Every saved answer was recomputed independently against the live registry, with separate code that shared nothing with the service, and every count reproduced exactly, along with 77 sampled citations. The same check asked whether the answers meant what a person would expect, and the code was reviewed separately for behavior under large questions and failures. That work led to several of the behaviors described in these docs: conditions now include the MeSH terms beneath them, names of several words are matched as phrases, procedures are kept out of drug networks, observational studies have their own phase group, large grids are capped, and every failure returns the same error shape. Each of these has a workflow assertion or a guard test above.
+
+When the samples grew from five to fourteen, the nine new ones were recounted the same way, by separate code against the live registry, along with 27 more citations. Seven reproduced exactly. Two did not: breast cancer's individual and unknown sponsor classes were never counted by the registry, because a comparison only counted the cells its fetched subset happened to contain, and the melanoma drug network missed trials that name a combination as one intervention or put a brand in brackets. Both were fixed, the affected answers were regenerated, and `test_counting_guards.py` now holds both cases.
 
 ## What recording found
 
