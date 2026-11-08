@@ -2,7 +2,7 @@
 
 trialviz answers questions about clinical trials with charts that a frontend can render directly, using data from the [ClinicalTrials.gov API](https://clinicaltrials.gov/data-api/api). A request is a question in plain English, optionally with structured fields such as a drug or a phase. The response is a recommended chart together with the reason it was chosen, the other charts that can draw the same data, a Vega-Lite spec wherever Vega-Lite can draw the chart, and a citation for every number that points to the trial, the field in its registry record, and the exact value stored there.
 
-The service runs locally. Its home page at `http://localhost:8000` shows five saved answers and can ask new questions, and the [documentation](#documentation) covers each stage in depth.
+The service runs locally. Its home page at `http://localhost:8000` asks questions, `/samples` opens five saved answers without spending anything, `/docs` is the API reference, and the [documentation](#documentation) covers each stage in depth.
 
 ## Running it
 
@@ -14,7 +14,7 @@ cp .env.example .env    # add ANTHROPIC_API_KEY here to let Claude read question
 uv run uvicorn trialviz.api:create_app --factory --reload
 ```
 
-The service then listens on `http://localhost:8000`, with interactive API docs at `/docs`. Without an API key, questions are read by a rule-based interpreter that understands years, phases, statuses and common analysis phrasing but cannot tell a drug from a disease. With a key, Claude reads the question and the rule-based interpreter takes over whenever Claude is unavailable. Spending on Claude is capped at $20 by default, and the cap holds across restarts because every call reserves its worst-case cost in a ledger on disk before it is made.
+The service then listens on `http://localhost:8000`. The API reference at `/docs` is generated from the service's own OpenAPI document and includes request examples, real response examples, every error, and a client for sending requests from the page. Without an API key, questions are read by a rule-based interpreter that understands years, phases, statuses and common analysis phrasing but cannot tell a drug from a disease. With a key, Claude reads the question and the rule-based interpreter takes over whenever Claude is unavailable. Spending on Claude is capped at $20 by default, and the cap holds across restarts because every call reserves its worst-case cost in a ledger on disk before it is made.
 
 From the command line, the example request from the assignment looks like this:
 
@@ -71,7 +71,7 @@ The chart is chosen the same way. The shape of the data (counts per category, co
 
 ## Samples
 
-Five questions were run against the live registry on 6 November 2026, and their complete responses are saved in [examples/](examples), which is also where the home page's samples come from. Running `uv run python -m examples.run_examples` regenerates them, and the counts drift slightly because the registry updates daily.
+Five questions were run against the live registry on 6 November 2026, and their complete responses are saved in [examples/](examples), which is also what the `/samples` page shows. Running `uv run python -m examples.run_examples` regenerates them, and the counts drift slightly because the registry updates daily.
 
 | Question | Recommended chart | Alternatives | Trials |
 | --- | --- | --- | --- |
@@ -136,7 +136,7 @@ Settings are read from the environment or from `.env`.
 - A distribution of the drugs combined with a given drug shows that drug as its largest bar, which a drug network answers better.
 - Scatter plots over thousands of trials produce large responses, about 1 MB for 1,300 points, because every point carries its citations.
 - Claude can read an ambiguous question differently from one run to the next, as the fourth sample shows, although the plan always states the reading it used.
-- The home page loads its chart libraries from public CDNs, so the browser needs internet access.
+- The demo pages and the API reference load their libraries from public CDNs, so the browser needs internet access.
 
 ## Documentation
 

@@ -77,4 +77,4 @@ Titles are written deterministically from the plan, stating what was counted and
 
 ## The demo UI
 
-The service also serves a single page at `/`, from `src/trialviz/ui/`, which shows what a frontend can build from the response. It renders saved sample answers and live questions, draws whichever view is selected using the response's own specs and rows, and shows the citations behind any datum that is selected. It makes no decisions about the data, since the chart choice, the reasons and the numbers all come from the backend. The page is plain HTML, CSS and JavaScript with no build step.
+The service also serves a demo UI from `src/trialviz/ui/`, which shows what a frontend can build from the response. The page at `/` asks questions live and the page at `/samples` opens the saved answers, and both draw whichever view is selected using the response's own specs and rows and show the citations behind any datum that is selected. The UI makes no decisions about the data, since the chart choice, the reasons and the numbers all come from the backend, and it is plain HTML, CSS and JavaScript with no build step.

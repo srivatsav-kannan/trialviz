@@ -736,9 +736,12 @@ async function loadSamples() {
     $("samples").hidden = true;
     return;
   }
-  $("samples-intro").textContent = `These questions ran against the live registry on ${formatDate(samples[0].data_version)}, and their full responses are saved with the project, so they open instantly and cost nothing to explore.`;
-  grid.replaceChildren(...samples.map(sampleCard));
-  drawHero(samples[0]);
+  if (PAGE === "samples") {
+    $("samples-intro").textContent = `These questions ran against the live registry on ${formatDate(samples[0].data_version)}, and their full responses are saved with the project, so they open instantly and cost nothing to explore.`;
+    grid.replaceChildren(...samples.map(sampleCard));
+  } else {
+    drawHero(samples[0]);
+  }
 }
 
 function icon(id) {
@@ -847,6 +850,10 @@ async function drawHero(sample) {
     );
   }
 }
+
+// The page is chosen by an inline script in index.html before anything renders.
+const PAGE = document.body.dataset.page;
+document.querySelector(`[data-nav="${PAGE}"]`)?.setAttribute("aria-current", "page");
 
 setUpForm();
 loadSamples();
