@@ -19,11 +19,11 @@ Each dimension maps a trial to zero or more groups. The definitions live in `agg
 
 A trial with no value for a dimension goes to an explicit "Not reported" group, so totals add up and missing data stays visible.
 
-Several dimensions let a trial sit in more than one group. A trial with sites in three countries counts once for each, so the country bars can add up to more than the number of trials, and the response says so in a note whenever that can happen. Charts that show parts of one whole, such as donuts and stacked bars, are offered only when every trial sits in exactly one group.
+Several dimensions let a trial sit in more than one group. A trial with sites in three countries counts once for each, which lets the country bars add up to more than the number of trials. The response says so in a note whenever that can happen. Charts that show parts of one whole, such as donuts and stacked bars, are offered only when every trial sits in exactly one group.
 
 ### Drugs
 
-The registry tags a trial's interventions with MeSH terms, but does not say which term belongs to which intervention, so the pairing follows fixed rules. A term belongs to an intervention when the intervention's name, or one of its other names, is that term with nothing added except dose, unit, route or form words, as in "pembrolizumab 200 mg IV". Under that rule "Bone Marrow Aspiration and Biopsy", for example, stays separate from "Biopsy", and a combination product named "Bortezomib-bendamustine-melphalan" stays separate from "Melphalan". A name in brackets counts as well, so that "Pembrolizumab (KEYTRUDA®)" is pembrolizumab. A term also belongs to an intervention when exactly one intervention and one term in the trial are left unpaired, counting interventions of every type, so that a term that belongs to a biological, which the plan leaves out, is never handed to a drug.
+The registry tags a trial's interventions with MeSH terms, but does not say which term belongs to which intervention, so the pairing follows fixed rules. A term belongs to an intervention when the intervention's name, or one of its other names, is that term with nothing added except dose, unit, route or form words, as in "pembrolizumab 200 mg IV". Under that rule "Bone Marrow Aspiration and Biopsy", for example, stays separate from "Biopsy", and a combination product named "Bortezomib-bendamustine-melphalan" stays separate from "Melphalan". A name in brackets counts as well, so that "Pembrolizumab (KEYTRUDA®)" is pembrolizumab. A term also belongs to an intervention when exactly one intervention and one term in the trial are left unpaired. Interventions of every type count toward that pairing, so that a term belonging to a biological, which the plan leaves out, is never handed to a drug.
 
 An intervention whose names point to several MeSH terms is listing alternatives, as in "Sintilimab" with the other names "Pembrolizumab, Nivolumab", so it is paired with none of them. Brand and code names that one trial in the answer pairs with a MeSH term are applied to the rest, so a trial that says only "Opdivo" joins Nivolumab when another trial shows the pairing. An intervention that cannot be paired keeps its own name.
 
@@ -55,7 +55,7 @@ Enrollment is the count the registry reports. Duration runs from the start date 
 
 Bins have a round width, 1, 2 or 5 times a power of ten, chosen from the spread of the middle 98 percent of values, so a few very large trials do not flatten everything else. Values beyond that range fall into a last bin that keeps the normal width and is marked open-ended, so a single 30,000-patient trial does not stretch the axis.
 
-Enrollment is usually so skewed that equal widths would put nearly every trial in the first bin. When the largest value is more than 20 times the median, the bin edges step through 0, 10, 20, 50, 100, 200 and so on, and the chart's axis uses a symmetric log scale, which behaves like a log scale for large values but can still show trials that enrolled no one.
+Enrollment is usually so skewed that equal widths would put nearly every trial in the first bin. When the largest value is more than 20 times the median, the bin edges step through 0, 10, 20, 50, 100, 200 and so on. The chart's axis then uses a symmetric log scale, which behaves like a log scale for large values but can still show trials that enrolled no one.
 
 ### Box statistics
 
@@ -71,7 +71,7 @@ The network keeps the 40 most frequent entities, or `presentation.top_n`, and th
 
 ### Grids
 
-A distribution over two dimensions, or a comparison broken down by one, is a grid of trial counts. When neither dimension has a natural order, the grid keeps the 30 largest rows and the 12 largest columns by number of trials, or `presentation.top_n` of each, and a note says what was kept, so ten thousand trials grouped by sponsor and country stay a chart a person can read.
+A distribution over two dimensions, or a comparison broken down by one, is a grid of trial counts. When neither dimension has a natural order, the grid keeps the 30 largest rows and the 12 largest columns by number of trials, or `presentation.top_n` of each, and a note says what was kept. Ten thousand trials grouped by sponsor and country therefore stay a chart that a person can read.
 
 ### Flows
 
@@ -101,7 +101,7 @@ Every workflow test follows every citation in the answer back into the raw recor
 
 When more trials match than the record cap, which is 10,000 by default, only a subset is fetched, and counts taken from it are estimates. For dimensions the registry can filter on directly (phase, status, sponsor class, study type, intervention type, country and start year), each group is instead counted by the registry, using the cohort's query plus one clause for the group. Free-text dimensions such as sponsors, drugs, conditions, investigators and sites cannot be counted this way, so their charts stay estimates over the subset.
 
-The clause matches the group exactly as aggregation defines it. "Phase 2" becomes `AREA[Phase]PHASE2 AND NOT AREA[Phase](EARLY_PHASE1 OR PHASE1 OR PHASE3 OR PHASE4 OR NA)`, which leaves out Phase 1/2 trials, and a missing phase is split by study type into "Not reported" for interventional trials and "No phase (observational)" for the rest. For example, of the 3,391 breast cancer trials with no phase, 1 is interventional and 3,390 are not, and the two counts add up exactly.
+The clause matches the group exactly as aggregation defines it. "Phase 2" becomes `AREA[Phase]PHASE2 AND NOT AREA[Phase](EARLY_PHASE1 OR PHASE1 OR PHASE3 OR PHASE4 OR NA)`, which leaves out Phase 1/2 trials. A missing phase is split by study type into "Not reported" for interventional trials and "No phase (observational)" for the rest. For example, of the 3,391 breast cancer trials with no phase, 1 is interventional and 3,390 are not, and the two counts add up exactly.
 
 Every known value of a dimension is counted, including values that never appear in the subset, so that, for example, the 13 per-status counts for breast cancer add up to the registry's total of 16,344. A capped time series starts at the earliest year among all matching trials, found with one sorted request, so the subset's own range does not cut it short.
 
@@ -109,10 +109,10 @@ An answer makes at most 30 count requests. When a chart would need more, or when
 
 ## Mentions
 
-Trials that mention a drug or condition only in their descriptions are retrieved separately ([retrieval.md](retrieval.md)). For each cohort, `meta.mentions` gives their exact total, the IDs of the trials fetched (up to 30 when they are not counted, all of them when they are) and quotes, each being the sentence that contains the term, taken from the title, summary, keywords, or intervention and arm descriptions.
+Trials that mention a drug or condition only in their descriptions are retrieved separately ([retrieval.md](retrieval.md)). For each cohort, `meta.mentions` gives their exact total, the IDs of the trials fetched (up to 30 when they are not counted, all of them when they are) and quotes. Each quote is the sentence that contains the term, taken from the title, summary, keywords, or intervention and arm descriptions.
 
 The term that a trial mentions is not always the one that was asked about, since a search for Keytruda, for example, also matches text that says "pembrolizumab". The terms to quote are learned from the cohort's named trials: a MeSH term most of them share is what the registry expanded the name to.
 
 ## Notes on periods and phases
 
-When a time series ends in the year the data was fetched or later, a note says that the current year is still in progress and that later years count trials planned to start then, so a drop at the end of a trend is not read as a decline. A phase filter follows the registry's meaning, so a "Phase 2" filter includes Phase 1/2 and Phase 2/3 trials even though the chart's "Phase 2" group does not, and a note says so whenever such a filter applies.
+When a time series ends in the year that the data was fetched or later, a note says that the current year is still in progress and that later years count trials planned to start then. A drop at the end of a trend is then not mistaken for a decline. A phase filter follows the registry's meaning, under which a "Phase 2" filter includes Phase 1/2 and Phase 2/3 trials, even though the chart's "Phase 2" group does not. A note says so whenever such a filter applies.

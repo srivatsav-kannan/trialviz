@@ -4,7 +4,7 @@ This page explains how a question and a set of optional structured fields become
 
 ## Two ways to say the same thing
 
-A caller can describe a request in the question (for example, "phase 3 trials of Keytruda since 2018") or in structured fields (for example, `"phases": ["PHASE3"]`). Some callers will use only the question, some only fields, and most a mix of the two. The service supports all of these by letting both inputs fill the same plan, and it avoids assigning either input a fixed set of slots, since that would mean ignoring a perfectly clear question because a field supposedly belongs to the structured side.
+A caller can describe a request in the question (for example, "phase 3 trials of Keytruda since 2018") or in structured fields (for example, `"phases": ["PHASE3"]`). Some callers will use only the question, some only fields, and most a mix of the two. The service supports all of these by letting both inputs fill the same plan. Neither input owns a fixed set of slots, since that would mean ignoring a perfectly clear question because a field supposedly belongs to the structured side.
 
 ## One plan, filled slot by slot
 
@@ -41,7 +41,7 @@ The interpreter used `drug_name` to understand "this drug", but the value that e
 
 ## How the merge works
 
-The merge is code. The interpreter sees the caller's fields as context and is told to report what the question says even when it contradicts a field, and after it answers, the resolver applies the order of priority itself, so nothing depends on the interpreter respecting the caller.
+The merge is code. The interpreter sees the caller's fields as context and is told to report what the question says, even when it contradicts a field. After it answers, the resolver applies the order of priority itself, so that nothing depends on the interpreter respecting the caller.
 
 A conflict becomes a note. For example, if the question says Phase 3 and the request sets Phase 2, the plan uses Phase 2 and the response says "The question suggests Phase 3 for filters.phases, but the request sets Phase 2, so the request's value was used." The service overrides with a note instead of stopping to ask, because a caller who sets a field has stated what they want. Two values that agree in a different spelling or order ("Phase III, 2" against "PHASE2, PHASE3") do not count as a conflict, since both sides are compared after parsing, ignoring order and case.
 
@@ -51,7 +51,7 @@ Some slots are only valid together: a range of start years cannot run backwards,
 
 ## Settling the analysis
 
-The analysis kind is settled last. It comes from the caller when set and from the question otherwise, and when the question's kind contradicts parameters the caller set (for example, the caller sets `group_by` and the question reads as a time series), the response asks for clarification instead of guessing. When nobody sets a kind, one is derived only if the parameters point to exactly one kind: `group_by` alone implies a distribution, because a comparison would also need cohorts, while `series_by` alone implies nothing, since three kinds accept it as an option. Inferred parameters that do not belong to the final kind are dropped with a note.
+The analysis kind is settled last. It comes from the caller when set and from the question otherwise. When the question's kind contradicts parameters that the caller set (for example, the caller sets `group_by` and the question reads as a time series), the response asks for clarification and does not guess. When nobody sets a kind, one is derived only if the parameters point to exactly one kind: `group_by` alone implies a distribution, because a comparison would also need cohorts, while `series_by` alone implies nothing, since three kinds accept it as an option. Inferred parameters that do not belong to the final kind are dropped with a note.
 
 Missing pieces become clarifications. A distribution with nothing to group by, a comparison with a single cohort, or a question that points at "this drug" without naming one returns a `needs_clarification` response that names the slots that would resolve it.
 
@@ -65,4 +65,4 @@ The question can also fill the `presentation` section under the same rules, so t
 
 Setting `"inference": "off"` skips the interpreter entirely. The plan then comes from fields, derivation and defaults alone, which makes the request deterministic and free, and the response notes that the question was not read.
 
-With inference on, the question is read even when the caller's fields look complete, because fields that settle the analysis say nothing about filters that the question might add (for example, "phase 3 trials by country"), and skipping the interpreter on that basis would drop those filters without a trace.
+With inference on, the question is read even when the caller's fields look complete, because fields that settle the analysis say nothing about filters that the question might add (for example, "phase 3 trials by country"). Skipping the interpreter on that basis would drop those filters without a trace.

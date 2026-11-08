@@ -28,7 +28,7 @@ Parameters are always written in the same order, so two equal plans produce iden
 
 ## Matching drug and condition names
 
-Names go through the search parameters, because the registry expands synonyms there, so that "Keytruda", "MK-3475" and "pembrolizumab", for example, all find the same trials. They must also appear in the fields that name a trial's interventions or conditions. The registry's default search reads descriptions as well, and recordings of real questions showed that about one in ten trials that matched "Keytruda" mentioned pembrolizumab only in an arm description, as one permitted option among several, while a search for "melanoma" matched, for example, a trial titled "Non-melanoma".
+Names go through the search parameters, because the registry expands synonyms there, so that "Keytruda", "MK-3475" and "pembrolizumab", for example, all find the same trials. They must also appear in the fields that name a trial's interventions or conditions. The registry's default search reads descriptions as well. Recordings of real questions showed that about one in ten trials that matched "Keytruda" mentioned pembrolizumab only in an arm description, as one permitted option among several, and a search for "melanoma" matched, for example, a trial titled "Non-melanoma".
 
 | Search | Matches | Records that name the term in a naming field |
 | --- | --- | --- |
@@ -79,13 +79,13 @@ The number of requests follows fixed rules in `retrieval/retriever.py`.
 
 Every request made for an answer is listed in `meta.registry_requests`, including the MeSH lookups and the exact counts made later, so an answer can be reproduced by hand. The registry work for one answer has a deadline, 180 seconds by default, after which the request stops with a 504 and a suggestion to narrow the question.
 
-As an example, "compare phases for Keytruda vs Opdivo since 2018" became two cohorts of 2,053 and 1,265 trials, each fetched in full, while "How are breast cancer trials distributed across status?" matched more than 16,000 trials, so the most recent 10,000 were fetched and the per-status counts were taken from the registry directly ([aggregation.md](aggregation.md#exact-counts-for-large-result-sets)).
+As an example, "compare phases for Keytruda vs Opdivo since 2018" became two cohorts of 2,053 and 1,265 trials, each fetched in full. "How are breast cancer trials distributed across status?" matched more than 16,000 trials, so the most recent 10,000 were fetched and the per-status counts were taken from the registry directly ([aggregation.md](aggregation.md#exact-counts-for-large-result-sets)).
 
 ## The HTTP client
 
 Requests are spaced to 50 per minute by default, because the API starts refusing requests after roughly ten in quick succession. A refusal, a server error or a dropped connection is retried after 2, 4 and 8 seconds, four attempts in all. A malformed query fails at once with the API's own message, since retrying would not help.
 
-Responses are cached on disk, in one folder per registry data version. The registry refreshes once a day, and the server checks the version every 15 minutes, starting a new folder and removing the older ones when it changes, so answers come from current data within 15 minutes of a refresh and the cache never holds more than one version. Failures are never cached.
+Responses are cached on disk, in one folder per registry data version. The registry refreshes once a day, and the server checks the version every 15 minutes, starting a new folder and removing the older ones when it changes. Answers therefore come from current data within 15 minutes of a refresh, and the cache never holds more than one version. Failures are never cached.
 
 ## Limitations
 
