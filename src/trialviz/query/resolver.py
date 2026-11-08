@@ -408,18 +408,25 @@ def describe(value: Any) -> str:
     return str(value)
 
 
-_CHART_WORDS = re.compile(r"\b(chart|graph|plot|diagram|map|visuali[sz]ation)s?\b", re.IGNORECASE)
+# The chart's name within the interpreter's description of it, such as "spaghetti chart" in
+# "spaghetti chart type not available": one word before a chart word, unless it is an article.
+_CHART_NAME = re.compile(
+    r"\b(?:(?!(?:a|an|the|as)\b)([\w-]+)\s+)?(chart|graph|plot|diagram|map|visuali[sz]ation)s?\b",
+    re.IGNORECASE,
+)
 
 
 def _unapplied(constraint: str) -> Note:
     """A part of the question the plan cannot express. A chart the service does not draw
     ("as a spaghetti chart") reaches here too, and is reported as a chart, not a filter."""
-    if _CHART_WORDS.search(constraint):
+    if match := _CHART_NAME.search(constraint):
+        name = " ".join(word for word in match.groups() if word).lower()
+        article = "an" if name[0] in "aeiou" else "a"
         return Note(
             code=NoteCode.CHART_PREFERENCE_NOT_FITTING,
             slot="presentation.chart_type",
-            message=f'The question asks for "{constraint}", which is not a chart this service '
-            "draws, so the recommended chart is shown instead.",
+            message=f"The question asks for {article} {name}, which this service does not draw, "
+            "so the recommended chart is shown instead.",
         )
     return Note(
         code=NoteCode.CONSTRAINT_NOT_APPLIED,
