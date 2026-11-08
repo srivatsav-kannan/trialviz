@@ -133,7 +133,7 @@ Settings are read from the environment or from `.env`.
 | `INTERPRETER_EFFORT` | `low` | Reasoning effort (`low`, `medium` or `high`) |
 | `INTERPRETER_MAX_TOKENS` | `8000` | Longest answer the model may give, which also bounds what each call sets aside |
 | `LLM_SPEND_CAP_USD` | `20` | Hard cap on total Claude spending |
-| `LLM_DAILY_CAP_USD` | unset | Optional cap on Claude spending per UTC day |
+| `LLM_DAILY_CAP_USD` | unset | Optional cap on Claude spending per UTC day; empty means none |
 | `DATABASE_URL` | unset | Postgres for the spend total, so the caps hold across restarts and processes; without it, spending is kept in `LLM_LEDGER_PATH` |
 | `LLM_LEDGER_PATH` | `var/llm_spend.json` | Where spending is recorded locally |
 | `CTGOV_REQUESTS_PER_MINUTE` | `50` | Spacing between registry requests |

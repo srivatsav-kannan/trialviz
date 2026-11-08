@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -20,7 +20,7 @@ class Settings(BaseSettings):
     interpreter_max_tokens: int = Field(8000, ge=1000, le=32000)
     llm_spend_cap_usd: float = Field(20.0, ge=0, description="Hard cap on total Claude spending.")
     llm_daily_cap_usd: float | None = Field(
-        None, ge=0, description="Optional cap on Claude spending per UTC day."
+        None, ge=0, description="Optional cap on Claude spending per UTC day. Empty means none."
     )
     llm_ledger_path: Path = Path("var/llm_spend.json")
     database_url: SecretStr | None = Field(
@@ -64,3 +64,9 @@ class Settings(BaseSettings):
         description="Proxies in front of the service. With 1, the client is the last address in "
         "X-Forwarded-For, the one the proxy added, which a client cannot forge.",
     )
+
+    @field_validator("llm_daily_cap_usd", mode="before")
+    @classmethod
+    def _empty_means_no_daily_cap(cls, value: object) -> object:
+        # A host may not let a variable be deleted, only emptied.
+        return None if isinstance(value, str) and not value.strip() else value
