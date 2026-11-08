@@ -2,7 +2,7 @@
 
 A backend that answers questions about clinical trials with visualization specs, backed by the [ClinicalTrials.gov API](https://clinicaltrials.gov/data-api/api). You send a question in plain language, optionally with structured fields. You get back a recommended chart with the reason for it, alternative charts over the same data, a ready-to-render Vega-Lite spec where one exists, and a citation for every number: the trial, the field in its registry record, and the exact value found there.
 
-Five real questions and the JSON they produced are in [examples/](examples).
+Five real questions and the JSON they produced are in [examples/](examples). A demo UI that draws every chart type from the response is served at `/`.
 
 ## Quick start
 
@@ -23,7 +23,7 @@ curl -s localhost:8000/v1/query -H 'content-type: application/json' \
 
 Without an API key the service uses its rule-based interpreter. With one, Claude reads the question, and the rule-based interpreter takes over if Claude is unavailable for any reason. Spending on Claude is capped (see [Configuration](#configuration)).
 
-Interactive API docs are served at `http://localhost:8000/docs`.
+Open `http://localhost:8000` for the demo UI: ask a question, switch between the recommended chart and its alternatives, and select any bar, point or node to see the trials behind it and the registry field each was counted by. It is plain HTML and JavaScript with no build step ([docs/visualization.md](docs/visualization.md#the-demo-ui)). Interactive API docs are served at `http://localhost:8000/docs`.
 
 ## How it works
 
@@ -137,3 +137,5 @@ Settings are read from the environment or `.env`:
 - Asking which drugs are combined with a given drug, as a distribution, shows that drug itself as the largest bar. A drug-drug network answers that question better.
 - Scatter plots over thousands of trials produce large responses (about 1 MB for 1,300 points), since every point carries its citations.
 - The rule-based interpreter is a fallback and a baseline, not a peer of the language model.
+- Claude's reading of a question that allows two readings can differ between runs, such as whether "sponsors and drugs" also restricts the trials to those with a drug intervention. The plan, its provenance and the subtitle always state which reading was used, and a caller who needs a fixed reading can set those fields.
+- The demo UI loads its chart libraries from a CDN, so it needs internet access in the browser.

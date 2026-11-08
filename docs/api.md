@@ -56,22 +56,24 @@ Any subset. `kind` picks the shape of the answer, and each kind accepts only its
 | `distribution` | `group_by` | `series_by` | Counts per value of a dimension |
 | `time_series` | | `time_field` (`start_date`), `granularity` (`year`), `series_by` | Counts over time |
 | `comparison` | `cohorts` (2 to 6) | `group_by` | Cohorts side by side |
-| `histogram` | `measure` | | Spread of a numeric measure |
-| `scatter` | `x`, `y` | `series_by` | One point per trial |
+| `histogram` | `measure` | `group_by` | Spread of a numeric measure, with box statistics per group |
+| `scatter` | `x`, `y` | `z`, `series_by` | One point per trial, in 3D when `z` is set |
 | `network` | `node_types` (a pair) | | Entities linked when they share a trial |
+| `flow` | `stages` (2 or 3 dimensions) | | How trials move from one stage to the next |
+| `trial_list` | | | The individual trials, with their dates |
 
 Dimensions: `phase`, `status`, `sponsor_class`, `lead_sponsor`, `intervention`, `intervention_type`, `condition`, `country`, `study_type`, `start_year`. Measures: `enrollment`, `duration_months`, `site_count`.
 
-Checks applied to any subset: `group_by` and `series_by` must differ, `x` and `y` must differ, and a network can only link a dimension to itself if a trial can hold several values of it (drugs can co-occur in one trial, lead sponsors cannot). Each cohort needs a unique label and at least one filter, and no two cohorts may have the same filters. A cohort's filters apply on top of the shared `filters`.
+Checks applied to any subset: `group_by` and `series_by` must differ, `x`, `y` and `z` must all differ, flow stages must be different dimensions with one value per trial (no countries, drugs or conditions), and a network can only link a dimension to itself if a trial can hold several values of it (drugs can co-occur in one trial, lead sponsors cannot). Each cohort needs a unique label and at least one filter, and no two cohorts may have the same filters. A cohort's filters apply on top of the shared `filters`.
 
 ### Presentation
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `chart_type` | string | `stat`, `bar_chart`, `grouped_bar_chart`, `stacked_bar_chart`, `time_series`, `histogram`, `scatter_plot`, `network_graph`, `table` |
+| `chart_type` | string | `stat`, `bar_chart`, `horizontal_bar_chart`, `donut_chart`, `treemap`, `choropleth_map`, `table`, `grouped_bar_chart`, `stacked_bar_chart`, `normalized_stacked_bar_chart`, `heatmap`, `time_series`, `stacked_area_chart`, `histogram`, `box_plot`, `scatter_plot`, `bubble_chart`, `scatter_plot_3d`, `network_graph`, `network_graph_3d`, `sankey`, `timeline`. A preference: it wins whenever it can draw the data, and a note explains when it cannot. |
 | `sort` | string | `natural`, `value_desc`, `value_asc`, `label_asc` |
 | `top_n` | integer | 1 to 100 |
-| `citations_per_datum` | integer | 0 to 25, default 3 |
+| `citations_per_datum` | integer | 0 to 25, default 3. How many trials per data point are cited, each with every citation that places it there. |
 
 ### Retrieval
 
@@ -110,11 +112,11 @@ Every count-like datum has `trial_count`, `nct_ids` (every contributing trial) a
 | bar, horizontal bar, donut, treemap, map, table over categories | One row per group: the dimension field (such as `"country"`), `key`, the datum fields, and for countries `iso_a3` and `iso_numeric` |
 | grouped, stacked, normalized bars, heatmap | One row per combination: both dimension fields and the datum fields, including zero cells |
 | time series, stacked area, bars over time | One row per period (and series): `period` ("2019" or "2019-03"), the series field if any, and the datum fields |
-| `histogram` | One row per bin: `bin_start`, `bin_end`, `label`, and the datum fields |
+| `histogram` | One row per bin: `bin_start`, `bin_end`, `label`, `open_ended` (true for a last bin that also holds every larger value), and the datum fields |
 | `box_plot` | One row per group: `n`, `min`, `q1`, `median`, `q3`, `max`, `whisker_low`, `whisker_high`, `mean`, `small_sample`, `outliers`, and the datum fields |
 | scatter, bubble, 3D scatter | One row per trial: `nct_id`, `title`, the measure fields (`enrollment`, `duration_months`, `site_count`), the color field if any, and `citations` |
-| network (2D and 3D) | `{"nodes": [...], "edges": [...]}`. A node has `id`, `label`, `type`, `degree`, `community`, `x`, `y`, `x3`, `y3`, `z3` and the datum fields. An edge has `source`, `target` and the datum fields. |
-| `sankey` | `{"nodes": [...], "links": [...]}`. A node has `id`, `stage`, `stage_label`, `label` and the datum fields. A link has `source`, `target` and the datum fields. |
+| network (2D and 3D) | `{"nodes": [...], "edges": [...]}`. A node has `id`, `label`, `type`, `degree`, `community`, `x`, `y`, `x3`, `y3`, `z3` and the datum fields. An edge has `source`, `target` and the datum fields. Its citations show each trial's value for both ends, or for two drugs, the arm that gives them together. |
+| `sankey` | `{"nodes": [...], "links": [...]}`. A node has `id`, `stage`, `stage_label`, `label` and the datum fields. A link has `source`, `target` and the datum fields, with citations for both of its stages. |
 | `timeline` | One row per trial: `nct_id`, `title`, `phase`, `status`, `sponsor`, `start`, `end`, `enrollment`, `url`, `citations` |
 
 ## Response to `/v1/interpret`

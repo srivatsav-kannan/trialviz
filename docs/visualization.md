@@ -73,7 +73,7 @@ An abridged excerpt of [the assignment example's actual response](../examples/01
 }
 ```
 
-- **`encoding`** maps visual channels to row fields, with a type (nominal, ordinal, quantitative, temporal), a title, and where it matters a sort order, a log scale suggestion for heavily skewed measures, or a stack mode.
+- **`encoding`** maps visual channels to row fields, with a type (nominal, ordinal, quantitative, temporal), a title, and where it matters a sort order, a stack mode, or `"scale": "symlog"` for a heavily skewed measure. A symmetric log scale behaves like a log scale for large values but stays linear near zero, so trials that report zero enrollment are still drawn. The Vega-Lite spec labels such an axis 0, 1, 2, 5, 10, 20, 50 and so on, since Vega's default ticks on it are linear and leave the small values unlabeled.
 - **`data`** holds the rows. Alternatives that draw the same rows set `data` to null and reuse the recommended chart's rows, so switching views needs no request. An alternative with a different row shape (bins next to box statistics) carries its own.
 - **`options`** carry chart-specific details: `display_limit` when a bar chart has too many bars to show at once (the data stays complete), the TopoJSON source for maps, the network relation, and the Sankey stages.
 - **`vega_lite`** is a complete Vega-Lite spec, generated mechanically from the encoding, for every chart Vega-Lite can draw. Citations and trial ID lists are left out of the embedded data to keep it small, and stay in `data`. Treemaps, 3D charts, networks and Sankey diagrams have no Vega-Lite form and get null.
@@ -86,6 +86,18 @@ Networks and scatter plots have 3D variants:
 
 - **`network_graph_3d`** shares the 2D network's nodes and edges. Every node carries a precomputed 2D position (`x`, `y`) and 3D position (`x3`, `y3`, `z3`) from a deterministic force-directed layout, scaled to -1..1. A frontend with its own layout engine can ignore them, and one without (such as a plain three.js scene) can draw the graph directly. The 3D view is recommended over the flat one when the network has more than 80 nodes.
 - **`scatter_plot_3d`** is offered when the question has a third measure (`analysis.z`). The flat alternative is a bubble chart that shows the third measure as point size.
+
+## The demo UI
+
+The service serves a single page at `/` (`src/trialviz/ui/`) that calls `/v1/query` and draws every chart type. It is a reference consumer of the response, so it decides nothing about the data:
+
+- Every view in `visualization` and `alternatives` becomes a tab, with the backend's reason under it. Switching tabs makes no request.
+- Charts with a `vega_lite` spec are drawn by vega-embed from that spec, with only the theme and size changed. Treemaps, Sankey diagrams and 3D scatter plots use Plotly, and networks use force-graph and 3d-force-graph at the positions the backend computed. The 3D libraries load only when a 3D view is opened.
+- Selecting a bar, point, cell, node, edge or table row shows that datum's trials and citations: the registry field and the exact value each trial was counted by, linked to the record.
+- "How the question was read" lists the resolved plan with the source of each value, and the notes, mention-only trials and registry requests follow.
+- The optional fields map to the request's shorthands, so they are binding in the same way. Clarifications and errors are shown as the API returns them.
+
+It is plain HTML, CSS and one JavaScript module with no build step, follows the system's light or dark mode, and works at phone width.
 
 ## Titles
 

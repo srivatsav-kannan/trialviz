@@ -76,7 +76,8 @@ src/trialviz/
   pipeline.py        sequencing the stages
   llm/budget.py      the spend ledger and price table
   settings.py        configuration
-  api.py             HTTP
+  api.py             HTTP, and the demo UI at /
+  ui/                the demo UI: one HTML page, a stylesheet and a JavaScript module
 ```
 
 ## Extending it

@@ -38,14 +38,15 @@ Each analysis kind produces one dataset shape (`aggregation/datasets.py`), and c
 Some details:
 
 - **Measures.** Enrollment is the registry's count. Duration is the start date to the completion date (or the primary completion date), in months. Site count is the number of listed locations. Trials without a usable value are left out, and a note gives the number.
-- **Histogram bins** have a "nice" width (1, 2 or 5 times a power of ten), chosen by the Freedman-Diaconis rule on the 1st to 99th percentiles, so a few very large trials do not flatten everything else. Values beyond that range fall in the last bin.
+- **Histogram bins** have a "nice" width (1, 2 or 5 times a power of ten), chosen by the Freedman-Diaconis rule on the 1st to 99th percentiles, so a few very large trials do not flatten everything else. Values beyond that range fall in the last bin, which keeps the normal width and is marked `open_ended`, so one 30,000-patient trial does not stretch the axis.
+- **Skewed measures.** When the largest value is more than 20 times the median, as with enrollment almost always, equal-width bins put nearly every trial in the first one. The bins then step 0, 10, 20, 50, 100, 200 and so on, and the dataset is flagged `skewed`, which puts the chart's axis on a symmetric log scale (see [visualization.md](visualization.md)). The first version used a plain log scale, and the box plot silently drew nothing: a log axis has no place for the trials that report an enrollment of zero.
 - **Box statistics** use inclusive quartiles. The default exclusive method extrapolates past the data for small groups, and the box plot workflow caught it putting a quartile outside its own whisker. Groups with fewer than 5 values are still drawn and flagged as small samples.
-- **Networks.** Two different dimensions (sponsors and drugs) link when they share a trial. The same multi-valued dimension links to itself by co-occurrence. For drugs, that means two drugs given in the same treatment arm, so a drug and a placebo comparator in different arms are not a combination. Each edge cites the arm. The network keeps the most frequent entities (40 by default, or `presentation.top_n`) and the 300 strongest links. Isolated entities are left out, and a note reports what was pruned. Clusters come from label propagation in a fixed order, so they are reproducible.
+- **Networks.** Two different dimensions (sponsors and drugs) link when they share a trial. The same multi-valued dimension links to itself by co-occurrence. For drugs, that means two drugs given in the same treatment arm, so a drug and a placebo comparator in different arms are not a combination. Each drug edge cites the arm, and each sponsor-drug edge cites both the trial's sponsor and its drug. The network keeps the most frequent entities (40 by default, or `presentation.top_n`) and the 300 strongest links. Isolated entities are left out, and a note reports what was pruned. Clusters come from label propagation in a fixed order, so they are reproducible.
 - **Flows** need single-valued stages, since a trial with three countries would follow three paths at once. Every trial follows exactly one path, so flow is conserved at every stage, which a workflow test checks.
 
 ## Citations
 
-Every data point carries `trial_count`, `nct_ids` (every contributing trial) and up to `citations_per_datum` citations. A citation is checkable:
+Every data point carries `trial_count`, `nct_ids` (every contributing trial) and the citations for its first `citations_per_datum` trials, every citation that places each of those trials there (both ends of a network link, both values of a grid cell). A citation is checkable:
 
 A real one, from the Keytruda vs Opdivo example:
 
