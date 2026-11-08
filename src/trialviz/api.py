@@ -13,6 +13,8 @@ client needs a single error handler.
 
 from __future__ import annotations
 
+import json
+import re
 from datetime import date
 from pathlib import Path
 from typing import Any
@@ -39,6 +41,12 @@ from trialviz.settings import Settings
 UI_DIRECTORY = Path(__file__).parent / "ui"
 """A single-page demo that calls /v1/query and renders every chart type, served at /."""
 
+
+SAMPLES_DIRECTORY = Path(__file__).parents[2] / "examples"
+"""Saved responses to real questions, written by examples/run_examples.py. The demo UI shows
+them instantly, without spending on the language model or waiting on the registry."""
+
+_SAMPLE_NAME = re.compile(r"[0-9a-z_]+")
 
 _REVALIDATE = {"Cache-Control": "no-cache"}
 
@@ -89,6 +97,20 @@ def create_app(
 
     app.mount("/ui", _RevalidatedStaticFiles(directory=UI_DIRECTORY), name="ui")
 
+    @app.get("/v1/samples", include_in_schema=False)
+    async def samples() -> list[dict[str, Any]]:
+        """A summary of each saved sample, for the demo UI's gallery."""
+        return [_summarize_sample(path) for path in sorted(SAMPLES_DIRECTORY.glob("*.json"))]
+
+    @app.get("/v1/samples/{name}", include_in_schema=False, response_model=None)
+    async def sample(name: str) -> dict[str, Any] | JSONResponse:
+        """The saved response, exactly as `POST /v1/query` returned it."""
+        path = SAMPLES_DIRECTORY / f"{name}.json"
+        if not _SAMPLE_NAME.fullmatch(name) or not path.is_file():
+            return _error(404, "sample_not_found", f"There is no saved sample named {name!r}.")
+        response: dict[str, Any] = json.loads(path.read_text())["response"]
+        return response
+
     @app.get("/health")
     async def health() -> dict[str, str]:
         return {"status": "ok"}
@@ -132,6 +154,23 @@ def create_app(
         )
 
     return app
+
+
+def _summarize_sample(path: Path) -> dict[str, Any]:
+    saved = json.loads(path.read_text())
+    request, response = saved["request"], saved["response"]
+    return {
+        "name": path.stem,
+        "request": request,
+        "title": response["visualization"]["title"],
+        "chart_type": response["visualization"]["type"],
+        "alternatives": [view["type"] for view in response["alternatives"]],
+        "cohorts": [
+            {"label": cohort["label"], "total": cohort["total"]}
+            for cohort in response["meta"]["cohorts"]
+        ],
+        "data_version": response["meta"]["data_version"],
+    }
 
 
 def _error(status: int, code: str, message: str) -> JSONResponse:

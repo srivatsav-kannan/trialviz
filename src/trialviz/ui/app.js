@@ -1,5 +1,6 @@
-// trialviz demo page: asks /v1/query, renders the recommended chart and its alternatives,
-// and shows the registry evidence behind whatever is selected.
+// trialviz demo page. It shows saved sample answers, asks /v1/query for new ones, renders the
+// recommended chart and its alternatives, and shows the registry evidence behind whatever is
+// selected. It renders what the response says and decides nothing about the data itself.
 //
 // All registry text is inserted with textContent, never as HTML, so a trial title cannot
 // inject markup. Heavy libraries (Plotly, 3D graphs) load only when a chart needs them.
@@ -34,14 +35,24 @@ const CHART_LABELS = {
   timeline: "Timeline",
 };
 
-const EXAMPLES = [
-  { query: "How has the number of trials for this drug changed over time?", drug_name: "Pembrolizumab" },
-  { query: "Which countries have the most recruiting melanoma trials?" },
-  { query: "Compare phases for trials involving Keytruda vs Opdivo since 2018" },
-  { query: "Show a network of sponsors and drugs for multiple myeloma trials that started in 2024" },
-  { query: "How do lung cancer trials started in 2016 flow from sponsor class to phase to overall status?" },
-  { query: "Enrollment by phase for completed asthma trials" },
+// Live questions that reach chart types the saved samples do not.
+const SUGGESTIONS = [
+  "Enrollment by phase for completed asthma trials",
+  "List the recruiting phase 3 trials of tirzepatide",
+  "Enrollment versus duration and site count for completed phase 3 psoriasis trials",
+  "How many semaglutide trials are recruiting in Germany?",
 ];
+
+// The icon and tone a sample card wears, by the chart family it opens on.
+const SAMPLE_LOOK = {
+  time_series: ["i-capsule", 1],
+  grouped_bar_chart: ["i-compare", 2],
+  horizontal_bar_chart: ["i-globe", 3],
+  choropleth_map: ["i-globe", 3],
+  network_graph: ["i-network", 5],
+  network_graph_3d: ["i-network", 5],
+  sankey: ["i-flow", 4],
+};
 
 const SOURCE_LABELS = {
   user: "from your fields",
@@ -81,7 +92,11 @@ function loadScript(name) {
 }
 
 const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-const palette = () => ["#0d6b5c", "#c2853b", "#5b6c8f", "#a4505b", "#7a8b4f", "#8d6e9e", "#3e8fa0", "#b8a04a", "#9a958b"];
+// Categorical slots in a fixed order that passes colorblind-separation checks for adjacent
+// series, and a single-hue blue ramp for magnitude (heatmaps and the map).
+const SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"];
+const RAMP = ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"];
+const palette = () => SERIES;
 const number = (value) => (typeof value === "number" ? value.toLocaleString() : value);
 
 // --- State ---------------------------------------------------------------------------------
@@ -94,10 +109,9 @@ function setUpForm() {
   const select = document.querySelector('select[name="chart_type"]');
   for (const [value, label] of Object.entries(CHART_LABELS)) select.append(el("option", { value }, label));
 
-  const list = $("examples");
-  for (const example of EXAMPLES) {
-    const label = example.drug_name ? `${example.query} (drug: ${example.drug_name})` : example.query;
-    list.append(el("li", {}, el("button", { type: "button", onclick: () => runExample(example) }, label)));
+  const list = $("suggestions");
+  for (const query of SUGGESTIONS) {
+    list.append(el("li", {}, el("button", { type: "button", onclick: () => runSuggestion(query) }, query)));
   }
 
   $("ask-form").addEventListener("submit", (event) => {
@@ -109,14 +123,9 @@ function setUpForm() {
   });
 }
 
-function runExample(example) {
-  const form = $("ask-form");
-  form.reset();
-  $("question").value = example.query;
-  if (example.drug_name) {
-    form.elements.drug_name.value = example.drug_name;
-    form.querySelector(".refine").open = true;
-  }
+function runSuggestion(query) {
+  $("ask-form").reset();
+  $("question").value = query;
   ask(buildRequest());
 }
 
@@ -172,7 +181,8 @@ async function ask(request) {
       showClarification(body);
     } else {
       $("status").hidden = true;
-      showAnswer(body);
+      markSample(null);
+      showAnswer(body, "Live answer");
     }
   } catch (error) {
     showProblem("The service could not be reached. Check that it is running and try again.", [String(error.message ?? error)]);
@@ -186,7 +196,14 @@ function showLoading() {
   const status = $("status");
   const elapsed = el("span", {}, "");
   status.className = "status loading";
-  status.replaceChildren(el("span", { class: "spinner", "aria-hidden": "true" }), el("span", {}, "Reading the question, querying ClinicalTrials.gov and citing the records. Large questions take up to a minute. "), elapsed);
+  const loader = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  loader.setAttribute("class", "pulse-loader");
+  loader.setAttribute("viewBox", "0 0 64 28");
+  loader.setAttribute("aria-hidden", "true");
+  const trace = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  trace.setAttribute("d", "M2 15h16l4-8 6 16 5-12 3 4h26");
+  loader.append(trace);
+  status.replaceChildren(el("div", { class: "status-box" }, loader, el("span", {}, "Reading the question, querying ClinicalTrials.gov and citing the records. Large questions take up to a minute. ", elapsed)));
   status.hidden = false;
   const started = Date.now();
   clearInterval(showLoading.timer);
@@ -196,21 +213,21 @@ function showLoading() {
 function showProblem(message, details) {
   const status = $("status");
   status.className = "status problem";
-  status.replaceChildren(el("h2", {}, "That did not work"), el("p", {}, message), ...(details.length ? [el("ul", {}, details.map((d) => el("li", {}, d)))] : []));
+  status.replaceChildren(el("div", { class: "status-box" }, el("h3", {}, "That did not work"), el("p", {}, message), ...(details.length ? [el("ul", {}, details.map((d) => el("li", {}, d)))] : [])));
   status.hidden = false;
 }
 
 function showClarification(body) {
   const status = $("status");
-  status.className = "status";
-  const missing = body.missing?.length ? [el("p", { class: "muted" }, `Fields that would settle it: ${body.missing.join(", ")}`)] : [];
-  status.replaceChildren(el("h2", {}, "One more detail"), el("p", {}, body.message), ...missing);
+  status.className = "status clarify";
+  const missing = body.missing?.length ? [el("p", {}, `Fields that would settle it: ${body.missing.join(", ")}`)] : [];
+  status.replaceChildren(el("div", { class: "status-box" }, el("h3", {}, "One more detail"), el("p", {}, body.message), ...missing));
   status.hidden = false;
 }
 
 // --- Answer ----------------------------------------------------------------------------------
 
-function showAnswer(answer) {
+function showAnswer(answer, kind) {
   const views = [answer.visualization, ...answer.alternatives].map((view) => ({
     view,
     data: view.data ?? answer.visualization.data,
@@ -220,14 +237,17 @@ function showAnswer(answer) {
   $("result-title").textContent = answer.visualization.title;
   $("result-subtitle").textContent = answer.visualization.subtitle ?? "";
   $("result-subtitle").hidden = !answer.visualization.subtitle;
-  const totals = answer.meta.cohorts.map((c) => (c.label ? `${c.label}: ${number(c.total)} trials` : `${number(c.total)} trials`));
-  const when = new Date(answer.meta.data_version).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-  $("result-facts").textContent = `${totals.join(", ")}. ClinicalTrials.gov data as of ${when}.`;
+  const when = formatDate(answer.meta.data_version);
+  $("result-kind").textContent = `${kind}, registry data as of ${when}`;
+  $("result-facts").replaceChildren(
+    ...answer.meta.cohorts.map((c) => el("li", {}, c.label ? `${c.label}: ` : "", el("strong", {}, number(c.total)), " trials")),
+    el("li", {}, el("strong", {}, String(views.length)), views.length === 1 ? " view" : " views"),
+  );
 
   const tabs = $("views");
   tabs.replaceChildren(
     ...views.map(({ view }, index) =>
-      el("button", { type: "button", role: "tab", "aria-selected": String(index === 0), onclick: () => selectView(index) },
+      el("button", { type: "button", role: "tab", id: `view-tab-${index}`, "aria-controls": "chart-panel", "aria-selected": String(index === 0), tabindex: index === 0 ? "0" : "-1", onclick: () => selectView(index), onkeydown: (event) => moveTab(event, index) },
         CHART_LABELS[view.type] ?? view.type, index === 0 ? el("span", { class: "tag" }, "Recommended") : null),
     ),
   );
@@ -240,11 +260,29 @@ function showAnswer(answer) {
   $("result").hidden = false;
   selectView(0);
   $("result").scrollIntoView({ behavior: "smooth", block: "start" });
+  $("result").focus({ preventScroll: true });
 }
+
+// Arrow keys move between views, as in any tab list.
+function moveTab(event, index) {
+  const count = current.views.length;
+  const next = { ArrowRight: index + 1, ArrowLeft: index - 1, Home: 0, End: count - 1 }[event.key];
+  if (next === undefined) return;
+  event.preventDefault();
+  const target = (next + count) % count;
+  selectView(target);
+  $(`view-tab-${target}`).focus();
+}
+
+const formatDate = (iso) => new Date(iso).toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
 
 function selectView(index) {
   current.active = index;
-  [...$("views").children].forEach((tab, i) => tab.setAttribute("aria-selected", String(i === index)));
+  [...$("views").children].forEach((tab, i) => {
+    tab.setAttribute("aria-selected", String(i === index));
+    tab.setAttribute("tabindex", i === index ? "0" : "-1");
+  });
+  $("chart-panel").setAttribute("aria-labelledby", `view-tab-${index}`);
   const { view, data } = current.views[index];
   const reason = $("view-reason");
   reason.replaceChildren(el("strong", {}, index === 0 ? "Why this view: " : "Also fits: "), view.reason, ".");
@@ -299,14 +337,18 @@ function vegaConfig() {
     background: "transparent",
     font: "Inter, system-ui, sans-serif",
     view: { stroke: null },
-    axis: { labelColor: muted, titleColor: ink, gridColor: line, domainColor: css("--line-strong"), tickColor: line, labelFontSize: 12, titleFontSize: 12, titleFontWeight: 500 },
-    legend: { labelColor: muted, titleColor: ink, labelFontSize: 12, titleFontSize: 12 },
+    axis: { labelColor: muted, titleColor: ink, gridColor: line, domainColor: css("--line-strong"), tickColor: line, labelFontSize: 12, titleFontSize: 12.5, titleFontWeight: 500, titlePadding: 10 },
+    axisBand: { grid: false },
+    legend: { labelColor: muted, titleColor: ink, labelFontSize: 12, titleFontSize: 12.5, titleFontWeight: 500 },
     title: { color: ink, fontSize: 0 },
-    range: { category: palette(), ordinal: { scheme: "teals" }, ramp: ["#d9ebe5", "#0d6b5c"], heatmap: ["#d9ebe5", "#0d6b5c"] },
-    mark: { color: css("--accent") },
-    bar: { color: css("--accent") },
-    line: { color: css("--accent"), strokeWidth: 2 },
-    point: { color: css("--accent") },
+    range: { category: SERIES, ordinal: RAMP.slice(1), ramp: RAMP, heatmap: RAMP },
+    mark: { color: SERIES[0] },
+    bar: { color: SERIES[0], cornerRadiusEnd: 4, stroke: css("--surface"), strokeWidth: 1 },
+    rect: { stroke: css("--surface"), strokeWidth: 2 },
+    line: { color: SERIES[0], strokeWidth: 2 },
+    area: { color: SERIES[0], opacity: 0.85 },
+    point: { color: SERIES[0], size: 70, filled: true },
+    circle: { color: SERIES[0], opacity: 0.75, stroke: css("--surface"), strokeWidth: 1 },
   };
 }
 
@@ -337,7 +379,10 @@ async function renderVega(chart, view, data) {
   // only fills a node the next view has already removed.
   const host = el("div");
   chart.append(host);
-  const result = await vegaEmbed(host, spec, { actions: false, renderer: "svg", config: vegaConfig() });
+  const config = vegaConfig();
+  // On a phone a side legend takes a third of the plot, so it goes underneath instead.
+  if (chart.clientWidth < 560) config.legend = { ...config.legend, orient: "bottom", direction: "horizontal" };
+  const result = await vegaEmbed(host, spec, { actions: false, renderer: "svg", config });
   result.view.addEventListener("click", (_event, item) => {
     const datum = item?.datum;
     if (!datum) return;
@@ -383,7 +428,7 @@ function renderStat(chart, data) {
     el("div", { class: "stat" },
       el("div", { class: "stat-number" }, number(row.trial_count)),
       el("div", { class: "stat-label" }, "trials match"),
-      el("button", { type: "button", onclick: () => showEvidence(row, { type: "stat" }) }, "Show the evidence")),
+      el("button", { type: "button", class: "button secondary", onclick: () => showEvidence(row, { type: "stat" }) }, "Show the evidence")),
   );
 }
 
@@ -414,7 +459,8 @@ function renderTable(chart, view, data) {
       if (c === "nct_id") return el("td", {}, el("a", { href: `https://clinicaltrials.gov/study/${value}`, target: "_blank", rel: "noopener" }, value));
       return el("td", { class: typeof value === "number" ? "number" : undefined }, value === null || value === undefined ? "" : number(value));
     });
-    return el("tr", { class: "selectable", onclick: () => showEvidence(original, view) }, cells);
+    const pick = () => showEvidence(original, view);
+    return el("tr", { class: "selectable", tabindex: "0", onclick: pick, onkeydown: (event) => (event.key === "Enter" || event.key === " ") && (event.preventDefault(), pick()) }, cells);
   });
   chart.append(el("div", { class: "table-scroll" }, el("table", { class: "data" }, el("thead", {}, head), el("tbody", {}, body))));
 }
@@ -456,7 +502,7 @@ async function renderPlotly(chart, view, data, token) {
       type: "sankey",
       arrangement: "snap",
       node: { label: data.nodes.map((n) => n.label), pad: 14, thickness: 16, color: data.nodes.map((n) => palette()[n.stage % 9]), line: { width: 0 } },
-      link: { source: data.links.map((l) => index[l.source]), target: data.links.map((l) => index[l.target]), value: data.links.map((l) => l.trial_count), color: "rgba(13,107,92,0.18)" },
+      link: { source: data.links.map((l) => index[l.source]), target: data.links.map((l) => index[l.target]), value: data.links.map((l) => l.trial_count), color: "rgba(42,120,214,0.2)" },
     }];
     // A link click carries its source and target nodes. A node click does not.
     rowFor = (point) => (point.source && point.target ? data.links[point.pointNumber] : data.nodes[point.pointNumber]);
@@ -522,7 +568,7 @@ async function renderNetwork(chart, data, threeD, token) {
   if (threeD) {
     const graph = ForceGraph3D()(chart)
       .width(width).height(height)
-      .backgroundColor(css("--surface"))
+      .backgroundColor("#ffffff")
       .graphData({ nodes, links })
       .nodeLabel(nodeLabel).nodeVal("val").nodeColor(color).nodeOpacity(0.92)
       .linkWidth(linkWidth).linkColor(() => css("--faint")).linkOpacity(0.35)
@@ -567,7 +613,7 @@ function rowLabel(row, labels) {
 function showEvidence(row, view, labels) {
   if (!row) return;
   const body = $("evidence-body");
-  const parts = [el("h3", {}, rowLabel(row, labels))];
+  const parts = [el("p", { class: "selected" }, rowLabel(row, labels))];
 
   if (typeof row.trial_count === "number") {
     parts.push(el("p", { class: "count" }, `${number(row.trial_count)} trial${row.trial_count === 1 ? "" : "s"}`));
@@ -672,4 +718,135 @@ function renderMentions(reports) {
   section.hidden = false;
 }
 
+// --- Samples and the hero chart ---------------------------------------------------------------
+
+const REQUEST_LABELS = { drug_name: "Drug", condition: "Condition", trial_phase: "Phase", sponsor: "Sponsor", country: "Country", start_year: "Started from", end_year: "Started up to" };
+
+async function loadSamples() {
+  const grid = $("sample-grid");
+  let samples;
+  try {
+    const response = await fetch("/v1/samples");
+    samples = await response.json();
+  } catch {
+    grid.replaceChildren(el("li", { class: "empty" }, "The saved samples could not be loaded."));
+    return;
+  }
+  if (!samples.length) {
+    $("samples").hidden = true;
+    return;
+  }
+  $("samples-intro").textContent = `These questions ran against the live registry on ${formatDate(samples[0].data_version)}, and their full responses are saved with the project, so they open instantly and cost nothing to explore.`;
+  grid.replaceChildren(...samples.map(sampleCard));
+  drawHero(samples[0]);
+}
+
+function icon(id) {
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("aria-hidden", "true");
+  const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+  use.setAttribute("href", `#${id}`);
+  svg.append(use);
+  return svg;
+}
+
+function sampleCard(sample) {
+  const [symbol, tone] = SAMPLE_LOOK[sample.chart_type] ?? ["i-chart", 1];
+  const { query, ...fields } = sample.request;
+  const pinned = Object.entries(fields).map(([key, value]) => `${REQUEST_LABELS[key] ?? key}: ${value}`).join(", ");
+  const totals = sample.cohorts.map((c) => number(c.total));
+  return el("li", {},
+    el("button", { type: "button", class: "sample-card", "data-sample": sample.name, onclick: () => openSample(sample.name) },
+      el("span", { class: "sample-top" },
+        el("span", { class: `sample-icon tone-${tone}` }, icon(symbol)),
+        el("span", { class: "chip" }, CHART_LABELS[sample.chart_type] ?? sample.chart_type)),
+      el("span", { class: "sample-question" }, query),
+      pinned ? el("span", { class: "sample-fields" }, pinned) : null,
+      el("span", { class: "sample-foot" },
+        el("span", { class: "sample-total" }, el("strong", {}, totals.join(" and ")), totals.length > 1 ? "trials compared" : "trials"),
+        el("span", { class: "sample-open" }, "Open", icon("i-arrow")))));
+}
+
+function markSample(name) {
+  document.querySelectorAll(".sample-card").forEach((card) => card.setAttribute("aria-current", String(card.dataset.sample === name)));
+}
+
+async function openSample(name) {
+  try {
+    const response = await fetch(`/v1/samples/${encodeURIComponent(name)}`);
+    if (!response.ok) throw new Error(`The service answered ${response.status}.`);
+    const answer = await response.json();
+    $("status").hidden = true;
+    markSample(name);
+    showAnswer(answer, "Saved answer");
+  } catch (error) {
+    showProblem("This sample could not be opened.", [String(error.message ?? error)]);
+  }
+}
+
+// The hero draws the first sample's trend as a small area chart and quotes one real citation
+// from its busiest year, so the first thing on the page is the product working on real data.
+async function drawHero(sample) {
+  let answer;
+  try {
+    answer = await (await fetch(`/v1/samples/${encodeURIComponent(sample.name)}`)).json();
+  } catch {
+    return;
+  }
+  // Only complete years: the current year is partial, and the registry also lists trials
+  // planned to start later, so the last points would dip for reasons the preview cannot show.
+  const dataYear = new Date(sample.data_version).getFullYear();
+  const all = Array.isArray(answer.visualization.data) ? answer.visualization.data : [];
+  const rows = all.filter((row) => Number(row.period) < dataYear);
+  if (answer.visualization.type !== "time_series" || rows.length < 3) return;
+
+  const width = 520, height = 210, left = 8, right = 8, top = 16, bottom = 26;
+  const peak = rows.reduce((best, row) => (row.trial_count > best.trial_count ? row : best), rows[0]);
+  const x = (i) => left + (i / (rows.length - 1)) * (width - left - right);
+  const y = (v) => top + (1 - v / peak.trial_count) * (height - top - bottom);
+  const points = rows.map((row, i) => `${x(i).toFixed(1)},${y(row.trial_count).toFixed(1)}`);
+  const peakIndex = rows.indexOf(peak);
+  const ns = "http://www.w3.org/2000/svg";
+  const node = (tag, attrs) => {
+    const n = document.createElementNS(ns, tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    return n;
+  };
+  const svg = node("svg", { viewBox: `0 0 ${width} ${height}`, preserveAspectRatio: "none", "aria-hidden": "true" });
+  const gradient = node("linearGradient", { id: "hero-fill", x1: "0", y1: "0", x2: "0", y2: "1" });
+  gradient.append(node("stop", { offset: "0%", "stop-color": SERIES[0], "stop-opacity": "0.28" }), node("stop", { offset: "100%", "stop-color": SERIES[0], "stop-opacity": "0.02" }));
+  const defs = node("defs", {});
+  defs.append(gradient);
+  const base = height - bottom;
+  svg.append(
+    defs,
+    node("line", { x1: left, x2: width - right, y1: base, y2: base, stroke: css("--line-strong"), "stroke-width": "1" }),
+    node("polygon", { points: `${x(0)},${base} ${points.join(" ")} ${x(rows.length - 1)},${base}`, fill: "url(#hero-fill)" }),
+    node("polyline", { points: points.join(" "), fill: "none", stroke: SERIES[0], "stroke-width": "2.4", "stroke-linejoin": "round", "vector-effect": "non-scaling-stroke" }),
+    node("circle", { cx: x(peakIndex), cy: y(peak.trial_count), r: "5", fill: css("--coral"), stroke: "#fff", "stroke-width": "2" }),
+  );
+  for (const i of [0, Math.floor((rows.length - 1) / 2), rows.length - 1]) {
+    const label = node("text", { x: x(i), y: height - 6, class: "axis", "text-anchor": i === 0 ? "start" : i === rows.length - 1 ? "end" : "middle" });
+    label.textContent = rows[i].period;
+    svg.append(label);
+  }
+  const spark = $("hero-spark");
+  spark.replaceChildren(svg);
+  spark.setAttribute("aria-label", `Line chart of trials started per year from ${rows[0].period} to ${rows.at(-1).period}, peaking at ${number(peak.trial_count)} trials in ${peak.period}.`);
+
+  $("hero-card-title").textContent = answer.visualization.title;
+  $("hero-card-sub").textContent = `${number(sample.cohorts[0].total)} trials, saved ${formatDate(sample.data_version)}, complete years shown`;
+  const citation = peak.citations?.[0];
+  if (citation) {
+    const field = citation.field.split(".").slice(-2).join(".");
+    $("hero-cite").replaceChildren(
+      el("span", { class: "cite-icon", "aria-hidden": "true" }, icon("i-cite")),
+      el("span", {}, `${peak.period} has ${number(peak.trial_count)} trials. One of them is `,
+        el("a", { href: citation.url, rel: "noopener" }, citation.nct_id),
+        ", whose ", el("code", {}, field), ` reads ${citation.excerpt}.`),
+    );
+  }
+}
+
 setUpForm();
+loadSamples();
