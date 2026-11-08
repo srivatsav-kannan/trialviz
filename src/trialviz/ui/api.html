@@ -63,6 +63,10 @@
       agent: { disabled: true },
       mcp: { disabled: true },
       showDeveloperTools: "never",
+      // The reference documents the API; requests are sent with curl or a client of the
+      // reader's own, so Scalar's built-in request client is turned off.
+      hideClientButton: true,
+      hideTestRequestButton: true,
       metaData: { title: "trialviz API reference" },
       customCss: `
         .light-mode, .scalar-app {

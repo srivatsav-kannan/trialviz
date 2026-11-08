@@ -14,7 +14,7 @@ cp .env.example .env    # add ANTHROPIC_API_KEY here to let Claude read question
 uv run uvicorn trialviz.api:create_app --factory --reload
 ```
 
-The service then listens on `http://localhost:8000`. The API reference at `/docs` is generated from the service's own OpenAPI document and includes request examples, real response examples, every error, and a client for sending requests from the page. Without an API key, questions are read by a rule-based interpreter that understands years, phases, statuses and common analysis phrasing but cannot tell a drug from a disease. With a key, Claude reads the question and the rule-based interpreter takes over whenever Claude is unavailable. Spending on Claude is capped at $20 by default, and the cap holds across restarts because every call reserves its worst-case cost in a ledger on disk before it is made.
+The service then listens on `http://localhost:8000`. The API reference at `/docs` is generated from the service's own OpenAPI document and includes request examples, real response examples, every error, and a curl command for every endpoint. Without an API key, questions are read by a rule-based interpreter that understands years, phases, statuses and common analysis phrasing but cannot tell a drug from a disease. With a key, Claude reads the question and the rule-based interpreter takes over whenever Claude is unavailable. Spending on Claude is capped at $20 by default, and the cap holds across restarts because every call reserves its worst-case cost in a ledger on disk before it is made.
 
 From the command line, the example request from the assignment looks like this:
 

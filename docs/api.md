@@ -1,6 +1,6 @@
 # API reference
 
-This page lists every endpoint, request field and response field, with the values each one accepts. It is meant for anyone writing a client. The service also publishes an OpenAPI document at `/openapi.json`, generated from the same Pydantic models that validate requests, and renders it as an interactive reference at `/docs` with request examples, response examples cut from a saved answer, and a client for sending requests. The overview, examples and error descriptions in that reference live in `src/trialviz/openapi.py`, and its request examples are validated against the request model when the service starts.
+This page lists every endpoint, request field and response field, with the values each one accepts. It is meant for anyone writing a client. The service also publishes an OpenAPI document at `/openapi.json`, generated from the same Pydantic models that validate requests, and renders it as an interactive reference at `/docs` with request examples, response examples cut from a saved answer, and a curl command for every endpoint. The overview, examples and error descriptions in that reference live in `src/trialviz/openapi.py`, and its request examples are validated against the request model when the service starts.
 
 ## Endpoints
 
