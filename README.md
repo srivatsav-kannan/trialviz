@@ -145,6 +145,7 @@ Settings are read from the environment or from `.env`.
 | `LLM_DAILY_CAP_USD` | unset | Optional cap on Claude spending per UTC day; empty means none |
 | `DATABASE_URL` | unset | Postgres for the spend total and saved answers, so they survive restarts and are shared by processes; without it, both are kept in local files |
 | `LLM_LEDGER_PATH` | `var/llm_spend.json` | Where spending is recorded locally |
+| `CTGOV_API_ROOT` | `https://clinicaltrials.gov/api/v2` | The registry API the service queries |
 | `CTGOV_REQUESTS_PER_MINUTE` | `50` | Spacing between registry requests |
 | `CTGOV_CACHE_DIR` | `var/cache/ctgov` | Registry response cache, disabled when set empty |
 | `RETRIEVAL_MAX_RECORDS` | `10000` | Most trials downloaded per query |
