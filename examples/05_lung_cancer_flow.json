@@ -1,0 +1,5499 @@
+{
+  "request": {
+    "query": "How do lung cancer trials started in 2016 flow from sponsor class to phase to overall status?"
+  },
+  "response": {
+    "status": "resolved",
+    "query": "How do lung cancer trials started in 2016 flow from sponsor class to phase to overall status?",
+    "visualization": {
+      "type": "sankey",
+      "reason": "how trials move from one stage to the next",
+      "encoding": {
+        "source": {
+          "field": "source",
+          "type": "nominal",
+          "title": "From",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "target": {
+          "field": "target",
+          "type": "nominal",
+          "title": "To",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "value": {
+          "field": "trial_count",
+          "type": "quantitative",
+          "title": "Trials",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        },
+        "node_label": {
+          "field": "label",
+          "type": "nominal",
+          "title": "Stage value",
+          "sort": null,
+          "scale": null,
+          "stack": null
+        }
+      },
+      "options": {
+        "stages": [
+          "Sponsor class",
+          "Phase",
+          "Overall status"
+        ]
+      },
+      "data": {
+        "nodes": [
+          {
+            "id": "0:INDUSTRY",
+            "stage": 0,
+            "stage_label": "Sponsor class",
+            "label": "Industry",
+            "trial_count": 158,
+            "nct_ids": [
+              "NCT03366480",
+              "NCT02839954",
+              "NCT02983500",
+              "NCT02900664",
+              "NCT02654587",
+              "NCT02639091",
+              "NCT02875223",
+              "NCT03633006",
+              "NCT02890069",
+              "NCT02639234",
+              "NCT02874664",
+              "NCT03758287",
+              "NCT02657434",
+              "NCT02713867",
+              "NCT02906163",
+              "NCT02835690",
+              "NCT02834247",
+              "NCT02873416",
+              "NCT02838420",
+              "NCT03289780",
+              "NCT02996214",
+              "NCT02910999",
+              "NCT02658214",
+              "NCT02922764",
+              "NCT02831959",
+              "NCT02855125",
+              "NCT03950674",
+              "NCT02926768",
+              "NCT03050047",
+              "NCT02923349",
+              "NCT02884479",
+              "NCT02840994",
+              "NCT02897778",
+              "NCT02783300",
+              "NCT02464007",
+              "NCT02734004",
+              "NCT02712905",
+              "NCT02892123",
+              "NCT02914990",
+              "NCT02763579",
+              "NCT02659059",
+              "NCT02777567",
+              "NCT02799095",
+              "NCT02647164",
+              "NCT02924233",
+              "NCT02897765",
+              "NCT02659631",
+              "NCT02777658",
+              "NCT02847728",
+              "NCT02815592",
+              "NCT02835599",
+              "NCT02697591",
+              "NCT02674568",
+              "NCT02805660",
+              "NCT02742623",
+              "NCT02695550",
+              "NCT02879097",
+              "NCT02860780",
+              "NCT02735980",
+              "NCT02754882",
+              "NCT02673814",
+              "NCT02743637",
+              "NCT02906852",
+              "NCT03850444",
+              "NCT02679170",
+              "NCT03382496",
+              "NCT02775435",
+              "NCT02578680",
+              "NCT02896231",
+              "NCT02932345",
+              "NCT02711345",
+              "NCT02991651",
+              "NCT02576665",
+              "NCT02819999",
+              "NCT02862587",
+              "NCT02936323",
+              "NCT03425825",
+              "NCT02648724",
+              "NCT02588612",
+              "NCT02797964",
+              "NCT02711137",
+              "NCT02714608",
+              "NCT02909452",
+              "NCT02845089",
+              "NCT02826161",
+              "NCT02934360",
+              "NCT02831491",
+              "NCT02937818",
+              "NCT02799862",
+              "NCT02646748",
+              "NCT02663518",
+              "NCT02635061",
+              "NCT02658747",
+              "NCT02771626",
+              "NCT02582125",
+              "NCT02651441",
+              "NCT02718066",
+              "NCT02715284",
+              "NCT02762877",
+              "NCT02955940",
+              "NCT02609776",
+              "NCT02973789",
+              "NCT03837600",
+              "NCT02869789",
+              "NCT02763761",
+              "NCT02635672",
+              "NCT02955251",
+              "NCT02619929",
+              "NCT02572687",
+              "NCT02729298",
+              "NCT02713529",
+              "NCT04276025",
+              "NCT03615443",
+              "NCT02702921",
+              "NCT02952729",
+              "NCT02740985",
+              "NCT02997501",
+              "NCT02699606",
+              "NCT02949895",
+              "NCT02698176",
+              "NCT02857270",
+              "NCT04237805",
+              "NCT02779751",
+              "NCT02460367",
+              "NCT03130881",
+              "NCT02867371",
+              "NCT02810457",
+              "NCT02988817",
+              "NCT02941601",
+              "NCT02737501",
+              "NCT02864992",
+              "NCT02566993",
+              "NCT02588261",
+              "NCT02644889",
+              "NCT02862457",
+              "NCT02797977",
+              "NCT02715102",
+              "NCT02789345",
+              "NCT02848651",
+              "NCT02968979",
+              "NCT03083743",
+              "NCT02767804",
+              "NCT02725892",
+              "NCT03000257",
+              "NCT02658890",
+              "NCT02661009",
+              "NCT02906150",
+              "NCT02944396",
+              "NCT02983045",
+              "NCT02961283",
+              "NCT02817633",
+              "NCT04843007",
+              "NCT02630186",
+              "NCT02917993",
+              "NCT02903914",
+              "NCT02980536",
+              "NCT02913443",
+              "NCT02726568"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03366480",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03366480"
+              },
+              {
+                "nct_id": "NCT02839954",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02839954"
+              },
+              {
+                "nct_id": "NCT02983500",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02983500"
+              }
+            ]
+          },
+          {
+            "id": "0:NETWORK",
+            "stage": 0,
+            "stage_label": "Sponsor class",
+            "label": "Network",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT02470065",
+              "NCT02728596",
+              "NCT02764086"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02470065",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NETWORK",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02470065"
+              },
+              {
+                "nct_id": "NCT02728596",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NETWORK",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02728596"
+              },
+              {
+                "nct_id": "NCT02764086",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NETWORK",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02764086"
+              }
+            ]
+          },
+          {
+            "id": "0:NIH",
+            "stage": 0,
+            "stage_label": "Sponsor class",
+            "label": "NIH",
+            "trial_count": 14,
+            "nct_ids": [
+              "NCT02682667",
+              "NCT02567396",
+              "NCT02595944",
+              "NCT02498613",
+              "NCT02595866",
+              "NCT02759835",
+              "NCT02535338",
+              "NCT02484443",
+              "NCT02769962",
+              "NCT02496663",
+              "NCT02520778",
+              "NCT02595931",
+              "NCT02642042",
+              "NCT02839681"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02682667",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02682667"
+              },
+              {
+                "nct_id": "NCT02567396",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02567396"
+              },
+              {
+                "nct_id": "NCT02595944",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02595944"
+              }
+            ]
+          },
+          {
+            "id": "0:OTHER",
+            "stage": 0,
+            "stage_label": "Sponsor class",
+            "label": "Other (academic, hospital, nonprofit)",
+            "trial_count": 332,
+            "nct_ids": [
+              "NCT02783079",
+              "NCT03244605",
+              "NCT02669719",
+              "NCT02419170",
+              "NCT02705404",
+              "NCT06218901",
+              "NCT02955290",
+              "NCT03705546",
+              "NCT03248089",
+              "NCT02845856",
+              "NCT02753569",
+              "NCT02871739",
+              "NCT03391557",
+              "NCT02994576",
+              "NCT02952261",
+              "NCT04201769",
+              "NCT02825095",
+              "NCT02822209",
+              "NCT02848872",
+              "NCT02938546",
+              "NCT02705820",
+              "NCT03384511",
+              "NCT02835833",
+              "NCT02623595",
+              "NCT02817945",
+              "NCT02936804",
+              "NCT02704832",
+              "NCT02965391",
+              "NCT02650635",
+              "NCT02882750",
+              "NCT02750215",
+              "NCT02820116",
+              "NCT03144622",
+              "NCT02789800",
+              "NCT02666755",
+              "NCT02786589",
+              "NCT02788058",
+              "NCT02748889",
+              "NCT03004586",
+              "NCT02769286",
+              "NCT02324868",
+              "NCT03419286",
+              "NCT02966769",
+              "NCT02840578",
+              "NCT02995187",
+              "NCT02795156",
+              "NCT02759679",
+              "NCT02732834",
+              "NCT02922777",
+              "NCT02992912",
+              "NCT03207594",
+              "NCT03050411",
+              "NCT02710396",
+              "NCT02795884",
+              "NCT04506359",
+              "NCT04710459",
+              "NCT02837679",
+              "NCT02713269",
+              "NCT04684186",
+              "NCT03683940",
+              "NCT02971176",
+              "NCT03222258",
+              "NCT02572843",
+              "NCT02679963",
+              "NCT03211078",
+              "NCT02596490",
+              "NCT04977791",
+              "NCT05673798",
+              "NCT02841579",
+              "NCT02916459",
+              "NCT02879994",
+              "NCT02551211",
+              "NCT02801734",
+              "NCT02579564",
+              "NCT03156868",
+              "NCT02417662",
+              "NCT02904954",
+              "NCT02941003",
+              "NCT02360761",
+              "NCT02665390",
+              "NCT02347839",
+              "NCT02688894",
+              "NCT02843815",
+              "NCT02497664",
+              "NCT02780778",
+              "NCT03853967",
+              "NCT02617186",
+              "NCT02688686",
+              "NCT02879773",
+              "NCT02701400",
+              "NCT02696993",
+              "NCT02742597",
+              "NCT02638090",
+              "NCT02662634",
+              "NCT02906384",
+              "NCT02769832",
+              "NCT02736916",
+              "NCT02575404",
+              "NCT02734069",
+              "NCT02716311",
+              "NCT02835066",
+              "NCT03632369",
+              "NCT02693080",
+              "NCT02754388",
+              "NCT02949076",
+              "NCT02649673",
+              "NCT03741868",
+              "NCT02687997",
+              "NCT02331290",
+              "NCT03394222",
+              "NCT05945745",
+              "NCT02706392",
+              "NCT03970564",
+              "NCT02738593",
+              "NCT02946671",
+              "NCT03002844",
+              "NCT03226964",
+              "NCT02738398",
+              "NCT02575898",
+              "NCT02793856",
+              "NCT02425072",
+              "NCT02793713",
+              "NCT02785562",
+              "NCT02962115",
+              "NCT02773238",
+              "NCT02597738",
+              "NCT03077854",
+              "NCT02679872",
+              "NCT02713828",
+              "NCT02815007",
+              "NCT03009682",
+              "NCT02709720",
+              "NCT02469701",
+              "NCT02722785",
+              "NCT02844140",
+              "NCT02570815",
+              "NCT03060343",
+              "NCT02770014",
+              "NCT03199599",
+              "NCT02736643",
+              "NCT02321501",
+              "NCT02738606",
+              "NCT04879316",
+              "NCT03374280",
+              "NCT02765620",
+              "NCT02972320",
+              "NCT02629523",
+              "NCT02911259",
+              "NCT01951482",
+              "NCT02804100",
+              "NCT02858869",
+              "NCT02790866",
+              "NCT02977169",
+              "NCT02735746",
+              "NCT02883543",
+              "NCT02648178",
+              "NCT02734524",
+              "NCT02816697",
+              "NCT03299478",
+              "NCT02730897",
+              "NCT02961270",
+              "NCT02451865",
+              "NCT02914899",
+              "NCT02875457",
+              "NCT02525757",
+              "NCT03007875",
+              "NCT02621398",
+              "NCT02684461",
+              "NCT03227016",
+              "NCT02933346",
+              "NCT02755675",
+              "NCT02855281",
+              "NCT02804217",
+              "NCT02696863",
+              "NCT02259725",
+              "NCT02674815",
+              "NCT01684696",
+              "NCT02716038",
+              "NCT02673021",
+              "NCT02893332",
+              "NCT02788461",
+              "NCT03424759",
+              "NCT02956551",
+              "NCT02936947",
+              "NCT06289023",
+              "NCT02664259",
+              "NCT02931461",
+              "NCT03746262",
+              "NCT02623257",
+              "NCT03414944",
+              "NCT03102229",
+              "NCT02967133",
+              "NCT02945852",
+              "NCT02736513",
+              "NCT02974426",
+              "NCT02606149",
+              "NCT02755883",
+              "NCT02652286",
+              "NCT02532062",
+              "NCT02920996",
+              "NCT02869217",
+              "NCT02669914",
+              "NCT02946216",
+              "NCT02738723",
+              "NCT02917369",
+              "NCT02819024",
+              "NCT02705339",
+              "NCT02581787",
+              "NCT02931942",
+              "NCT02704767",
+              "NCT02756767",
+              "NCT02688907",
+              "NCT02644252",
+              "NCT02821793",
+              "NCT02954523",
+              "NCT05979623",
+              "NCT04476641",
+              "NCT02906280",
+              "NCT02764866",
+              "NCT01951469",
+              "NCT02976740",
+              "NCT05506800",
+              "NCT03009630",
+              "NCT02745691",
+              "NCT02760225",
+              "NCT02771314",
+              "NCT02972333",
+              "NCT02812667",
+              "NCT02821936",
+              "NCT02564380",
+              "NCT02813603",
+              "NCT03164486",
+              "NCT02320123",
+              "NCT03136523",
+              "NCT02718651",
+              "NCT02689050",
+              "NCT02919462",
+              "NCT02985203",
+              "NCT02183883",
+              "NCT02542930",
+              "NCT02906943",
+              "NCT02897375",
+              "NCT02951611",
+              "NCT02650700",
+              "NCT02581943",
+              "NCT02781857",
+              "NCT02319889",
+              "NCT02844608",
+              "NCT02633189",
+              "NCT02838836",
+              "NCT02688036",
+              "NCT02374255",
+              "NCT02752126",
+              "NCT03276715",
+              "NCT02951897",
+              "NCT02950038",
+              "NCT02955758",
+              "NCT02787473",
+              "NCT02833246",
+              "NCT02965300",
+              "NCT02823990",
+              "NCT02744092",
+              "NCT06207292",
+              "NCT02907606",
+              "NCT03042221",
+              "NCT02744664",
+              "NCT02852083",
+              "NCT02992353",
+              "NCT02014545",
+              "NCT03130192",
+              "NCT02341170",
+              "NCT03044769",
+              "NCT02731001",
+              "NCT02710565",
+              "NCT03129256",
+              "NCT02719717",
+              "NCT02716051",
+              "NCT02944903",
+              "NCT02859077",
+              "NCT03215537",
+              "NCT03141957",
+              "NCT03436329",
+              "NCT02713984",
+              "NCT02930954",
+              "NCT03372694",
+              "NCT02319408",
+              "NCT02843568",
+              "NCT02738684",
+              "NCT05816902",
+              "NCT03551951",
+              "NCT02675829",
+              "NCT02604862",
+              "NCT02725918",
+              "NCT02585362",
+              "NCT02528942",
+              "NCT03047616",
+              "NCT03086733",
+              "NCT05995821",
+              "NCT05331833",
+              "NCT04353349",
+              "NCT03449563",
+              "NCT02836834",
+              "NCT02686775",
+              "NCT02705365",
+              "NCT02886897",
+              "NCT02829736",
+              "NCT03360630",
+              "NCT04079400",
+              "NCT03833193",
+              "NCT02818426",
+              "NCT02639026",
+              "NCT02852798",
+              "NCT02523469",
+              "NCT02803203",
+              "NCT02410603",
+              "NCT02737709",
+              "NCT02757092",
+              "NCT02759783",
+              "NCT03228056",
+              "NCT07631611",
+              "NCT02839265",
+              "NCT02927340",
+              "NCT02768558",
+              "NCT02591615",
+              "NCT02592837",
+              "NCT02733107",
+              "NCT02732769",
+              "NCT02798003",
+              "NCT02719847",
+              "NCT02974933",
+              "NCT02503358",
+              "NCT02681549"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02783079",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02783079"
+              },
+              {
+                "nct_id": "NCT03244605",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03244605"
+              },
+              {
+                "nct_id": "NCT02669719",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02669719"
+              }
+            ]
+          },
+          {
+            "id": "0:OTHER_GOV",
+            "stage": 0,
+            "stage_label": "Sponsor class",
+            "label": "Other government",
+            "trial_count": 7,
+            "nct_ids": [
+              "NCT02755337",
+              "NCT02740894",
+              "NCT02967497",
+              "NCT03126799",
+              "NCT02939729",
+              "NCT02991924",
+              "NCT02967406"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02755337",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02755337"
+              },
+              {
+                "nct_id": "NCT02740894",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02740894"
+              },
+              {
+                "nct_id": "NCT02967497",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02967497"
+              }
+            ]
+          },
+          {
+            "id": "0:FED",
+            "stage": 0,
+            "stage_label": "Sponsor class",
+            "label": "U.S. federal (non-NIH)",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02653612",
+              "NCT03007953"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02653612",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "FED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02653612"
+              },
+              {
+                "nct_id": "NCT03007953",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "FED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03007953"
+              }
+            ]
+          },
+          {
+            "id": "1:EARLY_PHASE1",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Early Phase 1",
+            "trial_count": 9,
+            "nct_ids": [
+              "NCT02419170",
+              "NCT02825095",
+              "NCT02817945",
+              "NCT03060343",
+              "NCT02914899",
+              "NCT02652286",
+              "NCT03164486",
+              "NCT02319889",
+              "NCT02604862"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02419170",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02419170"
+              },
+              {
+                "nct_id": "NCT02825095",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02825095"
+              },
+              {
+                "nct_id": "NCT02817945",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02817945"
+              }
+            ]
+          },
+          {
+            "id": "1:PHASE1",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Phase 1",
+            "trial_count": 84,
+            "nct_ids": [
+              "NCT02900664",
+              "NCT02835833",
+              "NCT02639091",
+              "NCT02875223",
+              "NCT02650635",
+              "NCT02890069",
+              "NCT02567396",
+              "NCT02874664",
+              "NCT02922777",
+              "NCT03050411",
+              "NCT02835690",
+              "NCT02834247",
+              "NCT02658214",
+              "NCT02922764",
+              "NCT02926768",
+              "NCT03050047",
+              "NCT02840994",
+              "NCT02897778",
+              "NCT02783300",
+              "NCT02464007",
+              "NCT02575404",
+              "NCT02693080",
+              "NCT02892123",
+              "NCT02914990",
+              "NCT02649673",
+              "NCT02706392",
+              "NCT02946671",
+              "NCT02897765",
+              "NCT02793856",
+              "NCT02659631",
+              "NCT02595866",
+              "NCT02815592",
+              "NCT02695550",
+              "NCT02860780",
+              "NCT02570815",
+              "NCT02743637",
+              "NCT02321501",
+              "NCT02858869",
+              "NCT02451865",
+              "NCT02896231",
+              "NCT02711345",
+              "NCT02991651",
+              "NCT02576665",
+              "NCT02819999",
+              "NCT02621398",
+              "NCT02588612",
+              "NCT03227016",
+              "NCT02909452",
+              "NCT02956551",
+              "NCT02646748",
+              "NCT02663518",
+              "NCT02635061",
+              "NCT02869217",
+              "NCT02715284",
+              "NCT02496663",
+              "NCT02520778",
+              "NCT02609776",
+              "NCT02812667",
+              "NCT02635672",
+              "NCT02595931",
+              "NCT02955251",
+              "NCT02572687",
+              "NCT02729298",
+              "NCT02897375",
+              "NCT02952729",
+              "NCT02740985",
+              "NCT02949895",
+              "NCT02698176",
+              "NCT02857270",
+              "NCT02779751",
+              "NCT02460367",
+              "NCT03130881",
+              "NCT02862457",
+              "NCT02789345",
+              "NCT02836834",
+              "NCT03000257",
+              "NCT02653612",
+              "NCT02639026",
+              "NCT02944396",
+              "NCT02961283",
+              "NCT02817633",
+              "NCT02903914",
+              "NCT02503358",
+              "NCT02913443"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02900664",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02900664"
+              },
+              {
+                "nct_id": "NCT02835833",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02835833"
+              },
+              {
+                "nct_id": "NCT02639091",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02639091"
+              }
+            ]
+          },
+          {
+            "id": "1:PHASE1/PHASE2",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Phase 1/2",
+            "trial_count": 50,
+            "nct_ids": [
+              "NCT03366480",
+              "NCT02839954",
+              "NCT02955290",
+              "NCT02845856",
+              "NCT02786589",
+              "NCT02748889",
+              "NCT03758287",
+              "NCT02906163",
+              "NCT02873416",
+              "NCT02843815",
+              "NCT02923349",
+              "NCT02884479",
+              "NCT02688686",
+              "NCT02696993",
+              "NCT02638090",
+              "NCT02734004",
+              "NCT02712905",
+              "NCT02799095",
+              "NCT02924233",
+              "NCT02764086",
+              "NCT02713828",
+              "NCT02697591",
+              "NCT02805660",
+              "NCT02535338",
+              "NCT03007875",
+              "NCT02862587",
+              "NCT02936323",
+              "NCT02648724",
+              "NCT02797964",
+              "NCT02711137",
+              "NCT02769962",
+              "NCT02771626",
+              "NCT02651441",
+              "NCT02581787",
+              "NCT02718066",
+              "NCT02954523",
+              "NCT02713529",
+              "NCT04237805",
+              "NCT02988817",
+              "NCT02797977",
+              "NCT02713984",
+              "NCT02658890",
+              "NCT02886897",
+              "NCT03360630",
+              "NCT02818426",
+              "NCT02523469",
+              "NCT02983045",
+              "NCT02803203",
+              "NCT02630186",
+              "NCT02917993"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03366480",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03366480"
+              },
+              {
+                "nct_id": "NCT02839954",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02839954"
+              },
+              {
+                "nct_id": "NCT02955290",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02955290"
+              }
+            ]
+          },
+          {
+            "id": "1:PHASE2",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Phase 2",
+            "trial_count": 108,
+            "nct_ids": [
+              "NCT02669719",
+              "NCT02470065",
+              "NCT02994576",
+              "NCT02705820",
+              "NCT02623595",
+              "NCT02750215",
+              "NCT02820116",
+              "NCT02788058",
+              "NCT02769286",
+              "NCT02995187",
+              "NCT02795156",
+              "NCT02639234",
+              "NCT02992912",
+              "NCT02710396",
+              "NCT02713269",
+              "NCT02572843",
+              "NCT02679963",
+              "NCT02841579",
+              "NCT02855125",
+              "NCT02879994",
+              "NCT02904954",
+              "NCT02347839",
+              "NCT02701400",
+              "NCT02662634",
+              "NCT02906384",
+              "NCT02769832",
+              "NCT02716311",
+              "NCT02498613",
+              "NCT02659059",
+              "NCT03002844",
+              "NCT02425072",
+              "NCT02773238",
+              "NCT02759835",
+              "NCT02815007",
+              "NCT02674568",
+              "NCT03009682",
+              "NCT02709720",
+              "NCT02469701",
+              "NCT02735980",
+              "NCT02484443",
+              "NCT02673814",
+              "NCT02770014",
+              "NCT02738606",
+              "NCT03374280",
+              "NCT02972320",
+              "NCT02629523",
+              "NCT02977169",
+              "NCT02734524",
+              "NCT02961270",
+              "NCT02525757",
+              "NCT02684461",
+              "NCT02755675",
+              "NCT02259725",
+              "NCT02714608",
+              "NCT02716038",
+              "NCT02831491",
+              "NCT02937818",
+              "NCT03424759",
+              "NCT06289023",
+              "NCT02967133",
+              "NCT02945852",
+              "NCT02736513",
+              "NCT02582125",
+              "NCT02967497",
+              "NCT02920996",
+              "NCT03126799",
+              "NCT02669914",
+              "NCT02738723",
+              "NCT02705339",
+              "NCT02704767",
+              "NCT02688907",
+              "NCT02955940",
+              "NCT04476641",
+              "NCT02976740",
+              "NCT02771314",
+              "NCT02564380",
+              "NCT02763761",
+              "NCT02919462",
+              "NCT02985203",
+              "NCT02183883",
+              "NCT02542930",
+              "NCT02581943",
+              "NCT02699606",
+              "NCT02950038",
+              "NCT02642042",
+              "NCT02955758",
+              "NCT02787473",
+              "NCT02823990",
+              "NCT02839681",
+              "NCT02852083",
+              "NCT02941601",
+              "NCT02864992",
+              "NCT02014545",
+              "NCT03129256",
+              "NCT02930954",
+              "NCT02848651",
+              "NCT02675829",
+              "NCT02725918",
+              "NCT03086733",
+              "NCT02906150",
+              "NCT02737709",
+              "NCT02839265",
+              "NCT02927340",
+              "NCT02591615",
+              "NCT02733107",
+              "NCT02974933",
+              "NCT02681549",
+              "NCT02726568"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02669719",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02669719"
+              },
+              {
+                "nct_id": "NCT02470065",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02470065"
+              },
+              {
+                "nct_id": "NCT02994576",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02994576"
+              }
+            ]
+          },
+          {
+            "id": "1:PHASE2/PHASE3",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Phase 2/3",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02780778",
+              "NCT02759783"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02780778",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02780778"
+              },
+              {
+                "nct_id": "NCT02759783",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02759783"
+              }
+            ]
+          },
+          {
+            "id": "1:PHASE3",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Phase 3",
+            "trial_count": 42,
+            "nct_ids": [
+              "NCT03244605",
+              "NCT04201769",
+              "NCT02938546",
+              "NCT02654587",
+              "NCT02657434",
+              "NCT02595944",
+              "NCT02795884",
+              "NCT02713867",
+              "NCT02838420",
+              "NCT02831959",
+              "NCT02579564",
+              "NCT03950674",
+              "NCT02360761",
+              "NCT02763579",
+              "NCT02879097",
+              "NCT02754882",
+              "NCT03850444",
+              "NCT01951482",
+              "NCT02883543",
+              "NCT02775435",
+              "NCT02578680",
+              "NCT02875457",
+              "NCT02826161",
+              "NCT02893332",
+              "NCT02974426",
+              "NCT02644252",
+              "NCT02906280",
+              "NCT01951469",
+              "NCT02973789",
+              "NCT02972333",
+              "NCT02633189",
+              "NCT02997501",
+              "NCT02688036",
+              "NCT02810457",
+              "NCT02737501",
+              "NCT02566993",
+              "NCT02588261",
+              "NCT02859077",
+              "NCT03372694",
+              "NCT03083743",
+              "NCT02767804",
+              "NCT02768558"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03244605",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03244605"
+              },
+              {
+                "nct_id": "NCT04201769",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04201769"
+              },
+              {
+                "nct_id": "NCT02938546",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02938546"
+              }
+            ]
+          },
+          {
+            "id": "1:PHASE4",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Phase 4",
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT03384511",
+              "NCT02996214",
+              "NCT03394222",
+              "NCT02869789",
+              "NCT02744664"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03384511",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE4\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03384511"
+              },
+              {
+                "nct_id": "NCT02996214",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE4\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02996214"
+              },
+              {
+                "nct_id": "NCT03394222",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE4\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03394222"
+              }
+            ]
+          },
+          {
+            "id": "1:NA",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Not applicable",
+            "trial_count": 98,
+            "nct_ids": [
+              "NCT02783079",
+              "NCT02728596",
+              "NCT02871739",
+              "NCT03391557",
+              "NCT02952261",
+              "NCT02822209",
+              "NCT02936804",
+              "NCT02704832",
+              "NCT02789800",
+              "NCT03004586",
+              "NCT02324868",
+              "NCT02759679",
+              "NCT04506359",
+              "NCT04710459",
+              "NCT02837679",
+              "NCT03683940",
+              "NCT02971176",
+              "NCT03211078",
+              "NCT02596490",
+              "NCT02916459",
+              "NCT02551211",
+              "NCT02801734",
+              "NCT02417662",
+              "NCT02941003",
+              "NCT02665390",
+              "NCT02497664",
+              "NCT03853967",
+              "NCT02617186",
+              "NCT02742597",
+              "NCT02736916",
+              "NCT02949076",
+              "NCT02687997",
+              "NCT03226964",
+              "NCT02738398",
+              "NCT02575898",
+              "NCT02785562",
+              "NCT02962115",
+              "NCT02597738",
+              "NCT03077854",
+              "NCT02722785",
+              "NCT02844140",
+              "NCT02911259",
+              "NCT02790866",
+              "NCT02648178",
+              "NCT02816697",
+              "NCT02674815",
+              "NCT01684696",
+              "NCT02673021",
+              "NCT02788461",
+              "NCT02936947",
+              "NCT02664259",
+              "NCT02931461",
+              "NCT03414944",
+              "NCT03102229",
+              "NCT02606149",
+              "NCT02755883",
+              "NCT02532062",
+              "NCT02819024",
+              "NCT02764866",
+              "NCT03009630",
+              "NCT02760225",
+              "NCT02821936",
+              "NCT02320123",
+              "NCT02951611",
+              "NCT02650700",
+              "NCT02939729",
+              "NCT02702921",
+              "NCT02844608",
+              "NCT02374255",
+              "NCT02752126",
+              "NCT02951897",
+              "NCT02833246",
+              "NCT02744092",
+              "NCT06207292",
+              "NCT02867371",
+              "NCT02992353",
+              "NCT02341170",
+              "NCT02731001",
+              "NCT02710565",
+              "NCT02719717",
+              "NCT02716051",
+              "NCT03215537",
+              "NCT03436329",
+              "NCT02319408",
+              "NCT02843568",
+              "NCT02585362",
+              "NCT02528942",
+              "NCT03449563",
+              "NCT02686775",
+              "NCT02705365",
+              "NCT02829736",
+              "NCT03833193",
+              "NCT03007953",
+              "NCT02757092",
+              "NCT03228056",
+              "NCT02592837",
+              "NCT02732769",
+              "NCT02967406"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02783079",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02783079"
+              },
+              {
+                "nct_id": "NCT02728596",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02728596"
+              },
+              {
+                "nct_id": "NCT02871739",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02871739"
+              }
+            ]
+          },
+          {
+            "id": "1:NOT_REPORTED",
+            "stage": 1,
+            "stage_label": "Phase",
+            "label": "Not reported",
+            "trial_count": 118,
+            "nct_ids": [
+              "NCT02755337",
+              "NCT02705404",
+              "NCT06218901",
+              "NCT03705546",
+              "NCT03248089",
+              "NCT02753569",
+              "NCT02682667",
+              "NCT02983500",
+              "NCT02848872",
+              "NCT02965391",
+              "NCT02882750",
+              "NCT03144622",
+              "NCT03633006",
+              "NCT02666755",
+              "NCT03419286",
+              "NCT02966769",
+              "NCT02840578",
+              "NCT02732834",
+              "NCT03207594",
+              "NCT04684186",
+              "NCT03222258",
+              "NCT03289780",
+              "NCT04977791",
+              "NCT02910999",
+              "NCT05673798",
+              "NCT03156868",
+              "NCT02688894",
+              "NCT02879773",
+              "NCT02734069",
+              "NCT02835066",
+              "NCT03632369",
+              "NCT02754388",
+              "NCT02740894",
+              "NCT03741868",
+              "NCT02331290",
+              "NCT02777567",
+              "NCT02647164",
+              "NCT05945745",
+              "NCT03970564",
+              "NCT02738593",
+              "NCT02777658",
+              "NCT02793713",
+              "NCT02847728",
+              "NCT02835599",
+              "NCT02679872",
+              "NCT02742623",
+              "NCT03199599",
+              "NCT02736643",
+              "NCT02906852",
+              "NCT04879316",
+              "NCT02765620",
+              "NCT02804100",
+              "NCT02735746",
+              "NCT02679170",
+              "NCT03382496",
+              "NCT03299478",
+              "NCT02730897",
+              "NCT02932345",
+              "NCT03425825",
+              "NCT02933346",
+              "NCT02855281",
+              "NCT02804217",
+              "NCT02696863",
+              "NCT02845089",
+              "NCT02934360",
+              "NCT02799862",
+              "NCT03746262",
+              "NCT02623257",
+              "NCT02658747",
+              "NCT02946216",
+              "NCT02917369",
+              "NCT02931942",
+              "NCT02756767",
+              "NCT02821793",
+              "NCT02762877",
+              "NCT05979623",
+              "NCT05506800",
+              "NCT03837600",
+              "NCT02745691",
+              "NCT02813603",
+              "NCT03136523",
+              "NCT02718651",
+              "NCT02689050",
+              "NCT02619929",
+              "NCT02906943",
+              "NCT02781857",
+              "NCT04276025",
+              "NCT03615443",
+              "NCT02838836",
+              "NCT03276715",
+              "NCT02991924",
+              "NCT02965300",
+              "NCT02907606",
+              "NCT03042221",
+              "NCT03130192",
+              "NCT03044769",
+              "NCT02644889",
+              "NCT02944903",
+              "NCT02715102",
+              "NCT03141957",
+              "NCT02738684",
+              "NCT05816902",
+              "NCT03551951",
+              "NCT02968979",
+              "NCT03047616",
+              "NCT05995821",
+              "NCT05331833",
+              "NCT04353349",
+              "NCT02725892",
+              "NCT04079400",
+              "NCT02852798",
+              "NCT02661009",
+              "NCT02410603",
+              "NCT07631611",
+              "NCT04843007",
+              "NCT02798003",
+              "NCT02719847",
+              "NCT02980536"
+            ],
+            "citations": []
+          },
+          {
+            "id": "2:RECRUITING",
+            "stage": 2,
+            "stage_label": "Overall status",
+            "label": "Recruiting",
+            "trial_count": 14,
+            "nct_ids": [
+              "NCT06218901",
+              "NCT02682667",
+              "NCT02596490",
+              "NCT04977791",
+              "NCT02688894",
+              "NCT02734069",
+              "NCT05945745",
+              "NCT02570815",
+              "NCT02917369",
+              "NCT02906943",
+              "NCT02838836",
+              "NCT03042221",
+              "NCT03551951",
+              "NCT05995821"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06218901",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06218901"
+              },
+              {
+                "nct_id": "NCT02682667",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02682667"
+              },
+              {
+                "nct_id": "NCT02596490",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02596490"
+              }
+            ]
+          },
+          {
+            "id": "2:ACTIVE_NOT_RECRUITING",
+            "stage": 2,
+            "stage_label": "Overall status",
+            "label": "Active, not recruiting",
+            "trial_count": 29,
+            "nct_ids": [
+              "NCT02955290",
+              "NCT02732834",
+              "NCT02595944",
+              "NCT02713269",
+              "NCT03289780",
+              "NCT02417662",
+              "NCT02617186",
+              "NCT02696993",
+              "NCT02638090",
+              "NCT02734004",
+              "NCT02498613",
+              "NCT02597738",
+              "NCT02321501",
+              "NCT03299478",
+              "NCT02525757",
+              "NCT02788461",
+              "NCT02869217",
+              "NCT02715284",
+              "NCT02496663",
+              "NCT02955940",
+              "NCT02609776",
+              "NCT03164486",
+              "NCT02595931",
+              "NCT02642042",
+              "NCT02779751",
+              "NCT02864992",
+              "NCT02767804",
+              "NCT02817633",
+              "NCT02967406"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02955290",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "ACTIVE_NOT_RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02955290"
+              },
+              {
+                "nct_id": "NCT02732834",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "ACTIVE_NOT_RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02732834"
+              },
+              {
+                "nct_id": "NCT02595944",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "ACTIVE_NOT_RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02595944"
+              }
+            ]
+          },
+          {
+            "id": "2:SUSPENDED",
+            "stage": 2,
+            "stage_label": "Overall status",
+            "label": "Suspended",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02470065",
+              "NCT05506800"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02470065",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "SUSPENDED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02470065"
+              },
+              {
+                "nct_id": "NCT05506800",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "SUSPENDED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05506800"
+              }
+            ]
+          },
+          {
+            "id": "2:TERMINATED",
+            "stage": 2,
+            "stage_label": "Overall status",
+            "label": "Terminated",
+            "trial_count": 61,
+            "nct_ids": [
+              "NCT02705404",
+              "NCT02654587",
+              "NCT02875223",
+              "NCT02650635",
+              "NCT02748889",
+              "NCT02324868",
+              "NCT02759679",
+              "NCT02710396",
+              "NCT02834247",
+              "NCT02679963",
+              "NCT02551211",
+              "NCT02464007",
+              "NCT02712905",
+              "NCT02649673",
+              "NCT02706392",
+              "NCT02659631",
+              "NCT02764086",
+              "NCT02835599",
+              "NCT02713828",
+              "NCT02805660",
+              "NCT02469701",
+              "NCT02770014",
+              "NCT02738606",
+              "NCT02932345",
+              "NCT02711345",
+              "NCT02991651",
+              "NCT02576665",
+              "NCT02819999",
+              "NCT02711137",
+              "NCT02826161",
+              "NCT02673021",
+              "NCT02893332",
+              "NCT02769962",
+              "NCT02936947",
+              "NCT02663518",
+              "NCT02635061",
+              "NCT02967133",
+              "NCT02974426",
+              "NCT02771626",
+              "NCT02532062",
+              "NCT02920996",
+              "NCT02669914",
+              "NCT02688907",
+              "NCT02644252",
+              "NCT02762877",
+              "NCT02954523",
+              "NCT02564380",
+              "NCT02919462",
+              "NCT02985203",
+              "NCT02319889",
+              "NCT02698176",
+              "NCT02460367",
+              "NCT02839681",
+              "NCT02588261",
+              "NCT02715102",
+              "NCT02829736",
+              "NCT02961283",
+              "NCT02737709",
+              "NCT02768558",
+              "NCT02630186",
+              "NCT02798003"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02705404",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "TERMINATED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02705404"
+              },
+              {
+                "nct_id": "NCT02654587",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "TERMINATED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02654587"
+              },
+              {
+                "nct_id": "NCT02875223",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "TERMINATED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02875223"
+              }
+            ]
+          },
+          {
+            "id": "2:COMPLETED",
+            "stage": 2,
+            "stage_label": "Overall status",
+            "label": "Completed",
+            "trial_count": 264,
+            "nct_ids": [
+              "NCT03366480",
+              "NCT03248089",
+              "NCT02845856",
+              "NCT02753569",
+              "NCT02728596",
+              "NCT02871739",
+              "NCT02994576",
+              "NCT02952261",
+              "NCT02983500",
+              "NCT02822209",
+              "NCT02900664",
+              "NCT02848872",
+              "NCT02705820",
+              "NCT03384511",
+              "NCT02835833",
+              "NCT02704832",
+              "NCT02639091",
+              "NCT02965391",
+              "NCT02882750",
+              "NCT02750215",
+              "NCT02789800",
+              "NCT03633006",
+              "NCT03004586",
+              "NCT02769286",
+              "NCT03419286",
+              "NCT02966769",
+              "NCT02840578",
+              "NCT02795156",
+              "NCT02890069",
+              "NCT02874664",
+              "NCT03758287",
+              "NCT02922777",
+              "NCT02992912",
+              "NCT02657434",
+              "NCT03207594",
+              "NCT02713867",
+              "NCT04710459",
+              "NCT03683940",
+              "NCT02971176",
+              "NCT02835690",
+              "NCT03222258",
+              "NCT02572843",
+              "NCT02838420",
+              "NCT02910999",
+              "NCT05673798",
+              "NCT02658214",
+              "NCT02922764",
+              "NCT02841579",
+              "NCT02831959",
+              "NCT02855125",
+              "NCT02879994",
+              "NCT02801734",
+              "NCT03950674",
+              "NCT02926768",
+              "NCT03156868",
+              "NCT02904954",
+              "NCT02843815",
+              "NCT02497664",
+              "NCT02923349",
+              "NCT02840994",
+              "NCT02879773",
+              "NCT02897778",
+              "NCT02783300",
+              "NCT02701400",
+              "NCT02742597",
+              "NCT02769832",
+              "NCT02575404",
+              "NCT02716311",
+              "NCT02693080",
+              "NCT02754388",
+              "NCT02892123",
+              "NCT02949076",
+              "NCT02914990",
+              "NCT02740894",
+              "NCT03741868",
+              "NCT02687997",
+              "NCT02763579",
+              "NCT02659059",
+              "NCT02777567",
+              "NCT03394222",
+              "NCT02799095",
+              "NCT03970564",
+              "NCT02946671",
+              "NCT02897765",
+              "NCT03226964",
+              "NCT02738398",
+              "NCT02575898",
+              "NCT02793856",
+              "NCT02777658",
+              "NCT02595866",
+              "NCT02793713",
+              "NCT02785562",
+              "NCT02847728",
+              "NCT02815592",
+              "NCT02962115",
+              "NCT02773238",
+              "NCT02759835",
+              "NCT02679872",
+              "NCT02697591",
+              "NCT02674568",
+              "NCT03009682",
+              "NCT02742623",
+              "NCT02709720",
+              "NCT02535338",
+              "NCT02860780",
+              "NCT02735980",
+              "NCT02754882",
+              "NCT02722785",
+              "NCT02484443",
+              "NCT03199599",
+              "NCT02736643",
+              "NCT02743637",
+              "NCT02906852",
+              "NCT03850444",
+              "NCT04879316",
+              "NCT02629523",
+              "NCT02911259",
+              "NCT01951482",
+              "NCT02858869",
+              "NCT02790866",
+              "NCT02735746",
+              "NCT02679170",
+              "NCT03382496",
+              "NCT02648178",
+              "NCT02816697",
+              "NCT02730897",
+              "NCT02775435",
+              "NCT02578680",
+              "NCT02914899",
+              "NCT02896231",
+              "NCT03007875",
+              "NCT02936323",
+              "NCT02621398",
+              "NCT03425825",
+              "NCT02684461",
+              "NCT02648724",
+              "NCT02588612",
+              "NCT02797964",
+              "NCT02933346",
+              "NCT02855281",
+              "NCT02259725",
+              "NCT02909452",
+              "NCT02674815",
+              "NCT02845089",
+              "NCT02716038",
+              "NCT02937818",
+              "NCT02799862",
+              "NCT02646748",
+              "NCT06289023",
+              "NCT02664259",
+              "NCT02931461",
+              "NCT03746262",
+              "NCT02623257",
+              "NCT03102229",
+              "NCT02945852",
+              "NCT02658747",
+              "NCT02606149",
+              "NCT02582125",
+              "NCT02755883",
+              "NCT02652286",
+              "NCT02819024",
+              "NCT02581787",
+              "NCT02718066",
+              "NCT02756767",
+              "NCT02821793",
+              "NCT05979623",
+              "NCT02764866",
+              "NCT02520778",
+              "NCT02973789",
+              "NCT03837600",
+              "NCT02745691",
+              "NCT02760225",
+              "NCT02869789",
+              "NCT02812667",
+              "NCT02821936",
+              "NCT02813603",
+              "NCT02320123",
+              "NCT03136523",
+              "NCT02718651",
+              "NCT02635672",
+              "NCT02689050",
+              "NCT02955251",
+              "NCT02183883",
+              "NCT02619929",
+              "NCT02572687",
+              "NCT02729298",
+              "NCT02897375",
+              "NCT02650700",
+              "NCT02581943",
+              "NCT02939729",
+              "NCT02781857",
+              "NCT02713529",
+              "NCT04276025",
+              "NCT03615443",
+              "NCT02702921",
+              "NCT02952729",
+              "NCT02740985",
+              "NCT02997501",
+              "NCT02699606",
+              "NCT02949895",
+              "NCT02688036",
+              "NCT02374255",
+              "NCT02752126",
+              "NCT03276715",
+              "NCT02857270",
+              "NCT02955758",
+              "NCT02833246",
+              "NCT02823990",
+              "NCT02744092",
+              "NCT02867371",
+              "NCT02810457",
+              "NCT02744664",
+              "NCT02988817",
+              "NCT02737501",
+              "NCT02566993",
+              "NCT02710565",
+              "NCT03129256",
+              "NCT02719717",
+              "NCT02716051",
+              "NCT02944903",
+              "NCT02862457",
+              "NCT02797977",
+              "NCT02789345",
+              "NCT03141957",
+              "NCT02848651",
+              "NCT02319408",
+              "NCT02843568",
+              "NCT05816902",
+              "NCT02675829",
+              "NCT02968979",
+              "NCT02604862",
+              "NCT02585362",
+              "NCT02528942",
+              "NCT03047616",
+              "NCT03086733",
+              "NCT05331833",
+              "NCT03449563",
+              "NCT02725892",
+              "NCT03000257",
+              "NCT02705365",
+              "NCT02658890",
+              "NCT03360630",
+              "NCT04079400",
+              "NCT02818426",
+              "NCT02639026",
+              "NCT02944396",
+              "NCT02523469",
+              "NCT02983045",
+              "NCT02803203",
+              "NCT03007953",
+              "NCT02410603",
+              "NCT02757092",
+              "NCT07631611",
+              "NCT02839265",
+              "NCT02591615",
+              "NCT02592837",
+              "NCT04843007",
+              "NCT02732769",
+              "NCT02719847",
+              "NCT02917993",
+              "NCT02903914",
+              "NCT02503358",
+              "NCT02681549",
+              "NCT02913443"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03366480",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "COMPLETED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03366480"
+              },
+              {
+                "nct_id": "NCT03248089",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "COMPLETED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03248089"
+              },
+              {
+                "nct_id": "NCT02845856",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "COMPLETED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02845856"
+              }
+            ]
+          },
+          {
+            "id": "2:WITHDRAWN",
+            "stage": 2,
+            "stage_label": "Overall status",
+            "label": "Withdrawn",
+            "trial_count": 25,
+            "nct_ids": [
+              "NCT02419170",
+              "NCT02623595",
+              "NCT02567396",
+              "NCT02639234",
+              "NCT02795884",
+              "NCT02347839",
+              "NCT02662634",
+              "NCT02835066",
+              "NCT03632369",
+              "NCT02924233",
+              "NCT02425072",
+              "NCT02844140",
+              "NCT02673814",
+              "NCT02451865",
+              "NCT01684696",
+              "NCT02831491",
+              "NCT02705339",
+              "NCT02763761",
+              "NCT02542930",
+              "NCT02950038",
+              "NCT02941601",
+              "NCT02014545",
+              "NCT02341170",
+              "NCT02713984",
+              "NCT02653612"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02419170",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "WITHDRAWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02419170"
+              },
+              {
+                "nct_id": "NCT02623595",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "WITHDRAWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02623595"
+              },
+              {
+                "nct_id": "NCT02567396",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "WITHDRAWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02567396"
+              }
+            ]
+          },
+          {
+            "id": "2:UNKNOWN",
+            "stage": 2,
+            "stage_label": "Overall status",
+            "label": "Unknown",
+            "trial_count": 121,
+            "nct_ids": [
+              "NCT02783079",
+              "NCT03244605",
+              "NCT02839954",
+              "NCT02755337",
+              "NCT02669719",
+              "NCT03705546",
+              "NCT03391557",
+              "NCT04201769",
+              "NCT02825095",
+              "NCT02938546",
+              "NCT02817945",
+              "NCT02936804",
+              "NCT02820116",
+              "NCT03144622",
+              "NCT02666755",
+              "NCT02786589",
+              "NCT02788058",
+              "NCT02995187",
+              "NCT03050411",
+              "NCT02906163",
+              "NCT04506359",
+              "NCT02837679",
+              "NCT04684186",
+              "NCT02873416",
+              "NCT03211078",
+              "NCT02996214",
+              "NCT02916459",
+              "NCT02579564",
+              "NCT03050047",
+              "NCT02941003",
+              "NCT02360761",
+              "NCT02665390",
+              "NCT02780778",
+              "NCT03853967",
+              "NCT02884479",
+              "NCT02688686",
+              "NCT02906384",
+              "NCT02736916",
+              "NCT02331290",
+              "NCT02647164",
+              "NCT02738593",
+              "NCT03002844",
+              "NCT03077854",
+              "NCT02815007",
+              "NCT02695550",
+              "NCT02879097",
+              "NCT03060343",
+              "NCT03374280",
+              "NCT02765620",
+              "NCT02972320",
+              "NCT02804100",
+              "NCT02977169",
+              "NCT02883543",
+              "NCT02734524",
+              "NCT02961270",
+              "NCT02875457",
+              "NCT02862587",
+              "NCT03227016",
+              "NCT02755675",
+              "NCT02804217",
+              "NCT02696863",
+              "NCT02714608",
+              "NCT02934360",
+              "NCT03424759",
+              "NCT02956551",
+              "NCT03414944",
+              "NCT02736513",
+              "NCT02967497",
+              "NCT03126799",
+              "NCT02946216",
+              "NCT02738723",
+              "NCT02651441",
+              "NCT02931942",
+              "NCT02704767",
+              "NCT04476641",
+              "NCT02906280",
+              "NCT01951469",
+              "NCT02976740",
+              "NCT03009630",
+              "NCT02771314",
+              "NCT02972333",
+              "NCT02951611",
+              "NCT02844608",
+              "NCT02633189",
+              "NCT02991924",
+              "NCT02951897",
+              "NCT04237805",
+              "NCT02787473",
+              "NCT02965300",
+              "NCT03130881",
+              "NCT06207292",
+              "NCT02907606",
+              "NCT02852083",
+              "NCT02992353",
+              "NCT03130192",
+              "NCT03044769",
+              "NCT02731001",
+              "NCT02644889",
+              "NCT02859077",
+              "NCT03215537",
+              "NCT03436329",
+              "NCT02930954",
+              "NCT03372694",
+              "NCT02738684",
+              "NCT02725918",
+              "NCT03083743",
+              "NCT04353349",
+              "NCT02836834",
+              "NCT02686775",
+              "NCT02886897",
+              "NCT03833193",
+              "NCT02852798",
+              "NCT02661009",
+              "NCT02906150",
+              "NCT02759783",
+              "NCT03228056",
+              "NCT02927340",
+              "NCT02733107",
+              "NCT02974933",
+              "NCT02980536",
+              "NCT02726568"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02783079",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "UNKNOWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02783079"
+              },
+              {
+                "nct_id": "NCT03244605",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "UNKNOWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03244605"
+              },
+              {
+                "nct_id": "NCT02839954",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "UNKNOWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02839954"
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "source": "0:FED",
+            "target": "1:NA",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT03007953"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03007953",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "FED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03007953"
+              }
+            ]
+          },
+          {
+            "source": "0:FED",
+            "target": "1:PHASE1",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02653612"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02653612",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "FED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02653612"
+              }
+            ]
+          },
+          {
+            "source": "0:INDUSTRY",
+            "target": "1:NA",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02702921",
+              "NCT02867371"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02702921",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02702921"
+              },
+              {
+                "nct_id": "NCT02867371",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02867371"
+              }
+            ]
+          },
+          {
+            "source": "0:INDUSTRY",
+            "target": "1:NOT_REPORTED",
+            "trial_count": 31,
+            "nct_ids": [
+              "NCT02983500",
+              "NCT03633006",
+              "NCT03289780",
+              "NCT02910999",
+              "NCT02777567",
+              "NCT02647164",
+              "NCT02777658",
+              "NCT02847728",
+              "NCT02835599",
+              "NCT02742623",
+              "NCT02906852",
+              "NCT02679170",
+              "NCT03382496",
+              "NCT02932345",
+              "NCT03425825",
+              "NCT02845089",
+              "NCT02934360",
+              "NCT02799862",
+              "NCT02658747",
+              "NCT02762877",
+              "NCT03837600",
+              "NCT02619929",
+              "NCT04276025",
+              "NCT03615443",
+              "NCT02644889",
+              "NCT02715102",
+              "NCT02968979",
+              "NCT02725892",
+              "NCT02661009",
+              "NCT04843007",
+              "NCT02980536"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02983500",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02983500"
+              },
+              {
+                "nct_id": "NCT03633006",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03633006"
+              },
+              {
+                "nct_id": "NCT03289780",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03289780"
+              }
+            ]
+          },
+          {
+            "source": "0:INDUSTRY",
+            "target": "1:PHASE1",
+            "trial_count": 55,
+            "nct_ids": [
+              "NCT02900664",
+              "NCT02639091",
+              "NCT02875223",
+              "NCT02890069",
+              "NCT02874664",
+              "NCT02835690",
+              "NCT02834247",
+              "NCT02658214",
+              "NCT02922764",
+              "NCT02926768",
+              "NCT03050047",
+              "NCT02840994",
+              "NCT02897778",
+              "NCT02783300",
+              "NCT02464007",
+              "NCT02892123",
+              "NCT02914990",
+              "NCT02897765",
+              "NCT02659631",
+              "NCT02815592",
+              "NCT02695550",
+              "NCT02860780",
+              "NCT02743637",
+              "NCT02896231",
+              "NCT02711345",
+              "NCT02991651",
+              "NCT02576665",
+              "NCT02819999",
+              "NCT02588612",
+              "NCT02909452",
+              "NCT02646748",
+              "NCT02663518",
+              "NCT02635061",
+              "NCT02715284",
+              "NCT02609776",
+              "NCT02635672",
+              "NCT02955251",
+              "NCT02572687",
+              "NCT02729298",
+              "NCT02952729",
+              "NCT02740985",
+              "NCT02949895",
+              "NCT02698176",
+              "NCT02857270",
+              "NCT02779751",
+              "NCT02460367",
+              "NCT03130881",
+              "NCT02862457",
+              "NCT02789345",
+              "NCT03000257",
+              "NCT02944396",
+              "NCT02961283",
+              "NCT02817633",
+              "NCT02903914",
+              "NCT02913443"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02900664",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02900664"
+              },
+              {
+                "nct_id": "NCT02639091",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02639091"
+              },
+              {
+                "nct_id": "NCT02875223",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02875223"
+              }
+            ]
+          },
+          {
+            "source": "0:INDUSTRY",
+            "target": "1:PHASE1/PHASE2",
+            "trial_count": 29,
+            "nct_ids": [
+              "NCT03366480",
+              "NCT02839954",
+              "NCT03758287",
+              "NCT02906163",
+              "NCT02873416",
+              "NCT02923349",
+              "NCT02884479",
+              "NCT02734004",
+              "NCT02712905",
+              "NCT02799095",
+              "NCT02924233",
+              "NCT02697591",
+              "NCT02805660",
+              "NCT02862587",
+              "NCT02936323",
+              "NCT02648724",
+              "NCT02797964",
+              "NCT02711137",
+              "NCT02771626",
+              "NCT02651441",
+              "NCT02718066",
+              "NCT02713529",
+              "NCT04237805",
+              "NCT02988817",
+              "NCT02797977",
+              "NCT02658890",
+              "NCT02983045",
+              "NCT02630186",
+              "NCT02917993"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03366480",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03366480"
+              },
+              {
+                "nct_id": "NCT02839954",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02839954"
+              },
+              {
+                "nct_id": "NCT03758287",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03758287"
+              }
+            ]
+          },
+          {
+            "source": "0:INDUSTRY",
+            "target": "1:PHASE2",
+            "trial_count": 18,
+            "nct_ids": [
+              "NCT02639234",
+              "NCT02855125",
+              "NCT02659059",
+              "NCT02674568",
+              "NCT02735980",
+              "NCT02673814",
+              "NCT02714608",
+              "NCT02831491",
+              "NCT02937818",
+              "NCT02582125",
+              "NCT02955940",
+              "NCT02763761",
+              "NCT02699606",
+              "NCT02941601",
+              "NCT02864992",
+              "NCT02848651",
+              "NCT02906150",
+              "NCT02726568"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02639234",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02639234"
+              },
+              {
+                "nct_id": "NCT02855125",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02855125"
+              },
+              {
+                "nct_id": "NCT02659059",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02659059"
+              }
+            ]
+          },
+          {
+            "source": "0:INDUSTRY",
+            "target": "1:PHASE3",
+            "trial_count": 21,
+            "nct_ids": [
+              "NCT02654587",
+              "NCT02657434",
+              "NCT02713867",
+              "NCT02838420",
+              "NCT02831959",
+              "NCT03950674",
+              "NCT02763579",
+              "NCT02879097",
+              "NCT02754882",
+              "NCT03850444",
+              "NCT02775435",
+              "NCT02578680",
+              "NCT02826161",
+              "NCT02973789",
+              "NCT02997501",
+              "NCT02810457",
+              "NCT02737501",
+              "NCT02566993",
+              "NCT02588261",
+              "NCT03083743",
+              "NCT02767804"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02654587",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02654587"
+              },
+              {
+                "nct_id": "NCT02657434",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02657434"
+              },
+              {
+                "nct_id": "NCT02713867",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02713867"
+              }
+            ]
+          },
+          {
+            "source": "0:INDUSTRY",
+            "target": "1:PHASE4",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02996214",
+              "NCT02869789"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02996214",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02996214"
+              },
+              {
+                "nct_id": "NCT02869789",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "INDUSTRY",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02869789"
+              }
+            ]
+          },
+          {
+            "source": "0:NETWORK",
+            "target": "1:NA",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02728596"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02728596",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NETWORK",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02728596"
+              }
+            ]
+          },
+          {
+            "source": "0:NETWORK",
+            "target": "1:PHASE1/PHASE2",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02764086"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02764086",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NETWORK",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02764086"
+              }
+            ]
+          },
+          {
+            "source": "0:NETWORK",
+            "target": "1:PHASE2",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02470065"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02470065",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NETWORK",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02470065"
+              }
+            ]
+          },
+          {
+            "source": "0:NIH",
+            "target": "1:NOT_REPORTED",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02682667"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02682667",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02682667"
+              }
+            ]
+          },
+          {
+            "source": "0:NIH",
+            "target": "1:PHASE1",
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT02567396",
+              "NCT02595866",
+              "NCT02496663",
+              "NCT02520778",
+              "NCT02595931"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02567396",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02567396"
+              },
+              {
+                "nct_id": "NCT02595866",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02595866"
+              },
+              {
+                "nct_id": "NCT02496663",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02496663"
+              }
+            ]
+          },
+          {
+            "source": "0:NIH",
+            "target": "1:PHASE1/PHASE2",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02535338",
+              "NCT02769962"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02535338",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02535338"
+              },
+              {
+                "nct_id": "NCT02769962",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02769962"
+              }
+            ]
+          },
+          {
+            "source": "0:NIH",
+            "target": "1:PHASE2",
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT02498613",
+              "NCT02759835",
+              "NCT02484443",
+              "NCT02642042",
+              "NCT02839681"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02498613",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02498613"
+              },
+              {
+                "nct_id": "NCT02759835",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02759835"
+              },
+              {
+                "nct_id": "NCT02484443",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02484443"
+              }
+            ]
+          },
+          {
+            "source": "0:NIH",
+            "target": "1:PHASE3",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02595944"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02595944",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "NIH",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02595944"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:EARLY_PHASE1",
+            "trial_count": 9,
+            "nct_ids": [
+              "NCT02419170",
+              "NCT02825095",
+              "NCT02817945",
+              "NCT03060343",
+              "NCT02914899",
+              "NCT02652286",
+              "NCT03164486",
+              "NCT02319889",
+              "NCT02604862"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02419170",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02419170"
+              },
+              {
+                "nct_id": "NCT02825095",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02825095"
+              },
+              {
+                "nct_id": "NCT02817945",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02817945"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:NA",
+            "trial_count": 92,
+            "nct_ids": [
+              "NCT02783079",
+              "NCT02871739",
+              "NCT03391557",
+              "NCT02952261",
+              "NCT02822209",
+              "NCT02936804",
+              "NCT02704832",
+              "NCT02789800",
+              "NCT03004586",
+              "NCT02324868",
+              "NCT02759679",
+              "NCT04506359",
+              "NCT04710459",
+              "NCT02837679",
+              "NCT03683940",
+              "NCT02971176",
+              "NCT03211078",
+              "NCT02596490",
+              "NCT02916459",
+              "NCT02551211",
+              "NCT02801734",
+              "NCT02417662",
+              "NCT02941003",
+              "NCT02665390",
+              "NCT02497664",
+              "NCT03853967",
+              "NCT02617186",
+              "NCT02742597",
+              "NCT02736916",
+              "NCT02949076",
+              "NCT02687997",
+              "NCT03226964",
+              "NCT02738398",
+              "NCT02575898",
+              "NCT02785562",
+              "NCT02962115",
+              "NCT02597738",
+              "NCT03077854",
+              "NCT02722785",
+              "NCT02844140",
+              "NCT02911259",
+              "NCT02790866",
+              "NCT02648178",
+              "NCT02816697",
+              "NCT02674815",
+              "NCT01684696",
+              "NCT02673021",
+              "NCT02788461",
+              "NCT02936947",
+              "NCT02664259",
+              "NCT02931461",
+              "NCT03414944",
+              "NCT03102229",
+              "NCT02606149",
+              "NCT02755883",
+              "NCT02532062",
+              "NCT02819024",
+              "NCT02764866",
+              "NCT03009630",
+              "NCT02760225",
+              "NCT02821936",
+              "NCT02320123",
+              "NCT02951611",
+              "NCT02650700",
+              "NCT02844608",
+              "NCT02374255",
+              "NCT02752126",
+              "NCT02951897",
+              "NCT02833246",
+              "NCT02744092",
+              "NCT06207292",
+              "NCT02992353",
+              "NCT02341170",
+              "NCT02731001",
+              "NCT02710565",
+              "NCT02719717",
+              "NCT02716051",
+              "NCT03215537",
+              "NCT03436329",
+              "NCT02319408",
+              "NCT02843568",
+              "NCT02585362",
+              "NCT02528942",
+              "NCT03449563",
+              "NCT02686775",
+              "NCT02705365",
+              "NCT02829736",
+              "NCT03833193",
+              "NCT02757092",
+              "NCT03228056",
+              "NCT02592837",
+              "NCT02732769"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02783079",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02783079"
+              },
+              {
+                "nct_id": "NCT02871739",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02871739"
+              },
+              {
+                "nct_id": "NCT03391557",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03391557"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:NOT_REPORTED",
+            "trial_count": 83,
+            "nct_ids": [
+              "NCT02705404",
+              "NCT06218901",
+              "NCT03705546",
+              "NCT03248089",
+              "NCT02753569",
+              "NCT02848872",
+              "NCT02965391",
+              "NCT02882750",
+              "NCT03144622",
+              "NCT02666755",
+              "NCT03419286",
+              "NCT02966769",
+              "NCT02840578",
+              "NCT02732834",
+              "NCT03207594",
+              "NCT04684186",
+              "NCT03222258",
+              "NCT04977791",
+              "NCT05673798",
+              "NCT03156868",
+              "NCT02688894",
+              "NCT02879773",
+              "NCT02734069",
+              "NCT02835066",
+              "NCT03632369",
+              "NCT02754388",
+              "NCT03741868",
+              "NCT02331290",
+              "NCT05945745",
+              "NCT03970564",
+              "NCT02738593",
+              "NCT02793713",
+              "NCT02679872",
+              "NCT03199599",
+              "NCT02736643",
+              "NCT04879316",
+              "NCT02765620",
+              "NCT02804100",
+              "NCT02735746",
+              "NCT03299478",
+              "NCT02730897",
+              "NCT02933346",
+              "NCT02855281",
+              "NCT02804217",
+              "NCT02696863",
+              "NCT03746262",
+              "NCT02623257",
+              "NCT02946216",
+              "NCT02917369",
+              "NCT02931942",
+              "NCT02756767",
+              "NCT02821793",
+              "NCT05979623",
+              "NCT05506800",
+              "NCT02745691",
+              "NCT02813603",
+              "NCT03136523",
+              "NCT02718651",
+              "NCT02689050",
+              "NCT02906943",
+              "NCT02781857",
+              "NCT02838836",
+              "NCT03276715",
+              "NCT02965300",
+              "NCT02907606",
+              "NCT03042221",
+              "NCT03130192",
+              "NCT03044769",
+              "NCT02944903",
+              "NCT03141957",
+              "NCT02738684",
+              "NCT05816902",
+              "NCT03551951",
+              "NCT03047616",
+              "NCT05995821",
+              "NCT05331833",
+              "NCT04353349",
+              "NCT04079400",
+              "NCT02852798",
+              "NCT02410603",
+              "NCT07631611",
+              "NCT02798003",
+              "NCT02719847"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02705404",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02705404"
+              },
+              {
+                "nct_id": "NCT06218901",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06218901"
+              },
+              {
+                "nct_id": "NCT03705546",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03705546"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:PHASE1",
+            "trial_count": 23,
+            "nct_ids": [
+              "NCT02835833",
+              "NCT02650635",
+              "NCT02922777",
+              "NCT03050411",
+              "NCT02575404",
+              "NCT02693080",
+              "NCT02649673",
+              "NCT02706392",
+              "NCT02946671",
+              "NCT02793856",
+              "NCT02570815",
+              "NCT02321501",
+              "NCT02858869",
+              "NCT02451865",
+              "NCT02621398",
+              "NCT03227016",
+              "NCT02956551",
+              "NCT02869217",
+              "NCT02812667",
+              "NCT02897375",
+              "NCT02836834",
+              "NCT02639026",
+              "NCT02503358"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02835833",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02835833"
+              },
+              {
+                "nct_id": "NCT02650635",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02650635"
+              },
+              {
+                "nct_id": "NCT02922777",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02922777"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:PHASE1/PHASE2",
+            "trial_count": 18,
+            "nct_ids": [
+              "NCT02955290",
+              "NCT02845856",
+              "NCT02786589",
+              "NCT02748889",
+              "NCT02843815",
+              "NCT02688686",
+              "NCT02696993",
+              "NCT02638090",
+              "NCT02713828",
+              "NCT03007875",
+              "NCT02581787",
+              "NCT02954523",
+              "NCT02713984",
+              "NCT02886897",
+              "NCT03360630",
+              "NCT02818426",
+              "NCT02523469",
+              "NCT02803203"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02955290",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02955290"
+              },
+              {
+                "nct_id": "NCT02845856",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02845856"
+              },
+              {
+                "nct_id": "NCT02786589",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02786589"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:PHASE2",
+            "trial_count": 82,
+            "nct_ids": [
+              "NCT02669719",
+              "NCT02994576",
+              "NCT02705820",
+              "NCT02623595",
+              "NCT02750215",
+              "NCT02820116",
+              "NCT02788058",
+              "NCT02769286",
+              "NCT02995187",
+              "NCT02795156",
+              "NCT02992912",
+              "NCT02710396",
+              "NCT02713269",
+              "NCT02572843",
+              "NCT02679963",
+              "NCT02841579",
+              "NCT02879994",
+              "NCT02904954",
+              "NCT02347839",
+              "NCT02701400",
+              "NCT02662634",
+              "NCT02906384",
+              "NCT02769832",
+              "NCT02716311",
+              "NCT03002844",
+              "NCT02425072",
+              "NCT02773238",
+              "NCT02815007",
+              "NCT03009682",
+              "NCT02709720",
+              "NCT02469701",
+              "NCT02770014",
+              "NCT02738606",
+              "NCT03374280",
+              "NCT02972320",
+              "NCT02629523",
+              "NCT02977169",
+              "NCT02734524",
+              "NCT02961270",
+              "NCT02525757",
+              "NCT02684461",
+              "NCT02755675",
+              "NCT02259725",
+              "NCT02716038",
+              "NCT03424759",
+              "NCT06289023",
+              "NCT02967133",
+              "NCT02945852",
+              "NCT02736513",
+              "NCT02920996",
+              "NCT02669914",
+              "NCT02738723",
+              "NCT02705339",
+              "NCT02704767",
+              "NCT02688907",
+              "NCT04476641",
+              "NCT02976740",
+              "NCT02771314",
+              "NCT02564380",
+              "NCT02919462",
+              "NCT02985203",
+              "NCT02183883",
+              "NCT02542930",
+              "NCT02581943",
+              "NCT02950038",
+              "NCT02955758",
+              "NCT02787473",
+              "NCT02823990",
+              "NCT02852083",
+              "NCT02014545",
+              "NCT03129256",
+              "NCT02930954",
+              "NCT02675829",
+              "NCT02725918",
+              "NCT03086733",
+              "NCT02737709",
+              "NCT02839265",
+              "NCT02927340",
+              "NCT02591615",
+              "NCT02733107",
+              "NCT02974933",
+              "NCT02681549"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02669719",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02669719"
+              },
+              {
+                "nct_id": "NCT02994576",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02994576"
+              },
+              {
+                "nct_id": "NCT02705820",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02705820"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:PHASE2/PHASE3",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02780778",
+              "NCT02759783"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02780778",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02780778"
+              },
+              {
+                "nct_id": "NCT02759783",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02759783"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:PHASE3",
+            "trial_count": 20,
+            "nct_ids": [
+              "NCT03244605",
+              "NCT04201769",
+              "NCT02938546",
+              "NCT02795884",
+              "NCT02579564",
+              "NCT02360761",
+              "NCT01951482",
+              "NCT02883543",
+              "NCT02875457",
+              "NCT02893332",
+              "NCT02974426",
+              "NCT02644252",
+              "NCT02906280",
+              "NCT01951469",
+              "NCT02972333",
+              "NCT02633189",
+              "NCT02688036",
+              "NCT02859077",
+              "NCT03372694",
+              "NCT02768558"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03244605",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03244605"
+              },
+              {
+                "nct_id": "NCT04201769",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04201769"
+              },
+              {
+                "nct_id": "NCT02938546",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02938546"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER",
+            "target": "1:PHASE4",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT03384511",
+              "NCT03394222",
+              "NCT02744664"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03384511",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03384511"
+              },
+              {
+                "nct_id": "NCT03394222",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03394222"
+              },
+              {
+                "nct_id": "NCT02744664",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02744664"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER_GOV",
+            "target": "1:NA",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02939729",
+              "NCT02967406"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02939729",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02939729"
+              },
+              {
+                "nct_id": "NCT02967406",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02967406"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER_GOV",
+            "target": "1:NOT_REPORTED",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT02755337",
+              "NCT02740894",
+              "NCT02991924"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02755337",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02755337"
+              },
+              {
+                "nct_id": "NCT02740894",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02740894"
+              },
+              {
+                "nct_id": "NCT02991924",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02991924"
+              }
+            ]
+          },
+          {
+            "source": "0:OTHER_GOV",
+            "target": "1:PHASE2",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02967497",
+              "NCT03126799"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02967497",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02967497"
+              },
+              {
+                "nct_id": "NCT03126799",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.class",
+                "excerpt": "OTHER_GOV",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03126799"
+              }
+            ]
+          },
+          {
+            "source": "1:EARLY_PHASE1",
+            "target": "2:ACTIVE_NOT_RECRUITING",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT03164486"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03164486",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03164486"
+              }
+            ]
+          },
+          {
+            "source": "1:EARLY_PHASE1",
+            "target": "2:COMPLETED",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT02914899",
+              "NCT02652286",
+              "NCT02604862"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02914899",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02914899"
+              },
+              {
+                "nct_id": "NCT02652286",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02652286"
+              },
+              {
+                "nct_id": "NCT02604862",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02604862"
+              }
+            ]
+          },
+          {
+            "source": "1:EARLY_PHASE1",
+            "target": "2:TERMINATED",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02319889"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02319889",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02319889"
+              }
+            ]
+          },
+          {
+            "source": "1:EARLY_PHASE1",
+            "target": "2:UNKNOWN",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT02825095",
+              "NCT02817945",
+              "NCT03060343"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02825095",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02825095"
+              },
+              {
+                "nct_id": "NCT02817945",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02817945"
+              },
+              {
+                "nct_id": "NCT03060343",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03060343"
+              }
+            ]
+          },
+          {
+            "source": "1:EARLY_PHASE1",
+            "target": "2:WITHDRAWN",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02419170"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02419170",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"EARLY_PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02419170"
+              }
+            ]
+          },
+          {
+            "source": "1:NA",
+            "target": "2:ACTIVE_NOT_RECRUITING",
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT02417662",
+              "NCT02617186",
+              "NCT02597738",
+              "NCT02788461",
+              "NCT02967406"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02417662",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02417662"
+              },
+              {
+                "nct_id": "NCT02617186",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02617186"
+              },
+              {
+                "nct_id": "NCT02597738",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02597738"
+              }
+            ]
+          },
+          {
+            "source": "1:NA",
+            "target": "2:COMPLETED",
+            "trial_count": 57,
+            "nct_ids": [
+              "NCT02728596",
+              "NCT02871739",
+              "NCT02952261",
+              "NCT02822209",
+              "NCT02704832",
+              "NCT02789800",
+              "NCT03004586",
+              "NCT04710459",
+              "NCT03683940",
+              "NCT02971176",
+              "NCT02801734",
+              "NCT02497664",
+              "NCT02742597",
+              "NCT02949076",
+              "NCT02687997",
+              "NCT03226964",
+              "NCT02738398",
+              "NCT02575898",
+              "NCT02785562",
+              "NCT02962115",
+              "NCT02722785",
+              "NCT02911259",
+              "NCT02790866",
+              "NCT02648178",
+              "NCT02816697",
+              "NCT02674815",
+              "NCT02664259",
+              "NCT02931461",
+              "NCT03102229",
+              "NCT02606149",
+              "NCT02755883",
+              "NCT02819024",
+              "NCT02764866",
+              "NCT02760225",
+              "NCT02821936",
+              "NCT02320123",
+              "NCT02650700",
+              "NCT02939729",
+              "NCT02702921",
+              "NCT02374255",
+              "NCT02752126",
+              "NCT02833246",
+              "NCT02744092",
+              "NCT02867371",
+              "NCT02710565",
+              "NCT02719717",
+              "NCT02716051",
+              "NCT02319408",
+              "NCT02843568",
+              "NCT02585362",
+              "NCT02528942",
+              "NCT03449563",
+              "NCT02705365",
+              "NCT03007953",
+              "NCT02757092",
+              "NCT02592837",
+              "NCT02732769"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02728596",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02728596"
+              },
+              {
+                "nct_id": "NCT02871739",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02871739"
+              },
+              {
+                "nct_id": "NCT02952261",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02952261"
+              }
+            ]
+          },
+          {
+            "source": "1:NA",
+            "target": "2:RECRUITING",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02596490"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02596490",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02596490"
+              }
+            ]
+          },
+          {
+            "source": "1:NA",
+            "target": "2:TERMINATED",
+            "trial_count": 7,
+            "nct_ids": [
+              "NCT02324868",
+              "NCT02759679",
+              "NCT02551211",
+              "NCT02673021",
+              "NCT02936947",
+              "NCT02532062",
+              "NCT02829736"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02324868",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02324868"
+              },
+              {
+                "nct_id": "NCT02759679",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02759679"
+              },
+              {
+                "nct_id": "NCT02551211",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02551211"
+              }
+            ]
+          },
+          {
+            "source": "1:NA",
+            "target": "2:UNKNOWN",
+            "trial_count": 25,
+            "nct_ids": [
+              "NCT02783079",
+              "NCT03391557",
+              "NCT02936804",
+              "NCT04506359",
+              "NCT02837679",
+              "NCT03211078",
+              "NCT02916459",
+              "NCT02941003",
+              "NCT02665390",
+              "NCT03853967",
+              "NCT02736916",
+              "NCT03077854",
+              "NCT03414944",
+              "NCT03009630",
+              "NCT02951611",
+              "NCT02844608",
+              "NCT02951897",
+              "NCT06207292",
+              "NCT02992353",
+              "NCT02731001",
+              "NCT03215537",
+              "NCT03436329",
+              "NCT02686775",
+              "NCT03833193",
+              "NCT03228056"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02783079",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02783079"
+              },
+              {
+                "nct_id": "NCT03391557",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03391557"
+              },
+              {
+                "nct_id": "NCT02936804",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02936804"
+              }
+            ]
+          },
+          {
+            "source": "1:NA",
+            "target": "2:WITHDRAWN",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT02844140",
+              "NCT01684696",
+              "NCT02341170"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02844140",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02844140"
+              },
+              {
+                "nct_id": "NCT01684696",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT01684696"
+              },
+              {
+                "nct_id": "NCT02341170",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"NA\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02341170"
+              }
+            ]
+          },
+          {
+            "source": "1:NOT_REPORTED",
+            "target": "2:ACTIVE_NOT_RECRUITING",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT02732834",
+              "NCT03289780",
+              "NCT03299478"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02732834",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "ACTIVE_NOT_RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02732834"
+              },
+              {
+                "nct_id": "NCT03289780",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "ACTIVE_NOT_RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03289780"
+              },
+              {
+                "nct_id": "NCT03299478",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "ACTIVE_NOT_RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03299478"
+              }
+            ]
+          },
+          {
+            "source": "1:NOT_REPORTED",
+            "target": "2:COMPLETED",
+            "trial_count": 68,
+            "nct_ids": [
+              "NCT03248089",
+              "NCT02753569",
+              "NCT02983500",
+              "NCT02848872",
+              "NCT02965391",
+              "NCT02882750",
+              "NCT03633006",
+              "NCT03419286",
+              "NCT02966769",
+              "NCT02840578",
+              "NCT03207594",
+              "NCT03222258",
+              "NCT02910999",
+              "NCT05673798",
+              "NCT03156868",
+              "NCT02879773",
+              "NCT02754388",
+              "NCT02740894",
+              "NCT03741868",
+              "NCT02777567",
+              "NCT03970564",
+              "NCT02777658",
+              "NCT02793713",
+              "NCT02847728",
+              "NCT02679872",
+              "NCT02742623",
+              "NCT03199599",
+              "NCT02736643",
+              "NCT02906852",
+              "NCT04879316",
+              "NCT02735746",
+              "NCT02679170",
+              "NCT03382496",
+              "NCT02730897",
+              "NCT03425825",
+              "NCT02933346",
+              "NCT02855281",
+              "NCT02845089",
+              "NCT02799862",
+              "NCT03746262",
+              "NCT02623257",
+              "NCT02658747",
+              "NCT02756767",
+              "NCT02821793",
+              "NCT05979623",
+              "NCT03837600",
+              "NCT02745691",
+              "NCT02813603",
+              "NCT03136523",
+              "NCT02718651",
+              "NCT02689050",
+              "NCT02619929",
+              "NCT02781857",
+              "NCT04276025",
+              "NCT03615443",
+              "NCT03276715",
+              "NCT02944903",
+              "NCT03141957",
+              "NCT05816902",
+              "NCT02968979",
+              "NCT03047616",
+              "NCT05331833",
+              "NCT02725892",
+              "NCT04079400",
+              "NCT02410603",
+              "NCT07631611",
+              "NCT04843007",
+              "NCT02719847"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03248089",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "COMPLETED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03248089"
+              },
+              {
+                "nct_id": "NCT02753569",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "COMPLETED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02753569"
+              },
+              {
+                "nct_id": "NCT02983500",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "COMPLETED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02983500"
+              }
+            ]
+          },
+          {
+            "source": "1:NOT_REPORTED",
+            "target": "2:RECRUITING",
+            "trial_count": 12,
+            "nct_ids": [
+              "NCT06218901",
+              "NCT02682667",
+              "NCT04977791",
+              "NCT02688894",
+              "NCT02734069",
+              "NCT05945745",
+              "NCT02917369",
+              "NCT02906943",
+              "NCT02838836",
+              "NCT03042221",
+              "NCT03551951",
+              "NCT05995821"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06218901",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06218901"
+              },
+              {
+                "nct_id": "NCT02682667",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02682667"
+              },
+              {
+                "nct_id": "NCT04977791",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "RECRUITING",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04977791"
+              }
+            ]
+          },
+          {
+            "source": "1:NOT_REPORTED",
+            "target": "2:SUSPENDED",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT05506800"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05506800",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "SUSPENDED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05506800"
+              }
+            ]
+          },
+          {
+            "source": "1:NOT_REPORTED",
+            "target": "2:TERMINATED",
+            "trial_count": 6,
+            "nct_ids": [
+              "NCT02705404",
+              "NCT02835599",
+              "NCT02932345",
+              "NCT02762877",
+              "NCT02715102",
+              "NCT02798003"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02705404",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "TERMINATED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02705404"
+              },
+              {
+                "nct_id": "NCT02835599",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "TERMINATED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02835599"
+              },
+              {
+                "nct_id": "NCT02932345",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "TERMINATED",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02932345"
+              }
+            ]
+          },
+          {
+            "source": "1:NOT_REPORTED",
+            "target": "2:UNKNOWN",
+            "trial_count": 26,
+            "nct_ids": [
+              "NCT02755337",
+              "NCT03705546",
+              "NCT03144622",
+              "NCT02666755",
+              "NCT04684186",
+              "NCT02331290",
+              "NCT02647164",
+              "NCT02738593",
+              "NCT02765620",
+              "NCT02804100",
+              "NCT02804217",
+              "NCT02696863",
+              "NCT02934360",
+              "NCT02946216",
+              "NCT02931942",
+              "NCT02991924",
+              "NCT02965300",
+              "NCT02907606",
+              "NCT03130192",
+              "NCT03044769",
+              "NCT02644889",
+              "NCT02738684",
+              "NCT04353349",
+              "NCT02852798",
+              "NCT02661009",
+              "NCT02980536"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02755337",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "UNKNOWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02755337"
+              },
+              {
+                "nct_id": "NCT03705546",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "UNKNOWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03705546"
+              },
+              {
+                "nct_id": "NCT03144622",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "UNKNOWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03144622"
+              }
+            ]
+          },
+          {
+            "source": "1:NOT_REPORTED",
+            "target": "2:WITHDRAWN",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02835066",
+              "NCT03632369"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02835066",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "WITHDRAWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02835066"
+              },
+              {
+                "nct_id": "NCT03632369",
+                "field": "protocolSection.statusModule.overallStatus",
+                "excerpt": "WITHDRAWN",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03632369"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1",
+            "target": "2:ACTIVE_NOT_RECRUITING",
+            "trial_count": 8,
+            "nct_ids": [
+              "NCT02321501",
+              "NCT02869217",
+              "NCT02715284",
+              "NCT02496663",
+              "NCT02609776",
+              "NCT02595931",
+              "NCT02779751",
+              "NCT02817633"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02321501",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02321501"
+              },
+              {
+                "nct_id": "NCT02869217",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02869217"
+              },
+              {
+                "nct_id": "NCT02715284",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02715284"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1",
+            "target": "2:COMPLETED",
+            "trial_count": 49,
+            "nct_ids": [
+              "NCT02900664",
+              "NCT02835833",
+              "NCT02639091",
+              "NCT02890069",
+              "NCT02874664",
+              "NCT02922777",
+              "NCT02835690",
+              "NCT02658214",
+              "NCT02922764",
+              "NCT02926768",
+              "NCT02840994",
+              "NCT02897778",
+              "NCT02783300",
+              "NCT02575404",
+              "NCT02693080",
+              "NCT02892123",
+              "NCT02914990",
+              "NCT02946671",
+              "NCT02897765",
+              "NCT02793856",
+              "NCT02595866",
+              "NCT02815592",
+              "NCT02860780",
+              "NCT02743637",
+              "NCT02858869",
+              "NCT02896231",
+              "NCT02621398",
+              "NCT02588612",
+              "NCT02909452",
+              "NCT02646748",
+              "NCT02520778",
+              "NCT02812667",
+              "NCT02635672",
+              "NCT02955251",
+              "NCT02572687",
+              "NCT02729298",
+              "NCT02897375",
+              "NCT02952729",
+              "NCT02740985",
+              "NCT02949895",
+              "NCT02857270",
+              "NCT02862457",
+              "NCT02789345",
+              "NCT03000257",
+              "NCT02639026",
+              "NCT02944396",
+              "NCT02903914",
+              "NCT02503358",
+              "NCT02913443"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02900664",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02900664"
+              },
+              {
+                "nct_id": "NCT02835833",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02835833"
+              },
+              {
+                "nct_id": "NCT02639091",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02639091"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1",
+            "target": "2:RECRUITING",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02570815"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02570815",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02570815"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1",
+            "target": "2:TERMINATED",
+            "trial_count": 16,
+            "nct_ids": [
+              "NCT02875223",
+              "NCT02650635",
+              "NCT02834247",
+              "NCT02464007",
+              "NCT02649673",
+              "NCT02706392",
+              "NCT02659631",
+              "NCT02711345",
+              "NCT02991651",
+              "NCT02576665",
+              "NCT02819999",
+              "NCT02663518",
+              "NCT02635061",
+              "NCT02698176",
+              "NCT02460367",
+              "NCT02961283"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02875223",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02875223"
+              },
+              {
+                "nct_id": "NCT02650635",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02650635"
+              },
+              {
+                "nct_id": "NCT02834247",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02834247"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1",
+            "target": "2:UNKNOWN",
+            "trial_count": 7,
+            "nct_ids": [
+              "NCT03050411",
+              "NCT03050047",
+              "NCT02695550",
+              "NCT03227016",
+              "NCT02956551",
+              "NCT03130881",
+              "NCT02836834"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03050411",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03050411"
+              },
+              {
+                "nct_id": "NCT03050047",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03050047"
+              },
+              {
+                "nct_id": "NCT02695550",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02695550"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1",
+            "target": "2:WITHDRAWN",
+            "trial_count": 3,
+            "nct_ids": [
+              "NCT02567396",
+              "NCT02451865",
+              "NCT02653612"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02567396",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02567396"
+              },
+              {
+                "nct_id": "NCT02451865",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02451865"
+              },
+              {
+                "nct_id": "NCT02653612",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02653612"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1/PHASE2",
+            "target": "2:ACTIVE_NOT_RECRUITING",
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT02955290",
+              "NCT02696993",
+              "NCT02638090",
+              "NCT02734004"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02955290",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02955290"
+              },
+              {
+                "nct_id": "NCT02696993",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02696993"
+              },
+              {
+                "nct_id": "NCT02638090",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02638090"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1/PHASE2",
+            "target": "2:COMPLETED",
+            "trial_count": 24,
+            "nct_ids": [
+              "NCT03366480",
+              "NCT02845856",
+              "NCT03758287",
+              "NCT02843815",
+              "NCT02923349",
+              "NCT02799095",
+              "NCT02697591",
+              "NCT02535338",
+              "NCT03007875",
+              "NCT02936323",
+              "NCT02648724",
+              "NCT02797964",
+              "NCT02581787",
+              "NCT02718066",
+              "NCT02713529",
+              "NCT02988817",
+              "NCT02797977",
+              "NCT02658890",
+              "NCT03360630",
+              "NCT02818426",
+              "NCT02523469",
+              "NCT02983045",
+              "NCT02803203",
+              "NCT02917993"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03366480",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03366480"
+              },
+              {
+                "nct_id": "NCT02845856",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02845856"
+              },
+              {
+                "nct_id": "NCT03758287",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03758287"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1/PHASE2",
+            "target": "2:TERMINATED",
+            "trial_count": 10,
+            "nct_ids": [
+              "NCT02748889",
+              "NCT02712905",
+              "NCT02764086",
+              "NCT02713828",
+              "NCT02805660",
+              "NCT02711137",
+              "NCT02769962",
+              "NCT02771626",
+              "NCT02954523",
+              "NCT02630186"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02748889",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02748889"
+              },
+              {
+                "nct_id": "NCT02712905",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02712905"
+              },
+              {
+                "nct_id": "NCT02764086",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02764086"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1/PHASE2",
+            "target": "2:UNKNOWN",
+            "trial_count": 10,
+            "nct_ids": [
+              "NCT02839954",
+              "NCT02786589",
+              "NCT02906163",
+              "NCT02873416",
+              "NCT02884479",
+              "NCT02688686",
+              "NCT02862587",
+              "NCT02651441",
+              "NCT04237805",
+              "NCT02886897"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02839954",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02839954"
+              },
+              {
+                "nct_id": "NCT02786589",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02786589"
+              },
+              {
+                "nct_id": "NCT02906163",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02906163"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE1/PHASE2",
+            "target": "2:WITHDRAWN",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02924233",
+              "NCT02713984"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02924233",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02924233"
+              },
+              {
+                "nct_id": "NCT02713984",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE1\", \"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02713984"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE2",
+            "target": "2:ACTIVE_NOT_RECRUITING",
+            "trial_count": 6,
+            "nct_ids": [
+              "NCT02713269",
+              "NCT02498613",
+              "NCT02525757",
+              "NCT02955940",
+              "NCT02642042",
+              "NCT02864992"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02713269",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02713269"
+              },
+              {
+                "nct_id": "NCT02498613",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02498613"
+              },
+              {
+                "nct_id": "NCT02525757",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02525757"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE2",
+            "target": "2:COMPLETED",
+            "trial_count": 42,
+            "nct_ids": [
+              "NCT02994576",
+              "NCT02705820",
+              "NCT02750215",
+              "NCT02769286",
+              "NCT02795156",
+              "NCT02992912",
+              "NCT02572843",
+              "NCT02841579",
+              "NCT02855125",
+              "NCT02879994",
+              "NCT02904954",
+              "NCT02701400",
+              "NCT02769832",
+              "NCT02716311",
+              "NCT02659059",
+              "NCT02773238",
+              "NCT02759835",
+              "NCT02674568",
+              "NCT03009682",
+              "NCT02709720",
+              "NCT02735980",
+              "NCT02484443",
+              "NCT02629523",
+              "NCT02684461",
+              "NCT02259725",
+              "NCT02716038",
+              "NCT02937818",
+              "NCT06289023",
+              "NCT02945852",
+              "NCT02582125",
+              "NCT02183883",
+              "NCT02581943",
+              "NCT02699606",
+              "NCT02955758",
+              "NCT02823990",
+              "NCT03129256",
+              "NCT02848651",
+              "NCT02675829",
+              "NCT03086733",
+              "NCT02839265",
+              "NCT02591615",
+              "NCT02681549"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02994576",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02994576"
+              },
+              {
+                "nct_id": "NCT02705820",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02705820"
+              },
+              {
+                "nct_id": "NCT02750215",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02750215"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE2",
+            "target": "2:SUSPENDED",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02470065"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02470065",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02470065"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE2",
+            "target": "2:TERMINATED",
+            "trial_count": 14,
+            "nct_ids": [
+              "NCT02710396",
+              "NCT02679963",
+              "NCT02469701",
+              "NCT02770014",
+              "NCT02738606",
+              "NCT02967133",
+              "NCT02920996",
+              "NCT02669914",
+              "NCT02688907",
+              "NCT02564380",
+              "NCT02919462",
+              "NCT02985203",
+              "NCT02839681",
+              "NCT02737709"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02710396",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02710396"
+              },
+              {
+                "nct_id": "NCT02679963",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02679963"
+              },
+              {
+                "nct_id": "NCT02469701",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02469701"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE2",
+            "target": "2:UNKNOWN",
+            "trial_count": 32,
+            "nct_ids": [
+              "NCT02669719",
+              "NCT02820116",
+              "NCT02788058",
+              "NCT02995187",
+              "NCT02906384",
+              "NCT03002844",
+              "NCT02815007",
+              "NCT03374280",
+              "NCT02972320",
+              "NCT02977169",
+              "NCT02734524",
+              "NCT02961270",
+              "NCT02755675",
+              "NCT02714608",
+              "NCT03424759",
+              "NCT02736513",
+              "NCT02967497",
+              "NCT03126799",
+              "NCT02738723",
+              "NCT02704767",
+              "NCT04476641",
+              "NCT02976740",
+              "NCT02771314",
+              "NCT02787473",
+              "NCT02852083",
+              "NCT02930954",
+              "NCT02725918",
+              "NCT02906150",
+              "NCT02927340",
+              "NCT02733107",
+              "NCT02974933",
+              "NCT02726568"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02669719",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02669719"
+              },
+              {
+                "nct_id": "NCT02820116",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02820116"
+              },
+              {
+                "nct_id": "NCT02788058",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02788058"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE2",
+            "target": "2:WITHDRAWN",
+            "trial_count": 13,
+            "nct_ids": [
+              "NCT02623595",
+              "NCT02639234",
+              "NCT02347839",
+              "NCT02662634",
+              "NCT02425072",
+              "NCT02673814",
+              "NCT02831491",
+              "NCT02705339",
+              "NCT02763761",
+              "NCT02542930",
+              "NCT02950038",
+              "NCT02941601",
+              "NCT02014545"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02623595",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02623595"
+              },
+              {
+                "nct_id": "NCT02639234",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02639234"
+              },
+              {
+                "nct_id": "NCT02347839",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02347839"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE2/PHASE3",
+            "target": "2:UNKNOWN",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02780778",
+              "NCT02759783"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02780778",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02780778"
+              },
+              {
+                "nct_id": "NCT02759783",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE2\", \"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02759783"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE3",
+            "target": "2:ACTIVE_NOT_RECRUITING",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT02595944",
+              "NCT02767804"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02595944",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02595944"
+              },
+              {
+                "nct_id": "NCT02767804",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02767804"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE3",
+            "target": "2:COMPLETED",
+            "trial_count": 17,
+            "nct_ids": [
+              "NCT02657434",
+              "NCT02713867",
+              "NCT02838420",
+              "NCT02831959",
+              "NCT03950674",
+              "NCT02763579",
+              "NCT02754882",
+              "NCT03850444",
+              "NCT01951482",
+              "NCT02775435",
+              "NCT02578680",
+              "NCT02973789",
+              "NCT02997501",
+              "NCT02688036",
+              "NCT02810457",
+              "NCT02737501",
+              "NCT02566993"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02657434",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02657434"
+              },
+              {
+                "nct_id": "NCT02713867",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02713867"
+              },
+              {
+                "nct_id": "NCT02838420",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02838420"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE3",
+            "target": "2:TERMINATED",
+            "trial_count": 7,
+            "nct_ids": [
+              "NCT02654587",
+              "NCT02826161",
+              "NCT02893332",
+              "NCT02974426",
+              "NCT02644252",
+              "NCT02588261",
+              "NCT02768558"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02654587",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02654587"
+              },
+              {
+                "nct_id": "NCT02826161",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02826161"
+              },
+              {
+                "nct_id": "NCT02893332",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02893332"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE3",
+            "target": "2:UNKNOWN",
+            "trial_count": 15,
+            "nct_ids": [
+              "NCT03244605",
+              "NCT04201769",
+              "NCT02938546",
+              "NCT02579564",
+              "NCT02360761",
+              "NCT02879097",
+              "NCT02883543",
+              "NCT02875457",
+              "NCT02906280",
+              "NCT01951469",
+              "NCT02972333",
+              "NCT02633189",
+              "NCT02859077",
+              "NCT03372694",
+              "NCT03083743"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03244605",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03244605"
+              },
+              {
+                "nct_id": "NCT04201769",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT04201769"
+              },
+              {
+                "nct_id": "NCT02938546",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02938546"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE3",
+            "target": "2:WITHDRAWN",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02795884"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02795884",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE3\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02795884"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE4",
+            "target": "2:COMPLETED",
+            "trial_count": 4,
+            "nct_ids": [
+              "NCT03384511",
+              "NCT03394222",
+              "NCT02869789",
+              "NCT02744664"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT03384511",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE4\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03384511"
+              },
+              {
+                "nct_id": "NCT03394222",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE4\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT03394222"
+              },
+              {
+                "nct_id": "NCT02869789",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE4\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02869789"
+              }
+            ]
+          },
+          {
+            "source": "1:PHASE4",
+            "target": "2:UNKNOWN",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT02996214"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT02996214",
+                "field": "protocolSection.designModule.phases",
+                "excerpt": "[\"PHASE4\"]",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT02996214"
+              }
+            ]
+          }
+        ]
+      },
+      "vega_lite": null,
+      "title": "Lung cancer trials: sponsor class to phase to overall status",
+      "subtitle": "Started 2016."
+    },
+    "alternatives": [
+      {
+        "type": "table",
+        "reason": "every flow with its trial count",
+        "encoding": {
+          "source": {
+            "field": "source",
+            "type": "nominal",
+            "title": "From",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "target": {
+            "field": "target",
+            "type": "nominal",
+            "title": "To",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "value": {
+            "field": "trial_count",
+            "type": "quantitative",
+            "title": "Trials",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          },
+          "node_label": {
+            "field": "label",
+            "type": "nominal",
+            "title": "Stage value",
+            "sort": null,
+            "scale": null,
+            "stack": null
+          }
+        },
+        "options": {
+          "stages": [
+            "Sponsor class",
+            "Phase",
+            "Overall status"
+          ]
+        },
+        "data": null,
+        "vega_lite": null
+      }
+    ],
+    "meta": {
+      "source": "clinicaltrials.gov",
+      "data_version": "2026-11-06T10:00:05",
+      "interpreter": "claude:claude-opus-5-5",
+      "plan": {
+        "filters": {
+          "conditions": [
+            "lung cancer"
+          ],
+          "interventions": null,
+          "sponsors": null,
+          "keywords": null,
+          "phases": null,
+          "statuses": null,
+          "sponsor_classes": null,
+          "intervention_types": null,
+          "study_types": null,
+          "countries": null,
+          "start_year_from": 2016,
+          "start_year_to": 2016
+        },
+        "analysis": {
+          "kind": "flow",
+          "stages": [
+            "sponsor_class",
+            "phase",
+            "status"
+          ]
+        },
+        "presentation": {
+          "chart_type": null,
+          "sort": null,
+          "top_n": null,
+          "citations_per_datum": 3
+        },
+        "retrieval": {
+          "name_matching": "named"
+        }
+      },
+      "provenance": {
+        "analysis.kind": "inferred",
+        "analysis.stages": "inferred",
+        "filters.conditions": "inferred",
+        "filters.start_year_from": "inferred",
+        "filters.start_year_to": "inferred",
+        "presentation.citations_per_datum": "default",
+        "retrieval.name_matching": "default"
+      },
+      "notes": [
+        {
+          "code": "mentions_reported",
+          "message": "115 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
+          "slot": null
+        }
+      ],
+      "cohorts": [
+        {
+          "label": null,
+          "total": 516,
+          "fetched": 516,
+          "truncated": false,
+          "mentions": 115
+        }
+      ],
+      "chart_choice": {
+        "recommended": {
+          "type": "sankey",
+          "reason": "how trials move from one stage to the next"
+        },
+        "alternatives": [
+          {
+            "type": "table",
+            "reason": "every flow with its trial count"
+          }
+        ],
+        "ruled_out": []
+      },
+      "mentions": [
+        {
+          "cohort": null,
+          "total": 115,
+          "counted": false,
+          "nct_ids": [
+            "NCT02745002",
+            "NCT02877966",
+            "NCT02743923",
+            "NCT02743546",
+            "NCT02976116",
+            "NCT02702323",
+            "NCT03048474",
+            "NCT02954809",
+            "NCT02898857",
+            "NCT02773095",
+            "NCT03062800",
+            "NCT02951637",
+            "NCT02653859",
+            "NCT02573259",
+            "NCT02775006",
+            "NCT02808689",
+            "NCT02766348",
+            "NCT02839694",
+            "NCT02847377",
+            "NCT03349372",
+            "NCT02811523",
+            "NCT02844114",
+            "NCT02787447",
+            "NCT02978170",
+            "NCT02973763",
+            "NCT03071705",
+            "NCT02611037",
+            "NCT02983903",
+            "NCT02778893",
+            "NCT02864394",
+            "NCT02897479",
+            "NCT02809456",
+            "NCT02751879",
+            "NCT02804646",
+            "NCT05982574",
+            "NCT03269162",
+            "NCT04313374",
+            "NCT03830320",
+            "NCT02912819",
+            "NCT02716116",
+            "NCT02875340",
+            "NCT02894853",
+            "NCT02929693",
+            "NCT03097627",
+            "NCT02916329",
+            "NCT02535312",
+            "NCT02737735",
+            "NCT03090815",
+            "NCT02929147",
+            "NCT05906823",
+            "NCT02737774",
+            "NCT04439292",
+            "NCT03053219",
+            "NCT02648087",
+            "NCT02707666",
+            "NCT02436733",
+            "NCT02824458",
+            "NCT03001609",
+            "NCT03023423",
+            "NCT02916992",
+            "NCT03385980",
+            "NCT02568449",
+            "NCT02908347",
+            "NCT02896166",
+            "NCT02823691",
+            "NCT02751385",
+            "NCT02695290",
+            "NCT02661659",
+            "NCT02954991",
+            "NCT02628080",
+            "NCT03265496",
+            "NCT05740852",
+            "NCT02844842",
+            "NCT02658032",
+            "NCT02574598",
+            "NCT02916147",
+            "NCT03328559",
+            "NCT02859194",
+            "NCT02766140",
+            "NCT02960607",
+            "NCT02834936",
+            "NCT02725840",
+            "NCT01627795",
+            "NCT03416231",
+            "NCT04321499",
+            "NCT03212560",
+            "NCT02492867",
+            "NCT02587455",
+            "NCT02979821",
+            "NCT02942043",
+            "NCT02999399",
+            "NCT03210298",
+            "NCT02662504",
+            "NCT02600481",
+            "NCT02978521",
+            "NCT02671422",
+            "NCT03394105",
+            "NCT02743351",
+            "NCT02765412",
+            "NCT02862028",
+            "NCT02813785",
+            "NCT02691871",
+            "NCT02440854",
+            "NCT02702830",
+            "NCT02597946",
+            "NCT02946359",
+            "NCT02750514",
+            "NCT02668393",
+            "NCT02975609",
+            "NCT02887235",
+            "NCT02417701",
+            "NCT02866695",
+            "NCT02805062",
+            "NCT02284308",
+            "NCT02608411"
+          ],
+          "citations": [
+            {
+              "nct_id": "NCT02745002",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "Navigated EBUS and Functional Imaging in Lung Cancer",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02745002"
+            },
+            {
+              "nct_id": "NCT02877966",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "Evaluation of the Effects of a Mixture of Amino Acids (Amixea) on Lean Body Mass and Muscle Strengh of Patients With Unresectable Advanced Non-small Cell Lung Cancer",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02877966"
+            },
+            {
+              "nct_id": "NCT02743923",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "Cisplatin-Pemetrexed Compared With Carboplatin-Paclitaxel-Bevacizumab in KRAS Mutated Non-small Cell Lung Cancer",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02743923"
+            },
+            {
+              "nct_id": "NCT02976116",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "A Phase II Study of Fruquintinib in Combination With Gefitinib in Patients With Advanced Non-small Cell Lung Cancer",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02976116"
+            },
+            {
+              "nct_id": "NCT02954809",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "Feasibility of Bright Light Therapy on Fatigue, Sleep and Circadian Activity Rhythms in Lung Cancer Survivors",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02954809"
+            },
+            {
+              "nct_id": "NCT02898857",
+              "field": "protocolSection.descriptionModule.briefSummary",
+              "excerpt": "Every year in France, 30.000 deaths are due to lung cancer and 39.500 new cases of this disease are diagnosed (INCa 2014).",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02898857"
+            },
+            {
+              "nct_id": "NCT02573259",
+              "field": "protocolSection.identificationModule.briefTitle",
+              "excerpt": "A Dose Escalation Study Of PF-06801591 In Melanoma, Head And Neck Cancer (SCCHN), Ovarian, Sarcoma, Non-Small Cell Lung Cancer, Urothelial Carcinoma or Other Solid Tumors",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02573259"
+            },
+            {
+              "nct_id": "NCT02766348",
+              "field": "protocolSection.identificationModule.officialTitle",
+              "excerpt": "Randomized, Controlled Study of the Safety and Efficacy of DC-CTL Immune Cell for Non-Small Cell Lung Cancer",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02766348"
+            },
+            {
+              "nct_id": "NCT02847377",
+              "field": "protocolSection.descriptionModule.briefSummary",
+              "excerpt": "The epidermal growth factor receptor (EGFR) is an established target for the treatment of advanced non-small cell lung cancer (NSCLC).",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02847377"
+            },
+            {
+              "nct_id": "NCT02844114",
+              "field": "protocolSection.conditionsModule.keywords[1]",
+              "excerpt": "Carcinoma, Non-Small-Cell Lung",
+              "kind": "quote",
+              "url": "https://clinicaltrials.gov/study/NCT02844114"
+            }
+          ]
+        }
+      ],
+      "registry_requests": [
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%28lung+cancer%29+OR+AREA%5BConditionMeshTerm%5D%28lung+cancer%29+OR+AREA%5BKeyword%5D%28lung+cancer%29%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%28lung+cancer%29+OR+AREA%5BConditionMeshTerm%5D%28lung+cancer%29+OR+AREA%5BKeyword%5D%28lung+cancer%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLeadSponsorClass%2CLeadSponsorName&pageSize=1000&countTotal=true",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28lung+cancer%29+OR+AREA%5BConditionMeshTerm%5D%28lung+cancer%29+OR+AREA%5BKeyword%5D%28lung+cancer%29%29%29%29&query.cond=%28lung+cancer%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2016-01-01%2C+2016-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28lung+cancer%29+OR+AREA%5BConditionMeshTerm%5D%28lung+cancer%29+OR+AREA%5BKeyword%5D%28lung+cancer%29%29%29%29&query.cond=%28lung+cancer%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLeadSponsorClass%2CLeadSponsorName%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&pageSize=1000&countTotal=true"
+      ]
+    }
+  }
+}
