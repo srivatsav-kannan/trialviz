@@ -20,13 +20,13 @@ Every stage hands the next one a typed object that is validated where it is crea
 | Aggregator | `Plan` and `Retrieval` | A dataset in one of nine shapes, with every datum cited, plus notes | Deterministic, with exact registry counts when only part of a result set was fetched |
 | Visualizer | The dataset | A recommended chart, its alternatives, their specs and Vega-Lite | Deterministic rules, under which a requested chart wins whenever it can draw the data |
 
-Before the pipeline runs, the API looks the request up among saved answers, keyed by a hash of the request and the registry's data version, and returns a saved answer without running anything ([api.md](api.md#saved-answers-and-csv)). While it runs, each stage reports its progress through a context variable that the streaming endpoint listens to, so no stage takes an extra argument for it. The stages are described in [query-resolution.md](query-resolution.md), [retrieval.md](retrieval.md), [aggregation.md](aggregation.md) and [visualization.md](visualization.md).
+A question arrives through `POST /v1/query`, its streaming twin or the MCP tools, and all three take the same path. Before the pipeline runs, the API looks the request up among saved answers, keyed by a hash of the request and the registry's data version, and returns a saved answer without running anything ([api.md](api.md#saved-answers-and-csv)). While it runs, each stage reports its progress through a context variable that the streaming endpoint listens to, so no stage takes an extra argument for it. The stages are described in [query-resolution.md](query-resolution.md), [retrieval.md](retrieval.md), [aggregation.md](aggregation.md) and [visualization.md](visualization.md).
 
 ## Where the language model sits
 
-The model handles the one step that needs language understanding, which is deciding that "Keytruda vs Opdivo since 2018" means two cohorts filtered by intervention with a lower bound on the start year. Everything that can be computed is computed by code, because a model that writes numbers can write wrong ones convincingly, and a reader has no way to tell.
+The model handles the one step that needs language understanding, which is deciding, for example, that "Keytruda vs Opdivo since 2018" means two cohorts filtered by intervention with a lower bound on the start year. Everything that can be computed is computed by code, because a model that writes numbers can write wrong ones convincingly, and a reader has no way to tell.
 
-Three things keep that step honest. Claude answers in a fixed format, a list of slot assignments such as `{"slot": "filters.phases", "values": ["PHASE3"]}`, and the slot names it may use are generated from the request models, so it can only propose slots the system has. Every value it proposes is then checked by the same validators that check caller input, because a fixed format guarantees the shape of an answer but nothing about its meaning; that is how a proposed "PHASE5" or "Korea" is dropped with a note. And although the model sees the caller's fields, so that it can resolve phrases like "this drug", the code that decides each final value ignores whatever the model did with them.
+Three things keep that step honest. Claude answers in a fixed format, a list of slot assignments such as `{"slot": "filters.phases", "values": ["PHASE3"]}`, and the slot names it may use are generated from the request models, so that it can only propose slots that the system has. Every value it proposes is then checked by the same validators that check caller input, because a fixed format guarantees the shape of an answer but nothing about its meaning; that is how a proposed value such as "PHASE5" or "Korea" is dropped with a note. And although the model sees the caller's fields, so that it can resolve phrases such as "this drug", the code that decides each final value ignores whatever the model did with them.
 
 The format came from a failure. The first version asked Claude for one object with an optional field for every slot, and the API rejected the schema as too large, because the fields were repeated inside every comparison cohort. A list of assignments is far smaller, and the model writes only what the question actually settles.
 
@@ -83,8 +83,8 @@ src/trialviz/
   settings.py        configuration
   api.py             HTTP routes, the stream, error handling, and the pages at /, /samples and /docs
   openapi.py         the API reference's overview, request and response examples, and error models
-  ui/                the demo UI (one page for both routes, a stylesheet, a JavaScript module that
-                     streams progress, shares links and downloads CSV and JSON)
+  ui/                the demo UI (one page for both routes, a stylesheet, and a JavaScript
+                     module that streams progress, shares links and downloads CSV and JSON),
                      and the API reference page
 ```
 

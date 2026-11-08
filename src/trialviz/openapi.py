@@ -49,7 +49,7 @@ Structured fields and the question fill the same plan. Any field you set is bind
 question fills the fields you leave unset, and documented defaults cover the rest. Every
 answer reports where each plan value came from in `meta.provenance` (`user`, `inferred`,
 `derived` or `default`), and `meta.notes` records every decision a reader might otherwise
-misjudge, such as a field that overrode the question or a constraint the plan could not
+misjudge, such as a field that overrode the question or a constraint that the plan could not
 express. Setting `"inference": "off"` skips the language model entirely and makes the
 request deterministic.
 
@@ -73,7 +73,7 @@ Every error has the same shape, `{"error": {"code", "message", "details"}}`, whe
 | 404 | `answer_not_found` | No saved answer has that id, or it has expired. |
 | 405 | `method_not_allowed` | The path does not accept that method. |
 | 413 | `request_too_large` | The request body is larger than the service accepts. |
-| 422 | `invalid_request` | The body breaks the schema, or a value is ambiguous ("Korea"). |
+| 422 | `invalid_request` | The body breaks the schema, or a value is ambiguous, such as "Korea". |
 | 429 | `rate_limited` | Too many requests; `Retry-After` says when to try again. |
 | 500 | `internal_error` | The service failed unexpectedly. |
 | 502 | `registry_rejected_query` | ClinicalTrials.gov rejected the query it was sent. |
@@ -83,16 +83,16 @@ Every error has the same shape, `{"error": {"code", "message", "details"}}`, whe
 
 ## Limits
 
-Questions (`POST /v1/query`, its stream and `POST /v1/interpret`) are limited per client, to
-10 a minute and 60 an hour by default, and to 600 an hour across all clients. Every other
-request is limited to 120 a minute per client. Each question response carries `RateLimit-
-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` headers, a refused one carries `Retry-
-After`, and `GET /v1/status` shows your standing and how much of the language-model budget
-is left. Only a few questions are answered at once, and request bodies over 16 KB are
-refused.
+Questions (`POST /v1/query`, its stream, `POST /v1/interpret` and the MCP tools) are
+limited per client to 10 a minute and 60 an hour by default, and to 600 an hour across all
+clients. Every other request is limited to 120 a minute per client. Each question response
+carries the `RateLimit-Limit`, `RateLimit-Remaining` and `RateLimit-Reset` headers, a
+refused one carries `Retry-After`, and `GET /v1/status` shows your standing and how much of
+the language-model budget is left. Four questions are answered at once, and request bodies
+over 16 KB are refused.
 
 Registry requests are spaced to 50 per minute, and at most 10,000 trial records are fetched
-per cohort, shared between the cohorts of a comparison, with group counts taken from the
+per question, shared among the cohorts of a comparison, with group counts taken from the
 registry itself when more trials match. An answer may spend at most 180 seconds on registry
 requests by default, after which it returns a 504. Answers reflect the registry at the time
 stated in `meta.data_version`, which a running server checks again every 15 minutes.

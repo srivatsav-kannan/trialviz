@@ -441,6 +441,10 @@ def encoding_and_options(
                 {"skewed": dataset.skewed, "bins_precomputed": True},
             )
         case Points():
+            if chart is ChartType.TABLE:
+                measures = [m.value for m in (dataset.x, dataset.y, dataset.z) if m]
+                color = [dataset.color_field] if dataset.color_field else []
+                return {}, {"columns": ["nct_id", "title", *measures, *color]}
             xs, ys = [p.x for p in dataset.points], [p.y for p in dataset.points]
             encoding = {"x": _measure(dataset.x, xs), "y": _measure(dataset.y, ys)}
             # A third measure is bubble size or the 3D depth. A flat scatter has no place

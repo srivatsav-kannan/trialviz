@@ -13,7 +13,7 @@ Each dimension maps a trial to zero or more groups. The definitions live in `agg
 | lead sponsor | One per sponsor name | |
 | intervention | One per drug | Drugs are merged under the MeSH term tied to them, as described below. Only interventions of the plan's intervention types count, and placebo, sham, vehicle and saline arms are left out. |
 | intervention type, condition, country | One per value | A trial can belong to several groups. |
-| investigator | One per overall official | The trial's principal investigators, study chairs and directors, by name, with any part after a comma (", MD") dropped. Each trial writes names its own way, so the same person can appear twice under two spellings. |
+| investigator | One per overall official | The trial's principal investigators, study chairs and directors, by name, with any part after a comma (for example, ", MD") dropped. Each trial writes names its own way, so the same person can appear twice under two spellings. |
 | site | One per facility | Facility with its city and country, since names such as "University Hospital" repeat across cities. |
 | start year | One per year | Partial dates such as "2019-03" count as the first of the month. |
 
@@ -23,11 +23,11 @@ Several dimensions let a trial sit in more than one group. A trial with sites in
 
 ### Drugs
 
-The registry tags a trial's interventions with MeSH terms, but does not say which term belongs to which intervention, so the pairing follows fixed rules. A term belongs to an intervention when the intervention's name, or one of its other names, is that term with nothing added except dose, unit, route or form words, as in "pembrolizumab 200 mg IV". A name in brackets counts as well, so "Pembrolizumab (KEYTRUDA®)" is pembrolizumab. A term also belongs to an intervention when exactly one intervention and one term in the trial are left unpaired, counting interventions of every type, so a term that belongs to a biological the plan leaves out is never handed to a drug. "Bone Marrow Aspiration and Biopsy" therefore stays separate from "Biopsy", and a combination product named "Bortezomib-bendamustine-melphalan" stays separate from "Melphalan".
+The registry tags a trial's interventions with MeSH terms, but does not say which term belongs to which intervention, so the pairing follows fixed rules. A term belongs to an intervention when the intervention's name, or one of its other names, is that term with nothing added except dose, unit, route or form words, as in "pembrolizumab 200 mg IV". Under that rule "Bone Marrow Aspiration and Biopsy", for example, stays separate from "Biopsy", and a combination product named "Bortezomib-bendamustine-melphalan" stays separate from "Melphalan". A name in brackets counts as well, so that "Pembrolizumab (KEYTRUDA®)" is pembrolizumab. A term also belongs to an intervention when exactly one intervention and one term in the trial are left unpaired, counting interventions of every type, so that a term that belongs to a biological, which the plan leaves out, is never handed to a drug.
 
 An intervention whose names point to several MeSH terms is listing alternatives, as in "Sintilimab" with the other names "Pembrolizumab, Nivolumab", so it is paired with none of them. Brand and code names that one trial in the answer pairs with a MeSH term are applied to the rest, so a trial that says only "Opdivo" joins Nivolumab when another trial shows the pairing. An intervention that cannot be paired keeps its own name.
 
-Many trials name a combination as one intervention, such as "BO-112 plus pembrolizumab" or "Lenvatinib, Pembrolizumab". When a name joins parts with words like "plus", "and", "with" or "+", and at least one part pairs with a MeSH term, each part becomes its own drug, and an arm that gives the intervention links them. A name that offers a choice, such as "nivolumab or pembrolizumab", is never split, since its drugs are not given together. An independent recount of the melanoma network found that before this split, about one in five trials that give pembrolizumab were missing from its node.
+Many trials name a combination as one intervention, such as "BO-112 plus pembrolizumab" or "Lenvatinib, Pembrolizumab". When a name joins parts with words such as "plus", "and", "with" or "+", and at least one part pairs with a MeSH term, each part becomes its own drug, and an arm that gives the intervention links them. A name that offers a choice, such as "nivolumab or pembrolizumab", is never split, since its drugs are not given together. An independent recount of the melanoma network found that before this split, about one in five trials that give pembrolizumab were missing from its node.
 
 When the plan filters on intervention types, only interventions of those types become groups, so a question about drug trials does not draw their biopsies and scans as drugs.
 
@@ -79,7 +79,7 @@ Flow stages must have one value per trial, since a trial with three countries wo
 
 ## Citations
 
-Every data point carries `trial_count`, `nct_ids` with every contributing trial, and citations for its first `citations_per_datum` trials. Each of those trials comes with every citation that places it in the data point, so a network link cites both of its ends. This citation is from the Keytruda vs Opdivo example:
+Every data point carries `trial_count`, `nct_ids` with every contributing trial (or the fetched ones, when the count came from the registry, as [api.md](api.md#rows-by-chart) explains), and citations for its first `citations_per_datum` trials. Each of those trials comes with every citation that places it in the data point, so a network link cites both of its ends. This citation is from the Keytruda vs Opdivo example:
 
 ```json
 {
@@ -101,9 +101,9 @@ Every workflow test follows every citation in the answer back into the raw recor
 
 When more trials match than the record cap, which is 10,000 by default, only a subset is fetched, and counts taken from it are estimates. For dimensions the registry can filter on directly (phase, status, sponsor class, study type, intervention type, country and start year), each group is instead counted by the registry, using the cohort's query plus one clause for the group. Free-text dimensions such as sponsors, drugs, conditions, investigators and sites cannot be counted this way, so their charts stay estimates over the subset.
 
-The clause matches the group exactly as aggregation defines it. "Phase 2" becomes `AREA[Phase]PHASE2 AND NOT AREA[Phase](EARLY_PHASE1 OR PHASE1 OR PHASE3 OR PHASE4 OR NA)`, which leaves out Phase 1/2 trials, and a missing phase is split by study type into "Not reported" for interventional trials and "No phase (observational)" for the rest. Of the 3,391 breast cancer trials with no phase, 1 is interventional and 3,390 are not, and the two counts add up exactly.
+The clause matches the group exactly as aggregation defines it. "Phase 2" becomes `AREA[Phase]PHASE2 AND NOT AREA[Phase](EARLY_PHASE1 OR PHASE1 OR PHASE3 OR PHASE4 OR NA)`, which leaves out Phase 1/2 trials, and a missing phase is split by study type into "Not reported" for interventional trials and "No phase (observational)" for the rest. For example, of the 3,391 breast cancer trials with no phase, 1 is interventional and 3,390 are not, and the two counts add up exactly.
 
-Every known value of a dimension is counted, including values that never appear in the subset, so the 13 per-status counts for breast cancer add up to the registry's total of 16,344. A capped time series starts at the earliest year among all matching trials, found with one sorted request, so the subset's own range does not cut it short.
+Every known value of a dimension is counted, including values that never appear in the subset, so that, for example, the 13 per-status counts for breast cancer add up to the registry's total of 16,344. A capped time series starts at the earliest year among all matching trials, found with one sorted request, so the subset's own range does not cut it short.
 
 An answer makes at most 30 count requests. When a chart would need more, or when any of its groups cannot be counted exactly, all of its counts stay estimates, because a chart that mixed exact and estimated bars would mislead. The response then says the figures describe the most recently started trials, and for a trend over start dates, that earlier years are undercounted.
 
@@ -111,7 +111,7 @@ An answer makes at most 30 count requests. When a chart would need more, or when
 
 Trials that mention a drug or condition only in their descriptions are retrieved separately ([retrieval.md](retrieval.md)). For each cohort, `meta.mentions` gives their exact total, the IDs of the trials fetched (up to 30 when they are not counted, all of them when they are) and quotes, each being the sentence that contains the term, taken from the title, summary, keywords, or intervention and arm descriptions.
 
-The term a trial mentions is not always the one that was asked about, since a search for Keytruda also matches text that says "pembrolizumab". The terms to quote are learned from the cohort's named trials: a MeSH term most of them share is what the registry expanded the name to.
+The term that a trial mentions is not always the one that was asked about, since a search for Keytruda, for example, also matches text that says "pembrolizumab". The terms to quote are learned from the cohort's named trials: a MeSH term most of them share is what the registry expanded the name to.
 
 ## Notes on periods and phases
 

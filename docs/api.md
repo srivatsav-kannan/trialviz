@@ -15,7 +15,7 @@ This page lists every endpoint, request field and response field, with the value
 | `POST /mcp` | The same answers as tools for AI agents, over the [Model Context Protocol](#ai-agents-over-mcp). |
 | `GET /health` | Returns `{"status": "ok"}`. It is never rate limited, so a host can poll it. |
 | `GET /v1/status` | Reports whether Claude or the rules read questions, how much of the language-model budget is left, and how many questions you may still ask. See [Limits](#limits). |
-| `GET /`, `GET /samples` | Serve the demo UI's two pages, asking questions and browsing saved answers. `/?answer={answer_id}` reopens a saved answer and `/samples?open={name}` a sample, which are the links the UI copies. Their files live under `/ui`. |
+| `GET /`, `GET /samples` | Serve the demo UI's two pages, one for asking questions and one for browsing saved answers. `/?answer={answer_id}` reopens a saved answer and `/samples?open={name}` opens a sample; these are the links that the UI copies. Their files live under `/ui`. |
 | `GET /docs` | Serves the interactive API reference. |
 | `GET /v1/samples` | Lists the saved sample answers in `examples/` with each one's request, title, chart type and totals. The demo UI's samples page reads it. |
 | `GET /v1/samples/{name}` | Returns one saved answer exactly as `POST /v1/query` produced it, or a 404 for an unknown name. |
@@ -34,11 +34,11 @@ This page lists every endpoint, request field and response field, with the value
 | `drug_name`, `condition`, `trial_phase`, `sponsor`, `country` | string | no | Shorthands for `filters.interventions`, `conditions`, `phases`, `sponsors` and `countries` |
 | `start_year`, `end_year` | integer | no | Shorthands for `filters.start_year_from` and `filters.start_year_to`. Both bound the trial's start date, so `end_year` is the latest start year and has nothing to do with when a trial ends. |
 
-The schema is closed, which means an unknown or misspelled field such as `"drug_nmae"` is rejected with a 422 instead of being ignored. Setting a shorthand together with the nested field it stands for is rejected as ambiguous. Every structured field is optional, and whatever a caller sets is binding, as [query-resolution.md](query-resolution.md) explains.
+The schema is closed, which means an unknown or misspelled field such as `"drug_nmae"` is rejected with a 422 instead of being ignored. Setting a shorthand together with the nested field that it stands for is rejected as ambiguous. Every structured field is optional, and whatever a caller sets is binding, as [query-resolution.md](query-resolution.md) explains.
 
 ### Filters
 
-Values inside one field are alternatives, so `"phases": ["PHASE2", "PHASE3"]` matches trials in either phase, while separate fields must all hold. An empty list is rejected, so a field with nothing to say should be left out.
+Values inside one field are alternatives, while separate fields must all hold. For example, `"phases": ["PHASE2", "PHASE3"]` matches trials in either phase, and adding `"countries": ["Germany"]` keeps only those with a site in Germany. An empty list is rejected, so a field with nothing to say should be left out.
 
 | Field | Type | Accepted values |
 | --- | --- | --- |
@@ -92,7 +92,7 @@ A few checks apply to whatever subset is sent. `group_by` and `series_by` must d
 | --- | --- | --- |
 | `name_matching` | string | With `named`, the default, a drug or condition must be listed among a trial's interventions or conditions for the trial to count. With `mentioned`, trials that mention it only in their descriptions count as well. Mention-only trials are retrieved and reported either way. |
 
-Like every other slot, it can be set by the caller, inferred from the question ("trials that mention Keytruda anywhere") or left to its default, and its source is reported in `provenance`. [retrieval.md](retrieval.md#named-trials-and-mentions) explains why the default is `named`.
+Like every other slot, it can be set by the caller, inferred from the question (for example, "trials that mention Keytruda anywhere") or left to its default, and its source is reported in `provenance`. [retrieval.md](retrieval.md#named-trials-and-mentions) explains why the default is `named`.
 
 ## Answer
 
@@ -156,17 +156,17 @@ The rows are the data, and `encoding` says which field each visual channel reads
 | `network_graph`, `network_graph_3d` | `node_id`, `node_label`, `node_size`, `node_color`, `edge_source`, `edge_target`, `edge_width`, and positions `x`, `y` (2D) or `x`, `y`, `z` read from `x3`, `y3`, `z3` (3D) |
 | `sankey` | `source`, `target`, `value`, `node_label` |
 | `timeline` | `x` (`start`), `x2` (`end`), `y` (`title`), `color` (`phase`) |
-| `table` | none: `options.columns` lists the fields to show, in order, and a table over a network or flow shows its nodes and links |
+| `table` | None. `options.columns` lists the fields to show, in order, except for a network or a Sankey diagram, whose table shows its nodes and then its links |
 
 `options` carries what a chart needs beyond its channels. `display_limit` is the number of bars worth showing when there are many, which the Vega-Lite spec already applies with a rank filter. `bins_precomputed` says histogram rows are already binned, and `skewed` that the bins grow geometrically. `outliers_field` names the box plot field holding each group's outlying trials. A map has `topology` (a TopoJSON URL), `feature` and `id_matches`, the row field to join to each shape's `id`. A network's `positions` says its coordinates come from a fixed force layout scaled to -1 to 1, which a frontend may use or replace, and a Sankey's `stages` lists its stages in order.
 
 Every row shape is also published as a schema in the OpenAPI document (`StatRow`, `CategoryRow`, `MatrixRow`, `PeriodRow`, `BinRow`, `BoxRow`, `PointRow`, `TrialRow`, `GraphData` and `FlowData`), so a client generated from `/openapi.json` gets typed rows, and the contract tests check every saved answer against them.
 
-A few details save guesswork. The Vega-Lite spec's `data.values` are the rows in the same order, keeping `id` but leaving out `citations`, `nct_ids` and `outliers` to keep the spec small, so a clicked mark's `datum.id` finds its row in `data`, where its trials and citations are. Periods are strings, `"2019"` for years and `"2019-03"` for months, and dates are `"2019-03-01"`, or `"2019-03"` when a record gives only the month. Read them as UTC: the specs use UTC time units, because a browser west of UTC would otherwise draw 2019 as the last day of 2018. The map's topology is the 110-meter Natural Earth outline, which leaves out a few small places such as Singapore and Hong Kong, so those countries appear in the rows and the table but not on the map. A `needs_clarification` answer lists in `missing` the request fields that would resolve it, such as `filters.interventions` for a question about "this drug".
+A few details save guesswork. The Vega-Lite spec's `data.values` are the rows in the same order, keeping `id` but leaving out `citations`, `nct_ids` and `outliers` to keep the spec small, so a clicked mark's `datum.id` finds its row in `data`, where its trials and citations are. Periods are strings, `"2019"` for years and `"2019-03"` for months, and dates are `"2019-03-01"`, or `"2019-03"` when a record gives only the month. Read them as UTC: the specs use UTC time units, because a browser west of UTC would otherwise draw 2019 as the last day of 2018. The map's topology is Natural Earth's world outline at the 1:110 million scale, which leaves out a few small places such as Singapore and Hong Kong, so that those countries appear in the rows and the table but not on the map. A `needs_clarification` answer lists in `missing` the request fields that would resolve it, for example `filters.interventions` for a question about "this drug".
 
 ### Streaming progress
 
-`POST /v1/query/stream` takes the same body as `POST /v1/query` and answers with server-sent events, so a frontend can show what is happening during an answer that takes a minute instead of a bare spinner. While the answer is computed it sends `progress` events, each with the `stage` (`reading`, `retrieving`, `aggregating`, `counting` or `presenting`), a `message` to show, and running totals of `registry_requests`, `records_fetched` and `records_expected`, so `records_fetched / records_expected` makes a progress bar during retrieval. It ends with one `answer` event carrying exactly what `POST /v1/query` returns, a clarification included, or one `error` event carrying the error envelope with its `status` (and `retry_after` when busy). A comment line arrives every 15 seconds when nothing else does, so proxies keep the connection open. Limits apply as for `POST /v1/query`, and errors that happen before the stream starts (422, 429, a 503 when busy) are ordinary HTTP errors.
+`POST /v1/query/stream` takes the same body as `POST /v1/query` and answers with server-sent events, so that a frontend can show what the service is doing while a long answer runs, in place of a bare spinner. While the answer is computed it sends `progress` events, each with the `stage` (`reading`, `retrieving`, `aggregating`, `counting` or `presenting`), a `message` to show, and running totals of `registry_requests`, `records_fetched` and `records_expected`, so `records_fetched / records_expected` makes a progress bar during retrieval. It ends with one `answer` event carrying exactly what `POST /v1/query` returns, a clarification included, or one `error` event carrying the error envelope with its `status` (and `retry_after` when busy). A comment line arrives every 15 seconds when nothing else does, so proxies keep the connection open. Limits apply as for `POST /v1/query`, and errors that happen before the stream starts (422, 429, a 503 when busy) are ordinary HTTP errors.
 
 Browsers' `EventSource` only sends GET requests, so a page reads the stream with `fetch`:
 
@@ -197,7 +197,7 @@ for (let chunk; !(chunk = await reader.read()).done; ) {
 
 Every answer is saved under `meta.answer_id`, a hash of the request and the registry's data version, so the same request against the same data always has the same id. `GET /v1/answers/{answer_id}` reopens it without recomputing anything, which makes an answer shareable as a link, and asking the same question again returns the saved answer without calling the language model or the registry. A new registry data version, which arrives daily, gives new ids, so a saved answer is never served for data it was not computed from. The newest 1,000 answers are kept (`ANSWERS_KEPT`), in Postgres on a deployed service and in files locally, and a store that fails only means the answer is computed again. The request behind each answer, a few hundred bytes, is kept for the newest 100,000, so `GET /v1/answers/{answer_id}/request` can still say what an expired answer asked. Sending that request to `POST /v1/query` answers it again with today's registry data, which is a new answer with a new id, since the original counts cannot be recovered once the registry has moved on. An id is the first 80 bits of a SHA-256 hash, so two answers sharing one is not a practical concern.
 
-`GET /v1/answers/{answer_id}/csv` and `GET /v1/samples/{name}/csv` return the recommended chart's rows as CSV, with every field except citations and lists such as `nct_ids` joined by semicolons. A network or Sankey diagram has two tables, so `?part=links` (the default, with both ends' labels) or `?part=nodes` picks one. Text a spreadsheet would run as a formula is prefixed with an apostrophe, since titles and sponsor names are free text.
+`GET /v1/answers/{answer_id}/csv` and `GET /v1/samples/{name}/csv` return the recommended chart's rows as CSV, with every field except citations and lists such as `nct_ids` joined by semicolons. A network or Sankey diagram has two tables, so `?part=links` (the default, with both ends' labels) or `?part=nodes` picks one. Text that a spreadsheet would run as a formula is prefixed with an apostrophe, since titles and sponsor names are free text that anyone can write.
 
 ### AI agents over MCP
 
@@ -214,7 +214,7 @@ claude mcp add --transport http trialviz https://trialviz.onrender.com/mcp
 | `get_answer` | Reopens a saved answer by its `answer_id`, compact by default or complete with `full`; for an expired answer, it returns the original request so the agent can ask it again |
 | `list_samples`, `get_sample` | Browse the saved sample answers |
 
-An agent reads every token it is given, so `ask` returns a compact answer: the chart, its reason, the alternatives, the cohort totals, up to 50 rows without their trial ID lists but with one citation each, the notes, and links to the answer in the UI, its CSV and the complete response. The tools run the same code as the HTTP endpoints, so a question asked through MCP counts against the same per-client limits and spending cap and is refused with the same message, and is saved under the same `answer_id`. The endpoint is stateless and needs no sign-in, since the API is public and read-only.
+An agent reads every token it is given, so `ask` returns a compact answer: the chart, its reason, the alternatives, the cohort totals, up to 50 rows without their trial ID lists but with one citation each, the notes, and links to the answer in the UI, its CSV and the complete response. The tools run the same code as the HTTP endpoints, so that a question asked through MCP counts against the same per-client limits and spending cap, is refused with the same message when a limit is reached, and is saved under the same `answer_id`. The endpoint is stateless and needs no sign-in, since the API is public and read-only.
 
 ## Response to `/v1/interpret`
 
@@ -290,7 +290,7 @@ Each note in `notes` has a `code`, a `message`, and the `slot` it concerns when 
 | Reason | When it appears |
 | --- | --- |
 | `missing_parameter` | The analysis needs a value nobody supplied, and `missing` lists the slot paths that would supply it |
-| `ambiguous_reference` | The question points at something it never names |
+| `ambiguous_reference` | The question points at something that it never names, and `missing` lists the filter that would name it |
 | `conflicting_analysis` | The fields and the question describe incompatible analyses |
 | `out_of_scope` | Registry data cannot answer the question |
 
@@ -341,7 +341,7 @@ Each question's response carries three headers that say where the client stands 
 
 A refused request carries `Retry-After` instead. Every question counts against the limit as soon as it arrives, including one that turns out to be invalid, so a client should validate obvious mistakes before sending. Behind a proxy, the client is identified by the address the proxy added to `X-Forwarded-For` (`TRUSTED_PROXY_HOPS`), so writing other addresses into that header does not earn a fresh quota.
 
-The language-model budget has a total cap and an optional daily cap. Each call sets aside its worst-case cost before it is made and settles to the real cost afterwards, so concurrent calls cannot jointly cross a cap. On a deployed service the running total is kept in Postgres (`DATABASE_URL`), shared by every process and kept across restarts, and a hold left by a process that died mid-call is charged in full after ten minutes. If the database cannot be reached, the model is not called and the question is read by rules. `GET /v1/status` returns:
+The language-model budget has a total cap and an optional daily cap. Each call sets aside its worst-case cost before it is made and settles to the real cost afterwards, so concurrent calls cannot jointly cross a cap. On a deployed service the running total is kept in Postgres (`DATABASE_URL`), shared by every process and kept across restarts, and a hold left by a process that died mid-call is charged in full after ten minutes. If the database cannot be reached, the model is not called and the rule-based interpreter reads the question instead. `GET /v1/status` returns:
 
 ```json
 {
@@ -359,4 +359,4 @@ The language-model budget has a total cap and an optional daily cap. Each call s
 
 A page on any origin can call the API from a browser. The API uses no cookies or credentials, so every response allows any origin by default (`CORS_ALLOW_ORIGINS` narrows it to a comma-separated list), a preflight is answered without counting against any limit, and `Retry-After` and the three RateLimit headers are exposed to scripts, so a frontend can show a countdown after a 429.
 
-Every response also carries security headers: a content security policy that lets the pages load scripts only from this service and one CDN and forbids framing, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: no-referrer`, and `Strict-Transport-Security` when served over HTTPS.
+Every response also carries security headers: a content security policy that lets the pages load scripts only from this service and the jsDelivr CDN, and fonts only from Google Fonts, and that forbids framing, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: no-referrer`, and `Strict-Transport-Security` when served over HTTPS.

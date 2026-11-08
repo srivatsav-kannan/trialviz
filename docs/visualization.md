@@ -28,7 +28,7 @@ The dataset's shape first selects the candidate charts from the catalog above. E
 | --- | --- |
 | Donut | There are 2 to 5 groups that are shares of one whole, which rules out countries, drugs, conditions, investigators and sites, since a trial can belong to several |
 | Line | There are at least 3 periods and at most 8 series |
-| Grouped bars | There are 5 or fewer bars per group; the smaller dimension becomes the bars within each group, so Keytruda vs Opdivo by phase puts phases on the axis with two bars at each |
+| Grouped bars | There are 5 or fewer bars per group; the smaller dimension becomes the bars within each group, so that, for example, Keytruda vs Opdivo by phase puts phases on the axis with two bars at each |
 | Stacked and normalized bars | Every trial sits in exactly one segment |
 | Map | The groups are countries |
 | Box plot | At least 2 groups have 5 or more values each |
@@ -37,9 +37,9 @@ The dataset's shape first selects the candidate charts from the catalog above. E
 
 Charts that fit are then scored on a few stated preferences, and the highest score wins. Lines are preferred for change over time, and sorted horizontal bars for rankings and long names, because lengths compare more precisely than colors or areas. Phases and years keep their natural order. A world map is preferred when there are many countries and the question is not a ranking, shares are preferred when compared groups differ in size by more than 2 to 1, a heatmap takes over when there are too many combinations for bars, and a 3D network is preferred above 80 nodes.
 
-A chart that the caller names in `presentation.chart_type`, or that the question asks for ("show it as a map"), wins whenever it fits: it becomes the chart drawn, with "requested by the question" (or "by the caller") as its reason, and every other chart that fits is still offered as an alternative, so asking for a donut over study types still returns the bars and table beside it. When it does not fit, the recommendation stands and a note explains which rule the requested chart failed. A chart the service does not draw at all is refused with a 422 when it arrives as `presentation.chart_type`, and reported in the same note when the question names it ("as a spaghetti chart").
+A chart that the caller names in `presentation.chart_type`, or that the question asks for ("show it as a map"), wins whenever it fits: it becomes the chart drawn, with "requested by the question" (or "by the caller") as its reason, and every other chart that fits is still offered as an alternative, so asking for a donut over study types still returns the bars and table beside it. When it does not fit, the recommendation stands and a note explains which rule the requested chart failed. A chart that the service does not draw at all is refused with a 422 when it arrives as `presentation.chart_type`, and reported in the same note when the question names it ("as a spaghetti chart").
 
-`meta.chart_choice` reports the outcome in full. For "Which countries have the most recruiting melanoma trials?", the data holds counts for 53 countries. The donut is ruled out because a trial can be in several countries, and the plain bar chart is ruled out because more than 30 bars cannot be read side by side. The question asks for a ranking, so the horizontal bar chart scores highest, and the alternatives are a choropleth map, a treemap and a table.
+`meta.chart_choice` reports the outcome in full. For example, for "Which countries have the most recruiting melanoma trials?" the data holds counts for 53 countries. The donut is ruled out because a trial can be in several countries, and the plain bar chart is ruled out because more than 30 bars cannot be read side by side. The question asks for a ranking, so the horizontal bar chart scores highest, and the alternatives are a choropleth map, a treemap and a table.
 
 ## What a frontend receives
 
@@ -57,7 +57,7 @@ This is an abridged excerpt of [the assignment example's actual response](../exa
       "y": {"field": "trial_count", "type": "quantitative", "title": "Trials"}
     },
     "data": [
-      {"period": "2015", "trial_count": 116, "nct_ids": ["NCT02586207", "..."], "citations": [{"nct_id": "NCT02586207", "field": "protocolSection.statusModule.startDateStruct.date", "excerpt": "2015-11", "kind": "value", "url": "https://clinicaltrials.gov/study/NCT02586207"}]}
+      {"id": "2015", "period": "2015", "trial_count": 116, "nct_ids": ["NCT02586207", "..."], "citations": [{"nct_id": "NCT02586207", "field": "protocolSection.statusModule.startDateStruct.date", "excerpt": "2015-11", "kind": "value", "url": "https://clinicaltrials.gov/study/NCT02586207"}]}
     ],
     "options": {},
     "vega_lite": {"$schema": "https://vega.github.io/schema/vega-lite/v5.json", "mark": {"type": "line", "point": true}, "...": "..."}
@@ -68,13 +68,13 @@ This is an abridged excerpt of [the assignment example's actual response](../exa
 }
 ```
 
-`encoding` maps each visual channel to a row field, with a type (nominal, ordinal, quantitative or temporal), a title, and where it matters a sort order, a stack mode, or `"scale": "symlog"` for a heavily skewed measure such as enrollment. That scale behaves like a log scale for large values but stays linear near zero, so trials that enrolled no one are still drawn, and the generated Vega-Lite spec labels its axis 0, 1, 2, 5, 10, 20, 50 and so on so the small values are readable.
+`encoding` maps each visual channel to a row field, with a type (nominal, ordinal, quantitative or temporal), a title, and where it matters a sort order, a stack mode, or `"scale": "symlog"` for a heavily skewed measure such as enrollment. That scale behaves like a log scale for large values but stays linear near zero, so trials that enrolled no one are still drawn, and the generated Vega-Lite spec labels its axis 0, 1, 2, 5, 10, 20, 50 and so on, so that the small values are readable.
 
-`data` holds the rows. An alternative that draws the same rows sets its own `data` to null and reuses the recommended chart's rows, so a frontend can switch views without another request, while an alternative with a different row shape (histogram bins next to box statistics, for example) carries its own rows. The row format for each chart family is listed in [api.md](api.md#rows-by-chart).
+`data` holds the rows. An alternative that draws the same rows sets its own `data` to null and reuses the recommended chart's rows, so that a frontend can switch views without another request, while an alternative with a different row shape (histogram bins next to box statistics, for example) carries its own rows. The row format for each chart family is listed in [api.md](api.md#rows-by-chart).
 
 `options` carries chart-specific details: `display_limit` when a bar chart has more bars than fit at once (the data itself stays complete), the TopoJSON source for maps, the relation a network draws, and the stages of a Sankey diagram.
 
-`vega_lite` is a complete Vega-Lite spec, generated mechanically from the encoding, for every chart that Vega-Lite can draw. Citations and trial ID lists are left out of the embedded data to keep it small, and they remain in `data`. Treemaps, 3D charts, networks and Sankey diagrams have no Vega-Lite form, so their `vega_lite` is null.
+`vega_lite` is a complete Vega-Lite spec, generated mechanically from the encoding, for every chart that Vega-Lite can draw. Citations and trial ID lists are left out of the embedded data to keep it small, and they remain in `data`, matched to each mark by the row's `id`. Treemaps, 3D charts, networks and Sankey diagrams have no Vega-Lite form, so their `vega_lite` is null.
 
 ## 3D charts
 
@@ -88,4 +88,4 @@ Titles are written deterministically from the plan, stating what was counted and
 
 ## The demo UI
 
-The service also serves a demo UI from `src/trialviz/ui/`, which shows what a frontend can build from the response. The page at `/` asks questions live and the page at `/samples` opens the saved answers, and both draw whichever view is selected using the response's own specs and rows and show the citations behind any datum that is selected. Questions are sent to `POST /v1/query/stream`, so while an answer runs the page shows its stage, the trial records arrived out of those expected, and the registry requests made, and a repeated question appears at once from its saved answer. Each answer has buttons to copy a link that reopens it (`/?answer={answer_id}`, or `/samples?open={name}` for a sample), to download its rows as CSV (links and nodes separately for a network or Sankey diagram) and to download the whole response as JSON. A link to an answer that has expired says so, shows the question it asked, and offers to ask it again with today's data. A selected mark is matched to its row by the row's `id`. The UI makes no decisions about the data, since the chart choice, the reasons and the numbers all come from the backend, and it is plain HTML, CSS and JavaScript with no build step.
+The service also serves a demo UI from `src/trialviz/ui/`, which shows what a frontend can build from the response. The page at `/` asks questions live and the page at `/samples` opens the saved answers, and both draw whichever view is selected using the response's own specs and rows and show the citations behind any datum that is selected. Questions are sent to `POST /v1/query/stream`, so that while an answer runs the page shows its stage, how many of the expected trial records have arrived, and how many registry requests have been made, and a repeated question appears at once from its saved answer. Each answer has buttons to copy a link that reopens it (`/?answer={answer_id}`, or `/samples?open={name}` for a sample), to download its rows as CSV (links and nodes separately for a network or Sankey diagram) and to download the whole response as JSON. A link to an answer that has expired says so, shows the question it asked, and offers to ask it again with today's data. A selected mark is matched to its row by the row's `id`. The UI makes no decisions about the data, since the chart choice, the reasons and the numbers all come from the backend, and it is plain HTML, CSS and JavaScript with no build step.

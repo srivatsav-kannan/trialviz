@@ -14452,33 +14452,16 @@
       {
         "type": "table",
         "reason": "exact values for every trial",
-        "encoding": {
-          "x": {
-            "field": "enrollment",
-            "type": "quantitative",
-            "title": "Enrollment (participants)",
-            "sort": null,
-            "scale": "symlog",
-            "stack": null
-          },
-          "y": {
-            "field": "duration_months",
-            "type": "quantitative",
-            "title": "Duration (months)",
-            "sort": null,
-            "scale": "linear",
-            "stack": null
-          },
-          "tooltip": {
-            "field": "title",
-            "type": "nominal",
-            "title": "Trial",
-            "sort": null,
-            "scale": null,
-            "stack": null
-          }
+        "encoding": {},
+        "options": {
+          "columns": [
+            "nct_id",
+            "title",
+            "enrollment",
+            "duration_months",
+            "site_count"
+          ]
         },
-        "options": {},
         "data": null,
         "vega_lite": null
       }

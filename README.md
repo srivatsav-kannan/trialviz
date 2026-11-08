@@ -14,7 +14,7 @@ cp .env.example .env    # add ANTHROPIC_API_KEY here to let Claude read question
 uv run uvicorn trialviz.api:create_app --factory --reload
 ```
 
-The service then listens on `http://localhost:8000`. Without an API key, questions are read by a rule-based interpreter that understands years, phases, statuses and common phrasing but cannot tell a drug from a disease. With a key, Claude reads the question, and the rule-based interpreter takes over whenever Claude is unavailable. Spending on Claude is capped at $20 by default, and the cap survives restarts because each call sets aside its worst-case cost before it is made.
+The service then listens on `http://localhost:8000`. Without an API key, questions are read by a rule-based interpreter that understands years, phases, statuses and common phrasing but cannot tell a drug from a disease. With a key, Claude reads the question, and the rule-based interpreter takes over whenever Claude is unavailable. Spending on Claude is capped at $20 by default. Each call sets aside its worst-case cost before it is made, so calls running at the same time cannot jointly cross the cap, and the running total is stored, so the cap also holds across restarts.
 
 The example request from the assignment works as written:
 
@@ -44,7 +44,7 @@ A request carries a question and any part of the plan the caller wants to pin do
 
 The assignment's flat fields (`drug_name`, `condition`, `trial_phase`, `sponsor`, `country`, `start_year`, `end_year`) are accepted as shorthands for the matching filters. `POST /v1/interpret` takes the same request and returns the plan without fetching anything, which shows how a question will be read before it runs.
 
-A successful response has `"status": "resolved"` and three parts. `visualization` is the recommended chart: its type, title, the reason it was chosen, an encoding that says which field goes on which axis, the rows to draw, and a Vega-Lite spec where Vega-Lite can draw the chart. `alternatives` holds every other chart that can show the same data, each with its own reason, so a frontend can offer a switch without asking again. `meta` explains the answer: the plan and where each of its values came from (the caller, the question, or a default), a note for every decision a reader might otherwise misjudge, the charts that were ruled out and why, the trials that mention the drug or condition only in passing, and the registry requests behind the numbers. When a question cannot be answered as asked, the response says `"status": "needs_clarification"` instead, with a message a person can act on.
+A successful response has `"status": "resolved"` and three parts. `visualization` is the recommended chart: its type, title, the reason it was chosen, an encoding that says which field goes on which axis, the rows to draw, and a Vega-Lite spec where Vega-Lite can draw the chart. `alternatives` holds every other chart that can show the same data, each with its own reason, so a frontend can offer a switch without asking again. `meta` explains the answer: the plan and where each of its values came from (the caller, the question, or a default), a note for every decision a reader might otherwise misjudge, the charts that were ruled out and why, the trials that mention the drug or condition only in passing, and the registry requests behind the numbers. When a question cannot be answered as asked, the response says `"status": "needs_clarification"` instead, with a message that a person can act on and, where it can, the fields that would settle it.
 
 Each data point carries its trial count, the IDs of every trial behind it, and citations like this one, which says that this trial is counted under Early Phase 1 because that is what its record lists:
 
@@ -58,7 +58,9 @@ Each data point carries its trial count, the IDs of every trial behind it, and c
 }
 ```
 
-Every error has the same shape, `{"error": {"code", "message", "details"}}`. Any web page can call the API directly, since it allows every origin and exposes its rate-limit headers. `POST /v1/query/stream` sends progress events while a long answer is computed and then the answer itself. Every answer carries a `meta.answer_id`, so `GET /v1/answers/{id}` reopens it as a shareable link (and once it expires, `/request` still says what was asked), `/v1/answers/{id}/csv` downloads its rows, and asking the same question again against the same registry data returns the saved answer without spending anything. Every row has a stable `id`, and the rows of each chart type are typed in the OpenAPI document. AI agents can use the same answers as tools over MCP at `/mcp` (`claude mcp add --transport http trialviz https://trialviz.onrender.com/mcp`), under the same limits. The full reference, with the rows and channels each chart type uses and how to draw it without Vega-Lite, is in [docs/api.md](docs/api.md) and at `/docs` on the running service.
+Every error has the same shape, `{"error": {"code", "message", "details"}}`, and any web page can call the API directly, since it allows every origin and exposes its rate-limit headers to scripts. Every row has a stable `id`, and the rows of each chart type are typed as schemas in the OpenAPI document, so a generated client knows the exact shape of what it draws.
+
+A few endpoints make answers easier to use. `POST /v1/query/stream` sends progress events while a long answer is computed, and then the answer itself. Every answer carries a `meta.answer_id` under which it is saved, so that `GET /v1/answers/{id}` reopens it as a shareable link, `/v1/answers/{id}/csv` downloads its rows, and `/v1/answers/{id}/request` still says what was asked once the answer itself has expired. Asking the same question again against the same registry data returns the saved answer without spending anything. AI agents can use the same answers as tools over MCP at `/mcp`, under the same limits; in Claude Code, for example, `claude mcp add --transport http trialviz https://trialviz.onrender.com/mcp` connects it. The full reference, with the rows and channels that each chart type uses and how to draw them without Vega-Lite, is in [docs/api.md](docs/api.md) and at `/docs` on the running service.
 
 ## How a question becomes a chart
 
@@ -73,7 +75,7 @@ question and structured fields
 
 The language model only does the first step. It proposes values for a small, fixed set of plan fields, and those values are checked exactly like a caller's input, so a wrong guess is dropped with a note and a guess that contradicts the caller changes nothing. Everything after the plan is ordinary code, which means every number comes from registry records and the same plan always gives the same chart. [docs/architecture.md](docs/architecture.md) explains the stages and why the boundaries sit where they do.
 
-The chart is chosen by fixed rules in code, and the model plays no part in it. The shape of the data decides which charts can draw it, each candidate checks the actual data (a donut needs two to five groups that make up one whole, for instance), and the ones that fit are ranked by plain preferences such as lines for trends and sorted bars for rankings. A chart the caller or the question asks for wins whenever it fits, and a note explains when it does not. [docs/visualization.md](docs/visualization.md) lists every chart and rule.
+The chart is chosen by fixed rules in code, and the model plays no part in it. The shape of the data decides which charts can draw it, each candidate then checks the actual data (a donut, for example, needs two to five groups that make up one whole), and the charts that fit are ranked by plain preferences, such as lines for trends and sorted bars for rankings. A chart the caller or the question asks for wins whenever it fits, and a note explains when it does not. [docs/visualization.md](docs/visualization.md) lists every chart and rule.
 
 ## Samples
 
@@ -108,26 +110,26 @@ The question and the structured fields fill the same plan, with the caller's fie
 
 How many requests a question becomes follows fixed rules: one query per group being compared, a count before any download, only the fields the chart needs, and at most 10,000 trials per question, shared among a comparison's cohorts and taken in a fixed order when more match. An answer whose numbers are the registry's own counts, such as a single total, downloads only the few trials it cites.
 
-A drug or condition has to appear in the fields where a trial names its interventions or conditions. The registry's default search also reads descriptions, and in recorded queries about one in ten "Keytruda" trials only listed pembrolizumab as one allowed option among several. Searching the naming fields raised precision from about 90 percent to over 99 percent, at the cost of 3 to 15 percent of matches, and the trials left out are still reported in every answer as mentions, with quoted examples. Names of several words are searched as phrases, so that "type 1 diabetes" no longer matches a type 2 trial that happens to have the keyword "phase 1". A condition also includes the narrower MeSH terms filed under it, which the registry cannot search for directly, so "lung cancer" counts trials filed only under "Carcinoma, Non-Small-Cell Lung". [docs/retrieval.md](docs/retrieval.md) covers the measurements behind these choices.
+A drug or condition has to appear in the fields where a trial names its interventions or conditions. The registry's default search also reads descriptions, and in recorded queries about one in ten trials that matched "Keytruda" mentioned pembrolizumab only in a description, as one allowed option among several. Searching the naming fields raised precision from about 90 percent to over 99 percent, at the cost of 3 to 15 percent of matches, and the trials left out are still reported in every answer as mentions, with quoted examples. Names of several words are searched as phrases, so that, for example, "type 1 diabetes" no longer matches a type 2 trial that happens to have the keyword "phase 1". A condition also includes the narrower MeSH terms that sit under it in the MeSH tree, which the registry cannot search for directly, so that a question about lung cancer, for example, also counts trials filed only under "Carcinoma, Non-Small-Cell Lung". [docs/retrieval.md](docs/retrieval.md) covers the measurements behind these choices.
 
 ### Protecting the service
 
-Every question can call the language model and make dozens of registry requests, so the service limits them before doing any work: per client each minute and hour, across all clients each hour, and to a few answered at once, with a `Retry-After` on every refusal and `GET /v1/status` showing where a client stands. Spending on Claude has a total and a daily cap, and each call sets aside its worst-case cost before it is made. On the deployed service the running total lives in Postgres, so the caps survive restarts, and if that database cannot be reached the model is simply not called. [docs/api.md](docs/api.md#limits) lists every limit.
+Every question can call the language model and make dozens of registry requests, so the service limits questions before doing any work: per client each minute and each hour, across all clients each hour, and to four answered at once. Every refusal carries a `Retry-After`, and `GET /v1/status` shows where a client stands. Spending on Claude has a total cap and an optional daily cap, and each call sets aside its worst-case cost before it is made. On the deployed service the running total lives in Postgres, so that the caps survive restarts, and if that database cannot be reached, the model is not called and the rule-based interpreter reads the question instead. [docs/api.md](docs/api.md#limits) lists every limit.
 
 ### Citations and counts
 
-A citation shows why a trial belongs to a particular data point: its phase for a phase bar, the matching site for a country bar, the treatment arm that gives two drugs together for a combination. When more than 10,000 trials match, each bar is counted by the registry itself with a query that defines the group exactly as the chart does, so the bars are exact even though only part of the data was downloaded. For breast cancer by status, the bars add up to the registry's total of 16,344. A chart that cannot be counted that way is marked as an estimate throughout, since mixing exact and estimated bars would mislead. [docs/aggregation.md](docs/aggregation.md) describes the groups and the counting.
+A citation shows why a trial belongs to a particular data point: its phase for a phase bar, the matching site for a country bar, the treatment arm that gives two drugs together for a combination. When more than 10,000 trials match, each bar is counted by the registry itself, with a query that defines the group exactly as the chart does, so that the bars are exact even though only part of the data was downloaded. For example, the bars of breast cancer trials by status add up to the registry's total of 16,344. A chart that cannot be counted that way is marked as an estimate throughout, since mixing exact and estimated bars would mislead. [docs/aggregation.md](docs/aggregation.md) describes the groups and the counting.
 
 ## Testing and evaluation
 
 ```bash
-uv run pytest                                    # offline, about 5 seconds
+uv run pytest                                    # offline, under 10 seconds
 uv run pytest --run-live                         # adds requests to the real registry
 TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records Claude and registry traffic
 uv run python -m evals.run --interpreter claude  # scores interpretation, about $0.40 a run
 ```
 
-Most of the 39 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes, and a contract test holds every saved answer to the row schemas the API reference publishes, after a developer who had only the docs built a working frontend from them. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries. The last recount found two real errors, which were fixed before the answers were saved again. [docs/testing.md](docs/testing.md) describes each test.
+Most of the 39 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes, and a contract test holds every saved answer to the row schemas that the API reference publishes. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries. The last recount found two real errors, which were fixed before the answers were saved again. [docs/testing.md](docs/testing.md) describes each test.
 
 Interpretation is measured on 54 labeled questions, scored on the final plan. Claude (`claude-opus-5-5` at low effort) gets all 54 right and the rule-based interpreter gets 15, mostly because it cannot tell drugs from diseases. The questions and the prompt were written together, so [docs/evaluation.md](docs/evaluation.md) explains how far that score can be trusted.
 
@@ -148,7 +150,7 @@ Settings are read from the environment or from `.env`.
 | `CTGOV_API_ROOT` | `https://clinicaltrials.gov/api/v2` | The registry API the service queries |
 | `CTGOV_REQUESTS_PER_MINUTE` | `50` | Spacing between registry requests |
 | `CTGOV_CACHE_DIR` | `var/cache/ctgov` | Registry response cache, disabled when set empty |
-| `RETRIEVAL_MAX_RECORDS` | `10000` | Most trials downloaded per query |
+| `RETRIEVAL_MAX_RECORDS` | `10000` | Most trials downloaded per question, shared among a comparison's cohorts |
 | `CTGOV_TIMEOUT_SECONDS` | `30` | Timeout for each registry request |
 | `ANSWER_DEADLINE_SECONDS` | `180` | Longest one answer may spend on registry requests |
 | `QUESTIONS_PER_MINUTE`, `QUESTIONS_PER_HOUR` | `10`, `60` | Questions one client may ask |
@@ -166,7 +168,7 @@ Settings are read from the environment or from `.env`.
 - Year filters apply to a trial's start date only, even when the question is about completion dates.
 - Values within one filter are alternatives, so "Keytruda in combination with chemotherapy" cannot be expressed as a filter, and the answer says so.
 - Names are matched by the registry's own search, which knows synonyms and brand names but does not correct spelling.
-- When more than 10,000 trials match and a chart cannot be counted by the registry (sponsors, drugs, investigators and sites are free text), its figures describe the 10,000 most recently started trials, and the answer says so.
+- When more than 10,000 trials match and a chart cannot be counted by the registry, because it groups by a free-text field such as sponsors, drugs, conditions, investigators or sites, its figures describe the 10,000 most recently started trials, and the answer says so.
 - A drug network treats two drugs in the same treatment arm as a combination unless the arm's wording says they are alternatives, so an arm that offers a choice without saying so is still read as a combination.
 - An intervention named as a combination is split into its drugs only at joining words such as "plus" or "+", so "Nivolumab-Relatlimab" stays one drug under its own name.
 - A trial that lists a drug only as one of several alternative names for an intervention still matches that drug, which affects about 1.4 percent of pembrolizumab trials.
@@ -176,6 +178,8 @@ Settings are read from the environment or from `.env`.
 - An answer that would need more than three minutes of registry requests stops with a suggestion to narrow the question.
 - Claude can read an ambiguous question differently from one run to the next, although the answer always states the reading it used.
 - The demo pages load their chart libraries from public CDNs, so the browser needs internet access.
+- Saved answers are kept for the newest 1,000, so an old link can expire; its question is kept far longer, so the page can offer to ask it again with today's data.
+- The live instance's free Postgres database expires on 8 December 2026. After that, until a new database is attached, the spending cap cannot be checked, so questions are read by the rule-based interpreter and answers are not saved.
 
 ## What I would improve with more time
 
@@ -183,7 +187,7 @@ With more time, I would take on the trials that the service reports but never co
 
 ## How this was built
 
-Claude Code, running Opus 5.5, wrote most of the code, and I made the architectural decisions it built to. I chose the framework (Python with FastAPI and Pydantic) and the style and structure of the documentation, and I decided how determinism and the language model would share the work of reading a question: the model proposes values for a fixed set of plan fields, code checks each one the way it checks a caller's input, the caller's own fields always win, and no number in an answer ever comes from the model. The same thinking carried into the later stages, where I decided that retrieval follows fixed rules down to how many requests a question becomes, that trials which only mention a drug are reported in every answer and counted only on request, that the backend recommends one chart with its reasons and alternatives, including 3D networks, and that the deployed service keeps its spending cap in a database so that it survives restarts. I also set the approach to testing, a small number of demanding tests that run real questions end to end and follow every citation back to its record, and I had every saved answer recomputed independently against the registry before trusting it. I also had a separate agent build a frontend from the documentation alone, to check the docs were enough.
+Claude Code, running Opus 5.5, wrote most of the code, and I made the architectural decisions it built to. I chose the framework (Python with FastAPI and Pydantic) and the style and structure of the documentation, and I decided how determinism and the language model would share the work of reading a question: the model proposes values for a fixed set of plan fields, code checks each one the way it checks a caller's input, the caller's own fields always win, and no number in an answer ever comes from the model. The same thinking carried into the later stages, where I decided that retrieval follows fixed rules down to how many requests a question becomes, that trials which only mention a drug are reported in every answer and counted only on request, that the backend recommends one chart with its reasons and alternatives, including 3D networks, and that the deployed service keeps its spending cap in a database so that it survives restarts. I also set the approach to testing, a small number of demanding tests that run real questions end to end and follow every citation back to its record, and I had every saved answer recomputed independently against the registry before trusting it. Finally, I had a separate agent build a frontend from the documentation alone, to check that the docs were enough.
 
 ## Documentation
 
@@ -192,6 +196,6 @@ Claude Code, running Opus 5.5, wrote most of the code, and I made the architectu
 - [docs/retrieval.md](docs/retrieval.md): how a plan becomes registry queries, and the measurements behind name matching
 - [docs/aggregation.md](docs/aggregation.md): groups, citations and exact counts for large result sets
 - [docs/visualization.md](docs/visualization.md): the chart catalog, the selection rules and what a frontend receives
-- [docs/api.md](docs/api.md): the complete request and response reference
-- [docs/testing.md](docs/testing.md): the workflow tests and the recordings they replay
+- [docs/api.md](docs/api.md): the complete request and response reference, including streaming, saved answers, CSV and MCP
+- [docs/testing.md](docs/testing.md): the tests, the recordings they replay, and the independent checks beyond them
 - [docs/evaluation.md](docs/evaluation.md): the interpretation eval, its results and its caveats

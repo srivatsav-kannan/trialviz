@@ -4,7 +4,7 @@ This page explains how a resolved plan becomes requests to the ClinicalTrials.go
 
 ## The registry's query language
 
-ClinicalTrials.gov searches with a query language called Essie, and two of its ideas run through this page. `AREA[Field]value` restricts a search to one field of the trial record, so `AREA[Phase]PHASE3` matches trials whose phase is Phase 3. MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary, and the registry tags each trial's conditions and interventions with MeSH terms, which is how a search for "Keytruda" can find a trial that only says "pembrolizumab".
+ClinicalTrials.gov searches with a query language called Essie, and two of its ideas run through this page. `AREA[Field]value` restricts a search to one field of the trial record, so that, for example, `AREA[Phase]PHASE3` matches trials whose phase is Phase 3. MeSH (Medical Subject Headings) is the National Library of Medicine's controlled vocabulary, and the registry tags each trial's conditions and interventions with MeSH terms, which is how a search for "Keytruda" can find a trial that only says "pembrolizumab".
 
 ## From plan filters to API parameters
 
@@ -28,7 +28,7 @@ Parameters are always written in the same order, so two equal plans produce iden
 
 ## Matching drug and condition names
 
-Names go through the search parameters, because the registry expands synonyms there, so "Keytruda", "MK-3475" and "pembrolizumab" all find the same trials. They must also appear in the fields that name a trial's interventions or conditions. The registry's default search reads descriptions as well, and recordings of real questions showed that about one in ten "Keytruda" trials only listed pembrolizumab as one permitted option in an arm description, while a search for "melanoma" matched a trial titled "Non-melanoma".
+Names go through the search parameters, because the registry expands synonyms there, so that "Keytruda", "MK-3475" and "pembrolizumab", for example, all find the same trials. They must also appear in the fields that name a trial's interventions or conditions. The registry's default search reads descriptions as well, and recordings of real questions showed that about one in ten trials that matched "Keytruda" mentioned pembrolizumab only in an arm description, as one permitted option among several, while a search for "melanoma" matched, for example, a trial titled "Non-melanoma".
 
 | Search | Matches | Records that name the term in a naming field |
 | --- | --- | --- |
@@ -39,7 +39,7 @@ Names go through the search parameters, because the registry expands synonyms th
 
 Synonyms still expand inside the naming fields, and the restriction guarantees that every included trial has a field naming the drug or condition, which its citation needs. The cost is the trials that mention a name only in their descriptions, 3 to 15 percent of matches depending on the term, and a later section explains how those are kept.
 
-A name of several words is matched as a phrase. Unquoted, the words can match anywhere across a trial's separate conditions and keywords, so "type 1 diabetes" matched a trial whose condition was "Type 2 Diabetes Mellitus" and whose keyword was "phase 1". As loose words the type 1 and type 2 searches shared 641 trials; as phrases they share 506, and each of those names both types.
+A name of several words is matched as a phrase. Unquoted, the words can match anywhere across a trial's separate conditions and keywords, so that, for example, "type 1 diabetes" matched a trial whose condition was "Type 2 Diabetes Mellitus" and whose keyword was "phase 1". As loose words the type 1 and type 2 searches shared 641 trials; as phrases they share 506, and each of those names both types.
 
 ## Conditions and the MeSH tree
 
@@ -59,13 +59,13 @@ Restricting names to the naming fields would silently lose the trials that menti
 
 A sample of those 309 shows why they cannot simply be counted. In some the drug is given under a generic label ("Patients will receive pembrolizumab infusion every 3 weeks"), in some it is one permitted option among several ("Commonly used agents include pembrolizumab and toripalimab"), and in others it is background, as in an observational study of patients "treated by pembrolizumab and chemotherapy". Telling these apart takes judgment that rules handle badly and that a language model would bring into the one step this design keeps it out of, deciding what gets counted.
 
-So `retrieval.name_matching` decides, and nothing is guessed. Under `named`, the default, mention-only trials are counted exactly and reported with up to 30 records, enough to quote, but are not counted in the chart. Under `mentioned` they are counted too, every record is fetched within the cohort's record cap, and they stay labeled as mentions. Their records include the text they matched on, so each one can be quoted and cited.
+So `retrieval.name_matching` decides, and nothing is guessed. Under `named`, the default, the number of mention-only trials is reported exactly and up to 30 of their records are fetched, which is enough to quote, but they are left out of the chart. Under `mentioned` they are counted too, every record is fetched within the cohort's record cap, and they stay labeled as mentions. Their records include the text they matched on, so each one can be quoted and cited.
 
 ## Making names safe to search
 
 Names come from people and from a language model, and the API executes any query syntax it finds inside them. During testing, `AREA[Phase]PHASE3` typed as a keyword ran as a phase filter and matched 50,185 trials, and a stray quote or a bare uppercase `AREA` failed the request.
 
-Each name is therefore reduced to plain lowercase words before it is searched. Lowercasing disarms every operator, because the operators are uppercase keywords and matching ignores case. Possessives are dropped, since MeSH drops them ("Alzheimer Disease") and "alzheimer's disease" found 19 fewer completed trials than "alzheimer disease". Inside the naming fields a parenthetical is dropped too, because an abbreviation such as "Crohn's disease (CD)" would make the phrase match nothing. A name that reduces to no words at all, such as "???" or "(CD)", is refused when the request is validated, since an empty search would drop its filter and match the whole registry.
+Each name is therefore reduced to plain lowercase words before it is searched. Lowercasing disarms every operator, because the operators are uppercase keywords and matching ignores case. Possessives are dropped, since MeSH drops them (for example, "Alzheimer Disease"), and "alzheimer's disease" found 19 fewer completed trials than "alzheimer disease". Inside the naming fields a parenthetical is dropped too, because an abbreviation such as "Crohn's disease (CD)" would make the phrase match nothing. A name that reduces to no words at all, such as "???" or "(CD)", is refused when the request is validated, since an empty search would drop its filter and match the whole registry.
 
 ## How many requests a plan becomes
 
