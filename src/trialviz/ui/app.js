@@ -118,6 +118,21 @@ function setUpForm() {
     event.preventDefault();
     ask(buildRequest());
   });
+  const toggle = $("refine-toggle");
+  toggle.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") !== "true";
+    toggle.setAttribute("aria-expanded", String(open));
+    $("refine").hidden = !open;
+  });
+  if (!/Mac|iPhone|iPad/.test(navigator.platform)) document.querySelector(".ask-hint kbd").textContent = "Ctrl";
+  if (matchMedia("(pointer: coarse)").matches) {
+    $("chart-hint").textContent = "Tap a bar, point, node or row to see the trials behind it.";
+  }
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !$("result").hidden) clearSelection();
+  });
+  $("evidence-clear").addEventListener("click", clearSelection);
+  $("back-link").addEventListener("click", goBack);
   $("question").addEventListener("keydown", (event) => {
     if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) $("ask-form").requestSubmit();
   });
@@ -257,10 +272,12 @@ function showAnswer(answer, kind) {
   renderMentions(answer.meta.mentions);
   $("requests").replaceChildren(...answer.meta.registry_requests.map((url) => el("li", {}, el("a", { href: url, target: "_blank", rel: "noopener" }, url))));
 
+  $("back-label").textContent = PAGE === "samples" ? "All saved answers" : "Ask another question";
   $("result").hidden = false;
   selectView(0);
-  $("result").scrollIntoView({ behavior: "smooth", block: "start" });
   $("result").focus({ preventScroll: true });
+  if (PAGE === "samples") window.scrollTo(0, 0);
+  else $("result").scrollIntoView({ block: "start" });
 }
 
 // Arrow keys move between views, as in any tab list.
@@ -286,6 +303,7 @@ function selectView(index) {
   const { view, data } = current.views[index];
   const reason = $("view-reason");
   reason.replaceChildren(el("strong", {}, index === 0 ? "Why this view: " : "Also fits: "), view.reason, ".");
+  unmark = null;
   resetEvidence();
   renderView(view, data).catch((error) => {
     $("chart").replaceChildren(el("p", { class: "empty" }, `This view could not be drawn: ${error.message}`));
@@ -377,18 +395,45 @@ async function renderVega(chart, view, data) {
   }
   // Embedding into a child, not the frame itself, means a stale render that finishes late
   // only fills a node the next view has already removed.
-  const host = el("div");
+  const host = el("div", { class: "host" });
   chart.append(host);
-  const config = vegaConfig();
+  const config = { ...vegaConfig(), mark: { ...vegaConfig().mark, cursor: "pointer" } };
   // On a phone a side legend takes a third of the plot, so it goes underneath instead.
   if (chart.clientWidth < 560) config.legend = { ...config.legend, orient: "bottom", direction: "horizontal" };
   const result = await vegaEmbed(host, spec, { actions: false, renderer: "svg", config });
   result.view.addEventListener("click", (_event, item) => {
-    const datum = item?.datum;
-    if (!datum) return;
-    const row = matchRow(data, datum);
-    if (row) showEvidence(row, view);
+    const row = item?.datum ? matchRow(data, item.datum) : null;
+    if (row) select(row, view, undefined, () => ringAround(host, result.view, item));
+    else clearSelection();
   });
+}
+
+// Draws a ring over a Vega item, from its bounds in the scenegraph, and returns how to
+// remove it. Bounds are relative to the item's group, so every enclosing group's offset and
+// the view's padding are added back.
+function ringAround(host, view, item) {
+  const bounds = item.bounds;
+  const svg = host.querySelector("svg");
+  if (!bounds || !svg || !Number.isFinite(bounds.x1)) return null;
+  let x = 0;
+  let y = 0;
+  for (let group = item.mark?.group; group; group = group.mark?.group) {
+    x += group.x || 0;
+    y += group.y || 0;
+  }
+  const [originX, originY] = view.origin();
+  const offset = svg.getBoundingClientRect();
+  const frame = host.getBoundingClientRect();
+  const pad = 3;
+  const ring = el("div", { class: `mark-ring${item.mark?.marktype === "symbol" ? " round" : ""}` });
+  Object.assign(ring.style, {
+    left: `${offset.left - frame.left + originX + x + bounds.x1 - pad}px`,
+    top: `${offset.top - frame.top + originY + y + bounds.y1 - pad}px`,
+    width: `${bounds.x2 - bounds.x1 + 2 * pad}px`,
+    height: `${bounds.y2 - bounds.y1 + 2 * pad}px`,
+  });
+  host.append(ring);
+  return () => ring.remove();
 }
 
 function sameValue(rowValue, datumValue) {
@@ -428,7 +473,13 @@ function renderStat(chart, data) {
     el("div", { class: "stat" },
       el("div", { class: "stat-number" }, number(row.trial_count)),
       el("div", { class: "stat-label" }, "trials match"),
-      el("button", { type: "button", class: "button secondary", onclick: () => showEvidence(row, { type: "stat" }) }, "Show the evidence")),
+      el("button", { type: "button", class: "button secondary", "aria-pressed": "false", onclick: (event) => {
+        const button = event.currentTarget;
+        select(row, { type: "stat" }, undefined, () => {
+          button.setAttribute("aria-pressed", "true");
+          return () => button.setAttribute("aria-pressed", "false");
+        });
+      } }, "Show the evidence")),
   );
 }
 
@@ -444,8 +495,10 @@ function tableColumns(view, data) {
 function renderTable(chart, view, data) {
   const labels = {};
   let rows = data;
+  let names;
   if (!Array.isArray(data)) {
     const nodes = Object.fromEntries(data.nodes.map((n) => [n.id, n.stage_label ? `${n.stage_label}: ${n.label}` : n.label]));
+    names = Object.fromEntries(data.nodes.map((n) => [n.id, n.label]));
     rows = (data.edges ?? data.links).map((link) => ({ ...link, source: nodes[link.source], target: nodes[link.target] }));
     labels.source = "From";
     labels.target = "To";
@@ -459,8 +512,14 @@ function renderTable(chart, view, data) {
       if (c === "nct_id") return el("td", {}, el("a", { href: `https://clinicaltrials.gov/study/${value}`, target: "_blank", rel: "noopener" }, value));
       return el("td", { class: typeof value === "number" ? "number" : undefined }, value === null || value === undefined ? "" : number(value));
     });
-    const pick = () => showEvidence(original, view);
-    return el("tr", { class: "selectable", tabindex: "0", onclick: pick, onkeydown: (event) => (event.key === "Enter" || event.key === " ") && (event.preventDefault(), pick()) }, cells);
+    const tr = el("tr", { class: "selectable", tabindex: "0", "aria-selected": "false" }, cells);
+    const pick = () => select(original, { ...view, flow: Boolean(data.links) }, Array.isArray(data) ? undefined : names, () => {
+      tr.setAttribute("aria-selected", "true");
+      return () => tr.setAttribute("aria-selected", "false");
+    });
+    tr.addEventListener("click", pick);
+    tr.addEventListener("keydown", (event) => (event.key === "Enter" || event.key === " ") && (event.preventDefault(), pick()));
+    return tr;
   });
   chart.append(el("div", { class: "table-scroll" }, el("table", { class: "data" }, el("thead", {}, head), el("tbody", {}, body))));
 }
@@ -492,20 +551,36 @@ async function renderPlotly(chart, view, data, token) {
   };
   let traces;
   let rowFor;
+  let markFor = () => null;
+  const nodeNames = data.nodes ? Object.fromEntries(data.nodes.map((n) => [n.id, n.label])) : undefined;
   if (view.type === "treemap") {
     const field = view.encoding.label.field;
-    traces = [{ type: "treemap", labels: data.map((r) => r[field]), parents: data.map(() => ""), values: data.map((r) => r.trial_count), textinfo: "label+value", marker: { colors: data.map((_, i) => palette()[i % 9]) } }];
+    traces = [{ type: "treemap", labels: data.map((r) => r[field]), parents: data.map(() => ""), values: data.map((r) => r.trial_count), textinfo: "label+value", marker: { colors: data.map((_, i) => palette()[i % 9]), line: { width: data.map(() => 1), color: data.map(() => "#ffffff") } } }];
     rowFor = (point) => data[point.pointNumber];
+    markFor = (point) => {
+      const widths = data.map((_, i) => (i === point.pointNumber ? 4 : 1));
+      const colors = data.map((_, i) => (i === point.pointNumber ? css("--ink") : "#ffffff"));
+      Plotly.restyle(chart, { "marker.line.width": [widths], "marker.line.color": [colors] });
+      return () => Plotly.restyle(chart, { "marker.line.width": [data.map(() => 1)], "marker.line.color": [data.map(() => "#ffffff")] });
+    };
   } else if (view.type === "sankey") {
     const index = Object.fromEntries(data.nodes.map((n, i) => [n.id, i]));
     traces = [{
       type: "sankey",
       arrangement: "snap",
       node: { label: data.nodes.map((n) => n.label), pad: 14, thickness: 16, color: data.nodes.map((n) => palette()[n.stage % 9]), line: { width: 0 } },
-      link: { source: data.links.map((l) => index[l.source]), target: data.links.map((l) => index[l.target]), value: data.links.map((l) => l.trial_count), color: "rgba(42,120,214,0.2)" },
+      link: { source: data.links.map((l) => index[l.source]), target: data.links.map((l) => index[l.target]), value: data.links.map((l) => l.trial_count), color: data.links.map(() => LINK) },
     }];
     // A link click carries its source and target nodes. A node click does not.
-    rowFor = (point) => (point.source && point.target ? data.links[point.pointNumber] : data.nodes[point.pointNumber]);
+    const isLink = (point) => Boolean(point.source && point.target);
+    rowFor = (point) => (isLink(point) ? data.links[point.pointNumber] : data.nodes[point.pointNumber]);
+    markFor = (point) => {
+      const chosen = isLink(point)
+        ? (l, i) => i === point.pointNumber
+        : (l) => index[l.source] === point.pointNumber || index[l.target] === point.pointNumber;
+      Plotly.restyle(chart, { "link.color": [data.links.map((l, i) => (chosen(l, i) ? LINK_CHOSEN : LINK_FADED))] });
+      return () => Plotly.restyle(chart, { "link.color": [data.links.map(() => LINK)] });
+    };
   } else {
     const x = view.encoding.x.field;
     const y = view.encoding.y.field;
@@ -531,15 +606,26 @@ async function renderPlotly(chart, view, data, token) {
     layout.scene = { xaxis: axis(view.encoding.x), yaxis: axis(view.encoding.y), zaxis: axis(view.encoding.z) };
     layout.margin = { l: 0, r: 0, t: 0, b: 0 };
     rowFor = (point) => data[point.customdata];
+    markFor = (point) => {
+      Plotly.addTraces(chart, { type: "scatter3d", mode: "markers", x: [point.x], y: [point.y], z: [point.z], hoverinfo: "skip", showlegend: false, marker: { size: 11, color: "rgba(0,0,0,0)", line: { color: css("--ink"), width: 3 } } });
+      return () => chart.data?.length > traces.length && Plotly.deleteTraces(chart, -1);
+    };
   }
   // Wheel zoom off, so scrolling the page past a 3D scene does not zoom it instead.
   await Plotly.newPlot(chart, traces, layout, { displaylogo: false, responsive: true, scrollZoom: false, modeBarButtonsToRemove: ["toImage"] });
   chart.on("plotly_click", (event) => {
     const point = event.points?.[0];
     const row = point && rowFor(point);
-    if (row) showEvidence(row, view);
+    if (row) select(row, view, nodeNames, () => markFor(point));
   });
+  // A treemap zooms into whatever is clicked by default, which moves the chart away from
+  // what was selected. Selecting is all a click should do here.
+  chart.on("plotly_treemapclick", () => false);
 }
+
+const LINK = "rgba(42,120,214,0.22)";
+const LINK_CHOSEN = "rgba(23,74,150,0.62)";
+const LINK_FADED = "rgba(42,120,214,0.08)";
 
 async function renderNetwork(chart, data, threeD, token) {
   if (threeD) await loadScript("graph3d");
@@ -562,35 +648,60 @@ async function renderNetwork(chart, data, threeD, token) {
   const nodeLabel = (n) => `${n.label} (${n.trial_count} trials)`;
   const color = (n) => colors[n.community % colors.length];
   const linkWidth = (l) => 0.5 + Math.log2(1 + l.trial_count);
-  const pickNode = (n) => showEvidence(data.nodes.find((x) => x.id === n.id), { type: "network" }, labels);
-  const pickLink = (l) => showEvidence(data.edges.find((e) => e.source === (l.source.id ?? l.source) && e.target === (l.target.id ?? l.target)), { type: "network" }, labels);
+  const end = (value) => value?.id ?? value;
+  let picked = null; // a node id, or a link object
+  let refresh = () => {};
+  const choose = (value) => () => {
+    picked = value;
+    refresh();
+    return () => {
+      picked = null;
+      refresh();
+    };
+  };
+  const pickNode = (n) => select(data.nodes.find((x) => x.id === n.id), { type: "network" }, labels, choose(n.id));
+  const pickLink = (l) => select(data.edges.find((e) => e.source === end(l.source) && e.target === end(l.target)), { type: "network" }, labels, choose(l));
+  const linkIsPicked = (l) => picked === l || (picked !== null && typeof picked !== "object" && (end(l.source) === picked || end(l.target) === picked));
 
   if (threeD) {
     const graph = ForceGraph3D()(chart)
       .width(width).height(height)
       .backgroundColor("#ffffff")
       .graphData({ nodes, links })
-      .nodeLabel(nodeLabel).nodeVal("val").nodeColor(color).nodeOpacity(0.92)
-      .linkWidth(linkWidth).linkColor(() => css("--faint")).linkOpacity(0.35)
-      .onNodeClick(pickNode).onLinkClick(pickLink);
+      .nodeLabel(nodeLabel).nodeVal("val").nodeOpacity(0.92)
+      .nodeColor((n) => (picked === null || picked === n.id ? color(n) : "#c9d3e0"))
+      .linkWidth((l) => (linkIsPicked(l) ? linkWidth(l) + 1.5 : linkWidth(l)))
+      .linkColor((l) => (linkIsPicked(l) ? css("--ink") : css("--faint"))).linkOpacity(0.45)
+      .onNodeClick(pickNode).onLinkClick(pickLink).onBackgroundClick(clearSelection);
     graph.cameraPosition({ z: 520 });
+    refresh = () => graph.nodeColor(graph.nodeColor()).linkColor(graph.linkColor()).linkWidth(graph.linkWidth());
   } else {
     const graph = ForceGraph()(chart)
       .width(width).height(height)
       .graphData({ nodes, links })
       .nodeLabel(nodeLabel).nodeVal("val").nodeColor(color)
-      .linkWidth(linkWidth).linkColor(() => css("--line-strong"))
+      .linkWidth((l) => (linkIsPicked(l) ? linkWidth(l) + 1.5 : linkWidth(l)))
+      .linkColor((l) => (linkIsPicked(l) ? css("--ink") : css("--line-strong")))
       .nodeCanvasObjectMode(() => "after")
       .nodeCanvasObject((node, ctx, zoom) => {
-        if (node.val < 4 && zoom < 2.2) return;
+        const radius = Math.sqrt(node.val) * 4;
+        if (picked === node.id) {
+          ctx.beginPath();
+          ctx.arc(node.x, node.y, radius + 3 / zoom, 0, 2 * Math.PI);
+          ctx.lineWidth = 2.5 / zoom;
+          ctx.strokeStyle = css("--ink");
+          ctx.stroke();
+        }
+        if (node.val < 4 && zoom < 2.2 && picked !== node.id) return;
         ctx.font = `${11 / zoom}px Inter, sans-serif`;
         ctx.fillStyle = css("--ink");
         ctx.textAlign = "center";
-        ctx.fillText(node.label.length > 26 ? `${node.label.slice(0, 25)}…` : node.label, node.x, node.y + Math.sqrt(node.val) * 4 + 9 / zoom);
+        ctx.fillText(node.label.length > 26 ? `${node.label.slice(0, 25)}…` : node.label, node.x, node.y + radius + 9 / zoom);
       })
-      .onNodeClick(pickNode).onLinkClick(pickLink)
+      .onNodeClick(pickNode).onLinkClick(pickLink).onBackgroundClick(clearSelection)
       .cooldownTicks(0);
-    setTimeout(() => graph.zoomToFit(400, 30), 50);
+    setTimeout(() => graph.zoomToFit(0, 30), 50);
+    refresh = () => graph.linkColor(graph.linkColor());
   }
   const types = [...new Set(data.nodes.map((n) => n.type.replaceAll("_", " ")))];
   chart.append(el("div", { class: "graph-legend" }, `${data.nodes.length} ${types.join(" and ")} nodes, ${data.edges.length} links. Colors are clusters of entities that share many trials. ${threeD ? "Drag to rotate" : "Drag to pan"}, scroll to zoom.`));
@@ -598,12 +709,35 @@ async function renderNetwork(chart, data, threeD, token) {
 
 // --- Evidence --------------------------------------------------------------------------------
 
+// --- Selection -------------------------------------------------------------------------------
+// One datum is selected at a time. The renderer that drew it marks it on the chart and hands
+// back how to unmark it, and the evidence panel names it and offers a way to clear it.
+
+let unmark = null;
+
+function select(row, view, labels, mark) {
+  if (!row) return;
+  unmark?.();
+  unmark = mark?.() ?? null;
+  showEvidence(row, view, labels);
+}
+
+function clearSelection() {
+  unmark?.();
+  unmark = null;
+  resetEvidence();
+}
+
 function resetEvidence() {
+  $("evidence-clear").hidden = true;
+  $("evidence").classList.remove("open");
   $("evidence-body").replaceChildren(el("p", { class: "muted" }, "Every number here comes from ClinicalTrials.gov records. Select part of the chart to see which trials it counts, and the exact field and value each one was counted by."));
 }
 
-function rowLabel(row, labels) {
-  if (row.source && row.target && labels) return `${labels[row.source] ?? row.source} and ${labels[row.target] ?? row.target}`;
+function rowLabel(row, labels, view) {
+  // Flow links run from one stage to the next; network links have no direction.
+  const joiner = view?.type === "sankey" || view?.flow ? " → " : " and ";
+  if (row.source && row.target && labels) return `${labels[row.source] ?? row.source}${joiner}${labels[row.target] ?? row.target}`;
   if (row.title) return row.title;
   const skip = new Set([...HEAVY, "trial_count", "key", "iso_a3", "iso_numeric", "bin_start", "bin_end", "n", "min", "q1", "median", "q3", "max", "whisker_low", "whisker_high", "mean", "small_sample", "degree", "community", "x", "y", "x3", "y3", "z3", "stage", "id", "type"]);
   const parts = Object.entries(row).filter(([k, v]) => !skip.has(k) && typeof v === "string").map(([, v]) => v);
@@ -613,7 +747,7 @@ function rowLabel(row, labels) {
 function showEvidence(row, view, labels) {
   if (!row) return;
   const body = $("evidence-body");
-  const parts = [el("p", { class: "selected" }, rowLabel(row, labels))];
+  const parts = [el("p", { class: "selected-label" }, "Selected"), el("p", { class: "selected" }, rowLabel(row, labels, view))];
 
   if (typeof row.trial_count === "number") {
     parts.push(el("p", { class: "count" }, `${number(row.trial_count)} trial${row.trial_count === 1 ? "" : "s"}`));
@@ -651,7 +785,9 @@ function showEvidence(row, view, labels) {
     if (ids.length > shown.length) parts.push(el("p", { class: "muted" }, `and ${number(ids.length - shown.length)} more in the response data.`));
   }
   body.replaceChildren(...parts);
-  if (window.matchMedia("(max-width: 960px)").matches) $("evidence").scrollIntoView({ behavior: "smooth", block: "start" });
+  body.parentElement.scrollTop = 0;
+  $("evidence-clear").hidden = false;
+  $("evidence").classList.add("open");
 }
 
 // --- Reading, notes, mentions ----------------------------------------------------------------
@@ -774,12 +910,14 @@ function markSample(name) {
   document.querySelectorAll(".sample-card").forEach((card) => card.setAttribute("aria-current", String(card.dataset.sample === name)));
 }
 
-async function openSample(name) {
+async function openSample(name, { push = true } = {}) {
+  if (push) history.pushState({ sample: name }, "", `/samples?open=${encodeURIComponent(name)}`);
   try {
     const response = await fetch(`/v1/samples/${encodeURIComponent(name)}`);
     if (!response.ok) throw new Error(`The service answered ${response.status}.`);
     const answer = await response.json();
     $("status").hidden = true;
+    $("samples").hidden = true;
     markSample(name);
     showAnswer(answer, "Saved answer");
   } catch (error) {
@@ -851,9 +989,42 @@ async function drawHero(sample) {
   }
 }
 
+function showGallery() {
+  clearSelection();
+  $("result").hidden = true;
+  $("status").hidden = true;
+  $("samples").hidden = false;
+  window.scrollTo(0, 0);
+}
+
+function goBack(event) {
+  event.preventDefault();
+  if (PAGE === "samples") {
+    if (history.state?.sample) history.back();
+    else {
+      history.replaceState(null, "", "/samples");
+      showGallery();
+    }
+    return;
+  }
+  clearSelection();
+  $("result").hidden = true;
+  window.scrollTo(0, 0);
+  $("question").focus();
+}
+
+window.addEventListener("popstate", () => {
+  if (PAGE !== "samples") return;
+  const name = new URLSearchParams(location.search).get("open");
+  if (name) openSample(name, { push: false });
+  else showGallery();
+});
+
 // The page is chosen by an inline script in index.html before anything renders.
 const PAGE = document.body.dataset.page;
 document.querySelector(`[data-nav="${PAGE}"]`)?.setAttribute("aria-current", "page");
 
 setUpForm();
 loadSamples();
+const opened = new URLSearchParams(location.search).get("open");
+if (PAGE === "samples" && opened) openSample(opened, { push: false });
