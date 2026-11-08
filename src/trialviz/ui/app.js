@@ -1,0 +1,675 @@
+// trialviz demo page: asks /v1/query, renders the recommended chart and its alternatives,
+// and shows the registry evidence behind whatever is selected.
+//
+// All registry text is inserted with textContent, never as HTML, so a trial title cannot
+// inject markup. Heavy libraries (Plotly, 3D graphs) load only when a chart needs them.
+
+const LIBRARIES = {
+  plotly: "https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.2/plotly.min.js",
+  graph3d: "https://cdn.jsdelivr.net/npm/3d-force-graph@1.80.1/dist/3d-force-graph.min.js",
+};
+
+const CHART_LABELS = {
+  stat: "Number",
+  bar_chart: "Bar chart",
+  horizontal_bar_chart: "Ranked bars",
+  donut_chart: "Donut",
+  treemap: "Treemap",
+  choropleth_map: "World map",
+  table: "Table",
+  grouped_bar_chart: "Grouped bars",
+  stacked_bar_chart: "Stacked bars",
+  normalized_stacked_bar_chart: "Shares",
+  heatmap: "Heatmap",
+  time_series: "Line chart",
+  stacked_area_chart: "Stacked area",
+  histogram: "Histogram",
+  box_plot: "Box plot",
+  scatter_plot: "Scatter plot",
+  bubble_chart: "Bubble chart",
+  scatter_plot_3d: "3D scatter",
+  network_graph: "Network",
+  network_graph_3d: "3D network",
+  sankey: "Flow",
+  timeline: "Timeline",
+};
+
+const EXAMPLES = [
+  { query: "How has the number of trials for this drug changed over time?", drug_name: "Pembrolizumab" },
+  { query: "Which countries have the most recruiting melanoma trials?" },
+  { query: "Compare phases for trials involving Keytruda vs Opdivo since 2018" },
+  { query: "Show a network of sponsors and drugs for multiple myeloma trials that started in 2024" },
+  { query: "How do lung cancer trials started in 2016 flow from sponsor class to phase to overall status?" },
+  { query: "Enrollment by phase for completed asthma trials" },
+];
+
+const SOURCE_LABELS = {
+  user: "from your fields",
+  inferred: "from the question",
+  derived: "implied",
+  default: "default",
+};
+
+const HEAVY = new Set(["citations", "nct_ids", "outliers"]);
+
+const $ = (id) => document.getElementById(id);
+
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [key, value] of Object.entries(attrs)) {
+    if (value === undefined || value === null || value === false) continue;
+    if (key === "class") node.className = value;
+    else if (key.startsWith("on")) node.addEventListener(key.slice(2), value);
+    else node.setAttribute(key, value === true ? "" : value);
+  }
+  for (const child of children.flat()) {
+    if (child === null || child === undefined || child === false) continue;
+    node.append(child instanceof Node ? child : document.createTextNode(String(child)));
+  }
+  return node;
+}
+
+const loaded = {};
+function loadScript(name) {
+  loaded[name] ??= new Promise((resolve, reject) => {
+    const script = el("script", { src: LIBRARIES[name] });
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Could not load ${name}`));
+    document.head.append(script);
+  });
+  return loaded[name];
+}
+
+const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+const palette = () => ["#0d6b5c", "#c2853b", "#5b6c8f", "#a4505b", "#7a8b4f", "#8d6e9e", "#3e8fa0", "#b8a04a", "#9a958b"];
+const number = (value) => (typeof value === "number" ? value.toLocaleString() : value);
+
+// --- State ---------------------------------------------------------------------------------
+
+let current = null; // { answer, views: [{view, data}], active }
+
+// --- Form ------------------------------------------------------------------------------------
+
+function setUpForm() {
+  const select = document.querySelector('select[name="chart_type"]');
+  for (const [value, label] of Object.entries(CHART_LABELS)) select.append(el("option", { value }, label));
+
+  const list = $("examples");
+  for (const example of EXAMPLES) {
+    const label = example.drug_name ? `${example.query} (drug: ${example.drug_name})` : example.query;
+    list.append(el("li", {}, el("button", { type: "button", onclick: () => runExample(example) }, label)));
+  }
+
+  $("ask-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    ask(buildRequest());
+  });
+  $("question").addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && (event.metaKey || event.ctrlKey)) $("ask-form").requestSubmit();
+  });
+}
+
+function runExample(example) {
+  const form = $("ask-form");
+  form.reset();
+  $("question").value = example.query;
+  if (example.drug_name) {
+    form.elements.drug_name.value = example.drug_name;
+    form.querySelector(".refine").open = true;
+  }
+  ask(buildRequest());
+}
+
+function buildRequest() {
+  const form = $("ask-form").elements;
+  const request = { query: form.query.value.trim() };
+  for (const name of ["drug_name", "condition", "trial_phase", "country"]) {
+    if (form[name].value.trim()) request[name] = form[name].value.trim();
+  }
+  for (const name of ["start_year", "end_year"]) {
+    // Anything but a plain year goes through as typed, so the API's validation explains it.
+    const raw = form[name].value.trim();
+    if (raw) request[name] = /^\d+$/.test(raw) ? Number(raw) : raw;
+  }
+  if (form.chart_type.value) request.presentation = { chart_type: form.chart_type.value };
+  if (form.mentions.checked) request.retrieval = { name_matching: "mentioned" };
+  return request;
+}
+
+// --- Asking ----------------------------------------------------------------------------------
+
+// Validation errors name plan paths. These are the ones the form's fields set.
+const FIELD_LABELS = {
+  "filters.interventions": "Drug",
+  "filters.conditions": "Condition",
+  "filters.phases": "Phase",
+  "filters.countries": "Country",
+  "filters.start_year_from": "Started from",
+  "filters.start_year_to": "Started up to",
+  "presentation.chart_type": "Chart",
+};
+
+async function ask(request) {
+  if (!request.query) {
+    showProblem("Type a question first.", []);
+    return;
+  }
+  const button = $("ask-button");
+  button.disabled = true;
+  $("result").hidden = true;
+  showLoading();
+  try {
+    const response = await fetch("/v1/query", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(request),
+    });
+    const body = await response.json();
+    if (!response.ok) {
+      const error = body.error ?? { message: `The service answered ${response.status}.`, details: [] };
+      showProblem(error.message, (error.details ?? []).map((d) => (d.path ? `${FIELD_LABELS[d.path] ?? d.path}: ${d.message}` : d.message)));
+    } else if (body.status === "needs_clarification") {
+      showClarification(body);
+    } else {
+      $("status").hidden = true;
+      showAnswer(body);
+    }
+  } catch (error) {
+    showProblem("The service could not be reached. Check that it is running and try again.", [String(error.message ?? error)]);
+  } finally {
+    button.disabled = false;
+    clearInterval(showLoading.timer);
+  }
+}
+
+function showLoading() {
+  const status = $("status");
+  const elapsed = el("span", {}, "");
+  status.className = "status loading";
+  status.replaceChildren(el("span", { class: "spinner", "aria-hidden": "true" }), el("span", {}, "Reading the question, querying ClinicalTrials.gov and citing the records. Large questions take up to a minute. "), elapsed);
+  status.hidden = false;
+  const started = Date.now();
+  clearInterval(showLoading.timer);
+  showLoading.timer = setInterval(() => (elapsed.textContent = `${Math.round((Date.now() - started) / 1000)}s`), 1000);
+}
+
+function showProblem(message, details) {
+  const status = $("status");
+  status.className = "status problem";
+  status.replaceChildren(el("h2", {}, "That did not work"), el("p", {}, message), ...(details.length ? [el("ul", {}, details.map((d) => el("li", {}, d)))] : []));
+  status.hidden = false;
+}
+
+function showClarification(body) {
+  const status = $("status");
+  status.className = "status";
+  const missing = body.missing?.length ? [el("p", { class: "muted" }, `Fields that would settle it: ${body.missing.join(", ")}`)] : [];
+  status.replaceChildren(el("h2", {}, "One more detail"), el("p", {}, body.message), ...missing);
+  status.hidden = false;
+}
+
+// --- Answer ----------------------------------------------------------------------------------
+
+function showAnswer(answer) {
+  const views = [answer.visualization, ...answer.alternatives].map((view) => ({
+    view,
+    data: view.data ?? answer.visualization.data,
+  }));
+  current = { answer, views, active: 0 };
+
+  $("result-title").textContent = answer.visualization.title;
+  $("result-subtitle").textContent = answer.visualization.subtitle ?? "";
+  $("result-subtitle").hidden = !answer.visualization.subtitle;
+  const totals = answer.meta.cohorts.map((c) => (c.label ? `${c.label}: ${number(c.total)} trials` : `${number(c.total)} trials`));
+  const when = new Date(answer.meta.data_version).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+  $("result-facts").textContent = `${totals.join(", ")}. ClinicalTrials.gov data as of ${when}.`;
+
+  const tabs = $("views");
+  tabs.replaceChildren(
+    ...views.map(({ view }, index) =>
+      el("button", { type: "button", role: "tab", "aria-selected": String(index === 0), onclick: () => selectView(index) },
+        CHART_LABELS[view.type] ?? view.type, index === 0 ? el("span", { class: "tag" }, "Recommended") : null),
+    ),
+  );
+
+  renderReading(answer.meta);
+  renderNotes(answer.meta.notes);
+  renderMentions(answer.meta.mentions);
+  $("requests").replaceChildren(...answer.meta.registry_requests.map((url) => el("li", {}, el("a", { href: url, target: "_blank", rel: "noopener" }, url))));
+
+  $("result").hidden = false;
+  selectView(0);
+  $("result").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function selectView(index) {
+  current.active = index;
+  [...$("views").children].forEach((tab, i) => tab.setAttribute("aria-selected", String(i === index)));
+  const { view, data } = current.views[index];
+  const reason = $("view-reason");
+  reason.replaceChildren(el("strong", {}, index === 0 ? "Why this view: " : "Also fits: "), view.reason, ".");
+  resetEvidence();
+  renderView(view, data).catch((error) => {
+    $("chart").replaceChildren(el("p", { class: "empty" }, `This view could not be drawn: ${error.message}`));
+  });
+}
+
+// --- Renderers -------------------------------------------------------------------------------
+
+let renderCount = 0;
+
+// Charts drawn by lazily loaded libraries finish after an await. A later view switch
+// bumps the count, and the stale render stops instead of drawing over the new view.
+const stale = (token) => token !== renderCount;
+
+async function renderView(view, data) {
+  const chart = $("chart");
+  const token = ++renderCount;
+  // Hold the frame's height while the next view loads, so the page does not jump.
+  chart.style.minHeight = `${chart.offsetHeight}px`;
+  try {
+    await drawView(chart, view, data, token);
+  } finally {
+    if (!stale(token)) chart.style.minHeight = "";
+  }
+}
+
+async function drawView(chart, view, data, token) {
+  chart.replaceChildren();
+  $("chart-hint").hidden = view.type === "stat";
+  const empty = Array.isArray(data) ? data.length === 0 : !(data.nodes?.length);
+  if (empty && view.type !== "stat") {
+    chart.append(el("p", { class: "empty" }, "No trials match this question."));
+    return;
+  }
+  if (view.type === "stat") return renderStat(chart, data);
+  if (view.type === "table") return renderTable(chart, view, data);
+  if (view.type === "network_graph") return renderNetwork(chart, data, false, token);
+  if (view.type === "network_graph_3d") return renderNetwork(chart, data, true, token);
+  if (["treemap", "sankey", "scatter_plot_3d"].includes(view.type)) return renderPlotly(chart, view, data, token);
+  if (view.vega_lite) return renderVega(chart, view, data);
+  return renderTable(chart, view, data);
+}
+
+function vegaConfig() {
+  const ink = css("--ink");
+  const muted = css("--muted");
+  const line = css("--line");
+  return {
+    background: "transparent",
+    font: "Inter, system-ui, sans-serif",
+    view: { stroke: null },
+    axis: { labelColor: muted, titleColor: ink, gridColor: line, domainColor: css("--line-strong"), tickColor: line, labelFontSize: 12, titleFontSize: 12, titleFontWeight: 500 },
+    legend: { labelColor: muted, titleColor: ink, labelFontSize: 12, titleFontSize: 12 },
+    title: { color: ink, fontSize: 0 },
+    range: { category: palette(), ordinal: { scheme: "teals" }, ramp: ["#d9ebe5", "#0d6b5c"], heatmap: ["#d9ebe5", "#0d6b5c"] },
+    mark: { color: css("--accent") },
+    bar: { color: css("--accent") },
+    line: { color: css("--accent"), strokeWidth: 2 },
+    point: { color: css("--accent") },
+  };
+}
+
+async function renderVega(chart, view, data) {
+  const spec = structuredClone(view.vega_lite);
+  delete spec.title;
+  const isMap = view.type === "choropleth_map";
+  const rows = Array.isArray(data) ? data.length : 0;
+  if (!isMap) {
+    spec.width = "container";
+    spec.autosize = { type: "fit-x", contains: "padding" };
+  } else {
+    spec.width = Math.max(320, chart.clientWidth - 8);
+    spec.autosize = { type: "fit", contains: "padding" };
+    spec.layer[0].mark.fill = css("--line"); // countries with no trials follow the theme
+  }
+  const tall = view.type === "horizontal_bar_chart" || view.type === "timeline";
+  const shown = view.options?.display_limit ? Math.min(rows, view.options.display_limit) : rows;
+  spec.height = tall ? Math.max(260, Math.min(shown, 60) * 24) : view.type === "heatmap" ? 380 : 360;
+  if (isMap) {
+    // The Equal Earth projection is about twice as wide as it is tall. On a phone the
+    // legend goes underneath, so the map keeps the full width.
+    const narrow = chart.clientWidth < 560;
+    spec.height = Math.round(spec.width * 0.5) + (narrow ? 70 : 0);
+    if (narrow) spec.layer[1].encoding.color.legend = { orient: "bottom", direction: "horizontal", gradientLength: Math.min(240, spec.width - 40) };
+  }
+  // Embedding into a child, not the frame itself, means a stale render that finishes late
+  // only fills a node the next view has already removed.
+  const host = el("div");
+  chart.append(host);
+  const result = await vegaEmbed(host, spec, { actions: false, renderer: "svg", config: vegaConfig() });
+  result.view.addEventListener("click", (_event, item) => {
+    const datum = item?.datum;
+    if (!datum) return;
+    const row = matchRow(data, datum);
+    if (row) showEvidence(row, view);
+  });
+}
+
+function sameValue(rowValue, datumValue) {
+  if (rowValue === datumValue) return true;
+  if (datumValue instanceof Date || (typeof datumValue === "number" && typeof rowValue === "string")) {
+    const parsed = Date.parse(rowValue);
+    const target = datumValue instanceof Date ? datumValue.getTime() : datumValue;
+    return Number.isFinite(parsed) && parsed === target;
+  }
+  return false;
+}
+
+function matchRow(rows, datum) {
+  if (!Array.isArray(rows)) return null;
+  const source = datum.properties ? { ...datum, ...datum.properties } : datum;
+  let best = null;
+  let bestScore = 0;
+  for (const row of rows) {
+    let score = 0;
+    let conflict = false;
+    for (const [key, value] of Object.entries(row)) {
+      if (HEAVY.has(key) || value === null || typeof value === "object" || !(key in source)) continue;
+      if (sameValue(value, source[key])) score += 1;
+      else conflict = true;
+    }
+    if (!conflict && score > bestScore) {
+      best = row;
+      bestScore = score;
+    }
+  }
+  return best;
+}
+
+function renderStat(chart, data) {
+  const [row] = data;
+  chart.append(
+    el("div", { class: "stat" },
+      el("div", { class: "stat-number" }, number(row.trial_count)),
+      el("div", { class: "stat-label" }, "trials match"),
+      el("button", { type: "button", onclick: () => showEvidence(row, { type: "stat" }) }, "Show the evidence")),
+  );
+}
+
+function tableColumns(view, data) {
+  if (Array.isArray(data)) {
+    if (view.options?.columns) return view.options.columns;
+    const keys = Object.keys(data[0] ?? {}).filter((k) => !HEAVY.has(k) && k !== "key" && k !== "iso_a3" && k !== "iso_numeric");
+    return keys;
+  }
+  return data.edges ? ["source", "target", "trial_count"] : ["source", "target", "trial_count"];
+}
+
+function renderTable(chart, view, data) {
+  const labels = {};
+  let rows = data;
+  if (!Array.isArray(data)) {
+    const nodes = Object.fromEntries(data.nodes.map((n) => [n.id, n.stage_label ? `${n.stage_label}: ${n.label}` : n.label]));
+    rows = (data.edges ?? data.links).map((link) => ({ ...link, source: nodes[link.source], target: nodes[link.target] }));
+    labels.source = "From";
+    labels.target = "To";
+  }
+  const columns = tableColumns(view, data);
+  const head = el("tr", {}, columns.map((c) => el("th", {}, labels[c] ?? c.replaceAll("_", " "))));
+  const body = rows.map((row, index) => {
+    const original = Array.isArray(data) ? row : (data.edges ?? data.links)[index];
+    const cells = columns.map((c) => {
+      const value = row[c];
+      if (c === "nct_id") return el("td", {}, el("a", { href: `https://clinicaltrials.gov/study/${value}`, target: "_blank", rel: "noopener" }, value));
+      return el("td", { class: typeof value === "number" ? "number" : undefined }, value === null || value === undefined ? "" : number(value));
+    });
+    return el("tr", { class: "selectable", onclick: () => showEvidence(original, view) }, cells);
+  });
+  chart.append(el("div", { class: "table-scroll" }, el("table", { class: "data" }, el("thead", {}, head), el("tbody", {}, body))));
+}
+
+// The same 0, 1, 2, 5, 10, 20, 50 ticks the backend puts on symlog axes.
+function niceTicks(top) {
+  const ticks = [0];
+  for (let step = 1; step <= top; step *= 10) {
+    for (const m of [1, 2, 5]) if (m * step <= top) ticks.push(m * step);
+  }
+  return ticks;
+}
+
+function shortNumber(value) {
+  return value >= 1000 ? `${value / 1000}k` : String(value);
+}
+
+async function renderPlotly(chart, view, data, token) {
+  await loadScript("plotly");
+  if (stale(token)) return;
+  const ink = css("--ink");
+  const layout = {
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
+    font: { family: "Inter, system-ui, sans-serif", color: ink, size: 12 },
+    margin: { l: 10, r: 10, t: 10, b: 10 },
+    height: 520,
+    colorway: palette(),
+  };
+  let traces;
+  let rowFor;
+  if (view.type === "treemap") {
+    const field = view.encoding.label.field;
+    traces = [{ type: "treemap", labels: data.map((r) => r[field]), parents: data.map(() => ""), values: data.map((r) => r.trial_count), textinfo: "label+value", marker: { colors: data.map((_, i) => palette()[i % 9]) } }];
+    rowFor = (point) => data[point.pointNumber];
+  } else if (view.type === "sankey") {
+    const index = Object.fromEntries(data.nodes.map((n, i) => [n.id, i]));
+    traces = [{
+      type: "sankey",
+      arrangement: "snap",
+      node: { label: data.nodes.map((n) => n.label), pad: 14, thickness: 16, color: data.nodes.map((n) => palette()[n.stage % 9]), line: { width: 0 } },
+      link: { source: data.links.map((l) => index[l.source]), target: data.links.map((l) => index[l.target]), value: data.links.map((l) => l.trial_count), color: "rgba(13,107,92,0.18)" },
+    }];
+    // A link click carries its source and target nodes. A node click does not.
+    rowFor = (point) => (point.source && point.target ? data.links[point.pointNumber] : data.nodes[point.pointNumber]);
+  } else {
+    const x = view.encoding.x.field;
+    const y = view.encoding.y.field;
+    const z = view.encoding.z.field;
+    const color = view.encoding.color?.field;
+    const groups = color ? [...new Set(data.map((r) => r[color]))] : [null];
+    // Plotly has no symlog axis. A skewed measure is plotted as log10(1 + value), with
+    // ticks labeled in the original units, which is the same curve Vega's symlog draws.
+    const skewed = (channel) => channel.scale === "symlog";
+    const position = (channel) => (skewed(channel) ? (v) => Math.log10(1 + v) : (v) => v);
+    const [px, py, pz] = [view.encoding.x, view.encoding.y, view.encoding.z].map(position);
+    traces = groups.map((group, i) => {
+      const rows = data.filter((r) => !color || r[color] === group);
+      return { type: "scatter3d", mode: "markers", name: group ?? "Trials", x: rows.map((r) => px(r[x])), y: rows.map((r) => py(r[y])), z: rows.map((r) => pz(r[z])), text: rows.map((r) => `${r.title}<br>${number(r[x])} · ${number(r[y])} · ${number(r[z])}`), customdata: rows.map((r) => data.indexOf(r)), hovertemplate: "%{text}<extra></extra>", marker: { size: 3.5, opacity: 0.8, color: palette()[i % 9] } };
+    });
+    const axis = (channel) => {
+      const base = { title: { text: channel.title }, type: "linear", gridcolor: css("--line"), color: css("--muted") };
+      if (!skewed(channel)) return base;
+      const top = Math.max(...data.map((r) => r[channel.field] ?? 0));
+      const ticks = niceTicks(top);
+      return { ...base, tickvals: ticks.map((t) => Math.log10(1 + t)), ticktext: ticks.map(shortNumber) };
+    };
+    layout.scene = { xaxis: axis(view.encoding.x), yaxis: axis(view.encoding.y), zaxis: axis(view.encoding.z) };
+    layout.margin = { l: 0, r: 0, t: 0, b: 0 };
+    rowFor = (point) => data[point.customdata];
+  }
+  // Wheel zoom off, so scrolling the page past a 3D scene does not zoom it instead.
+  await Plotly.newPlot(chart, traces, layout, { displaylogo: false, responsive: true, scrollZoom: false, modeBarButtonsToRemove: ["toImage"] });
+  chart.on("plotly_click", (event) => {
+    const point = event.points?.[0];
+    const row = point && rowFor(point);
+    if (row) showEvidence(row, view);
+  });
+}
+
+async function renderNetwork(chart, data, threeD, token) {
+  if (threeD) await loadScript("graph3d");
+  if (stale(token)) return;
+  const colors = palette();
+  const labels = Object.fromEntries(data.nodes.map((n) => [n.id, n.label]));
+  const maxCount = Math.max(...data.nodes.map((n) => n.trial_count));
+  const scale = threeD ? 220 : 260;
+  const nodes = data.nodes.map((n) => ({
+    ...n,
+    fx: (threeD ? n.x3 : n.x) * scale,
+    fy: (threeD ? n.y3 : n.y) * scale,
+    ...(threeD ? { fz: n.z3 * scale } : {}),
+    val: 1 + (12 * n.trial_count) / maxCount,
+  }));
+  const links = data.edges.map((e) => ({ ...e }));
+  const width = chart.clientWidth;
+  // Roughly square on a phone, so the graph is not a small cluster in a tall empty frame.
+  const height = Math.min(threeD ? 560 : 520, Math.max(320, Math.round(width * 1.05)));
+  const nodeLabel = (n) => `${n.label} (${n.trial_count} trials)`;
+  const color = (n) => colors[n.community % colors.length];
+  const linkWidth = (l) => 0.5 + Math.log2(1 + l.trial_count);
+  const pickNode = (n) => showEvidence(data.nodes.find((x) => x.id === n.id), { type: "network" }, labels);
+  const pickLink = (l) => showEvidence(data.edges.find((e) => e.source === (l.source.id ?? l.source) && e.target === (l.target.id ?? l.target)), { type: "network" }, labels);
+
+  if (threeD) {
+    const graph = ForceGraph3D()(chart)
+      .width(width).height(height)
+      .backgroundColor(css("--surface"))
+      .graphData({ nodes, links })
+      .nodeLabel(nodeLabel).nodeVal("val").nodeColor(color).nodeOpacity(0.92)
+      .linkWidth(linkWidth).linkColor(() => css("--faint")).linkOpacity(0.35)
+      .onNodeClick(pickNode).onLinkClick(pickLink);
+    graph.cameraPosition({ z: 520 });
+  } else {
+    const graph = ForceGraph()(chart)
+      .width(width).height(height)
+      .graphData({ nodes, links })
+      .nodeLabel(nodeLabel).nodeVal("val").nodeColor(color)
+      .linkWidth(linkWidth).linkColor(() => css("--line-strong"))
+      .nodeCanvasObjectMode(() => "after")
+      .nodeCanvasObject((node, ctx, zoom) => {
+        if (node.val < 4 && zoom < 2.2) return;
+        ctx.font = `${11 / zoom}px Inter, sans-serif`;
+        ctx.fillStyle = css("--ink");
+        ctx.textAlign = "center";
+        ctx.fillText(node.label.length > 26 ? `${node.label.slice(0, 25)}…` : node.label, node.x, node.y + Math.sqrt(node.val) * 4 + 9 / zoom);
+      })
+      .onNodeClick(pickNode).onLinkClick(pickLink)
+      .cooldownTicks(0);
+    setTimeout(() => graph.zoomToFit(400, 30), 50);
+  }
+  const types = [...new Set(data.nodes.map((n) => n.type.replaceAll("_", " ")))];
+  chart.append(el("div", { class: "graph-legend" }, `${data.nodes.length} ${types.join(" and ")} nodes, ${data.edges.length} links. Colors are clusters of entities that share many trials. ${threeD ? "Drag to rotate" : "Drag to pan"}, scroll to zoom.`));
+}
+
+// --- Evidence --------------------------------------------------------------------------------
+
+function resetEvidence() {
+  $("evidence-body").replaceChildren(el("p", { class: "muted" }, "Every number here comes from ClinicalTrials.gov records. Select part of the chart to see which trials it counts, and the exact field and value each one was counted by."));
+}
+
+function rowLabel(row, labels) {
+  if (row.source && row.target && labels) return `${labels[row.source] ?? row.source} and ${labels[row.target] ?? row.target}`;
+  if (row.title) return row.title;
+  const skip = new Set([...HEAVY, "trial_count", "key", "iso_a3", "iso_numeric", "bin_start", "bin_end", "n", "min", "q1", "median", "q3", "max", "whisker_low", "whisker_high", "mean", "small_sample", "degree", "community", "x", "y", "x3", "y3", "z3", "stage", "id", "type"]);
+  const parts = Object.entries(row).filter(([k, v]) => !skip.has(k) && typeof v === "string").map(([, v]) => v);
+  return parts.join(", ") || row.label || "Selected";
+}
+
+function showEvidence(row, view, labels) {
+  if (!row) return;
+  const body = $("evidence-body");
+  const parts = [el("h3", {}, rowLabel(row, labels))];
+
+  if (typeof row.trial_count === "number") {
+    parts.push(el("p", { class: "count" }, `${number(row.trial_count)} trial${row.trial_count === 1 ? "" : "s"}`));
+    const listed = row.nct_ids?.length ?? 0;
+    if (listed && row.trial_count > listed) {
+      parts.push(el("p", { class: "note" }, `Counted directly by the registry. The ${number(listed)} trials fetched for this answer are listed and cited below.`));
+    }
+  }
+  if ("median" in row) {
+    parts.push(el("dl", { class: "stats" },
+      ["n", "min", "q1", "median", "q3", "max", "mean"].flatMap((k) => [el("dt", {}, k), el("dd", {}, number(row[k]))])));
+    if (row.small_sample) parts.push(el("p", { class: "note" }, "Fewer than 5 values, so this box is only a rough guide."));
+  }
+  if (row.nct_id && !row.trial_count) {
+    const measures = Object.entries(row).filter(([k, v]) => typeof v === "number" && !["x", "y"].includes(k));
+    if (measures.length) parts.push(el("dl", { class: "stats" }, measures.flatMap(([k, v]) => [el("dt", {}, k.replaceAll("_", " ")), el("dd", {}, number(v))])));
+  }
+
+  const citations = row.citations ?? [];
+  if (citations.length) {
+    parts.push(el("h4", {}, "Why these trials are counted here"));
+    for (const citation of citations) {
+      parts.push(el("div", { class: "citation" },
+        el("a", { href: citation.url, target: "_blank", rel: "noopener" }, citation.nct_id),
+        el("div", { class: "field" }, citation.field),
+        el("span", { class: `excerpt${citation.kind === "quote" ? " quote" : ""}` }, citation.kind === "quote" ? `“${citation.excerpt}”` : citation.excerpt)));
+    }
+  }
+
+  const ids = row.nct_ids ?? (row.nct_id ? [row.nct_id] : []);
+  if (ids.length > citations.length) {
+    parts.push(el("h4", {}, `All ${number(ids.length)} trials`));
+    const shown = ids.slice(0, 60);
+    parts.push(el("ul", { class: "trial-list" }, shown.map((id) => el("li", {}, el("a", { href: `https://clinicaltrials.gov/study/${id}`, target: "_blank", rel: "noopener" }, id)))));
+    if (ids.length > shown.length) parts.push(el("p", { class: "muted" }, `and ${number(ids.length - shown.length)} more in the response data.`));
+  }
+  body.replaceChildren(...parts);
+  if (window.matchMedia("(max-width: 960px)").matches) $("evidence").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+// --- Reading, notes, mentions ----------------------------------------------------------------
+
+// Registry codes read as words: "PHASE3" as "Phase 3", "ACTIVE_NOT_RECRUITING" as
+// "Active not recruiting". Names people typed are left exactly as typed.
+function humanize(value) {
+  const text = String(value);
+  if (!/^[A-Z0-9_]+$/.test(text)) return text.replaceAll("_", " ");
+  const words = text.replace(/^PHASE(\d)$/, "PHASE $1").replace(/^EARLY_PHASE1$/, "EARLY PHASE 1").replaceAll("_", " ").toLowerCase();
+  return words === "na" ? "Not applicable" : words === "nih" ? "NIH" : words[0].toUpperCase() + words.slice(1);
+}
+
+function describeValue(value) {
+  if (Array.isArray(value)) return value.map((v) => (typeof v === "object" ? v.label ?? JSON.stringify(v) : humanize(v))).join(", ");
+  if (typeof value === "object" && value !== null) return JSON.stringify(value);
+  return humanize(value);
+}
+
+function renderReading(meta) {
+  const plan = meta.plan;
+  const rows = [];
+  const add = (path, label, value) => {
+    if (value === null || value === undefined) return;
+    const source = meta.provenance[path];
+    rows.push(el("dt", {}, label), el("dd", {}, describeValue(value), source ? el("span", { class: `source ${source}` }, SOURCE_LABELS[source] ?? source) : null));
+  };
+  const filters = plan.filters;
+  const filterLabels = { conditions: "Conditions", interventions: "Drugs", sponsors: "Lead sponsors", keywords: "Keywords", phases: "Phases", statuses: "Statuses", sponsor_classes: "Sponsor classes", intervention_types: "Intervention types", study_types: "Study types", countries: "Countries", start_year_from: "Started from", start_year_to: "Started up to" };
+  for (const [key, label] of Object.entries(filterLabels)) add(`filters.${key}`, label, filters[key]);
+  add("analysis.kind", "Analysis", plan.analysis.kind);
+  for (const [key, value] of Object.entries(plan.analysis)) {
+    if (key === "kind" || value === null) continue;
+    if (key === "cohorts") add("analysis.cohorts", "Compared", value.map((c) => c.label));
+    else add(`analysis.${key}`, key.replaceAll("_", " "), value);
+  }
+  add("presentation.chart_type", "Chart asked for", plan.presentation.chart_type);
+  add("presentation.top_n", "Show top", plan.presentation.top_n);
+  add("retrieval.name_matching", "Names must be", plan.retrieval?.name_matching === "mentioned" ? "named or mentioned" : "named as an intervention or condition");
+  if (meta.interpreter) rows.push(el("dt", {}, "Read by"), el("dd", {}, meta.interpreter.startsWith("claude") ? "Claude" : "rule-based interpreter"));
+  $("reading").replaceChildren(...rows);
+}
+
+function renderNotes(notes) {
+  $("notes").replaceChildren(...notes.map((note) => el("li", {}, note.message)));
+}
+
+function renderMentions(reports) {
+  const section = $("mentions");
+  if (!reports.length) {
+    section.hidden = true;
+    return;
+  }
+  const parts = [];
+  for (const report of reports) {
+    const who = report.cohort ? `${report.cohort}: ` : "";
+    const verb = report.counted ? "are counted in the chart" : "are not counted in the chart";
+    parts.push(el("p", {}, `${who}${number(report.total)} trials mention the drug or condition only in their descriptions, and ${verb}. Some examples:`));
+    for (const citation of report.citations.slice(0, 4)) {
+      parts.push(el("blockquote", {}, `“${citation.excerpt}”`, el("cite", {}, el("a", { href: citation.url, target: "_blank", rel: "noopener" }, citation.nct_id), ` ${citation.field}`)));
+    }
+  }
+  $("mentions-body").replaceChildren(...parts);
+  section.hidden = false;
+}
+
+setUpForm();

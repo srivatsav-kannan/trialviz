@@ -9,3 +9,4 @@ var/
 .mypy_cache/
 .hypothesis/
 .DS_Store
+.claude/

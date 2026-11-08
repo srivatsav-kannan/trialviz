@@ -14,11 +14,14 @@ client needs a single error handler.
 from __future__ import annotations
 
 from datetime import date
+from pathlib import Path
 from typing import Any
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
+from starlette.responses import Response
 
 from trialviz.answer import QueryResponse
 from trialviz.llm.budget import SpendLedger
@@ -32,6 +35,22 @@ from trialviz.query.resolver import QueryResolver
 from trialviz.retrieval.client import RegistryQueryError, RegistryUnavailable
 from trialviz.retrieval.retriever import Retriever, build_retriever
 from trialviz.settings import Settings
+
+UI_DIRECTORY = Path(__file__).parent / "ui"
+"""A single-page demo that calls /v1/query and renders every chart type, served at /."""
+
+
+_REVALIDATE = {"Cache-Control": "no-cache"}
+
+
+class _RevalidatedStaticFiles(StaticFiles):
+    """The UI's files are checked against their ETag on every load, so a browser never runs
+    a stylesheet or script older than the page that loads it after a redeploy."""
+
+    def file_response(self, *args: Any, **kwargs: Any) -> Response:
+        response = super().file_response(*args, **kwargs)
+        response.headers.update(_REVALIDATE)
+        return response
 
 
 def build_interpreter(settings: Settings) -> Interpreter:
@@ -63,6 +82,12 @@ def create_app(
         summary="Questions about clinical trials in, visualization specs out.",
         version="0.1.0",
     )
+
+    @app.get("/", include_in_schema=False)
+    async def home() -> FileResponse:
+        return FileResponse(UI_DIRECTORY / "index.html", headers=_REVALIDATE)
+
+    app.mount("/ui", _RevalidatedStaticFiles(directory=UI_DIRECTORY), name="ui")
 
     @app.get("/health")
     async def health() -> dict[str, str]:

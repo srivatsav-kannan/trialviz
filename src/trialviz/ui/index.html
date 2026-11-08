@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>trialviz</title>
+  <meta name="description" content="Ask a question about clinical trials and get a chart backed by ClinicalTrials.gov, with a citation for every number.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/ui/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.33.1/build/vega.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.23.0/build/vega-lite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.29.0/build/vega-embed.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/force-graph@1.52.0/dist/force-graph.min.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="wordmark" href="/">trialviz</a>
+      <p class="tagline">Questions about clinical trials, answered from ClinicalTrials.gov</p>
+      <a class="docs-link" href="/docs">API</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="ask" aria-labelledby="ask-label">
+      <form id="ask-form" novalidate>
+        <label id="ask-label" class="ask-label" for="question">Ask about clinical trials</label>
+        <div class="ask-row">
+          <textarea id="question" name="query" rows="2" maxlength="2000" required
+            placeholder="How has the number of trials for pembrolizumab changed since 2015?"></textarea>
+          <button id="ask-button" class="primary" type="submit">Ask</button>
+        </div>
+
+        <details class="refine">
+          <summary>Refine with fields</summary>
+          <p class="refine-help">Fields you set are binding. The question fills in everything else.</p>
+          <div class="refine-grid">
+            <label>Drug<input name="drug_name" autocomplete="off" placeholder="Pembrolizumab"></label>
+            <label>Condition<input name="condition" autocomplete="off" placeholder="Melanoma"></label>
+            <label>Phase<input name="trial_phase" autocomplete="off" placeholder="Phase 3"></label>
+            <label>Country<input name="country" autocomplete="off" placeholder="United States"></label>
+            <label>Started from<input name="start_year" inputmode="numeric" placeholder="2015"></label>
+            <label>Started up to<input name="end_year" inputmode="numeric" placeholder="2024"></label>
+            <label>Chart
+              <select name="chart_type">
+                <option value="">Recommended</option>
+              </select>
+            </label>
+            <label class="check"><input type="checkbox" name="mentions"> Count trials that only mention the drug or condition</label>
+          </div>
+        </details>
+      </form>
+
+      <div class="examples">
+        <span class="examples-label">Try</span>
+        <ul id="examples"></ul>
+      </div>
+    </section>
+
+    <section id="status" class="status" hidden aria-live="polite"></section>
+
+    <section id="result" class="result" hidden>
+      <header class="result-header">
+        <h1 id="result-title"></h1>
+        <p id="result-subtitle" class="subtitle"></p>
+        <p id="result-facts" class="facts"></p>
+      </header>
+
+      <div class="workspace">
+        <div class="chart-column">
+          <div id="views" class="views" role="tablist" aria-label="Views of this data"></div>
+          <p id="view-reason" class="view-reason"></p>
+          <div class="chart-frame">
+            <div id="chart" class="chart"></div>
+          </div>
+          <p class="chart-hint" id="chart-hint">Select a bar, point or node to see the trials and the registry fields behind it.</p>
+        </div>
+
+        <aside id="evidence" class="evidence" aria-live="polite">
+          <h2>Evidence</h2>
+          <div id="evidence-body">
+            <p class="muted">Every number here comes from ClinicalTrials.gov records. Select part of the chart to see which trials it counts, and the exact field and value each one was counted by.</p>
+          </div>
+        </aside>
+      </div>
+
+      <div class="details">
+        <section class="panel">
+          <h2>How the question was read</h2>
+          <dl id="reading" class="reading"></dl>
+        </section>
+        <section class="panel">
+          <h2>Notes</h2>
+          <ul id="notes" class="notes"></ul>
+        </section>
+      </div>
+
+      <section id="mentions" class="panel mentions" hidden>
+        <h2>Trials that only mention it</h2>
+        <div id="mentions-body"></div>
+      </section>
+
+      <details class="panel requests">
+        <summary>Registry requests behind these numbers</summary>
+        <ol id="requests"></ol>
+      </details>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Data from the <a href="https://clinicaltrials.gov/data-api/api">ClinicalTrials.gov API</a>. Charts are generated by fixed rules from registry records, and a language model only interprets the question.</p>
+  </footer>
+
+  <script type="module" src="/ui/app.js"></script>
+</body>
+</html>
