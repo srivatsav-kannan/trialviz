@@ -16,24 +16,23 @@ import logging
 from collections.abc import Mapping
 from dataclasses import dataclass, field, replace
 from datetime import date
-from enum import StrEnum
 from typing import Protocol
 
 from trialviz.query.request import QueryRequest
+from trialviz.query.resolution import ClarificationReason
 
 log = logging.getLogger(__name__)
 
 
-class IssueKind(StrEnum):
-    AMBIGUOUS_REFERENCE = "ambiguous_reference"
-    OUT_OF_SCOPE = "out_of_scope"
+ISSUE_KINDS = (ClarificationReason.AMBIGUOUS_REFERENCE, ClarificationReason.OUT_OF_SCOPE)
+"""The clarifications an interpreter may raise itself. The others come from the resolver."""
 
 
 @dataclass(frozen=True)
 class InterpreterIssue:
     """A problem with the question itself that no slot value can express."""
 
-    kind: IssueKind
+    kind: ClarificationReason
     message: str
 
 
@@ -97,6 +96,10 @@ class FallbackInterpreter:
     @property
     def name(self) -> str:
         return " > ".join(interpreter.name for interpreter in self._chain)
+
+    @property
+    def chain(self) -> tuple[Interpreter, ...]:
+        return self._chain
 
     async def interpret(self, request: QueryRequest, today: date) -> Interpretation:
         failures: list[Fallback] = []

@@ -16,11 +16,11 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from trialviz.api import build_interpreter
 from trialviz.pipeline import Pipeline
 from trialviz.query.request import QueryRequest
 from trialviz.query.resolver import QueryResolver
 from trialviz.retrieval.retriever import build_retriever
+from trialviz.service import build_interpreter
 from trialviz.settings import Settings
 
 HERE = Path(__file__).parent

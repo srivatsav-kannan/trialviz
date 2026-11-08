@@ -81,7 +81,9 @@ src/trialviz/
   llm/budget.py      the spend caps: a file ledger for local runs, a Postgres one when deployed
   limits.py          rate limits, the cap on answers in progress, body size, security headers
   settings.py        configuration
-  api.py             HTTP routes, the stream, error handling, and the pages at /, /samples and /docs
+  service.py         what every way in shares: limits, answering, saved answers and status
+  api.py             HTTP routes on top of the service, the stream, error handling, and the
+                     pages at /, /samples and /docs
   openapi.py         the API reference's overview, request and response examples, and error models
   ui/                the demo UI (one page for both routes, a stylesheet, and a JavaScript
                      module that streams progress, shares links and downloads CSV and JSON),

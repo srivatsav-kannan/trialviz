@@ -649,55 +649,91 @@ def _graph(
     arms: Callable[[Study], list[tuple[list[Drug], Citation]]],
 ) -> Built:
     first, second = node_types
-    nodes: dict[str, Node] = {}
-    edges: dict[tuple[str, str], Group] = {}
+    network = _Network()
+    drug_combinations = first == second == Dimension.INTERVENTION
+    for study in studies:
+        if drug_combinations:
+            _add_drug_combinations(network, study, read[first], arms)
+        else:
+            _add_shared_trial(network, study, first, second, read)
+    return _pruned(network, node_types, limit, drug_combinations)
 
-    def node(dimension: Dimension, value: DimensionValue) -> str:
+
+class _Network:
+    """Nodes and weighted links, collected one trial at a time."""
+
+    def __init__(self) -> None:
+        self.nodes: dict[str, Node] = {}
+        self.edges: dict[tuple[str, str], Group] = {}
+
+    def node(self, dimension: Dimension, value: DimensionValue) -> str:
         identifier = f"{dimension.value}:{value.key}"
-        if identifier not in nodes:
-            nodes[identifier] = Node(
+        if identifier not in self.nodes:
+            self.nodes[identifier] = Node(
                 identifier, value.label, dimension.value, Group(identifier, value.label)
             )
         return identifier
 
-    def link(a: str, b: str, study: Study, citations: tuple[Citation, ...]) -> None:
+    def link(self, a: str, b: str, study: Study, citations: tuple[Citation, ...]) -> None:
         source, target = sorted((a, b))
-        edges.setdefault((source, target), Group(f"{source}|{target}", "")).add(
+        self.edges.setdefault((source, target), Group(f"{source}|{target}", "")).add(
             nct_id(study), citations
         )
 
-    co_occurrence = first == second
-    for study in studies:
-        identifier = nct_id(study)
-        if co_occurrence and first is Dimension.INTERVENTION:
-            # Every trial that gives a drug counts toward its node, and links come only
-            # from arms that give drugs together, so a trial with no arms still counts.
-            for value in read[first](study):
-                if value.key != NOT_REPORTED:
-                    nodes[node(first, value)].group.add(identifier, value.citations)
-            for given, arm_citation in arms(study):
-                ids = [f"{first.value}:{drug.key}" for drug in given]
-                for a, b in combinations(sorted(set(ids)), 2):
-                    link(a, b, study, (arm_citation,))
-            continue
-        left = [v for v in read[first](study) if v.key != NOT_REPORTED]
-        right = left if co_occurrence else [v for v in read[second](study) if v.key != NOT_REPORTED]
-        evidence: dict[str, tuple[Citation, ...]] = {}
-        for dimension, values in ((first, left), (second, right)):
-            for value in values:
-                nid = node(dimension, value)
-                nodes[nid].group.add(identifier, value.citations[:1])
-                evidence[nid] = value.citations[:1]
-        left_ids = [f"{first.value}:{v.key}" for v in left]
-        right_ids = [f"{second.value}:{v.key}" for v in right]
-        pairs = (
-            combinations(sorted(set(left_ids)), 2)
-            if co_occurrence
-            else ((a, b) for a in left_ids for b in right_ids)
-        )
-        for a, b in pairs:
-            link(a, b, study, evidence[a] + evidence[b])
 
+def _add_drug_combinations(
+    network: _Network,
+    study: Study,
+    read_drugs: Callable[[Study], list[DimensionValue]],
+    arms: Callable[[Study], list[tuple[list[Drug], Citation]]],
+) -> None:
+    """Every trial that gives a drug counts toward its node, and links come only from arms
+    that give drugs together, so a trial with no arms still counts."""
+    for value in read_drugs(study):
+        if value.key != NOT_REPORTED:
+            network.nodes[network.node(Dimension.INTERVENTION, value)].group.add(
+                nct_id(study), value.citations
+            )
+    for given, arm_citation in arms(study):
+        ids = [f"{Dimension.INTERVENTION.value}:{drug.key}" for drug in given]
+        for a, b in combinations(sorted(set(ids)), 2):
+            network.link(a, b, study, (arm_citation,))
+
+
+def _add_shared_trial(
+    network: _Network, study: Study, first: Dimension, second: Dimension, read: Extractors
+) -> None:
+    """Every pair of values that share this trial, cited by each end's value."""
+    co_occurrence = first == second
+    left = [v for v in read[first](study) if v.key != NOT_REPORTED]
+    right = left if co_occurrence else [v for v in read[second](study) if v.key != NOT_REPORTED]
+    evidence: dict[str, tuple[Citation, ...]] = {}
+    for dimension, values in ((first, left), (second, right)):
+        for value in values:
+            nid = network.node(dimension, value)
+            network.nodes[nid].group.add(nct_id(study), value.citations[:1])
+            evidence[nid] = value.citations[:1]
+    left_ids = [f"{first.value}:{v.key}" for v in left]
+    right_ids = [f"{second.value}:{v.key}" for v in right]
+    pairs = (
+        combinations(sorted(set(left_ids)), 2)
+        if co_occurrence
+        else ((a, b) for a in left_ids for b in right_ids)
+    )
+    for a, b in pairs:
+        network.link(a, b, study, evidence[a] + evidence[b])
+
+
+def _pruned(
+    network: _Network,
+    node_types: tuple[Dimension, Dimension],
+    limit: int,
+    drug_combinations: bool,
+) -> Built:
+    """The most frequent entities and strongest links, clustered, with a note on what was
+    left out."""
+    first, second = node_types
+    nodes, edges = network.nodes, network.edges
     kept = sorted(nodes.values(), key=lambda n: (-n.group.count, n.label.casefold()))[:limit]
     kept_ids = {n.id for n in kept}
     kept_edges = sorted(
@@ -711,7 +747,7 @@ def _graph(
     _communities(connected, kept_edges)
     relation = (
         "drugs given together in the same treatment arm"
-        if co_occurrence and first is Dimension.INTERVENTION
+        if drug_combinations
         else f"{first.label.lower()} and {second.label.lower()} in the same trial"
     )
     graph = Graph(

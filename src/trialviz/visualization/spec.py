@@ -137,123 +137,159 @@ def _sorted_groups(dataset: Categorical, sort: SortOrder | None) -> list[Group]:
 
 
 def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None) -> Rows:
+    """The rows a chart draws, in the shape `contract.ROWS` publishes for it."""
     match dataset:
         case Scalar():
-            return [
-                {
-                    "id": "total",
-                    "label": dataset.label,
-                    COUNT: dataset.total,
-                    "citations": _citations_of_trials(dataset.citations, limit),
-                }
-            ]
+            return _scalar_rows(dataset, limit)
         case Categorical():
-            out = []
-            for group in _sorted_groups(dataset, sort):
-                row: dict[str, Any] = {
-                    "id": group.key,
-                    dataset.field: group.label,
-                    "key": group.key,
-                    **_datum(group, limit),
-                }
-                if dataset.geographic:
-                    codes = COUNTRY_CODES.get(group.key)
-                    row["iso_a3"], row["iso_numeric"] = codes if codes else (None, None)
-                out.append(row)
-            return out
+            return _categorical_rows(dataset, limit, sort)
         case Matrix():
-            return [
-                {
-                    "id": f"{row_key}|{column_key}",
-                    dataset.row_field: row_label,
-                    dataset.column_field: column_label,
-                    **_datum(dataset.cells.get((row_key, column_key), Group("", "")), limit),
-                }
-                for row_key, row_label in dataset.rows
-                for column_key, column_label in dataset.columns
-            ]
+            return _matrix_rows(dataset, limit)
         case TimeSeries():
-            series = dataset.series or [("", "")]
-            return [
-                {
-                    "id": f"{period}|{key}" if key else period,
-                    "period": period,
-                    **({dataset.series_field: label} if dataset.series_field else {}),
-                    **_datum(dataset.cells.get((period, key), Group("", "")), limit),
-                }
-                for period in dataset.periods
-                for key, label in series
-            ]
+            return _time_rows(dataset, limit)
         case Distribution():
             if _as_boxes(dataset, chart):
                 return [_box(dataset, spread, limit) for spread in dataset.spreads]
-            return [
-                {
-                    "id": b.group.key,
-                    "open_ended": b.open_ended,
-                    "bin_start": b.start,
-                    "bin_end": b.end,
-                    "label": b.group.label,
-                    **_datum(b.group, limit),
-                }
-                for b in dataset.bins
-            ]
+            return _bin_rows(dataset, limit)
         case Points():
-            return [
-                {
-                    "id": p.nct_id,
-                    "nct_id": p.nct_id,
-                    "title": p.title,
-                    dataset.x.value: p.x,
-                    dataset.y.value: p.y,
-                    **({dataset.z.value: p.z} if dataset.z else {}),
-                    **({dataset.color_field: p.color} if dataset.color_field else {}),
-                    "citations": _citations(p.citations, max(limit, 3)),
-                }
-                for p in dataset.points
-            ]
+            return _point_rows(dataset, limit)
         case Graph():
             return _graph_rows(dataset, limit)
         case Flow():
-            return {
-                "nodes": [
-                    {
-                        "id": n.id,
-                        "stage": n.stage,
-                        "stage_label": dataset.stages[n.stage],
-                        "label": n.label,
-                        **_datum(n.group, limit),
-                    }
-                    for n in dataset.nodes
-                ],
-                "links": [
-                    {
-                        "id": f"{link.source}>{link.target}",
-                        "source": link.source,
-                        "target": link.target,
-                        **_datum(link.group, limit),
-                    }
-                    for link in dataset.links
-                ],
-            }
+            return _flow_rows(dataset, limit)
         case Trials():
-            return [
-                {
-                    "id": r.nct_id,
-                    "nct_id": r.nct_id,
-                    "title": r.title,
-                    "phase": r.phase,
-                    "status": r.status,
-                    "sponsor": r.sponsor,
-                    "start": r.start,
-                    "end": r.end,
-                    "enrollment": r.enrollment,
-                    "url": f"https://clinicaltrials.gov/study/{r.nct_id}",
-                    "citations": _citations(r.citations, 2),
-                }
-                for r in dataset.rows
-            ]
+            return _trial_rows(dataset)
     raise AssertionError(f"no rows for {type(dataset).__name__}")
+
+
+def _scalar_rows(dataset: Scalar, limit: int) -> Rows:
+    return [
+        {
+            "id": "total",
+            "label": dataset.label,
+            COUNT: dataset.total,
+            "citations": _citations_of_trials(dataset.citations, limit),
+        }
+    ]
+
+
+def _categorical_rows(dataset: Categorical, limit: int, sort: SortOrder | None) -> Rows:
+    out = []
+    for group in _sorted_groups(dataset, sort):
+        row: dict[str, Any] = {
+            "id": group.key,
+            dataset.field: group.label,
+            "key": group.key,
+            **_datum(group, limit),
+        }
+        if dataset.geographic:
+            codes = COUNTRY_CODES.get(group.key)
+            row["iso_a3"], row["iso_numeric"] = codes if codes else (None, None)
+        out.append(row)
+    return out
+
+
+def _matrix_rows(dataset: Matrix, limit: int) -> Rows:
+    return [
+        {
+            "id": f"{row_key}|{column_key}",
+            dataset.row_field: row_label,
+            dataset.column_field: column_label,
+            **_datum(dataset.cells.get((row_key, column_key), Group("", "")), limit),
+        }
+        for row_key, row_label in dataset.rows
+        for column_key, column_label in dataset.columns
+    ]
+
+
+def _time_rows(dataset: TimeSeries, limit: int) -> Rows:
+    series = dataset.series or [("", "")]
+    return [
+        {
+            "id": f"{period}|{key}" if key else period,
+            "period": period,
+            **({dataset.series_field: label} if dataset.series_field else {}),
+            **_datum(dataset.cells.get((period, key), Group("", "")), limit),
+        }
+        for period in dataset.periods
+        for key, label in series
+    ]
+
+
+def _bin_rows(dataset: Distribution, limit: int) -> Rows:
+    return [
+        {
+            "id": b.group.key,
+            "open_ended": b.open_ended,
+            "bin_start": b.start,
+            "bin_end": b.end,
+            "label": b.group.label,
+            **_datum(b.group, limit),
+        }
+        for b in dataset.bins
+    ]
+
+
+def _point_rows(dataset: Points, limit: int) -> Rows:
+    return [
+        {
+            "id": p.nct_id,
+            "nct_id": p.nct_id,
+            "title": p.title,
+            dataset.x.value: p.x,
+            dataset.y.value: p.y,
+            **({dataset.z.value: p.z} if dataset.z else {}),
+            **({dataset.color_field: p.color} if dataset.color_field else {}),
+            "citations": _citations(p.citations, max(limit, 3)),
+        }
+        for p in dataset.points
+    ]
+
+
+def _flow_rows(dataset: Flow, limit: int) -> Rows:
+    return {
+        "nodes": [
+            {
+                "id": n.id,
+                "stage": n.stage,
+                "stage_label": dataset.stages[n.stage],
+                "label": n.label,
+                **_datum(n.group, limit),
+            }
+            for n in dataset.nodes
+        ],
+        "links": [
+            {
+                "id": f"{link.source}>{link.target}",
+                "source": link.source,
+                "target": link.target,
+                **_datum(link.group, limit),
+            }
+            for link in dataset.links
+        ],
+    }
+
+
+TRIAL_COLUMNS = ["nct_id", "title", "phase", "status", "sponsor", "start", "end", "enrollment"]
+
+
+def _trial_rows(dataset: Trials) -> Rows:
+    return [
+        {
+            "id": r.nct_id,
+            "nct_id": r.nct_id,
+            "title": r.title,
+            "phase": r.phase,
+            "status": r.status,
+            "sponsor": r.sponsor,
+            "start": r.start,
+            "end": r.end,
+            "enrollment": r.enrollment,
+            "url": f"https://clinicaltrials.gov/study/{r.nct_id}",
+            "citations": _citations(r.citations, 2),
+        }
+        for r in dataset.rows
+    ]
 
 
 def _as_boxes(dataset: Distribution, chart: ChartType) -> bool:
@@ -346,182 +382,147 @@ def _measure(measure: Measure, values: list[float]) -> Channel:
     )
 
 
-def encoding_and_options(
-    chart: ChartType, dataset: Dataset, data: Rows
-) -> tuple[dict[str, Channel], dict[str, Any]]:
+Encoding = tuple[dict[str, Channel], dict[str, Any]]
+
+
+def encoding_and_options(chart: ChartType, dataset: Dataset, data: Rows) -> Encoding:
+    """Which row field each of the chart's channels reads, and its chart-specific options."""
     match dataset:
         case Scalar():
             return {"value": _count()}, {}
         case Categorical():
-            natural = [r[dataset.field] for r in data] if isinstance(data, list) else None
-            category = Channel(
-                field=dataset.field,
-                type="ordinal" if dataset.ordered else "nominal",
-                title=dataset.dimension,
-                sort=natural if dataset.ordered else "descending",
-            )
-            return _categorical(chart, category, dataset, data)
+            return _categorical(chart, dataset, data)
         case Matrix():
-            row = Channel(
-                field=dataset.row_field,
-                type="ordinal" if dataset.ordered_rows else "nominal",
-                title=dataset.row_dimension,
-                sort=[label for _, label in dataset.rows],
-            )
-            column = Channel(
-                field=dataset.column_field,
-                type="ordinal" if dataset.ordered_columns else "nominal",
-                title=dataset.column_dimension,
-                sort=[label for _, label in dataset.columns],
-            )
-            return _matrix(chart, row, column)
+            return _matrix(chart, dataset)
         case TimeSeries():
-            time = Channel(
-                field="period",
-                type="temporal"
-                if chart in (ChartType.TIME_SERIES, ChartType.STACKED_AREA_CHART)
-                else "ordinal",
-                title=f"{dataset.time_label} {_unit(dataset.granularity)}",
-            )
-            series = (
-                Channel(
-                    field=dataset.series_field,
-                    type="nominal",
-                    title=dataset.series_dimension or "",
-                    sort=[label for _, label in dataset.series],
-                )
-                if dataset.series_field
-                else None
-            )
-            return _time(chart, time, series)
+            return _time(chart, dataset)
         case Distribution():
-            if chart is ChartType.TABLE:
-                # A grouped spread's table gives each group's statistics; otherwise the bins.
-                stats = ["n", "min", "q1", "median", "q3", "max", "mean"]
-                columns = (
-                    [dataset.group_field or "group", *stats]
-                    if _as_boxes(dataset, chart)
-                    else ["label", COUNT]
-                )
-                return {}, {"columns": columns}
-            if chart is ChartType.BOX_PLOT:
-                group = Channel(
-                    field=dataset.group_field or "group",
-                    type="nominal",
-                    title=dataset.group_dimension or "",
-                    # Groups keep the dataset's order, so phases run Early Phase 1 to Phase 4.
-                    sort=[spread.label for spread in dataset.spreads],
-                )
-                unit = f"{dataset.measure.label} ({dataset.measure.unit})"
-                return (
-                    {
-                        "x": group,
-                        **{
-                            name: Channel(
-                                field=name,
-                                type="quantitative",
-                                title=unit,
-                                scale="symlog" if dataset.skewed else "linear",
-                            )
-                            for name in ("whisker_low", "q1", "median", "q3", "whisker_high")
-                        },
-                    },
-                    {"outliers_field": "outliers"},
-                )
-            unit = f"{dataset.measure.label} ({dataset.measure.unit})"
-            return (
-                {
-                    "x": Channel(
-                        field="bin_start",
-                        type="quantitative",
-                        title=unit,
-                        scale="symlog" if dataset.skewed else "linear",
-                    ),
-                    "x2": Channel(field="bin_end", type="quantitative", title=unit),
-                    "y": _count(),
-                },
-                {"skewed": dataset.skewed, "bins_precomputed": True},
-            )
+            return _distribution(chart, dataset)
         case Points():
-            if chart is ChartType.TABLE:
-                measures = [m.value for m in (dataset.x, dataset.y, dataset.z) if m]
-                color = [dataset.color_field] if dataset.color_field else []
-                return {}, {"columns": ["nct_id", "title", *measures, *color]}
-            xs, ys = [p.x for p in dataset.points], [p.y for p in dataset.points]
-            encoding = {"x": _measure(dataset.x, xs), "y": _measure(dataset.y, ys)}
-            # A third measure is bubble size or the 3D depth. A flat scatter has no place
-            # for it, so it carries none, and its bubble alternative shows the third measure.
-            third = {ChartType.BUBBLE_CHART: "size", ChartType.SCATTER_PLOT_3D: "z"}.get(chart)
-            if dataset.z and third:
-                zs = [p.z for p in dataset.points if p.z is not None]
-                encoding[third] = _measure(dataset.z, zs)
-            if dataset.color_field:
-                encoding["color"] = Channel(
-                    field=dataset.color_field, type="nominal", title=dataset.color_dimension or ""
-                )
-            encoding["tooltip"] = Channel(field="title", type="nominal", title="Trial")
-            return encoding, {}
+            return _points(chart, dataset)
         case Graph():
-            three = chart is ChartType.NETWORK_GRAPH_3D
-            encoding = {
-                "node_id": Channel(field="id", type="nominal", title="Entity"),
-                "node_label": Channel(field="label", type="nominal", title="Name"),
-                "node_size": _count(),
-                "node_color": Channel(field="community", type="nominal", title="Cluster"),
-                "edge_source": Channel(field="source", type="nominal", title="From"),
-                "edge_target": Channel(field="target", type="nominal", title="To"),
-                "edge_width": Channel(field=COUNT, type="quantitative", title="Shared trials"),
-                "x": Channel(field="x3" if three else "x", type="quantitative", title="x"),
-                "y": Channel(field="y3" if three else "y", type="quantitative", title="y"),
-            }
-            if three:
-                encoding["z"] = Channel(field="z3", type="quantitative", title="z")
-            return encoding, {
-                "relation": dataset.relation,
-                "node_types": list(dataset.node_types),
-                "positions": "precomputed force layout scaled to -1..1, optional to use",
-            }
+            return _graph(chart, dataset)
         case Flow():
-            return (
-                {
-                    "source": Channel(field="source", type="nominal", title="From"),
-                    "target": Channel(field="target", type="nominal", title="To"),
-                    "value": _count(),
-                    "node_label": Channel(field="label", type="nominal", title="Stage value"),
-                },
-                {"stages": dataset.stages},
-            )
+            return _flow(dataset)
         case Trials():
-            return (
-                {
-                    "x": Channel(field="start", type="temporal", title="Start"),
-                    "x2": Channel(field="end", type="temporal", title="Completion"),
-                    "y": Channel(field="title", type="nominal", title="Trial"),
-                    "color": Channel(field="phase", type="nominal", title="Phase"),
-                },
-                {
-                    "columns": [
-                        "nct_id",
-                        "title",
-                        "phase",
-                        "status",
-                        "sponsor",
-                        "start",
-                        "end",
-                        "enrollment",
-                    ]
-                },
-            )
+            return _trials()
     raise AssertionError(f"no encoding for {type(dataset).__name__}")
+
+
+def _distribution(chart: ChartType, dataset: Distribution) -> Encoding:
+    if chart is ChartType.TABLE:
+        # A grouped spread's table gives each group's statistics; otherwise the bins.
+        stats = ["n", "min", "q1", "median", "q3", "max", "mean"]
+        columns = (
+            [dataset.group_field or "group", *stats]
+            if _as_boxes(dataset, chart)
+            else ["label", COUNT]
+        )
+        return {}, {"columns": columns}
+    unit = f"{dataset.measure.label} ({dataset.measure.unit})"
+    scale: Literal["linear", "symlog"] = "symlog" if dataset.skewed else "linear"
+    if chart is ChartType.BOX_PLOT:
+        group = Channel(
+            field=dataset.group_field or "group",
+            type="nominal",
+            title=dataset.group_dimension or "",
+            # Groups keep the dataset's order, so phases run Early Phase 1 to Phase 4.
+            sort=[spread.label for spread in dataset.spreads],
+        )
+        statistics_channels = {
+            name: Channel(field=name, type="quantitative", title=unit, scale=scale)
+            for name in ("whisker_low", "q1", "median", "q3", "whisker_high")
+        }
+        return {"x": group, **statistics_channels}, {"outliers_field": "outliers"}
+    return (
+        {
+            "x": Channel(field="bin_start", type="quantitative", title=unit, scale=scale),
+            "x2": Channel(field="bin_end", type="quantitative", title=unit),
+            "y": _count(),
+        },
+        {"skewed": dataset.skewed, "bins_precomputed": True},
+    )
+
+
+def _points(chart: ChartType, dataset: Points) -> Encoding:
+    if chart is ChartType.TABLE:
+        measures = [m.value for m in (dataset.x, dataset.y, dataset.z) if m]
+        color = [dataset.color_field] if dataset.color_field else []
+        return {}, {"columns": ["nct_id", "title", *measures, *color]}
+    xs, ys = [p.x for p in dataset.points], [p.y for p in dataset.points]
+    encoding = {"x": _measure(dataset.x, xs), "y": _measure(dataset.y, ys)}
+    # A third measure is bubble size or the 3D depth. A flat scatter has no place for it,
+    # so it carries none, and its bubble alternative shows the third measure.
+    third = {ChartType.BUBBLE_CHART: "size", ChartType.SCATTER_PLOT_3D: "z"}.get(chart)
+    if dataset.z and third:
+        zs = [p.z for p in dataset.points if p.z is not None]
+        encoding[third] = _measure(dataset.z, zs)
+    if dataset.color_field:
+        encoding["color"] = Channel(
+            field=dataset.color_field, type="nominal", title=dataset.color_dimension or ""
+        )
+    encoding["tooltip"] = Channel(field="title", type="nominal", title="Trial")
+    return encoding, {}
+
+
+def _graph(chart: ChartType, dataset: Graph) -> Encoding:
+    three = chart is ChartType.NETWORK_GRAPH_3D
+    encoding = {
+        "node_id": Channel(field="id", type="nominal", title="Entity"),
+        "node_label": Channel(field="label", type="nominal", title="Name"),
+        "node_size": _count(),
+        "node_color": Channel(field="community", type="nominal", title="Cluster"),
+        "edge_source": Channel(field="source", type="nominal", title="From"),
+        "edge_target": Channel(field="target", type="nominal", title="To"),
+        "edge_width": Channel(field=COUNT, type="quantitative", title="Shared trials"),
+        "x": Channel(field="x3" if three else "x", type="quantitative", title="x"),
+        "y": Channel(field="y3" if three else "y", type="quantitative", title="y"),
+    }
+    if three:
+        encoding["z"] = Channel(field="z3", type="quantitative", title="z")
+    return encoding, {
+        "relation": dataset.relation,
+        "node_types": list(dataset.node_types),
+        "positions": "precomputed force layout scaled to -1..1, optional to use",
+    }
+
+
+def _flow(dataset: Flow) -> Encoding:
+    return (
+        {
+            "source": Channel(field="source", type="nominal", title="From"),
+            "target": Channel(field="target", type="nominal", title="To"),
+            "value": _count(),
+            "node_label": Channel(field="label", type="nominal", title="Stage value"),
+        },
+        {"stages": dataset.stages},
+    )
+
+
+def _trials() -> Encoding:
+    return (
+        {
+            "x": Channel(field="start", type="temporal", title="Start"),
+            "x2": Channel(field="end", type="temporal", title="Completion"),
+            "y": Channel(field="title", type="nominal", title="Trial"),
+            "color": Channel(field="phase", type="nominal", title="Phase"),
+        },
+        {"columns": TRIAL_COLUMNS},
+    )
 
 
 def _unit(granularity: TimeGranularity) -> str:
     return "month" if granularity is TimeGranularity.MONTH else "year"
 
 
-def _categorical(
-    chart: ChartType, category: Channel, dataset: Categorical, data: Rows
-) -> tuple[dict[str, Channel], dict[str, Any]]:
+def _categorical(chart: ChartType, dataset: Categorical, data: Rows) -> Encoding:
+    natural = [r[dataset.field] for r in data] if isinstance(data, list) else None
+    category = Channel(
+        field=dataset.field,
+        type="ordinal" if dataset.ordered else "nominal",
+        title=dataset.dimension,
+        sort=natural if dataset.ordered else "descending",
+    )
     many = len(dataset.groups) > DEFAULT_DISPLAY_LIMIT
     limit = {"display_limit": DEFAULT_DISPLAY_LIMIT} if many else {}
     match chart:
@@ -545,9 +546,19 @@ def _categorical(
     return {}, {"columns": [category.field, COUNT]}
 
 
-def _matrix(
-    chart: ChartType, row: Channel, column: Channel
-) -> tuple[dict[str, Channel], dict[str, Any]]:
+def _matrix(chart: ChartType, dataset: Matrix) -> Encoding:
+    row = Channel(
+        field=dataset.row_field,
+        type="ordinal" if dataset.ordered_rows else "nominal",
+        title=dataset.row_dimension,
+        sort=[label for _, label in dataset.rows],
+    )
+    column = Channel(
+        field=dataset.column_field,
+        type="ordinal" if dataset.ordered_columns else "nominal",
+        title=dataset.column_dimension,
+        sort=[label for _, label in dataset.columns],
+    )
     match chart:
         case ChartType.GROUPED_BAR_CHART:
             # The dimension with fewer values becomes the bars within each group.
@@ -563,9 +574,24 @@ def _matrix(
     return {}, {"columns": [row.field, column.field, COUNT]}
 
 
-def _time(
-    chart: ChartType, time: Channel, series: Channel | None
-) -> tuple[dict[str, Channel], dict[str, Any]]:
+def _time(chart: ChartType, dataset: TimeSeries) -> Encoding:
+    time = Channel(
+        field="period",
+        type="temporal"
+        if chart in (ChartType.TIME_SERIES, ChartType.STACKED_AREA_CHART)
+        else "ordinal",
+        title=f"{dataset.time_label} {_unit(dataset.granularity)}",
+    )
+    series = (
+        Channel(
+            field=dataset.series_field,
+            type="nominal",
+            title=dataset.series_dimension or "",
+            sort=[label for _, label in dataset.series],
+        )
+        if dataset.series_field
+        else None
+    )
     color = {"color": series} if series else {}
     match chart:
         case ChartType.TIME_SERIES:

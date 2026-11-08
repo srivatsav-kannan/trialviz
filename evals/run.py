@@ -21,7 +21,6 @@ from datetime import date
 from pathlib import Path
 from typing import Any
 
-from trialviz.api import build_interpreter
 from trialviz.query.consistency import same_meaning
 from trialviz.query.interpreters.base import Interpreter
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
@@ -29,6 +28,7 @@ from trialviz.query.plan import ComparisonSpec
 from trialviz.query.request import QueryRequest
 from trialviz.query.resolution import ClarificationNeeded, ResolvedQuery
 from trialviz.query.resolver import QueryResolver
+from trialviz.service import build_interpreter
 from trialviz.settings import Settings
 
 HERE = Path(__file__).parent

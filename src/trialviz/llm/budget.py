@@ -89,16 +89,21 @@ class Hold:
 
 @dataclass(frozen=True)
 class SpendStatus:
+    """What has been charged, and what is left once the holds of calls still in progress
+    are set aside. Both ledgers report the same way."""
+
     spent_usd: float
     spent_today_usd: float
     cap_usd: float
     daily_cap_usd: float | None
+    held_usd: float = 0.0
+    held_today_usd: float = 0.0
 
     @property
     def remaining_usd(self) -> float:
-        left = self.cap_usd - self.spent_usd
+        left = self.cap_usd - self.spent_usd - self.held_usd
         if self.daily_cap_usd is not None:
-            left = min(left, self.daily_cap_usd - self.spent_today_usd)
+            left = min(left, self.daily_cap_usd - self.spent_today_usd - self.held_today_usd)
         return max(0.0, left)
 
 
@@ -173,7 +178,11 @@ class FileLedger:
             os.replace(temporary, self._path)
 
     async def status(self) -> SpendStatus:
-        return SpendStatus(self.spent_usd(), self._spent_today(), self._cap, self._daily_cap)
+        # Holds live only as long as this process, so every one of them is today's.
+        held = sum(self._holds.values())
+        return SpendStatus(
+            self.spent_usd(), self._spent_today(), self._cap, self._daily_cap, held, held
+        )
 
 
 def _today() -> str:
@@ -195,10 +204,10 @@ create table if not exists llm_holds (
 """
 _TOTALS = """
 select
-    coalesce((select sum(usd) from llm_charges), 0)
-        + coalesce((select sum(usd) from llm_holds), 0),
-    coalesce((select sum(usd) from llm_charges where charged_at >= %(day)s), 0)
-        + coalesce((select sum(usd) from llm_holds where held_at >= %(day)s), 0)
+    coalesce((select sum(usd) from llm_charges), 0),
+    coalesce((select sum(usd) from llm_holds), 0),
+    coalesce((select sum(usd) from llm_charges where charged_at >= %(day)s), 0),
+    coalesce((select sum(usd) from llm_holds where held_at >= %(day)s), 0)
 """
 
 
@@ -235,13 +244,12 @@ class PostgresLedger:
             self._ready = True
         return connection
 
-    async def _totals(
-        self, connection: psycopg.AsyncConnection[tuple[object, ...]]
-    ) -> tuple[float, float]:
+    async def _status(self, connection: psycopg.AsyncConnection[tuple[object, ...]]) -> SpendStatus:
         day = datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
         row = await (await connection.execute(_TOTALS, {"day": day})).fetchone()
         assert row is not None
-        return float(row[0]), float(row[1])  # type: ignore[arg-type]
+        spent, held, spent_today, held_today = (float(value) for value in row)  # type: ignore[arg-type]
+        return SpendStatus(spent, spent_today, self._cap, self._daily_cap, held, held_today)
 
     async def reserve(self, worst_case_usd: float) -> Hold:
         try:
@@ -255,7 +263,9 @@ class PostgresLedger:
                     " insert into llm_charges (charged_at, usd) select held_at, usd from expired",
                     (self._ttl,),
                 )
-                committed, today = await self._totals(connection)
+                status = await self._status(connection)
+                committed = status.spent_usd + status.held_usd
+                today = status.spent_today_usd + status.held_today_usd
                 if committed + worst_case_usd > self._cap:
                     raise _refusal(committed, self._cap, worst_case_usd, "total")
                 if self._daily_cap is not None and today + worst_case_usd > self._daily_cap:
@@ -293,9 +303,8 @@ class PostgresLedger:
     async def status(self) -> SpendStatus:
         try:
             async with await self._connect() as connection:
-                committed, today = await self._totals(connection)
+                return await self._status(connection)
         except psycopg.Error as error:
             raise BudgetExceeded(
                 f"the spend ledger is unreachable ({type(error).__name__})"
             ) from error
-        return SpendStatus(committed, today, self._cap, self._daily_cap)

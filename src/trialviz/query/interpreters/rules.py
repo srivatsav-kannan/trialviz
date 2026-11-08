@@ -25,9 +25,9 @@ from datetime import date
 from trialviz.query.interpreters.base import (
     Interpretation,
     InterpreterIssue,
-    IssueKind,
 )
 from trialviz.query.request import QueryRequest
+from trialviz.query.resolution import ClarificationReason
 from trialviz.vocabulary import (
     AnalysisKind,
     Dimension,
@@ -177,7 +177,7 @@ def _read_references(scanner: _Scanner, request: QueryRequest) -> InterpreterIss
         if getattr(request.filters, target) is None:
             phrase = scanner.text[match.start() : match.end()]
             return InterpreterIssue(
-                kind=IssueKind.AMBIGUOUS_REFERENCE,
+                kind=ClarificationReason.AMBIGUOUS_REFERENCE,
                 message=f'The question refers to "{phrase}" without naming it. Name it in the '
                 f"question, or set filters.{target} (or {shorthand}).",
             )

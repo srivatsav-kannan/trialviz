@@ -87,7 +87,7 @@ class QueryResolver:
 
         if interpretation is not None and interpretation.issue is not None:
             issue = interpretation.issue
-            reason = ClarificationReason(issue.kind.value)
+            reason = issue.kind
             return ClarificationNeeded(
                 reason=reason,
                 message=issue.message,

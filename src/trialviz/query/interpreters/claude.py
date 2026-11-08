@@ -29,12 +29,13 @@ import anthropic
 from trialviz.llm.budget import BudgetExceeded, Hold, Ledger, TokenPrices, prices_for
 from trialviz.query.filters import Filters
 from trialviz.query.interpreters.base import (
+    ISSUE_KINDS,
     Interpretation,
     InterpreterIssue,
     InterpreterUnavailable,
-    IssueKind,
 )
 from trialviz.query.request import PLAN_SECTIONS, QueryRequest
+from trialviz.query.resolution import ClarificationReason
 from trialviz.vocabulary import (
     AnalysisKind,
     ChartType,
@@ -136,7 +137,7 @@ OUTPUT_SCHEMA: dict[str, Any] = {
                     "additionalProperties": False,
                     "required": ["kind", "message"],
                     "properties": {
-                        "kind": {"type": "string", "enum": [kind.value for kind in IssueKind]},
+                        "kind": {"type": "string", "enum": [kind.value for kind in ISSUE_KINDS]},
                         "message": {"type": "string"},
                     },
                 },
@@ -439,7 +440,9 @@ class ClaudeInterpreter:
         return Interpretation(
             interpreter=self.name,
             proposal=proposal_from_output(data),
-            issue=InterpreterIssue(IssueKind(issue["kind"]), issue["message"]) if issue else None,
+            issue=InterpreterIssue(ClarificationReason(issue["kind"]), issue["message"])
+            if issue
+            else None,
             unexpressed=tuple(str(item) for item in data.get("unexpressed") or ()),
         )
 
