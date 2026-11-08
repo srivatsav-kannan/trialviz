@@ -13,7 +13,17 @@
           "field": "phase",
           "type": "nominal",
           "title": "Phase",
-          "sort": null,
+          "sort": [
+            "Early Phase 1",
+            "Phase 1",
+            "Phase 1/2",
+            "Phase 2",
+            "Phase 2/3",
+            "Phase 3",
+            "Phase 4",
+            "Not applicable",
+            "No phase (observational)"
+          ],
           "scale": null,
           "stack": null
         },
@@ -5404,7 +5414,18 @@
               "x": {
                 "field": "phase",
                 "type": "nominal",
-                "title": "Phase"
+                "title": "Phase",
+                "sort": [
+                  "Early Phase 1",
+                  "Phase 1",
+                  "Phase 1/2",
+                  "Phase 2",
+                  "Phase 2/3",
+                  "Phase 3",
+                  "Phase 4",
+                  "Not applicable",
+                  "No phase (observational)"
+                ]
               },
               "y": {
                 "field": "whisker_low",
@@ -5445,7 +5466,18 @@
               "x": {
                 "field": "phase",
                 "type": "nominal",
-                "title": "Phase"
+                "title": "Phase",
+                "sort": [
+                  "Early Phase 1",
+                  "Phase 1",
+                  "Phase 1/2",
+                  "Phase 2",
+                  "Phase 2/3",
+                  "Phase 3",
+                  "Phase 4",
+                  "Not applicable",
+                  "No phase (observational)"
+                ]
               },
               "y": {
                 "field": "q1",
@@ -5524,7 +5556,18 @@
               "x": {
                 "field": "phase",
                 "type": "nominal",
-                "title": "Phase"
+                "title": "Phase",
+                "sort": [
+                  "Early Phase 1",
+                  "Phase 1",
+                  "Phase 1/2",
+                  "Phase 2",
+                  "Phase 2/3",
+                  "Phase 3",
+                  "Phase 4",
+                  "Not applicable",
+                  "No phase (observational)"
+                ]
               },
               "y": {
                 "field": "median",
@@ -9524,7 +9567,10 @@
             "y": {
               "field": "trial_count",
               "type": "quantitative",
-              "title": "Trials"
+              "title": "Trials",
+              "axis": {
+                "tickMinStep": 1
+              }
             },
             "tooltip": [
               {

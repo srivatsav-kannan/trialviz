@@ -12,6 +12,7 @@ set of rules produced a proposal, and the tests depend on that.
 
 from __future__ import annotations
 
+import logging
 from collections.abc import Mapping
 from dataclasses import dataclass, field, replace
 from datetime import date
@@ -19,6 +20,8 @@ from enum import StrEnum
 from typing import Protocol
 
 from trialviz.query.request import QueryRequest
+
+log = logging.getLogger(__name__)
 
 
 class IssueKind(StrEnum):
@@ -105,7 +108,9 @@ class FallbackInterpreter:
                 continue
             except Exception as error:
                 # A bug in one interpreter should cost the question its best reading, not
-                # the whole request, so the next interpreter still gets a turn.
+                # the whole request, so the next interpreter still gets a turn, and the
+                # traceback goes to the log, where the note in the answer cannot carry it.
+                log.exception("interpreter %s failed", interpreter.name)
                 failures.append(Fallback(interpreter.name, f"failed with {type(error).__name__}"))
                 continue
             return interpretation.after_fallbacks(tuple(failures))

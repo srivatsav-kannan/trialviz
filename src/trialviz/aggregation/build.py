@@ -559,8 +559,8 @@ def _p99(numbers: list[float]) -> float:
 
 def _even_edges(numbers: list[float]) -> list[float]:
     """Equal widths of a "nice" size (1, 2 or 5 times a power of ten), chosen by the
-    Freedman-Diaconis rule on the 1st to 99th percentile, so a few huge trials do not
-    flatten everything else."""
+    Freedman-Diaconis rule, running from the smallest value to the 99th percentile, so a few
+    huge trials do not flatten everything else."""
     if len(numbers) < 4 or numbers[0] == numbers[-1]:
         low, high = numbers[0], numbers[-1] or 1.0
         return [low, high if high > low else low + 1]
@@ -860,17 +860,21 @@ def _mention_notes(retrieval: Retrieval) -> list[Note]:
         if not mentions or not mentions.total:
             continue
         where = f" for {cohort.label}" if cohort.label else ""
+        one = mentions.total == 1
+        trials = f"{mentions.total:,} {'trial' if one else 'trials'}{where}"
+        mention, they = ("mentions", "It is") if one else ("mention", "They are")
         if cohort.counts_mentions:
             message = (
-                f"{mentions.total:,} trials{where} mention the drug or condition only in "
-                "descriptions. They are counted, and listed under mentions."
+                f"{trials} {mention} the drug or condition only in descriptions. {they} "
+                "counted, and listed under mentions."
             )
             code = NoteCode.MENTIONS_COUNTED
         else:
             message = (
-                f"{mentions.total:,} more trials{where} mention the drug or condition only in "
-                "descriptions, often as one of several permitted options. They are listed under "
-                "mentions but not counted. Set retrieval.name_matching to mentioned to count them."
+                f"{mentions.total:,} more {'trial' if one else 'trials'}{where} {mention} the drug "
+                f"or condition only in descriptions, often as one of several permitted options. "
+                f"{they} listed under mentions but not counted. Set retrieval.name_matching to "
+                f"mentioned to count {'it' if one else 'them'}."
             )
             code = NoteCode.MENTIONS_REPORTED
         notes.append(Note(code=code, message=message))

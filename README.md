@@ -42,9 +42,19 @@ A request carries a question and any part of the plan the caller wants to pin do
 }
 ```
 
-The assignment's flat fields (`drug_name`, `condition`, `trial_phase`, `sponsor`, `country`, `start_year`, `end_year`) are accepted as shorthands for the matching filters. `POST /v1/interpret` takes the same request and returns the plan without fetching anything, which shows how a question will be read before it runs.
+| Field | Type | Required | Purpose |
+| --- | --- | --- | --- |
+| `query` | string | yes | The question, 1 to 2,000 characters |
+| `filters` | object | no | Which trials to include: drugs, conditions, sponsors, keywords, phases, statuses, sponsor classes, intervention types, study types, countries and a start-year range |
+| `analysis` | object | no | What to compute: `kind` and its parameters, such as `group_by` |
+| `presentation` | object | no | `chart_type`, `sort`, `top_n` and `citations_per_datum` |
+| `retrieval` | object | no | `name_matching`: whether trials that only mention a name count |
+| `inference` | `"auto"` or `"off"` | no | `off` skips reading the question |
+| `drug_name`, `condition`, `trial_phase`, `sponsor`, `country`, `start_year`, `end_year` | string or integer | no | The assignment's flat fields, accepted as shorthands for the matching filters |
 
-A successful response has `"status": "resolved"` and three parts. `visualization` is the recommended chart: its type, title, the reason it was chosen, an encoding that says which field goes on which axis, the rows to draw, and a Vega-Lite spec where Vega-Lite can draw the chart. `alternatives` holds every other chart that can show the same data, each with its own reason, so a frontend can offer a switch without asking again. `meta` explains the answer: the plan and where each of its values came from (the caller, the question, or a default), a note for every decision a reader might otherwise misjudge, the charts that were ruled out and why, the trials that mention the drug or condition only in passing, and the registry requests behind the numbers. When a question cannot be answered as asked, the response says `"status": "needs_clarification"` instead, with a message that a person can act on and, where it can, the fields that would settle it.
+The schema is closed, so a misspelled field is refused with a 422 that names it, and [docs/api.md](docs/api.md#request) lists every accepted value. `POST /v1/interpret` takes the same request and returns the plan without fetching anything, which shows how a question will be read before it runs.
+
+A successful response has `"status": "resolved"`, the question as asked in `query`, and three parts. `visualization` is the recommended chart: its type, title, the reason it was chosen, an encoding that says which field goes on which axis, the rows to draw, and a Vega-Lite spec where Vega-Lite can draw the chart. `alternatives` holds every other chart that can show the same data, each with its own reason, so a frontend can offer a switch without asking again. `meta` explains the answer: the plan and where each of its values came from (the caller, the question, or a default), a note for every decision a reader might otherwise misjudge, the charts that were ruled out and why, the trials that mention the drug or condition only in passing, and the registry requests behind the numbers. When a question cannot be answered as asked, the response says `"status": "needs_clarification"` instead, with a message that a person can act on and, where it can, the fields that would settle it.
 
 Each data point carries its trial count, the IDs of every trial behind it, and citations like this one, which says that this trial is counted under Early Phase 1 because that is what its record lists:
 
@@ -79,7 +89,7 @@ The chart is chosen by fixed rules in code, and the model plays no part in it. T
 
 ## Samples
 
-Fourteen questions were run against the live registry in November 2026, and their complete responses are saved in [examples/](examples). The `/samples` page shows the same fourteen. Between them they use all 22 chart types, as the recommendation or as an alternative. Running `uv run python -m examples.run_examples` regenerates them, and the counts drift a little because the registry updates daily.
+Fourteen questions were run against the live registry in November 2026, and their complete responses are saved in [examples/](examples). The assignment asks for three to five example runs, which are the first five rows below; the other nine extend the set until every chart type appears, and an abridged response is shown in [docs/visualization.md](docs/visualization.md#what-a-frontend-receives). The `/samples` page shows the same fourteen. Between them they use all 22 chart types, as the recommendation or as an alternative. Running `uv run python -m examples.run_examples` regenerates them, and the counts drift a little because the registry updates daily.
 
 | Question | Recommended chart | Alternatives | Trials |
 | --- | --- | --- | --- |
@@ -118,12 +128,12 @@ Every question can call the language model and make dozens of registry requests,
 
 ### Citations and counts
 
-A citation shows why a trial belongs to a particular data point: its phase for a phase bar, the matching site for a country bar, the treatment arm that gives two drugs together for a combination. When more than 10,000 trials match, each bar is counted by the registry itself, with a query that defines the group exactly as the chart does, so that the bars are exact even though only part of the data was downloaded. For example, the bars of breast cancer trials by status add up to the registry's total of 16,344. A chart that cannot be counted that way is marked as an estimate throughout, since mixing exact and estimated bars would mislead. [docs/aggregation.md](docs/aggregation.md) describes the groups and the counting.
+A citation shows why a trial belongs to a particular data point: its phase for a phase bar, the matching site for a country bar, the treatment arm that gives two drugs together for a combination. When more than 10,000 trials match, each bar is counted by the registry itself, with a query that defines the group exactly as the chart does, so that the bars are exact even though only part of the data was downloaded. For example, the sponsor-class bars for breast cancer in the saved samples add up to the registry's total of 16,270. A chart that cannot be counted that way is marked as an estimate throughout, since mixing exact and estimated bars would mislead. [docs/aggregation.md](docs/aggregation.md) describes the groups and the counting.
 
 ## Testing and evaluation
 
 ```bash
-uv run pytest                                    # offline, under 10 seconds
+uv run pytest                                    # offline, about 10 seconds once cached
 uv run pytest --run-live                         # adds requests to the real registry
 TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records Claude and registry traffic
 uv run python -m evals.run --interpreter claude  # scores interpretation, about $0.40 a run
@@ -179,7 +189,7 @@ Settings are read from the environment or from `.env`.
 - Claude can read an ambiguous question differently from one run to the next, although the answer always states the reading it used.
 - The demo pages load their chart libraries from public CDNs, so the browser needs internet access.
 - Saved answers are kept for the newest 1,000, so an old link can expire; its question is kept far longer, so the page can offer to ask it again with today's data.
-- The live instance's free Postgres database expires on 8 December 2026. After that, until a new database is attached, the spending cap cannot be checked, so questions are read by the rule-based interpreter and answers are not saved.
+- The live instance's free Postgres database expires on 8 December 2026. After that, until a new database is attached, the spending cap cannot be checked, so questions are read by the rule-based interpreter, answers are not saved, and each question first waits a few seconds for the database connection to time out.
 
 ## What I would improve with more time
 

@@ -48,6 +48,7 @@ def to_vega_lite(
     spec: dict[str, Any] = {"$schema": SCHEMA, "title": title, "data": {"values": values}, **body}
     _label_symlog_axes(spec, values)
     _read_dates_as_utc(spec, values)
+    _whole_number_count_axes(spec)
     if limit := options.get("display_limit"):
         sort_field = (
             encoding.get("x") if chart is ChartType.HORIZONTAL_BAR_CHART else encoding.get("y")
@@ -88,6 +89,20 @@ def _label_symlog_axes(spec: dict[str, Any], values: list[dict[str, Any]]) -> No
                 "labelExpr": _SHORT_NUMBER,
                 "labelOverlap": "greedy",
             }
+
+
+def _whole_number_count_axes(spec: dict[str, Any]) -> None:
+    """Trial counts are whole numbers, so a count axis never shows a tick at 0.5. Shares of
+    a normalized stack are fractions and keep their ticks."""
+    for encoding in _encodings(spec):
+        for name in ("x", "y"):
+            channel = encoding.get(name)
+            if (
+                isinstance(channel, dict)
+                and channel.get("field") == COUNT
+                and channel.get("stack") != "normalize"
+            ):
+                channel.setdefault("axis", {})["tickMinStep"] = 1
 
 
 _UTC_UNITS = {4: "utcyear", 7: "utcyearmonth", 10: "utcyearmonthdate"}
@@ -132,7 +147,13 @@ def _choropleth(
     """World countries from TopoJSON, colored by joining each country's numeric ISO code to
     the rows. Countries with no trials stay grey."""
     topology = {"url": options["topology"], "format": {"type": "topojson", "feature": "countries"}}
-    lookup = {"data": {"values": values}, "key": "iso_numeric", "fields": [COUNT, e["label"].field]}
+    # The row's id replaces the shape's own (a numeric country code), so a clicked country's
+    # datum.id finds its row exactly as it does for every other chart.
+    lookup = {
+        "data": {"values": values},
+        "key": "iso_numeric",
+        "fields": [COUNT, e["label"].field, "id"],
+    }
     return {
         "$schema": SCHEMA,
         "title": title,

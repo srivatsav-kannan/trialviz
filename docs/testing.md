@@ -3,12 +3,12 @@
 This page describes the test suite, what each part protects against, and how correctness was checked beyond it. Most of the suite consists of workflows that run a real question through the whole pipeline and check the answer against what it should be. A few guard tests cover failures that a workflow cannot reach, and three live tests check the registry itself.
 
 ```bash
-uv run pytest                                    # offline, under 10 seconds
+uv run pytest                                    # offline, about 10 seconds once cached
 uv run pytest --run-live                         # adds the live registry tests
 TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records against Claude and the registry
 ```
 
-The offline run collects 39 cases from 38 test functions, since the answer-store test runs on both stores, and `--run-live` adds 3 more. A test belongs here only when it checks something that reading the code would not settle: behavior across several stages, concurrency, real registry data, saved files drifting from the code, or a bug that actually happened. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report, which a suite that passes or fails on every run would flatten; it is described in [evaluation.md](evaluation.md).
+The offline run collects 39 cases from 38 test functions, since the answer-store test runs on both stores, and `--run-live` adds 3 more. The answer-store tests start a throwaway Postgres from the `pgserver` package under Python 3.12, which uv downloads on the first run, and they are skipped, with the reason shown, where it cannot start. A test belongs here only when it checks something that reading the code would not settle: behavior across several stages, concurrency, real registry data, saved files drifting from the code, or a bug that actually happened. The interpretation eval is kept apart from the suite, because a language model's output is a measurement to report, which a suite that passes or fails on every run would flatten; it is described in [evaluation.md](evaluation.md).
 
 ## Question workflows
 

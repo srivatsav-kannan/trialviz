@@ -5003,7 +5003,10 @@
           "x": {
             "field": "trial_count",
             "type": "quantitative",
-            "title": "Trials"
+            "title": "Trials",
+            "axis": {
+              "tickMinStep": 1
+            }
           },
           "tooltip": [
             {
@@ -5135,7 +5138,10 @@
             "y": {
               "field": "trial_count",
               "type": "quantitative",
-              "title": "Trials"
+              "title": "Trials",
+              "axis": {
+                "tickMinStep": 1
+              }
             },
             "tooltip": [
               {

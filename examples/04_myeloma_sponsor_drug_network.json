@@ -12,7 +12,7 @@
     "query": "Show a network of sponsors and drugs for multiple myeloma trials that started in 2024",
     "visualization": {
       "type": "network_graph",
-      "reason": "entities as nodes, linked by the trials they share",
+      "reason": "requested by the question",
       "encoding": {
         "node_id": {
           "field": "id",
@@ -3804,7 +3804,7 @@
           ]
         },
         "presentation": {
-          "chart_type": null,
+          "chart_type": "network_graph",
           "sort": null,
           "top_n": null,
           "citations_per_datum": 3
@@ -3820,13 +3820,14 @@
         "filters.intervention_types": "user",
         "filters.start_year_from": "inferred",
         "filters.start_year_to": "inferred",
+        "presentation.chart_type": "inferred",
         "presentation.citations_per_datum": "default",
         "retrieval.name_matching": "default"
       },
       "notes": [
         {
           "code": "mentions_reported",
-          "message": "1 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
+          "message": "1 more trial mentions the drug or condition only in descriptions, often as one of several permitted options. It is listed under mentions but not counted. Set retrieval.name_matching to mentioned to count it.",
           "slot": null
         },
         {
@@ -3847,7 +3848,7 @@
       "chart_choice": {
         "recommended": {
           "type": "network_graph",
-          "reason": "entities as nodes, linked by the trials they share"
+          "reason": "requested by the question"
         },
         "alternatives": [
           {

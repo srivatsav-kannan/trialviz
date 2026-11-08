@@ -339,6 +339,41 @@ REGISTRY_UNAVAILABLE_OR_BUSY = {
         }
     },
 }
+INVALID_PARAMETER = _error_example(
+    422,
+    "invalid_request",
+    "The request does not match the schema. See details.",
+    [{"path": "part", "message": "Input should be 'links' or 'nodes'"}],
+)
+
+
+def json_error(response: Any) -> Any:
+    """The same error response for a route whose success is not JSON (a CSV download), so
+    its errors are still declared as the JSON envelope they are sent as."""
+    content = response["content"]["application/json"]
+    return {
+        "description": "Error",
+        "content": {
+            "application/json": {
+                "schema": {"$ref": "#/components/schemas/ErrorResponse"},
+                "example": content["example"],
+            }
+        },
+    }
+
+
+class SavedRequest(BaseModel):
+    """What a saved answer was asked, kept after the answer itself expires."""
+
+    request: dict[str, Any] = Field(
+        description="The request as the service read it, with shorthands such as `drug_name` "
+        "moved into `filters`, ready to send to `POST /v1/query` again."
+    )
+    answer_available: bool = Field(
+        description="Whether the original answer can still be reopened at /v1/answers/{id}."
+    )
+
+
 ANSWER_NOT_FOUND = _error_example(
     404, "answer_not_found", "There is no saved answer '0123456789abcdef0123'.", []
 )

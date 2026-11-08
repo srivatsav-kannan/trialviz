@@ -20,7 +20,6 @@ from __future__ import annotations
 import asyncio
 import json
 from collections.abc import Awaitable, Callable
-from pathlib import Path
 from typing import Any
 
 from mcp.server.mcpserver import Context, MCPServer
@@ -42,7 +41,7 @@ INSTRUCTIONS = """\
 trialviz answers questions about clinical trials from the ClinicalTrials.gov registry with a
 recommended chart, the rows behind it and a citation for every number. Use `ask` with a
 plain-English question, adding structured fields (filters, analysis, presentation) only to
-pin down what the question leaves open. Use `interpret` to see how a question will be read
+pin down what the question leaves open. Use `interpret_question` to see how a question will be read
 without fetching anything. Every answer has an answer_id and links: share `ui` with a person,
 use `csv` for the rows. Numbers come from registry records, never from a model, so quote
 them as given and cite the trial IDs in the citations."""
@@ -58,7 +57,8 @@ def build_mcp(
     asked: Callable[[str], Awaitable[dict[str, Any] | None]],
     quota: Callable[[Request], Awaitable[None]],
     failure: Failure,
-    samples: Path,
+    samples: Callable[[], list[dict[str, Any]]],
+    sample: Callable[[str], dict[str, Any] | None],
 ) -> tuple[MCPServer, Starlette]:
     """The MCP server, and the Starlette app whose `/mcp` route serves it."""
     server = MCPServer("trialviz", instructions=INSTRUCTIONS, version="1.0.0")
@@ -120,15 +120,15 @@ def build_mcp(
     async def list_samples() -> list[dict[str, Any]]:
         """The saved sample answers: real questions with their chart types and totals. Open
         one with `get_sample`."""
-        return [_sample_summary(path) for path in sorted(samples.glob("*.json"))]
+        return samples()
 
     @server.tool(annotations=_READ_ONLY)
     async def get_sample(name: str, ctx: Context) -> dict[str, Any]:
         """One saved sample answer, compact, by the name `list_samples` gives."""
-        path = samples / f"{name}.json"
-        if not name.replace("_", "").isalnum() or not path.is_file():
+        saved = sample(name)
+        if saved is None:
             raise ToolError(f"There is no sample named {name!r}.")
-        return _compact(json.loads(path.read_text())["response"], _base(ctx), sample=name)
+        return _compact(saved, _base(ctx), sample=name)
 
     app = server.streamable_http_app(
         streamable_http_path="/mcp", stateless_http=True, host="0.0.0.0"
@@ -186,15 +186,4 @@ def _compact(body: dict[str, Any], base: str, sample: str | None = None) -> dict
         "notes": [note["message"] for note in meta["notes"]],
         "data_version": meta["data_version"],
         "links": links,
-    }
-
-
-def _sample_summary(path: Path) -> dict[str, Any]:
-    saved = json.loads(path.read_text())
-    response = saved["response"]
-    return {
-        "name": path.stem,
-        "question": saved["request"]["query"],
-        "chart": response["visualization"]["type"],
-        "totals": [c["total"] for c in response["meta"]["cohorts"]],
     }

@@ -4073,7 +4073,10 @@
           "y": {
             "field": "trial_count",
             "type": "quantitative",
-            "title": "Trials"
+            "title": "Trials",
+            "axis": {
+              "tickMinStep": 1
+            }
           },
           "color": {
             "field": "cohort",
@@ -4290,7 +4293,10 @@
               "field": "trial_count",
               "type": "quantitative",
               "title": "Trials",
-              "stack": "zero"
+              "stack": "zero",
+              "axis": {
+                "tickMinStep": 1
+              }
             },
             "color": {
               "field": "phase",

@@ -107,7 +107,7 @@ Like every other slot, it can be set by the caller, inferred from the question (
 | `meta.notes` | Every decision a reader might otherwise misjudge, with the codes listed below |
 | `meta.chart_choice` | The recommended chart, the alternatives and the charts ruled out, each with a reason |
 | `meta.cohorts` | For each cohort, its `label`, the exact `total`, how many records were `fetched`, `truncated` when the results describe only part of the matching trials, and the number of mention-only trials. An answer made of the registry's own counts, such as a count or a comparison of totals, fetches only the records it cites and is not truncated. |
-| `meta.mentions` | For each cohort with mention-only trials, their exact total, whether they were counted, the IDs of the trials fetched (up to 30 when they are not counted, all of them when they are), and quoted sentences as citations |
+| `meta.mentions` | One report for each cohort with mention-only trials, with `cohort` (its label, or null), `total` (their exact number), `counted` (whether they count toward the chart), `nct_ids` (the trials fetched, up to 30 when they are not counted and all of them when they are) and `citations` (the quoted sentences) |
 | `meta.registry_requests` | Every ClinicalTrials.gov request made for the answer, as a full URL a reader can open, including the lookups of MeSH terms under a condition and the exact counts |
 | `meta.data_version` | The registry's data timestamp at the time of answering |
 | `meta.interpreter` | Which interpreter read the question: `rules`, or `claude:` followed by the model name, such as `claude:claude-opus-5-5`. It is null when the question was not read. `GET /v1/status` names the interpreter family only (`claude` or `rules`). |
@@ -122,7 +122,7 @@ Every row has an `id` that is unique within its list and stays the same for the 
 
 | Charts | `data` |
 | --- | --- |
-| `stat` | `[{"label", "trial_count", "citations"}]` |
+| `stat` | `[{"id": "total", "label", "trial_count", "citations"}]` |
 | Bar, horizontal bar, donut, treemap, map, and a table over categories | One row per group, with the dimension field (such as `"country"`), `key`, the datum fields, and for countries `iso_a3` and `iso_numeric` |
 | Grouped, stacked and normalized bars, and heatmaps | One row per combination, with both dimension fields and the datum fields, including combinations with no trials |
 | Time series, stacked area, and bars over time | One row per period (and series), with `period` ("2019" or "2019-03"), the series field if there is one, and the datum fields |
@@ -135,7 +135,7 @@ Every row has an `id` that is unique within its list and stays the same for the 
 
 ### Drawing an answer
 
-The rows are the data, and `encoding` says which field each visual channel reads, so a frontend that does not use the Vega-Lite spec can draw every chart from these two alone. Each channel has `field`, `type` (`nominal`, `ordinal`, `quantitative` or `temporal`), `title`, and where it matters `sort` (a list giving the order of categories, or `descending`), `scale` (`symlog` for skewed measures) and `stack` (`zero` or `normalize`).
+The rows are the data, and `encoding` says which field each visual channel reads, so a frontend that does not use the Vega-Lite spec can draw every chart from these two alone. Each channel has `field`, `type` (`nominal`, `ordinal`, `quantitative` or `temporal`), `title`, and where it matters `sort` (a list giving the order of categories, or `descending`, which orders the categories by their count), `scale` (`linear`, or `symlog` for skewed measures) and `stack` (`zero` or `normalize`).
 
 | Chart | Channels |
 | --- | --- |
@@ -156,19 +156,19 @@ The rows are the data, and `encoding` says which field each visual channel reads
 | `network_graph`, `network_graph_3d` | `node_id`, `node_label`, `node_size`, `node_color`, `edge_source`, `edge_target`, `edge_width`, and positions `x`, `y` (2D) or `x`, `y`, `z` read from `x3`, `y3`, `z3` (3D) |
 | `sankey` | `source`, `target`, `value`, `node_label` |
 | `timeline` | `x` (`start`), `x2` (`end`), `y` (`title`), `color` (`phase`) |
-| `table` | None. `options.columns` lists the fields to show, in order, except for a network or a Sankey diagram, whose table shows its nodes and then its links |
+| `table` | None. `options.columns` lists the fields to show, in order, except for a network or a Sankey diagram, whose table shows its nodes and then its links. A `timeline` carries the same `options.columns`, so that it can also be shown as a list |
 
 `options` carries what a chart needs beyond its channels. `display_limit` is the number of bars worth showing when there are many, which the Vega-Lite spec already applies with a rank filter. `bins_precomputed` says histogram rows are already binned, and `skewed` that the bins grow geometrically. `outliers_field` names the box plot field holding each group's outlying trials. A map has `topology` (a TopoJSON URL), `feature` and `id_matches`, the row field to join to each shape's `id`. A network's `positions` says its coordinates come from a fixed force layout scaled to -1 to 1, which a frontend may use or replace, and a Sankey's `stages` lists its stages in order.
 
 Every row shape is also published as a schema in the OpenAPI document (`StatRow`, `CategoryRow`, `MatrixRow`, `PeriodRow`, `BinRow`, `BoxRow`, `PointRow`, `TrialRow`, `GraphData` and `FlowData`). A client generated from `/openapi.json` therefore gets typed rows, and the contract tests check every saved answer against the same schemas.
 
-A few details save guesswork. The Vega-Lite spec's `data.values` are the rows in the same order, keeping `id` but leaving out `citations`, `nct_ids` and `outliers` to keep the spec small, so a clicked mark's `datum.id` finds its row in `data`, where its trials and citations are. Periods are strings, `"2019"` for years and `"2019-03"` for months, and dates are `"2019-03-01"`, or `"2019-03"` when a record gives only the month. Read them as UTC: the specs use UTC time units, because a browser west of UTC would otherwise draw 2019 as the last day of 2018. The map's topology is Natural Earth's world outline at the 1:110 million scale, which leaves out a few small places such as Singapore and Hong Kong, so that those countries appear in the rows and the table but not on the map. A `needs_clarification` answer lists in `missing` the request fields that would resolve it, for example `filters.interventions` for a question about "this drug".
+A few details save guesswork. The Vega-Lite spec's `data.values` are the rows in the same order, keeping `id` but leaving out `citations`, `nct_ids` and `outliers` to keep the spec small, so a clicked mark's `datum.id` finds its row in `data`, where its trials and citations are. Periods are strings, `"2019"` for years and `"2019-03"` for months, and dates are `"2019-03-01"`, or `"2019-03"` when a record gives only the month. Read them as UTC: the specs use UTC time units, because a browser west of UTC would otherwise draw 2019 as the last day of 2018. The map's topology is Natural Earth's world outline at the 1:110 million scale, which leaves out a few small places such as Singapore and Hong Kong, so that those countries appear in the rows and the table but not on the map. A `needs_clarification` answer lists in `missing` the request fields that would resolve it, for example `filters.interventions` for a question about "this drug", and the request tables above give each field's type.
 
 ### Streaming progress
 
-`POST /v1/query/stream` takes the same body as `POST /v1/query` and answers with server-sent events, so that a frontend can show what the service is doing while a long answer runs, in place of a bare spinner. While the answer is computed it sends `progress` events, each with the `stage` (`reading`, `retrieving`, `aggregating`, `counting` or `presenting`), a `message` to show, and running totals of `registry_requests`, `records_fetched` and `records_expected`, so `records_fetched / records_expected` makes a progress bar during retrieval.
+`POST /v1/query/stream` takes the same body as `POST /v1/query` and answers with server-sent events, so that a frontend can show what the service is doing while a long answer runs, in place of a bare spinner. While the answer is computed it sends `progress` events, each with the `stage` (`reading`, `retrieving`, `aggregating`, `counting` or `presenting`), a `message` to show, and running totals of `registry_requests`, `records_fetched` and `records_expected`, so `records_fetched / records_expected` makes a progress bar during retrieval. `records_expected` grows each time a new fetch starts (the samples that find a condition's narrower MeSH terms come first), so a bar drawn from it can step backwards, and a frontend may hold the bar where it is until the count catches up. A fetch that fits in one page of 1,000 records arrives at once, so for a small answer the count is full from its first event.
 
-The stream ends with one `answer` event carrying exactly what `POST /v1/query` returns, a clarification included, or one `error` event carrying the error envelope with its `status` (and `retry_after` when busy). A comment line arrives every 15 seconds when nothing else does, so proxies keep the connection open. Limits apply as for `POST /v1/query`, and errors that happen before the stream starts (422, 429, a 503 when busy) are ordinary HTTP errors.
+The stream ends with one `answer` event carrying exactly what `POST /v1/query` returns, a clarification included, or one `error` event whose data holds the HTTP status that the error would have had, the usual envelope, and the seconds to wait when the service is busy, as in `{"status": 503, "error": {"code": "busy", "message": "…", "details": []}, "retry_after": 10}`. A comment line arrives every 15 seconds when nothing else does, so proxies keep the connection open. Limits apply as for `POST /v1/query`, and errors that happen before the stream starts (422, 429, a 503 when busy) are ordinary HTTP errors.
 
 Browsers' `EventSource` only sends GET requests, so a page reads the stream with `fetch`:
 
@@ -199,7 +199,7 @@ for (let chunk; !(chunk = await reader.read()).done; ) {
 
 Every answer is saved under `meta.answer_id`, a hash of the request and the registry's data version, so the same request against the same data always has the same id. `GET /v1/answers/{answer_id}` reopens it without recomputing anything, which makes an answer shareable as a link, and asking the same question again returns the saved answer without calling the language model or the registry. A new registry data version, which arrives daily, gives new ids, so a saved answer is never served for data it was not computed from.
 
-The newest 1,000 answers are kept (`ANSWERS_KEPT`), in Postgres on a deployed service and in files locally, and a store that fails only means the answer is computed again. The request behind each answer, a few hundred bytes, is kept for the newest 100,000, so `GET /v1/answers/{answer_id}/request` can still say what an expired answer asked. Sending that request to `POST /v1/query` answers it again with today's registry data, which is a new answer with a new id, since the original counts cannot be recovered once the registry has moved on. An id is the first 80 bits of a SHA-256 hash, so two answers sharing one is not a practical concern.
+The newest 1,000 answers are kept (`ANSWERS_KEPT`), in Postgres on a deployed service and in files locally, and a store that fails only means the answer is computed again. The request behind each answer, a few hundred bytes, is kept for the newest 100,000, so that `GET /v1/answers/{answer_id}/request` can still say what an expired answer asked. It returns `{"request": {...}, "answer_available": true or false}`, where the request is the one the service read, with shorthands such as `drug_name` moved into `filters`, so that it can be sent back as it is. Sending that request to `POST /v1/query` answers it again with today's registry data, which is a new answer with a new id, since the original counts cannot be recovered once the registry has moved on. An id is the first 80 bits of a SHA-256 hash, so two answers sharing one is not a practical concern.
 
 `GET /v1/answers/{answer_id}/csv` and `GET /v1/samples/{name}/csv` return the recommended chart's rows as CSV, with every field except citations and lists such as `nct_ids` joined by semicolons. A network or Sankey diagram has two tables, so `?part=links` (the default, with both ends' labels) or `?part=nodes` picks one. Text that a spreadsheet would run as a formula is prefixed with an apostrophe, since titles and sponsor names are free text that anyone can write.
 
@@ -323,8 +323,9 @@ A shorthand field is reported under the field it stands for, so an unknown `coun
 | 404 | `sample_not_found` | No saved sample has that name |
 | 404 | `answer_not_found` | No saved answer has that id, or it has expired |
 | 405 | `method_not_allowed` | The path does not accept that HTTP method |
+| other 4xx | `http_error` | Any other HTTP-level refusal, with the status it came with |
 | 413 | `request_too_large` | The request body is larger than `MAX_BODY_BYTES` (16 KB by default) |
-| 429 | `rate_limited` | The client, or all clients together, asked too many questions or made too many requests; `Retry-After` gives the seconds to wait |
+| 429 | `rate_limited` | The client, or all clients together, asked too many questions or made too many requests; the message says which limit was reached, and `Retry-After` gives the seconds to wait |
 | 500 | `internal_error` | The service failed unexpectedly |
 | 502 | `registry_rejected_query` | ClinicalTrials.gov refused a query it was sent |
 | 503 | `registry_unavailable` | ClinicalTrials.gov could not be reached after four attempts |
@@ -333,7 +334,7 @@ A shorthand field is reported under the field it stands for, so an unknown `coun
 
 ## Limits
 
-The service protects itself and its language-model budget before doing any work on a request. Questions, meaning `POST /v1/query`, its stream and `POST /v1/interpret`, are limited per client to 10 a minute and 60 an hour, and to 600 an hour across all clients, since each one can call the model and make dozens of registry requests. Every other request is limited to 120 a minute per client, except `GET /health`. Only four questions are answered at once, and a fifth gets a 503 telling it to retry shortly. Request bodies larger than 16 KB are refused while they are being read. Every limit can be changed through the settings in the README.
+The service protects itself and its language-model budget before doing any work on a request. Questions, meaning `POST /v1/query`, its stream and `POST /v1/interpret`, are limited per client to 10 a minute and 60 an hour, and to 600 an hour across all clients, since each one can call the model and make dozens of registry requests. Every request, questions included, is also limited to 120 a minute per client, except `GET /health`. Only four questions are answered at once, and a fifth gets a 503 telling it to retry shortly. Request bodies larger than 16 KB are refused while they are being read. Every limit can be changed through the settings in the README.
 
 Each question's response carries three headers that say where the client stands against its tightest limit:
 

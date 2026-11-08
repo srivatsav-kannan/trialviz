@@ -36,12 +36,12 @@ sys.stdin.read()
 
 @pytest.fixture(scope="session")
 def postgres_dsn(tmp_path_factory: pytest.TempPathFactory) -> Iterator[str]:
-    """A real, throwaway Postgres for the spend ledger, so its SQL and locking are tested
-    against the database it runs on. The pgserver package bundles Postgres but has no build
+    """A real, throwaway Postgres for the answer store, so its SQL is tested against the
+    database it runs on. The pgserver package bundles Postgres but has no build
     for Python 3.13 yet, so it runs in a side process under 3.12, which uv provides. The
     tests that need it are skipped where it cannot start."""
     data: Path = tmp_path_factory.mktemp("postgres")
-    command = ["uv", "run", "--no-project", "--python", "3.12", "--with", "pgserver"]
+    command = ["uv", "run", "--no-project", "--python", "3.12", "--with", "pgserver==0.1.4"]
     try:
         process = subprocess.Popen(
             [*command, "python", "-c", _PGSERVER, str(data)],

@@ -270,6 +270,7 @@ function showProgress() {
   status.hidden = false;
   const started = Date.now();
   let last = null;
+  let shown = 0;
   const describe = () => {
     const seconds = `${Math.round((Date.now() - started) / 1000)}s`;
     if (!last) return seconds;
@@ -284,7 +285,10 @@ function showProgress() {
       const reached = STAGES.findIndex(([stage]) => stage === step.stage);
       steps.forEach((item, index) => (item.dataset.state = index < reached ? "done" : index === reached ? "active" : "todo"));
       if (step.records_expected) {
-        const share = Math.min(1, step.records_fetched / step.records_expected);
+        // The expected total grows as each new fetch starts, so the bar holds its place
+        // until the count catches up instead of stepping backwards.
+        shown = Math.max(shown, Math.min(1, step.records_fetched / step.records_expected));
+        const share = shown;
         bar.hidden = false;
         bar.setAttribute("aria-valuenow", String(Math.round(share * 100)));
         fill.style.width = `${share * 100}%`;
@@ -954,8 +958,9 @@ function renderMentions(reports) {
   const parts = [];
   for (const report of reports) {
     const who = report.cohort ? `${report.cohort}: ` : "";
-    const verb = report.counted ? "are counted in the chart" : "are not counted in the chart";
-    parts.push(el("p", {}, `${who}${number(report.total)} trials mention the drug or condition only in their descriptions, and ${verb}. Some examples:`));
+    const one = report.total === 1;
+    const verb = `${one ? "is" : "are"} ${report.counted ? "" : "not "}counted in the chart`;
+    parts.push(el("p", {}, `${who}${number(report.total)} ${one ? "trial mentions" : "trials mention"} the drug or condition only in ${one ? "its" : "their"} descriptions, and ${verb}. ${one ? "The example:" : "Some examples:"}`));
     for (const citation of report.citations.slice(0, 4)) {
       parts.push(el("blockquote", {}, `“${citation.excerpt}”`, el("cite", {}, el("a", { href: citation.url, target: "_blank", rel: "noopener" }, citation.nct_id), ` ${citation.field}`)));
     }

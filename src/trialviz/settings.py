@@ -25,8 +25,8 @@ class Settings(BaseSettings):
     llm_ledger_path: Path = Path("var/llm_spend.json")
     database_url: SecretStr | None = Field(
         None,
-        description="Postgres for the spend ledger. Set on a deployed service, whose disk is "
-        "wiped on restart; without it, spending is kept in llm_ledger_path.",
+        description="Postgres for the spend total and saved answers. Set on a deployed service, "
+        "whose disk is wiped on restart; without it, both are kept in local files.",
     )
 
     ctgov_api_root: str = "https://clinicaltrials.gov/api/v2"
@@ -38,7 +38,9 @@ class Settings(BaseSettings):
         Path("var/cache/ctgov"), description="Response cache. Set empty to disable."
     )
     retrieval_max_records: int = Field(
-        10_000, ge=1, description="Most records fetched per cohort before truncating."
+        10_000,
+        ge=1,
+        description="Most records fetched per question, shared among a comparison's cohorts.",
     )
     answer_deadline_seconds: float = Field(
         180.0, gt=0, description="Longest an answer may spend on registry requests."
@@ -75,9 +77,17 @@ class Settings(BaseSettings):
         "X-Forwarded-For, the one the proxy added, which a client cannot forge.",
     )
 
-    @field_validator("llm_daily_cap_usd", "ctgov_cache_dir", "answer_store_dir", mode="before")
+    @field_validator(
+        "anthropic_api_key",
+        "database_url",
+        "llm_daily_cap_usd",
+        "ctgov_cache_dir",
+        "answer_store_dir",
+        mode="before",
+    )
     @classmethod
     def _empty_means_none(cls, value: object) -> object:
-        # A host may not let a variable be deleted, only emptied, so empty means unset:
-        # no daily cap, no cache, no saved answers.
+        # A host may not let a variable be deleted, only emptied, and .env.example ships an
+        # empty key, so empty means unset: no Claude, no database, no daily cap, no cache,
+        # no saved answers.
         return None if isinstance(value, str) and not value.strip() else value

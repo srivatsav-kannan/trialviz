@@ -32,8 +32,8 @@ Names go through the search parameters, because the registry expands synonyms th
 
 | Search | Matches | Records that name the term in a naming field |
 | --- | --- | --- |
-| "keytruda", default search | 2,362 | 180 of 200 |
-| "keytruda", naming fields | about 1,990 | 200 of 200 |
+| "keytruda" (started since 2018), default search | 2,362 | 180 of 200 |
+| "keytruda" (started since 2018), naming fields | 2,053 | 200 of 200 |
 | "melanoma" (recruiting), default search | 483 | 193 of 200 |
 | "melanoma" (recruiting), naming fields | 471 | 199 of 200 |
 

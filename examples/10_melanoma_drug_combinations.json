@@ -4967,11 +4967,6 @@
       },
       "notes": [
         {
-          "code": "constraint_not_applied",
-          "message": "The question asks for \"combination studies (multiple drugs in one trial)\", which no filter here can express, so the results are not limited by it.",
-          "slot": null
-        },
-        {
           "code": "mentions_reported",
           "message": "12 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
           "slot": null

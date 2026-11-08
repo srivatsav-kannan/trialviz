@@ -53,7 +53,7 @@ Enrollment is the count the registry reports. Duration runs from the start date 
 
 ### Histogram bins
 
-Bins have a round width, 1, 2 or 5 times a power of ten, chosen from the spread of the middle 98 percent of values, so a few very large trials do not flatten everything else. Values beyond that range fall into a last bin that keeps the normal width and is marked open-ended, so a single 30,000-patient trial does not stretch the axis.
+Bins have a round width, 1, 2 or 5 times a power of ten, chosen from the spread of the values by the Freedman-Diaconis rule, and they run from the smallest value to the 99th percentile, so that a few very large trials do not flatten everything else. Values beyond that range fall into a last bin that keeps the normal width and is marked open-ended, so a single 30,000-patient trial does not stretch the axis.
 
 Enrollment is usually so skewed that equal widths would put nearly every trial in the first bin. When the largest value is more than 20 times the median, the bin edges step through 0, 10, 20, 50, 100, 200 and so on. The chart's axis then uses a symmetric log scale, which behaves like a log scale for large values but can still show trials that enrolled no one.
 
@@ -103,7 +103,7 @@ When more trials match than the record cap, which is 10,000 by default, only a s
 
 The clause matches the group exactly as aggregation defines it. "Phase 2" becomes `AREA[Phase]PHASE2 AND NOT AREA[Phase](EARLY_PHASE1 OR PHASE1 OR PHASE3 OR PHASE4 OR NA)`, which leaves out Phase 1/2 trials. A missing phase is split by study type into "Not reported" for interventional trials and "No phase (observational)" for the rest. For example, of the 3,391 breast cancer trials with no phase, 1 is interventional and 3,390 are not, and the two counts add up exactly.
 
-Every known value of a dimension is counted, including values that never appear in the subset, so that, for example, the 13 per-status counts for breast cancer add up to the registry's total of 16,344. A capped time series starts at the earliest year among all matching trials, found with one sorted request, so the subset's own range does not cut it short.
+Every known value of a dimension is counted, including values that never appear in the subset, so that, for example, in the recorded workflow for breast cancer by status, the 13 per-status counts add up to that recording's registry total of 16,344. A capped time series starts at the earliest year among all matching trials, found with one sorted request, so the subset's own range does not cut it short.
 
 An answer makes at most 30 count requests. When a chart would need more, or when any of its groups cannot be counted exactly, all of its counts stay estimates, because a chart that mixed exact and estimated bars would mislead. The response then says the figures describe the most recently started trials, and for a trend over start dates, that earlier years are undercounted.
 

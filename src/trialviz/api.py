@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import re
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -33,7 +34,7 @@ from typing import Annotated, Any
 
 from fastapi import Body, Depends, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, StreamingResponse
+from fastapi.responses import FileResponse, JSONResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.cors import CORSMiddleware
@@ -58,6 +59,7 @@ from trialviz.openapi import (
     ANSWER_TIMEOUT,
     DESCRIPTION,
     INTERNAL_ERROR,
+    INVALID_PARAMETER,
     INVALID_REQUEST,
     RATE_LIMIT_HEADERS,
     RATE_LIMITED,
@@ -73,8 +75,10 @@ from trialviz.openapi import (
     Health,
     LimitStatus,
     SampleSummary,
+    SavedRequest,
     ServiceStatus,
     answer_examples,
+    json_error,
     resolution_examples,
 )
 from trialviz.pipeline import AnswerTimeout, Pipeline
@@ -83,7 +87,7 @@ from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
 from trialviz.query.request import QueryRequest
-from trialviz.query.resolution import ClarificationNeeded, Resolution
+from trialviz.query.resolution import ClarificationNeeded, NoteCode, Resolution
 from trialviz.query.resolver import QueryResolver
 from trialviz.retrieval.client import RegistryQueryError, RegistryUnavailable
 from trialviz.retrieval.retriever import Retriever, build_retriever
@@ -96,6 +100,11 @@ UI_DIRECTORY = Path(__file__).parent / "ui"
 
 QueryBody = Annotated[QueryRequest, Body(openapi_examples=REQUEST_EXAMPLES)]
 """The request body of both question endpoints, with the examples the reference offers."""
+
+log = logging.getLogger(__name__)
+# Every HTTP request would otherwise be logged at INFO, burying the errors that matter.
+for _client_logger in ("httpx", "httpx2"):
+    logging.getLogger(_client_logger).setLevel(logging.WARNING)
 
 _SAMPLE_NAME = re.compile(r"[0-9a-z_]+")
 _ANSWER_ID = re.compile(r"[0-9a-f]{20}")
@@ -205,7 +214,12 @@ def create_app(
             return saved
         async with slots.take():
             result = await pipeline.run(request)
-        if result.answer is not None:
+        # An answer read by the fallback while Claude was unavailable is not saved, so that
+        # the same request is read properly once Claude is back.
+        if result.answer is not None and not any(
+            note.code in (NoteCode.INTERPRETER_FALLBACK, NoteCode.INTERPRETER_UNAVAILABLE)
+            for note in result.answer.meta.notes
+        ):
             result.answer.meta.answer_id = key
             await store.put(
                 key,
@@ -220,6 +234,9 @@ def create_app(
 
     async def load(key: str) -> dict[str, Any] | None:
         return await store.get(key) if _ANSWER_ID.fullmatch(key) else None
+
+    async def asked(key: str) -> dict[str, Any] | None:
+        return await store.request(key) if _ANSWER_ID.fullmatch(key) else None
 
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
@@ -284,7 +301,13 @@ def create_app(
         allow_origins=[o.strip() for o in settings.cors_allow_origins.split(",") if o.strip()],
         allow_methods=["GET", "POST"],
         allow_headers=["content-type", "mcp-protocol-version"],
-        expose_headers=["Retry-After", "RateLimit-Limit", "RateLimit-Remaining", "RateLimit-Reset"],
+        expose_headers=[
+            "Retry-After",
+            "RateLimit-Limit",
+            "RateLimit-Remaining",
+            "RateLimit-Reset",
+            "Content-Disposition",
+        ],
         max_age=600,
     )
 
@@ -375,7 +398,7 @@ def create_app(
         tags=["Answers"],
         summary="Reopen a saved answer",
         operation_id="getAnswer",
-        responses={404: ANSWER_NOT_FOUND, 422: INVALID_REQUEST},
+        responses={404: ANSWER_NOT_FOUND, 422: INVALID_PARAMETER},
     )
     async def saved_answer(answer_id: str) -> Any:
         """Returns an answer by the `meta.answer_id` it was given, without recomputing it, so
@@ -388,10 +411,11 @@ def create_app(
         tags=["Answers"],
         summary="Download a saved answer's rows as CSV",
         operation_id="getAnswerCsv",
-        response_class=PlainTextResponse,
+        response_class=Response,
         responses={
             200: {"content": {"text/csv": {}}, "description": "The rows, one per line."},
-            404: ANSWER_NOT_FOUND,
+            404: json_error(ANSWER_NOT_FOUND),
+            422: json_error(INVALID_PARAMETER),
         },
     )
     async def saved_answer_csv(answer_id: str, part: Part = "links") -> Response:
@@ -408,7 +432,8 @@ def create_app(
         tags=["Answers"],
         summary="See what a saved answer was asked",
         operation_id="getAnswerRequest",
-        responses={404: ANSWER_NOT_FOUND},
+        response_model=SavedRequest,
+        responses={404: ANSWER_NOT_FOUND, 422: INVALID_PARAMETER},
     )
     async def saved_request(answer_id: str) -> Any:
         """The request an answer was given for, kept long after the answer itself expires, so
@@ -416,7 +441,7 @@ def create_app(
         Sending it to `POST /v1/query` answers it with today's registry data, as a new answer
         with a new id. `answer_available` says whether the original answer can still be
         reopened."""
-        request = await store.request(answer_id) if _ANSWER_ID.fullmatch(answer_id) else None
+        request = await asked(answer_id)
         if request is None:
             return _error(404, "answer_not_found", f"There is no saved answer {answer_id!r}.")
         return {"request": request, "answer_available": await load(answer_id) is not None}
@@ -465,7 +490,7 @@ def create_app(
     async def samples() -> list[dict[str, Any]]:
         """Lists the answers saved in the project's `examples/` folder, which were produced by
         real questions against the live registry. The demo UI's samples page reads this."""
-        return [_summarize_sample(path) for path in sorted(SAMPLES_DIRECTORY.glob("*.json"))]
+        return _sample_summaries()
 
     @app.get(
         "/v1/samples/{name}",
@@ -474,32 +499,33 @@ def create_app(
         tags=["Samples"],
         summary="Retrieve a saved answer",
         operation_id="getSample",
-        responses={404: SAMPLE_NOT_FOUND, 422: INVALID_REQUEST},
+        responses={404: SAMPLE_NOT_FOUND, 422: INVALID_PARAMETER},
     )
     async def sample(name: str) -> Any:
         """Returns a saved answer exactly as `POST /v1/query` produced it."""
-        path = SAMPLES_DIRECTORY / f"{name}.json"
-        if not _SAMPLE_NAME.fullmatch(name) or not path.is_file():
+        saved = _load_sample(name)
+        if saved is None:
             return _error(404, "sample_not_found", f"There is no saved sample named {name!r}.")
-        return json.loads(path.read_text())["response"]
+        return saved
 
     @app.get(
         "/v1/samples/{name}/csv",
         tags=["Samples"],
         summary="Download a saved sample's rows as CSV",
         operation_id="getSampleCsv",
-        response_class=PlainTextResponse,
+        response_class=Response,
         responses={
             200: {"content": {"text/csv": {}}, "description": "The rows, one per line."},
-            404: SAMPLE_NOT_FOUND,
+            404: json_error(SAMPLE_NOT_FOUND),
+            422: json_error(INVALID_PARAMETER),
         },
     )
     async def sample_csv(name: str, part: Part = "links") -> Response:
         """A saved sample's rows as CSV, exactly as for a saved answer."""
-        path = SAMPLES_DIRECTORY / f"{name}.json"
-        if not _SAMPLE_NAME.fullmatch(name) or not path.is_file():
+        saved = _load_sample(name)
+        if saved is None:
             return _error(404, "sample_not_found", f"There is no saved sample named {name!r}.")
-        return _csv(json.loads(path.read_text())["response"], part, name)
+        return _csv(saved, part, name)
 
     @app.get(
         "/health",
@@ -561,6 +587,8 @@ def create_app(
 
     async def failed(_: Request, error: Exception) -> JSONResponse:
         status, code, message, retry_after = _failure(error)
+        if status == 500:
+            log.exception("unexpected failure", exc_info=error)
         response = _error(status, code, message)
         if retry_after is not None:
             response.headers["Retry-After"] = str(retry_after)
@@ -614,10 +642,11 @@ def create_app(
         answer=answer,
         interpret=read,
         saved=load,
-        asked=store.request,
+        asked=asked,
         quota=question_quota,
         failure=_failure,
-        samples=SAMPLES_DIRECTORY,
+        samples=_sample_summaries,
+        sample=_load_sample,
     )
     app.router.routes.extend(mcp_app.routes)
 
@@ -654,14 +683,16 @@ async def _events(answer: Any, request: QueryRequest) -> AsyncIterator[str]:
             try:
                 response = await answer(request)
                 body = response if isinstance(response, dict) else response.model_dump(mode="json")
-                queue.put_nowait(("answer", json.dumps(body)))
+                queue.put_nowait(("answer", json.dumps(body, separators=(",", ":"))))
             except Exception as error:
                 status, code, message, retry_after = _failure(error)
+                if status == 500:
+                    log.exception("unexpected failure in a stream", exc_info=error)
                 failure = {"code": code, "message": message, "details": []}
                 payload: dict[str, Any] = {"status": status, "error": failure}
                 if retry_after is not None:
                     payload["retry_after"] = retry_after
-                queue.put_nowait(("error", json.dumps(payload)))
+                queue.put_nowait(("error", json.dumps(payload, separators=(",", ":"))))
             finally:
                 queue.put_nowait(None)
 
@@ -696,6 +727,19 @@ def _page(file: str) -> Any:
     return serve
 
 
+def _sample_summaries() -> list[dict[str, Any]]:
+    return [_summarize_sample(path) for path in sorted(SAMPLES_DIRECTORY.glob("*.json"))]
+
+
+def _load_sample(name: str) -> dict[str, Any] | None:
+    """A saved sample's response, or None for a name that is not a saved sample."""
+    path = SAMPLES_DIRECTORY / f"{name}.json"
+    if not _SAMPLE_NAME.fullmatch(name) or not path.is_file():
+        return None
+    response: dict[str, Any] = json.loads(path.read_text())["response"]
+    return response
+
+
 def _summarize_sample(path: Path) -> dict[str, Any]:
     saved = json.loads(path.read_text())
     request, response = saved["request"], saved["response"]
@@ -726,8 +770,10 @@ def _error(status: int, code: str, message: str) -> JSONResponse:
 
 
 def _path(location: tuple[Any, ...]) -> str:
-    """Render a validation location like ("body", "filters", "phases", 0) as "filters.phases[0]"."""
-    parts = [part for part in location if part != "body"]
+    """Render a validation location like ("body", "filters", "phases", 0) as "filters.phases[0]",
+    and a query or path parameter such as ("query", "part") as "part"."""
+    located = bool(location) and location[0] in ("body", "query", "path")
+    parts = list(location[1:] if located else location)
     rendered = ""
     for part in parts:
         rendered += (

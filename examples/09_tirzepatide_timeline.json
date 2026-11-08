@@ -659,7 +659,7 @@
       "notes": [
         {
           "code": "mentions_reported",
-          "message": "1 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
+          "message": "1 more trial mentions the drug or condition only in descriptions, often as one of several permitted options. It is listed under mentions but not counted. Set retrieval.name_matching to mentioned to count it.",
           "slot": null
         },
         {

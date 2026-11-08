@@ -409,6 +409,8 @@ def encoding_and_options(
                     field=dataset.group_field or "group",
                     type="nominal",
                     title=dataset.group_dimension or "",
+                    # Groups keep the dataset's order, so phases run Early Phase 1 to Phase 4.
+                    sort=[spread.label for spread in dataset.spreads],
                 )
                 unit = f"{dataset.measure.label} ({dataset.measure.unit})"
                 return (
