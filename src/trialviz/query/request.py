@@ -16,7 +16,6 @@ from enum import StrEnum
 from typing import Annotated, Any, Self
 
 from pydantic import (
-    AfterValidator,
     BaseModel,
     ConfigDict,
     Field,
@@ -24,7 +23,7 @@ from pydantic import (
     model_validator,
 )
 
-from trialviz.query.consistency import ANALYSIS_RULES, broken_rules
+from trialviz.query.consistency import ANALYSIS_RULES, require_rules
 from trialviz.query.fields import (
     AnalysisKindField,
     DimensionField,
@@ -33,17 +32,16 @@ from trialviz.query.fields import (
     MeasureField,
     TimeFieldField,
     Year,
+    set_values,
 )
-from trialviz.query.filters import Cohort, Filters
+from trialviz.query.filters import Filters
 from trialviz.query.plan import (
-    MAX_COHORTS,
-    MIN_COHORTS,
+    Cohorts,
+    NodeTypes,
     Presentation,
     RetrievalOptions,
     Stages,
     parameters_of,
-    validate_cohorts,
-    validate_node_types,
 )
 
 MAX_QUERY_LENGTH = 2000
@@ -59,28 +57,18 @@ class AnalysisFields(BaseModel):
     series_by: DimensionField | None = Field(None, description="distribution, time_series, scatter")
     time_field: TimeFieldField | None = Field(None, description="time_series")
     granularity: GranularityField | None = Field(None, description="time_series")
-    cohorts: (
-        Annotated[
-            list[Cohort],
-            Field(min_length=MIN_COHORTS, max_length=MAX_COHORTS),
-            AfterValidator(validate_cohorts),
-        ]
-        | None
-    ) = Field(None, description="comparison")
+    cohorts: Cohorts | None = Field(None, description="comparison")
     measure: MeasureField | None = Field(None, description="histogram")
     x: MeasureField | None = Field(None, description="scatter")
     y: MeasureField | None = Field(None, description="scatter")
     z: MeasureField | None = Field(None, description="scatter (size in 2D, depth in 3D)")
     stages: Stages | None = Field(None, description="flow")
-    node_types: (
-        Annotated[tuple[DimensionField, DimensionField], AfterValidator(validate_node_types)] | None
-    ) = Field(None, description="network")
+    node_types: NodeTypes | None = Field(None, description="network")
 
     @model_validator(mode="after")
     def _parameters_fit_kind(self) -> Self:
         values = self.set_fields()
-        if broken := broken_rules(values, ANALYSIS_RULES):
-            raise ValueError(". ".join(rule.describe(values) for rule in broken))
+        require_rules(values, ANALYSIS_RULES)
         if self.kind is not None:
             stray = sorted(values.keys() - {"kind"} - parameters_of(self.kind).keys())
             if stray:
@@ -90,7 +78,7 @@ class AnalysisFields(BaseModel):
         return self
 
     def set_fields(self) -> dict[str, object]:
-        return {name: value for name, value in self if value is not None}
+        return set_values(self)
 
 
 class InferenceMode(StrEnum):

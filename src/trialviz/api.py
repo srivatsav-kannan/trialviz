@@ -4,9 +4,9 @@
 of the same data, and citations to the registry records behind every number.
 
 `POST /v1/query/stream` answers the same way as server-sent events, with progress while
-the answer is computed. Every answer is saved under `meta.answer_id`, which
+the answer is computed. An answer is saved under `meta.answer_id`, which
 `GET /v1/answers/{answer_id}` reopens and `/csv` downloads, and a repeated question is served
-from it at no cost.
+from it at no cost. Answers read by the fallback interpreter are not saved.
 
 `/mcp` offers the same answers to AI agents as tools over the Model Context Protocol.
 
@@ -37,10 +37,18 @@ from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import Response
+from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
+from trialviz import __version__
 from trialviz.answer import Answer, QueryResponse
 from trialviz.export import Part, to_csv
-from trialviz.limits import BodySizeLimit, RateLimited, SecurityHeaders, ServiceBusy
+from trialviz.limits import (
+    BodySizeLimit,
+    RateLimited,
+    SecurityHeaders,
+    ServiceBusy,
+    error_envelope,
+)
 from trialviz.llm.budget import Ledger
 from trialviz.mcp_server import build_mcp
 from trialviz.openapi import (
@@ -133,7 +141,7 @@ def create_app(
         title="trialviz API",
         summary="Questions about clinical trials in, cited chart specifications out.",
         description=DESCRIPTION,
-        version="1.0.0",
+        version=__version__,
         openapi_tags=TAGS,
         servers=[{"url": "/", "description": "The server this reference is served from"}],
         contact={
@@ -150,6 +158,8 @@ def create_app(
     for page, file in [("/", "index.html"), ("/samples", "index.html"), ("/docs", "api.html")]:
         app.add_api_route(page, _page(file), methods=["GET"], include_in_schema=False)
     app.mount("/ui", _RevalidatedStaticFiles(directory=UI_DIRECTORY), name="ui")
+
+    app.add_middleware(_UnexpectedErrors)
 
     @app.middleware("http")
     async def request_quota(request: Request, call_next: Any) -> Any:
@@ -190,7 +200,6 @@ def create_app(
         AnswerTimeout,
         RegistryQueryError,
         RegistryUnavailable,
-        Exception,
     ):
         app.add_exception_handler(failure, _failed)
     app.add_exception_handler(StarletteHTTPException, _http_error)  # type: ignore[arg-type]
@@ -222,8 +231,8 @@ def _service(request: Request) -> Service:
 ServiceDep = Annotated[Service, Depends(_service)]
 
 
-async def _question_quota(request: Request, service: ServiceDep) -> None:
-    await service.question_quota(request)
+def _question_quota(request: Request, service: ServiceDep) -> None:
+    service.question_quota(request)
 
 
 router = APIRouter()
@@ -299,11 +308,7 @@ async def query_stream(request: QueryBody, service: ServiceDep) -> StreamingResp
     `POST /v1/query`, except that an error after the stream has started arrives as an
     `error` event, since the status line has already been sent.
     """
-    if service.slots.free == 0:
-        raise ServiceBusy(
-            f"The service is already answering {service.slots.size} questions. Try again shortly.",
-            retry_after=10,
-        )
+    service.slots.ensure_free()
     return StreamingResponse(
         _events(service.answer, request),
         media_type="text/event-stream",
@@ -365,7 +370,7 @@ async def saved_request(answer_id: str, service: ServiceDep) -> Any:
     request = await service.asked(answer_id)
     if request is None:
         return _no_answer(answer_id)
-    return {"request": request, "answer_available": await service.saved(answer_id) is not None}
+    return {"request": request, "answer_available": await service.has_answer(answer_id)}
 
 
 @router.post(
@@ -470,10 +475,36 @@ async def status(request: Request, service: ServiceDep) -> ServiceStatus:
 
 
 async def _failed(_: Request, error: Exception) -> JSONResponse:
-    status, _code, _message, _retry_after = _failure(error)
-    if status == 500:
-        log.exception("unexpected failure", exc_info=error)
     return _respond_to_failure(error)
+
+
+class _UnexpectedErrors:
+    """Turns a failure that no handler knows into the 500 envelope. It sits inside the CORS
+    and security middleware, so the 500 carries their headers like every other response;
+    Starlette's own last-resort handler sits outside them and would send it bare."""
+
+    def __init__(self, app: ASGIApp) -> None:
+        self.app = app
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
+        started = False
+
+        async def tracking(message: Message) -> None:
+            nonlocal started
+            started = started or message["type"] == "http.response.start"
+            await send(message)
+
+        try:
+            await self.app(scope, receive, tracking)
+        except Exception as error:
+            log.exception("unexpected failure", exc_info=error)
+            # Once a response has begun (a stream, say), its status is already sent, and
+            # the client sees the connection close.
+            if not started:
+                await _respond_to_failure(error)(scope, receive, send)
 
 
 def _respond_to_failure(error: Exception) -> JSONResponse:
@@ -502,15 +533,9 @@ async def _invalid_request(_: Request, error: RequestValidationError) -> JSONRes
         {"path": _path(issue["loc"]), "message": str(issue["msg"]).removeprefix("Value error, ")}
         for issue in error.errors()
     ]
+    message = "The request does not match the schema. See details."
     return JSONResponse(
-        status_code=422,
-        content={
-            "error": {
-                "code": "invalid_request",
-                "message": "The request does not match the schema. See details.",
-                "details": details,
-            }
-        },
+        status_code=422, content=error_envelope("invalid_request", message, details)
     )
 
 
@@ -549,8 +574,7 @@ async def _events(answer: Any, request: QueryRequest) -> AsyncIterator[str]:
         with listening(lambda step: queue.put_nowait(("progress", step.model_dump_json()))):
             try:
                 response = await answer(request)
-                body = response if isinstance(response, dict) else response.model_dump(mode="json")
-                queue.put_nowait(("answer", json.dumps(body, separators=(",", ":"))))
+                queue.put_nowait(("answer", json.dumps(response, separators=(",", ":"))))
             except Exception as error:
                 status, code, message, retry_after = _failure(error)
                 if status == 500:
@@ -603,9 +627,7 @@ def _no_sample(name: str) -> JSONResponse:
 
 
 def _error(status: int, code: str, message: str) -> JSONResponse:
-    return JSONResponse(
-        status_code=status, content={"error": {"code": code, "message": message, "details": []}}
-    )
+    return JSONResponse(status_code=status, content=error_envelope(code, message))
 
 
 def _path(location: tuple[Any, ...]) -> str:

@@ -21,7 +21,7 @@ import uuid
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Protocol
+from typing import Any, Protocol
 
 import psycopg
 
@@ -137,26 +137,35 @@ class FileLedger:
         self._lock = asyncio.Lock()
 
     def spent_usd(self) -> float:
-        spent = self._read().get("spent_usd", 0.0)
-        return float(spent) if isinstance(spent, int | float) else 0.0
+        return _spent(self._read())
 
     def _read(self) -> dict[str, object]:
-        if not self._path.exists():
-            return {}
-        data: dict[str, object] = json.loads(self._path.read_text())
-        return data
+        """The file's contents. A file that cannot be read refuses every call, as an
+        unreachable database does for the Postgres ledger."""
+        try:
+            if not self._path.exists():
+                return {}
+            data = json.loads(self._path.read_text())
+        except (OSError, ValueError) as error:
+            raise BudgetExceeded(
+                f"the spend ledger is unreadable ({type(error).__name__})"
+            ) from error
+        return data if isinstance(data, dict) else {}
 
-    def _spent_today(self) -> float:
-        days = self._read().get("days", {})
-        return float(days.get(_today(), 0.0)) if isinstance(days, dict) else 0.0
+    def _write(self, data: dict[str, object]) -> None:
+        self._path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = self._path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(data))
+        os.replace(temporary, self._path)
 
     async def reserve(self, worst_case_usd: float) -> Hold:
         async with self._lock:
+            data = await asyncio.to_thread(self._read)
             held = sum(self._holds.values())
-            committed = self.spent_usd() + held
+            committed = _spent(data) + held
             if committed + worst_case_usd > self._cap:
                 raise _refusal(committed, self._cap, worst_case_usd, "total")
-            today = self._spent_today() + held
+            today = _spent_today(data) + held
             if self._daily_cap is not None and today + worst_case_usd > self._daily_cap:
                 raise _refusal(today, self._daily_cap, worst_case_usd, "daily")
             hold = Hold(uuid.uuid4().hex, worst_case_usd)
@@ -167,26 +176,36 @@ class FileLedger:
         async with self._lock:
             if self._holds.pop(hold.id, None) is None:
                 return
-            data = self._read()
+            data = await asyncio.to_thread(self._read)
             days = data.get("days", {})
             days = dict(days) if isinstance(days, dict) else {}
             days[_today()] = round(float(days.get(_today(), 0.0)) + actual_usd, 6)
-            spent = round(self.spent_usd() + actual_usd, 6)
-            self._path.parent.mkdir(parents=True, exist_ok=True)
-            temporary = self._path.with_suffix(".tmp")
-            temporary.write_text(json.dumps({"spent_usd": spent, "days": days}))
-            os.replace(temporary, self._path)
+            spent = round(_spent(data) + actual_usd, 6)
+            await asyncio.to_thread(self._write, {"spent_usd": spent, "days": days})
 
     async def status(self) -> SpendStatus:
+        data = await asyncio.to_thread(self._read)
         # Holds live only as long as this process, so every one of them is today's.
         held = sum(self._holds.values())
-        return SpendStatus(
-            self.spent_usd(), self._spent_today(), self._cap, self._daily_cap, held, held
-        )
+        return SpendStatus(_spent(data), _spent_today(data), self._cap, self._daily_cap, held, held)
+
+
+def _spent(data: dict[str, object]) -> float:
+    spent = data.get("spent_usd", 0.0)
+    return float(spent) if isinstance(spent, int | float) else 0.0
+
+
+def _spent_today(data: dict[str, object]) -> float:
+    days = data.get("days", {})
+    return float(days.get(_today(), 0.0)) if isinstance(days, dict) else 0.0
 
 
 def _today() -> str:
     return datetime.now(UTC).date().isoformat()
+
+
+def _unreachable(error: Exception) -> BudgetExceeded:
+    return BudgetExceeded(f"the spend ledger is unreachable ({type(error).__name__})")
 
 
 _LOCK_KEY = 0x7472_6961_6C76  # "trialv": one advisory lock serializes every reservation
@@ -235,7 +254,7 @@ class PostgresLedger:
         self._timeout = connect_timeout
         self._ready = False
 
-    async def _connect(self) -> psycopg.AsyncConnection[tuple[object, ...]]:
+    async def _connect(self) -> psycopg.AsyncConnection[tuple[Any, ...]]:
         connection = await psycopg.AsyncConnection.connect(self._dsn, connect_timeout=self._timeout)
         if not self._ready:
             async with connection.transaction():
@@ -244,11 +263,11 @@ class PostgresLedger:
             self._ready = True
         return connection
 
-    async def _status(self, connection: psycopg.AsyncConnection[tuple[object, ...]]) -> SpendStatus:
+    async def _status(self, connection: psycopg.AsyncConnection[tuple[Any, ...]]) -> SpendStatus:
         day = datetime.now(UTC).replace(hour=0, minute=0, second=0, microsecond=0)
         row = await (await connection.execute(_TOTALS, {"day": day})).fetchone()
         assert row is not None
-        spent, held, spent_today, held_today = (float(value) for value in row)  # type: ignore[arg-type]
+        spent, held, spent_today, held_today = (float(value) for value in row)
         return SpendStatus(spent, spent_today, self._cap, self._daily_cap, held, held_today)
 
     async def reserve(self, worst_case_usd: float) -> Hold:
@@ -276,9 +295,7 @@ class PostgresLedger:
                 )
                 return hold
         except psycopg.Error as error:
-            raise BudgetExceeded(
-                f"the spend ledger is unreachable ({type(error).__name__})"
-            ) from error
+            raise _unreachable(error) from error
 
     async def settle(self, hold: Hold, actual_usd: float) -> None:
         try:
@@ -296,15 +313,11 @@ class PostgresLedger:
                     )
         except psycopg.Error as error:
             # The hold stays, and is charged in full when it expires: never under-counted.
-            raise BudgetExceeded(
-                f"the spend ledger is unreachable ({type(error).__name__})"
-            ) from error
+            raise _unreachable(error) from error
 
     async def status(self) -> SpendStatus:
         try:
             async with await self._connect() as connection:
                 return await self._status(connection)
         except psycopg.Error as error:
-            raise BudgetExceeded(
-                f"the spend ledger is unreachable ({type(error).__name__})"
-            ) from error
+            raise _unreachable(error) from error

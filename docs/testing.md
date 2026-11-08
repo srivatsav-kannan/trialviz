@@ -23,7 +23,7 @@ The assertions are about the answer. Every record that comes back must satisfy t
 | Keytruda vs Opdivo since 2018 | The year is applied to one cohort instead of both, a cohort's records do not involve its drug, or the chart is not grouped bars with phases on the axis |
 | A field contradicting the question | The question's phase reaches the registry instead of the caller's, a count downloads more records than it cites, or a cited trial is missing a citation for one of the filters or cites the wrong drug |
 | Countries with the most recruiting melanoma trials | Non-recruiting or non-melanoma trials come back, the ranking is unsorted, or the map cannot match countries to its shapes |
-| A small network question | A complete fetch misses or repeats a trial, a sponsor links to a sponsor, or the 3D layout is flat |
+| A network of sponsors and drugs | The fetch repeats a trial or stops anywhere but the record cap, a sponsor links to a sponsor, or the 3D layout is flat |
 | Sponsors and investigators | The network does not link lead sponsors to principal investigators, or a link is not cited by both the investigator and the sponsor of the trials it counts |
 | Enrollment against duration | Off-topic trials come back, or records lack the enrollment and dates a scatter plot needs |
 | Hostile caller text | Injected syntax or a stray quote reaches the registry, or the cleaned query stops finding trials |

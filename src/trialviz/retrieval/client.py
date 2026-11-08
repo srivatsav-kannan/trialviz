@@ -29,9 +29,8 @@ from typing import Any
 import httpx
 
 from trialviz import progress
-from trialviz.retrieval.translate import RegistryQuery
+from trialviz.retrieval.translate import API_ROOT, COUNT_PARAMS, RegistryQuery
 
-API_ROOT = "https://clinicaltrials.gov/api/v2"
 MAX_PAGE_SIZE = 1000  # the API coerces anything larger down to this
 
 Study = Mapping[str, Any]
@@ -92,9 +91,14 @@ class ResponseCache:
 
     def get(self, data_version: str, key: str) -> dict[str, Any] | None:
         file = self._folder(data_version) / f"{key}.json"
-        if not file.exists():
+        try:
+            data: dict[str, Any] = json.loads(file.read_text())
+        except FileNotFoundError:
             return None
-        data: dict[str, Any] = json.loads(file.read_text())
+        except ValueError:
+            # A cached response that cannot be read (a write cut short) is a miss, as it is
+            # for the answer store, and the response is fetched again.
+            return None
         return data
 
     def put(self, data_version: str, key: str, data: Mapping[str, Any]) -> None:
@@ -153,6 +157,10 @@ class RegistryClient:
         self._data_version: str | None = None
         self._version_checked = 0.0
 
+    @property
+    def api_root(self) -> str:
+        return self._api_root
+
     async def aclose(self) -> None:
         """Close the HTTP connection pool."""
         await self._http.aclose()
@@ -172,7 +180,7 @@ class RegistryClient:
 
     async def count(self, query: RegistryQuery) -> int:
         """How many studies match, without downloading them."""
-        params = {**dict(query.params), "countTotal": "true", "pageSize": "1", "fields": "NCTId"}
+        params = {**dict(query.params), **COUNT_PARAMS}
         body = await self._get("/studies", params)
         return int(body["totalCount"])
 
@@ -217,7 +225,6 @@ class RegistryClient:
         return Fetched(tuple(studies[:limit]), total, tuple(requests))
 
     async def _get(self, path: str, params: Mapping[str, str]) -> dict[str, Any]:
-        progress.registry_request()
         if self._cache is None:
             return await self._request(path, params)
         version = await self.data_version()
@@ -230,9 +237,14 @@ class RegistryClient:
         return body
 
     async def _request(self, path: str, params: Mapping[str, str]) -> dict[str, Any]:
+        """One request to the registry, which is what progress counts, retried on refusals,
+        server errors and dropped connections."""
+        progress.registry_request()
         url = f"{self._api_root}{path}"
         last_problem = "no attempt made"
+        attempts = 0
         for attempt in range(self._max_attempts):
+            attempts = attempt + 1
             if attempt:
                 await self._sleep(self._backoff * 2 ** (attempt - 1))
             await self._limiter.wait()
@@ -252,6 +264,7 @@ class RegistryClient:
             if response.status_code != 429 and response.status_code < 500:
                 break
         raise RegistryUnavailable(
-            f"ClinicalTrials.gov did not answer {path} after {self._max_attempts} attempts "
+            f"ClinicalTrials.gov did not answer {path} after {attempts} "
+            f"{'attempt' if attempts == 1 else 'attempts'} "
             f"(last: {last_problem})"
         )

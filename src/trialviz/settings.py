@@ -8,6 +8,8 @@ from typing import Literal
 from pydantic import Field, SecretStr, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+from trialviz.retrieval.translate import API_ROOT
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
@@ -29,7 +31,7 @@ class Settings(BaseSettings):
         "whose disk is wiped on restart; without it, both are kept in local files.",
     )
 
-    ctgov_api_root: str = "https://clinicaltrials.gov/api/v2"
+    ctgov_api_root: str = API_ROOT
     ctgov_requests_per_minute: float = Field(
         50.0, gt=0, description="Request spacing. The API throttles bursts of about ten."
     )
@@ -40,14 +42,17 @@ class Settings(BaseSettings):
     retrieval_max_records: int = Field(
         10_000,
         ge=1,
-        description="Most records fetched per question, shared among a comparison's cohorts.",
+        description="Most records fetched per question, shared among a comparison's cohorts, "
+        "each of which still fetches at least 1,000.",
     )
     answer_deadline_seconds: float = Field(
         180.0, gt=0, description="Longest an answer may spend on registry requests."
     )
 
     questions_per_minute: int = Field(
-        10, ge=1, description="Questions one client may ask per minute (/v1/query, /v1/interpret)."
+        10,
+        ge=1,
+        description="Questions one client may ask per minute, over HTTP, the stream or MCP.",
     )
     questions_per_hour: int = Field(60, ge=1, description="Questions one client may ask per hour.")
     questions_per_hour_total: int = Field(

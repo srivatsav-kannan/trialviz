@@ -33,7 +33,7 @@ from trialviz.progress import Stage
 from trialviz.query.plan import ComparisonSpec, DistributionSpec, Plan, TimeSeriesSpec
 from trialviz.query.resolution import Note, NoteCode
 from trialviz.retrieval.retriever import CohortRecords, RequestLog, Retrieval
-from trialviz.retrieval.translate import RegistryQuery
+from trialviz.retrieval.translate import AREAS, RegistryQuery
 from trialviz.vocabulary import (
     Dimension,
     InterventionType,
@@ -51,12 +51,16 @@ COUNT_BUDGET = 30
 Count = Callable[[RegistryQuery, RequestLog], Awaitable[int]]
 FirstYear = Callable[[RegistryQuery, str, RequestLog], Awaitable[str | None]]
 
-_AREAS = {
-    Dimension.STATUS: "OverallStatus",
-    Dimension.SPONSOR_CLASS: "LeadSponsorClass",
-    Dimension.STUDY_TYPE: "StudyType",
-    Dimension.INTERVENTION_TYPE: "InterventionType",
+_ONE_VALUE_AREAS = {
+    dimension: AREAS[dimension]
+    for dimension in (
+        Dimension.STATUS,
+        Dimension.SPONSOR_CLASS,
+        Dimension.STUDY_TYPE,
+        Dimension.INTERVENTION_TYPE,
+    )
 }
+"""Dimensions whose group is one value of one registry field."""
 
 
 def group_clause(dimension: Dimension, key: str) -> str | None:
@@ -72,17 +76,14 @@ def group_clause(dimension: Dimension, key: str) -> str | None:
         excluded = [p.value for p in Phase if p.value not in included]
         required = " AND ".join(f"AREA[Phase]{p}" for p in included)
         return f"{required} AND NOT AREA[Phase]({' OR '.join(excluded)})"
-    if dimension in _AREAS:
-        area = _AREAS[dimension]
+    if dimension in _ONE_VALUE_AREAS:
+        area = _ONE_VALUE_AREAS[dimension]
         return f"AREA[{area}]MISSING" if key == NOT_REPORTED else f"AREA[{area}]{key}"
     if dimension is Dimension.COUNTRY:
-        return (
-            "AREA[LocationCountry]MISSING"
-            if key == NOT_REPORTED
-            else f'AREA[LocationCountry]"{key}"'
-        )
+        area = AREAS[Dimension.COUNTRY]
+        return f"AREA[{area}]MISSING" if key == NOT_REPORTED else f'AREA[{area}]"{key}"'
     if dimension is Dimension.START_YEAR and key != NOT_REPORTED:
-        return f"AREA[StartDate]RANGE[{key}-01-01, {key}-12-31]"
+        return f"AREA[{AREAS[Dimension.START_YEAR]}]RANGE[{key}-01-01, {key}-12-31]"
     return None
 
 

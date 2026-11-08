@@ -257,7 +257,9 @@ async def test_a_geography_question_brings_back_country_evidence(tmp_path: Path)
     assert set(unmapped) <= {"Kosovo", "Not reported"}
 
 
-async def test_a_network_question_on_a_small_result_set_fetches_every_match(tmp_path: Path) -> None:
+async def test_a_network_links_sponsors_only_to_drugs_from_trials_fetched_once(
+    tmp_path: Path,
+) -> None:
     run = await run_workflow(
         Cassette("network_myeloma_2024"),
         {
@@ -280,9 +282,11 @@ async def test_a_network_question_on_a_small_result_set_fetches_every_match(tmp_
         retrieval.fields
     )
     [cohort] = retrieval.cohorts
-    if cohort.total <= MAX_RECORDS:
-        ids = [s["protocolSection"]["identificationModule"]["nctId"] for s in cohort.studies]
-        assert len(ids) == len(set(ids)) == cohort.total and not cohort.truncated
+    # Every trial fetched is distinct, and the fetch stops at the record cap exactly when
+    # more trials match than the cap allows.
+    ids = [s["protocolSection"]["identificationModule"]["nctId"] for s in cohort.studies]
+    assert len(ids) == len(set(ids)) == min(cohort.total, MAX_RECORDS)
+    assert cohort.truncated == (cohort.total > MAX_RECORDS)
     assert violations(cohort.studies, lambda s: start_date(s).startswith("2024")) == []
     assert violations(cohort.studies, lambda s: "myeloma" in condition_text(s)) == []
 

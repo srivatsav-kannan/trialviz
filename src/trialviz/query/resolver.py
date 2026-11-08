@@ -33,7 +33,6 @@ from pydantic import ValidationError
 from trialviz.query.consistency import ANALYSIS_RULES, FILTER_RULES, broken_rules, same_meaning
 from trialviz.query.filters import Cohort
 from trialviz.query.interpreters.base import Interpretation, Interpreter, InterpreterUnavailable
-from trialviz.query.interpreters.rules import unnamed_references
 from trialviz.query.plan import (
     DEFAULT_CITATIONS_PER_DATUM,
     DEFAULT_NAME_MATCHING,
@@ -44,6 +43,7 @@ from trialviz.query.plan import (
     parameters_of,
     required_parameters,
 )
+from trialviz.query.references import unnamed_references
 from trialviz.query.request import PLAN_SECTIONS, InferenceMode, QueryRequest
 from trialviz.query.resolution import (
     ClarificationNeeded,
@@ -53,7 +53,7 @@ from trialviz.query.resolution import (
     ResolvedQuery,
     Source,
 )
-from trialviz.vocabulary import AnalysisKind
+from trialviz.vocabulary import AnalysisKind, Measure
 
 KIND_SLOT = "analysis.kind"
 
@@ -62,13 +62,20 @@ _MISSING_PARAMETER_PROMPTS = {
     "phase, status, sponsor_class, intervention or country.",
     "cohorts": "Which groups should be compared? Set analysis.cohorts to two or more cohorts, "
     "each with a label and filters.",
-    "measure": "Which measure should the histogram show? Set analysis.measure to enrollment, "
-    "duration_months or site_count.",
+    "measure": "Which measure should the histogram show? Set analysis.measure to "
+    + ", ".join(measure.value for measure in list(Measure)[:-1])
+    + f" or {list(Measure)[-1].value}.",
     "x": "Which measure goes on the horizontal axis? Set analysis.x.",
     "y": "Which measure goes on the vertical axis? Set analysis.y.",
     "node_types": "Which entities should the network link? Set analysis.node_types, for "
     'example ["lead_sponsor", "intervention"].',
+    "stages": "Which stages should the flow pass through? Set analysis.stages to two or three "
+    'dimensions, for example ["sponsor_class", "phase", "status"].',
 }
+
+
+def _missing_parameter_prompt(name: str) -> str:
+    return _MISSING_PARAMETER_PROMPTS.get(name, f"Set analysis.{name}.")
 
 
 class QueryResolver:
@@ -315,7 +322,7 @@ def settle_analysis(draft: Draft, notes: list[Note]) -> ClarificationNeeded | No
     if missing:
         return ClarificationNeeded(
             reason=ClarificationReason.MISSING_PARAMETER,
-            message=" ".join(_MISSING_PARAMETER_PROMPTS[name] for name in missing),
+            message=" ".join(_missing_parameter_prompt(name) for name in missing),
             missing=[f"analysis.{name}" for name in missing],
             notes=notes,
         )

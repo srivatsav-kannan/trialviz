@@ -13,7 +13,7 @@ from collections.abc import Callable
 from enum import StrEnum
 from typing import Annotated
 
-from pydantic import AfterValidator, BeforeValidator, Field, StringConstraints
+from pydantic import AfterValidator, BaseModel, BeforeValidator, Field, StringConstraints
 
 from trialviz.retrieval.essie import name_words
 from trialviz.vocabulary import Phase, parse_country, parse_phases
@@ -148,3 +148,8 @@ TimeFieldField = Annotated[TimeField, BeforeValidator(parse_time_field)]
 GranularityField = Annotated[TimeGranularity, BeforeValidator(parse_time_granularity)]
 ChartTypeField = Annotated[ChartType, BeforeValidator(parse_chart_type)]
 SortOrderField = Annotated[SortOrder, BeforeValidator(parse_sort_order)]
+
+
+def set_values(model: BaseModel) -> dict[str, object]:
+    """A model's fields that are set, in declaration order."""
+    return {name: value for name, value in model if value is not None}

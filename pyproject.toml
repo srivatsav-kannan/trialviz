@@ -1,6 +1,6 @@
 [project]
 name = "trialviz"
-version = "0.1.0"
+version = "1.0.0"
 description = "Turns questions about clinical trials into visualization specs backed by ClinicalTrials.gov, with citations to the source records."
 authors = [
     { name = "Srivatsav Kannan", email = "srivatsavkannan@gmail.com" }

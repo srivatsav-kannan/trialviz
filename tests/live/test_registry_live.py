@@ -95,4 +95,5 @@ async def test_every_filter_type_is_accepted_and_names_cannot_inject_syntax(
     assert await count(client, {"keywords": ["AREA[Phase]PHASE3"]}) < phase_three / 10
     # Stray quotes, brackets and uppercase operators must not fail the request.
     assert await count(client, {"conditions": ['Crohn"s disease (CD']}) > 0
-    assert await count(client, {"keywords": ["RANGE MISSING SEARCH asthma"]}) >= 0
+    asthma = await count(client, {"keywords": ["asthma"]})
+    assert await count(client, {"keywords": ["RANGE MISSING SEARCH asthma"]}) <= asthma

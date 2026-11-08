@@ -33,10 +33,13 @@ from trialviz.query.request import QueryRequest
 log = logging.getLogger(__name__)
 
 FORMAT = 1
-"""Raised when the answer format changes, so answers saved before are not served."""
+"""Bumped when the answer format changes, so answers saved before are not served."""
 
 REQUESTS_KEPT = 100_000
 """Requests outlive their answers by this much: 100,000 of a few hundred bytes each."""
+
+PRUNE_REQUESTS_EVERY = 100
+"""Saves between prunings of the request folder, so a save does not list 100,000 files."""
 
 
 def key_for(request: QueryRequest, data_version: str) -> str:
@@ -54,6 +57,7 @@ def key_for(request: QueryRequest, data_version: str) -> str:
 
 class AnswerStore(Protocol):
     async def get(self, answer_id: str) -> dict[str, Any] | None: ...
+    async def has(self, answer_id: str) -> bool: ...
     async def request(self, answer_id: str) -> dict[str, Any] | None: ...
     async def put(
         self, answer_id: str, answer: dict[str, Any], request: dict[str, Any]
@@ -65,6 +69,9 @@ class NoStore:
 
     async def get(self, answer_id: str) -> dict[str, Any] | None:
         return None
+
+    async def has(self, answer_id: str) -> bool:
+        return False
 
     async def request(self, answer_id: str) -> dict[str, Any] | None:
         return None
@@ -89,6 +96,10 @@ class FileStore:
     def __init__(self, directory: Path, keep: int) -> None:
         self._directory, self._keep = directory, keep
         self._requests = directory / "requests"
+        self._saves = 0
+
+    async def has(self, answer_id: str) -> bool:
+        return await asyncio.to_thread((self._directory / f"{answer_id}.json.z").is_file)
 
     async def get(self, answer_id: str) -> dict[str, Any] | None:
         path = self._directory / f"{answer_id}.json.z"
@@ -122,7 +133,9 @@ class FileStore:
         (self._requests / f"{answer_id}.json").write_text(request)
         (self._directory / f"{answer_id}.json.z").write_bytes(blob)
         _prune(self._directory, "*.json.z", self._keep)
-        _prune(self._requests, "*.json", REQUESTS_KEPT)
+        self._saves += 1
+        if self._saves % PRUNE_REQUESTS_EVERY == 0:
+            _prune(self._requests, "*.json", REQUESTS_KEPT)
 
 
 def _prune(directory: Path, pattern: str, keep: int) -> None:
@@ -137,6 +150,7 @@ create table if not exists saved_answers (
     saved_at timestamptz not null default now(),
     body bytea not null
 );
+create index if not exists saved_answers_by_age on saved_answers (saved_at);
 create table if not exists saved_requests (
     id text primary key,
     saved_at timestamptz not null default now(),
@@ -174,6 +188,17 @@ class PostgresStore:
         except (psycopg.Error, ValueError, zlib.error) as error:
             log.warning("saved answer %s unreadable: %s", answer_id, error)
             return None
+
+    async def has(self, answer_id: str) -> bool:
+        try:
+            async with await self._connect() as connection:
+                cursor = await connection.execute(
+                    "select 1 from saved_answers where id = %s", (answer_id,)
+                )
+                return await cursor.fetchone() is not None
+        except psycopg.Error as error:
+            log.warning("saved answer %s unreadable: %s", answer_id, error)
+            return False
 
     async def request(self, answer_id: str) -> dict[str, Any] | None:
         try:

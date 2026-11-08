@@ -41,6 +41,9 @@ from trialviz.vocabulary import ChartType, Measure, SortOrder, TimeGranularity
 COUNT = "trial_count"
 WORLD_TOPOLOGY = "https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json"
 DEFAULT_DISPLAY_LIMIT = 20
+MIN_BOX_VALUES = 5
+"""Fewer values than this make a box a small sample, flagged on its row and too few for the
+box plot to be recommended."""
 
 FieldType = Literal["nominal", "ordinal", "quantitative", "temporal"]
 Rows = list[dict[str, Any]] | dict[str, list[dict[str, Any]]]
@@ -328,7 +331,7 @@ def _box(dataset: Distribution, spread: Spread, limit: int) -> dict[str, Any]:
         "whisker_low": inside[0],
         "whisker_high": inside[-1],
         "mean": round(statistics.fmean(values), 2),
-        "small_sample": len(values) < 5,
+        "small_sample": len(values) < MIN_BOX_VALUES,
         "outliers": outliers,
         **_datum(group, limit),
     }

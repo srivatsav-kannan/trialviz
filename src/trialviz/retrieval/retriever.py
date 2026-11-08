@@ -36,6 +36,7 @@ from dataclasses import dataclass
 
 import httpx
 
+from trialviz import __version__
 from trialviz.query.filters import Filters
 from trialviz.query.plan import (
     DEFAULT_NAME_MATCHING,
@@ -46,6 +47,7 @@ from trialviz.query.plan import (
 )
 from trialviz.retrieval.client import RateLimiter, RegistryClient, ResponseCache, Study
 from trialviz.retrieval.translate import (
+    COUNT_PARAMS,
     MENTION_FIELDS,
     Descendants,
     RegistryQuery,
@@ -150,6 +152,11 @@ class Retrieval:
     cohorts: tuple[CohortRecords, ...]
 
 
+MIN_COHORT_RECORDS = 1_000
+"""The fewest records each cohort of a comparison may fetch, however many cohorts share the
+cap, so a six-way comparison still draws on a fair sample of each."""
+
+
 class Retriever:
     def __init__(self, client: RegistryClient, *, max_records: int) -> None:
         self._client = client
@@ -175,7 +182,7 @@ class Retriever:
         if self.counts_only(plan):
             return plan.presentation.citations_per_datum or 0
         if isinstance(plan.analysis, ComparisonSpec):
-            return max(1000, self._max_records // len(plan.analysis.cohorts))
+            return max(MIN_COHORT_RECORDS, self._max_records // len(plan.analysis.cohorts))
         return self._max_records
 
     async def retrieve(self, plan: Plan) -> Retrieval:
@@ -200,7 +207,7 @@ class Retriever:
     async def count(self, query: RegistryQuery, log: RequestLog) -> int:
         """Exact match count for an arbitrary query, for stages that need more totals. The
         request is added to `log`, the answer's record of every registry call."""
-        log.append(query.url(countTotal="true", fields="NCTId", pageSize="1"))
+        log.append(query.url(self._client.api_root, **COUNT_PARAMS))
         return await self._client.count(query)
 
     async def first_year(self, query: RegistryQuery, date_area: str, log: RequestLog) -> str | None:
@@ -297,7 +304,7 @@ class Retriever:
         self, query: RegistryQuery, fields: tuple[str, ...], limit: int
     ) -> RecordSet:
         total = await self._client.count(query)
-        count_request = query.url(countTotal="true", fields="NCTId", pageSize="1")
+        count_request = query.url(self._client.api_root, **COUNT_PARAMS)
         if total == 0 or limit == 0:
             return RecordSet(query, total, (), None, (count_request,))
         order = TRUNCATED_ORDER if total > limit else None
@@ -338,12 +345,13 @@ def _meshes(study: Study, key: str) -> set[str]:
 
 
 def build_retriever(settings: Settings, http: httpx.AsyncClient | None = None) -> Retriever:
-    """Wire a retriever from settings. The caller owns `http` if it passes one."""
+    """Wire a retriever from settings, using `http` if one is passed. Either way the
+    retriever closes the client when it is closed."""
     client = RegistryClient(
         http
         or httpx.AsyncClient(
             timeout=settings.ctgov_timeout_seconds,
-            headers={"User-Agent": "trialviz/0.1", "Accept": "application/json"},
+            headers={"User-Agent": f"trialviz/{__version__}", "Accept": "application/json"},
         ),
         RateLimiter(settings.ctgov_requests_per_minute),
         cache=ResponseCache(settings.ctgov_cache_dir) if settings.ctgov_cache_dir else None,

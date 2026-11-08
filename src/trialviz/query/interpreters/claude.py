@@ -152,7 +152,8 @@ def _values(enum: Iterable[object]) -> str:
     return ", ".join(str(getattr(member, "value", member)) for member in enum)
 
 
-# One line per slot. A test checks that this covers exactly SLOT_PATHS.
+# One line per slot. The check below refuses to import the module until this covers exactly
+# SLOT_PATHS, so a new plan field cannot reach the model unexplained.
 SLOT_GUIDE: dict[str, str] = {
     "filters.conditions": "diseases or conditions named in the question",
     "filters.interventions": "drugs, biologics, devices or procedures named, spelled as "
@@ -177,8 +178,9 @@ SLOT_GUIDE: dict[str, str] = {
     "analysis.x": _values(Measure),
     "analysis.y": _values(Measure),
     "analysis.z": f"optional third measure for a scatter: {_values(Measure)}",
-    "analysis.stages": "two or three of: phase, status, sponsor_class, lead_sponsor, "
-    "study_type, start_year, in flow order",
+    "analysis.stages": "two or three of: "
+    + ", ".join(d.value for d in Dimension if not d.multi_valued)
+    + ", in flow order",
     "analysis.node_types": f"exactly two of: {_values(Dimension)}",
     "presentation.chart_type": _values(ChartType),
     "presentation.sort": _values(SortOrder),
@@ -446,6 +448,12 @@ class ClaudeInterpreter:
             unexpressed=tuple(str(item) for item in data.get("unexpressed") or ()),
         )
 
+    def smallest_reservation_usd(self) -> float:
+        """What the shortest possible call sets aside, so a budget below it cannot pay for
+        any call at all."""
+        prices = prices_for(self._model)
+        return self._worst_case_cost(prices, "") if prices else 0.0
+
     def _worst_case_cost(self, prices: TokenPrices, user_message: str) -> float:
         prompt_chars = len(SYSTEM_PROMPT) + len(user_message) + len(json.dumps(OUTPUT_SCHEMA))
         return prices.cost(
@@ -455,6 +463,9 @@ class ClaudeInterpreter:
 
 
 def build_user_message(request: QueryRequest, today: date) -> str:
+    # The model sees the caller's filters, analysis and presentation, so that it can resolve
+    # "this drug" or "the same countries". Retrieval options say how names are matched, which
+    # no question refers back to, and the caller's choice wins in the resolver regardless.
     fields = request.model_dump(
         mode="json", include={"filters", "analysis", "presentation"}, exclude_none=True
     )

@@ -267,54 +267,9 @@ def _body(
                 },
             }
         case ChartType.BOX_PLOT:
-            x = _channel(e["x"])
-            return {
-                "layer": [
-                    {
-                        "mark": "rule",
-                        "encoding": {
-                            "x": x,
-                            "y": _channel(e["whisker_low"]),
-                            "y2": {"field": "whisker_high"},
-                        },
-                    },
-                    {
-                        "mark": {"type": "bar", "size": 18},
-                        "encoding": {
-                            "x": x,
-                            "y": _channel(e["q1"]),
-                            "y2": {"field": "q3"},
-                            "tooltip": [
-                                {"field": e["x"].field, "type": e["x"].type, "title": e["x"].title},
-                                {"field": "n", "type": "quantitative", "title": "Trials"},
-                                *(
-                                    {
-                                        "field": f,
-                                        "type": "quantitative",
-                                        "title": f.replace("_", " "),
-                                    }
-                                    for f in ("whisker_low", "q1", "median", "q3", "whisker_high")
-                                ),
-                            ],
-                        },
-                    },
-                    {
-                        "mark": {"type": "tick", "color": "white", "size": 18},
-                        "encoding": {"x": x, "y": _channel(e["median"])},
-                    },
-                ]
-            }
+            return _box_plot(e)
         case ChartType.SCATTER_PLOT | ChartType.BUBBLE_CHART:
-            enc = {
-                "x": _channel(e["x"]),
-                "y": _channel(e["y"]),
-                "tooltip": _tooltip(e["tooltip"], e["x"], e["y"]),
-            }
-            if "color" in e:
-                enc["color"] = _channel(e["color"])
-            if "size" in e:
-                enc["size"] = _channel(e["size"])
-            return {"mark": {"type": "circle", "opacity": 0.7}, "encoding": enc}
+            return _scatter(e)
         case ChartType.TIMELINE:
             return {
                 "mark": "bar",
@@ -327,3 +282,56 @@ def _body(
                 },
             }
     return None
+
+
+def _box_plot(e: dict[str, Channel]) -> dict[str, Any]:
+    """A rule from whisker to whisker, a bar from q1 to q3, and a tick at the median, with
+    the group's statistics in the bar's tooltip."""
+    x = _channel(e["x"])
+    statistics = [
+        {"field": f, "type": "quantitative", "title": f.replace("_", " ")}
+        for f in ("whisker_low", "q1", "median", "q3", "whisker_high")
+    ]
+    tooltip = [
+        {"field": e["x"].field, "type": e["x"].type, "title": e["x"].title},
+        {"field": "n", "type": "quantitative", "title": "Trials"},
+        *statistics,
+    ]
+    return {
+        "layer": [
+            {
+                "mark": "rule",
+                "encoding": {
+                    "x": x,
+                    "y": _channel(e["whisker_low"]),
+                    "y2": {"field": "whisker_high"},
+                },
+            },
+            {
+                "mark": {"type": "bar", "size": 18},
+                "encoding": {
+                    "x": x,
+                    "y": _channel(e["q1"]),
+                    "y2": {"field": "q3"},
+                    "tooltip": tooltip,
+                },
+            },
+            {
+                "mark": {"type": "tick", "color": "white", "size": 18},
+                "encoding": {"x": x, "y": _channel(e["median"])},
+            },
+        ]
+    }
+
+
+def _scatter(e: dict[str, Channel]) -> dict[str, Any]:
+    encoding = {
+        "x": _channel(e["x"]),
+        "y": _channel(e["y"]),
+        "tooltip": _tooltip(e["tooltip"], e["x"], e["y"]),
+    }
+    if "color" in e:
+        encoding["color"] = _channel(e["color"])
+    if "size" in e:
+        encoding["size"] = _channel(e["size"])
+    return {"mark": {"type": "circle", "opacity": 0.7}, "encoding": encoding}

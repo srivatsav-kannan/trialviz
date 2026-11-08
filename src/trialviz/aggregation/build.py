@@ -226,10 +226,6 @@ def _dataset(plan: Plan, retrieval: Retrieval) -> Built:
     raise AssertionError(f"no dataset builder for {analysis.kind}")
 
 
-def _field(dimension: Dimension) -> str:
-    return dimension.value
-
-
 def _several_note(dimension: Dimension, trials: int) -> list[Note]:
     if not dimension.multi_valued:
         return []
@@ -318,7 +314,7 @@ def _categorical(studies: list[Study], dimension: Dimension, read: Extractors) -
     groups = _ordered(_groups(studies, dimension, read), dimension)
     dataset = Categorical(
         dimension=dimension.label,
-        field=_field(dimension),
+        field=dimension.value,
         groups=groups,
         ordered=dimension in ORDERED_DIMENSIONS,
         geographic=dimension is Dimension.COUNTRY,
@@ -378,7 +374,7 @@ def _matrix_by_dimensions(
         rows,
         columns,
         cells,
-        (rows_by.label, _field(rows_by), columns_by.label, _field(columns_by)),
+        (rows_by.label, rows_by.value, columns_by.label, columns_by.value),
         (rows_by in ORDERED_DIMENSIONS, columns_by in ORDERED_DIMENSIONS),
     )
     notes = _several_note(rows_by, len(studies)) + _several_note(columns_by, len(studies))
@@ -409,7 +405,7 @@ def _cohort_matrix(
         rows,
         columns,
         cells,
-        ("Cohort", "cohort", columns_by.label, _field(columns_by)),
+        ("Cohort", "cohort", columns_by.label, columns_by.value),
         (False, columns_by in ORDERED_DIMENSIONS),
     )
     trials = sum(len(c.studies) for c in cohorts)
@@ -458,7 +454,7 @@ def _time_series(
         time_label="Start" if time_field is TimeField.START_DATE else "Completion",
         periods=periods,
         series_dimension=series_by.label if series_by else None,
-        series_field=_field(series_by) if series_by else None,
+        series_field=series_by.value if series_by else None,
         series=series,
         cells=cells,
     )
@@ -523,7 +519,7 @@ def _distribution(
     dataset = Distribution(
         measure=measure,
         group_dimension=group_by.label if group_by else None,
-        group_field=_field(group_by) if group_by else None,
+        group_field=group_by.value if group_by else None,
         spreads=ordered,
         bins=_bins(values, skewed=is_skewed),
         excluded=excluded,
@@ -630,7 +626,7 @@ def _points(
         y,
         z,
         color_by.label if color_by else None,
-        _field(color_by) if color_by else None,
+        color_by.value if color_by else None,
         points,
         excluded,
     )

@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 from collections.abc import Awaitable, Callable
 from typing import Any
 
@@ -28,11 +29,14 @@ from mcp.types import ToolAnnotations
 from starlette.applications import Starlette
 from starlette.requests import Request
 
-from trialviz import progress
+from trialviz import __version__, progress
+from trialviz.export import labelled_links
 from trialviz.query.request import QueryRequest
 
 Answering = Callable[[QueryRequest], Awaitable[Any]]
 Failure = Callable[[Exception], tuple[int, str, str, int | None]]
+
+log = logging.getLogger(__name__)
 
 ROWS_SHOWN = 50
 """Rows in a compact answer. The full answer and the CSV have every row."""
@@ -55,22 +59,25 @@ def build_mcp(
     interpret: Answering,
     saved: Callable[[str], Awaitable[dict[str, Any] | None]],
     asked: Callable[[str], Awaitable[dict[str, Any] | None]],
-    quota: Callable[[Request], Awaitable[None]],
+    quota: Callable[[Request], None],
     failure: Failure,
     samples: Callable[[], list[dict[str, Any]]],
     sample: Callable[[str], dict[str, Any] | None],
 ) -> tuple[MCPServer, Starlette]:
     """The MCP server, and the Starlette app whose `/mcp` route serves it."""
-    server = MCPServer("trialviz", instructions=INSTRUCTIONS, version="1.0.0")
+    server = MCPServer("trialviz", instructions=INSTRUCTIONS, version=__version__)
 
     async def run(ctx: Context, work: Answering, request: QueryRequest) -> Any:
         http = ctx.request_context.request
         try:
             if isinstance(http, Request):
-                await quota(http)
+                quota(http)
             return await work(request)
         except Exception as error:
-            raise ToolError(failure(error)[2]) from error
+            status, _, message, _ = failure(error)
+            if status == 500:
+                log.exception("unexpected failure in an MCP tool", exc_info=error)
+            raise ToolError(message) from error
 
     @server.tool(annotations=_READ_ONLY)
     async def ask(request: QueryRequest, ctx: Context) -> dict[str, Any]:
@@ -90,8 +97,7 @@ def build_mcp(
 
         with progress.listening(report):
             response = await run(ctx, answer, request)
-        body = response if isinstance(response, dict) else response.model_dump(mode="json")
-        return _compact(body, _base(ctx))
+        return _compact(response, _base(ctx))
 
     @server.tool(annotations=_READ_ONLY)
     async def interpret_question(request: QueryRequest, ctx: Context) -> dict[str, Any]:
@@ -150,13 +156,7 @@ def _compact(body: dict[str, Any], base: str, sample: str | None = None) -> dict
         return body
     view, meta = body["visualization"], body["meta"]
     data = view["data"]
-    rows = data["edges" if "edges" in data else "links"] if isinstance(data, dict) else data
-    if isinstance(data, dict):
-        labels = {node["id"]: node["label"] for node in data["nodes"]}
-        rows = [
-            {**row, "source": labels.get(row["source"]), "target": labels.get(row["target"])}
-            for row in rows
-        ]
+    rows = labelled_links(data) if isinstance(data, dict) else data
     answer_id = meta.get("answer_id")
     if sample:
         links = {"ui": f"{base}/samples?open={sample}", "csv": f"{base}/v1/samples/{sample}/csv"}

@@ -26,6 +26,7 @@ from trialviz.query.interpreters.base import (
     Interpretation,
     InterpreterIssue,
 )
+from trialviz.query.references import REFERENCE, referenced_filter
 from trialviz.query.request import QueryRequest
 from trialviz.query.resolution import ClarificationReason
 from trialviz.vocabulary import (
@@ -147,33 +148,10 @@ def _pattern(regex: str) -> re.Pattern[str]:
 
 # --- References: "this drug" with nothing to point at -----------------------------------
 
-_REFERENCE = _pattern(
-    r"\b(?:this|that|these|those|the\ same|said|the\ given|the\ specified)\s+"
-    r"(?P<noun>drugs?|medications?|treatments?|therap(?:y|ies)|interventions?"
-    r"|conditions?|diseases?|indications?|sponsors?|compan(?:y|ies)|countr(?:y|ies))\b"
-)
-
-_REFERENCE_TARGETS = {
-    "drug": ("interventions", "drug_name"),
-    "medication": ("interventions", "drug_name"),
-    "treatment": ("interventions", "drug_name"),
-    "therap": ("interventions", "drug_name"),
-    "intervention": ("interventions", "drug_name"),
-    "condition": ("conditions", "condition"),
-    "disease": ("conditions", "condition"),
-    "indication": ("conditions", "condition"),
-    "sponsor": ("sponsors", "sponsor"),
-    "compan": ("sponsors", "sponsor"),
-    "countr": ("countries", "country"),
-}
-
 
 def _read_references(scanner: _Scanner, request: QueryRequest) -> InterpreterIssue | None:
-    for match in scanner.take(_REFERENCE):
-        noun = match.group("noun")
-        target, shorthand = next(
-            t for stem, t in _REFERENCE_TARGETS.items() if noun.startswith(stem)
-        )
+    for match in scanner.take(REFERENCE):
+        target, shorthand = referenced_filter(match.group("noun"))
         if getattr(request.filters, target) is None:
             phrase = scanner.text[match.start() : match.end()]
             return InterpreterIssue(
@@ -182,18 +160,6 @@ def _read_references(scanner: _Scanner, request: QueryRequest) -> InterpreterIss
                 f"question, or set filters.{target} (or {shorthand}).",
             )
     return None
-
-
-def unnamed_references(request: QueryRequest) -> list[str]:
-    """The filter slots a question points at ("this drug") that no field fills, so a
-    clarification can name them whichever interpreter noticed the reference."""
-    slots = []
-    for match in _REFERENCE.finditer(fold_preserving_length(request.query)):
-        noun = match.group("noun")
-        target = next(t for stem, (t, _) in _REFERENCE_TARGETS.items() if noun.startswith(stem))
-        if getattr(request.filters, target) is None and f"filters.{target}" not in slots:
-            slots.append(f"filters.{target}")
-    return slots
 
 
 # --- Years ------------------------------------------------------------------------------

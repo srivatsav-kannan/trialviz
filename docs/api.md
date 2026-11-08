@@ -112,7 +112,7 @@ Like every other slot, it can be set by the caller, inferred from the question (
 | `meta.data_version` | The registry's data timestamp at the time of answering |
 | `meta.interpreter` | Which interpreter read the question: `rules`, or `claude:` followed by the model name, such as `claude:claude-opus-5-5`. It is null when the question was not read. `GET /v1/status` names the interpreter family only (`claude` or `rules`). |
 | `meta.source` | Always `clinicaltrials.gov` |
-| `meta.answer_id` | The id the answer is saved under, for `GET /v1/answers/{answer_id}` and its CSV, or null for a saved sample |
+| `meta.answer_id` | The id the answer is saved under, for `GET /v1/answers/{answer_id}` and its CSV, or null for a saved sample and for an answer read by the fallback interpreter, which is not saved |
 
 [visualization.md](visualization.md) explains how charts are chosen and the encoding conventions, and real responses are saved in [examples/](../examples).
 
@@ -197,7 +197,7 @@ for (let chunk; !(chunk = await reader.read()).done; ) {
 
 ### Saved answers and CSV
 
-Every answer is saved under `meta.answer_id`, a hash of the request and the registry's data version, so the same request against the same data always has the same id. `GET /v1/answers/{answer_id}` reopens it without recomputing anything, which makes an answer shareable as a link, and asking the same question again returns the saved answer without calling the language model or the registry. A new registry data version, which arrives daily, gives new ids, so a saved answer is never served for data it was not computed from.
+An answer is saved under `meta.answer_id`, a hash of the request and the registry's data version, so the same request against the same data always has the same id. `GET /v1/answers/{answer_id}` reopens it without recomputing anything, which makes an answer shareable as a link, and asking the same question again returns the saved answer without calling the language model or the registry. A new registry data version, which arrives daily, gives new ids, so a saved answer is never served for data it was not computed from. An answer read by the rule-based fallback while Claude was unavailable is not saved, so that the same request is read properly once Claude is back.
 
 The newest 1,000 answers are kept (`ANSWERS_KEPT`), in Postgres on a deployed service and in files locally, and a store that fails only means the answer is computed again. The request behind each answer, a few hundred bytes, is kept for the newest 100,000, so that `GET /v1/answers/{answer_id}/request` can still say what an expired answer asked. It returns `{"request": {...}, "answer_available": true or false}`, where the request is the one the service read, with shorthands such as `drug_name` moved into `filters`, so that it can be sent back as it is. Sending that request to `POST /v1/query` answers it again with today's registry data, which is a new answer with a new id, since the original counts cannot be recovered once the registry has moved on. An id is the first 80 bits of a SHA-256 hash, so two answers sharing one is not a practical concern.
 

@@ -15,6 +15,7 @@ from fastapi.testclient import TestClient
 
 from trialviz.api import create_app
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
+from trialviz.settings import Settings
 from trialviz.vocabulary import COUNTRIES, Phase, parse_country, parse_phases, scan_countries
 from trialviz.vocabulary.trials import parse_status
 
@@ -49,9 +50,14 @@ HOSTILE_REQUESTS: list[tuple[dict[str, Any], str, str]] = [
     ),
 ]
 
+# The developer's .env plays no part: no Claude key, no cache, no saved answers.
+SETTINGS = Settings(  # type: ignore[call-arg]
+    _env_file=None, anthropic_api_key=None, ctgov_cache_dir=None, answer_store_dir=None
+)
+
 
 def test_hostile_requests_are_refused_with_a_pointer_to_the_problem() -> None:
-    client = TestClient(create_app(interpreter=RuleBasedInterpreter()))
+    client = TestClient(create_app(SETTINGS, interpreter=RuleBasedInterpreter()))
     misses = []
     for extra, path, fragment in HOSTILE_REQUESTS:
         response = client.post("/v1/interpret", json={"query": "q", **extra})
@@ -107,8 +113,8 @@ class _Broken:
 
 
 def test_every_failure_has_the_one_error_shape() -> None:
-    client = TestClient(create_app(interpreter=RuleBasedInterpreter()))
-    broken = TestClient(create_app(interpreter=_Broken()), raise_server_exceptions=False)  # type: ignore[arg-type]
+    client = TestClient(create_app(SETTINGS, interpreter=RuleBasedInterpreter()))
+    broken = TestClient(create_app(SETTINGS, interpreter=_Broken()), raise_server_exceptions=False)  # type: ignore[arg-type]
     cases = [
         (client.get("/v1/nope"), 404, "not_found"),
         (client.get("/v1/query"), 405, "method_not_allowed"),

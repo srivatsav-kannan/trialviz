@@ -49,6 +49,7 @@ src/trialviz/
     request.py       the public request and the table of plan sections
     resolution.py    what the resolver returns: provenance, notes and clarifications
     resolver.py      the merge
+    references.py    questions that point at something they never name ("this drug")
     interpreters/    the protocol, the fallback chain, the rules and Claude
   retrieval/
     essie.py         building registry query expressions and making names safe to search

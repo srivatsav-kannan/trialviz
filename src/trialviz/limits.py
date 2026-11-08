@@ -21,7 +21,7 @@ from __future__ import annotations
 import json
 import math
 import time
-from collections import deque
+from collections import OrderedDict, deque
 from collections.abc import AsyncIterator, Callable
 from contextlib import asynccontextmanager
 from dataclasses import dataclass
@@ -75,16 +75,18 @@ class SlidingWindowLimiter:
         self._what = what
         self._clock = clock
         self._max_keys = max_keys
-        self._hits: dict[str, deque[float]] = {}
+        # Kept in order of last use, so the key idle longest is always first.
+        self._hits: OrderedDict[str, deque[float]] = OrderedDict()
 
     def _recent(self, key: str, now: float) -> deque[float]:
         hits = self._hits.get(key)
         if hits is None:
             if len(self._hits) >= self._max_keys:
                 # Forget the key idle longest, so a flood of addresses cannot exhaust memory.
-                oldest = min(self._hits, key=lambda k: self._hits[k][-1] if self._hits[k] else 0)
-                del self._hits[oldest]
+                self._hits.popitem(last=False)
             hits = self._hits[key] = deque()
+        else:
+            self._hits.move_to_end(key)
         longest = max(window.seconds for window in self._windows)
         while hits and hits[0] <= now - longest:
             hits.popleft()
@@ -119,6 +121,10 @@ class SlidingWindowLimiter:
         return min(standings, key=lambda q: q.remaining)
 
 
+BUSY_RETRY_SECONDS = 10
+"""What a refusal for being busy tells a client to wait; answers take seconds to a minute."""
+
+
 class AnswerSlots:
     """A fixed number of answers in progress. A request that finds none free is refused at
     once rather than queued, so a client is never left waiting behind minutes of work."""
@@ -131,13 +137,18 @@ class AnswerSlots:
     def free(self) -> int:
         return self.size - self._busy
 
-    @asynccontextmanager
-    async def take(self) -> AsyncIterator[None]:
+    def ensure_free(self) -> None:
+        """Refuse at once when every slot is taken, for a caller that must answer before
+        it can take one (a stream sends its status line first)."""
         if self._busy >= self.size:
             raise ServiceBusy(
                 f"The service is already answering {self.size} questions. Try again shortly.",
-                retry_after=10,
+                retry_after=BUSY_RETRY_SECONDS,
             )
+
+    @asynccontextmanager
+    async def take(self) -> AsyncIterator[None]:
+        self.ensure_free()
         self._busy += 1
         try:
             yield
@@ -159,8 +170,15 @@ def client_address(request: Request, trusted_proxy_hops: int) -> str:
     return forwarded[-trusted_proxy_hops]
 
 
+def error_envelope(
+    code: str, message: str, details: list[dict[str, str]] | None = None
+) -> dict[str, Any]:
+    """The one shape of every error response, built in one place."""
+    return {"error": {"code": code, "message": message, "details": details or []}}
+
+
 def _error_body(code: str, message: str) -> bytes:
-    return json.dumps({"error": {"code": code, "message": message, "details": []}}).encode()
+    return json.dumps(error_envelope(code, message)).encode()
 
 
 class BodySizeLimit:

@@ -11,12 +11,12 @@ from __future__ import annotations
 import json
 import re
 from datetime import date
+from functools import cache
 from pathlib import Path
 from typing import Any
 
 from starlette.requests import Request
 
-from trialviz.answer import Answer
 from trialviz.limits import AnswerSlots, SlidingWindowLimiter, Window, client_address
 from trialviz.llm.budget import BudgetExceeded, FileLedger, Ledger, PostgresLedger
 from trialviz.openapi import SAMPLES_DIRECTORY, BudgetStatus, LimitStatus, ServiceStatus
@@ -25,7 +25,7 @@ from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
 from trialviz.query.request import QueryRequest
-from trialviz.query.resolution import ClarificationNeeded, NoteCode, Resolution
+from trialviz.query.resolution import NoteCode, Resolution
 from trialviz.query.resolver import QueryResolver
 from trialviz.retrieval.retriever import Retriever, build_retriever
 from trialviz.settings import Settings
@@ -121,7 +121,7 @@ class Service:
     def client(self, request: Request) -> str:
         return client_address(request, self.settings.trusted_proxy_hops)
 
-    async def question_quota(self, request: Request) -> None:
+    def question_quota(self, request: Request) -> None:
         """Counts a question against its client's limits and the overall ceiling, before
         any work is done. The overall ceiling is checked first, so a client's own quota is
         not spent on a question that is refused anyway."""
@@ -130,9 +130,10 @@ class Service:
         request.state.quota = self.questions.hit(self.client(request))
         self.all_questions.hit("all")
 
-    async def answer(self, request: QueryRequest) -> Answer | ClarificationNeeded | dict[str, Any]:
+    async def answer(self, request: QueryRequest) -> dict[str, Any]:
         """A saved answer to the same request against the same data if there is one, which
-        costs nothing; otherwise a new answer, saved under its id."""
+        costs nothing; otherwise a new answer, saved under its id. Either way it is the JSON
+        that `POST /v1/query` returns, so every caller handles one shape."""
         key = key_for(request, await self.retriever.data_version())
         if (saved := await self.store.get(key)) is not None:
             return saved
@@ -145,12 +146,11 @@ class Service:
             for note in result.answer.meta.notes
         ):
             result.answer.meta.answer_id = key
-            await self.store.put(
-                key,
-                result.answer.model_dump(mode="json"),
-                request.model_dump(mode="json", exclude_none=True),
-            )
-        return result.response
+            body: dict[str, Any] = result.answer.model_dump(mode="json")
+            await self.store.put(key, body, request.model_dump(mode="json", exclude_none=True))
+            return body
+        response: dict[str, Any] = result.response.model_dump(mode="json")
+        return response
 
     async def read(self, request: QueryRequest) -> Resolution:
         """The plan a request resolves to, without fetching anything."""
@@ -159,6 +159,9 @@ class Service:
 
     async def saved(self, answer_id: str) -> dict[str, Any] | None:
         return await self.store.get(answer_id) if _ANSWER_ID.fullmatch(answer_id) else None
+
+    async def has_answer(self, answer_id: str) -> bool:
+        return bool(_ANSWER_ID.fullmatch(answer_id)) and await self.store.has(answer_id)
 
     async def asked(self, answer_id: str) -> dict[str, Any] | None:
         return await self.store.request(answer_id) if _ANSWER_ID.fullmatch(answer_id) else None
@@ -180,8 +183,12 @@ class Service:
                     spent_today_usd=round(spend.spent_today_usd, 2),
                     remaining_usd=round(spend.remaining_usd, 2),
                 )
-                if spend.remaining_usd <= 0:
-                    reason = "The language-model budget is used up, so questions are read by rules."
+                claude = _claude_in(self.interpreter)
+                if claude is not None and spend.remaining_usd < claude.smallest_reservation_usd():
+                    reason = (
+                        "The language-model budget left cannot cover another call, so questions "
+                        "are read by rules."
+                    )
             except BudgetExceeded as error:
                 reason = f"{str(error).capitalize()}, so questions are read by rules."
         standing = self.questions.peek(self.client(request))
@@ -203,13 +210,19 @@ class Service:
         )
 
 
-def _reads_with_claude(interpreter: Interpreter) -> bool:
+def _claude_in(interpreter: Interpreter) -> ClaudeInterpreter | None:
     chain = interpreter.chain if isinstance(interpreter, FallbackInterpreter) else (interpreter,)
-    return any(isinstance(step, ClaudeInterpreter) for step in chain)
+    return next((step for step in chain if isinstance(step, ClaudeInterpreter)), None)
 
 
+def _reads_with_claude(interpreter: Interpreter) -> bool:
+    return _claude_in(interpreter) is not None
+
+
+@cache
 def sample_summaries() -> list[dict[str, Any]]:
-    """The saved samples in `examples/`, each with its request, title, charts and totals."""
+    """The saved samples in `examples/`, each with its request, title, charts and totals.
+    They change only with a deploy, so they are read once."""
     return [_summarize(path) for path in sorted(SAMPLES_DIRECTORY.glob("*.json"))]
 
 

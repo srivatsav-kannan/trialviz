@@ -57,6 +57,12 @@ def broken_rules(values: Mapping[str, Any], rules: tuple[PairRule, ...]) -> list
     return [rule for rule in rules if rule.broken_by(values)]
 
 
+def require_rules(values: Mapping[str, Any], rules: tuple[PairRule, ...]) -> None:
+    """Raise one error naming every rule the values break, for a model validator."""
+    if broken := broken_rules(values, rules):
+        raise ValueError(". ".join(rule.describe(values) for rule in broken))
+
+
 def same_meaning(left: Any, right: Any) -> bool:
     """Whether two slot values mean the same thing, ignoring list order and letter case.
 

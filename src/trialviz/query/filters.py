@@ -12,7 +12,7 @@ from typing import Annotated, Self
 
 from pydantic import BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
-from trialviz.query.consistency import FILTER_RULES, broken_rules
+from trialviz.query.consistency import FILTER_RULES, require_rules
 from trialviz.query.fields import (
     CountryList,
     EntityList,
@@ -22,6 +22,7 @@ from trialviz.query.fields import (
     StatusList,
     StudyTypeList,
     Year,
+    set_values,
 )
 
 
@@ -62,14 +63,12 @@ class Filters(BaseModel):
 
     @model_validator(mode="after")
     def _pairs_are_consistent(self) -> Self:
-        values = self.model_dump(exclude_none=True)
-        if broken := broken_rules(values, FILTER_RULES):
-            raise ValueError(". ".join(rule.describe(values) for rule in broken))
+        require_rules(self.model_dump(exclude_none=True), FILTER_RULES)
         return self
 
     def set_fields(self) -> dict[str, object]:
         """The constrained fields and their values, in declaration order."""
-        return {name: value for name, value in self if value is not None}
+        return set_values(self)
 
     def is_empty(self) -> bool:
         return not self.set_fields()

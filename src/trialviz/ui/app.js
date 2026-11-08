@@ -72,6 +72,13 @@ const HEAVY = new Set(["citations", "nct_ids", "outliers"]);
 
 const $ = (id) => document.getElementById(id);
 
+// A GET whose JSON body is only used when the request succeeded.
+async function getJSON(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`The service answered ${response.status}.`);
+  return response.json();
+}
+
 function el(tag, attrs = {}, ...children) {
   const node = document.createElement(tag);
   for (const [key, value] of Object.entries(attrs)) {
@@ -103,7 +110,6 @@ const css = (name) => getComputedStyle(document.documentElement).getPropertyValu
 // series, and a single-hue blue ramp for magnitude (heatmaps and the map).
 const SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#6250d6", "#e34948"];
 const RAMP = ["#cde2fb", "#86b6ef", "#3987e5", "#1c5cab", "#0d366b"];
-const palette = () => SERIES;
 const number = (value) => (typeof value === "number" ? value.toLocaleString() : value);
 
 // --- State ---------------------------------------------------------------------------------
@@ -220,7 +226,7 @@ async function ask(request) {
 
 function showError(body, status) {
   const error = body.error ?? { message: `The service answered ${status}.`, details: [] };
-  showProblem(error.message, (error.details ?? []).map((d) => (d.path ? `${FIELD_LABELS[d.path] ?? d.path}: ${d.message}` : d.message)));
+  showProblem(error.message, (error.details ?? []).map((d) => (d.path ? `${FIELD_LABELS[d.path.replace(/\[\d+\]$/, "")] ?? d.path}: ${d.message}` : d.message)));
 }
 
 // The stream is server-sent events over a POST, which EventSource cannot send, so the
@@ -661,7 +667,7 @@ async function renderPlotly(chart, view, data, token) {
     font: { family: "Inter, system-ui, sans-serif", color: ink, size: 12 },
     margin: { l: 10, r: 10, t: 10, b: 10 },
     height: 520,
-    colorway: palette(),
+    colorway: SERIES,
   };
   let traces;
   let rowFor;
@@ -669,7 +675,7 @@ async function renderPlotly(chart, view, data, token) {
   const nodeNames = data.nodes ? Object.fromEntries(data.nodes.map((n) => [n.id, n.label])) : undefined;
   if (view.type === "treemap") {
     const field = view.encoding.label.field;
-    traces = [{ type: "treemap", labels: data.map((r) => r[field]), parents: data.map(() => ""), values: data.map((r) => r.trial_count), textinfo: "label+value", marker: { colors: data.map((_, i) => palette()[i % 9]), line: { width: data.map(() => 1), color: data.map(() => "#ffffff") } } }];
+    traces = [{ type: "treemap", labels: data.map((r) => r[field]), parents: data.map(() => ""), values: data.map((r) => r.trial_count), textinfo: "label+value", marker: { colors: data.map((_, i) => SERIES[i % SERIES.length]), line: { width: data.map(() => 1), color: data.map(() => "#ffffff") } } }];
     rowFor = (point) => data[point.pointNumber];
     markFor = (point) => {
       const widths = data.map((_, i) => (i === point.pointNumber ? 4 : 1));
@@ -682,7 +688,7 @@ async function renderPlotly(chart, view, data, token) {
     traces = [{
       type: "sankey",
       arrangement: "snap",
-      node: { label: data.nodes.map((n) => n.label), pad: 14, thickness: 16, color: data.nodes.map((n) => palette()[n.stage % 9]), line: { width: 0 } },
+      node: { label: data.nodes.map((n) => n.label), pad: 14, thickness: 16, color: data.nodes.map((n) => SERIES[n.stage % SERIES.length]), line: { width: 0 } },
       link: { source: data.links.map((l) => index[l.source]), target: data.links.map((l) => index[l.target]), value: data.links.map((l) => l.trial_count), color: data.links.map(() => LINK) },
     }];
     // A link click carries its source and target nodes. A node click does not.
@@ -708,7 +714,7 @@ async function renderPlotly(chart, view, data, token) {
     const [px, py, pz] = [view.encoding.x, view.encoding.y, view.encoding.z].map(position);
     traces = groups.map((group, i) => {
       const rows = data.filter((r) => !color || r[color] === group);
-      return { type: "scatter3d", mode: "markers", name: group ?? "Trials", x: rows.map((r) => px(r[x])), y: rows.map((r) => py(r[y])), z: rows.map((r) => pz(r[z])), text: rows.map((r) => `${r.title}<br>${number(r[x])} · ${number(r[y])} · ${number(r[z])}`), customdata: rows.map((r) => data.indexOf(r)), hovertemplate: "%{text}<extra></extra>", marker: { size: 3.5, opacity: 0.8, color: palette()[i % 9] } };
+      return { type: "scatter3d", mode: "markers", name: group ?? "Trials", x: rows.map((r) => px(r[x])), y: rows.map((r) => py(r[y])), z: rows.map((r) => pz(r[z])), text: rows.map((r) => `${r.title}<br>${number(r[x])} · ${number(r[y])} · ${number(r[z])}`), customdata: rows.map((r) => data.indexOf(r)), hovertemplate: "%{text}<extra></extra>", marker: { size: 3.5, opacity: 0.8, color: SERIES[i % SERIES.length] } };
     });
     const axis = (channel) => {
       const base = { title: { text: channel.title }, type: "linear", gridcolor: css("--line"), color: css("--muted") };
@@ -744,7 +750,7 @@ const LINK_FADED = "rgba(42,120,214,0.08)";
 async function renderNetwork(chart, data, threeD, token) {
   if (threeD) await loadScript("graph3d");
   if (stale(token)) return;
-  const colors = palette();
+  const colors = SERIES;
   const labels = Object.fromEntries(data.nodes.map((n) => [n.id, n.label]));
   const maxCount = Math.max(...data.nodes.map((n) => n.trial_count));
   const scale = threeD ? 220 : 260;
@@ -977,8 +983,7 @@ async function loadSamples() {
   const grid = $("sample-grid");
   let samples;
   try {
-    const response = await fetch("/v1/samples");
-    samples = await response.json();
+    samples = await getJSON("/v1/samples");
   } catch {
     grid.replaceChildren(el("li", { class: "empty" }, "The saved samples could not be loaded."));
     return;
@@ -1028,9 +1033,7 @@ function markSample(name) {
 async function openSample(name, { push = true } = {}) {
   if (push) history.pushState({ sample: name }, "", `/samples?open=${encodeURIComponent(name)}`);
   try {
-    const response = await fetch(`/v1/samples/${encodeURIComponent(name)}`);
-    if (!response.ok) throw new Error(`The service answered ${response.status}.`);
-    const answer = await response.json();
+    const answer = await getJSON(`/v1/samples/${encodeURIComponent(name)}`);
     $("status").hidden = true;
     $("samples").hidden = true;
     markSample(name);
@@ -1045,9 +1048,9 @@ async function openSample(name, { push = true } = {}) {
 async function drawHero(sample) {
   let answer;
   try {
-    answer = await (await fetch(`/v1/samples/${encodeURIComponent(sample.name)}`)).json();
+    answer = await getJSON(`/v1/samples/${encodeURIComponent(sample.name)}`);
   } catch {
-    return;
+    return; // the hero keeps its static text, and the samples list says what failed
   }
   // Only complete years: the current year is partial, and the registry also lists trials
   // planned to start later, so the last points would dip for reasons the preview cannot show.

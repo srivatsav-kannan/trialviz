@@ -18,22 +18,24 @@ Part = Literal["links", "nodes"]
 _FORMULA_START = ("=", "+", "-", "@", "\t", "\r")
 
 
+def labelled_links(data: dict[str, list[dict[str, Any]]]) -> list[dict[str, Any]]:
+    """A network's edges or a Sankey diagram's links, each with the labels of both ends,
+    which is how a link reads outside the chart (a CSV row, an agent's answer)."""
+    labels = {node["id"]: node["label"] for node in data["nodes"]}
+    return [
+        {
+            "source_label": labels.get(link["source"], link["source"]),
+            "target_label": labels.get(link["target"], link["target"]),
+            **link,
+        }
+        for link in data.get("edges") or data.get("links") or []
+    ]
+
+
 def to_csv(answer: dict[str, Any], part: Part = "links") -> str:
     data = answer["visualization"]["data"]
     if isinstance(data, dict):
-        nodes = data["nodes"]
-        if part == "nodes":
-            rows = nodes
-        else:
-            labels = {node["id"]: node["label"] for node in nodes}
-            rows = [
-                {
-                    "source_label": labels.get(link["source"], link["source"]),
-                    "target_label": labels.get(link["target"], link["target"]),
-                    **link,
-                }
-                for link in data.get("edges") or data.get("links") or []
-            ]
+        rows = data["nodes"] if part == "nodes" else labelled_links(data)
     else:
         rows = data
     columns = list(dict.fromkeys(key for row in rows for key in row if key != "citations"))

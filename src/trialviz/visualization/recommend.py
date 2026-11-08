@@ -20,6 +20,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 from dataclasses import dataclass
+from enum import StrEnum
 
 from trialviz.aggregation.datasets import (
     Categorical,
@@ -34,20 +35,34 @@ from trialviz.aggregation.datasets import (
     Trials,
 )
 from trialviz.query.plan import Presentation
+from trialviz.visualization.spec import MIN_BOX_VALUES
 from trialviz.vocabulary import ChartType, SortOrder
 
 TIMELINE_LIMIT = 60
 """Most trials a timeline shows before a table reads better."""
 
-MIN_BOX_VALUES = 5
 """Fewest values for a box to mean something. Smaller groups are still drawn, flagged."""
+
+
+class Shape(StrEnum):
+    """The shape of a dataset, which decides the charts that can draw it at all."""
+
+    SCALAR = "scalar"
+    CATEGORICAL = "categorical"
+    MATRIX = "matrix"
+    TIME = "time"
+    DISTRIBUTION = "distribution"
+    POINTS = "points"
+    GRAPH = "graph"
+    FLOW = "flow"
+    TRIALS = "trials"
 
 
 @dataclass(frozen=True)
 class Facts:
     """What the rules know about the data. Computed once from the dataset."""
 
-    shape: str
+    shape: Shape
     groups: int = 0
     rows: int = 0
     columns: int = 0
@@ -77,7 +92,7 @@ class Facts:
 @dataclass(frozen=True)
 class Candidate:
     chart: ChartType
-    shape: str
+    shape: Shape
     unfit: Callable[[Facts], str | None]
     """Returns why the chart cannot draw this data, or None when it can."""
     score: Callable[[Facts], int]
@@ -115,11 +130,13 @@ def _all(*checks: Callable[[Facts], str | None]) -> Callable[[Facts], str | None
 
 
 CANDIDATES: list[Candidate] = [
-    Candidate(ChartType.STAT, "scalar", _never, lambda f: 5, lambda f: "the answer is one number"),
+    Candidate(
+        ChartType.STAT, Shape.SCALAR, _never, lambda f: 5, lambda f: "the answer is one number"
+    ),
     # Counts per category.
     Candidate(
         ChartType.BAR_CHART,
-        "categorical",
+        Shape.CATEGORICAL,
         _unless(lambda f: f.groups <= 30, "more than 30 bars cannot be read side by side"),
         lambda f: 3 + 2 * f.ordered - 2 * f.long_labels,
         lambda f: (
@@ -130,7 +147,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.HORIZONTAL_BAR_CHART,
-        "categorical",
+        Shape.CATEGORICAL,
         _never,
         lambda f: 3 + 2 * (f.ranking or f.long_labels),
         lambda f: (
@@ -141,7 +158,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.DONUT_CHART,
-        "categorical",
+        Shape.CATEGORICAL,
         _all(
             _unless(
                 lambda f: f.parts_of_whole,
@@ -155,21 +172,21 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.TREEMAP,
-        "categorical",
+        Shape.CATEGORICAL,
         _unless(lambda f: f.groups >= 6, "a treemap adds nothing over bars for 5 or fewer groups"),
         lambda f: 1,
         lambda f: "many groups at once, sized by count",
     ),
     Candidate(
         ChartType.CHOROPLETH_MAP,
-        "categorical",
+        Shape.CATEGORICAL,
         _unless(lambda f: f.geographic, "a map needs groups that are countries"),
         lambda f: 2 + 3 * (f.groups >= 15 and not f.ranking),
         lambda f: "the groups are countries, so a map shows where trials are",
     ),
     Candidate(
         ChartType.TABLE,
-        "categorical",
+        Shape.CATEGORICAL,
         _never,
         lambda f: 0,
         lambda f: "exact values for every group",
@@ -177,7 +194,7 @@ CANDIDATES: list[Candidate] = [
     # Counts over two categories.
     Candidate(
         ChartType.GROUPED_BAR_CHART,
-        "matrix",
+        Shape.MATRIX,
         _unless(
             lambda f: min(f.rows, f.columns) <= 5 and f.rows * f.columns <= 60,
             "grouped bars stay readable only with 5 or fewer bars per group",
@@ -187,7 +204,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.STACKED_BAR_CHART,
-        "matrix",
+        Shape.MATRIX,
         _all(
             _unless(
                 lambda f: f.parts_of_whole,
@@ -203,7 +220,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.NORMALIZED_STACKED_BAR_CHART,
-        "matrix",
+        Shape.MATRIX,
         _all(
             _unless(
                 lambda f: f.parts_of_whole,
@@ -223,7 +240,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.HEATMAP,
-        "matrix",
+        Shape.MATRIX,
         _unless(
             lambda f: f.rows >= 2 and f.columns >= 2,
             "a heatmap needs at least 2 rows and 2 columns",
@@ -237,7 +254,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.TABLE,
-        "matrix",
+        Shape.MATRIX,
         _never,
         lambda f: 0,
         lambda f: "exact values for every combination",
@@ -245,7 +262,7 @@ CANDIDATES: list[Candidate] = [
     # Counts over time.
     Candidate(
         ChartType.TIME_SERIES,
-        "time",
+        Shape.TIME,
         _all(
             _unless(lambda f: f.periods >= 3, "a line needs at least 3 periods to show change"),
             _unless(lambda f: f.series <= 8, "more than 8 lines cannot be told apart"),
@@ -255,7 +272,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.STACKED_AREA_CHART,
-        "time",
+        Shape.TIME,
         _all(
             _unless(lambda f: f.series >= 2, "a stacked area needs at least 2 series"),
             _unless(
@@ -270,7 +287,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.BAR_CHART,
-        "time",
+        Shape.TIME,
         _all(
             _unless(lambda f: f.series <= 1, "use grouped bars for several series"),
             _unless(lambda f: f.periods <= 30, "more than 30 periods read better as a line"),
@@ -280,7 +297,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.GROUPED_BAR_CHART,
-        "time",
+        Shape.TIME,
         _all(
             _unless(lambda f: f.series >= 2, "grouped bars need at least 2 series"),
             _unless(
@@ -293,25 +310,25 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.HEATMAP,
-        "time",
+        Shape.TIME,
         _unless(lambda f: f.series >= 2, "a heatmap needs at least 2 series"),
         lambda f: 2 + 4 * (f.series > 8),
         lambda f: "too many series for lines, so color shows each period's count",
     ),
     Candidate(
-        ChartType.TABLE, "time", _never, lambda f: 0, lambda f: "exact values for every period"
+        ChartType.TABLE, Shape.TIME, _never, lambda f: 0, lambda f: "exact values for every period"
     ),
     # Numeric values.
     Candidate(
         ChartType.HISTOGRAM,
-        "distribution",
+        Shape.DISTRIBUTION,
         _unless(lambda f: f.values >= 10, "a histogram needs at least 10 values"),
         lambda f: 4 + (f.spreads <= 1),
         lambda f: "the shape of the spread across all trials",
     ),
     Candidate(
         ChartType.BOX_PLOT,
-        "distribution",
+        Shape.DISTRIBUTION,
         _all(
             _unless(lambda f: f.spreads >= 2, "a box plot compares at least 2 groups"),
             _unless(
@@ -322,19 +339,23 @@ CANDIDATES: list[Candidate] = [
         lambda f: "the spread compared across groups",
     ),
     Candidate(
-        ChartType.TABLE, "distribution", _never, lambda f: 0, lambda f: "exact values for every bin"
+        ChartType.TABLE,
+        Shape.DISTRIBUTION,
+        _never,
+        lambda f: 0,
+        lambda f: "exact values for every bin",
     ),
     # Points.
     Candidate(
         ChartType.SCATTER_PLOT,
-        "points",
+        Shape.POINTS,
         _unless(lambda f: f.points >= 5, "a scatter plot needs at least 5 trials with both values"),
         lambda f: 4,
         lambda f: "one point per trial shows how the two measures relate",
     ),
     Candidate(
         ChartType.BUBBLE_CHART,
-        "points",
+        Shape.POINTS,
         _all(
             _unless(lambda f: f.has_z, "a bubble chart needs a third measure for size"),
             _unless(lambda f: f.points >= 5, "a bubble chart needs at least 5 trials"),
@@ -344,7 +365,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.SCATTER_PLOT_3D,
-        "points",
+        Shape.POINTS,
         _all(
             _unless(lambda f: f.has_z, "a 3D scatter needs a third measure"),
             _unless(lambda f: f.points >= 5, "a 3D scatter needs at least 5 trials"),
@@ -353,41 +374,49 @@ CANDIDATES: list[Candidate] = [
         lambda f: "all three measures as positions, explored by rotating",
     ),
     Candidate(
-        ChartType.TABLE, "points", _never, lambda f: 0, lambda f: "exact values for every trial"
+        ChartType.TABLE, Shape.POINTS, _never, lambda f: 0, lambda f: "exact values for every trial"
     ),
     # Networks.
     Candidate(
         ChartType.NETWORK_GRAPH,
-        "graph",
+        Shape.GRAPH,
         _unless(lambda f: f.edges >= 1, "no two entities share a trial, so there are no links"),
         lambda f: 5 - 3 * (f.nodes > 80),
         lambda f: "entities as nodes, linked by the trials they share",
     ),
     Candidate(
         ChartType.NETWORK_GRAPH_3D,
-        "graph",
+        Shape.GRAPH,
         _unless(lambda f: f.edges >= 1, "no two entities share a trial, so there are no links"),
         lambda f: 3 + 3 * (f.nodes > 80),
         lambda f: "a dense network spread out in depth, explored by rotating",
     ),
     Candidate(
-        ChartType.TABLE, "graph", _never, lambda f: 0, lambda f: "every link with its trial count"
+        ChartType.TABLE,
+        Shape.GRAPH,
+        _never,
+        lambda f: 0,
+        lambda f: "every link with its trial count",
     ),
     # Flows.
     Candidate(
         ChartType.SANKEY,
-        "flow",
+        Shape.FLOW,
         _unless(lambda f: f.links >= 1, "no trials move between the stages"),
         lambda f: 5,
         lambda f: "how trials move from one stage to the next",
     ),
     Candidate(
-        ChartType.TABLE, "flow", _never, lambda f: 0, lambda f: "every flow with its trial count"
+        ChartType.TABLE,
+        Shape.FLOW,
+        _never,
+        lambda f: 0,
+        lambda f: "every flow with its trial count",
     ),
     # Individual trials.
     Candidate(
         ChartType.TIMELINE,
-        "trials",
+        Shape.TRIALS,
         _all(
             _unless(lambda f: f.dated_trials >= 1, "no trial has a start date"),
             _unless(
@@ -400,7 +429,7 @@ CANDIDATES: list[Candidate] = [
     ),
     Candidate(
         ChartType.TABLE,
-        "trials",
+        Shape.TRIALS,
         _never,
         lambda f: 1 + 5 * (f.rows > TIMELINE_LIMIT),
         lambda f: (
@@ -418,11 +447,11 @@ def facts_of(dataset: Dataset, presentation: Presentation, single_valued: bool) 
     ranking = presentation.top_n is not None or presentation.sort is SortOrder.VALUE_DESC
     match dataset:
         case Scalar():
-            return Facts(shape="scalar")
+            return Facts(shape=Shape.SCALAR)
         case Categorical():
             labels = [g.label for g in dataset.groups]
             return Facts(
-                shape="categorical",
+                shape=Shape.CATEGORICAL,
                 groups=len(dataset.groups),
                 ordered=dataset.ordered,
                 geographic=dataset.geographic,
@@ -437,7 +466,7 @@ def facts_of(dataset: Dataset, presentation: Presentation, single_valued: bool) 
             ]
             positive = [t for t in totals if t]
             return Facts(
-                shape="matrix",
+                shape=Shape.MATRIX,
                 rows=len(dataset.rows),
                 columns=len(dataset.columns),
                 parts_of_whole=single_valued,
@@ -445,7 +474,7 @@ def facts_of(dataset: Dataset, presentation: Presentation, single_valued: bool) 
             )
         case TimeSeries():
             return Facts(
-                shape="time",
+                shape=Shape.TIME,
                 periods=len(dataset.periods),
                 series=len(dataset.series),
                 ordered=True,
@@ -454,20 +483,22 @@ def facts_of(dataset: Dataset, presentation: Presentation, single_valued: bool) 
         case Distribution():
             sizes = [len(s.values) for s in dataset.spreads]
             return Facts(
-                shape="distribution",
+                shape=Shape.DISTRIBUTION,
                 values=sum(sizes),
                 spreads=len(sizes),
                 boxable_spreads=sum(size >= MIN_BOX_VALUES for size in sizes),
             )
         case Points():
-            return Facts(shape="points", points=len(dataset.points), has_z=dataset.z is not None)
+            return Facts(
+                shape=Shape.POINTS, points=len(dataset.points), has_z=dataset.z is not None
+            )
         case Graph():
-            return Facts(shape="graph", nodes=len(dataset.nodes), edges=len(dataset.edges))
+            return Facts(shape=Shape.GRAPH, nodes=len(dataset.nodes), edges=len(dataset.edges))
         case Flow():
-            return Facts(shape="flow", links=len(dataset.links))
+            return Facts(shape=Shape.FLOW, links=len(dataset.links))
         case Trials():
             return Facts(
-                shape="trials",
+                shape=Shape.TRIALS,
                 rows=len(dataset.rows),
                 dated_trials=sum(r.start is not None for r in dataset.rows),
             )

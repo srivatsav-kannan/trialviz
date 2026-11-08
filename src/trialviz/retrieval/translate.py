@@ -51,7 +51,11 @@ from trialviz.query.plan import (
 from trialviz.retrieval.essie import all_of, any_of_terms, area_any_of, area_range
 from trialviz.vocabulary import Dimension, Measure, TimeField
 
-STUDIES_URL = "https://clinicaltrials.gov/api/v2/studies"
+API_ROOT = "https://clinicaltrials.gov/api/v2"
+"""The registry's API, which `ctgov_api_root` can point elsewhere."""
+
+COUNT_PARAMS = {"countTotal": "true", "pageSize": "1", "fields": "NCTId"}
+"""What a request needs to return only the number of matches."""
 
 _NAME_PARAMETERS = {
     "conditions": "query.cond",
@@ -67,12 +71,24 @@ _NAMING_FIELDS = {
 """Fields a drug or condition name must appear in. Sponsors are already field-specific
 (query.lead) and keywords are free text by definition."""
 
-_AREAS = {
-    "phases": "Phase",
-    "statuses": "OverallStatus",
-    "sponsor_classes": "LeadSponsorClass",
-    "intervention_types": "InterventionType",
-    "study_types": "StudyType",
+AREAS = {
+    Dimension.PHASE: "Phase",
+    Dimension.STATUS: "OverallStatus",
+    Dimension.SPONSOR_CLASS: "LeadSponsorClass",
+    Dimension.INTERVENTION_TYPE: "InterventionType",
+    Dimension.STUDY_TYPE: "StudyType",
+    Dimension.COUNTRY: "LocationCountry",
+    Dimension.START_YEAR: "StartDate",
+}
+"""The registry field that each filterable dimension is searched in, shared by the
+translation of filters and by the exact count of each group."""
+
+_FILTER_DIMENSIONS = {
+    "phases": Dimension.PHASE,
+    "statuses": Dimension.STATUS,
+    "sponsor_classes": Dimension.SPONSOR_CLASS,
+    "intervention_types": Dimension.INTERVENTION_TYPE,
+    "study_types": Dimension.STUDY_TYPE,
 }
 
 
@@ -93,10 +109,10 @@ class RegistryQuery:
         params["filter.advanced"] = f"{current} AND ({clause})" if current else f"({clause})"
         return RegistryQuery(tuple(sorted(params.items())))
 
-    def url(self, **extra: str) -> str:
+    def url(self, root: str = API_ROOT, **extra: str) -> str:
         """The request URL, for traceability. Extra parameters (paging, fields) go last."""
         query = urlencode([*self.params, *sorted(extra.items())])
-        return f"{STUDIES_URL}?{query}" if query else STUDIES_URL
+        return f"{root}/studies?{query}" if query else f"{root}/studies"
 
 
 Descendants = Mapping[str, tuple[str, ...]]
@@ -164,11 +180,11 @@ def _build(
             exact = _exact(field, values, descendants) if values and areas else []
             if values and (expression := any_of_terms(values, areas, exact)):
                 names.setdefault(parameter, []).append(expression)
-        for field, area in _AREAS.items():
+        for field, dimension in _FILTER_DIMENSIONS.items():
             if values := getattr(layer, field):
-                clauses.append(area_any_of(area, values))
+                clauses.append(area_any_of(AREAS[dimension], values))
         if layer.countries:
-            clauses.append(area_any_of("LocationCountry", layer.countries, quoted=True))
+            clauses.append(area_any_of(AREAS[Dimension.COUNTRY], layer.countries, quoted=True))
         if layer.start_year_from is not None or layer.start_year_to is not None:
             clauses.append(
                 area_range(

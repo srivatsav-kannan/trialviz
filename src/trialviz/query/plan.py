@@ -18,7 +18,7 @@ from typing import Annotated, Literal, Self
 from pydantic import AfterValidator, BaseModel, ConfigDict, Field, model_validator
 from pydantic.fields import FieldInfo
 
-from trialviz.query.consistency import ANALYSIS_RULES, broken_rules, same_meaning
+from trialviz.query.consistency import ANALYSIS_RULES, require_rules, same_meaning
 from trialviz.query.fields import (
     ChartTypeField,
     DimensionField,
@@ -38,8 +38,6 @@ from trialviz.vocabulary import (
 MIN_COHORTS = 2
 MAX_COHORTS = 6
 DEFAULT_CITATIONS_PER_DATUM = 3
-
-Cohorts = Annotated[list[Cohort], Field(min_length=MIN_COHORTS, max_length=MAX_COHORTS)]
 
 
 def validate_node_types(pair: tuple[Dimension, Dimension]) -> tuple[Dimension, Dimension]:
@@ -62,14 +60,23 @@ def validate_cohorts(cohorts: list[Cohort]) -> list[Cohort]:
     return cohorts
 
 
+Cohorts = Annotated[
+    list[Cohort],
+    Field(min_length=MIN_COHORTS, max_length=MAX_COHORTS),
+    AfterValidator(validate_cohorts),
+]
+"""Two to six cohorts with distinct labels and distinct filters, wherever cohorts appear."""
+
+NodeTypes = Annotated[tuple[DimensionField, DimensionField], AfterValidator(validate_node_types)]
+"""The two kinds of entity a network links, which must be able to share a trial."""
+
+
 class _AnalysisSpec(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     @model_validator(mode="after")
     def _pairs_are_consistent(self) -> Self:
-        values = self.model_dump(exclude_none=True)
-        if broken := broken_rules(values, ANALYSIS_RULES):
-            raise ValueError(". ".join(rule.describe(values) for rule in broken))
+        require_rules(self.model_dump(exclude_none=True), ANALYSIS_RULES)
         return self
 
 
@@ -117,11 +124,6 @@ class ComparisonSpec(_AnalysisSpec):
         None, description="An optional dimension to break the result down by."
     )
 
-    @model_validator(mode="after")
-    def _cohorts_are_distinct(self) -> Self:
-        validate_cohorts(self.cohorts)
-        return self
-
 
 class HistogramSpec(_AnalysisSpec):
     """The spread of one numeric measure across trials, optionally split into groups
@@ -157,14 +159,9 @@ class NetworkSpec(_AnalysisSpec):
     kind: Literal[AnalysisKind.NETWORK] = Field(
         AnalysisKind.NETWORK, description="Selects this analysis."
     )
-    node_types: tuple[DimensionField, DimensionField] = Field(
+    node_types: NodeTypes = Field(
         description="The two kinds of entity linked when they share a trial."
     )
-
-    @model_validator(mode="after")
-    def _network_can_have_edges(self) -> Self:
-        validate_node_types(self.node_types)
-        return self
 
 
 def validate_stages(stages: list[Dimension]) -> list[Dimension]:

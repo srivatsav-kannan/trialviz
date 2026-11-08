@@ -67,7 +67,8 @@ def test_every_saved_answer_is_the_published_response_model_and_served_unchanged
     assert listed == {path.stem for path in SAMPLES}
     for path in SAMPLES:
         saved = json.loads(path.read_text())["response"]
-        Answer.model_validate(saved)
+        # A field the model does not know would be dropped here, and the comparison fails.
+        assert Answer.model_validate(saved).model_dump(mode="json") == saved, path.stem
         served = client.get(f"/v1/samples/{path.stem}")
         assert served.status_code == 200 and served.json() == saved, path.stem
 
