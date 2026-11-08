@@ -44,7 +44,7 @@ from trialviz.query.plan import ComparisonSpec
 from trialviz.query.resolution import NoteCode, ResolvedQuery, Source
 from trialviz.retrieval.client import RateLimiter, RegistryClient
 from trialviz.retrieval.retriever import TRUNCATED_ORDER, Retriever
-from trialviz.vocabulary import ChartType
+from trialviz.vocabulary import ChartType, Dimension
 
 PEMBROLIZUMAB = ("pembrolizumab", "keytruda", "mk-3475", "mk3475")
 NIVOLUMAB = ("nivolumab", "opdivo", "bms-936558", "ono-4538", "mdx-1106")
@@ -564,6 +564,37 @@ async def test_cohort_totals_come_from_counts_without_fetching_the_cohorts(
     assert len(answer.meta.registry_requests) == len(run.cassette.sent) - 1, (
         "every registry request except the version check is listed in the answer"
     )
+
+
+async def test_a_network_can_link_sponsors_to_their_investigators(tmp_path: Path) -> None:
+    # The assignment names investigators and sites among the entities a network can show.
+    run = await run_workflow(
+        Cassette("network_investigators_myeloma"),
+        {
+            "query": "Show a network of lead sponsors and principal investigators for "
+            "multiple myeloma trials that started in 2024"
+        },
+        tmp_path,
+    )
+    resolution = run.result.resolution
+    assert isinstance(resolution, ResolvedQuery)
+    assert set(resolution.plan.analysis.node_types) == {  # type: ignore[union-attr]
+        Dimension.LEAD_SPONSOR,
+        Dimension.INVESTIGATOR,
+    }
+    answer = run.result.answer
+    assert answer is not None and answer_problems(run) == []
+    graph = answer.visualization.data
+    assert isinstance(graph, dict) and graph["edges"]
+    kinds = {node["id"]: node["type"] for node in graph["nodes"]}
+    assert {kinds[e["source"]] for e in graph["edges"]} | {
+        kinds[e["target"]] for e in graph["edges"]
+    } == {"lead_sponsor", "investigator"}
+    # Each link is cited by the investigator's entry and the sponsor of the same trial.
+    for edge in graph["edges"]:
+        fields = {c["field"].split("[")[0].rsplit(".", 1)[-1] for c in edge["citations"]}
+        assert "overallOfficials" in " ".join(c["field"] for c in edge["citations"]), edge
+        assert any("leadSponsor" in c["field"] for c in edge["citations"]), fields
 
 
 async def test_a_timeline_lists_each_matching_trial_in_start_order(tmp_path: Path) -> None:

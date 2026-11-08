@@ -3,16 +3,16 @@
   {
    "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nTimeline of phase 3 Keytruda melanoma trials\n</question>",
    "stop_reason": "end_turn",
-   "text": "{\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]},{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"filters.phases\",\"values\":[\"PHASE3\"]},{\"slot\":\"analysis.kind\",\"values\":[\"trial_list\"]},{\"slot\":\"presentation.chart_type\",\"values\":[\"timeline\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
+   "text": "{\"slots\":[{\"slot\":\"filters.phases\",\"values\":[\"PHASE3\"]},{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]},{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"analysis.kind\",\"values\":[\"trial_list\"]},{\"slot\":\"presentation.chart_type\",\"values\":[\"timeline\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_read_input_tokens": 3908,
     "input_tokens": 58,
     "output_tokens": 149
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CLeadSponsorName%2CPrimaryCompletionDate%2CCompletionDate%2CEnrollmentCount%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BPhase%5D%28PHASE3%29%29+AND+%28NOT+%28%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29+AND+%28%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29%29%29%29&pageSize=30&query.cond=%28melanoma%29&query.intr=%28keytruda%29": {
    "studies": [

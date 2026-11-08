@@ -61,6 +61,7 @@ _PATHS = {
     "conditions": "protocolSection.conditionsModule.conditions",
     "condition_meshes": "derivedSection.conditionBrowseModule.meshes",
     "locations": "protocolSection.contactsLocationsModule.locations",
+    "officials": "protocolSection.contactsLocationsModule.overallOfficials",
     "study_type": "protocolSection.designModule.studyType",
     "start": "protocolSection.statusModule.startDateStruct.date",
     "primary_completion": "protocolSection.statusModule.primaryCompletionDateStruct.date",
@@ -328,6 +329,36 @@ def _condition(study: Study) -> list[Value]:
     return _named_terms(study, _PATHS["condition_meshes"], _PATHS["conditions"])
 
 
+def _investigator(study: Study) -> list[Value]:
+    """The trial's overall officials (principal investigators, study chairs, directors),
+    by name. Names are written by each trial, so the same person can appear under two
+    spellings, which only merge when they match ignoring case and punctuation."""
+    values: dict[str, Value] = {}
+    for found in each(study, _PATHS["officials"], "name"):
+        name = str(found.value).strip()
+        key = sanitize_term(re.sub(r",.*$", "", name)) or name.casefold()
+        values.setdefault(key, Value(key, re.sub(r",.*$", "", name), (found.citation(study),)))
+    return list(values.values()) or _not_reported()
+
+
+def _site(study: Study) -> list[Value]:
+    """The trial's sites, as facility, city and country, since facility names repeat
+    across cities ("University Hospital")."""
+    values: dict[str, Value] = {}
+    for index, found in enumerate(each(study, _PATHS["locations"])):
+        location = found.value if isinstance(found.value, dict) else {}
+        facility = str(location.get("facility") or "").strip()
+        if not facility:
+            continue
+        place = ", ".join(str(location[k]).strip() for k in ("city", "country") if location.get(k))
+        label = f"{facility} ({place})" if place else facility
+        cited = one(study, f"{_PATHS['locations']}[{index}].facility")
+        citations = (cited.citation(study),) if cited else ()
+        key = sanitize_term(label) or label.casefold()
+        values.setdefault(key, Value(key, label, citations))
+    return list(values.values()) or _not_reported()
+
+
 def _country(study: Study) -> list[Value]:
     values: dict[str, Value] = {}
     for found in each(study, _PATHS["locations"], "country"):
@@ -357,6 +388,8 @@ DIMENSIONS: dict[Dimension, Extractor] = {
         s, _PATHS["study_type"], lambda v: StudyType(v).label
     ),
     Dimension.START_YEAR: _start_year,
+    Dimension.INVESTIGATOR: _investigator,
+    Dimension.SITE: _site,
 }
 
 

@@ -3,16 +3,16 @@
   {
    "question": "Today's date: 2026-11-07\n\nCaller's fields:\nnone\n\n<question>\nCompare type 1 and type 2 diabetes trials that started in 2024 by phase\n</question>",
    "stop_reason": "end_turn",
-   "text": "{\"slots\":[{\"slot\":\"analysis.kind\",\"values\":[\"comparison\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]},{\"slot\":\"filters.start_year_from\",\"values\":[\"2024\"]},{\"slot\":\"filters.start_year_to\",\"values\":[\"2024\"]}],\"unexpressed\":[],\"cohorts\":[{\"label\":\"Type 1 diabetes\",\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"type 1 diabetes\"]}]},{\"label\":\"Type 2 diabetes\",\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"type 2 diabetes\"]}]}],\"issue\":null}",
+   "text": "{\"slots\":[{\"slot\":\"filters.start_year_from\",\"values\":[\"2024\"]},{\"slot\":\"filters.start_year_to\",\"values\":[\"2024\"]},{\"slot\":\"analysis.kind\",\"values\":[\"comparison\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]}],\"unexpressed\":[],\"cohorts\":[{\"label\":\"Type 1 diabetes\",\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"type 1 diabetes\"]}]},{\"label\":\"Type 2 diabetes\",\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"type 2 diabetes\"]}]}],\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_read_input_tokens": 3908,
     "input_tokens": 65,
     "output_tokens": 218
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%22type+1+diabetes%22+OR+AREA%5BConditionMeshTerm%5D%22type+1+diabetes%22+OR+AREA%5BKeyword%5D%22type+1+diabetes%22%29%29%29&pageSize=30&query.cond=%28type+1+diabetes%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvCh3PQZnj6SuP08FCfCFfjQ_tpG0SI",

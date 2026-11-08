@@ -6,13 +6,13 @@
    "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"filters.statuses\",\"values\":[\"RECRUITING\"]},{\"slot\":\"analysis.kind\",\"values\":[\"distribution\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"country\"]},{\"slot\":\"presentation.sort\",\"values\":[\"value_desc\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_read_input_tokens": 3908,
     "input_tokens": 56,
     "output_tokens": 146
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLocationCountry%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29%29%29&pageSize=30&query.cond=%28melanoma%29": {
    "studies": [

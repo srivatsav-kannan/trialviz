@@ -6,13 +6,13 @@
    "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"diabetes\"]},{\"slot\":\"filters.phases\",\"values\":[\"PHASE3\"]},{\"slot\":\"filters.statuses\",\"values\":[\"COMPLETED\"]},{\"slot\":\"analysis.kind\",\"values\":[\"scatter\"]},{\"slot\":\"analysis.x\",\"values\":[\"enrollment\"]},{\"slot\":\"analysis.y\",\"values\":[\"duration_months\"]},{\"slot\":\"analysis.z\",\"values\":[\"site_count\"]},{\"slot\":\"presentation.chart_type\",\"values\":[\"scatter_plot_3d\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_read_input_tokens": 3908,
     "input_tokens": 70,
     "output_tokens": 220
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CEnrollmentCount%2CEnrollmentType%2CPrimaryCompletionDate%2CCompletionDate%2CLocationCountry%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BPhase%5D%28PHASE3%29%29+AND+%28AREA%5BOverallStatus%5D%28COMPLETED%29%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28diabetes%29+OR+AREA%5BConditionMeshTerm%5D%28diabetes%29+OR+AREA%5BKeyword%5D%28diabetes%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabetic+Foot%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabetic+Ketoacidosis%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabetic+Nephropathies%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabetic+Neuropathies%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Diabetic+Retinopathy%22%29+OR+%28AREA%5BConditionMeshTerm%5D%22Prediabetic+State%22%29%29%29&pageSize=30&query.cond=%28diabetes%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuZ_mm3v0Tnj6SuP08FCfCFfbY8dFO3Q",

@@ -770,16 +770,23 @@
     }
   },
   {
-    "id": "unsupported-grouping",
+    "id": "group-by-investigator",
     "tags": [
-      "clarification",
-      "adversarial"
+      "distribution",
+      "entities"
     ],
     "request": {
       "query": "Show lung cancer trials grouped by principal investigator"
     },
     "expect": {
-      "status": "needs_clarification"
+      "status": "resolved",
+      "slots": {
+        "filters.conditions": [
+          "lung cancer"
+        ],
+        "analysis.kind": "distribution",
+        "analysis.group_by": "investigator"
+      }
     }
   },
   {

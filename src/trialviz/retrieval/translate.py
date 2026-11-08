@@ -220,6 +220,8 @@ DIMENSION_FIELDS: dict[Dimension, tuple[str, ...]] = {
     Dimension.INTERVENTION_TYPE: ("InterventionType", "InterventionName"),
     Dimension.CONDITION: ("Condition", "ConditionMeshTerm"),
     Dimension.COUNTRY: ("LocationCountry",),
+    Dimension.INVESTIGATOR: ("OverallOfficialName", "OverallOfficialAffiliation"),
+    Dimension.SITE: ("LocationFacility", "LocationCity", "LocationCountry"),
     Dimension.STUDY_TYPE: ("StudyType",),
     Dimension.START_YEAR: ("StartDate",),
 }

@@ -53,6 +53,8 @@ class Dimension(StrEnum):
     COUNTRY = "country"
     STUDY_TYPE = "study_type"
     START_YEAR = "start_year"
+    INVESTIGATOR = "investigator"
+    SITE = "site"
 
     @property
     def label(self) -> str:
@@ -87,6 +89,8 @@ _DIMENSION_INFO = {
     Dimension.COUNTRY: _DimensionInfo("Country", multi_valued=True),
     Dimension.STUDY_TYPE: _DimensionInfo("Study type", multi_valued=False),
     Dimension.START_YEAR: _DimensionInfo("Start year", multi_valued=False),
+    Dimension.INVESTIGATOR: _DimensionInfo("Investigator", multi_valued=True),
+    Dimension.SITE: _DimensionInfo("Site", multi_valued=True),
 }
 
 parse_dimension = enum_parser(
@@ -100,6 +104,8 @@ parse_dimension = enum_parser(
         "drug": Dimension.INTERVENTION,
         "disease": Dimension.CONDITION,
         "year": Dimension.START_YEAR,
+        "principal investigator": Dimension.INVESTIGATOR,
+        "facility": Dimension.SITE,
     },
     noun="dimension",
 )

@@ -6,13 +6,13 @@
    "text": "{\"slots\":[{\"slot\":\"filters.interventions\",\"values\":[\"semaglutide\"]},{\"slot\":\"filters.phases\",\"values\":[\"PHASE3\"]},{\"slot\":\"filters.statuses\",\"values\":[\"RECRUITING\"]},{\"slot\":\"analysis.kind\",\"values\":[\"count\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_read_input_tokens": 3908,
     "input_tokens": 90,
     "output_tokens": 124
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BPhase%5D%28PHASE2%29%29+AND+%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28NOT+%28%28AREA%5BInterventionName%5D%28semaglutide%29+OR+AREA%5BInterventionOtherName%5D%28semaglutide%29+OR+AREA%5BInterventionMeshTerm%5D%28semaglutide%29%29%29%29&pageSize=30&query.intr=%28semaglutide%29": {
    "studies": [

@@ -1486,21 +1486,42 @@
       }
     },
     {
-      "id": "unsupported-grouping",
+      "id": "group-by-investigator",
       "tags": [
-        "clarification",
-        "adversarial"
+        "distribution",
+        "entities"
       ],
-      "passed": true,
-      "problems": [],
+      "passed": false,
+      "problems": [
+        "filters.conditions: expected ['lung cancer'], got None"
+      ],
       "interpreter": "rules",
       "outcome": {
-        "status": "needs_clarification",
-        "reason": "missing_parameter",
-        "message": "What should be computed? Set analysis.kind to one of: count, distribution, time_series, comparison, histogram, scatter, network, flow, trial_list.",
-        "missing": [
-          "analysis.kind"
-        ],
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "keywords": [
+              "lung cancer grouped"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "investigator"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
+          }
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.keywords": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
         "notes": [],
         "interpreter": "rules"
       }

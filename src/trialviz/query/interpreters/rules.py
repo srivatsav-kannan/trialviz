@@ -385,6 +385,8 @@ _DIMENSION_WORDS: list[tuple[str, Dimension]] = [
     (r"drugs?|interventions?|treatments?|therap(?:y|ies)|medications?", Dimension.INTERVENTION),
     (r"conditions?|diseases?|indications?", Dimension.CONDITION),
     (r"countr(?:y|ies)|nations?|geograph(?:y|ies)", Dimension.COUNTRY),
+    (r"(?:principal\ )?investigators?", Dimension.INVESTIGATOR),
+    (r"(?:trial\ |study\ )?sites|facilit(?:y|ies)|hospitals", Dimension.SITE),
     (r"start\ years?", Dimension.START_YEAR),
 ]
 _DIMENSION = "(?P<dimension>" + "|".join(words for words, _ in _DIMENSION_WORDS) + r")\b"
@@ -443,6 +445,8 @@ _NODE_WORDS: list[tuple[str, Dimension]] = [
     ),
     (r"conditions?|diseases?|indications?", Dimension.CONDITION),
     (r"countr(?:y|ies)|nations?", Dimension.COUNTRY),
+    (r"(?:principal\ )?investigators?", Dimension.INVESTIGATOR),
+    (r"(?:trial\ |study\ )?sites|facilit(?:y|ies)|hospitals", Dimension.SITE),
 ]
 
 

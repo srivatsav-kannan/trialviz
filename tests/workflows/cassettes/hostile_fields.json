@@ -1,6 +1,6 @@
 {
  "claude": [],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CLocationCountry%2CStudyType&filter.advanced=%28AREA%5BLocationCountry%5D%28%22C%C3%B4te+d%E2%80%99Ivoire%22%29%29&pageSize=100&query.term=%28malaria+vaccine%29": {
    "studies": [

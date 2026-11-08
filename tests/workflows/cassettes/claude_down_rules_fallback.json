@@ -1,6 +1,6 @@
 {
  "claude": [],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate&filter.advanced=%28AREA%5BOverallStatus%5D%28RECRUITING%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2020-01-01%2C+MAX%5D%29&pageSize=100&query.term=%28car-t+non-hodgkin+lymphoma%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvWl2_wdnj6SuP08FCfCFPfU89pI3Q",

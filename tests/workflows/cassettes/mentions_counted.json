@@ -6,13 +6,13 @@
    "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"melanoma\"]},{\"slot\":\"filters.interventions\",\"values\":[\"Keytruda\"]},{\"slot\":\"analysis.kind\",\"values\":[\"distribution\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_read_input_tokens": 3908,
     "input_tokens": 59,
     "output_tokens": 123
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2CStudyType&pageSize=100&query.cond=%28AREA%5BCondition%5D%28melanoma%29+OR+AREA%5BConditionMeshTerm%5D%28melanoma%29+OR+AREA%5BKeyword%5D%28melanoma%29%29&query.intr=%28AREA%5BInterventionName%5D%28keytruda%29+OR+AREA%5BInterventionOtherName%5D%28keytruda%29+OR+AREA%5BInterventionMeshTerm%5D%28keytruda%29%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuY_el2fYbmj6SuP08FCfCFfTZ_tBN1CI",

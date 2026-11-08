@@ -6,13 +6,13 @@
    "text": "{\"slots\":[{\"slot\":\"filters.conditions\",\"values\":[\"asthma\"]},{\"slot\":\"filters.statuses\",\"values\":[\"COMPLETED\"]},{\"slot\":\"analysis.kind\",\"values\":[\"histogram\"]},{\"slot\":\"analysis.measure\",\"values\":[\"enrollment\"]},{\"slot\":\"analysis.group_by\",\"values\":[\"phase\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
     "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_read_input_tokens": 3908,
     "input_tokens": 53,
     "output_tokens": 146
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CStudyType%2CEnrollmentCount%2CEnrollmentType%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28AREA%5BOverallStatus%5D%28COMPLETED%29%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28asthma%29+OR+AREA%5BConditionMeshTerm%5D%28asthma%29+OR+AREA%5BKeyword%5D%28asthma%29%29+OR+%28AREA%5BConditionMeshTerm%5D%22Status+Asthmaticus%22%29%29%29&pageSize=30&query.cond=%28asthma%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYfen3PIalD6SuP08FCfCF_LT9tBG1yI",

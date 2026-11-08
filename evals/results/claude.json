@@ -377,9 +377,6 @@
         "status": "resolved",
         "plan": {
           "filters": {
-            "keywords": [
-              "combination"
-            ],
             "intervention_types": [
               "DRUG"
             ]
@@ -392,6 +389,7 @@
             ]
           },
           "presentation": {
+            "chart_type": "network_graph",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -402,11 +400,16 @@
           "analysis.kind": "inferred",
           "analysis.node_types": "inferred",
           "filters.intervention_types": "inferred",
-          "filters.keywords": "inferred",
+          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
-        "notes": [],
+        "notes": [
+          {
+            "code": "constraint_not_applied",
+            "message": "The question asks for \"combination studies (multiple drugs in one trial)\", which no filter here can express, so the results are not limited by it."
+          }
+        ],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -463,7 +466,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "ambiguous_reference",
-        "message": "The question refers to \"this drug\" but never names it, and no caller field supplies one. Please say which drug you mean.",
+        "message": "The question refers to \"this drug\" but does not name it, and no drug was provided in the caller's fields.",
         "missing": [],
         "notes": [],
         "interpreter": "claude:claude-opus-5-5"
@@ -493,7 +496,6 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -504,7 +506,6 @@
           "analysis.kind": "inferred",
           "filters.interventions": "inferred",
           "filters.phases": "user",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
@@ -600,7 +601,7 @@
         "plan": {
           "filters": {
             "conditions": [
-              "Alzheimer's"
+              "Alzheimer's disease"
             ],
             "statuses": [
               "RECRUITING"
@@ -837,9 +838,6 @@
           "filters": {
             "conditions": [
               "oncology"
-            ],
-            "statuses": [
-              "COMPLETED"
             ]
           },
           "analysis": {
@@ -859,7 +857,6 @@
           "analysis.kind": "inferred",
           "analysis.time_field": "inferred",
           "filters.conditions": "inferred",
-          "filters.statuses": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
@@ -1096,7 +1093,7 @@
       "outcome": {
         "status": "needs_clarification",
         "reason": "out_of_scope",
-        "message": "Registry records can't rank statins by how much they lower cholesterol. That's an efficacy comparison, and it needs trial results or meta-analyses. I can show which statin trials exist for high cholesterol, for example counts by intervention.",
+        "message": "Registry records cannot rank drugs by efficacy. I can show statin trials for high cholesterol instead, such as counts by intervention.",
         "missing": [],
         "notes": [
           {
@@ -1184,9 +1181,6 @@
             "conditions": [
               "diabetes"
             ],
-            "keywords": [
-              "New Jersey"
-            ],
             "statuses": [
               "RECRUITING"
             ],
@@ -1208,7 +1202,6 @@
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
           "filters.countries": "inferred",
-          "filters.keywords": "inferred",
           "filters.statuses": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
@@ -1216,7 +1209,7 @@
         "notes": [
           {
             "code": "constraint_not_applied",
-            "message": "The question asks for \"sites in New Jersey (state-level location; approximated by United States plus keyword)\", which no filter here can express, so the results are not limited by it."
+            "message": "The question asks for \"sites in New Jersey (state-level location)\", which no filter here can express, so the results are not limited by it."
           }
         ],
         "interpreter": "claude:claude-opus-5-5"
@@ -1490,27 +1483,41 @@
       }
     },
     {
-      "id": "unsupported-grouping",
+      "id": "group-by-investigator",
       "tags": [
-        "clarification",
-        "adversarial"
+        "distribution",
+        "entities"
       ],
       "passed": true,
       "problems": [],
       "interpreter": "claude:claude-opus-5-5",
       "outcome": {
-        "status": "needs_clarification",
-        "reason": "missing_parameter",
-        "message": "What should the trials be grouped by? Set analysis.group_by, for example phase, status, sponsor_class, intervention or country.",
-        "missing": [
-          "analysis.group_by"
-        ],
-        "notes": [
-          {
-            "code": "constraint_not_applied",
-            "message": "The question asks for \"grouping by principal investigator (no such dimension)\", which no filter here can express, so the results are not limited by it."
+        "status": "resolved",
+        "plan": {
+          "filters": {
+            "conditions": [
+              "lung cancer"
+            ]
+          },
+          "analysis": {
+            "kind": "distribution",
+            "group_by": "investigator"
+          },
+          "presentation": {
+            "citations_per_datum": 3
+          },
+          "retrieval": {
+            "name_matching": "named"
           }
-        ],
+        },
+        "provenance": {
+          "analysis.group_by": "inferred",
+          "analysis.kind": "inferred",
+          "filters.conditions": "inferred",
+          "presentation.citations_per_datum": "default",
+          "retrieval.name_matching": "default"
+        },
+        "notes": [],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -1665,6 +1672,14 @@
           "filters": {
             "conditions": [
               "lung cancer"
+            ],
+            "sponsor_classes": [
+              "NIH",
+              "FED",
+              "OTHER_GOV",
+              "INDIV",
+              "NETWORK",
+              "OTHER"
             ]
           },
           "analysis": {
@@ -1682,15 +1697,11 @@
           "analysis.group_by": "inferred",
           "analysis.kind": "inferred",
           "filters.conditions": "inferred",
+          "filters.sponsor_classes": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },
-        "notes": [
-          {
-            "code": "constraint_not_applied",
-            "message": "The question asks for \"non-industry sponsors (exclusion of INDUSTRY sponsor class)\", which no filter here can express, so the results are not limited by it."
-          }
-        ],
+        "notes": [],
         "interpreter": "claude:claude-opus-5-5"
       }
     },
@@ -1942,7 +1953,6 @@
             "kind": "count"
           },
           "presentation": {
-            "chart_type": "stat",
             "citations_per_datum": 3
           },
           "retrieval": {
@@ -1954,7 +1964,6 @@
           "filters.conditions": "inferred",
           "filters.sponsor_classes": "inferred",
           "filters.start_year_from": "inferred",
-          "presentation.chart_type": "inferred",
           "presentation.citations_per_datum": "default",
           "retrieval.name_matching": "default"
         },

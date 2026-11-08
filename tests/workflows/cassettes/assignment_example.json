@@ -5,14 +5,14 @@
    "stop_reason": "end_turn",
    "text": "{\"slots\":[{\"slot\":\"analysis.kind\",\"values\":[\"time_series\"]},{\"slot\":\"analysis.time_field\",\"values\":[\"start_date\"]},{\"slot\":\"analysis.granularity\",\"values\":[\"year\"]}],\"unexpressed\":[],\"cohorts\":null,\"issue\":null}",
    "usage": {
-    "cache_creation_input_tokens": 0,
-    "cache_read_input_tokens": 3890,
+    "cache_creation_input_tokens": 3908,
+    "cache_read_input_tokens": 0,
     "input_tokens": 89,
     "output_tokens": 98
    }
   }
  ],
- "fingerprint": "cb980bb633d0f033",
+ "fingerprint": "d3032997eaa72742",
  "registry": {
   "/api/v2/studies?countTotal=true&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CInterventionName%2CInterventionOtherName%2CInterventionMeshTerm%2COfficialTitle%2CBriefSummary%2CKeyword%2CInterventionDescription%2CArmGroupDescription&filter.advanced=%28NOT+%28%28AREA%5BInterventionName%5D%28pembrolizumab%29+OR+AREA%5BInterventionOtherName%5D%28pembrolizumab%29+OR+AREA%5BInterventionMeshTerm%5D%28pembrolizumab%29%29%29%29&pageSize=30&query.intr=%28pembrolizumab%29&sort=StartDate%3Adesc": {
    "nextPageToken": "ZVNj7o2Elu8o3lpyCMqxo7LumpOQJJxuYvat1fMcnD6SuP08FCfCFPjR9NJH1iI",
