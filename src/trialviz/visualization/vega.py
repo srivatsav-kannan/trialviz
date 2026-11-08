@@ -15,14 +15,16 @@ from trialviz.vocabulary import ChartType
 
 SCHEMA = "https://vega.github.io/schema/vega-lite/v5.json"
 _HEAVY = {"citations", "nct_ids", "outliers"}
+# 1000 as "1k". Vega's "~s" format picks one prefix for the whole axis, so 5 becomes "0k".
+_SHORT_NUMBER = "datum.value >= 1000 ? format(datum.value / 1000, '~') + 'k' : datum.value"
 
 
 def _channel(channel: Channel, **extra: Any) -> dict[str, Any]:
     spec: dict[str, Any] = {"field": channel.field, "type": channel.type, "title": channel.title}
     if isinstance(channel.sort, list):
         spec["sort"] = channel.sort
-    if channel.scale == "log":
-        spec["scale"] = {"type": "log"}
+    if channel.scale == "symlog":
+        spec["scale"] = {"type": "symlog"}
     if channel.stack:
         spec["stack"] = channel.stack
     return spec | extra
@@ -44,6 +46,7 @@ def to_vega_lite(
     if body is None:
         return None
     spec: dict[str, Any] = {"$schema": SCHEMA, "title": title, "data": {"values": values}, **body}
+    _label_symlog_axes(spec, values)
     if limit := options.get("display_limit"):
         sort_field = (
             encoding.get("x") if chart is ChartType.HORIZONTAL_BAR_CHART else encoding.get("y")
@@ -57,6 +60,45 @@ def to_vega_lite(
             {"filter": f"datum._rank <= {limit}"},
         ]
     return spec
+
+
+def _label_symlog_axes(spec: dict[str, Any], values: list[dict[str, Any]]) -> None:
+    """Vega's default ticks on a symlog axis are linear, so they bunch at the top and leave
+    the small values unlabeled. Label 0, 1, 2, 5, 10, 20, 50 and so on instead. Every layer
+    drawing on the same axis gets the same ticks, covering the largest value any of them
+    shows."""
+    axes: dict[str, list[dict[str, Any]]] = {}
+    for encoding in _encodings(spec):
+        for name, channel in encoding.items():
+            if isinstance(channel, dict) and channel.get("scale") == {"type": "symlog"}:
+                axes.setdefault(name, []).append(channel)
+    for channels in axes.values():
+        fields = {c["field"] for c in channels}
+        top = max(
+            (row[f] for row in values for f in fields if isinstance(row.get(f), int | float)),
+            default=0,
+        )
+        for channel in channels:
+            channel["axis"] = {
+                "values": _nice_ticks(top),
+                "labelExpr": _SHORT_NUMBER,
+                "labelOverlap": "greedy",
+            }
+
+
+def _encodings(spec: dict[str, Any]) -> list[dict[str, Any]]:
+    found = [spec["encoding"]] if "encoding" in spec else []
+    for layer in spec.get("layer", []):
+        found += _encodings(layer)
+    return found
+
+
+def _nice_ticks(top: float) -> list[int]:
+    ticks, step = [0], 1
+    while step <= top:
+        ticks += [m * step for m in (1, 2, 5) if m * step <= top]
+        step *= 10
+    return ticks
 
 
 def _choropleth(

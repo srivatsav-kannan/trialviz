@@ -400,7 +400,7 @@ def _distribution(studies: list[Study], measure: Measure, group_by: Dimension | 
         group_dimension=group_by.label if group_by else None,
         group_field=_field(group_by) if group_by else None,
         spreads=ordered,
-        bins=_bins(values),
+        bins=_log_bins(values) if skewed else _bins(values),
         excluded=excluded,
         skewed=skewed,
     )
@@ -410,7 +410,8 @@ def _distribution(studies: list[Study], measure: Measure, group_by: Dimension | 
 def _bins(values: list[Value]) -> list[Bin]:
     """Equal-width bins with a "nice" width (1, 2 or 5 times a power of ten), chosen by the
     Freedman-Diaconis rule on the 1st to 99th percentile so a few huge trials do not flatten
-    everything else. Values beyond that range go to the last bin."""
+    everything else. Values beyond that range go to the last bin, which is marked open-ended
+    and keeps the normal width, so one huge trial does not stretch the axis."""
     if not values:
         return []
     numbers = sorted(v.value for v in values)
@@ -425,8 +426,6 @@ def _bins(values: list[Value]) -> list[Bin]:
         start = math.floor(numbers[0] / width) * width
         count = max(1, math.ceil((p99 - start) / width))
         edges = [start + i * width for i in range(count + 1)]
-        if edges[-1] < numbers[-1]:
-            edges[-1] = numbers[-1]
     bins = [
         Bin(
             edges[i],
@@ -435,6 +434,41 @@ def _bins(values: list[Value]) -> list[Bin]:
         )
         for i in range(len(edges) - 1)
     ]
+    if numbers[-1] >= bins[-1].end and len(bins) > 1:
+        bins[-1].open_ended = True
+        bins[-1].group.label = f"{bins[-1].start:g} or more"
+    for value in values:
+        index = next((i for i, b in enumerate(bins) if value.value < b.end), len(bins) - 1)
+        bins[index].group.add(value.nct_id, value.citations)
+    return bins
+
+
+def _log_bins(values: list[Value]) -> list[Bin]:
+    """Bins whose edges step 1, 2, 5 times each power of ten (0, 10, 20, 50, 100, ...), for
+    heavily skewed measures such as enrollment, where equal widths put almost every trial
+    in the first bin. Drawn on a log-like axis, each bin gets similar room."""
+    numbers = sorted(v.value for v in values)
+    p99 = numbers[min(len(numbers) - 1, math.ceil(0.99 * len(numbers)) - 1)]
+    edges = [0.0]
+    step = 1
+    while edges[-1] < p99:
+        for multiple in (1, 2, 5):
+            edge = float(multiple * 10**step)
+            edges.append(edge)
+            if edge >= p99:
+                break
+        step += 1
+    bins = [
+        Bin(
+            edges[i],
+            edges[i + 1],
+            Group(f"{edges[i]:g}-{edges[i + 1]:g}", f"{edges[i]:g} to {edges[i + 1]:g}"),
+        )
+        for i in range(len(edges) - 1)
+    ]
+    if numbers[-1] >= bins[-1].end and len(bins) > 1:
+        bins[-1].open_ended = True
+        bins[-1].group.label = f"{bins[-1].start:g} or more"
     for value in values:
         index = next((i for i, b in enumerate(bins) if value.value < b.end), len(bins) - 1)
         bins[index].group.add(value.nct_id, value.citations)
@@ -531,7 +565,7 @@ def _graph(studies: list[Study], node_types: tuple[Dimension, Dimension], limit:
         for dimension, values in ((first, left), (second, right)):
             for value in values:
                 nid = node(dimension, value)
-                nodes[nid].group.add(identifier, value.citations)
+                nodes[nid].group.add(identifier, value.citations[:1])
                 evidence[nid] = value.citations[:1]
         left_ids = [f"{first.value}:{v.key}" for v in left]
         right_ids = [f"{second.value}:{v.key}" for v in right]

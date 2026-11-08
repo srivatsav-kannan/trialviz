@@ -51,7 +51,10 @@ class Channel(BaseModel):
     type: FieldType
     title: str
     sort: list[str] | Literal["ascending", "descending"] | None = None
-    scale: Literal["linear", "log"] | None = None
+    scale: Literal["linear", "symlog"] | None = Field(
+        None,
+        description="symlog: a log-like scale that also handles zero, for heavily skewed measures.",
+    )
     stack: Literal["zero", "normalize"] | None = None
 
 
@@ -81,7 +84,7 @@ def _datum(group: Group, limit: int) -> dict[str, Any]:
     return {
         COUNT: group.count,
         "nct_ids": list(group.nct_ids),
-        "citations": [c.model_dump(mode="json") for c in group.citations[:limit]],
+        "citations": [c.model_dump(mode="json") for c in group.citations_for(limit)],
     }
 
 
@@ -152,6 +155,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
                 return [_box(dataset, spread, limit) for spread in dataset.spreads]
             return [
                 {
+                    "open_ended": b.open_ended,
                     "bin_start": b.start,
                     "bin_end": b.end,
                     "label": b.group.label,
@@ -287,12 +291,12 @@ def _count(stack: Literal["zero", "normalize"] | None = None) -> Channel:
 def _measure(measure: Measure, values: list[float]) -> Channel:
     ordered = sorted(values)
     median = statistics.median(ordered) if ordered else 0
-    skewed = bool(ordered) and median > 0 and ordered[0] > 0 and ordered[-1] / median > 20
+    skewed = bool(ordered) and median > 0 and ordered[-1] / median > 20
     return Channel(
         field=measure.value,
         type="quantitative",
         title=f"{measure.label} ({measure.unit})",
-        scale="log" if skewed else "linear",
+        scale="symlog" if skewed else "linear",
     )
 
 
@@ -360,7 +364,7 @@ def encoding_and_options(
                                 field=name,
                                 type="quantitative",
                                 title=unit,
-                                scale="log" if dataset.skewed else "linear",
+                                scale="symlog" if dataset.skewed else "linear",
                             )
                             for name in ("whisker_low", "q1", "median", "q3", "whisker_high")
                         },
@@ -370,7 +374,12 @@ def encoding_and_options(
             unit = f"{dataset.measure.label} ({dataset.measure.unit})"
             return (
                 {
-                    "x": Channel(field="bin_start", type="quantitative", title=unit),
+                    "x": Channel(
+                        field="bin_start",
+                        type="quantitative",
+                        title=unit,
+                        scale="symlog" if dataset.skewed else "linear",
+                    ),
                     "x2": Channel(field="bin_end", type="quantitative", title=unit),
                     "y": _count(),
                 },

@@ -1,8 +1,8 @@
 """The shapes aggregated data comes in. Charts are chosen per shape, not per question.
 
-Every count-like datum is a `Group`: the trials that make it up, one citation per trial
-showing why that trial is in the group, and, when only part of a large result set was
-fetched, an exact count taken from the registry itself.
+Every count-like datum is a `Group`: the trials that make it up, the citations showing why
+each trial is in the group (both ends of a link, both values of a grid cell), and, when
+only part of a large result set was fetched, an exact count taken from the registry.
 """
 
 from __future__ import annotations
@@ -18,7 +18,8 @@ class Group:
     key: str
     label: str
     nct_ids: list[str] = field(default_factory=list)
-    citations: list[Citation] = field(default_factory=list)
+    evidence: dict[str, tuple[Citation, ...]] = field(default_factory=dict)
+    """Per trial, every citation that places it in this group."""
     exact_count: int | None = None
     """Set when the fetched records were a subset and the registry was asked directly."""
 
@@ -28,10 +29,14 @@ class Group:
 
     def add(self, nct_id: str, citations: tuple[Citation, ...]) -> None:
         """Count a trial once, however many of its values map to this group."""
-        if nct_id in self.nct_ids:
+        if nct_id in self.evidence:
             return
         self.nct_ids.append(nct_id)
-        self.citations.extend(citations[:1])
+        self.evidence[nct_id] = citations
+
+    def citations_for(self, trials: int) -> list[Citation]:
+        """Every citation for the first `trials` trials, so each cited trial is fully shown."""
+        return [c for nct_id in self.nct_ids[:trials] for c in self.evidence[nct_id]]
 
 
 @dataclass
@@ -97,6 +102,9 @@ class Bin:
     start: float
     end: float
     group: Group
+    open_ended: bool = False
+    """The last bin also holds every larger value. Its end is where it would close at the
+    normal width, so one huge trial does not stretch the axis."""
 
 
 @dataclass

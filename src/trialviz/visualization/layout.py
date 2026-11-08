@@ -7,7 +7,9 @@ which also keeps the response deterministic.
 
 This is the Fruchterman-Reingold method: linked nodes attract, all nodes repel, and the
 step size cools each round. Edge weight strengthens attraction, so entities that share
-many trials sit close together. Positions are scaled to fit within -1 to 1.
+many trials sit close together. A weak pull toward the center keeps separate components
+near each other. Without it, a disconnected pair drifts away and, once positions are
+scaled to fit within -1 to 1, squeezes the main cluster into a corner.
 """
 
 from __future__ import annotations
@@ -18,6 +20,7 @@ from collections.abc import Sequence
 Position = tuple[float, ...]
 
 ROUNDS = 150
+GRAVITY = 0.6
 
 
 def force_layout(
@@ -55,6 +58,8 @@ def force_layout(
                 moves[i][k] -= delta[k] / distance * pull
                 moves[j][k] += delta[k] / distance * pull
         for i in range(count):
+            for k in range(dimensions):
+                moves[i][k] -= positions[i][k] * GRAVITY / ideal
             length = max(math.sqrt(sum(m * m for m in moves[i])), 1e-9)
             for k in range(dimensions):
                 positions[i][k] += moves[i][k] / length * min(length, step)
