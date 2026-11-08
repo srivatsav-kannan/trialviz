@@ -8,6 +8,7 @@ behaves, which no assertion about our own constants can do.
 
 from __future__ import annotations
 
+import json
 import re
 from collections.abc import Callable, Mapping
 from itertools import pairwise
@@ -44,6 +45,7 @@ from trialviz.query.plan import ComparisonSpec
 from trialviz.query.resolution import NoteCode, ResolvedQuery, Source
 from trialviz.retrieval.client import RateLimiter, RegistryClient
 from trialviz.retrieval.retriever import TRUNCATED_ORDER, Retriever
+from trialviz.store import AnswerStore, FileStore, NoStore
 from trialviz.vocabulary import ChartType, Dimension
 
 PEMBROLIZUMAB = ("pembrolizumab", "keytruda", "mk-3475", "mk3475")
@@ -678,7 +680,9 @@ async def test_three_measures_give_a_3d_scatter_with_a_flat_bubble_alternative(
     assert "size" in bubble.encoding and bubble.data is None
 
 
-async def test_the_http_endpoint_serves_exactly_the_pipelines_answer(tmp_path: Path) -> None:
+async def test_the_http_endpoints_serve_save_export_and_stream_the_pipelines_answer(
+    tmp_path: Path,
+) -> None:
     if RECORDING:
         pytest.skip("replays the cassette the assignment workflow records")
     request = {
@@ -687,19 +691,59 @@ async def test_the_http_endpoint_serves_exactly_the_pipelines_answer(tmp_path: P
     }
     direct = await run_workflow(Cassette("assignment_example"), request, tmp_path)
     assert direct.result.answer is not None
+    expected = direct.result.answer.model_dump(mode="json")
 
-    cassette = Cassette("assignment_example")
-    ledger = FileLedger(tmp_path / "http-spend.json", 20.0)
-    client = RegistryClient(
-        httpx.AsyncClient(transport=cassette.registry_transport()), RateLimiter(1e9)
-    )
-    app = create_app(
-        interpreter=default_interpreter(cassette.claude_messages(), ledger),
-        retriever=Retriever(client, max_records=MAX_RECORDS),
-    )
-    async with httpx.AsyncClient(
-        transport=httpx.ASGITransport(app=app), base_url="http://test"
-    ) as http:
+    def app(store: AnswerStore) -> httpx.AsyncClient:
+        # Each app replays the recording afresh. Replay is strict, so a request the
+        # recording never saw fails the test.
+        cassette = Cassette("assignment_example")
+        ledger = FileLedger(tmp_path / "http-spend.json", 20.0)
+        client = RegistryClient(
+            httpx.AsyncClient(transport=cassette.registry_transport()), RateLimiter(1e9)
+        )
+        service = create_app(
+            interpreter=default_interpreter(cassette.claude_messages(), ledger),
+            retriever=Retriever(client, max_records=MAX_RECORDS),
+            store=store,
+        )
+        return httpx.AsyncClient(transport=httpx.ASGITransport(app=service), base_url="http://t")
+
+    async with app(FileStore(tmp_path / "answers", keep=10)) as http:
         response = await http.post("/v1/query", json=request)
-    assert response.status_code == 200
-    assert response.json() == direct.result.answer.model_dump(mode="json")
+        assert response.status_code == 200
+        answer = response.json()
+        key = answer["meta"]["answer_id"]
+        assert answer == expected | {"meta": expected["meta"] | {"answer_id": key}}
+
+        # The same request against the same data is the saved answer, at no cost: nothing
+        # more is spent on Claude, and the strict replay would fail on any new registry call.
+        spent = FileLedger(tmp_path / "http-spend.json", 20.0).spent_usd()
+        assert spent > 0
+        again = await http.post("/v1/query", json=request)
+        assert FileLedger(tmp_path / "http-spend.json", 20.0).spent_usd() == spent
+        assert again.json()["meta"]["answer_id"] == key
+        reopened = await http.get(f"/v1/answers/{key}")
+        assert reopened.status_code == 200 and reopened.json() == again.json()
+        csv = await http.get(f"/v1/answers/{key}/csv")
+        header, *lines = csv.text.splitlines()
+        assert csv.headers["content-type"].startswith("text/csv")
+        assert header.split(",")[:3] == ["id", "period", "trial_count"]
+        assert len(lines) == len(answer["visualization"]["data"])
+        missing = await http.get("/v1/answers/0123456789abcdef0123")
+        assert missing.status_code == 404 and missing.json()["error"]["code"] == "answer_not_found"
+
+    # Streamed, the same answer arrives after progress through every stage.
+    async with app(NoStore()) as http:
+        streamed = await http.post("/v1/query/stream", json=request)
+    events = [
+        (block.split("\n")[0].removeprefix("event: "), json.loads(block.split("\n")[1][6:]))
+        for block in streamed.text.strip().split("\n\n")
+        if block.startswith("event:")
+    ]
+    kinds = [kind for kind, _ in events]
+    assert kinds[-1] == "answer" and set(kinds[:-1]) == {"progress"}
+    stages = list(dict.fromkeys(body["stage"] for kind, body in events if kind == "progress"))
+    assert stages == ["reading", "retrieving", "aggregating", "counting", "presenting"]
+    last = events[-2][1]
+    assert last["records_fetched"] == last["records_expected"] > 0
+    assert events[-1][1] == answer

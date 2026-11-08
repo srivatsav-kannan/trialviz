@@ -17,6 +17,7 @@ from __future__ import annotations
 
 from collections.abc import Awaitable, Callable, Iterable
 
+from trialviz import progress
 from trialviz.aggregation.build import Built
 from trialviz.aggregation.datasets import Categorical, Group, Matrix, TimeSeries
 from trialviz.aggregation.extract import (
@@ -28,6 +29,7 @@ from trialviz.aggregation.extract import (
     phase_label,
     sort_key,
 )
+from trialviz.progress import Stage
 from trialviz.query.plan import ComparisonSpec, DistributionSpec, Plan, TimeSeriesSpec
 from trialviz.query.resolution import Note, NoteCode
 from trialviz.retrieval.retriever import CohortRecords, RequestLog, Retrieval
@@ -124,6 +126,7 @@ async def apply_exact_counts(
         if grid is not None and isinstance(built.dataset, Matrix):
             built.dataset.rows, built.dataset.columns, built.dataset.cells = grid
         return
+    progress.stage(Stage.COUNTING, f"Counting {len(requests)} groups exactly in the registry")
     for group, cohort, clause in requests:
         total = await count(cohort.named.query.and_clause(clause), log)
         if cohort.counts_mentions and cohort.mentions:

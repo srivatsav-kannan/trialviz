@@ -36,7 +36,11 @@ curl -s http://localhost:8000/v1/query \\
 ```
 
 Use `POST /v1/interpret` with the same body to see how a question will be read before
-anything is fetched.
+anything is fetched, and `POST /v1/query/stream` to receive progress events while a long
+answer is computed. Every answer has a `meta.answer_id`: `GET /v1/answers/{id}` reopens it
+at no cost, `GET /v1/answers/{id}/csv` downloads its rows, and asking the same question
+again against the same registry data returns the saved answer without spending anything.
+Any web page can call the API, since it allows every origin.
 
 ## How a request is read
 
@@ -50,10 +54,11 @@ request deterministic.
 
 ## Citations
 
-Each data point carries `trial_count`, the IDs of every trial behind it in `nct_ids`, and
-`citations`. A citation names a trial, a JSON path into that trial's record in the
-ClinicalTrials.gov API, and the exact value found there, so any number can be checked
-against the registry by following the path.
+Each data point carries a stable `id`, `trial_count`, the IDs of the trials behind it in
+`nct_ids`, and `citations`. The rows of every chart type are typed in this document's
+schemas (`CategoryRow`, `PeriodRow`, `GraphData` and the rest). A citation names a trial,
+a JSON path into that trial's record in the ClinicalTrials.gov API, and the exact value
+found there, so any number can be checked against the registry by following the path.
 
 ## Errors
 
@@ -64,6 +69,7 @@ Every error has the same shape, `{"error": {"code", "message", "details"}}`, whe
 | --- | --- | --- |
 | 404 | `not_found` | There is nothing at this path. |
 | 404 | `sample_not_found` | No saved sample has that name. |
+| 404 | `answer_not_found` | No saved answer has that id, or it has expired. |
 | 405 | `method_not_allowed` | The path does not accept that method. |
 | 413 | `request_too_large` | The request body is larger than the service accepts. |
 | 422 | `invalid_request` | The body breaks the schema, or a value is ambiguous ("Korea"). |
@@ -76,12 +82,13 @@ Every error has the same shape, `{"error": {"code", "message", "details"}}`, whe
 
 ## Limits
 
-Questions (`POST /v1/query` and `POST /v1/interpret`) are limited per client, to 10 a minute
-and 60 an hour by default, and to 600 an hour across all clients. Every other request is
-limited to 120 a minute per client. Each question response carries `RateLimit-Limit`,
-`RateLimit-Remaining` and `RateLimit-Reset` headers, a refused one carries `Retry-After`,
-and `GET /v1/status` shows your standing and how much of the language-model budget is left.
-Only a few questions are answered at once, and request bodies over 16 KB are refused.
+Questions (`POST /v1/query`, its stream and `POST /v1/interpret`) are limited per client, to
+10 a minute and 60 an hour by default, and to 600 an hour across all clients. Every other
+request is limited to 120 a minute per client. Each question response carries `RateLimit-
+Limit`, `RateLimit-Remaining` and `RateLimit-Reset` headers, a refused one carries `Retry-
+After`, and `GET /v1/status` shows your standing and how much of the language-model budget
+is left. Only a few questions are answered at once, and request bodies over 16 KB are
+refused.
 
 Registry requests are spaced to 50 per minute, and at most 10,000 trial records are fetched
 per cohort, shared between the cohorts of a comparison, with group counts taken from the
@@ -331,6 +338,9 @@ REGISTRY_UNAVAILABLE_OR_BUSY = {
         }
     },
 }
+ANSWER_NOT_FOUND = _error_example(
+    404, "answer_not_found", "There is no saved answer '0123456789abcdef0123'.", []
+)
 SAMPLE_NOT_FOUND = _error_example(
     404, "sample_not_found", "There is no saved sample named 'missing'.", []
 )

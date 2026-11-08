@@ -13,9 +13,9 @@ Every datum carries `trial_count`, `nct_ids` (every contributing trial) and `cit
 from __future__ import annotations
 
 import statistics
-from typing import Any, Literal
+from typing import Annotated, Any, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, WithJsonSchema
 
 from trialviz.aggregation.datasets import (
     Categorical,
@@ -33,6 +33,7 @@ from trialviz.aggregation.datasets import (
 )
 from trialviz.aggregation.evidence import Citation
 from trialviz.aggregation.extract import skewed
+from trialviz.visualization.contract import DATA_SCHEMA
 from trialviz.visualization.geo import COUNTRY_CODES
 from trialviz.visualization.layout import force_layout
 from trialviz.vocabulary import ChartType, Measure, SortOrder, TimeGranularity
@@ -78,7 +79,9 @@ class View(BaseModel):
         description="Chart-specific settings, such as `display_limit`, the map's TopoJSON "
         "source, or the Sankey stages.",
     )
-    data: Rows | None = Field(
+    data: Annotated[
+        Rows | None, WithJsonSchema({"anyOf": [*DATA_SCHEMA["anyOf"], {"type": "null"}]})
+    ] = Field(
         None, description="Rows for this view. Null means it reuses the visualization's rows."
     )
     vega_lite: dict[str, Any] | None = Field(
@@ -93,7 +96,9 @@ class Visualization(View):
     subtitle: str | None = Field(
         None, description="Constraints that do not fit the title, such as countries or years."
     )
-    data: Rows = Field(description="The rows the chart draws. Their fields depend on the chart.")
+    data: Annotated[Rows, WithJsonSchema(DATA_SCHEMA)] = Field(
+        description="The rows the chart draws. Their fields depend on the chart."
+    )
 
 
 # --- Rows ---------------------------------------------------------------------------------
@@ -136,6 +141,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
         case Scalar():
             return [
                 {
+                    "id": "total",
                     "label": dataset.label,
                     COUNT: dataset.total,
                     "citations": _citations_of_trials(dataset.citations, limit),
@@ -145,6 +151,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
             out = []
             for group in _sorted_groups(dataset, sort):
                 row: dict[str, Any] = {
+                    "id": group.key,
                     dataset.field: group.label,
                     "key": group.key,
                     **_datum(group, limit),
@@ -157,6 +164,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
         case Matrix():
             return [
                 {
+                    "id": f"{row_key}|{column_key}",
                     dataset.row_field: row_label,
                     dataset.column_field: column_label,
                     **_datum(dataset.cells.get((row_key, column_key), Group("", "")), limit),
@@ -168,6 +176,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
             series = dataset.series or [("", "")]
             return [
                 {
+                    "id": f"{period}|{key}" if key else period,
                     "period": period,
                     **({dataset.series_field: label} if dataset.series_field else {}),
                     **_datum(dataset.cells.get((period, key), Group("", "")), limit),
@@ -180,6 +189,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
                 return [_box(dataset, spread, limit) for spread in dataset.spreads]
             return [
                 {
+                    "id": b.group.key,
                     "open_ended": b.open_ended,
                     "bin_start": b.start,
                     "bin_end": b.end,
@@ -191,6 +201,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
         case Points():
             return [
                 {
+                    "id": p.nct_id,
                     "nct_id": p.nct_id,
                     "title": p.title,
                     dataset.x.value: p.x,
@@ -216,13 +227,19 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
                     for n in dataset.nodes
                 ],
                 "links": [
-                    {"source": link.source, "target": link.target, **_datum(link.group, limit)}
+                    {
+                        "id": f"{link.source}>{link.target}",
+                        "source": link.source,
+                        "target": link.target,
+                        **_datum(link.group, limit),
+                    }
                     for link in dataset.links
                 ],
             }
         case Trials():
             return [
                 {
+                    "id": r.nct_id,
                     "nct_id": r.nct_id,
                     "title": r.title,
                     "phase": r.phase,
@@ -264,6 +281,7 @@ def _box(dataset: Distribution, spread: Spread, limit: int) -> dict[str, Any]:
     for value in spread.values:
         group.add(value.nct_id, value.citations)
     return {
+        "id": spread.key,
         (dataset.group_field or "group"): spread.label,
         "n": len(values),
         "min": values[0],
@@ -303,7 +321,8 @@ def _graph_rows(dataset: Graph, limit: int) -> dict[str, list[dict[str, Any]]]:
             for n in dataset.nodes
         ],
         "edges": [
-            {"source": e.source, "target": e.target, **_datum(e.group, limit)}
+            {"id": f"{e.source}|{e.target}", "source": e.source, "target": e.target}
+            | _datum(e.group, limit)
             for e in dataset.edges
         ],
     }

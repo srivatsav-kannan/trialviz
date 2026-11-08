@@ -3,13 +3,16 @@
 A developer handed only the README, docs/api.md and /openapi.json should be able to draw
 every answer, as a separate developer did when the service was audited this way (see
 docs/testing.md). These tests hold the service to what those documents promise, over every
-saved answer in examples/: the published response model, the rows each chart type carries,
-encodings that name fields the rows really have, citations a client can link, and an API
-that a page on another origin can call.
+saved answer in examples/: the published response model, the row models the OpenAPI
+document publishes for each chart, ids that tie a clicked mark to its row, encodings that
+name fields the rows really have, CSV downloads, and an API that a page on another origin
+can call.
 """
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 import re
 from collections.abc import Iterator
@@ -23,53 +26,16 @@ from trialviz.answer import Answer
 from trialviz.api import create_app
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
 from trialviz.settings import Settings
+from trialviz.visualization.contract import ROWS, validate_rows
 from trialviz.vocabulary.analysis import ChartType
 
 ROOT = Path(__file__).parent.parent
 SAMPLES = sorted((ROOT / "examples").glob("*.json"))
 
-DATUM = {"trial_count", "nct_ids", "citations"}
-CITATION = {"nct_id", "field", "excerpt", "kind", "url"}
 
-# The "Rows by chart" table in docs/api.md, as field sets. Dimension fields such as
-# "country" vary with the question, so they are checked through the encoding instead.
-ROWS: dict[str, dict[str, set[str]]] = {
-    "stat": {"rows": {"label", "trial_count", "citations"}},
-    "bar_chart": {"rows": DATUM},
-    "horizontal_bar_chart": {"rows": {"key", *DATUM}},
-    "donut_chart": {"rows": {"key", *DATUM}},
-    "treemap": {"rows": {"key", *DATUM}},
-    "choropleth_map": {"rows": {"key", "iso_a3", "iso_numeric", *DATUM}},
-    # A table draws whatever rows its answer has, a list or nodes with edges or links.
-    "table": {},
-    "grouped_bar_chart": {"rows": DATUM},
-    "stacked_bar_chart": {"rows": DATUM},
-    "normalized_stacked_bar_chart": {"rows": DATUM},
-    "heatmap": {"rows": DATUM},
-    "time_series": {"rows": {"period", *DATUM}},
-    "stacked_area_chart": {"rows": {"period", *DATUM}},
-    "histogram": {"rows": {"bin_start", "bin_end", "label", "open_ended", *DATUM}},
-    "box_plot": {
-        "rows": {"n", "min", "q1", "median", "q3", "max", "whisker_low", "whisker_high"}
-        | {"mean", "small_sample", "outliers", *DATUM}
-    },
-    "scatter_plot": {"rows": {"nct_id", "title", "citations"}},
-    "bubble_chart": {"rows": {"nct_id", "title", "citations"}},
-    "scatter_plot_3d": {"rows": {"nct_id", "title", "citations"}},
-    "network_graph": {
-        "nodes": {"id", "label", "type", "degree", "community", "x", "y", "x3", "y3", "z3"} | DATUM,
-        "edges": {"source", "target", *DATUM},
-    },
-    "sankey": {
-        "nodes": {"id", "stage", "stage_label", "label", *DATUM},
-        "links": {"source", "target", *DATUM},
-    },
-    "timeline": {
-        "rows": {"nct_id", "title", "phase", "status", "sponsor", "start", "end"}
-        | {"enrollment", "url", "citations"}
-    },
-}
-ROWS["network_graph_3d"] = ROWS["network_graph"]
+def _table_chart(answer: dict[str, Any]) -> ChartType:
+    """A table draws the rows of the chart it accompanies."""
+    return ChartType(answer["visualization"]["type"])
 
 
 def _views() -> Iterator[tuple[str, dict[str, Any], Any]]:
@@ -81,7 +47,17 @@ def _views() -> Iterator[tuple[str, dict[str, Any], Any]]:
             continue
         shared = answer["visualization"]["data"]
         for view in [answer["visualization"], *answer["alternatives"]]:
-            yield path.stem, view, shared if view["data"] is None else view["data"]
+            data = shared if view["data"] is None else view["data"]
+            chart = ChartType(view["type"])
+            if chart is ChartType.TABLE:
+                chart = _table_chart(answer) if view["data"] is None else _shape_of(data)
+            yield path.stem, view | {"shape": chart}, data
+
+
+def _shape_of(rows: Any) -> ChartType:
+    """The chart whose row model fits a table carrying rows of its own."""
+    first = rows[0] if isinstance(rows, list) and rows else {}
+    return ChartType.BOX_PLOT if "median" in first else ChartType.HISTOGRAM
 
 
 def _parts(data: Any) -> dict[str, list[dict[str, Any]]]:
@@ -99,18 +75,20 @@ def test_every_saved_answer_is_the_published_response_model_and_served_unchanged
         assert served.status_code == 200 and served.json() == saved, path.stem
 
 
-def test_every_chart_carries_the_rows_docs_api_describes() -> None:
+def test_every_chart_carries_the_rows_its_published_model_describes() -> None:
     for sample, view, data in _views():
         assert data, (sample, view["type"])
-        for part, required in ROWS[view["type"]].items():
-            rows = _parts(data)[part]
-            assert rows, (sample, view["type"], part)
+        validate_rows(view["shape"], data)
+        for rows in _parts(data).values():
+            ids = [row["id"] for row in rows]
+            assert len(ids) == len(set(ids)), (sample, view["type"], "ids repeat")
             for row in rows:
-                missing = required - row.keys()
-                assert not missing, (sample, view["type"], part, missing)
                 for citation in row.get("citations", []):
-                    assert citation.keys() >= CITATION, (sample, citation)
                     assert citation["url"].endswith(citation["nct_id"]), (sample, citation)
+        if view["vega_lite"] and "values" in view["vega_lite"].get("data", {}):
+            # A clicked mark carries its row's id, as docs/api.md promises.
+            values = view["vega_lite"]["data"]["values"]
+            assert [v["id"] for v in values] == [row["id"] for row in data], sample
 
 
 def test_every_encoding_names_a_field_its_rows_carry() -> None:
@@ -122,17 +100,58 @@ def test_every_encoding_names_a_field_its_rows_carry() -> None:
 
 def test_docs_name_every_row_field_and_the_samples_draw_every_chart() -> None:
     api = (ROOT / "docs" / "api.md").read_text()
-    table = api[api.index("### Rows by chart") : api.index("## Response to `/v1/interpret`")]
+    table = api[api.index("### Rows by chart") : api.index("### Drawing an answer")]
     documented = set(re.findall(r"`([a-z0-9_]+)`", table))
-    for parts in ROWS.values():
-        for fields in parts.values():
-            assert fields <= documented | {"rows"}, fields - documented
+    for model in ROWS.values():
+        for name in model.model_fields:
+            nested = name in {"nodes", "edges", "links"}
+            assert nested or name in documented, (model.__name__, name)
     drawn = {view["type"] for _, view, _ in _views()}
     assert drawn == {chart.value for chart in ChartType}, {c.value for c in ChartType} - drawn
 
 
+def test_the_published_schema_types_every_chart_row() -> None:
+    schema = (
+        TestClient(create_app(_settings(), interpreter=RuleBasedInterpreter()))
+        .get("/openapi.json")
+        .json()
+    )
+    components = schema["components"]["schemas"]
+    text = json.dumps(schema)
+    assert set(re.findall(r"#/components/schemas/([A-Za-z_]+)", text)) <= set(components)
+    data = components["Visualization"]["properties"]["data"]["anyOf"]
+    named = {
+        ref.split("/")[-1]
+        for ref in re.findall(r'"(#/components/schemas/[A-Za-z]+)"', json.dumps(data))
+    }
+    assert named == {model.__name__ for model in ROWS.values()}
+
+
+def test_every_sample_downloads_as_csv() -> None:
+    client = TestClient(create_app(_settings(), interpreter=RuleBasedInterpreter()))
+    for path in SAMPLES:
+        answer = json.loads(path.read_text())["response"]
+        data = answer["visualization"]["data"]
+        parts = ["links", "nodes"] if isinstance(data, dict) else ["links"]
+        for part in parts:
+            response = client.get(f"/v1/samples/{path.stem}/csv", params={"part": part})
+            assert response.status_code == 200, path.stem
+            header, *lines = list(csv.reader(io.StringIO(response.text)))
+            assert "citations" not in header and "id" in header, (path.stem, header)
+            rows = (
+                data
+                if isinstance(data, list)
+                else data["nodes" if part == "nodes" else ("edges" if "edges" in data else "links")]
+            )
+            assert len(lines) == len(rows), (path.stem, part)
+
+
 def _settings(**overrides: Any) -> Settings:
-    base: dict[str, Any] = {"anthropic_api_key": None, "ctgov_cache_dir": None}
+    base: dict[str, Any] = {
+        "anthropic_api_key": None,
+        "ctgov_cache_dir": None,
+        "answer_store_dir": None,
+    }
     return Settings(_env_file=None, **{**base, **overrides})  # type: ignore[call-arg]
 
 

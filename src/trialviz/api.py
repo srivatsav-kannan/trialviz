@@ -15,6 +15,7 @@ examples live in `openapi.py`.
 
 from __future__ import annotations
 
+import asyncio
 import json
 import re
 from collections.abc import AsyncIterator
@@ -25,13 +26,14 @@ from typing import Annotated, Any
 
 from fastapi import Body, Depends, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import Response
 
 from trialviz.answer import Answer, QueryResponse
+from trialviz.export import Part, to_csv
 from trialviz.limits import (
     AnswerSlots,
     BodySizeLimit,
@@ -44,6 +46,7 @@ from trialviz.limits import (
 )
 from trialviz.llm.budget import BudgetExceeded, FileLedger, Ledger, PostgresLedger
 from trialviz.openapi import (
+    ANSWER_NOT_FOUND,
     ANSWER_TIMEOUT,
     DESCRIPTION,
     INTERNAL_ERROR,
@@ -67,15 +70,18 @@ from trialviz.openapi import (
     resolution_examples,
 )
 from trialviz.pipeline import AnswerTimeout, Pipeline
+from trialviz.progress import Progress, listening
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter
 from trialviz.query.interpreters.rules import RuleBasedInterpreter
 from trialviz.query.request import QueryRequest
-from trialviz.query.resolution import Resolution
+from trialviz.query.resolution import ClarificationNeeded, Resolution
 from trialviz.query.resolver import QueryResolver
 from trialviz.retrieval.client import RegistryQueryError, RegistryUnavailable
 from trialviz.retrieval.retriever import Retriever, build_retriever
 from trialviz.settings import Settings
+from trialviz.store import AnswerStore, FileStore, NoStore, PostgresStore, key_for
+from trialviz.visualization.contract import component_schemas
 
 UI_DIRECTORY = Path(__file__).parent / "ui"
 """The demo UI and the API reference page, plain HTML, CSS and JavaScript."""
@@ -84,6 +90,7 @@ QueryBody = Annotated[QueryRequest, Body(openapi_examples=REQUEST_EXAMPLES)]
 """The request body of both question endpoints, with the examples the reference offers."""
 
 _SAMPLE_NAME = re.compile(r"[0-9a-z_]+")
+_ANSWER_ID = re.compile(r"[0-9a-f]{20}")
 
 _REVALIDATE = {"Cache-Control": "no-cache"}
 
@@ -112,6 +119,16 @@ def build_ledger(settings: Settings) -> Ledger:
     )
 
 
+def build_store(settings: Settings) -> AnswerStore:
+    """Saved answers in Postgres when a database is configured, else in local files, or
+    nowhere when the folder is unset."""
+    if settings.database_url is not None:
+        return PostgresStore(settings.database_url.get_secret_value(), settings.answers_kept)
+    if settings.answer_store_dir is not None:
+        return FileStore(settings.answer_store_dir, settings.answers_kept)
+    return NoStore()
+
+
 def build_interpreter(settings: Settings, ledger: Ledger | None = None) -> Interpreter:
     """Claude first when a key is configured, with the rule-based interpreter behind it."""
     rules = RuleBasedInterpreter()
@@ -132,6 +149,7 @@ def create_app(
     interpreter: Interpreter | None = None,
     retriever: Retriever | None = None,
     ledger: Ledger | None = None,
+    store: AnswerStore | None = None,
 ) -> FastAPI:
     settings = settings or Settings()
     if interpreter is None and ledger is None and settings.anthropic_api_key is not None:
@@ -169,6 +187,20 @@ def create_app(
     owned = retriever is None
     retriever = retriever or build_retriever(settings)
     pipeline = Pipeline(resolver, retriever, deadline_seconds=settings.answer_deadline_seconds)
+    store = store or build_store(settings)
+
+    async def answer(request: QueryRequest) -> Answer | ClarificationNeeded | dict[str, Any]:
+        """A saved answer to the same request against the same data if there is one, which
+        costs nothing; otherwise a new answer, saved under its id."""
+        key = key_for(request, await retriever.data_version())
+        if (saved := await store.get(key)) is not None:
+            return saved
+        async with slots.take():
+            result = await pipeline.run(request)
+        if result.answer is not None:
+            result.answer.meta.answer_id = key
+            await store.put(key, result.answer.model_dump(mode="json"))
+        return result.response
 
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
@@ -191,6 +223,19 @@ def create_app(
         redoc_url=None,
         lifespan=lifespan,
     )
+
+    generate_openapi = app.openapi
+
+    def openapi_with_row_models() -> dict[str, Any]:
+        # The chart row models are referenced by the `data` fields but used by no route,
+        # so FastAPI does not collect them. They are added here, once.
+        if app.openapi_schema is None:
+            schema = generate_openapi()
+            schema["components"]["schemas"].update(component_schemas())
+            app.openapi_schema = schema
+        return app.openapi_schema
+
+    app.openapi = openapi_with_row_models  # type: ignore[method-assign]
 
     for page, file in [("/", "index.html"), ("/samples", "index.html"), ("/docs", "api.html")]:
         app.add_api_route(page, _page(file), methods=["GET"], include_in_schema=False)
@@ -260,8 +305,89 @@ def create_app(
         Questions are rate limited per client and overall (see `GET /v1/status` and the
         RateLimit headers on every answer), and only a few are answered at once.
         """
-        async with slots.take():
-            return (await pipeline.run(request)).response
+        return await answer(request)
+
+    @app.post(
+        "/v1/query/stream",
+        tags=["Answers"],
+        summary="Answer a question, reporting progress",
+        operation_id="answerQuestionWithProgress",
+        response_class=StreamingResponse,
+        responses={
+            200: {
+                "description": "Server-sent events: `progress` events (a Progress object) while "
+                "the answer is computed, then one `answer` event carrying exactly what "
+                "`POST /v1/query` returns, or one `error` event carrying the error envelope "
+                "with its `status`. A comment line is sent every 15 seconds while nothing "
+                "else is, so proxies keep the connection open.",
+                "headers": RATE_LIMIT_HEADERS,
+                "content": {"text/event-stream": {"schema": Progress.model_json_schema()}},
+            },
+            413: REQUEST_TOO_LARGE,
+            422: INVALID_REQUEST,
+            429: RATE_LIMITED,
+            503: SERVICE_BUSY,
+        },
+        dependencies=[Depends(question_quota)],
+    )
+    async def query_stream(request: QueryBody) -> StreamingResponse:
+        """Takes the same body as `POST /v1/query` and streams the answer as it is computed,
+        so a frontend can show which stage it is in and how many trial records have arrived
+        instead of a bare spinner. Limits, errors and saved answers work exactly as for
+        `POST /v1/query`, except that an error after the stream has started arrives as an
+        `error` event, since the status line has already been sent.
+        """
+        if slots.free == 0:
+            raise ServiceBusy(
+                f"The service is already answering {slots.size} questions. Try again shortly.",
+                retry_after=10,
+            )
+        return StreamingResponse(
+            _events(answer, request),
+            media_type="text/event-stream",
+            headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"},
+        )
+
+    @app.get(
+        "/v1/answers/{answer_id}",
+        response_model=Answer,
+        response_model_exclude_none=False,
+        tags=["Answers"],
+        summary="Reopen a saved answer",
+        operation_id="getAnswer",
+        responses={404: ANSWER_NOT_FOUND, 422: INVALID_REQUEST},
+    )
+    async def saved_answer(answer_id: str) -> Any:
+        """Returns an answer by the `meta.answer_id` it was given, without recomputing it, so
+        an answer can be shared as a link. The newest answers are kept, so an old one can
+        expire."""
+        return await _saved(answer_id)
+
+    @app.get(
+        "/v1/answers/{answer_id}/csv",
+        tags=["Answers"],
+        summary="Download a saved answer's rows as CSV",
+        operation_id="getAnswerCsv",
+        response_class=PlainTextResponse,
+        responses={
+            200: {"content": {"text/csv": {}}, "description": "The rows, one per line."},
+            404: ANSWER_NOT_FOUND,
+        },
+    )
+    async def saved_answer_csv(answer_id: str, part: Part = "links") -> Response:
+        """The recommended chart's rows as CSV, without citations, with lists such as
+        `nct_ids` joined by semicolons. For a network or Sankey diagram, `part` picks its
+        links (the default) or its nodes."""
+        saved = await _saved(answer_id)
+        if isinstance(saved, JSONResponse):
+            return saved
+        return _csv(saved, part, answer_id)
+
+    async def _saved(key: str) -> dict[str, Any] | JSONResponse:
+        saved = await store.get(key) if _ANSWER_ID.fullmatch(key) else None
+        if saved is None:
+            return _error(404, "answer_not_found", f"There is no saved answer {key!r}.")
+        return saved
 
     @app.post(
         "/v1/interpret",
@@ -319,6 +445,24 @@ def create_app(
         if not _SAMPLE_NAME.fullmatch(name) or not path.is_file():
             return _error(404, "sample_not_found", f"There is no saved sample named {name!r}.")
         return json.loads(path.read_text())["response"]
+
+    @app.get(
+        "/v1/samples/{name}/csv",
+        tags=["Samples"],
+        summary="Download a saved sample's rows as CSV",
+        operation_id="getSampleCsv",
+        response_class=PlainTextResponse,
+        responses={
+            200: {"content": {"text/csv": {}}, "description": "The rows, one per line."},
+            404: SAMPLE_NOT_FOUND,
+        },
+    )
+    async def sample_csv(name: str, part: Part = "links") -> Response:
+        """A saved sample's rows as CSV, exactly as for a saved answer."""
+        path = SAMPLES_DIRECTORY / f"{name}.json"
+        if not _SAMPLE_NAME.fullmatch(name) or not path.is_file():
+            return _error(404, "sample_not_found", f"There is no saved sample named {name!r}.")
+        return _csv(json.loads(path.read_text())["response"], part, name)
 
     @app.get(
         "/health",
@@ -382,15 +526,15 @@ def create_app(
     async def rate_limited(_: Request, error: RateLimited) -> JSONResponse:
         return _rate_limited(error)
 
-    @app.exception_handler(ServiceBusy)
-    async def busy(_: Request, error: ServiceBusy) -> JSONResponse:
-        response = _error(503, "busy", str(error))
-        response.headers["Retry-After"] = str(error.retry_after)
+    async def failed(_: Request, error: Exception) -> JSONResponse:
+        status, code, message, retry_after = _failure(error)
+        response = _error(status, code, message)
+        if retry_after is not None:
+            response.headers["Retry-After"] = str(retry_after)
         return response
 
-    @app.exception_handler(AnswerTimeout)
-    async def too_slow(_: Request, error: AnswerTimeout) -> JSONResponse:
-        return _error(504, "answer_timeout", str(error))
+    for failure in (ServiceBusy, AnswerTimeout, RegistryQueryError, RegistryUnavailable, Exception):
+        app.add_exception_handler(failure, failed)
 
     @app.exception_handler(StarletteHTTPException)
     async def http_error(_: Request, error: StarletteHTTPException) -> JSONResponse:
@@ -404,20 +548,6 @@ def create_app(
             codes.get(error.status_code, "http_error"),
             message.get(error.status_code, str(error.detail)),
         )
-
-    @app.exception_handler(Exception)
-    async def unexpected(_: Request, error: Exception) -> JSONResponse:
-        return _error(
-            500, "internal_error", f"The service failed unexpectedly ({type(error).__name__})."
-        )
-
-    @app.exception_handler(RegistryQueryError)
-    async def registry_rejected(_: Request, error: RegistryQueryError) -> JSONResponse:
-        return _error(502, "registry_rejected_query", str(error))
-
-    @app.exception_handler(RegistryUnavailable)
-    async def registry_down(_: Request, error: RegistryUnavailable) -> JSONResponse:
-        return _error(503, "registry_unavailable", str(error))
 
     @app.exception_handler(RequestValidationError)
     async def invalid_request(_: Request, error: RequestValidationError) -> JSONResponse:
@@ -440,6 +570,69 @@ def create_app(
         )
 
     return app
+
+
+def _failure(error: Exception) -> tuple[int, str, str, int | None]:
+    """The status, code, message and Retry-After for a failure while answering, shared by
+    the JSON endpoints and the stream's `error` event."""
+    match error:
+        case ServiceBusy():
+            return 503, "busy", str(error), error.retry_after
+        case AnswerTimeout():
+            return 504, "answer_timeout", str(error), None
+        case RegistryQueryError():
+            return 502, "registry_rejected_query", str(error), None
+        case RegistryUnavailable():
+            return 503, "registry_unavailable", str(error), None
+    return 500, "internal_error", f"The service failed unexpectedly ({type(error).__name__}).", None
+
+
+KEEP_ALIVE_SECONDS = 15.0
+
+
+async def _events(answer: Any, request: QueryRequest) -> AsyncIterator[str]:
+    """The stream for one question: progress as it happens, then the answer or the error.
+    The work runs in its own task, so a client that disconnects cancels it."""
+    queue: asyncio.Queue[tuple[str, str] | None] = asyncio.Queue()
+
+    async def work() -> None:
+        with listening(lambda step: queue.put_nowait(("progress", step.model_dump_json()))):
+            try:
+                response = await answer(request)
+                body = response if isinstance(response, dict) else response.model_dump(mode="json")
+                queue.put_nowait(("answer", json.dumps(body)))
+            except Exception as error:
+                status, code, message, retry_after = _failure(error)
+                failure = {"code": code, "message": message, "details": []}
+                payload: dict[str, Any] = {"status": status, "error": failure}
+                if retry_after is not None:
+                    payload["retry_after"] = retry_after
+                queue.put_nowait(("error", json.dumps(payload)))
+            finally:
+                queue.put_nowait(None)
+
+    task = asyncio.create_task(work())
+    try:
+        while True:
+            try:
+                event = await asyncio.wait_for(queue.get(), KEEP_ALIVE_SECONDS)
+            except TimeoutError:
+                yield ": still working\n\n"
+                continue
+            if event is None:
+                return
+            kind, data = event
+            yield f"event: {kind}\ndata: {data}\n\n"
+    finally:
+        task.cancel()
+
+
+def _csv(answer: dict[str, Any], part: Part, name: str) -> Response:
+    return Response(
+        to_csv(answer, part),
+        media_type="text/csv; charset=utf-8",
+        headers={"Content-Disposition": f'attachment; filename="{name}.csv"'},
+    )
 
 
 def _page(file: str) -> Any:

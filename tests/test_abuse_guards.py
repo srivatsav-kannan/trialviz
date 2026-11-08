@@ -29,7 +29,11 @@ QUESTION = {"query": "How are melanoma trials distributed across phases?"}
 def _settings(**overrides: Any) -> Settings:
     # One trusted proxy in front, as on the deployed service, so each test can choose the
     # client's address through X-Forwarded-For.
-    base: dict[str, Any] = {"anthropic_api_key": None, "ctgov_cache_dir": None}
+    base: dict[str, Any] = {
+        "anthropic_api_key": None,
+        "ctgov_cache_dir": None,
+        "answer_store_dir": None,
+    }
     return Settings(_env_file=None, trusted_proxy_hops=1, **{**base, **overrides})  # type: ignore[call-arg]
 
 

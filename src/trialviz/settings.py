@@ -58,6 +58,11 @@ class Settings(BaseSettings):
         4, ge=1, description="Questions answered at once; more get a 503 to retry shortly."
     )
     max_body_bytes: int = Field(16_384, ge=1024, description="Largest request body accepted.")
+    answer_store_dir: Path | None = Field(
+        Path("var/answers"),
+        description="Where answers are saved when no database is configured; unset, none are.",
+    )
+    answers_kept: int = Field(1000, ge=1, description="How many of the newest answers are kept.")
     cors_allow_origins: str = Field(
         "*",
         description="Origins whose pages may call the API from a browser, comma-separated. "
@@ -70,8 +75,9 @@ class Settings(BaseSettings):
         "X-Forwarded-For, the one the proxy added, which a client cannot forge.",
     )
 
-    @field_validator("llm_daily_cap_usd", mode="before")
+    @field_validator("llm_daily_cap_usd", "ctgov_cache_dir", "answer_store_dir", mode="before")
     @classmethod
-    def _empty_means_no_daily_cap(cls, value: object) -> object:
-        # A host may not let a variable be deleted, only emptied.
+    def _empty_means_none(cls, value: object) -> object:
+        # A host may not let a variable be deleted, only emptied, so empty means unset:
+        # no daily cap, no cache, no saved answers.
         return None if isinstance(value, str) and not value.strip() else value

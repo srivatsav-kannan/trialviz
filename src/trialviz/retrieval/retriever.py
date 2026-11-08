@@ -158,6 +158,10 @@ class Retriever:
     async def aclose(self) -> None:
         await self._client.aclose()
 
+    async def data_version(self) -> str:
+        """The registry's current data version, which saved answers are keyed by."""
+        return await self._client.data_version()
+
     @staticmethod
     def counts_only(plan: Plan) -> bool:
         """Whether the results are registry counts, so records are needed only to cite."""

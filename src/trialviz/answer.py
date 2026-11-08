@@ -84,6 +84,11 @@ class AnswerMeta(BaseModel):
     registry_requests: list[str] = Field(
         description="Every ClinicalTrials.gov request behind the numbers, as full URLs."
     )
+    answer_id: str | None = Field(
+        None,
+        description="The id this answer is saved under: GET /v1/answers/{answer_id} reopens it "
+        "and /v1/answers/{answer_id}/csv downloads its rows. Null for saved samples.",
+    )
 
 
 class Answer(BaseModel):

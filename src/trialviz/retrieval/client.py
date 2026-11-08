@@ -28,6 +28,7 @@ from typing import Any
 
 import httpx
 
+from trialviz import progress
 from trialviz.retrieval.translate import RegistryQuery
 
 API_ROOT = "https://clinicaltrials.gov/api/v2"
@@ -203,15 +204,20 @@ class RegistryClient:
                 params["countTotal"] = "true"
             body = await self._get("/studies", params)
             requests.append(f"{self._api_root}/studies?{httpx.QueryParams(params)}")
+            page = body.get("studies", [])
             if token is None:
                 total = int(body.get("totalCount", 0))
-            studies.extend(body.get("studies", []))
+                progress.records(len(page), min(limit, total))
+            else:
+                progress.records(len(page))
+            studies.extend(page)
             token = body.get("nextPageToken")
             if not token:
                 break
         return Fetched(tuple(studies[:limit]), total, tuple(requests))
 
     async def _get(self, path: str, params: Mapping[str, str]) -> dict[str, Any]:
+        progress.registry_request()
         if self._cache is None:
             return await self._request(path, params)
         version = await self.data_version()
