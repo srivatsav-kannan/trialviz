@@ -13,7 +13,10 @@ from datetime import date
 from typing import Any
 
 import httpx
+import httpx2
 from fastapi.testclient import TestClient
+from mcp import Client
+from mcp.client.streamable_http import streamable_http_client
 
 from trialviz.api import create_app
 from trialviz.query.interpreters.base import Interpretation
@@ -135,3 +138,25 @@ def test_oversized_bodies_are_refused_before_they_are_read() -> None:
         headers={"content-type": "application/json", **_as("203.0.113.5")},
     )
     assert streamed.status_code == 413
+
+
+async def test_agents_over_mcp_share_the_question_quota_of_the_http_api() -> None:
+    app = create_app(_settings(questions_per_minute=2), interpreter=RuleBasedInterpreter())
+    client = httpx2.AsyncClient(
+        transport=httpx2.ASGITransport(app=app),
+        base_url="http://test",
+        headers=_as("203.0.113.50"),
+    )
+    async with (
+        app.router.lifespan_context(app),
+        client,
+        Client(streamable_http_client("http://test/mcp", http_client=client)) as agent,
+    ):
+        asked = await agent.call_tool("interpret_question", {"request": QUESTION})
+        assert not asked.is_error and asked.structured_content["status"] == "resolved"
+        # The same client's next question over plain HTTP uses the last of its quota...
+        http = await client.post("/v1/interpret", json=QUESTION)
+        assert http.status_code == 200 and http.headers["ratelimit-remaining"] == "0"
+        # ...so the agent is refused with the same reason a browser would get.
+        refused = await agent.call_tool("interpret_question", {"request": QUESTION})
+        assert refused.is_error and "limit is 2 per minute" in refused.content[0].text

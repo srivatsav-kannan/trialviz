@@ -77,6 +77,7 @@ src/trialviz/
   progress.py        progress reports for the streaming endpoint, through a context variable
   store.py           saved answers keyed by request and data version, in files or Postgres
   export.py          an answer's rows as CSV
+  mcp_server.py      the same answers as MCP tools for AI agents, at /mcp
   llm/budget.py      the spend caps: a file ledger for local runs, a Postgres one when deployed
   limits.py          rate limits, the cap on answers in progress, body size, security headers
   settings.py        configuration

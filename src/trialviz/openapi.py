@@ -40,7 +40,8 @@ anything is fetched, and `POST /v1/query/stream` to receive progress events whil
 answer is computed. Every answer has a `meta.answer_id`: `GET /v1/answers/{id}` reopens it
 at no cost, `GET /v1/answers/{id}/csv` downloads its rows, and asking the same question
 again against the same registry data returns the saved answer without spending anything.
-Any web page can call the API, since it allows every origin.
+Any web page can call the API, since it allows every origin, and AI agents can use the same
+answers as tools over the Model Context Protocol at `/mcp`.
 
 ## How a request is read
 

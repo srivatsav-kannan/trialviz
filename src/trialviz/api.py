@@ -8,6 +8,8 @@ the answer is computed. Every answer is saved under `meta.answer_id`, which
 `GET /v1/answers/{answer_id}` reopens and `/csv` downloads, and a repeated question is served
 from it at no cost.
 
+`/mcp` offers the same answers to AI agents as tools over the Model Context Protocol.
+
 `POST /v1/interpret` resolves a request into a plan without fetching any data, so a
 caller can see exactly how a question was read (and which values came from where) before
 running it.
@@ -50,6 +52,7 @@ from trialviz.limits import (
     client_address,
 )
 from trialviz.llm.budget import BudgetExceeded, FileLedger, Ledger, PostgresLedger
+from trialviz.mcp_server import build_mcp
 from trialviz.openapi import (
     ANSWER_NOT_FOUND,
     ANSWER_TIMEOUT,
@@ -207,9 +210,17 @@ def create_app(
             await store.put(key, result.answer.model_dump(mode="json"))
         return result.response
 
+    async def read(request: QueryRequest) -> Resolution:
+        async with slots.take():
+            return await resolver.resolve(request)
+
+    async def load(key: str) -> dict[str, Any] | None:
+        return await store.get(key) if _ANSWER_ID.fullmatch(key) else None
+
     @asynccontextmanager
     async def lifespan(_: FastAPI) -> AsyncIterator[None]:
-        yield
+        async with agents.session_manager.run():
+            yield
         if owned:
             await retriever.aclose()
 
@@ -268,7 +279,7 @@ def create_app(
         CORSMiddleware,
         allow_origins=[o.strip() for o in settings.cors_allow_origins.split(",") if o.strip()],
         allow_methods=["GET", "POST"],
-        allow_headers=["content-type"],
+        allow_headers=["content-type", "mcp-protocol-version"],
         expose_headers=["Retry-After", "RateLimit-Limit", "RateLimit-Remaining", "RateLimit-Reset"],
         max_age=600,
     )
@@ -389,7 +400,7 @@ def create_app(
         return _csv(saved, part, answer_id)
 
     async def _saved(key: str) -> dict[str, Any] | JSONResponse:
-        saved = await store.get(key) if _ANSWER_ID.fullmatch(key) else None
+        saved = await load(key)
         if saved is None:
             return _error(404, "answer_not_found", f"There is no saved answer {key!r}.")
         return saved
@@ -420,8 +431,7 @@ def create_app(
         how a question will be read before spending time on retrieval. It counts against the
         same question limits as `POST /v1/query`, since it can call the language model.
         """
-        async with slots.take():
-            return await resolver.resolve(request)
+        return await read(request)
 
     @app.get(
         "/v1/samples",
@@ -527,10 +537,6 @@ def create_app(
             client=client(request),
         )
 
-    @app.exception_handler(RateLimited)
-    async def rate_limited(_: Request, error: RateLimited) -> JSONResponse:
-        return _rate_limited(error)
-
     async def failed(_: Request, error: Exception) -> JSONResponse:
         status, code, message, retry_after = _failure(error)
         response = _error(status, code, message)
@@ -538,7 +544,14 @@ def create_app(
             response.headers["Retry-After"] = str(retry_after)
         return response
 
-    for failure in (ServiceBusy, AnswerTimeout, RegistryQueryError, RegistryUnavailable, Exception):
+    for failure in (
+        RateLimited,
+        ServiceBusy,
+        AnswerTimeout,
+        RegistryQueryError,
+        RegistryUnavailable,
+        Exception,
+    ):
         app.add_exception_handler(failure, failed)
 
     @app.exception_handler(StarletteHTTPException)
@@ -574,13 +587,26 @@ def create_app(
             },
         )
 
+    # AI agents reach the same answers over MCP at /mcp, under the same limits.
+    agents, mcp_app = build_mcp(
+        answer=answer,
+        interpret=read,
+        saved=load,
+        quota=question_quota,
+        failure=_failure,
+        samples=SAMPLES_DIRECTORY,
+    )
+    app.router.routes.extend(mcp_app.routes)
+
     return app
 
 
 def _failure(error: Exception) -> tuple[int, str, str, int | None]:
     """The status, code, message and Retry-After for a failure while answering, shared by
-    the JSON endpoints and the stream's `error` event."""
+    the JSON endpoints, the stream's `error` event and the MCP tools."""
     match error:
+        case RateLimited():
+            return 429, "rate_limited", str(error), error.retry_after
         case ServiceBusy():
             return 503, "busy", str(error), error.retry_after
         case AnswerTimeout():

@@ -11,6 +11,7 @@ This page lists every endpoint, request field and response field, with the value
 | `POST /v1/query/stream` | Takes the same request and streams the answer as [server-sent events](#streaming-progress): progress while it is computed, then the answer itself. |
 | `GET /v1/answers/{answer_id}` | Reopens a [saved answer](#saved-answers-and-csv) by its `meta.answer_id`, without recomputing it, or returns a 404 once it has expired. |
 | `GET /v1/answers/{answer_id}/csv` | Downloads a saved answer's rows as CSV. |
+| `POST /mcp` | The same answers as tools for AI agents, over the [Model Context Protocol](#ai-agents-over-mcp). |
 | `GET /health` | Returns `{"status": "ok"}`. It is never rate limited, so a host can poll it. |
 | `GET /v1/status` | Reports whether Claude or the rules read questions, how much of the language-model budget is left, and how many questions you may still ask. See [Limits](#limits). |
 | `GET /`, `GET /samples` | Serve the demo UI's two pages, asking questions and browsing saved answers. `/?answer={answer_id}` reopens a saved answer and `/samples?open={name}` a sample, which are the links the UI copies. Their files live under `/ui`. |
@@ -196,6 +197,23 @@ for (let chunk; !(chunk = await reader.read()).done; ) {
 Every answer is saved under `meta.answer_id`, a hash of the request and the registry's data version, so the same request against the same data always has the same id. `GET /v1/answers/{answer_id}` reopens it without recomputing anything, which makes an answer shareable as a link, and asking the same question again returns the saved answer without calling the language model or the registry. A new registry data version, which arrives daily, gives new ids, so a saved answer is never served for data it was not computed from. The newest 1,000 answers are kept (`ANSWERS_KEPT`), in Postgres on a deployed service and in files locally, and a store that fails only means the answer is computed again.
 
 `GET /v1/answers/{answer_id}/csv` and `GET /v1/samples/{name}/csv` return the recommended chart's rows as CSV, with every field except citations and lists such as `nct_ids` joined by semicolons. A network or Sankey diagram has two tables, so `?part=links` (the default, with both ends' labels) or `?part=nodes` picks one. Text a spreadsheet would run as a formula is prefixed with an apostrophe, since titles and sponsor names are free text.
+
+### AI agents over MCP
+
+`/mcp` serves the same answers as tools for AI agents, over the Model Context Protocol's streamable HTTP transport, so an assistant such as Claude Desktop or Claude Code can answer clinical-trial questions with trialviz instead of from memory. In Claude Code:
+
+```bash
+claude mcp add --transport http trialviz https://trialviz.onrender.com/mcp
+```
+
+| Tool | What it does |
+| --- | --- |
+| `ask` | Answers a request (the same body as `POST /v1/query`) and reports progress to clients that ask for it |
+| `interpret_question` | Returns the plan a request resolves to, as `POST /v1/interpret` does |
+| `get_answer` | Reopens a saved answer by its `answer_id`, compact by default or complete with `full` |
+| `list_samples`, `get_sample` | Browse the saved sample answers |
+
+An agent reads every token it is given, so `ask` returns a compact answer: the chart, its reason, the alternatives, the cohort totals, up to 50 rows without their trial ID lists but with one citation each, the notes, and links to the answer in the UI, its CSV and the complete response. The tools run the same code as the HTTP endpoints, so a question asked through MCP counts against the same per-client limits and spending cap and is refused with the same message, and is saved under the same `answer_id`. The endpoint is stateless and needs no sign-in, since the API is public and read-only.
 
 ## Response to `/v1/interpret`
 
