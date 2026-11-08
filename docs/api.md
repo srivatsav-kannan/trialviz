@@ -102,16 +102,16 @@ Like every other slot, it can be set by the caller, inferred from the question (
 | `meta.chart_choice` | The recommended chart, the alternatives and the charts ruled out, each with a reason |
 | `meta.cohorts` | For each cohort, its `label`, the exact `total`, how many records were `fetched`, `truncated` when the results describe only part of the matching trials, and the number of mention-only trials. An answer made of the registry's own counts, such as a count or a comparison of totals, fetches only the records it cites and is not truncated. |
 | `meta.mentions` | For each cohort with mention-only trials, their exact total, whether they were counted, the IDs of the trials fetched (up to 30 when they are not counted, all of them when they are), and quoted sentences as citations |
-| `meta.registry_requests` | Every ClinicalTrials.gov request made for the answer, including the lookups of MeSH terms under a condition and the exact counts |
+| `meta.registry_requests` | Every ClinicalTrials.gov request made for the answer, as a full URL a reader can open, including the lookups of MeSH terms under a condition and the exact counts |
 | `meta.data_version` | The registry's data timestamp at the time of answering |
-| `meta.interpreter` | Which interpreter read the question, or null when the question was not read |
+| `meta.interpreter` | Which interpreter read the question: `rules`, or `claude:` followed by the model name, such as `claude:claude-opus-5-5`. It is null when the question was not read. `GET /v1/status` names the interpreter family only (`claude` or `rules`). |
 | `meta.source` | Always `clinicaltrials.gov` |
 
 [visualization.md](visualization.md) explains how charts are chosen and the encoding conventions, and real responses are saved in [examples/](../examples).
 
 ### Rows by chart
 
-Every count-like datum has `trial_count`, `nct_ids` listing every contributing trial, and `citations`, whose format [aggregation.md](aggregation.md#citations) describes.
+Every count-like datum other than `stat` has `trial_count`, `nct_ids` and `citations`, whose format [aggregation.md](aggregation.md#citations) describes. `nct_ids` lists every trial behind the count, with one exception: when the counts were taken from the registry (a `counts_exact_from_registry` note, a count, or a comparison of totals), only part of the trials was fetched, so `trial_count` can be larger than `nct_ids`, which then lists the fetched trials, and a group can have a count with no IDs at all. A `stat` row carries only its count and citations, since the number can run to thousands of trials.
 
 | Charts | `data` |
 | --- | --- |
@@ -125,6 +125,35 @@ Every count-like datum has `trial_count`, `nct_ids` listing every contributing t
 | Network, in 2D and 3D | `{"nodes": [...], "edges": [...]}`. A node has `id`, `label`, `type`, `degree`, `community`, `x`, `y`, `x3`, `y3`, `z3` and the datum fields. An edge has `source`, `target` and the datum fields, and its citations show each trial's value for both ends, or for two drugs, the arm that gives them together. |
 | `sankey` | `{"nodes": [...], "links": [...]}`. A node has `id`, `stage`, `stage_label`, `label` and the datum fields. A link has `source`, `target` and the datum fields, with citations for both of its stages. |
 | `timeline` | One row per trial, with `nct_id`, `title`, `phase`, `status`, `sponsor`, `start`, `end`, `enrollment`, `url` and `citations` |
+
+### Drawing an answer
+
+The rows are the data, and `encoding` says which field each visual channel reads, so a frontend that does not use the Vega-Lite spec can draw every chart from these two alone. Each channel has `field`, `type` (`nominal`, `ordinal`, `quantitative` or `temporal`), `title`, and where it matters `sort` (a list giving the order of categories, or `descending`), `scale` (`symlog` for skewed measures) and `stack` (`zero` or `normalize`).
+
+| Chart | Channels |
+| --- | --- |
+| `stat` | `value` |
+| `bar_chart`, `time_series`, `stacked_area_chart` | `x`, `y`, and `color` for a series |
+| `horizontal_bar_chart` | `y` for the category, `x` for the count |
+| `donut_chart` | `theta` for the count, `color` for the category |
+| `treemap` | `size` for the count, `label` for the category |
+| `choropleth_map` | `geo` (the field holding the numeric ISO code), `color`, `label` |
+| `grouped_bar_chart` | `x`, `y`, `color`, and `x_offset`, the field that places bars side by side within a group |
+| `stacked_bar_chart`, `normalized_stacked_bar_chart` | `x`, `y` with its `stack`, `color` |
+| `heatmap` | `x`, `y`, and `color` for the count |
+| `histogram` | `x` (`bin_start`), `x2` (`bin_end`), `y` |
+| `box_plot` | `x` for the group, and `whisker_low`, `q1`, `median`, `q3`, `whisker_high` |
+| `scatter_plot` | `x`, `y`, `tooltip`, and `color` for a series |
+| `bubble_chart` | as `scatter_plot`, with `size` for the third measure |
+| `scatter_plot_3d` | as `scatter_plot`, with `z` for the third measure |
+| `network_graph`, `network_graph_3d` | `node_id`, `node_label`, `node_size`, `node_color`, `edge_source`, `edge_target`, `edge_width`, and positions `x`, `y` (2D) or `x`, `y`, `z` read from `x3`, `y3`, `z3` (3D) |
+| `sankey` | `source`, `target`, `value`, `node_label` |
+| `timeline` | `x` (`start`), `x2` (`end`), `y` (`title`), `color` (`phase`) |
+| `table` | none: `options.columns` lists the fields to show, in order, and a table over a network or flow shows its nodes and links |
+
+`options` carries what a chart needs beyond its channels. `display_limit` is the number of bars worth showing when there are many, which the Vega-Lite spec already applies with a rank filter. `bins_precomputed` says histogram rows are already binned, and `skewed` that the bins grow geometrically. `outliers_field` names the box plot field holding each group's outlying trials. A map has `topology` (a TopoJSON URL), `feature` and `id_matches`, the row field to join to each shape's `id`. A network's `positions` says its coordinates come from a fixed force layout scaled to -1 to 1, which a frontend may use or replace, and a Sankey's `stages` lists its stages in order.
+
+A few details save guesswork. The Vega-Lite spec's `data.values` are the rows in the same order, without `citations`, `nct_ids` or `outliers` to keep the spec small, so the mark at index `i` belongs to row `i` of `data`, where its trials and citations are. Periods are strings, `"2019"` for years and `"2019-03"` for months, and dates are `"2019-03-01"`, or `"2019-03"` when a record gives only the month. Read them as UTC: the specs use UTC time units, because a browser west of UTC would otherwise draw 2019 as the last day of 2018. The map's topology is the 110-meter Natural Earth outline, which leaves out a few small places such as Singapore and Hong Kong, so those countries appear in the rows and the table but not on the map. A `needs_clarification` answer lists in `missing` the request fields that would resolve it, such as `filters.interventions` for a question about "this drug".
 
 ## Response to `/v1/interpret`
 
@@ -191,7 +220,7 @@ Each note in `notes` has a `code`, a `message`, and the `slot` it concerns when 
   "status": "needs_clarification",
   "reason": "ambiguous_reference",
   "message": "The question refers to \"this drug\" without naming it. Name it in the question, or set filters.interventions (or drug_name).",
-  "missing": [],
+  "missing": ["filters.interventions"],
   "notes": [],
   "interpreter": "rules"
 }
@@ -221,7 +250,7 @@ Every error uses one envelope, `{"error": {"code", "message", "details"}}`, so a
 }
 ```
 
-Every other failure uses the same envelope with an empty `details` list:
+A shorthand field is reported under the field it stands for, so an unknown `country` comes back at `filters.countries[0]`. Every other failure uses the same envelope with an empty `details` list:
 
 | Status | Code | Meaning |
 | --- | --- | --- |
@@ -248,7 +277,7 @@ Each question's response carries three headers that say where the client stands 
 | `RateLimit-Remaining` | Questions left in it |
 | `RateLimit-Reset` | Seconds until another question frees up |
 
-A refused request carries `Retry-After` instead. Behind a proxy, the client is identified by the address the proxy added to `X-Forwarded-For` (`TRUSTED_PROXY_HOPS`), so writing other addresses into that header does not earn a fresh quota.
+A refused request carries `Retry-After` instead. Every question counts against the limit as soon as it arrives, including one that turns out to be invalid, so a client should validate obvious mistakes before sending. Behind a proxy, the client is identified by the address the proxy added to `X-Forwarded-For` (`TRUSTED_PROXY_HOPS`), so writing other addresses into that header does not earn a fresh quota.
 
 The language-model budget has a total cap and an optional daily cap. Each call sets aside its worst-case cost before it is made and settles to the real cost afterwards, so concurrent calls cannot jointly cross a cap. On a deployed service the running total is kept in Postgres (`DATABASE_URL`), shared by every process and kept across restarts, and a hold left by a process that died mid-call is charged in full after ten minutes. If the database cannot be reached, the model is not called and the question is read by rules. `GET /v1/status` returns:
 
@@ -265,5 +294,7 @@ The language-model budget has a total cap and an optional daily cap. Each call s
   "client": "203.0.113.7"
 }
 ```
+
+A page on any origin can call the API from a browser. The API uses no cookies or credentials, so every response allows any origin by default (`CORS_ALLOW_ORIGINS` narrows it to a comma-separated list), a preflight is answered without counting against any limit, and `Retry-After` and the three RateLimit headers are exposed to scripts, so a frontend can show a countdown after a 429.
 
 Every response also carries security headers: a content security policy that lets the pages load scripts only from this service and one CDN and forbids framing, `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: no-referrer`, and `Strict-Transport-Security` when served over HTTPS.

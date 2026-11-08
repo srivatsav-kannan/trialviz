@@ -67,7 +67,7 @@ Two different dimensions, such as sponsors and drugs, link when they share a tri
 
 An arm is also not a combination when its wording says the drugs are alternatives: its label or description mentions a choice, "either", monotherapy or a single agent, or its short label reads "X or Y", describes switching, or names a dosing interval. Each drug link cites the arm that gives both drugs, and every other link cites the values at both of its ends. A drug's node counts every trial that gives it, including trials that list no arms, while its links come only from arms.
 
-The network keeps the 40 most frequent entities, or `presentation.top_n`, and the 300 strongest links, leaves out entities left with no links, and reports what was pruned in a note. Clusters come from label propagation run in a fixed order, so they are the same on every run.
+The network keeps the 40 most frequent entities, or `presentation.top_n`, and the 300 strongest links, then leaves out entities left with no links, so a network can show fewer than 40, and reports what was pruned in a note. Clusters come from label propagation run in a fixed order, so they are the same on every run.
 
 ### Grids
 

@@ -4470,7 +4470,7 @@
       },
       {
         "type": "heatmap",
-        "reason": "too many combinations for bars, so color shows the counts",
+        "reason": "every combination at once, with color showing its count",
         "encoding": {
           "x": {
             "field": "phase",
@@ -4801,7 +4801,7 @@
           },
           {
             "type": "heatmap",
-            "reason": "too many combinations for bars, so color shows the counts"
+            "reason": "every combination at once, with color showing its count"
           },
           {
             "type": "table",

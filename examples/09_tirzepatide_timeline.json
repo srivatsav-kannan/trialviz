@@ -486,7 +486,8 @@
           "x": {
             "field": "start",
             "type": "temporal",
-            "title": "Start"
+            "title": "Start",
+            "timeUnit": "utcyearmonthdate"
           },
           "x2": {
             "field": "end"
@@ -513,12 +514,14 @@
             {
               "field": "start",
               "type": "temporal",
-              "title": "Start"
+              "title": "Start",
+              "timeUnit": "utcyearmonthdate"
             },
             {
               "field": "end",
               "type": "temporal",
-              "title": "Completion"
+              "title": "Completion",
+              "timeUnit": "utcyearmonthdate"
             },
             {
               "field": "phase",

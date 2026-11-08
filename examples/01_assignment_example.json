@@ -3295,7 +3295,8 @@
           "x": {
             "field": "period",
             "type": "temporal",
-            "title": "Start year"
+            "title": "Start year",
+            "timeUnit": "utcyear"
           },
           "y": {
             "field": "trial_count",
@@ -3306,7 +3307,8 @@
             {
               "field": "period",
               "type": "temporal",
-              "title": "Start year"
+              "title": "Start year",
+              "timeUnit": "utcyear"
             },
             {
               "field": "trial_count",

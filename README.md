@@ -58,7 +58,7 @@ Each data point carries its trial count, the IDs of every trial behind it, and c
 }
 ```
 
-Every error has the same shape, `{"error": {"code", "message", "details"}}`. The full reference, with the rows each chart type uses, is in [docs/api.md](docs/api.md) and at `/docs` on the running service.
+Every error has the same shape, `{"error": {"code", "message", "details"}}`. Any web page can call the API directly, since it allows every origin and exposes its rate-limit headers. The full reference, with the rows and channels each chart type uses and how to draw it without Vega-Lite, is in [docs/api.md](docs/api.md) and at `/docs` on the running service.
 
 ## How a question becomes a chart
 
@@ -106,7 +106,7 @@ The question and the structured fields fill the same plan, with the caller's fie
 
 ### Retrieval
 
-How many requests a question becomes follows fixed rules: one query per group being compared, a count before any download, only the fields the chart needs, and at most 10,000 trials per query, taken in a fixed order when more match. An answer whose numbers are the registry's own counts, such as a single total, downloads only the few trials it cites.
+How many requests a question becomes follows fixed rules: one query per group being compared, a count before any download, only the fields the chart needs, and at most 10,000 trials per question, shared among a comparison's cohorts and taken in a fixed order when more match. An answer whose numbers are the registry's own counts, such as a single total, downloads only the few trials it cites.
 
 A drug or condition has to appear in the fields where a trial names its interventions or conditions. The registry's default search also reads descriptions, and in recorded queries about one in ten "Keytruda" trials only listed pembrolizumab as one allowed option among several. Searching the naming fields raised precision from about 90 percent to over 99 percent, at the cost of 3 to 15 percent of matches, and the trials left out are still reported in every answer as mentions, with quoted examples. Names of several words are searched as phrases, so that "type 1 diabetes" no longer matches a type 2 trial that happens to have the keyword "phase 1". A condition also includes the narrower MeSH terms filed under it, which the registry cannot search for directly, so "lung cancer" counts trials filed only under "Carcinoma, Non-Small-Cell Lung". [docs/retrieval.md](docs/retrieval.md) covers the measurements behind these choices.
 
@@ -127,7 +127,7 @@ TRIALVIZ_RECORD=1 uv run pytest tests/workflows  # re-records Claude and registr
 uv run python -m evals.run --interpreter claude  # scores interpretation, about $0.40 a run
 ```
 
-Most of the 50 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries. The last recount found two real errors, which were fixed before the answers were saved again. [docs/testing.md](docs/testing.md) describes each test.
+Most of the 57 offline tests run a whole question through the service, replayed from recordings of real Claude and registry traffic, and check that every trial fetched really matches the question, that the chart is the right one, and that every citation leads to the exact value in the record it cites. Three live tests check that the registry's search still behaves the way the service assumes, and a contract test holds every saved answer to what the API reference promises a frontend, after a developer who had only the docs built a working frontend from them. Beyond the tests, every saved answer was recomputed independently against the registry with separate queries. The last recount found two real errors, which were fixed before the answers were saved again. [docs/testing.md](docs/testing.md) describes each test.
 
 Interpretation is measured on 54 labeled questions, scored on the final plan. Claude (`claude-opus-5-5` at low effort) gets all 54 right and the rule-based interpreter gets 15, mostly because it cannot tell drugs from diseases. The questions and the prompt were written together, so [docs/evaluation.md](docs/evaluation.md) explains how far that score can be trusted.
 
@@ -155,6 +155,7 @@ Settings are read from the environment or from `.env`.
 | `REQUESTS_PER_MINUTE` | `120` | Other requests one client may make per minute |
 | `MAX_CONCURRENT_ANSWERS` | `4` | Questions answered at once |
 | `MAX_BODY_BYTES` | `16384` | Largest request body accepted |
+| `CORS_ALLOW_ORIGINS` | `*` | Origins whose pages may call the API from a browser, comma-separated |
 | `TRUSTED_PROXY_HOPS` | `0` | Proxies in front of the service, so clients are told apart by the address the proxy saw |
 
 ## Limitations

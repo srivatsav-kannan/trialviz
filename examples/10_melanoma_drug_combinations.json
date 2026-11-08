@@ -94,7 +94,7 @@
         "nodes": [
           {
             "id": "intervention:pembrolizumab",
-            "label": "pembrolizumab",
+            "label": "Pembrolizumab",
             "type": "intervention",
             "degree": 16,
             "community": 0,
@@ -536,7 +536,7 @@
           },
           {
             "id": "intervention:binimetinib",
-            "label": "binimetinib",
+            "label": "Binimetinib",
             "type": "intervention",
             "degree": 6,
             "community": 1,
@@ -707,7 +707,7 @@
           },
           {
             "id": "intervention:cemiplimab",
-            "label": "cemiplimab",
+            "label": "Cemiplimab",
             "type": "intervention",
             "degree": 3,
             "community": 3,
@@ -788,7 +788,7 @@
           },
           {
             "id": "intervention:encorafenib",
-            "label": "encorafenib",
+            "label": "Encorafenib",
             "type": "intervention",
             "degree": 6,
             "community": 1,
@@ -867,7 +867,7 @@
           },
           {
             "id": "intervention:trametinib",
-            "label": "trametinib",
+            "label": "Trametinib",
             "type": "intervention",
             "degree": 3,
             "community": 4,
@@ -1014,7 +1014,7 @@
           },
           {
             "id": "intervention:dabrafenib",
-            "label": "dabrafenib",
+            "label": "Dabrafenib",
             "type": "intervention",
             "degree": 3,
             "community": 4,
@@ -1088,7 +1088,7 @@
           },
           {
             "id": "intervention:fludarabine",
-            "label": "fludarabine",
+            "label": "Fludarabine",
             "type": "intervention",
             "degree": 4,
             "community": 2,
@@ -1227,7 +1227,7 @@
           },
           {
             "id": "intervention:atezolizumab",
-            "label": "atezolizumab",
+            "label": "Atezolizumab",
             "type": "intervention",
             "degree": 3,
             "community": 0,
@@ -1371,7 +1371,7 @@
           },
           {
             "id": "intervention:lenvatinib",
-            "label": "lenvatinib",
+            "label": "Lenvatinib",
             "type": "intervention",
             "degree": 3,
             "community": 0,
@@ -1514,7 +1514,7 @@
           },
           {
             "id": "intervention:relatlimab",
-            "label": "relatlimab",
+            "label": "Relatlimab",
             "type": "intervention",
             "degree": 3,
             "community": 0,
@@ -1760,7 +1760,7 @@
           },
           {
             "id": "intervention:tislelizumab",
-            "label": "tislelizumab",
+            "label": "Tislelizumab",
             "type": "intervention",
             "degree": 1,
             "community": 0,
@@ -1828,7 +1828,7 @@
           },
           {
             "id": "intervention:tebentafusp",
-            "label": "tebentafusp",
+            "label": "Tebentafusp",
             "type": "intervention",
             "degree": 1,
             "community": 0,
@@ -2084,7 +2084,7 @@
           },
           {
             "id": "intervention:cobimetinib",
-            "label": "cobimetinib",
+            "label": "Cobimetinib",
             "type": "intervention",
             "degree": 1,
             "community": 0,
@@ -2214,7 +2214,7 @@
           },
           {
             "id": "intervention:camrelizumab",
-            "label": "camrelizumab",
+            "label": "Camrelizumab",
             "type": "intervention",
             "degree": 1,
             "community": 0,
@@ -2463,7 +2463,7 @@
           },
           {
             "id": "intervention:avelumab",
-            "label": "avelumab",
+            "label": "Avelumab",
             "type": "intervention",
             "degree": 3,
             "community": 0,

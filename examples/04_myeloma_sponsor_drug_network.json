@@ -167,7 +167,7 @@
           },
           {
             "id": "intervention:daratumumab",
-            "label": "daratumumab",
+            "label": "Daratumumab",
             "type": "intervention",
             "degree": 5,
             "community": 0,
@@ -323,7 +323,7 @@
           },
           {
             "id": "intervention:pomalidomide",
-            "label": "pomalidomide",
+            "label": "Pomalidomide",
             "type": "intervention",
             "degree": 5,
             "community": 0,
@@ -512,7 +512,7 @@
           },
           {
             "id": "intervention:iberdomide",
-            "label": "iberdomide",
+            "label": "Iberdomide",
             "type": "intervention",
             "degree": 3,
             "community": 0,
@@ -558,7 +558,7 @@
           },
           {
             "id": "intervention:carfilzomib",
-            "label": "carfilzomib",
+            "label": "Carfilzomib",
             "type": "intervention",
             "degree": 3,
             "community": 0,
@@ -648,7 +648,7 @@
           },
           {
             "id": "intervention:talquetamab",
-            "label": "talquetamab",
+            "label": "Talquetamab",
             "type": "intervention",
             "degree": 1,
             "community": 0,
@@ -692,7 +692,7 @@
           },
           {
             "id": "intervention:elotuzumab",
-            "label": "elotuzumab",
+            "label": "Elotuzumab",
             "type": "intervention",
             "degree": 4,
             "community": 0,
@@ -735,7 +735,7 @@
           },
           {
             "id": "intervention:fludarabine",
-            "label": "fludarabine",
+            "label": "Fludarabine",
             "type": "intervention",
             "degree": 2,
             "community": 0,
@@ -778,7 +778,7 @@
           },
           {
             "id": "intervention:selinexor",
-            "label": "selinexor",
+            "label": "Selinexor",
             "type": "intervention",
             "degree": 4,
             "community": 0,
@@ -864,7 +864,7 @@
           },
           {
             "id": "intervention:isatuximab",
-            "label": "isatuximab",
+            "label": "Isatuximab",
             "type": "intervention",
             "degree": 1,
             "community": 0,
@@ -1271,7 +1271,7 @@
           },
           {
             "id": "intervention:belantamab mafodotin",
-            "label": "belantamab mafodotin",
+            "label": "Belantamab mafodotin",
             "type": "intervention",
             "degree": 1,
             "community": 0,

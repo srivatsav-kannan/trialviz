@@ -11312,14 +11312,6 @@
             "scale": "linear",
             "stack": null
           },
-          "z": {
-            "field": "site_count",
-            "type": "quantitative",
-            "title": "Number of sites (sites)",
-            "sort": null,
-            "scale": "linear",
-            "stack": null
-          },
           "tooltip": {
             "field": "title",
             "type": "nominal",
@@ -13567,14 +13559,6 @@
             "field": "duration_months",
             "type": "quantitative",
             "title": "Duration (months)",
-            "sort": null,
-            "scale": "linear",
-            "stack": null
-          },
-          "z": {
-            "field": "site_count",
-            "type": "quantitative",
-            "title": "Number of sites (sites)",
             "sort": null,
             "scale": "linear",
             "stack": null
