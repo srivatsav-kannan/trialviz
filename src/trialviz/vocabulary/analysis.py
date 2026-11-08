@@ -140,6 +140,8 @@ parse_measure = enum_parser(
 
 
 class TimeField(StrEnum):
+    """Which date a time series counts trials by."""
+
     START_DATE = "start_date"
     COMPLETION_DATE = "completion_date"
 
@@ -148,6 +150,8 @@ parse_time_field = enum_parser(TimeField, noun="time field")
 
 
 class TimeGranularity(StrEnum):
+    """How finely a time series buckets dates."""
+
     YEAR = "year"
     MONTH = "month"
 

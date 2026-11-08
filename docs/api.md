@@ -1,6 +1,6 @@
 # API reference
 
-This page lists every endpoint, request field and response field, with the values each one accepts. It is meant for anyone writing a client. The service also publishes an OpenAPI document at `/openapi.json` and interactive docs at `/docs`, both generated from the same Pydantic models that validate requests, so the two always agree with the code.
+This page lists every endpoint, request field and response field, with the values each one accepts. It is meant for anyone writing a client. The service also publishes an OpenAPI document at `/openapi.json`, generated from the same Pydantic models that validate requests, and renders it as an interactive reference at `/docs` with request examples, response examples cut from a saved answer, and a client for sending requests. The overview, examples and error descriptions in that reference live in `src/trialviz/openapi.py`, and its request examples are validated against the request model when the service starts.
 
 ## Endpoints
 
@@ -9,8 +9,9 @@ This page lists every endpoint, request field and response field, with the value
 | `POST /v1/query` | Answers a question with a recommended visualization, alternative views of the same data, and citations to the registry records behind every number. It returns either an [answer](#answer) or a [clarification](#needs_clarification), told apart by `status`. |
 | `POST /v1/interpret` | Takes the same request and returns the resolved plan, or what is needed to resolve it, without fetching any data, so a caller can see exactly how a question was understood before anything runs. |
 | `GET /health` | Returns `{"status": "ok"}`. |
-| `GET /` | Serves the demo UI, whose files live under `/ui`. |
-| `GET /v1/samples` | Lists the saved sample answers in `examples/` with each one's request, title, chart type and totals. The demo UI uses it for its gallery. |
+| `GET /`, `GET /samples` | Serve the demo UI's two pages, asking questions and browsing saved answers. Their files live under `/ui`. |
+| `GET /docs` | Serves the interactive API reference. |
+| `GET /v1/samples` | Lists the saved sample answers in `examples/` with each one's request, title, chart type and totals. The demo UI's samples page reads it. |
 | `GET /v1/samples/{name}` | Returns one saved answer exactly as `POST /v1/query` produced it, or a 404 for an unknown name. |
 
 ## Request

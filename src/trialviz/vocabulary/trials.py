@@ -14,6 +14,8 @@ from trialviz.vocabulary._parsing import enum_parser
 
 
 class Phase(StrEnum):
+    """A trial phase, as the registry stores it."""
+
     EARLY_PHASE1 = "EARLY_PHASE1"
     PHASE1 = "PHASE1"
     PHASE2 = "PHASE2"
@@ -81,6 +83,8 @@ def _split_combined_phase(text: str) -> list[str]:
 
 
 class OverallStatus(StrEnum):
+    """A trial's overall recruitment status, as the registry stores it."""
+
     NOT_YET_RECRUITING = "NOT_YET_RECRUITING"
     RECRUITING = "RECRUITING"
     ENROLLING_BY_INVITATION = "ENROLLING_BY_INVITATION"
@@ -107,6 +111,8 @@ parse_status = enum_parser(OverallStatus, {"unknown status": OverallStatus.UNKNO
 
 
 class SponsorClass(StrEnum):
+    """The lead sponsor's class, as the registry stores it."""
+
     INDUSTRY = "INDUSTRY"
     NIH = "NIH"
     FED = "FED"
@@ -147,6 +153,8 @@ parse_sponsor_class = enum_parser(
 
 
 class InterventionType(StrEnum):
+    """The type of an intervention, as the registry stores it."""
+
     DRUG = "DRUG"
     BIOLOGICAL = "BIOLOGICAL"
     DEVICE = "DEVICE"
@@ -177,6 +185,8 @@ parse_intervention_type = enum_parser(
 
 
 class StudyType(StrEnum):
+    """Interventional, observational or expanded access."""
+
     INTERVENTIONAL = "INTERVENTIONAL"
     OBSERVATIONAL = "OBSERVATIONAL"
     EXPANDED_ACCESS = "EXPANDED_ACCESS"

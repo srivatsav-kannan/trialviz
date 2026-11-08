@@ -45,24 +45,38 @@ Rows = list[dict[str, Any]] | dict[str, list[dict[str, Any]]]
 
 
 class Channel(BaseModel):
+    """One visual channel, such as an axis or the color, mapped to a field of the rows."""
+
     model_config = ConfigDict(frozen=True)
 
-    field: str
-    type: FieldType
-    title: str
-    sort: list[str] | Literal["ascending", "descending"] | None = None
+    field: str = Field(description="The row field this channel reads.")
+    type: FieldType = Field(description="How the field is read, in Vega-Lite's terms.")
+    title: str = Field(description="The axis or legend title.")
+    sort: list[str] | Literal["ascending", "descending"] | None = Field(
+        None, description="An explicit order of categories, or a sort direction."
+    )
     scale: Literal["linear", "symlog"] | None = Field(
         None,
         description="symlog: a log-like scale that also handles zero, for heavily skewed measures.",
     )
-    stack: Literal["zero", "normalize"] | None = None
+    stack: Literal["zero", "normalize"] | None = Field(
+        None, description="How marks stack: from zero, or normalized to shares."
+    )
 
 
 class View(BaseModel):
+    """A chart over the answer's data, ready to render."""
+
     type: ChartType
     reason: str = Field(description="Why this chart suits the data.")
-    encoding: dict[str, Channel]
-    options: dict[str, Any] = Field(default_factory=dict)
+    encoding: dict[str, Channel] = Field(
+        description="Visual channels (x, y, color, size and so on) mapped to row fields."
+    )
+    options: dict[str, Any] = Field(
+        default_factory=dict,
+        description="Chart-specific settings, such as `display_limit`, the map's TopoJSON "
+        "source, or the Sankey stages.",
+    )
     data: Rows | None = Field(
         None, description="Rows for this view. Null means it reuses the visualization's rows."
     )
@@ -72,9 +86,13 @@ class View(BaseModel):
 
 
 class Visualization(View):
-    title: str
-    subtitle: str | None = None
-    data: Rows
+    """The recommended chart, which always carries its own rows."""
+
+    title: str = Field(description="What was counted and how it was grouped.")
+    subtitle: str | None = Field(
+        None, description="Constraints that do not fit the title, such as countries or years."
+    )
+    data: Rows = Field(description="The rows the chart draws. Their fields depend on the chart.")
 
 
 # --- Rows ---------------------------------------------------------------------------------

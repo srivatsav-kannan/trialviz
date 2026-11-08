@@ -123,11 +123,23 @@ class QueryRequest(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
     query: QueryText = Field(description="The question, in plain language.")
-    filters: Filters = Field(default_factory=Filters)
-    analysis: AnalysisFields = Field(default_factory=AnalysisFields)
-    presentation: Presentation = Field(default_factory=Presentation)
-    retrieval: RetrievalOptions = Field(default_factory=RetrievalOptions)
-    inference: InferenceMode = InferenceMode.AUTO
+    filters: Filters = Field(
+        default_factory=Filters, description="Which trials to include. Every value is binding."
+    )
+    analysis: AnalysisFields = Field(
+        default_factory=AnalysisFields, description="What to compute over those trials."
+    )
+    presentation: Presentation = Field(
+        default_factory=Presentation, description="Chart preference, ordering and citations."
+    )
+    retrieval: RetrievalOptions = Field(
+        default_factory=RetrievalOptions, description="How drug and condition names match."
+    )
+    inference: InferenceMode = Field(
+        InferenceMode.AUTO,
+        description="`auto` lets the question fill unset fields; `off` uses only the fields "
+        "given, which makes the request fully deterministic.",
+    )
 
     drug_name: EntityName | None = Field(None, description="Shorthand for filters.interventions.")
     condition: EntityName | None = Field(None, description="Shorthand for filters.conditions.")

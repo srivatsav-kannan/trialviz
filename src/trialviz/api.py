@@ -8,7 +8,9 @@ caller can see exactly how a question was read (and which values came from where
 running it.
 
 Every error response has one shape, `{"error": {"code", "message", "details"}}`, so a
-client needs a single error handler.
+client needs a single error handler. The service also serves the demo UI at `/` and `/samples`,
+the saved sample answers under `/v1/samples`, and the API reference at `/docs`, whose text and
+examples live in `openapi.py`.
 """
 
 from __future__ import annotations
@@ -17,16 +19,30 @@ import json
 import re
 from datetime import date
 from pathlib import Path
-from typing import Any
+from typing import Annotated, Any
 
-from fastapi import FastAPI, Request
+from fastapi import Body, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import Response
 
-from trialviz.answer import QueryResponse
+from trialviz.answer import Answer, QueryResponse
 from trialviz.llm.budget import SpendLedger
+from trialviz.openapi import (
+    DESCRIPTION,
+    INVALID_REQUEST,
+    REGISTRY_REJECTED,
+    REGISTRY_UNAVAILABLE,
+    REQUEST_EXAMPLES,
+    SAMPLE_NOT_FOUND,
+    SAMPLES_DIRECTORY,
+    TAGS,
+    Health,
+    SampleSummary,
+    answer_examples,
+    resolution_examples,
+)
 from trialviz.pipeline import Pipeline
 from trialviz.query.interpreters.base import FallbackInterpreter, Interpreter
 from trialviz.query.interpreters.claude import ClaudeInterpreter
@@ -39,12 +55,10 @@ from trialviz.retrieval.retriever import Retriever, build_retriever
 from trialviz.settings import Settings
 
 UI_DIRECTORY = Path(__file__).parent / "ui"
-"""A single-page demo that calls /v1/query and renders every chart type, served at /."""
+"""The demo UI and the API reference page, plain HTML, CSS and JavaScript."""
 
-
-SAMPLES_DIRECTORY = Path(__file__).parents[2] / "examples"
-"""Saved responses to real questions, written by examples/run_examples.py. The demo UI shows
-them instantly, without spending on the language model or waiting on the registry."""
+QueryBody = Annotated[QueryRequest, Body(openapi_examples=REQUEST_EXAMPLES)]
+"""The request body of both question endpoints, with the examples the reference offers."""
 
 _SAMPLE_NAME = re.compile(r"[0-9a-z_]+")
 
@@ -86,39 +100,115 @@ def create_app(
     pipeline = Pipeline(resolver, retriever or build_retriever(settings))
 
     app = FastAPI(
-        title="trialviz",
-        summary="Questions about clinical trials in, visualization specs out.",
-        version="0.1.0",
+        title="trialviz API",
+        summary="Questions about clinical trials in, cited chart specifications out.",
+        description=DESCRIPTION,
+        version="1.0.0",
+        openapi_tags=TAGS,
+        servers=[{"url": "/", "description": "The server this reference is served from"}],
+        contact={
+            "name": "Source and documentation",
+            "url": "https://github.com/srivatsav-kannan/trialviz",
+        },
+        docs_url=None,
+        redoc_url=None,
     )
 
-    @app.get("/", include_in_schema=False)
-    async def home() -> FileResponse:
-        return FileResponse(UI_DIRECTORY / "index.html", headers=_REVALIDATE)
+    for page, file in [("/", "index.html"), ("/samples", "index.html"), ("/docs", "api.html")]:
+        app.add_api_route(page, _page(file), methods=["GET"], include_in_schema=False)
 
     app.mount("/ui", _RevalidatedStaticFiles(directory=UI_DIRECTORY), name="ui")
 
-    @app.get("/v1/samples", include_in_schema=False)
+    @app.post(
+        "/v1/query",
+        response_model=QueryResponse,
+        response_model_exclude_none=False,
+        tags=["Answers"],
+        summary="Answer a question",
+        operation_id="answerQuestion",
+        responses={
+            200: {
+                "description": "An answer, or what is needed before the question can be answered.",
+                "content": {"application/json": {"examples": answer_examples()}},
+            },
+            422: INVALID_REQUEST,
+            502: REGISTRY_REJECTED,
+            503: REGISTRY_UNAVAILABLE,
+        },
+    )
+    async def query(
+        request: Annotated[QueryRequest, Body(openapi_examples=REQUEST_EXAMPLES)],
+    ) -> Any:
+        """Reads the question and any structured fields, fetches the matching trials from
+        ClinicalTrials.gov, and returns the recommended chart with every alternative and a
+        citation behind every number.
+
+        The response is either an answer (`status: resolved`) or a request for clarification
+        (`status: needs_clarification`) when the question cannot be answered as asked, such as
+        a reference to "this drug" that nothing names. Most questions take a few seconds, and
+        questions that match tens of thousands of trials can take up to a minute.
+        """
+        return (await pipeline.run(request)).response
+
+    @app.post(
+        "/v1/interpret",
+        response_model=Resolution,
+        tags=["Planning"],
+        summary="Read a question without answering it",
+        operation_id="interpretQuestion",
+        responses={
+            200: {
+                "description": "The resolved plan, or what is needed to resolve it.",
+                "content": {"application/json": {"examples": resolution_examples()}},
+            },
+            422: INVALID_REQUEST,
+        },
+    )
+    async def interpret(request: QueryBody) -> Any:
+        """Takes the same body as `POST /v1/query` and returns the plan it would run, with
+        the source of every value and every note, without fetching any data. Use it to check
+        how a question will be read before spending time on retrieval.
+        """
+        return await resolver.resolve(request)
+
+    @app.get(
+        "/v1/samples",
+        response_model=list[SampleSummary],
+        tags=["Samples"],
+        summary="List saved answers",
+        operation_id="listSamples",
+    )
     async def samples() -> list[dict[str, Any]]:
-        """A summary of each saved sample, for the demo UI's gallery."""
+        """Lists the answers saved in the project's `examples/` folder, which were produced by
+        real questions against the live registry. The demo UI's samples page reads this."""
         return [_summarize_sample(path) for path in sorted(SAMPLES_DIRECTORY.glob("*.json"))]
 
-    @app.get("/v1/samples/{name}", include_in_schema=False, response_model=None)
-    async def sample(name: str) -> dict[str, Any] | JSONResponse:
-        """The saved response, exactly as `POST /v1/query` returned it."""
+    @app.get(
+        "/v1/samples/{name}",
+        response_model=Answer,
+        response_model_exclude_none=False,
+        tags=["Samples"],
+        summary="Retrieve a saved answer",
+        operation_id="getSample",
+        responses={404: SAMPLE_NOT_FOUND, 422: INVALID_REQUEST},
+    )
+    async def sample(name: str) -> Any:
+        """Returns a saved answer exactly as `POST /v1/query` produced it."""
         path = SAMPLES_DIRECTORY / f"{name}.json"
         if not _SAMPLE_NAME.fullmatch(name) or not path.is_file():
             return _error(404, "sample_not_found", f"There is no saved sample named {name!r}.")
-        response: dict[str, Any] = json.loads(path.read_text())["response"]
-        return response
+        return json.loads(path.read_text())["response"]
 
-    @app.get("/health")
+    @app.get(
+        "/health",
+        response_model=Health,
+        tags=["Service"],
+        summary="Check the service is up",
+        operation_id="getHealth",
+    )
     async def health() -> dict[str, str]:
+        """Returns `ok` while the service is running. It does not contact the registry."""
         return {"status": "ok"}
-
-    @app.post("/v1/query", response_model=QueryResponse, response_model_exclude_none=False)
-    async def query(request: QueryRequest) -> Any:
-        """Answer the question with a recommended chart, alternatives, and citations."""
-        return (await pipeline.run(request)).response
 
     @app.exception_handler(RegistryQueryError)
     async def registry_rejected(_: Request, error: RegistryQueryError) -> JSONResponse:
@@ -127,11 +217,6 @@ def create_app(
     @app.exception_handler(RegistryUnavailable)
     async def registry_down(_: Request, error: RegistryUnavailable) -> JSONResponse:
         return _error(503, "registry_unavailable", str(error))
-
-    @app.post("/v1/interpret", response_model=Resolution)
-    async def interpret(request: QueryRequest) -> Any:
-        """Read the question and return the resolved plan, or what is needed to resolve it."""
-        return await resolver.resolve(request)
 
     @app.exception_handler(RequestValidationError)
     async def invalid_request(_: Request, error: RequestValidationError) -> JSONResponse:
@@ -154,6 +239,13 @@ def create_app(
         )
 
     return app
+
+
+def _page(file: str) -> Any:
+    async def serve() -> FileResponse:
+        return FileResponse(UI_DIRECTORY / file, headers=_REVALIDATE)
+
+    return serve
 
 
 def _summarize_sample(path: Path) -> dict[str, Any]:

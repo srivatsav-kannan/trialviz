@@ -14,7 +14,7 @@ from __future__ import annotations
 import re
 from collections import Counter
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from trialviz.aggregation.evidence import Citation, CitationKind, Study, cite, each, nct_id, one
 from trialviz.query.filters import Filters
@@ -37,13 +37,20 @@ _TEXT_FIELDS = (
 
 
 class MentionReport(BaseModel):
+    """Trials that mention a cohort's drug or condition only in their descriptions."""
+
     model_config = ConfigDict(frozen=True)
 
-    cohort: str | None
-    total: int
-    counted: bool
-    nct_ids: list[str]
-    citations: list[Citation]
+    cohort: str | None = Field(description="The cohort's label in a comparison, or null.")
+    total: int = Field(description="How many trials only mention the names.")
+    counted: bool = Field(
+        description="Whether they are counted in the chart (`retrieval.name_matching` is "
+        "`mentioned`) or only reported here."
+    )
+    nct_ids: list[str] = Field(description="The mention-only trials that were fetched.")
+    citations: list[Citation] = Field(
+        description="Quoted sentences that show where each trial mentions the name."
+    )
 
 
 def mention_reports(plan: Plan, retrieval: Retrieval) -> list[MentionReport]:

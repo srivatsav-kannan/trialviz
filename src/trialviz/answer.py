@@ -27,42 +27,73 @@ from trialviz.vocabulary import ChartType
 
 
 class ChartOption(BaseModel):
+    """A chart and the reason it fits the data, or the reason it was ruled out."""
+
     type: ChartType
-    reason: str
+    reason: str = Field(description="Why this chart fits the data, or why it cannot draw it.")
 
 
 class ChartChoice(BaseModel):
-    recommended: ChartOption
-    alternatives: list[ChartOption]
+    """How the chart was chosen, with a reason for every chart that was considered."""
+
+    recommended: ChartOption = Field(description="The chart drawn in `visualization`.")
+    alternatives: list[ChartOption] = Field(
+        description="The charts in `alternatives`, in the same order."
+    )
     ruled_out: list[ChartOption] = Field(description="Charts that cannot draw this data, and why.")
 
 
 class CohortSummary(BaseModel):
-    label: str | None
+    """What was retrieved for one cohort: the whole question, or one side of a comparison."""
+
+    label: str | None = Field(description="The cohort's label in a comparison, or null.")
     total: int = Field(description="Exact number of matching trials the results describe.")
-    fetched: int
-    truncated: bool
+    fetched: int = Field(description="How many trial records were fetched and aggregated.")
+    truncated: bool = Field(
+        description="True when more trials matched than the record cap, so the most recently "
+        "started trials were fetched."
+    )
     mentions: int | None = Field(None, description="Trials that only mention the names, if any.")
 
 
 class AnswerMeta(BaseModel):
-    source: Literal["clinicaltrials.gov"] = "clinicaltrials.gov"
+    """How the answer was produced, so that a reader can check every part of it."""
+
+    source: Literal["clinicaltrials.gov"] = Field(
+        "clinicaltrials.gov", description="Where the data comes from."
+    )
     data_version: str = Field(description="The registry's data timestamp when this was answered.")
-    interpreter: str | None
-    plan: Plan
-    provenance: dict[str, Source]
-    notes: list[Note]
-    cohorts: list[CohortSummary]
+    interpreter: str | None = Field(
+        description="The interpreter that read the question, or null when inference was off."
+    )
+    plan: Plan = Field(description="The resolved plan the answer was computed from.")
+    provenance: dict[str, Source] = Field(
+        description="Where each plan value came from, keyed by slot path such as `filters.phases`."
+    )
+    notes: list[Note] = Field(
+        description="Every decision a reader might otherwise misjudge, such as an overridden "
+        "field or a constraint that could not be applied."
+    )
+    cohorts: list[CohortSummary] = Field(description="One summary per cohort.")
     chart_choice: ChartChoice
-    mentions: list[MentionReport]
-    registry_requests: list[str]
+    mentions: list[MentionReport] = Field(
+        description="Per cohort, the trials that mention the drug or condition only in their "
+        "descriptions."
+    )
+    registry_requests: list[str] = Field(
+        description="Every ClinicalTrials.gov request behind the numbers, as full URLs."
+    )
 
 
 class Answer(BaseModel):
-    status: Literal["resolved"] = "resolved"
-    query: str
-    visualization: Visualization
-    alternatives: list[View]
+    """A question answered with a recommended chart, its alternatives and their evidence."""
+
+    status: Literal["resolved"] = Field("resolved", description="Always `resolved` for an answer.")
+    query: str = Field(description="The question as asked.")
+    visualization: Visualization = Field(
+        description="The recommended chart, with its rows, encoding and Vega-Lite spec."
+    )
+    alternatives: list[View] = Field(description="Every other chart that can draw the same data.")
     meta: AnswerMeta
 
 

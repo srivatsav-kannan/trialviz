@@ -17,6 +17,8 @@ from trialviz.query.plan import Plan
 
 
 class Source(StrEnum):
+    """Where a plan value came from: the caller, the question, another value, or a default."""
+
     USER = "user"
     """Set explicitly in the request. Always wins."""
     INFERRED = "inferred"
@@ -28,6 +30,8 @@ class Source(StrEnum):
 
 
 class NoteCode(StrEnum):
+    """What kind of decision a note reports. The message explains the specific case."""
+
     FIELD_OVERRIDES_QUESTION = "field_overrides_question"
     INFERRED_VALUE_REJECTED = "inferred_value_rejected"
     INFERRED_VALUE_NOT_APPLICABLE = "inferred_value_not_applicable"
@@ -49,14 +53,18 @@ class NoteCode(StrEnum):
 
 
 class Note(BaseModel):
+    """A decision made while answering that a reader might otherwise misjudge."""
+
     model_config = ConfigDict(frozen=True)
 
     code: NoteCode
-    message: str
+    message: str = Field(description="A sentence a person can read, naming the values involved.")
     slot: str | None = Field(None, description="The slot path the note is about, if any.")
 
 
 class ClarificationReason(StrEnum):
+    """Why a request needs clarification before it can be answered."""
+
     MISSING_PARAMETER = "missing_parameter"
     """The analysis needs a value nobody supplied, such as what to group by."""
     AMBIGUOUS_REFERENCE = "ambiguous_reference"
@@ -68,28 +76,38 @@ class ClarificationReason(StrEnum):
 
 
 class ResolvedQuery(BaseModel):
+    """A request resolved into a complete plan, with the source of every value."""
+
     model_config = ConfigDict(frozen=True)
 
-    status: Literal["resolved"] = "resolved"
+    status: Literal["resolved"] = Field("resolved", description="Always `resolved` here.")
     plan: Plan
-    provenance: dict[str, Source]
-    notes: list[Note] = Field(default_factory=list)
+    provenance: dict[str, Source] = Field(
+        description="Where each plan value came from, keyed by slot path such as `filters.phases`."
+    )
+    notes: list[Note] = Field(default_factory=list, description="Every decision worth knowing.")
     interpreter: str | None = Field(
         None, description="The interpreter that read the question, or null if none ran."
     )
 
 
 class ClarificationNeeded(BaseModel):
+    """The request cannot be answered as asked, and says what would settle it."""
+
     model_config = ConfigDict(frozen=True)
 
-    status: Literal["needs_clarification"] = "needs_clarification"
+    status: Literal["needs_clarification"] = Field(
+        "needs_clarification", description="Always `needs_clarification` here."
+    )
     reason: ClarificationReason
     message: str = Field(description="A question or instruction a person can act on.")
     missing: list[str] = Field(
         default_factory=list, description="Slot paths that would resolve the request if set."
     )
-    notes: list[Note] = Field(default_factory=list)
-    interpreter: str | None = None
+    notes: list[Note] = Field(default_factory=list, description="Every decision worth knowing.")
+    interpreter: str | None = Field(
+        None, description="The interpreter that read the question, or null if none ran."
+    )
 
 
 Resolution = Annotated[ResolvedQuery | ClarificationNeeded, Field(discriminator="status")]

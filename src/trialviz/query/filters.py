@@ -48,8 +48,12 @@ class Filters(BaseModel):
     )
     statuses: StatusList | None = Field(None, description="Overall recruitment status.")
     sponsor_classes: SponsorClassList | None = Field(None, description="Lead sponsor category.")
-    intervention_types: InterventionTypeList | None = None
-    study_types: StudyTypeList | None = None
+    intervention_types: InterventionTypeList | None = Field(
+        None, description="Intervention types, such as DRUG or BIOLOGICAL. Any of them matches."
+    )
+    study_types: StudyTypeList | None = Field(
+        None, description="Study types, such as INTERVENTIONAL. Any of them matches."
+    )
     countries: CountryList | None = Field(
         None, description="Countries with at least one trial site, in the registry's spelling."
     )

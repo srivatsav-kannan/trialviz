@@ -73,8 +73,10 @@ src/trialviz/
   pipeline.py        the sequence of stages
   llm/budget.py      the spend ledger and price table
   settings.py        configuration
-  api.py             HTTP, and the demo UI at /
-  ui/                the demo UI, which is one HTML page, a stylesheet and a JavaScript module
+  api.py             HTTP routes, error handling, and the pages at /, /samples and /docs
+  openapi.py         the API reference's overview, request and response examples, and error models
+  ui/                the demo UI (one page for both routes, a stylesheet, a JavaScript module)
+                     and the API reference page
 ```
 
 ## Extending the service

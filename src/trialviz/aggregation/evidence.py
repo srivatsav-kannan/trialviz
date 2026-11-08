@@ -24,20 +24,24 @@ STUDY_URL = "https://clinicaltrials.gov/study/{nct_id}"
 
 
 class CitationKind(StrEnum):
+    """`value` when the excerpt is the whole value at the path, `quote` for a passage in it."""
+
     VALUE = "value"
     QUOTE = "quote"
 
 
 class Citation(BaseModel):
+    """Where one trial's registry record shows why it is counted where it is."""
+
     model_config = ConfigDict(frozen=True)
 
-    nct_id: str
+    nct_id: str = Field(description="The trial's NCT number.")
     field: str = Field(
         description='JSON path in the API response, such as "protocolSection.designModule.phases".'
     )
     excerpt: str = Field(description="The exact text at that path (value) or within it (quote).")
     kind: CitationKind = CitationKind.VALUE
-    url: str
+    url: str = Field(description="The trial's page on ClinicalTrials.gov.")
 
 
 def nct_id(study: Study) -> str:

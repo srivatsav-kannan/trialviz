@@ -76,32 +76,46 @@ class _AnalysisSpec(BaseModel):
 class CountSpec(_AnalysisSpec):
     """A single number: how many trials match."""
 
-    kind: Literal[AnalysisKind.COUNT] = AnalysisKind.COUNT
+    kind: Literal[AnalysisKind.COUNT] = Field(
+        AnalysisKind.COUNT, description="Selects this analysis."
+    )
 
 
 class DistributionSpec(_AnalysisSpec):
     """Trial counts per value of one dimension, optionally split into series."""
 
-    kind: Literal[AnalysisKind.DISTRIBUTION] = AnalysisKind.DISTRIBUTION
-    group_by: DimensionField
-    series_by: DimensionField | None = None
+    kind: Literal[AnalysisKind.DISTRIBUTION] = Field(
+        AnalysisKind.DISTRIBUTION, description="Selects this analysis."
+    )
+    group_by: DimensionField = Field(description="The dimension that groups the trials.")
+    series_by: DimensionField | None = Field(
+        None, description="A second dimension that splits the result into series."
+    )
 
 
 class TimeSeriesSpec(_AnalysisSpec):
     """Trial counts per time bucket, optionally split into series."""
 
-    kind: Literal[AnalysisKind.TIME_SERIES] = AnalysisKind.TIME_SERIES
-    time_field: TimeFieldField = TimeField.START_DATE
-    granularity: GranularityField = TimeGranularity.YEAR
-    series_by: DimensionField | None = None
+    kind: Literal[AnalysisKind.TIME_SERIES] = Field(
+        AnalysisKind.TIME_SERIES, description="Selects this analysis."
+    )
+    time_field: TimeFieldField = Field(TimeField.START_DATE, description="The date counted.")
+    granularity: GranularityField = Field(TimeGranularity.YEAR, description="The bucket size.")
+    series_by: DimensionField | None = Field(
+        None, description="A second dimension that splits the result into series."
+    )
 
 
 class ComparisonSpec(_AnalysisSpec):
     """Two or more cohorts side by side, either as totals or across one dimension."""
 
-    kind: Literal[AnalysisKind.COMPARISON] = AnalysisKind.COMPARISON
-    cohorts: Cohorts
-    group_by: DimensionField | None = None
+    kind: Literal[AnalysisKind.COMPARISON] = Field(
+        AnalysisKind.COMPARISON, description="Selects this analysis."
+    )
+    cohorts: Cohorts = Field(description="The groups of trials compared side by side.")
+    group_by: DimensionField | None = Field(
+        None, description="An optional dimension to break the result down by."
+    )
 
     @model_validator(mode="after")
     def _cohorts_are_distinct(self) -> Self:
@@ -113,27 +127,39 @@ class HistogramSpec(_AnalysisSpec):
     """The spread of one numeric measure across trials, optionally split into groups
     (enrollment by phase), which is drawn as one box per group."""
 
-    kind: Literal[AnalysisKind.HISTOGRAM] = AnalysisKind.HISTOGRAM
-    measure: MeasureField
-    group_by: DimensionField | None = None
+    kind: Literal[AnalysisKind.HISTOGRAM] = Field(
+        AnalysisKind.HISTOGRAM, description="Selects this analysis."
+    )
+    measure: MeasureField = Field(description="The numeric measure whose spread is shown.")
+    group_by: DimensionField | None = Field(
+        None, description="An optional dimension to break the result down by."
+    )
 
 
 class ScatterSpec(_AnalysisSpec):
     """One point per trial, positioned by two numeric measures. A third measure `z`
     becomes point size in 2D or depth in 3D."""
 
-    kind: Literal[AnalysisKind.SCATTER] = AnalysisKind.SCATTER
-    x: MeasureField
-    y: MeasureField
-    z: MeasureField | None = None
-    series_by: DimensionField | None = None
+    kind: Literal[AnalysisKind.SCATTER] = Field(
+        AnalysisKind.SCATTER, description="Selects this analysis."
+    )
+    x: MeasureField = Field(description="The measure on the horizontal axis.")
+    y: MeasureField = Field(description="The measure on the vertical axis.")
+    z: MeasureField | None = Field(None, description="A third measure, which adds a 3D view.")
+    series_by: DimensionField | None = Field(
+        None, description="A second dimension that splits the result into series."
+    )
 
 
 class NetworkSpec(_AnalysisSpec):
     """Entities as nodes, linked when they appear in the same trial."""
 
-    kind: Literal[AnalysisKind.NETWORK] = AnalysisKind.NETWORK
-    node_types: tuple[DimensionField, DimensionField]
+    kind: Literal[AnalysisKind.NETWORK] = Field(
+        AnalysisKind.NETWORK, description="Selects this analysis."
+    )
+    node_types: tuple[DimensionField, DimensionField] = Field(
+        description="The two kinds of entity linked when they share a trial."
+    )
 
     @model_validator(mode="after")
     def _network_can_have_edges(self) -> Self:
@@ -162,14 +188,18 @@ class FlowSpec(_AnalysisSpec):
     """Trials flowing through two or three single-valued dimensions in order, such as
     sponsor class, then phase, then status."""
 
-    kind: Literal[AnalysisKind.FLOW] = AnalysisKind.FLOW
-    stages: Stages
+    kind: Literal[AnalysisKind.FLOW] = Field(
+        AnalysisKind.FLOW, description="Selects this analysis."
+    )
+    stages: Stages = Field(description="Two or three single-valued dimensions, in order.")
 
 
 class TrialListSpec(_AnalysisSpec):
     """The individual trials, with their dates, for a timeline or a table."""
 
-    kind: Literal[AnalysisKind.TRIAL_LIST] = AnalysisKind.TRIAL_LIST
+    kind: Literal[AnalysisKind.TRIAL_LIST] = Field(
+        AnalysisKind.TRIAL_LIST, description="Selects this analysis."
+    )
 
 
 AnalysisSpec = Annotated[
