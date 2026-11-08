@@ -41,7 +41,6 @@ TIMELINE_LIMIT = 60
 
 MIN_BOX_VALUES = 5
 """Fewest values for a box to mean something. Smaller groups are still drawn, flagged."""
-"""Most trials a timeline shows before a table reads better."""
 
 
 @dataclass(frozen=True)
@@ -148,8 +147,8 @@ CANDIDATES: list[Candidate] = [
         _all(
             _unless(
                 lambda f: f.parts_of_whole,
-                "a donut needs groups that are shares of one whole, "
-                "but a trial can be in several of these groups",
+                "a trial can be in several of these groups, while a donut needs shares of "
+                "one whole",
             ),
             _unless(lambda f: 2 <= f.groups <= 5, "a donut stays readable only with 2 to 5 parts"),
         ),
@@ -194,8 +193,8 @@ CANDIDATES: list[Candidate] = [
         _all(
             _unless(
                 lambda f: f.parts_of_whole,
-                "stacking needs each trial in one segment, but a "
-                "trial can be in several of these groups",
+                "a trial can be in several of these groups, while stacking needs each trial "
+                "in one segment",
             ),
             _unless(
                 lambda f: f.columns <= 10, "more than 10 segments per bar cannot be told apart"
@@ -210,8 +209,8 @@ CANDIDATES: list[Candidate] = [
         _all(
             _unless(
                 lambda f: f.parts_of_whole,
-                "shares need each trial in one segment, but a "
-                "trial can be in several of these groups",
+                "a trial can be in several of these groups, while shares need each trial in "
+                "one segment",
             ),
             _unless(
                 lambda f: f.columns <= 10, "more than 10 segments per bar cannot be told apart"
@@ -259,7 +258,7 @@ CANDIDATES: list[Candidate] = [
             _unless(lambda f: f.series >= 2, "a stacked area needs at least 2 series"),
             _unless(
                 lambda f: f.parts_of_whole,
-                "stacking needs each trial in one series, but a trial can be in several",
+                "a trial can be in several series, while stacking needs each trial in one",
             ),
             _unless(lambda f: f.series <= 12, "more than 12 bands cannot be told apart"),
             _unless(lambda f: f.periods >= 3, "an area needs at least 3 periods"),

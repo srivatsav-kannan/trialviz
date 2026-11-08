@@ -3415,7 +3415,7 @@
           },
           {
             "type": "donut_chart",
-            "reason": "a donut needs groups that are shares of one whole, but a trial can be in several of these groups"
+            "reason": "a trial can be in several of these groups, while a donut needs shares of one whole"
           }
         ]
       },

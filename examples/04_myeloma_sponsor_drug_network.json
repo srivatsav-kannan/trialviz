@@ -7,7 +7,7 @@
     "query": "Show a network of sponsors and drugs for multiple myeloma trials that started in 2024",
     "visualization": {
       "type": "network_graph",
-      "reason": "requested by the question",
+      "reason": "entities as nodes, linked by the trials they share",
       "encoding": {
         "node_id": {
           "field": "id",
@@ -96,13 +96,13 @@
             "id": "intervention:dexamethasone",
             "label": "Dexamethasone",
             "type": "intervention",
-            "degree": 8,
+            "degree": 7,
             "community": 0,
-            "x": 0.244,
-            "y": 0.0427,
-            "x3": 0.0644,
-            "y3": -0.0574,
-            "z3": -0.1342,
+            "x": 0.0441,
+            "y": -0.1669,
+            "x3": 0.0924,
+            "y3": -0.1331,
+            "z3": 0.0153,
             "trial_count": 30,
             "nct_ids": [
               "NCT05896228",
@@ -166,11 +166,11 @@
             "type": "intervention",
             "degree": 4,
             "community": 0,
-            "x": -0.1811,
-            "y": 0.1254,
-            "x3": -0.2834,
-            "y3": 0.3324,
-            "z3": 0.2183,
+            "x": 0.2794,
+            "y": 0.1874,
+            "x3": -0.3784,
+            "y3": 0.096,
+            "z3": 0.014,
             "trial_count": 18,
             "nct_ids": [
               "NCT05896228",
@@ -220,13 +220,13 @@
             "id": "intervention:lenalidomide",
             "label": "Lenalidomide",
             "type": "intervention",
-            "degree": 5,
+            "degree": 3,
             "community": 0,
-            "x": -0.0513,
-            "y": -0.269,
-            "x3": -0.0651,
-            "y3": 0.4461,
-            "z3": 0.1282,
+            "x": -0.3024,
+            "y": -0.1252,
+            "x3": 0.2017,
+            "y3": 0.4614,
+            "z3": -0.009,
             "trial_count": 15,
             "nct_ids": [
               "NCT06353022",
@@ -275,17 +275,16 @@
             "type": "intervention",
             "degree": 4,
             "community": 0,
-            "x": -0.1594,
-            "y": 0.4862,
-            "x3": 0.104,
-            "y3": 0.106,
-            "z3": -0.3217,
-            "trial_count": 12,
+            "x": -0.1739,
+            "y": 0.4288,
+            "x3": 0.2781,
+            "y3": -0.0319,
+            "z3": -0.0881,
+            "trial_count": 11,
             "nct_ids": [
               "NCT06464991",
               "NCT06158841",
               "NCT06353022",
-              "NCT06142396",
               "NCT06505369",
               "NCT06208150",
               "NCT06169215",
@@ -320,64 +319,16 @@
             ]
           },
           {
-            "id": "intervention:biospecimen collection",
-            "label": "Biospecimen Collection",
-            "type": "intervention",
-            "degree": 2,
-            "community": 1,
-            "x": -0.8218,
-            "y": -0.0081,
-            "x3": 0.0617,
-            "y3": 0.3422,
-            "z3": 0.6031,
-            "trial_count": 10,
-            "nct_ids": [
-              "NCT06588660",
-              "NCT05847569",
-              "NCT06048250",
-              "NCT06630104",
-              "NCT06042725",
-              "NCT06465316",
-              "NCT06203912",
-              "NCT06169215",
-              "NCT06559709",
-              "NCT06179888"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06588660",
-                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-                "excerpt": "Biospecimen Collection",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06588660"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Biospecimen Collection",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT06048250",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Biospecimen Collection",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06048250"
-              }
-            ]
-          },
-          {
             "id": "intervention:pomalidomide",
             "label": "pomalidomide",
             "type": "intervention",
-            "degree": 3,
+            "degree": 4,
             "community": 0,
-            "x": 0.5262,
-            "y": 0.6675,
-            "x3": -0.2034,
-            "y3": 0.1156,
-            "z3": -0.651,
+            "x": 0.5565,
+            "y": 0.2235,
+            "x3": 0.208,
+            "y3": -0.1698,
+            "z3": 0.3381,
             "trial_count": 10,
             "nct_ids": [
               "NCT06464991",
@@ -421,11 +372,11 @@
             "type": "intervention",
             "degree": 2,
             "community": 0,
-            "x": -0.3799,
-            "y": 0.5565,
-            "x3": -0.0304,
-            "y3": 0.5821,
-            "z3": -0.0932,
+            "x": -0.3582,
+            "y": 0.6223,
+            "x3": -0.1364,
+            "y3": 0.4865,
+            "z3": 0.0062,
             "trial_count": 10,
             "nct_ids": [
               "NCT06251076",
@@ -469,11 +420,11 @@
             "type": "intervention",
             "degree": 2,
             "community": 0,
-            "x": 0.7727,
-            "y": 0.4332,
-            "x3": -0.2929,
-            "y3": -0.5174,
-            "z3": -0.5328,
+            "x": 0.7171,
+            "y": 0.5528,
+            "x3": -0.0226,
+            "y3": -0.7003,
+            "z3": -0.2165,
             "trial_count": 9,
             "nct_ids": [
               "NCT06121843",
@@ -511,108 +462,16 @@
             ]
           },
           {
-            "id": "intervention:biopsy",
-            "label": "Biopsy",
-            "type": "intervention",
-            "degree": 2,
-            "community": 1,
-            "x": -0.5555,
-            "y": 0.2996,
-            "x3": 0.3022,
-            "y3": 0.401,
-            "z3": 0.4679,
-            "trial_count": 8,
-            "nct_ids": [
-              "NCT05950113",
-              "NCT06588660",
-              "NCT05847569",
-              "NCT06042725",
-              "NCT06465316",
-              "NCT06203912",
-              "NCT06169215",
-              "NCT06179888"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT05950113",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Bone Marrow Biopsy",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05950113"
-              },
-              {
-                "nct_id": "NCT06588660",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Bone Marrow Biopsy",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06588660"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-                "excerpt": "Bone Marrow Biopsy",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              }
-            ]
-          },
-          {
-            "id": "intervention:bone marrow aspiration",
-            "label": "Bone Marrow Aspiration",
-            "type": "intervention",
-            "degree": 2,
-            "community": 1,
-            "x": -0.7341,
-            "y": 0.2307,
-            "x3": 0.2713,
-            "y3": 0.017,
-            "z3": 0.6747,
-            "trial_count": 8,
-            "nct_ids": [
-              "NCT05950113",
-              "NCT06588660",
-              "NCT06048250",
-              "NCT06630104",
-              "NCT06042725",
-              "NCT06465316",
-              "NCT06169215",
-              "NCT06179888"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT05950113",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Bone Marrow Aspiration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05950113"
-              },
-              {
-                "nct_id": "NCT06588660",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Bone Marrow Aspiration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06588660"
-              },
-              {
-                "nct_id": "NCT06048250",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Bone Marrow Aspiration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06048250"
-              }
-            ]
-          },
-          {
             "id": "intervention:cyclophosphamide",
             "label": "Cyclophosphamide",
             "type": "intervention",
             "degree": 3,
             "community": 0,
-            "x": 0.507,
-            "y": -0.3096,
-            "x3": -0.2797,
-            "y3": 0.0321,
-            "z3": -0.287,
+            "x": 0.1899,
+            "y": -0.4481,
+            "x3": -0.0536,
+            "y3": 0.0924,
+            "z3": 0.0285,
             "trial_count": 8,
             "nct_ids": [
               "NCT05950113",
@@ -654,11 +513,11 @@
             "type": "intervention",
             "degree": 3,
             "community": 0,
-            "x": 0.1076,
-            "y": 0.1329,
-            "x3": -0.0418,
-            "y3": -0.3242,
-            "z3": -0.0106,
+            "x": -0.1339,
+            "y": 0.1435,
+            "x3": -0.0818,
+            "y3": -0.2703,
+            "z3": -0.4089,
             "trial_count": 8,
             "nct_ids": [
               "NCT05896228",
@@ -695,16 +554,61 @@
             ]
           },
           {
+            "id": "intervention:biopsy",
+            "label": "Biopsy",
+            "type": "intervention",
+            "degree": 1,
+            "community": 1,
+            "x": -0.6745,
+            "y": 0.6108,
+            "x3": -0.3436,
+            "y3": 0.1182,
+            "z3": -0.634,
+            "trial_count": 7,
+            "nct_ids": [
+              "NCT05950113",
+              "NCT06588660",
+              "NCT06042725",
+              "NCT06465316",
+              "NCT06203912",
+              "NCT06169215",
+              "NCT06179888"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05950113",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Bone Marrow Biopsy",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05950113"
+              },
+              {
+                "nct_id": "NCT06588660",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Bone Marrow Biopsy",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06588660"
+              },
+              {
+                "nct_id": "NCT06042725",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Bone Marrow Biopsy",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06042725"
+              }
+            ]
+          },
+          {
             "id": "intervention:carfilzomib",
             "label": "carfilzomib",
             "type": "intervention",
-            "degree": 2,
+            "degree": 3,
             "community": 0,
-            "x": 0.1259,
-            "y": 0.9946,
-            "x3": 0.267,
-            "y3": -0.3251,
-            "z3": -0.7995,
+            "x": 0.8074,
+            "y": -0.0363,
+            "x3": 0.3324,
+            "y3": -0.649,
+            "z3": 0.1624,
             "trial_count": 7,
             "nct_ids": [
               "NCT05896228",
@@ -740,61 +644,16 @@
             ]
           },
           {
-            "id": "intervention:computed tomography",
-            "label": "Computed Tomography",
-            "type": "intervention",
-            "degree": 2,
-            "community": 1,
-            "x": -0.8173,
-            "y": -0.2339,
-            "x3": 0.4454,
-            "y3": 0.1566,
-            "z3": 0.5014,
-            "trial_count": 7,
-            "nct_ids": [
-              "NCT05950113",
-              "NCT05847569",
-              "NCT06048250",
-              "NCT06042725",
-              "NCT06465316",
-              "NCT06169215",
-              "NCT06179888"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT05950113",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Computed Tomography",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05950113"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-                "excerpt": "Computed Tomography",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT06048250",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Computed Tomography",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06048250"
-              }
-            ]
-          },
-          {
             "id": "lead_sponsor:janssen research & development, llc",
             "label": "Janssen Research & Development, LLC",
             "type": "lead_sponsor",
-            "degree": 10,
+            "degree": 11,
             "community": 0,
-            "x": 0.1278,
-            "y": 0.3463,
-            "x3": -0.2244,
-            "y3": 0.3055,
-            "z3": -0.2567,
+            "x": 0.0525,
+            "y": 0.3587,
+            "x3": -0.0011,
+            "y3": 0.1756,
+            "z3": 0.2385,
             "trial_count": 7,
             "nct_ids": [
               "NCT06500884",
@@ -830,65 +689,64 @@
             ]
           },
           {
-            "id": "intervention:positron emission tomography",
-            "label": "Positron Emission Tomography",
+            "id": "intervention:biospecimen collection",
+            "label": "Biospecimen Collection",
             "type": "intervention",
-            "degree": 2,
+            "degree": 1,
             "community": 1,
-            "x": -0.575,
-            "y": -0.4034,
-            "x3": 0.3232,
-            "y3": -0.1793,
-            "z3": 0.4645,
-            "trial_count": 7,
+            "x": -0.7766,
+            "y": 0.3924,
+            "x3": -0.2822,
+            "y3": 0.4886,
+            "z3": -0.4862,
+            "trial_count": 6,
             "nct_ids": [
-              "NCT05950113",
-              "NCT05847569",
-              "NCT06048250",
+              "NCT06588660",
               "NCT06042725",
               "NCT06465316",
+              "NCT06203912",
               "NCT06169215",
               "NCT06179888"
             ],
             "citations": [
               {
-                "nct_id": "NCT05950113",
-                "field": "protocolSection.armsInterventionsModule.interventions[10].name",
-                "excerpt": "Positron Emission Tomography",
+                "nct_id": "NCT06588660",
+                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "excerpt": "Biospecimen Collection",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05950113"
+                "url": "https://clinicaltrials.gov/study/NCT06588660"
               },
               {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[6].name",
-                "excerpt": "Positron Emission Tomography",
+                "nct_id": "NCT06042725",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Biospecimen Collection",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
+                "url": "https://clinicaltrials.gov/study/NCT06042725"
               },
               {
-                "nct_id": "NCT06048250",
-                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-                "excerpt": "Positron Emission Tomography",
+                "nct_id": "NCT06465316",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Biospecimen Collection",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06048250"
+                "url": "https://clinicaltrials.gov/study/NCT06465316"
               }
             ]
           },
           {
-            "id": "intervention:magnetic resonance imaging",
-            "label": "Magnetic Resonance Imaging",
+            "id": "intervention:bone marrow aspiration",
+            "label": "Bone Marrow Aspiration",
             "type": "intervention",
-            "degree": 2,
+            "degree": 1,
             "community": 1,
-            "x": -0.3434,
-            "y": -0.4174,
-            "x3": 0.0184,
-            "y3": -0.2054,
-            "z3": 0.4979,
+            "x": -0.9711,
+            "y": 0.2297,
+            "x3": 0.3131,
+            "y3": 0.2532,
+            "z3": -0.669,
             "trial_count": 6,
             "nct_ids": [
               "NCT05950113",
-              "NCT05847569",
+              "NCT06588660",
               "NCT06042725",
               "NCT06465316",
               "NCT06169215",
@@ -897,22 +755,22 @@
             "citations": [
               {
                 "nct_id": "NCT05950113",
-                "field": "protocolSection.armsInterventionsModule.interventions[9].name",
-                "excerpt": "Magnetic Resonance Imaging",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Bone Marrow Aspiration",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT05950113"
               },
               {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-                "excerpt": "Magnetic Resonance Imaging",
+                "nct_id": "NCT06588660",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Bone Marrow Aspiration",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
+                "url": "https://clinicaltrials.gov/study/NCT06588660"
               },
               {
                 "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[9].name",
-                "excerpt": "Magnetic Resonance Imaging",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Bone Marrow Aspiration",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06042725"
               }
@@ -924,11 +782,11 @@
             "type": "intervention",
             "degree": 1,
             "community": 0,
-            "x": 0.2957,
-            "y": 0.794,
-            "x3": -0.4883,
-            "y3": 0.5639,
-            "z3": -0.3838,
+            "x": -0.1089,
+            "y": 0.8303,
+            "x3": -0.1672,
+            "y3": 0.4539,
+            "z3": 0.4617,
             "trial_count": 6,
             "nct_ids": [
               "NCT06353022",
@@ -963,16 +821,59 @@
             ]
           },
           {
+            "id": "intervention:computed tomography",
+            "label": "Computed Tomography",
+            "type": "intervention",
+            "degree": 1,
+            "community": 1,
+            "x": -0.8993,
+            "y": -0.2534,
+            "x3": -0.08,
+            "y3": 0.3353,
+            "z3": -0.7606,
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT05950113",
+              "NCT06042725",
+              "NCT06465316",
+              "NCT06169215",
+              "NCT06179888"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05950113",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Computed Tomography",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05950113"
+              },
+              {
+                "nct_id": "NCT06042725",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "Computed Tomography",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06042725"
+              },
+              {
+                "nct_id": "NCT06465316",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Computed Tomography",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06465316"
+              }
+            ]
+          },
+          {
             "id": "intervention:elotuzumab",
             "label": "elotuzumab",
             "type": "intervention",
-            "degree": 3,
+            "degree": 4,
             "community": 0,
-            "x": -0.1084,
-            "y": 0.8235,
-            "x3": 0.0033,
-            "y3": 0.1599,
-            "z3": -0.7481,
+            "x": 0.3418,
+            "y": -0.1649,
+            "x3": 0.2366,
+            "y3": -0.3589,
+            "z3": 0.3413,
             "trial_count": 5,
             "nct_ids": [
               "NCT06158841",
@@ -1011,11 +912,11 @@
             "type": "intervention",
             "degree": 2,
             "community": 0,
-            "x": 0.596,
-            "y": 0.2072,
-            "x3": -0.6974,
-            "y3": 0.0375,
-            "z3": -0.2477,
+            "x": 0.4383,
+            "y": 0.6772,
+            "x3": -0.4592,
+            "y3": -0.0871,
+            "z3": 0.326,
             "trial_count": 5,
             "nct_ids": [
               "NCT05950113",
@@ -1049,131 +950,88 @@
             ]
           },
           {
-            "id": "intervention:linvoseltamab",
-            "label": "Linvoseltamab",
-            "type": "intervention",
-            "degree": 1,
-            "community": 2,
-            "x": -0.1546,
-            "y": -1.0,
-            "x3": 0.1773,
-            "y3": -1.0,
-            "z3": 0.1702,
-            "trial_count": 5,
-            "nct_ids": [
-              "NCT06292780",
-              "NCT06669247",
-              "NCT05955508",
-              "NCT06140524",
-              "NCT06376526"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06292780",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Linvoseltamab",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06292780"
-              },
-              {
-                "nct_id": "NCT06669247",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Linvoseltamab",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06669247"
-              },
-              {
-                "nct_id": "NCT05955508",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Linvoseltamab",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05955508"
-              }
-            ]
-          },
-          {
-            "id": "lead_sponsor:mayo clinic",
-            "label": "Mayo Clinic",
-            "type": "lead_sponsor",
-            "degree": 11,
-            "community": 1,
-            "x": -0.5552,
-            "y": -0.1138,
-            "x3": 0.0258,
-            "y3": 0.1013,
-            "z3": 0.4996,
-            "trial_count": 5,
-            "nct_ids": [
-              "NCT06145581",
-              "NCT05847569",
-              "NCT06630104",
-              "NCT06042725",
-              "NCT06395441"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06145581",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06145581"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT06630104",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06630104"
-              }
-            ]
-          },
-          {
-            "id": "intervention:questionnaire administration",
-            "label": "Questionnaire Administration",
+            "id": "intervention:magnetic resonance imaging",
+            "label": "Magnetic Resonance Imaging",
             "type": "intervention",
             "degree": 1,
             "community": 1,
-            "x": -0.8092,
-            "y": -0.5351,
-            "x3": -0.1378,
-            "y3": -0.0162,
-            "z3": 0.8616,
+            "x": -0.875,
+            "y": -0.0096,
+            "x3": 0.0578,
+            "y3": -0.0197,
+            "z3": -0.7614,
             "trial_count": 5,
             "nct_ids": [
-              "NCT06145581",
+              "NCT05950113",
               "NCT06042725",
-              "NCT06395441",
-              "NCT06203912",
-              "NCT06559709"
+              "NCT06465316",
+              "NCT06169215",
+              "NCT06179888"
             ],
             "citations": [
               {
-                "nct_id": "NCT06145581",
-                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-                "excerpt": "Questionnaire Administration",
+                "nct_id": "NCT05950113",
+                "field": "protocolSection.armsInterventionsModule.interventions[9].name",
+                "excerpt": "Magnetic Resonance Imaging",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06145581"
+                "url": "https://clinicaltrials.gov/study/NCT05950113"
               },
               {
                 "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[13].name",
-                "excerpt": "Questionnaire Administration",
+                "field": "protocolSection.armsInterventionsModule.interventions[9].name",
+                "excerpt": "Magnetic Resonance Imaging",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06042725"
               },
               {
-                "nct_id": "NCT06395441",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Questionnaire Administration",
+                "nct_id": "NCT06465316",
+                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "excerpt": "Magnetic Resonance Imaging",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06395441"
+                "url": "https://clinicaltrials.gov/study/NCT06465316"
+              }
+            ]
+          },
+          {
+            "id": "intervention:positron emission tomography",
+            "label": "Positron Emission Tomography",
+            "type": "intervention",
+            "degree": 1,
+            "community": 1,
+            "x": -0.6708,
+            "y": -0.3504,
+            "x3": 0.1197,
+            "y3": 0.5752,
+            "z3": -0.5086,
+            "trial_count": 5,
+            "nct_ids": [
+              "NCT05950113",
+              "NCT06042725",
+              "NCT06465316",
+              "NCT06169215",
+              "NCT06179888"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT05950113",
+                "field": "protocolSection.armsInterventionsModule.interventions[10].name",
+                "excerpt": "Positron Emission Tomography",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT05950113"
+              },
+              {
+                "nct_id": "NCT06042725",
+                "field": "protocolSection.armsInterventionsModule.interventions[10].name",
+                "excerpt": "Positron Emission Tomography",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06042725"
+              },
+              {
+                "nct_id": "NCT06465316",
+                "field": "protocolSection.armsInterventionsModule.interventions[6].name",
+                "excerpt": "Positron Emission Tomography",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06465316"
               }
             ]
           },
@@ -1183,11 +1041,11 @@
             "type": "intervention",
             "degree": 3,
             "community": 0,
-            "x": -0.0321,
-            "y": -0.0849,
-            "x3": 0.5376,
-            "y3": 0.1634,
-            "z3": -0.2202,
+            "x": -0.3273,
+            "y": -0.4201,
+            "x3": 0.5543,
+            "y3": 0.0462,
+            "z3": -0.2645,
             "trial_count": 5,
             "nct_ids": [
               "NCT06452446",
@@ -1226,11 +1084,11 @@
             "type": "lead_sponsor",
             "degree": 5,
             "community": 0,
-            "x": 0.2207,
-            "y": -0.5145,
-            "x3": 0.2322,
-            "y3": 0.3786,
-            "z3": -0.2377,
+            "x": -0.0819,
+            "y": -0.6411,
+            "x3": 0.4533,
+            "y3": 0.2406,
+            "z3": 0.0401,
             "trial_count": 5,
             "nct_ids": [
               "NCT06547112",
@@ -1264,86 +1122,44 @@
             ]
           },
           {
-            "id": "intervention:belantamab mafodotin",
-            "label": "belantamab mafodotin",
+            "id": "intervention:linvoseltamab",
+            "label": "Linvoseltamab",
             "type": "intervention",
             "degree": 1,
-            "community": 1,
-            "x": -0.9942,
-            "y": 0.2966,
-            "x3": -0.4759,
-            "y3": 0.0109,
-            "z3": 0.7098,
+            "community": 2,
+            "x": -0.5719,
+            "y": -0.8763,
+            "x3": -0.3361,
+            "y3": 0.0662,
+            "z3": 0.9477,
             "trial_count": 4,
             "nct_ids": [
-              "NCT04876248",
-              "NCT05847569",
-              "NCT06679101",
-              "NCT05922501"
+              "NCT06292780",
+              "NCT06669247",
+              "NCT05955508",
+              "NCT06140524"
             ],
             "citations": [
               {
-                "nct_id": "NCT04876248",
+                "nct_id": "NCT06292780",
                 "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Belantamab Mafodotin",
+                "excerpt": "Linvoseltamab",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT04876248"
+                "url": "https://clinicaltrials.gov/study/NCT06292780"
               },
               {
-                "nct_id": "NCT05847569",
+                "nct_id": "NCT06669247",
                 "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Belantamab Mafodotin",
+                "excerpt": "Linvoseltamab",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
+                "url": "https://clinicaltrials.gov/study/NCT06669247"
               },
               {
-                "nct_id": "NCT06679101",
+                "nct_id": "NCT05955508",
                 "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Belantamab mafodotin",
+                "excerpt": "Linvoseltamab",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06679101"
-              }
-            ]
-          },
-          {
-            "id": "intervention:mezigdomide",
-            "label": "Mezigdomide",
-            "type": "intervention",
-            "degree": 1,
-            "community": 0,
-            "x": 0.7622,
-            "y": -0.5751,
-            "x3": -0.5672,
-            "y3": -0.729,
-            "z3": -0.0297,
-            "trial_count": 4,
-            "nct_ids": [
-              "NCT06121843",
-              "NCT06645678",
-              "NCT06048250",
-              "NCT06163898"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06121843",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Mezigdomide",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06121843"
-              },
-              {
-                "nct_id": "NCT06645678",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Mezigdomide",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06645678"
-              },
-              {
-                "nct_id": "NCT06048250",
-                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-                "excerpt": "Mezigdomide",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06048250"
+                "url": "https://clinicaltrials.gov/study/NCT05955508"
               }
             ]
           },
@@ -1351,13 +1167,13 @@
             "id": "lead_sponsor:national cancer institute (nci)",
             "label": "National Cancer Institute (NCI)",
             "type": "lead_sponsor",
-            "degree": 14,
+            "degree": 13,
             "community": 1,
-            "x": -0.3946,
-            "y": -0.0303,
-            "x3": 0.1977,
-            "y3": 0.1052,
-            "z3": 0.256,
+            "x": -0.5348,
+            "y": 0.1042,
+            "x3": 0.0066,
+            "y3": 0.1991,
+            "z3": -0.4187,
             "trial_count": 4,
             "nct_ids": [
               "NCT06465316",
@@ -1390,58 +1206,16 @@
             ]
           },
           {
-            "id": "lead_sponsor:pfizer",
-            "label": "Pfizer",
-            "type": "lead_sponsor",
-            "degree": 7,
-            "community": 0,
-            "x": 0.3433,
-            "y": 0.5258,
-            "x3": -0.0448,
-            "y3": -0.2461,
-            "z3": -0.5265,
-            "trial_count": 4,
-            "nct_ids": [
-              "NCT06592222",
-              "NCT06479954",
-              "NCT06215118",
-              "NCT06152575"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06592222",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Pfizer",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06592222"
-              },
-              {
-                "nct_id": "NCT06479954",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Pfizer",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06479954"
-              },
-              {
-                "nct_id": "NCT06215118",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Pfizer",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06215118"
-              }
-            ]
-          },
-          {
             "id": "lead_sponsor:regeneron pharmaceuticals",
             "label": "Regeneron Pharmaceuticals",
             "type": "lead_sponsor",
             "degree": 1,
             "community": 2,
-            "x": 0.0888,
-            "y": -0.9886,
-            "x3": 0.394,
-            "y3": -0.9321,
-            "z3": 0.2154,
+            "x": -0.3255,
+            "y": -1.0,
+            "x3": -0.1197,
+            "y3": -0.0002,
+            "z3": 1.0,
             "trial_count": 4,
             "nct_ids": [
               "NCT06292780",
@@ -1477,13 +1251,13 @@
             "id": "intervention:alnuctamab",
             "label": "Alnuctamab",
             "type": "intervention",
-            "degree": 1,
+            "degree": 2,
             "community": 0,
-            "x": 0.9804,
-            "y": -0.2967,
-            "x3": -0.8337,
-            "y3": -0.4083,
-            "z3": 0.0242,
+            "x": 0.6197,
+            "y": -0.6582,
+            "x3": -0.3298,
+            "y3": -0.6521,
+            "z3": 0.2837,
             "trial_count": 3,
             "nct_ids": [
               "NCT06121843",
@@ -1520,11 +1294,11 @@
             "type": "intervention",
             "degree": 1,
             "community": 0,
-            "x": 0.4217,
-            "y": -0.841,
-            "x3": 0.5761,
-            "y3": 0.6649,
-            "z3": -0.359,
+            "x": 0.1632,
+            "y": -0.9837,
+            "x3": 0.8,
+            "y3": 0.4021,
+            "z3": 0.1851,
             "trial_count": 3,
             "nct_ids": [
               "NCT06547112",
@@ -1556,117 +1330,84 @@
             ]
           },
           {
-            "id": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
-            "label": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
-            "type": "lead_sponsor",
-            "degree": 7,
+            "id": "intervention:mezigdomide",
+            "label": "Mezigdomide",
+            "type": "intervention",
+            "degree": 2,
             "community": 0,
-            "x": 0.6671,
-            "y": -0.0857,
-            "x3": -0.4433,
-            "y3": -0.3392,
-            "z3": -0.1675,
+            "x": 0.9134,
+            "y": -0.426,
+            "x3": -0.5422,
+            "y3": -0.5693,
+            "z3": 0.0514,
             "trial_count": 3,
             "nct_ids": [
               "NCT06121843",
-              "NCT06297226",
-              "NCT06153251"
+              "NCT06645678",
+              "NCT06163898"
             ],
             "citations": [
               {
                 "nct_id": "NCT06121843",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Mezigdomide",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06121843"
               },
               {
-                "nct_id": "NCT06297226",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
+                "nct_id": "NCT06645678",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Mezigdomide",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06297226"
+                "url": "https://clinicaltrials.gov/study/NCT06645678"
               },
               {
-                "nct_id": "NCT06153251",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
+                "nct_id": "NCT06163898",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Mezigdomide",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06153251"
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
               }
             ]
           },
           {
-            "id": "lead_sponsor:peking university people's hospital",
-            "label": "Peking University People's Hospital",
+            "id": "lead_sponsor:pfizer",
+            "label": "Pfizer",
             "type": "lead_sponsor",
-            "degree": 2,
+            "degree": 7,
             "community": 0,
-            "x": 0.3022,
-            "y": -0.2086,
-            "x3": -0.4131,
-            "y3": 0.6897,
-            "z3": 0.289,
+            "x": 0.3669,
+            "y": 0.3619,
+            "x3": 0.1796,
+            "y3": -0.4578,
+            "z3": -0.0591,
             "trial_count": 3,
             "nct_ids": [
-              "NCT06369935",
-              "NCT06655519",
-              "NCT06697483"
+              "NCT06592222",
+              "NCT06215118",
+              "NCT06152575"
             ],
             "citations": [
               {
-                "nct_id": "NCT06369935",
+                "nct_id": "NCT06592222",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Peking University People's Hospital",
+                "excerpt": "Pfizer",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06369935"
+                "url": "https://clinicaltrials.gov/study/NCT06592222"
               },
               {
-                "nct_id": "NCT06655519",
+                "nct_id": "NCT06215118",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Peking University People's Hospital",
+                "excerpt": "Pfizer",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06655519"
+                "url": "https://clinicaltrials.gov/study/NCT06215118"
               },
               {
-                "nct_id": "NCT06697483",
+                "nct_id": "NCT06152575",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Peking University People's Hospital",
+                "excerpt": "Pfizer",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06697483"
-              }
-            ]
-          },
-          {
-            "id": "intervention:18f-fdg pet/ct",
-            "label": "18F-FDG PET/CT",
-            "type": "intervention",
-            "degree": 1,
-            "community": 1,
-            "x": -0.4015,
-            "y": -0.709,
-            "x3": 0.7723,
-            "y3": 0.0066,
-            "z3": 0.2445,
-            "trial_count": 2,
-            "nct_ids": [
-              "NCT06224309",
-              "NCT06103838"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06224309",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "18F-FDG PET/CT",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06224309"
-              },
-              {
-                "nct_id": "NCT06103838",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "18F-FDG PET/CT",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06103838"
+                "url": "https://clinicaltrials.gov/study/NCT06152575"
               }
             ]
           },
@@ -1676,11 +1417,11 @@
             "type": "lead_sponsor",
             "degree": 6,
             "community": 0,
-            "x": 0.0817,
-            "y": 0.5716,
-            "x3": 0.2624,
-            "y3": 0.0129,
-            "z3": -0.5869,
+            "x": 0.1554,
+            "y": -0.0192,
+            "x3": 0.4858,
+            "y3": -0.2729,
+            "z3": 0.0877,
             "trial_count": 2,
             "nct_ids": [
               "NCT06158841",
@@ -1704,35 +1445,134 @@
             ]
           },
           {
-            "id": "lead_sponsor:assistance publique - hôpitaux de paris",
-            "label": "Assistance Publique - Hôpitaux de Paris",
+            "id": "lead_sponsor:brigham and women's hospital",
+            "label": "Brigham and Women's Hospital",
             "type": "lead_sponsor",
             "degree": 1,
             "community": 0,
-            "x": 0.8978,
-            "y": 0.0903,
-            "x3": 0.4864,
-            "y3": -0.4516,
-            "z3": -0.2326,
+            "x": 0.8905,
+            "y": 0.3143,
+            "x3": -0.765,
+            "y3": 0.2166,
+            "z3": 0.0088,
             "trial_count": 2,
             "nct_ids": [
-              "NCT06561854",
-              "NCT06350994"
+              "NCT06483139",
+              "NCT06549634"
             ],
             "citations": [
               {
-                "nct_id": "NCT06561854",
+                "nct_id": "NCT06483139",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Assistance Publique - Hôpitaux de Paris",
+                "excerpt": "Brigham and Women's Hospital",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06561854"
+                "url": "https://clinicaltrials.gov/study/NCT06483139"
               },
               {
-                "nct_id": "NCT06350994",
+                "nct_id": "NCT06549634",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Assistance Publique - Hôpitaux de Paris",
+                "excerpt": "Brigham and Women's Hospital",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06350994"
+                "url": "https://clinicaltrials.gov/study/NCT06549634"
+              }
+            ]
+          },
+          {
+            "id": "lead_sponsor:celgene",
+            "label": "Celgene",
+            "type": "lead_sponsor",
+            "degree": 7,
+            "community": 0,
+            "x": 0.5622,
+            "y": -0.3257,
+            "x3": -0.111,
+            "y3": -0.403,
+            "z3": 0.2196,
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06163898",
+              "NCT06232707"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06163898",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
+              },
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
+              }
+            ]
+          },
+          {
+            "id": "intervention:cilta-cel",
+            "label": "Cilta-cel",
+            "type": "intervention",
+            "degree": 1,
+            "community": 0,
+            "x": 0.1558,
+            "y": 0.9104,
+            "x3": 0.1728,
+            "y3": 0.4348,
+            "z3": 0.5593,
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06550895",
+              "NCT06577025"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06550895",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cilta-cel",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06550895"
+              },
+              {
+                "nct_id": "NCT06577025",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cilta-cel",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06577025"
+              }
+            ]
+          },
+          {
+            "id": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
+            "label": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
+            "type": "lead_sponsor",
+            "degree": 7,
+            "community": 0,
+            "x": 0.5318,
+            "y": -0.0432,
+            "x3": -0.2822,
+            "y3": -0.3663,
+            "z3": -0.031,
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06121843",
+              "NCT06153251"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06121843",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06121843"
+              },
+              {
+                "nct_id": "NCT06153251",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Juno Therapeutics, Inc., a Bristol-Myers Squibb Company",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06153251"
               }
             ]
           }
@@ -1899,60 +1739,6 @@
                 "excerpt": "Bone Marrow Biopsy",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06179888"
-              }
-            ]
-          },
-          {
-            "source": "intervention:biospecimen collection",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 3,
-            "nct_ids": [
-              "NCT05847569",
-              "NCT06630104",
-              "NCT06042725"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Biospecimen Collection",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT06630104",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06630104"
-              },
-              {
-                "nct_id": "NCT06630104",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Biospecimen Collection",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06630104"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Biospecimen Collection",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
               }
             ]
           },
@@ -2281,60 +2067,6 @@
             ]
           },
           {
-            "source": "intervention:questionnaire administration",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 3,
-            "nct_ids": [
-              "NCT06145581",
-              "NCT06042725",
-              "NCT06395441"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06145581",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06145581"
-              },
-              {
-                "nct_id": "NCT06145581",
-                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-                "excerpt": "Questionnaire Administration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06145581"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[13].name",
-                "excerpt": "Questionnaire Administration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06395441",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06395441"
-              },
-              {
-                "nct_id": "NCT06395441",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Questionnaire Administration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06395441"
-              }
-            ]
-          },
-          {
             "source": "intervention:teclistamab",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 3,
@@ -2389,80 +2121,41 @@
             ]
           },
           {
-            "source": "intervention:biopsy",
-            "target": "lead_sponsor:mayo clinic",
+            "source": "intervention:alnuctamab",
+            "target": "lead_sponsor:celgene",
             "trial_count": 2,
             "nct_ids": [
-              "NCT05847569",
-              "NCT06042725"
+              "NCT06163898",
+              "NCT06232707"
             ],
             "citations": [
               {
-                "nct_id": "NCT05847569",
+                "nct_id": "NCT06163898",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
+                "excerpt": "Celgene",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
               },
               {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
-                "excerpt": "Bone Marrow Biopsy",
+                "nct_id": "NCT06163898",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Alnuctamab",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
               },
               {
-                "nct_id": "NCT06042725",
+                "nct_id": "NCT06232707",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
+                "excerpt": "Celgene",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
               },
               {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
-                "excerpt": "Bone Marrow Biopsy",
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Alnuctamab",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              }
-            ]
-          },
-          {
-            "source": "intervention:bone marrow aspiration",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 2,
-            "nct_ids": [
-              "NCT06630104",
-              "NCT06042725"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06630104",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06630104"
-              },
-              {
-                "nct_id": "NCT06630104",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Bone Marrow Aspiration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06630104"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Bone Marrow Aspiration",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
               }
             ]
           },
@@ -2506,41 +2199,80 @@
             ]
           },
           {
-            "source": "intervention:computed tomography",
-            "target": "lead_sponsor:mayo clinic",
+            "source": "intervention:cilta-cel",
+            "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
             "nct_ids": [
-              "NCT05847569",
-              "NCT06042725"
+              "NCT06550895",
+              "NCT06577025"
             ],
             "citations": [
               {
-                "nct_id": "NCT05847569",
+                "nct_id": "NCT06550895",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
+                "excerpt": "Janssen Research & Development, LLC",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
+                "url": "https://clinicaltrials.gov/study/NCT06550895"
               },
               {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-                "excerpt": "Computed Tomography",
+                "nct_id": "NCT06550895",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cilta-cel",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
+                "url": "https://clinicaltrials.gov/study/NCT06550895"
               },
               {
-                "nct_id": "NCT06042725",
+                "nct_id": "NCT06577025",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
+                "excerpt": "Janssen Research & Development, LLC",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
+                "url": "https://clinicaltrials.gov/study/NCT06577025"
               },
               {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
-                "excerpt": "Computed Tomography",
+                "nct_id": "NCT06577025",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Cilta-cel",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
+                "url": "https://clinicaltrials.gov/study/NCT06577025"
+              }
+            ]
+          },
+          {
+            "source": "intervention:daratumumab",
+            "target": "lead_sponsor:brigham and women's hospital",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06483139",
+              "NCT06549634"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06483139",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Brigham and Women's Hospital",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06483139"
+              },
+              {
+                "nct_id": "NCT06483139",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Daratumumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06483139"
+              },
+              {
+                "nct_id": "NCT06549634",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Brigham and Women's Hospital",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06549634"
+              },
+              {
+                "nct_id": "NCT06549634",
+                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
+                "excerpt": "Daratumumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06549634"
               }
             ]
           },
@@ -2580,6 +2312,45 @@
                 "excerpt": "Daratumumab",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06577025"
+              }
+            ]
+          },
+          {
+            "source": "intervention:dexamethasone",
+            "target": "lead_sponsor:celgene",
+            "trial_count": 2,
+            "nct_ids": [
+              "NCT06163898",
+              "NCT06232707"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06163898",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
+              },
+              {
+                "nct_id": "NCT06163898",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
+                "excerpt": "Dexamethasone",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
+              },
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
+              },
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "excerpt": "Dexamethasone",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
               }
             ]
           },
@@ -2701,45 +2472,6 @@
             ]
           },
           {
-            "source": "intervention:magnetic resonance imaging",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 2,
-            "nct_ids": [
-              "NCT05847569",
-              "NCT06042725"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
-                "excerpt": "Magnetic Resonance Imaging",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[9].name",
-                "excerpt": "Magnetic Resonance Imaging",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              }
-            ]
-          },
-          {
             "source": "intervention:pomalidomide",
             "target": "lead_sponsor:janssen research & development, llc",
             "trial_count": 2,
@@ -2779,69 +2511,6 @@
             ]
           },
           {
-            "source": "intervention:positron emission tomography",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 2,
-            "nct_ids": [
-              "NCT05847569",
-              "NCT06042725"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[6].name",
-                "excerpt": "Positron Emission Tomography",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[10].name",
-                "excerpt": "Positron Emission Tomography",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              }
-            ]
-          },
-          {
-            "source": "intervention:18f-fdg pet/ct",
-            "target": "lead_sponsor:national cancer institute (nci)",
-            "trial_count": 1,
-            "nct_ids": [
-              "NCT06103838"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06103838",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "National Cancer Institute (NCI)",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06103838"
-              },
-              {
-                "nct_id": "NCT06103838",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "18F-FDG PET/CT",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06103838"
-              }
-            ]
-          },
-          {
             "source": "intervention:alnuctamab",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
@@ -2862,30 +2531,6 @@
                 "excerpt": "Alnuctamab",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06121843"
-              }
-            ]
-          },
-          {
-            "source": "intervention:belantamab mafodotin",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 1,
-            "nct_ids": [
-              "NCT05847569"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
-              },
-              {
-                "nct_id": "NCT05847569",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Belantamab Mafodotin",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT05847569"
               }
             ]
           },
@@ -2987,6 +2632,30 @@
           },
           {
             "source": "intervention:carfilzomib",
+            "target": "lead_sponsor:celgene",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06232707"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
+              },
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.armsInterventionsModule.interventions[4].name",
+                "excerpt": "Carfilzomib",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
+              }
+            ]
+          },
+          {
+            "source": "intervention:carfilzomib",
             "target": "lead_sponsor:pfizer",
             "trial_count": 1,
             "nct_ids": [
@@ -3083,25 +2752,25 @@
           },
           {
             "source": "intervention:daratumumab",
-            "target": "lead_sponsor:mayo clinic",
+            "target": "lead_sponsor:celgene",
             "trial_count": 1,
             "nct_ids": [
-              "NCT06042725"
+              "NCT06232707"
             ],
             "citations": [
               {
-                "nct_id": "NCT06042725",
+                "nct_id": "NCT06232707",
                 "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
+                "excerpt": "Celgene",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
               },
               {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[5].name",
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.armsInterventionsModule.interventions[2].name",
                 "excerpt": "Daratumumab",
                 "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
               }
             ]
           },
@@ -3126,30 +2795,6 @@
                 "excerpt": "Daratumumab and Recombinant Human Hyaluronidase",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06169215"
-              }
-            ]
-          },
-          {
-            "source": "intervention:daratumumab",
-            "target": "lead_sponsor:peking university people's hospital",
-            "trial_count": 1,
-            "nct_ids": [
-              "NCT06697483"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06697483",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Peking University People's Hospital",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06697483"
-              },
-              {
-                "nct_id": "NCT06697483",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Daratumumab",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06697483"
               }
             ]
           },
@@ -3179,30 +2824,6 @@
           },
           {
             "source": "intervention:dexamethasone",
-            "target": "lead_sponsor:assistance publique - hôpitaux de paris",
-            "trial_count": 1,
-            "nct_ids": [
-              "NCT06561854"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06561854",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Assistance Publique - Hôpitaux de Paris",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06561854"
-              },
-              {
-                "nct_id": "NCT06561854",
-                "field": "protocolSection.armsInterventionsModule.interventions[0].name",
-                "excerpt": "Dexamethasone",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06561854"
-              }
-            ]
-          },
-          {
-            "source": "intervention:dexamethasone",
             "target": "lead_sponsor:juno therapeutics, inc., a bristol-myers squibb company",
             "trial_count": 1,
             "nct_ids": [
@@ -3222,30 +2843,6 @@
                 "excerpt": "Dexamethasone",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06121843"
-              }
-            ]
-          },
-          {
-            "source": "intervention:dexamethasone",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 1,
-            "nct_ids": [
-              "NCT06042725"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[6].name",
-                "excerpt": "Dexamethasone",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
               }
             ]
           },
@@ -3342,6 +2939,30 @@
                 "excerpt": "Elotuzumab",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06158841"
+              }
+            ]
+          },
+          {
+            "source": "intervention:elotuzumab",
+            "target": "lead_sponsor:celgene",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06232707"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
+              },
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.armsInterventionsModule.interventions[3].name",
+                "excerpt": "Elotuzumab",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
               }
             ]
           },
@@ -3539,30 +3160,6 @@
           },
           {
             "source": "intervention:lenalidomide",
-            "target": "lead_sponsor:mayo clinic",
-            "trial_count": 1,
-            "nct_ids": [
-              "NCT06042725"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Mayo Clinic",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              },
-              {
-                "nct_id": "NCT06042725",
-                "field": "protocolSection.armsInterventionsModule.interventions[7].name",
-                "excerpt": "Lenalidomide",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06042725"
-              }
-            ]
-          },
-          {
-            "source": "intervention:lenalidomide",
             "target": "lead_sponsor:national cancer institute (nci)",
             "trial_count": 1,
             "nct_ids": [
@@ -3587,30 +3184,6 @@
           },
           {
             "source": "intervention:lenalidomide",
-            "target": "lead_sponsor:peking university people's hospital",
-            "trial_count": 1,
-            "nct_ids": [
-              "NCT06697483"
-            ],
-            "citations": [
-              {
-                "nct_id": "NCT06697483",
-                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
-                "excerpt": "Peking University People's Hospital",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06697483"
-              },
-              {
-                "nct_id": "NCT06697483",
-                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
-                "excerpt": "Lenalidomide",
-                "kind": "value",
-                "url": "https://clinicaltrials.gov/study/NCT06697483"
-              }
-            ]
-          },
-          {
-            "source": "intervention:lenalidomide",
             "target": "lead_sponsor:washington university school of medicine",
             "trial_count": 1,
             "nct_ids": [
@@ -3630,6 +3203,30 @@
                 "excerpt": "Lenalidomide",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT05820763"
+              }
+            ]
+          },
+          {
+            "source": "intervention:mezigdomide",
+            "target": "lead_sponsor:celgene",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06163898"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06163898",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
+              },
+              {
+                "nct_id": "NCT06163898",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Mezigdomide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06163898"
               }
             ]
           },
@@ -3678,6 +3275,30 @@
                 "excerpt": "Pomalidomide",
                 "kind": "value",
                 "url": "https://clinicaltrials.gov/study/NCT06158841"
+              }
+            ]
+          },
+          {
+            "source": "intervention:pomalidomide",
+            "target": "lead_sponsor:celgene",
+            "trial_count": 1,
+            "nct_ids": [
+              "NCT06232707"
+            ],
+            "citations": [
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.sponsorCollaboratorsModule.leadSponsor.name",
+                "excerpt": "Celgene",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
+              },
+              {
+                "nct_id": "NCT06232707",
+                "field": "protocolSection.armsInterventionsModule.interventions[1].name",
+                "excerpt": "Pomalidomide",
+                "kind": "value",
+                "url": "https://clinicaltrials.gov/study/NCT06232707"
               }
             ]
           },
@@ -3805,7 +3426,7 @@
       },
       "vega_lite": null,
       "title": "Network of lead sponsors and interventions in multiple myeloma trials",
-      "subtitle": "Started 2024."
+      "subtitle": "Drug interventions. Started 2024."
     },
     "alternatives": [
       {
@@ -4008,7 +3629,9 @@
           "phases": null,
           "statuses": null,
           "sponsor_classes": null,
-          "intervention_types": null,
+          "intervention_types": [
+            "DRUG"
+          ],
           "study_types": null,
           "countries": null,
           "start_year_from": 2024,
@@ -4022,7 +3645,7 @@
           ]
         },
         "presentation": {
-          "chart_type": "network_graph",
+          "chart_type": null,
           "sort": null,
           "top_n": null,
           "citations_per_datum": 3
@@ -4035,37 +3658,37 @@
         "analysis.kind": "inferred",
         "analysis.node_types": "inferred",
         "filters.conditions": "inferred",
+        "filters.intervention_types": "inferred",
         "filters.start_year_from": "inferred",
         "filters.start_year_to": "inferred",
-        "presentation.chart_type": "inferred",
         "presentation.citations_per_datum": "default",
         "retrieval.name_matching": "default"
       },
       "notes": [
         {
           "code": "mentions_reported",
-          "message": "6 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
+          "message": "1 more trials mention the drug or condition only in descriptions, often as one of several permitted options. They are listed under mentions but not counted. Set retrieval.name_matching to mentioned to count them.",
           "slot": null
         },
         {
           "code": "network_pruned",
-          "message": "The network keeps the 37 most frequent entities that have at least one link, and the 64 strongest links. 307 entities and 311 links were left out.",
+          "message": "The network keeps the 34 most frequent entities that have at least one link, and the 58 strongest links. 195 entities and 237 links were left out.",
           "slot": null
         }
       ],
       "cohorts": [
         {
           "label": null,
-          "total": 186,
-          "fetched": 186,
+          "total": 117,
+          "fetched": 117,
           "truncated": false,
-          "mentions": 6
+          "mentions": 1
         }
       ],
       "chart_choice": {
         "recommended": {
           "type": "network_graph",
-          "reason": "requested by the question"
+          "reason": "entities as nodes, linked by the trials they share"
         },
         "alternatives": [
           {
@@ -4082,67 +3705,27 @@
       "mentions": [
         {
           "cohort": null,
-          "total": 6,
+          "total": 1,
           "counted": false,
           "nct_ids": [
-            "NCT06582017",
-            "NCT06472830",
-            "NCT06574958",
-            "NCT06508463",
-            "NCT06568952",
-            "NCT06258629"
+            "NCT06508463"
           ],
           "citations": [
-            {
-              "nct_id": "NCT06582017",
-              "field": "protocolSection.identificationModule.briefTitle",
-              "excerpt": "Safety, PK and Efficacy of QXL138AM in Patients With Solid Tumors and Multiple Myeloma",
-              "kind": "quote",
-              "url": "https://clinicaltrials.gov/study/NCT06582017"
-            },
-            {
-              "nct_id": "NCT06472830",
-              "field": "protocolSection.descriptionModule.briefSummary",
-              "excerpt": "In some people, it slowly develops into a blood cancer called multiple myeloma.",
-              "kind": "quote",
-              "url": "https://clinicaltrials.gov/study/NCT06472830"
-            },
-            {
-              "nct_id": "NCT06574958",
-              "field": "protocolSection.identificationModule.briefTitle",
-              "excerpt": "Clinical Study of CD38\\CS1 Chimeric Antigen Receptor T Cells in the Treatment of Refractory/Recurrent Multiple Myeloma",
-              "kind": "quote",
-              "url": "https://clinicaltrials.gov/study/NCT06574958"
-            },
             {
               "nct_id": "NCT06508463",
               "field": "protocolSection.identificationModule.officialTitle",
               "excerpt": "MC1684 Phase I Trial of Systemic Administration of Vesicular Stomatitis Virus Genetically Engineered to Express NIS and Human Interferon, in Patients With Relapsed or Refractory Multiple Myeloma, Acute Myeloid Leukemia, Lymphomas, or Histiocytic/Dendritic Cell Neoplasms",
               "kind": "quote",
               "url": "https://clinicaltrials.gov/study/NCT06508463"
-            },
-            {
-              "nct_id": "NCT06568952",
-              "field": "protocolSection.identificationModule.officialTitle",
-              "excerpt": "Right Ventricular Function of Patients With Multiple Myeloma Treated With Carfilzomib",
-              "kind": "quote",
-              "url": "https://clinicaltrials.gov/study/NCT06568952"
-            },
-            {
-              "nct_id": "NCT06258629",
-              "field": "protocolSection.identificationModule.briefTitle",
-              "excerpt": "Hematological Malignancies Comprise a Group of Malignant Clonal Disorders Arising From the Hematopoietic Tissues , Including Leukemia , Multiple Myeloma , and They Have a High Morbidity and Mortality",
-              "kind": "quote",
-              "url": "https://clinicaltrials.gov/study/NCT06258629"
             }
           ]
         }
       ],
       "registry_requests": [
-        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29&countTotal=true&fields=NCTId&pageSize=1",
-        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionType%2CInterventionMeshTerm%2CArmGroupLabel%2CArmGroupInterventionName&pageSize=1000&countTotal=true",
-        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29%29%29&query.cond=%28multiple+myeloma%29&countTotal=true&fields=NCTId&pageSize=1",
-        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29%29%29&query.cond=%28multiple+myeloma%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionType%2CInterventionMeshTerm%2CArmGroupLabel%2CArmGroupInterventionName%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&pageSize=1000&countTotal=true"
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29&query.cond=%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionMeshTerm%2CArmGroupLabel%2CArmGroupInterventionName&pageSize=1000&countTotal=true",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29%29%29&query.cond=%28multiple+myeloma%29&countTotal=true&fields=NCTId&pageSize=1",
+        "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionType%5D%28DRUG%29%29+AND+%28AREA%5BStartDate%5DRANGE%5B2024-01-01%2C+2024-12-31%5D%29+AND+%28NOT+%28%28AREA%5BCondition%5D%28multiple+myeloma%29+OR+AREA%5BConditionMeshTerm%5D%28multiple+myeloma%29+OR+AREA%5BKeyword%5D%28multiple+myeloma%29%29%29%29&query.cond=%28multiple+myeloma%29&fields=NCTId%2CBriefTitle%2COverallStatus%2CPhase%2CStartDate%2CCondition%2CConditionMeshTerm%2CKeyword%2CInterventionType%2CLeadSponsorName%2CLeadSponsorClass%2CInterventionName%2CInterventionMeshTerm%2CArmGroupLabel%2CArmGroupInterventionName%2COfficialTitle%2CBriefSummary%2CInterventionDescription%2CArmGroupDescription&pageSize=1000&countTotal=true"
       ]
     }
   }
