@@ -176,7 +176,7 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
                 for key, label in series
             ]
         case Distribution():
-            if chart is ChartType.BOX_PLOT:
+            if _as_boxes(dataset, chart):
                 return [_box(dataset, spread, limit) for spread in dataset.spreads]
             return [
                 {
@@ -237,6 +237,10 @@ def rows(dataset: Dataset, chart: ChartType, limit: int, sort: SortOrder | None)
                 for r in dataset.rows
             ]
     raise AssertionError(f"no rows for {type(dataset).__name__}")
+
+
+def _as_boxes(dataset: Distribution, chart: ChartType) -> bool:
+    return chart is ChartType.BOX_PLOT or (chart is ChartType.TABLE and bool(dataset.group_field))
 
 
 def _box(dataset: Distribution, spread: Spread, limit: int) -> dict[str, Any]:
@@ -372,6 +376,15 @@ def encoding_and_options(
             )
             return _time(chart, time, series)
         case Distribution():
+            if chart is ChartType.TABLE:
+                # A grouped spread's table gives each group's statistics; otherwise the bins.
+                stats = ["n", "min", "q1", "median", "q3", "max", "mean"]
+                columns = (
+                    [dataset.group_field or "group", *stats]
+                    if _as_boxes(dataset, chart)
+                    else ["label", COUNT]
+                )
+                return {}, {"columns": columns}
             if chart is ChartType.BOX_PLOT:
                 group = Channel(
                     field=dataset.group_field or "group",
@@ -411,11 +424,12 @@ def encoding_and_options(
         case Points():
             xs, ys = [p.x for p in dataset.points], [p.y for p in dataset.points]
             encoding = {"x": _measure(dataset.x, xs), "y": _measure(dataset.y, ys)}
-            if dataset.z:
+            # A third measure is bubble size or the 3D depth. A flat scatter has no place
+            # for it, so it carries none, and its bubble alternative shows the third measure.
+            third = {ChartType.BUBBLE_CHART: "size", ChartType.SCATTER_PLOT_3D: "z"}.get(chart)
+            if dataset.z and third:
                 zs = [p.z for p in dataset.points if p.z is not None]
-                encoding["size" if chart is ChartType.BUBBLE_CHART else "z"] = _measure(
-                    dataset.z, zs
-                )
+                encoding[third] = _measure(dataset.z, zs)
             if dataset.color_field:
                 encoding["color"] = Channel(
                     field=dataset.color_field, type="nominal", title=dataset.color_dimension or ""

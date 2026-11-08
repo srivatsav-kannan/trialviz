@@ -184,6 +184,18 @@ def _read_references(scanner: _Scanner, request: QueryRequest) -> InterpreterIss
     return None
 
 
+def unnamed_references(request: QueryRequest) -> list[str]:
+    """The filter slots a question points at ("this drug") that no field fills, so a
+    clarification can name them whichever interpreter noticed the reference."""
+    slots = []
+    for match in _REFERENCE.finditer(fold_preserving_length(request.query)):
+        noun = match.group("noun")
+        target = next(t for stem, (t, _) in _REFERENCE_TARGETS.items() if noun.startswith(stem))
+        if getattr(request.filters, target) is None and f"filters.{target}" not in slots:
+            slots.append(f"filters.{target}")
+    return slots
+
+
 # --- Years ------------------------------------------------------------------------------
 
 _NUMBER_WORDS = {

@@ -229,7 +229,11 @@ CANDIDATES: list[Candidate] = [
             "a heatmap needs at least 2 rows and 2 columns",
         ),
         lambda f: 2 + 3 * (min(f.rows, f.columns) > 5 or f.rows * f.columns > 60),
-        lambda f: "too many combinations for bars, so color shows the counts",
+        lambda f: (
+            "too many combinations for bars, so color shows the counts"
+            if min(f.rows, f.columns) > 5 or f.rows * f.columns > 60
+            else "every combination at once, with color showing its count"
+        ),
     ),
     Candidate(
         ChartType.TABLE,

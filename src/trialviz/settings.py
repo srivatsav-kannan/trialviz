@@ -58,6 +58,11 @@ class Settings(BaseSettings):
         4, ge=1, description="Questions answered at once; more get a 503 to retry shortly."
     )
     max_body_bytes: int = Field(16_384, ge=1024, description="Largest request body accepted.")
+    cors_allow_origins: str = Field(
+        "*",
+        description="Origins whose pages may call the API from a browser, comma-separated. "
+        "The API uses no cookies or credentials, so any origin is safe by default.",
+    )
     trusted_proxy_hops: int = Field(
         0,
         ge=0,

@@ -257,6 +257,8 @@ def _each_drug(
         own = entry.part or name
         learned = None if entry.mesh else (aliases or {}).get(own.casefold())
         label = str(entry.mesh.value) if entry.mesh else learned or own
+        # Some MeSH terms are all lowercase ("pembrolizumab") beside "Cisplatin".
+        label = label[:1].upper() + label[1:] if label.islower() else label
         citations: tuple[Citation, ...] = (entry.found.citation(study),)
         if entry.mesh:
             citations += (entry.mesh.citation(study),)

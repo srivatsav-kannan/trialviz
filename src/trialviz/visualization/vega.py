@@ -47,6 +47,7 @@ def to_vega_lite(
         return None
     spec: dict[str, Any] = {"$schema": SCHEMA, "title": title, "data": {"values": values}, **body}
     _label_symlog_axes(spec, values)
+    _read_dates_as_utc(spec, values)
     if limit := options.get("display_limit"):
         sort_field = (
             encoding.get("x") if chart is ChartType.HORIZONTAL_BAR_CHART else encoding.get("y")
@@ -72,8 +73,11 @@ def _label_symlog_axes(spec: dict[str, Any], values: list[dict[str, Any]]) -> No
         for name, channel in encoding.items():
             if isinstance(channel, dict) and channel.get("scale") == {"type": "symlog"}:
                 axes.setdefault(name, []).append(channel)
-    for channels in axes.values():
-        fields = {c["field"] for c in channels}
+    for name, channels in axes.items():
+        # The box plot's whiskers end at y2, which shares the y axis.
+        fields = {c["field"] for c in channels} | {
+            e[f"{name}2"]["field"] for e in _encodings(spec) if f"{name}2" in e
+        }
         top = max(
             (row[f] for row in values for f in fields if isinstance(row.get(f), int | float)),
             default=0,
@@ -84,6 +88,27 @@ def _label_symlog_axes(spec: dict[str, Any], values: list[dict[str, Any]]) -> No
                 "labelExpr": _SHORT_NUMBER,
                 "labelOverlap": "greedy",
             }
+
+
+_UTC_UNITS = {4: "utcyear", 7: "utcyearmonth", 10: "utcyearmonthdate"}
+
+
+def _read_dates_as_utc(spec: dict[str, Any], values: list[dict[str, Any]]) -> None:
+    """Periods and dates ("2019", "2019-03", "2019-03-01") are parsed as UTC midnight, so
+    shown in local time they fall on the day or year before anywhere west of UTC. A UTC
+    time unit keeps the axis, ticks and tooltips on the date the data says."""
+    for encoding in _encodings(spec):
+        channels = [c for c in encoding.values() if isinstance(c, dict)]
+        channels += [t for t in encoding.get("tooltip", []) if isinstance(t, dict)]
+        for channel in channels:
+            if channel.get("type") != "temporal":
+                continue
+            # Timelines mix "2024-06-03" with "2030-12", so the finest precision present wins.
+            lengths = {
+                len(str(row[channel["field"]])) for row in values if row.get(channel["field"])
+            }
+            if lengths and (unit := _UTC_UNITS.get(max(lengths))):
+                channel["timeUnit"] = unit
 
 
 def _encodings(spec: dict[str, Any]) -> list[dict[str, Any]]:
@@ -234,7 +259,23 @@ def _body(
                     },
                     {
                         "mark": {"type": "bar", "size": 18},
-                        "encoding": {"x": x, "y": _channel(e["q1"]), "y2": {"field": "q3"}},
+                        "encoding": {
+                            "x": x,
+                            "y": _channel(e["q1"]),
+                            "y2": {"field": "q3"},
+                            "tooltip": [
+                                {"field": e["x"].field, "type": e["x"].type, "title": e["x"].title},
+                                {"field": "n", "type": "quantitative", "title": "Trials"},
+                                *(
+                                    {
+                                        "field": f,
+                                        "type": "quantitative",
+                                        "title": f.replace("_", " "),
+                                    }
+                                    for f in ("whisker_low", "q1", "median", "q3", "whisker_high")
+                                ),
+                            ],
+                        },
                     },
                     {
                         "mark": {"type": "tick", "color": "white", "size": 18},

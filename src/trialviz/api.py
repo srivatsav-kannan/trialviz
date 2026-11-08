@@ -28,6 +28,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import Response
 
 from trialviz.answer import Answer, QueryResponse
@@ -43,8 +44,11 @@ from trialviz.limits import (
 )
 from trialviz.llm.budget import BudgetExceeded, FileLedger, Ledger, PostgresLedger
 from trialviz.openapi import (
+    ANSWER_TIMEOUT,
     DESCRIPTION,
+    INTERNAL_ERROR,
     INVALID_REQUEST,
+    RATE_LIMIT_HEADERS,
     RATE_LIMITED,
     REGISTRY_REJECTED,
     REGISTRY_UNAVAILABLE_OR_BUSY,
@@ -205,9 +209,19 @@ def create_app(
         return await call_next(request)
 
     # Added last, so they run first: the size limit sees the body before anything reads
-    # it, and every response, refusals included, carries the security headers.
+    # it, and every response, refusals included, carries the security headers. CORS runs
+    # first of all, so a page on another origin can read refusals and their Retry-After
+    # too, and a preflight is answered without counting against any limit.
     app.add_middleware(BodySizeLimit, max_bytes=settings.max_body_bytes)
     app.add_middleware(SecurityHeaders)
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[o.strip() for o in settings.cors_allow_origins.split(",") if o.strip()],
+        allow_methods=["GET", "POST"],
+        allow_headers=["content-type"],
+        expose_headers=["Retry-After", "RateLimit-Limit", "RateLimit-Remaining", "RateLimit-Reset"],
+        max_age=600,
+    )
 
     @app.post(
         "/v1/query",
@@ -219,13 +233,16 @@ def create_app(
         responses={
             200: {
                 "description": "An answer, or what is needed before the question can be answered.",
+                "headers": RATE_LIMIT_HEADERS,
                 "content": {"application/json": {"examples": answer_examples()}},
             },
             413: REQUEST_TOO_LARGE,
             422: INVALID_REQUEST,
             429: RATE_LIMITED,
+            500: INTERNAL_ERROR,
             502: REGISTRY_REJECTED,
             503: REGISTRY_UNAVAILABLE_OR_BUSY,
+            504: ANSWER_TIMEOUT,
         },
         dependencies=[Depends(question_quota)],
     )
@@ -255,11 +272,13 @@ def create_app(
         responses={
             200: {
                 "description": "The resolved plan, or what is needed to resolve it.",
+                "headers": RATE_LIMIT_HEADERS,
                 "content": {"application/json": {"examples": resolution_examples()}},
             },
             413: REQUEST_TOO_LARGE,
             422: INVALID_REQUEST,
             429: RATE_LIMITED,
+            500: INTERNAL_ERROR,
             503: SERVICE_BUSY,
         },
         dependencies=[Depends(question_quota)],

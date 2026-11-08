@@ -230,9 +230,38 @@ for _example in REQUEST_EXAMPLES.values():
     QueryRequest.model_validate(_example["value"])
 
 
-def _error_example(status: int, code: str, message: str, details: list[dict[str, Any]]) -> Any:
+RETRY_AFTER = {
+    "Retry-After": {
+        "description": "Seconds to wait before trying again.",
+        "schema": {"type": "integer"},
+    }
+}
+RATE_LIMIT_HEADERS = {
+    "RateLimit-Limit": {
+        "description": "Questions allowed in the client's tightest window, a minute or an hour.",
+        "schema": {"type": "integer"},
+    },
+    "RateLimit-Remaining": {
+        "description": "Questions left in that window.",
+        "schema": {"type": "integer"},
+    },
+    "RateLimit-Reset": {
+        "description": "Seconds until a question in that window stops counting.",
+        "schema": {"type": "integer"},
+    },
+}
+
+
+def _error_example(
+    status: int,
+    code: str,
+    message: str,
+    details: list[dict[str, Any]],
+    headers: dict[str, Any] | None = None,
+) -> Any:
     return {
         "model": ErrorResponse,
+        **({"headers": headers} if headers else {}),
         "content": {
             "application/json": {
                 "example": {"error": {"code": code, "message": message, "details": details}}
@@ -272,14 +301,25 @@ RATE_LIMITED = _error_example(
     "rate_limited",
     "Too many questions: the limit is 10 per minute. Try again in 42 seconds.",
     [],
+    RETRY_AFTER,
 )
 SERVICE_BUSY = _error_example(
-    503, "busy", "The service is already answering 4 questions. Try again shortly.", []
+    503, "busy", "The service is already answering 4 questions. Try again shortly.", [], RETRY_AFTER
+)
+ANSWER_TIMEOUT = _error_example(
+    504,
+    "answer_timeout",
+    "The answer needed more than 180 seconds of registry requests. Narrow the question.",
+    [],
+)
+INTERNAL_ERROR = _error_example(
+    500, "internal_error", "The service failed unexpectedly (KeyError).", []
 )
 REGISTRY_UNAVAILABLE_OR_BUSY = {
     "model": ErrorResponse,
     "description": "The registry could not be reached, or the service is answering as many "
     "questions as it allows at once.",
+    "headers": {"Retry-After": {**RETRY_AFTER["Retry-After"], "description": "Sent when busy."}},
     "content": {
         "application/json": {
             "examples": {
@@ -324,7 +364,7 @@ def answer_examples() -> dict[str, Any]:
                 "reason": "ambiguous_reference",
                 "message": 'The question refers to "this drug" without naming it. Name it '
                 "in the question, or set filters.interventions (or drug_name).",
-                "missing": [],
+                "missing": ["filters.interventions"],
                 "notes": [],
                 "interpreter": "rules",
             },
@@ -334,6 +374,9 @@ def answer_examples() -> dict[str, Any]:
         examples = {
             "answer": {
                 "summary": "An answer (trimmed from a saved response)",
+                "description": "Cut down to three rows, three trial IDs and one citation per "
+                "datum, so a `trial_count` here can exceed the IDs shown. Real answers list "
+                "every trial behind each count, as GET /v1/samples/{name} shows.",
                 "value": _trim(answer),
             },
             **examples,

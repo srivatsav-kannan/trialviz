@@ -32,6 +32,7 @@ from pydantic import ValidationError
 from trialviz.query.consistency import ANALYSIS_RULES, FILTER_RULES, broken_rules, same_meaning
 from trialviz.query.filters import Cohort
 from trialviz.query.interpreters.base import Interpretation, Interpreter, InterpreterUnavailable
+from trialviz.query.interpreters.rules import unnamed_references
 from trialviz.query.plan import (
     DEFAULT_CITATIONS_PER_DATUM,
     DEFAULT_NAME_MATCHING,
@@ -85,9 +86,13 @@ class QueryResolver:
 
         if interpretation is not None and interpretation.issue is not None:
             issue = interpretation.issue
+            reason = ClarificationReason(issue.kind.value)
             return ClarificationNeeded(
-                reason=ClarificationReason(issue.kind.value),
+                reason=reason,
                 message=issue.message,
+                missing=unnamed_references(request)
+                if reason is ClarificationReason.AMBIGUOUS_REFERENCE
+                else [],
                 notes=notes,
                 interpreter=interpreter,
             )

@@ -470,7 +470,9 @@
         "status": "needs_clarification",
         "reason": "ambiguous_reference",
         "message": "The question refers to \"this drug\" without naming it. Name it in the question, or set filters.interventions (or drug_name).",
-        "missing": [],
+        "missing": [
+          "filters.interventions"
+        ],
         "notes": [],
         "interpreter": "rules"
       }

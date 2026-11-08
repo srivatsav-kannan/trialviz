@@ -31,7 +31,15 @@ def _join(items: list[str], word: str = "or") -> str:
 
 
 def subject(filters: Filters) -> str:
-    """Names what was counted, such as "Recruiting phase 3 melanoma trials of pembrolizumab".
+    """Names what was counted, such as "Recruiting phase 3 melanoma trials of pembrolizumab",
+    capitalized to start a title."""
+    text = _counted(filters)
+    return text[0].upper() + text[1:]
+
+
+def _counted(filters: Filters) -> str:
+    """The same words mid-sentence. Names keep the caller's casing ("Breast Cancer"), so
+    lowering the first letter of the capitalized form would give "breast Cancer".
 
     Conditions and keywords describe the trials, and drugs follow "of". Filters on
     different fields must all hold, so they are never joined with "or".
@@ -56,8 +64,7 @@ def subject(filters: Filters) -> str:
     words.append("trials")
     if filters.interventions:
         words.append(f"of {_join(filters.interventions)}")
-    text = " ".join(words)
-    return text[0].upper() + text[1:]
+    return " ".join(words)
 
 
 def subtitle(filters: Filters) -> str | None:
@@ -84,11 +91,11 @@ def subtitle(filters: Filters) -> str | None:
 
 
 def title(plan: Plan) -> str:
-    what = subject(plan.filters)
+    what, counted = subject(plan.filters), _counted(plan.filters)
     analysis = plan.analysis
     match analysis:
         case CountSpec():
-            return f"Number of {what[0].lower()}{what[1:]}"
+            return f"Number of {counted}"
         case DistributionSpec():
             by = analysis.group_by.label.lower()
             series = f" and {analysis.series_by.label.lower()}" if analysis.series_by else ""
@@ -101,14 +108,14 @@ def title(plan: Plan) -> str:
         case ComparisonSpec():
             cohorts = " vs ".join(c.label for c in analysis.cohorts)
             by = f" by {analysis.group_by.label.lower()}" if analysis.group_by else ""
-            return f"{cohorts}: {what[0].lower()}{what[1:]}{by}"
+            return f"{cohorts}: {counted}{by}"
         case HistogramSpec():
             by = f" by {analysis.group_by.label.lower()}" if analysis.group_by else ""
-            return f"{analysis.measure.label} of {what[0].lower()}{what[1:]}{by}"
+            return f"{analysis.measure.label} of {counted}{by}"
         case ScatterSpec():
             measures = [m.label.lower() for m in (analysis.x, analysis.y, analysis.z) if m]
             listed = _join(measures, "and")
-            return f"{listed[0].upper()}{listed[1:]} of {what[0].lower()}{what[1:]}"
+            return f"{listed[0].upper()}{listed[1:]} of {counted}"
         case NetworkSpec():
             first, second = analysis.node_types
             pair = (
@@ -116,7 +123,7 @@ def title(plan: Plan) -> str:
                 if first == second
                 else f"{first.label.lower()}s and {second.label.lower()}s"
             )
-            return f"Network of {pair} in {what[0].lower()}{what[1:]}"
+            return f"Network of {pair} in {counted}"
         case FlowSpec():
             return f"{what}: {' to '.join(s.label.lower() for s in analysis.stages)}"
         case TrialListSpec():
